@@ -11,3 +11,4 @@ Polls are of paramount importance in surveying the general population's perspect
 * Ahmet Emre Şafak 
 * Okay Demir
 * Emre Batuhan Göç
+* Yiğit Şekerci
