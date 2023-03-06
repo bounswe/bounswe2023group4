@@ -9,6 +9,5 @@ Polls are of paramount importance in surveying the general population's perspect
 * Enes Furkan Arslan
 * Halil Özkan
 * Ahmet Emre Şafak 
-* Okay Demir
 * Emre Batuhan Göç
 * Yiğit Şekerci
