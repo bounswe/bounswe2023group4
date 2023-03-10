@@ -6,31 +6,31 @@ body:
   attributes:
     value: "Welcome to our issue template!"
 - type: textarea
-    id: problem-definition
-    attributes:
-      label: Problem Definition
-      description: "Give a clear explanation of the problem. Don't forget that writing down a good problem statement is as important as coming up with a good solution."
-    validations:
-      required: true
+  id: problem-definition
+  attributes:
+    label: Problem Definition
+    description: "Give a clear explanation of the problem. Don't forget that writing down a good problem statement is as important as coming up with a good solution."
+  validations:
+    required: true
 - type: textarea
-    id: problem-context
-    attributes:
-      label: Problem Context
-      description: "Give any links or screenshots related to the problem."
-    validations:
-      required: false
+  id: problem-context
+  attributes:
+    label: Problem Context
+    description: "Give any links or screenshots related to the problem."
+  validations:
+    required: false
 - type: textarea
-    id: acceptance-criteria
-    attributes:
-      label: Acceptance Criteria
-      description: "Explain what needs to be done to accept this issue as completed."
-    validations:
-      required: false
+  id: acceptance-criteria
+  attributes:
+    label: Acceptance Criteria
+    description: "Explain what needs to be done to accept this issue as completed."
+  validations:
+    required: false
 - type: textarea
-    id: suggested_solutions
-    attributes:
-      label: Suggested Solutions
-      description: "Give any suggestions for the solution of this issue"
-    validations:
-      required: false
+  id: suggested_solutions
+  attributes:
+    label: Suggested Solutions
+    description: "Give any suggestions for the solution of this issue"
+  validations:
+    required: false
        
