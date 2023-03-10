@@ -4,8 +4,7 @@ labels: ["Status: To Do","Priority: Medium"]
 body:
 - type: markdown
   attributes:
-    value: |
-    Welcome to our issue template!
+    value: "Welcome to our issue template!"
 - type: textarea
     id: problem-definition
     attributes:
