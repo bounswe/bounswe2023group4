@@ -13,7 +13,7 @@ We are group 4, tasked with building such a versatile tool. You can get a detail
 </tr>
 <tr>
 <td><div><img width="250" height="250" alt="Ali Alperen Sönmez" src="https://avatars.githubusercontent.com/u/72912553?s=400&u=7573920cab3e8bc906ef682e4aca0a1f00678aa6&v=4"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Ali-Alperen-S%C3%B6nmez">Ali Alperen Sönmez</a></td>
-<td><div><img width="250" height="250" alt="Enes Furkan Arslan" src="https://user-images.githubusercontent.com/56879777/226205537-1629a321-8b0b-4efe-8d29-082fa0e3f0ca.jpg"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Enes-Furkan-Arslan">Enes Furkan Aslan</a></td>
+<td><div><img width="250" height="250" alt="Enes Furkan Arslan" src="https://user-images.githubusercontent.com/56879777/226205537-1629a321-8b0b-4efe-8d29-082fa0e3f0ca.jpg"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Enes-Furkan-Arslan">Enes Furkan Arslan</a></td>
 <td><div><img width="250" height="250" alt="Halil Özkan" src="https://user-images.githubusercontent.com/103820615/222950554-dd35003d-bb3b-4344-88b9-6c89a65e4091.jpg"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Halil-%C3%96zkan">Halil Özkan</a></td>
 </tr>
 <tr>
