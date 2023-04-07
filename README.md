@@ -2,6 +2,15 @@
 Polls are of paramount importance in surveying the general population's perspective and mood, providing an immensely powerful apparatus for decision-making and strategy planning. In addition, they might be utilized for recreational purposes: many we have seen on social media platforms like twitter dredging up ancient posts to boast about their prescience and visionary perspicacity!<br>
 We are group 4, tasked with building such a versatile tool. You can get a detailed illustration of the product's development process by checking our [wiki page](https://github.com/bounswe/bounswe2023group4/wiki).
 
+# About the Project
+Introducing Prediction Polls, the ultimate platform for sharing your opinions and insights with the world! With Prediction Polls, you can create and participate in polls on a wide range of topics, from politics to pop culture, and see how your views compare to those of other members.
+
+Our user-friendly interface allows you to easily search for polls and profiles using keywords, tags, and usernames, while our advanced privacy settings ensure that you have full control over who sees your profile and actions.
+
+As a member, you can connect with other users by adding friends, sharing achievements, and participating in the comment section of polls. Plus, with the ability to create your own polls, you can start conversations and gain valuable insights on the topics that matter most to you.
+
+And with our secure authentication process, you can trust that your personal information is safe with us. So sign up today, and join the Prediction Polls community!
+
 # Team Members:
 
 
