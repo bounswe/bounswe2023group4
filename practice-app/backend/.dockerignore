@@ -1,0 +1,11 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.swo
+*.sqlite3
+*.db
+*.log
+media
+staticfiles
