@@ -1,4 +1,4 @@
-version: '1'
+version: '3.9'
 services:
   backend:
     build:
@@ -6,9 +6,13 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
+    volumes:
+      - /backend
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    volumes:
+      - /frontend
