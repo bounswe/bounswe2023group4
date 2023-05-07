@@ -7,5 +7,4 @@ class Country(models.Model):
     population = models.IntegerField(default= 0)
     gdp = models.IntegerField(default= 0)
 
-
-
+#Poll Model will be added below
