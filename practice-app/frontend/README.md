@@ -33,21 +33,26 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-
 ## Formatter
+
 We use ESLint for typescript and Prettier for formatting.
 
 For ESLint run:
+
 ```
-yarn eslint .
+yarn lint
 ```
 
 For prettier check:
+
 ```
 npx prettier -c .
 ```
 
 For prettier write:
+
 ```
 npx prettier -w .
+or
+yarn format
 ```
