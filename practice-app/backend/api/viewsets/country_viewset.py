@@ -8,7 +8,6 @@ from rest_framework.response import Response
 class CountryViewSet(viewsets.ModelViewSet):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
-    #filter_backends = (DjangoFilterBackend,'django_filters.rest_framework.DjangoFilterBackend')
     filterset_fields = ('name' , 'gdp')
 
     @action(methods=['get'],detail=False)
