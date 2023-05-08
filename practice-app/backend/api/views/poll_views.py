@@ -6,7 +6,6 @@ from api.serializers import poll_serializer
 import os
 from dotenv import load_dotenv
 from api.models.poll_model import Poll
-from django.shortcuts import render
 import requests
 
 # Create your views here.
@@ -15,7 +14,6 @@ import requests
 class createPoll(APIView):
     serializer_class = poll_serializer
     def post(self,request, format = None):
-        print("Here")
         serializer = self.serializer_class(data=request.query_params)
         try:
             if serializer.is_valid():
@@ -40,7 +38,7 @@ class createPoll(APIView):
                 options = {}
                 question.update({'question', question_element})
                 identifier.update({'identifier': 'custom identification'})
-                data = {'data': {'custom': 'Poll Data'}}
+                Data = {'data': {'custom': 'Poll Data'}}
                 for option in optionsList:
                     subOption = {}
                     subOption.update({'text': option})
@@ -49,7 +47,7 @@ class createPoll(APIView):
                 payload = {}
                 payload.update(question)
                 payload.update(identifier)
-                payload.update(data)
+                payload.update(Data)
                 payload.update(options)
                 requests.post(url, data=json.dumps(payload), headers=headers)
                 new_Poll = Poll.objects.create(question=question_element, firstOption=firstOption_element,
