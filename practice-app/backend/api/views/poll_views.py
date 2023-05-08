@@ -32,7 +32,7 @@ class createPoll(APIView):
                 optionsList.append(secondOption_element)
                 optionsList.append(thirdOption_element)
                 optionsList.append(fourthOption_element)
-                ##optionsList = ['Good','Bad','Happy']
+                                ##optionsList = ['Good','Bad','Happy']
                 identifier = {}
                 question = {}
                 options = {}
@@ -58,7 +58,7 @@ class createPoll(APIView):
                 return Response(status.HTTP_406_NOT_ACCEPTABLE)
         except:
             return Response(status.HTTP_400_BAD_REQUEST)
-    
+
 class deletePoll(APIView):
     serializer_class = poll_serializer
 
@@ -67,13 +67,3 @@ class deletePoll(APIView):
         poll.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
-
-
-
-
-
-
-

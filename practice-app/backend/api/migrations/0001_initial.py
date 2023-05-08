@@ -5,11 +5,6 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    initial = True
-
-    dependencies = [
-    ]
-
     operations = [
         migrations.CreateModel(
             name='Poll',
@@ -20,6 +15,6 @@ class Migration(migrations.Migration):
                 ('secondOption', models.CharField(max_length=300)),
                 ('thirdOption', models.CharField(max_length=300, null=True)),
                 ('fourthOption', models.CharField(max_length=300, null=True)),
-            ],
-        ),
+            ]
+        )
     ]

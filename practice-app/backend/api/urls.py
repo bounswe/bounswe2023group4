@@ -10,9 +10,9 @@ router.registry.extend(poll_router.registry)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path("countries/new/", country_views.CreateCountry.as_view()),
-    path("countries/clearall/", country_views.ClearCountries.as_view()),
-    path("countries/collect/", country_views.CollectData.as_view()),  
-    path('polls/createPoll/', poll_views.createPoll.as_view()),
-    path('polls/removePoll/', poll_views.deletePoll.as_view())
+    path("countries_new/", country_views.CreateCountry.as_view()),
+    path("countries_clearall/", country_views.ClearCountries.as_view()),
+    path("countries_collect/", country_views.CollectData.as_view()),  
+    path('polls_createPoll/', poll_views.createPoll.as_view()),
+    path('polls_removePoll/', poll_views.deletePoll.as_view())
 ]
