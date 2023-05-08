@@ -8,7 +8,7 @@ from rest_framework.response import Response
 class PollViewSet (viewsets.ModelViewSet):
     queryset = Poll.objects.all()
     serializer_class = PollSerializer
-    filterset_fields = ('question')
+    filterset_fields = ('question','firstOption')
 
     @action(methods=['get'],detail=False)
     def data(self,request):
