@@ -1,4 +1,3 @@
-import requests
 import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -8,6 +7,8 @@ import os
 from dotenv import load_dotenv
 from api.models.poll_model import Poll
 from django.shortcuts import render
+import requests
+
 # Create your views here.
 
 
