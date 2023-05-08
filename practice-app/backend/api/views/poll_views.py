@@ -12,10 +12,10 @@ from django.shortcuts import render
 
 
 class createPoll(APIView):
+    serializer_class = poll_serializer
     def post(self,request, format = None):
         serializer = self.serializer_class(data=request.query_params)
         try:
-            serializer_class = poll_serializer
             if serializer.is_valid():
                 load_dotenv()
                 SECRET_KEY = os.getenv('SECRET_KEY')
@@ -54,7 +54,8 @@ class createPoll(APIView):
                                                secondOption=secondOption_element, thirdOption=thirdOption_element,
                                                fourthOption=fourthOption_element)
                 return Response(poll_serializer(new_Poll).data, status.HTTP_201_CREATED)
-
+            else:
+                return Response(status.HTTP_406_NOT_ACCEPTABLE)
         except:
             return Response(status.HTTP_400_BAD_REQUEST)
 
