@@ -3,10 +3,10 @@ import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from api.serializers import PollSerializer
+from api.serializers import poll_serializer
 import os
 from dotenv import load_dotenv
-from api.models import Poll
+from api.models.poll_model import Poll
 from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
@@ -15,7 +15,7 @@ from django.http import HttpResponse
 class createPoll(APIView):
     def post(self,request, format = None):
         try:
-            serializer_class = PollSerializer
+            serializer_class = poll_serializer
             serializer = self.serializer_class(data=request.query_params)
             if serializer.is_valid():
                 load_dotenv()
@@ -55,7 +55,7 @@ class createPoll(APIView):
                 new_Poll = Poll.objects.create(question=question_element, firstOption=firstOption_element,
                                                secondOption=secondOption_element, thirdOption=thirdOption_element,
                                                fourthOption=firstOption_element)
-                return Response(PollSerializer(new_Poll).data, status.HTTP_201_CREATED)
+                return Response(poll_serializer(new_Poll).data, status.HTTP_201_CREATED)
 
         except:
             return Response(status.HTTP_400_BAD_REQUEST)
