@@ -10,11 +10,11 @@ class Migration(migrations.Migration):
             name='Poll',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('question', models.CharField(max_length=1000)),
-                ('firstOption', models.CharField(max_length=300)),
-                ('secondOption', models.CharField(max_length=300)),
-                ('thirdOption', models.CharField(max_length=300, null=True)),
-                ('fourthOption', models.CharField(max_length=300, null=True)),
+                ('question', models.CharField(max_length=255)),
+                ('firstOption', models.CharField(max_length=255)),
+                ('secondOption', models.CharField(max_length=255)),
+                ('thirdOption', models.CharField(max_length=255, null=True)),
+                ('fourthOption', models.CharField(max_length=255, null=True)),
             ]
         )
     ]
