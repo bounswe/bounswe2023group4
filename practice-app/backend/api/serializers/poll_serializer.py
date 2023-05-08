@@ -5,5 +5,4 @@ from api.models.poll_model import Poll
 class PollSerializer(serializers.ModelSerializer):
     class Meta:
         model = Poll
-        fields = ('question','firstOption','secondOption','thirdOption','fourthOption')
-
+        fields = ('question', 'firstOption','secondOption','thirdOption', 'fourthOption')

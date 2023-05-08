@@ -17,7 +17,7 @@ class createPoll(APIView):
         try:
             serializer_class = poll_serializer
             if serializer.is_valid():
-                load_dotenv()
+                ###load_dotenv()
                 SECRET_KEY = os.getenv('SECRET_KEY')
                 url = 'https://api.pollsapi.com/v1/create/poll'
                 headers = {'Content-Type': 'application/json'}
