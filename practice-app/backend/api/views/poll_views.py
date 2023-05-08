@@ -13,9 +13,9 @@ from django.shortcuts import render
 
 class createPoll(APIView):
     def post(self,request, format = None):
+        serializer = self.serializer_class(data=request.query_params)
         try:
             serializer_class = poll_serializer
-            serializer = self.serializer_class(data=request.query_params)
             if serializer.is_valid():
                 load_dotenv()
                 SECRET_KEY = os.getenv('SECRET_KEY')
@@ -50,7 +50,7 @@ class createPoll(APIView):
                 payload.update(identifier)
                 payload.update(data)
                 payload.update(options)
-                response = requests.post(url, data=json.dumps(payload), headers=headers)
+                requests.post(url, data=json.dumps(payload), headers=headers)
                 new_Poll = Poll.objects.create(question=question_element, firstOption=firstOption_element,
                                                secondOption=secondOption_element, thirdOption=thirdOption_element,
                                                fourthOption=firstOption_element)
