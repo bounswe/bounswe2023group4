@@ -15,6 +15,7 @@ import requests
 class createPoll(APIView):
     serializer_class = poll_serializer
     def post(self,request, format = None):
+        print("Here")
         serializer = self.serializer_class(data=request.query_params)
         try:
             if serializer.is_valid():
