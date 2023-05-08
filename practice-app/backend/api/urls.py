@@ -13,6 +13,6 @@ urlpatterns = [
     path("countries/new/", country_views.CreateCountry.as_view()),
     path("countries/clearall/", country_views.ClearCountries.as_view()),
     path("countries/collect/", country_views.CollectData.as_view()),  
-    path('poll/create/', poll_views.createPoll.as_view()),
-    path('poll/removePoll/', poll_views.deletePoll.as_view())
+    path('polls/createPoll/', poll_views.createPoll.as_view()),
+    path('polls/removePoll/', poll_views.deletePoll.as_view())
 ]
