@@ -8,7 +8,6 @@ import os
 from dotenv import load_dotenv
 from api.models.poll_model import Poll
 from django.shortcuts import render
-from django.http import HttpResponse
 # Create your views here.
 
 
