@@ -22,6 +22,11 @@ class createPoll(APIView):
                 url = 'https://api.pollsapi.com/v1/create/poll'
                 headers = {'Content-Type': 'application/json'}
                 headers.update({'api-key': SECRET_KEY})
+                question_element = ''
+                firstOption_element = ''
+                secondOption_element = ''
+                thirdOption_element = ''
+                fourthOption_element = ''
                 # identifier_element = serializer.data.get('identifier')
                 question_element = serializer.data.get('question')
                 optionsList = []
