@@ -54,14 +54,13 @@ class CollectData(APIView):
         if response.status_code == requests.codes.ok:
             print(response.text)
             data = response.json()
-            country_json = data[0]
-
-            _name = country_json['name']
-            _capital = country_json['capital']
-            _population = country_json['population']
-            _gdp = country_json['gdp']
-            #country = Country(name=_name, capital=_capital, population=_population, gdp=_gdp)
-            country = Country.objects.create(name=_name,capital=_capital,population=_population,gdp=_gdp)
+            country_json = data
+            for country in country_json:
+                _name = country_json['name']
+                _capital = country_json['capital']
+                _population = country_json['population']
+                _gdp = country_json['gdp']
+                country = Country.objects.create(name=_name,capital=_capital,population=_population,gdp=_gdp)
             return Response(CountrySerializer(country).data,status=status.HTTP_201_CREATED)
         else:
             return Response(status=response.status_code)
