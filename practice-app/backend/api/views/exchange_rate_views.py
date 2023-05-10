@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 
 import requests
 
-class CreateExchangeRate(APIView):
+class PostExchangeRate(APIView):
     serializer_class = ExchangeRateSerializer
 
     def post(self,request,format=None):
