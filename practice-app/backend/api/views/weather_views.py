@@ -9,7 +9,7 @@ import os
 from dotenv import load_dotenv
 
 import requests
-
+#3rd party API 
 class GETWeather(APIView):
 
     def get(self,request):

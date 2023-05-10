@@ -13,5 +13,6 @@ urlpatterns = [
     path("countries_new/", country_views.CreateCountry.as_view()),
     path("countries_clearall/", country_views.ClearCountries.as_view()),
     path("countries_collect/", country_views.CollectData.as_view()),
-    path("weather_collect/", weather_views.GETWeather.as_view())
+    path("weather_collect/", weather_views.GETWeather.as_view()),
+    path("weather_new/", weather_views.POSTWeather.as_view()),
 ]
