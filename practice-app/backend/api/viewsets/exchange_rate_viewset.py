@@ -8,7 +8,7 @@ from rest_framework.response import Response
 class ExchangeRateViewSet(viewsets.ModelViewSet):
     queryset = ExchangeRate.objects.all()
     serializer_class = ExchangeRateSerializer
-    filterset_fields = ('name' , 'gdp')
+    filterset_fields = ('from_currency' , 'to_currency')
 
     @action(methods=['get'],detail=False)
     def data(self,request):
