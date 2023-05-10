@@ -32,7 +32,6 @@ class createPoll(APIView):
                 optionsList.append(secondOption_element)
                 optionsList.append(thirdOption_element)
                 optionsList.append(fourthOption_element)
-                                                ##optionsList = ['Good','Bad','Happy']
                 identifier = {}
                 question = {}
                 options = {}
@@ -59,11 +58,21 @@ class createPoll(APIView):
         except:
             return Response(status.HTTP_400_BAD_REQUEST)
 
-class deletePoll(APIView):
+class viewPoll(APIView):
     serializer_class = poll_serializer
 
-    def delete(self,request,id=None):
-        poll = Poll.objects.all()
-        poll.delete()
+    def view(self,request,id=None):
+        serializer = self.serializer_class(data=request.query_params)
+        try:
+            if serializer.is_valid():
+                load_dotenv()
+                Poll_SECRET_KEY = os.getenv('Poll_SECRET_KEY')
+                url = 'https://api.pollsapi.com/v1/create/poll'
+                params = { 'offset': '0','limit':100}
+                response = requests.get(url, params=params)
+                return Response(status.HTTP_201_CREATED)
+            else:
+                return Response(status.HTTP_406_NOT_ACCEPTABLE)
 
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        except:
+            return Response(status.HTTP_400_BAD_REQUEST)
