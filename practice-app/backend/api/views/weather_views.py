@@ -19,16 +19,17 @@ class GETWeather(APIView):
         DATABASE_URL = os.getenv('WEATHER_DATABASE_URL')
         DATABASE_KEY = os.getenv('WEATHER_KEY')
 
+        
         response = requests.get(DATABASE_URL, params = {'q':'İstanbul, TR','lang':'tr', 'appid': DATABASE_KEY})
 
         if response.status_code == requests.codes.ok:
             print(response.text)
             data = response.json()
-            weather_json = data[0]
+            weather_json = data
             
             _country = weather_json['sys']['country']
             _name = weather_json['name']
-            _description = weather_json['weather']['description']
+            _description = weather_json['weather'][0]['description']
             weather = Weather.objects.create(country=_country,name=_name,description=_description)
             return Response(WeatherSerializer(weather).data,status=status.HTTP_201_CREATED)
         else:
