@@ -30,7 +30,10 @@ class GETWeather(APIView):
             _country = weather_json['sys']['country']
             _name = weather_json['name']
             _description = weather_json['weather'][0]['description']
-            weather = Weather.objects.create(country=_country,name=_name,description=_description)
+            _main = weather_json['weather'][0]['main']
+            _temp = weather_json['main']['temp']
+            _windspeed = weather_json['wind']['speed']
+            weather = Weather.objects.create(country=_country,name=_name,description=_description,main=_main,temp=_temp,windspeed=_windspeed)
             return Response(WeatherSerializer(weather).data,status=status.HTTP_201_CREATED)
         else:
             return Response(status=response.status_code)
@@ -48,8 +51,11 @@ class POSTWeather(APIView):
                 country = serializer.data.get('country')
                 name = serializer.data.get('name')
                 description = serializer.data.get('description')
+                main = serializer.data.get('main')
+                temp = serializer.data.get('temp')
+                windspeed = serializer.data.get('windspeed')
                 
-                new_weather = Weather.objects.create(country=country,name=name,description=description)
+                new_weather = Weather.objects.create(country=country,name=name,description=description,main=main,temp=temp,windspeed=windspeed)
                 return Response(WeatherSerializer(new_weather).data,status.HTTP_201_CREATED)
             else:
                 return Response(status.HTTP_406_NOT_ACCEPTABLE)
