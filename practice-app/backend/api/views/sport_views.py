@@ -28,25 +28,36 @@ class CollectData(APIView):
 
             league_seasons = data['response']
             for league_season in league_seasons:
-                if league_season['league']['id'] in [39,135,203,78,61]:
-                    _name = league_season['league']['name']
-                    _country = league_season['country']['name']
-                    _season = league_season['seasons'][0]['year']
-                    new_league_s = League_Season.objects.create(name=_name,country=_country,season=_season)
-                    response2 = requests.get(STANDING_DATABASE_URL,params={'league':league_season['league']['id'],"season":new_league_s.season},headers={'x-apisports-key': DATABASE_KEY})
+                if league_season['league']['id'] not in [39,135,203,78,61]:
+                    continue
 
-                    if response2.status_code == requests.codes.ok:
-                        data2 = response2.json()
-                        standings = data2['response'][0]['league']['standings'][0]
-                        for standing in standings:
-                            _league_id = new_league_s.id
-                            _rank = standing['rank']
-                            _team = standing['team']['name']
-                            _points = standing['points']
-                            new_standing = Standing.objects.create(league_id = new_league_s,rank = _rank,team = _team,points = _points)
+                new_league_s = create_LeagueSeason(league_season)
+                response2 = requests.get(STANDING_DATABASE_URL,params={'league':league_season['league']['id'],"season":new_league_s.season},headers={'x-apisports-key': DATABASE_KEY})
+
+                if response2.status_code != requests.codes.ok:
+                    continue
+                    
+                data2 = response2.json()
+                standings = data2['response'][0]['league']['standings'][0]
+                for standing in standings:
+                    create_Standing(standing,new_league_s)
             
             return Response(status=status.HTTP_201_CREATED)
         else:
             return Response(status=response.status_code)
+
+# Creates league season object from a dictionary and puts it in database
+def create_LeagueSeason(league_season_dict):
+    _name = league_season_dict['league']['name']
+    _country = league_season_dict['country']['name']
+    _season = league_season_dict['seasons'][0]['year']
+    return League_Season.objects.create(name=_name,country=_country,season=_season)
+
+# Creates league season object from a dictionary and puts it in database
+def create_Standing(standing_dict,league_season):
+    _rank = standing_dict['rank']
+    _team = standing_dict['team']['name']
+    _points = standing_dict['points']
+    return Standing.objects.create(league_id = league_season,rank = _rank,team = _team,points = _points)
 
 
