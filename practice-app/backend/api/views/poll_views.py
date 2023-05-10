@@ -32,7 +32,7 @@ class createPoll(APIView):
                 optionsList.append(secondOption_element)
                 optionsList.append(thirdOption_element)
                 optionsList.append(fourthOption_element)
-                                ##optionsList = ['Good','Bad','Happy']
+                                                ##optionsList = ['Good','Bad','Happy']
                 identifier = {}
                 question = {}
                 options = {}
