@@ -5,10 +5,10 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 
-class CountryViewSet(viewsets.ModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    filterset_fields = ('user_id')
+    filterset_fields = ('user_id','email','first_name','last_name','avatar')
 
     @action(methods=['get'],detail=False)
     def data(self,request):
