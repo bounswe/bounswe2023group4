@@ -4,8 +4,8 @@ __pycache__
 *.pyd
 *.swp
 *.swo
+*.sqlite3
 *.db
 *.log
-*.env
 media
 staticfiles
