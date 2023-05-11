@@ -10,9 +10,8 @@ router.registry.extend(exchange_rate_router.registry)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path("countries/new/", country_views.CreateCountry.as_view()),
-    path("countries/clearall/", country_views.ClearCountries.as_view()),
-    path("countries/collect/", country_views.CollectData.as_view()),
+    path("countries_clearall/", country_views.ClearCountries.as_view()),
+    path("countries_collect/", country_views.CollectData.as_view()),
     path("exchange_rate_collect/", exchange_rate_views.GetExchangeRate.as_view()),
-    path("exchange_rate_new/", exchange_rate_views.PostExchangeRate.as_view()),
+    path("exchange_rate_clear/",exchange_rate_views.ClearExchangeRates.as_view()),
 ]
