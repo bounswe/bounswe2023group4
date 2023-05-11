@@ -7,7 +7,6 @@ from api.serializers.movie_serializer import MovieSerializer
 
 import os
 from dotenv import load_dotenv
-
 import requests
 
 class searchMovie(APIView):
