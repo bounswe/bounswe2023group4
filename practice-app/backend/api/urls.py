@@ -15,4 +15,5 @@ urlpatterns = [
     path("countries_collect/", country_views.CollectData.as_view()),
     path("weather_collect/", weather_views.GETWeather.as_view()),
     path("weather_new/", weather_views.POSTWeather.as_view()),
+    path("weather_clearall/", weather_views.CLEARWeather.as_view())
 ]

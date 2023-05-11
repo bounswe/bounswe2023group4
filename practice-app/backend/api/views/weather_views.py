@@ -61,3 +61,12 @@ class POSTWeather(APIView):
                 return Response(status.HTTP_406_NOT_ACCEPTABLE)
         except:
             return Response(status.HTTP_400_BAD_REQUEST)
+
+class CLEARWeather(APIView):
+    serializer_class = WeatherSerializer
+
+    def delete(self,request,id=None):
+        weather = Weather.objects.all()
+        weather.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
