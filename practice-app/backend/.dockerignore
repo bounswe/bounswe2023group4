@@ -4,7 +4,7 @@ __pycache__
 *.pyd
 *.swp
 *.swo
-*.sqlite3
+*.env
 *.db
 *.log
 media
