@@ -11,10 +11,8 @@ router.registry.extend(user_router.registry)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path("countries_new/", country_views.CreateCountry.as_view()),
     path("countries_clearall/", country_views.ClearCountries.as_view()),
     path("countries_collect/", country_views.CollectData.as_view()),
     path("user-1_collect/",user_views.GetData.as_view()),
-    path("user_new/",user_views.CreateUser.as_view()),
-    path("user_clearall/", user_views.ClearUsers.as_view()),
+    path("user-1_clearall/", user_views.ClearUsers.as_view()),
 ]

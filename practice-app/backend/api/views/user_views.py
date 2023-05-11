@@ -10,27 +10,6 @@ from dotenv import load_dotenv
 
 import requests
 
-class CreateUser(APIView):
-    serializer_class = UserSerializer
-
-    def post(self,request,format=None):
-        serializer = self.serializer_class(data=request.query_params)
-        print("Recieved Data : ", request.query_params)
-        try:
-            if serializer.is_valid():
-                print("Recieved ID : ", serializer.data.get('user_id'))
-                user_id = serializer.data.get('user_id')
-                email = serializer.data.get('email')
-                first_name = serializer.data.get('first_name')
-                last_name = serializer.data.get('last_name')
-                avatar = serializer.data.get('data')
-                new_user = User.objects.create(user_id=user_id,email=email,first_name=first_name,last_name=last_name,avatar=avatar)
-                return Response(UserSerializer(new_user).data,status.HTTP_201_CREATED)
-            else:
-                return Response(status.HTTP_406_NOT_ACCEPTABLE)
-        except:
-            return Response(status.HTTP_400_BAD_REQUEST)
-
 class ClearUsers(APIView):
     serializer_class = UserSerializer
 
