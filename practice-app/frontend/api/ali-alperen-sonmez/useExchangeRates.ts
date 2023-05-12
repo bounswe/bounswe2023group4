@@ -7,9 +7,8 @@ type UseExchangeRateProps = {
 
 const fetchExchangeRate = async () => {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
-  const response = await fetch(`${apiBaseUrl}/exchange_rate_collect/`, {
+  const response = await fetch(`${apiBaseUrl}/exchange_rates/`, {
     mode: 'cors',
-    method:'get'
   })
   return response.json()
 }
