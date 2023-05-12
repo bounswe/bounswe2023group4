@@ -51,7 +51,6 @@ class TestUrls(TestCase):
             'fourthOption':'Aa'
         }
         response = self.client.post(url,data=_data,header = headers)
-        print(Poll.objects.all)
         assert(len(Poll.objects.all())==2)
     
     def test_poll_collect_data_from_api(self):
