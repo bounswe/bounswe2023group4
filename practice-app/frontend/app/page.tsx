@@ -13,7 +13,7 @@ const StudentRoutes: Route[] = [
   {
     student: 'Selin Işık',
     path: '/selin-isik',
-    apiName: 'Text Classification API',
+    apiName: 'Reqres API',
   },
   { student: 'Yusuf Suat Polat', path: '/yusuf-suat-polat', apiName: 'API' },
   {
