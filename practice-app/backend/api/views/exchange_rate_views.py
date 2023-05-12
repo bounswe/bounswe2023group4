@@ -46,4 +46,24 @@ class GetExchangeRate(APIView):
         else:
             return Response(status=response.status_code)
 
+class POSTExchangeRate(APIView):
+    serializer_class = ExchangeRateSerializer
+
+    def post(self,request,format=None):
+        serializer = self.serializer_class(data=request.query_params)
+        print("Recieved Data : ", request.query_params)
+        try:
+            if serializer.is_valid():
+                from_currency = serializer.data.get('from_currency')
+                to_currency = serializer.data.get('to_currency')
+                date = serializer.data.get('date')
+                amount = serializer.data.get('amount')
+                rate = serializer.data.get('rate')
+                
+                new_exchange_rate = ExchangeRate.objects.create(from_currency=from_currency,to_currency=to_currency,date=date,amount=amount,rate=rate)
+                return Response(ExchangeRateSerializer(new_exchange_rate).data,status.HTTP_201_CREATED)
+            else:
+                return Response(status.HTTP_406_NOT_ACCEPTABLE)
+        except:
+            return Response(status.HTTP_400_BAD_REQUEST)
 

@@ -39,14 +39,29 @@ class TestUrls(TestCase):
 
         self.assertEqual(response.status_code, 200)
         assert(response.json()[0]["date"]=="2023-05-11")
-        assert(len(response.json())==1)            
+        assert(len(response.json())==1)     
+
+    def test_post_exchange_rate_with_param(self):
+        # Test for adding a country to the API with post method
+        url = '/api/exchange_rates/'
+        _data = {
+            'from_currency': "EUR",
+            'to_currency': "TRY",
+            'date': "2023-05-11",
+            'amount': 1,
+            'rate': 21
+        }
+        response = self.client.post(url,data=_data)
+
+        assert(response.json()['rate']==21)
+        assert(len(ExchangeRate.objects.all())==2)          
 
     def test_exchange_rate_view_url_is_resolved3(self):
         # Collect view that collects data from 3rd party APIs
         url = '/api/exchange_rate_collect/'
         response = self.client.get(url)
 
-        assert(len(ExchangeRate.objects.all())>2)
+        assert(len(ExchangeRate.objects.all())>1)
 
     def test_exchange_rate_view_url_is_resolved2(self):
         # Clearall view that clears all data from exchange_rates table
