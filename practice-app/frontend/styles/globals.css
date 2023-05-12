@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-exchange-rate {
+  background-image: url('../public/exchange-rate.jpg');
+}
 .bg-city {
   background-image: url('../public/city.jpg');
 }

@@ -19,7 +19,7 @@ const StudentRoutes: Route[] = [
   {
     student: 'Ali Alperen Sönmez',
     path: '/ali-alperen-sonmez',
-    apiName: 'API',
+    apiName: 'Exchange Rate API',
   },
   {
     student: 'Enes Furkan Arslan',
