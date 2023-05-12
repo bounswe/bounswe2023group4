@@ -29,8 +29,8 @@ class TestUrls(TestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        assert(response.json()['id']==1)
-        assert(len(response.json())==5)
+        assert(response.json()[0]['id']==1)
+        assert(len(response.json())==1)
 
     def test_get_user_with_param(self):
         # Test for getting a user from the API with a parameter
@@ -38,15 +38,15 @@ class TestUrls(TestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        assert(response.json()["id"]==1)
-        assert(len(response.json())==5)            
+        assert(response.json()[0]["id"]==1)
+        assert(len(response.json())==1)            
 
     def test_user_view_url_is_resolved3(self):
         # Collect view that collects data from 3rd party APIs
         url = '/api/user-1_collect/'
         response = self.client.get(url)
 
-        assert(len(User.objects.all())>1)
+        assert(len(User.objects.all())>2)
 
     def test_user_view_url_is_resolved2(self):
         # Clearall view that clears all data from exchange_rates table
