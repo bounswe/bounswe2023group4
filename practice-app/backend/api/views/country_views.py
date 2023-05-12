@@ -42,5 +42,3 @@ class CollectData(APIView):
             return Response(CountrySerializer(country).data,status=status.HTTP_201_CREATED)
         else:
             return Response(status=response.status_code)
-
-

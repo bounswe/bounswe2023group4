@@ -23,7 +23,6 @@ class GETWeather(APIView):
         response = requests.get(DATABASE_URL, params = {'q':'İstanbul, TR','lang':'tr', 'appid': DATABASE_KEY})
 
         if response.status_code == requests.codes.ok:
-            print(response.text)
             data = response.json()
             weather_json = data
             
@@ -44,10 +43,8 @@ class POSTWeather(APIView):
 
     def post(self,request,format=None):
         serializer = self.serializer_class(data=request.query_params)
-        print("Recieved Data : ", request.query_params)
         try:
             if serializer.is_valid():
-                print("Recieved Name : ", serializer.data.get('name'))
                 country = serializer.data.get('country')
                 name = serializer.data.get('name')
                 description = serializer.data.get('description')
