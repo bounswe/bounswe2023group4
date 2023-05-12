@@ -58,10 +58,20 @@ class createPoll(APIView):
         except:
             return Response(status.HTTP_400_BAD_REQUEST)
 
-class viewPoll(APIView):
+
+class ClearPoll(APIView):
     serializer_class = poll_serializer
 
-    def view(self,request,id=None):
+    def delete(self,request,id=None):
+        polls = Poll.objects.all()
+        polls.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class collectPoll(APIView):
+    serializer_class = poll_serializer
+
+    def get(self,request,id=None):
         serializer = self.serializer_class(data=request.query_params)
         try:
             if serializer.is_valid():
@@ -70,9 +80,21 @@ class viewPoll(APIView):
                 url = 'https://api.pollsapi.com/v1/create/poll'
                 params = { 'offset': '0','limit':100}
                 response = requests.get(url, params=params)
-                return Response(status.HTTP_201_CREATED)
+                if response.status_code == requests.codes.ok:
+                    poll_json = response.json()
+                    for poll in poll_json:
+                        _question     = poll['question']
+                        _firstOption  = poll['firstOption']
+                        _secondOption = poll['secondOption']
+                        _thirdOption  = poll['thirdOption']
+                        _fourthOption = poll['fourthOption']
+                        poll = Poll.objects.create(question=_question,firstOption=_firstOption,secondOption=_secondOption,thirdOption=_thirdOption ,fourthOption=_fourthOption)
+                    return Response(poll_serializer(poll).data,status=status.HTTP_201_CREATED)
+                else:
+                    return Response(status=response.status_code)
             else:
                 return Response(status.HTTP_406_NOT_ACCEPTABLE)
 
         except:
             return Response(status.HTTP_400_BAD_REQUEST)
+        

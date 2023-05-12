@@ -59,3 +59,17 @@ class TestUrls(TestCase):
 
         assert(response.json()['question']=='What is the economic cost incurred due to the earthquake?')
         assert(len(Poll.objects.all())==3)
+    
+    def test_poll_collect_data_from_api(self):
+        # Collect view that collects data from 3rd party APIs
+        url = '/api/polls_collectPoll/'
+        response = self.client.get(url)
+
+        assert(len(Poll.objects.all())>3)
+
+    def test_poll_clear_poll_table_db(self):
+        # Clearall view that clears all data from countries table
+        url = '/api/polls_clearPoll/'
+        response = self.client.delete(url)
+
+        assert(len(Poll.objects.all())==0)
