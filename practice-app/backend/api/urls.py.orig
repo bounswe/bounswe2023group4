@@ -16,8 +16,11 @@ from api.routers.weather_router import weather_router
 from api.routers.poll_router import poll_router
 from api.routers.user_router import user_router
 from api.routers.exchange_rate_router import exchange_rate_router
+<<<<<<< HEAD
 from api.routers.movie_router import Movie_router
+=======
 from api.routers.sport_suggestion_router import sport_suggestion_router
+>>>>>>> 067472273d9a3a7c5218834c72a5a4e2e7ab0975
 from rest_framework import routers
 
 router = routers.DefaultRouter()
