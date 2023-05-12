@@ -19,7 +19,7 @@ export const UserBox: FunctionComponent<UserBoxProps> = (Props) => {
         </div>
       </div>
       <div className="flex flex-row items-center justify-between px-4">
-        <p className="text-3xl text-white font-bold">{`User ID: ${user.id}`}</p>
+        <p className="text-3xl text-white font-bold">{`User ID: ${user.user_id}`}</p>
         <p className="text-3xl text-white font-bold">{`User e-mail: ${user.email}`}</p>
       </div>
     </div>

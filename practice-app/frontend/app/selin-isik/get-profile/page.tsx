@@ -33,7 +33,7 @@ const Page = () => {
         >
           <p className="w-full h-full"> Return to Home Page</p>
         </Link>
-        {data && <UserBox user={data} />}
+        {data && <UserBox user={data[0]} />}
       </div>
     </div>
   )

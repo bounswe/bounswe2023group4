@@ -7,7 +7,7 @@ type UseUserProps = {
 
 const fetchUser = async () => {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
-  const response = await fetch(`${apiBaseUrl}/user-1_collect/`, {
+  const response = await fetch(`${apiBaseUrl}/users/`, {
     mode: 'cors',
   })
   return response.json()
@@ -15,7 +15,7 @@ const fetchUser = async () => {
 
 const useUser = (props: UseUserProps) => {
   const { config } = props
-  return useQuery<User>('user', fetchUser, config)
+  return useQuery<User[]>('user', fetchUser, config)
 }
 
 type UseMutationUserProps = {
