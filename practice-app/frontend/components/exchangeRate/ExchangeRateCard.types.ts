@@ -1,10 +1,5 @@
-export interface ExchangeRateCardProps {
-currency?: ExchangeRate;
-}
-export interface ExchangeRate {
-    fromCurrency: string;
-    toCurrency: string;
-    date: string;
-    amount: number;
-    exchangeRate: number;
+import { ExchangeRate } from '@/api/ali-alperen-sonmez/types'
+
+export type ExchangeRateCardProps = {
+  currency: ExchangeRate
 }
