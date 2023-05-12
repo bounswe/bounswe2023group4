@@ -4,6 +4,8 @@
 
 .bg-game {
   background-image: url('../public/game.jpg');
+.bg-poll {
+    background-image: url('../public/getpoll.jpg');
 }
 .bg-exchange-rate {
   background-image: url('../public/exchange-rate.jpg');

@@ -31,7 +31,6 @@ class GetData(APIView):
         response = requests.get(DATABASE_URL, params={'page':1})
 
         if response.status_code == requests.codes.ok:
-            print(response.text)
             data = response.json()
             user_json = data
 
