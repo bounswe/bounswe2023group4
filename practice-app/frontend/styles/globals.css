@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.bg-exchange-rate{
+    background-image: url('../public/exchange-rate.jpg');
+}
