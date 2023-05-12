@@ -8,6 +8,7 @@ from api.routers.weather_router import weather_router
 from api.routers.poll_router import poll_router
 from api.routers.user_router import user_router
 from api.routers.exchange_rate_router import exchange_rate_router
+from api.routers.sport_suggestion_router import sport_suggestion_router
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -18,6 +19,7 @@ router.registry.extend(weather_router.registry)
 router.registry.extend(exchange_rate_router.registry)
 router.registry.extend(poll_router.registry)
 router.registry.extend(user_router.registry)
+router.registry.extend(sport_suggestion_router.registry)
 
 urlpatterns = [
     path('api_schema',get_schema_view(title = 'API Schema', description = 'API documentation'), name = 'api_schema'),
