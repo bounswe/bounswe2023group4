@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-poll {
+    background-image: url('../public/getpoll.jpg');
+}
+
 .bg-exchange-rate {
   background-image: url('../public/exchange-rate.jpg');
 }
