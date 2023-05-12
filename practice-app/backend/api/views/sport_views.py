@@ -15,10 +15,11 @@ class ClearLeagueSeasons(APIView):
     serializer_class = League_SeasonSerializer
 
     def delete(self,request,id=None):
+        ClearStandings.delete(self,request)
+        
         league_seasons = League_Season.objects.all()
         league_seasons.delete()
         
-        ClearStandings.delete(self,request)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class ClearStandings(APIView):
