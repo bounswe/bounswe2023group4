@@ -59,4 +59,13 @@ class TestUrls(TestCase):
 
         assert(response.json()['Title']=="Maginot")
         assert(len(Movie.objects.all())==3)
+
+    def test_movie_fetch_data_from_api(self):
+        # Collect view that collects data from 3rd party APIs
+        url = '/api/movie_fetch/'
+        response = self.client.get(url)
+
+        assert(len(Movie.objects.all()) > 3)
+
+        
             
