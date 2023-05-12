@@ -5,3 +5,9 @@
 .bg-city {
   background-image: url('../public/city.jpg');
 }
+.bg-weather{
+    background-image: url('../public/weather.jpg');
+}
+.bg-weather-main{
+    background-image: url('../public/weather-main.jpg');
+}
