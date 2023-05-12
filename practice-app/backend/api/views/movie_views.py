@@ -11,8 +11,8 @@ import requests
 
 class searchMovie(APIView):
     serializer_class = MovieSerializer
-    def get(self,request,format=None):
-        Movie_Key = Movie_Secret_Key
+    def get(self,request,format=None): 
+        Movie_Key = os.getenv('Movie_Secret_Key')
         url = 'http://www.omdbapi.com/?apikey=' + Movie_Key + '&'
         imdbID = request.GET.get("imdbID")
         Title = request.GET.get("Title")
