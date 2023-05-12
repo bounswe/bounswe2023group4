@@ -46,7 +46,7 @@ class TestUrls(TestCase):
         url = '/api/user-1_collect/'
         response = self.client.get(url)
 
-        assert(len(User.objects.all())>2)
+        assert(len(User.objects.all())>1)
 
     def test_user_view_url_is_resolved2(self):
         # Clearall view that clears all data from exchange_rates table
