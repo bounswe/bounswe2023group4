@@ -13,7 +13,9 @@ export const WeatherBox: FunctionComponent<WeatherBoxProps> = (Props) => {
       <div className="flex items-end w-3/5 bg-city bg-cover ">
         <div className="flex h-1/3 bg-gradient-to-t from-black items-center w-full px-12 justify-between pt-6">
           <div className="flex">
-            <p className="text-white text-4xl pr-8 font-semibold">{`${(temp-272.15).toFixed(0)} C`}</p>
+            <p className="text-white text-4xl pr-8 font-semibold">{`${(
+              temp - 272.15
+            ).toFixed(0)} C`}</p>
             <p className="text-white pr-2 text-lg align-text-top"> {country}</p>
             <p className="text-white text-3xl">{name}</p>
           </div>
