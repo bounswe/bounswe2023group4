@@ -18,5 +18,6 @@ urlpatterns = [
     path("countries_clearall/", country_views.ClearCountries.as_view()),
     path("countries_collect/", country_views.CollectData.as_view()),
     path("user-1_collect/",user_views.GetData.as_view()),
+    path("user-1_new/", user_views.POSTUser.as_view()),
     path("user-1_clearall/", user_views.ClearUsers.as_view()),
 ]
