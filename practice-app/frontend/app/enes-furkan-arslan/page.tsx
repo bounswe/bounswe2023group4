@@ -1,19 +1,41 @@
 'use client'
+import {
+  useRefreshWeathers,
+  useWeathers,
+} from '@/api/enes-furkan-arslan/useWeather'
 import { WeatherBox } from '@/components/weatherBox/WeatherBox'
 import { useState } from 'react'
 
 const Page = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const { data, refetch } = useWeathers({
+    config: {
+      onSuccess: (data: Weather[]) => {
+        if (data.length === 0) {
+          refreshCountries()
+        }
+      },
+    },
+  })
+
+  const { mutate: refreshCountries } = useRefreshWeathers({
+    config: {
+      onSuccess: () => {
+        refetch()
+      },
+    },
+  })
+
   return (
     <div className="w-full h-screen flex items-center justify-center bg-weather">
-      {isOpen ? (
+      {isOpen && data && data.length > 0 ? (
         <WeatherBox
-          country="TR"
-          name="İstanbul"
-          description="parçalı az bulutlu"
-          main="Clouds"
-          temp={285.74}
-          windspeed={6.69}
+          country={data[0].country}
+          name={data[0].name}
+          description={data[0].description}
+          main={data[0].main}
+          temp={data[0].temp}
+          windspeed={data[0].windspeed}
           buttonOnClick={() => {
             setIsOpen(false)
           }}
