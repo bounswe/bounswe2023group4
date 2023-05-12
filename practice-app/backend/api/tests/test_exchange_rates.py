@@ -29,8 +29,8 @@ class TestUrls(TestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        assert(response.json()['from_currency']=="USD")
-        assert(len(response.json())==5)
+        assert(response.json()[0]['from_currency']=="USD")
+        assert(len(response.json())==1)
 
     def test_get_exchange_rate_with_param(self):
         # Test for getting a exchange rate from the API with a parameter
@@ -38,15 +38,15 @@ class TestUrls(TestCase):
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        assert(response.json()["date"]=="2023-05-11")
-        assert(len(response.json())==5)            
+        assert(response.json()[0]["date"]=="2023-05-11")
+        assert(len(response.json())==1)            
 
     def test_exchange_rate_view_url_is_resolved3(self):
         # Collect view that collects data from 3rd party APIs
         url = '/api/exchange_rate_collect/'
         response = self.client.get(url)
 
-        assert(len(ExchangeRate.objects.all())>1)
+        assert(len(ExchangeRate.objects.all())>2)
 
     def test_exchange_rate_view_url_is_resolved2(self):
         # Clearall view that clears all data from exchange_rates table
