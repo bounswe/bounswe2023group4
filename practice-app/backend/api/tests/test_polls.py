@@ -1,6 +1,5 @@
 from django.test import TestCase,Client
 from django.urls import reverse,resolve
-from api.views.poll_views import createPoll
 from api.models.poll_model import Poll
 
 class TestUrls(TestCase):
