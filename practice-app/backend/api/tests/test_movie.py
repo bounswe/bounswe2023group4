@@ -47,7 +47,7 @@ class TestUrls(TestCase):
         assert(len(response.json())==1)
 
     def test_post_movie_with_param(self):
-        # Test for adding a movie to the API with post method
+        # Test for adding a movie t o t he API with post method
         url = '/api/movie/'
         _data = {
             "Title"  :"Maginot",
