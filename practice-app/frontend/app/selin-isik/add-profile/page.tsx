@@ -10,7 +10,7 @@ const Page = () => {
     last_name: '',
     email: '',
     avatar: 'https://reqres.in/img/faces/7-image.jpg',
-    id: 0,
+    user_id: 0,
   }
   const [user, setUser] = useState<User>(initialUser)
 

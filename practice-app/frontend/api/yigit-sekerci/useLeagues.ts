@@ -20,15 +20,14 @@ const useLeagues = (props: UseLeaguesProps) => {
 
 const refreshLeagues = async () => {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
-  const response = await fetch(`${apiBaseUrl}/league_seasons_collect/`, {
+  await fetch(`${apiBaseUrl}/league_seasons_collect/`, {
     mode: 'cors',
   })
-  return response.json()
 }
 
 const useRefreshLeagues = (props: UseLeaguesProps) => {
   const { config } = props
-  return useMutation<League[], Error>('leagues', refreshLeagues, config)
+  return useMutation('leagues', refreshLeagues, config)
 }
 
 export default useLeagues
