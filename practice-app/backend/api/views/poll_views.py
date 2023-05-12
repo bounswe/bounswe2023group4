@@ -70,7 +70,7 @@ class collectPoll(APIView):
         try:
                 load_dotenv()
                 Poll_SECRET_KEY = os.getenv('Poll_SECRET_KEY')
-                url = 'https://api.pollsapi.com/v1/create/poll'
+                url = 'https://api.pollsapi.com/v1/get/polls?'
                 params = { 'offset': '0','limit':100}
                 response = requests.get(url, params=params)
                 if response.status_code == requests.codes.ok:
