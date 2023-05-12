@@ -13,7 +13,7 @@ const StudentRoutes: Route[] = [
   {
     student: 'Selin Işık',
     path: '/selin-isik',
-    apiName: 'Regres API',
+    apiName: 'Reqres API',
   },
   { student: 'Yusuf Suat Polat', path: '/yusuf-suat-polat', apiName: 'API' },
   {
