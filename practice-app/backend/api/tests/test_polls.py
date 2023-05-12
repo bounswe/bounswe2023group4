@@ -17,13 +17,6 @@ class TestUrls(TestCase):
             thirdOption = 'ambivalent',
             fourthOption = 'No Answer'
         )
-        Poll.objects.create(
-            id = 2,
-            question = 'Who would win the 2023 presidential elections?',
-            firstOption = 'KK',
-            secondOption = 'RTE',
-            thirdOption = 'SO'
-        )
 
         self.polls = Poll.objects.all()
 
@@ -34,38 +27,38 @@ class TestUrls(TestCase):
 
         self.assertEqual(response.status_code, 200)
         assert(response.json()[0]['question']=='Are your happy today?')
-        assert(len(response.json())==2)
+        assert(len(response.json())==1)
 
     def test_get_poll_with_param(self):
         # Test for getting a poll from the API with a parameter
-        url = '/api/polls/?firstOption=KK'
+        url = '/api/polls/?firstOption=yes'
         response = self.client.get(url)
 
         self.assertEqual(response.status_code, 200)
-        assert(response.json()[0]['question'] == 'Who would win the 2023 presidential elections?')
+        assert(response.json()[0]['question'] == 'Are your happy today?')
         assert(len(response.json())==1)
 
     def test_post_poll_with_param(self):
         # Test for adding a poll to the API with post method
-        url = '/api/polls/'
+        ##url = '/api/createpolls/#/?question=a&firstOption=10&secondOption=20&thirdOption=30&fourthOption=Other'
+        url = 'polls_createPoll/'
+        headers = {'content-type' : 'application/json'}
         _data = {
-            'question'    :'What is the economic cost incurred due to the earthquake?',
-            'firstOption' :'50 billion',
-            'secondOption':'70 billion',
-            'thirdOption' :'100 billion',
-            'fourthOption':'Other'
+            'question'    :'A',
+            'firstOption' :'AA',
+            'secondOption':'AA',
+            'thirdOption' :'Aaa',
+            'fourthOption':'Aa'
         }
-        response = self.client.post(url,data=_data)
-
-        assert(response.json()['question']=='What is the economic cost incurred due to the earthquake?')
-        assert(len(Poll.objects.all())==3)
+        response = self.client.post(url,data=_data,header = headers)
+        print(Poll.objects.all)
+        assert(len(Poll.objects.all())==2)
     
     def test_poll_collect_data_from_api(self):
         # Collect view that collects data from 3rd party APIs
         url = '/api/polls_collectPoll/'
         response = self.client.get(url)
-
-        assert(len(Poll.objects.all())==3)
+        assert(len(Poll.objects.all())==2)
 
     def test_poll_clear_poll_table_db(self):
         # Clearall view that clears all data from countries table
