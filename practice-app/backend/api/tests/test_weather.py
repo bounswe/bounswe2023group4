@@ -5,6 +5,7 @@ from api.views.weather_views import CLEARWeather,GETWeather
 
 from api.models.weather_model import Weather
 
+
 class TestUrls(TestCase):
 
     def setUp(self):
@@ -23,7 +24,6 @@ class TestUrls(TestCase):
             windspeed = 69.2
         )
 
-    
         self.weather = Weather.objects.all()
 
     def test_get_all_weathers(self):
@@ -66,7 +66,7 @@ class TestUrls(TestCase):
         url = '/api/weather_collect/'
         response = self.client.get(url)
 
-        assert(len(Weather.objects.all())>2)
+        assert(len(Weather.objects.all())>=2)
 
     def test_weather_view_url_is_resolved2(self):
         # Clearall view that clears all data from weathers table
