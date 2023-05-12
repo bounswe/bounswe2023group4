@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-game {
+  background-image: url('../public/game.jpg');
 .bg-poll {
     background-image: url('../public/getpoll.jpg');
 }
