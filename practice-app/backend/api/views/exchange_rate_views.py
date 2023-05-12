@@ -31,7 +31,6 @@ class GetExchangeRate(APIView):
         response = requests.get(DATABASE_URL, params={'from':'USD','to':'TRY','amount':1})
 
         if response.status_code == requests.codes.ok:
-            print(response.text)
             data = response.json()
             exchange_rate_json = data
 
@@ -51,7 +50,6 @@ class POSTExchangeRate(APIView):
 
     def post(self,request,format=None):
         serializer = self.serializer_class(data=request.query_params)
-        print("Recieved Data : ", request.query_params)
         try:
             if serializer.is_valid():
                 from_currency = serializer.data.get('from_currency')

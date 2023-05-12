@@ -4,15 +4,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     operations = [
+   
         migrations.CreateModel(
-            name='Poll',
+            name='Movie',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('question', models.CharField(max_length=255)),
-                ('firstOption', models.CharField(max_length=255)),
-                ('secondOption', models.CharField(max_length=255)),
-                ('thirdOption', models.CharField(max_length=255, null=True)),
-                ('fourthOption', models.CharField(max_length=255, null=True)),
-            ]
-        )
+                ('Title', models.CharField(max_length=250)),
+                ('Year', models.CharField(max_length=4)),
+                ('imdbID', models.CharField(max_length=250)),
+                ('Type', models.CharField(max_length=250)),
+            ],
+        ),
     ]
