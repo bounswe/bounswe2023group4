@@ -42,6 +42,7 @@ urlpatterns = [
     path("league_seasons_collect/",sport_views.CollectData.as_view()),
     path("weather_collect/", weather_views.GETWeather.as_view()),
     path("weather_new/", weather_views.POSTWeather.as_view()),
-    path("weather_clearall/", weather_views.CLEARWeather.as_view())
+    path("weather_clearall/", weather_views.CLEARWeather.as_view()),
+    path("movie_fetch/", movie_views.searchMovie.as_view())
 
 ]
