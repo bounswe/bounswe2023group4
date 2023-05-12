@@ -8,9 +8,24 @@ from api.routers.weather_router import weather_router
 from api.routers.poll_router import poll_router
 from api.routers.user_router import user_router
 from api.routers.exchange_rate_router import exchange_rate_router
+
+from api.views import country_views, sport_views, weather_views
+from rest_framework import routers
+from api.routers.poll_router import poll_router
+from rest_framework.schemas import get_schema_view 
+from django.views.generic import TemplateView
+
+
+
+from api.views import country_views, sport_views, weather_views, poll_views, movie_views
+from api.routers.country_router import country_router
+from api.routers.sport_router import league_season_router,standing_router
+from api.routers.weather_router import weather_router
+from api.routers.movie_router import Movie_router
 from rest_framework import routers
 
 router = routers.DefaultRouter()
+router.registry.extend(Movie_router.registry)
 router.registry.extend(country_router.registry)
 router.registry.extend(league_season_router.registry)
 router.registry.extend(standing_router.registry)
@@ -38,4 +53,6 @@ urlpatterns = [
     path("user-1_collect/",user_views.GetData.as_view()),
     path("user-1_new/", user_views.POSTUser.as_view()),
     path("user-1_clearall/", user_views.ClearUsers.as_view()),
+    path("movie_fetch/", movie_views.searchMovie.as_view())
+
 ]
