@@ -11,6 +11,26 @@ from dotenv import load_dotenv
 import requests
 
 
+class ClearLeagueSeasons(APIView):
+    serializer_class = League_SeasonSerializer
+
+    def delete(self,request,id=None):
+        league_seasons = League_Season.objects.all()
+        league_seasons.delete()
+        
+        ClearStandings.delete(self,request)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class ClearStandings(APIView):
+    serializer_class = StandingSerializer
+
+    def delete(self,request):
+        standings = Standing.objects.all()
+        standings.delete()
+        
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 class CollectData(APIView):
 
     def get(self,request):
