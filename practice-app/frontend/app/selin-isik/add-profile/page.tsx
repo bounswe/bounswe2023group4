@@ -6,14 +6,18 @@ import { useState } from 'react'
 
 const Page = () => {
   const initialUser = {
-    name: '',
-    job: '',
+    first_name: '',
+    last_name: '',
+    email: '',
+    avatar: 'https://reqres.in/img/faces/7-image.jpg',
+    id: 0,
   }
   const [user, setUser] = useState<User>(initialUser)
 
   const { mutate } = useCreateUser({})
   const onSubmit = () => {
     mutate(user)
+    setUser(initialUser)
   }
 
   return (
@@ -31,16 +35,26 @@ const Page = () => {
           </p>
           <input
             className="text-white font-semibold text-xl p-3 bg-white/30 border-2 border-white rounded-xl focus:outline-none placeholder-slate-800"
-            placeholder="Enter Name"
+            placeholder="Enter First Name"
+            value={user.first_name}
             onChange={(e) => {
-              setUser({ ...user, name: e.target.value })
+              setUser({ ...user, first_name: e.target.value })
             }}
           ></input>
           <input
-            placeholder="Enter Job"
+            value={user.last_name}
+            placeholder="Enter Last Name"
             className="text-white font-semibold text-xl p-3 bg-white/30 border-2 border-white rounded-xl focus:outline-none placeholder-slate-800"
             onChange={(e) => {
-              setUser({ ...user, job: e.target.value })
+              setUser({ ...user, last_name: e.target.value })
+            }}
+          ></input>
+          <input
+            value={user.email}
+            className="text-white font-semibold text-xl p-3 bg-white/30 border-2 border-white rounded-xl focus:outline-none placeholder-slate-800"
+            placeholder="Enter E-mail"
+            onChange={(e) => {
+              setUser({ ...user, email: e.target.value })
             }}
           ></input>
           <button
