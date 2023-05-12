@@ -7,7 +7,7 @@ type UseUserProps = {
 
 const fetchUser = async () => {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
-  const response = await fetch(`${apiBaseUrl}/users/`, {
+  const response = await fetch(`${apiBaseUrl}/user-1_collect/`, {
     mode: 'cors',
   })
   return response.json()

@@ -1,5 +1,6 @@
 'use client'
 
+import { User } from '@/api/selin-isik/types'
 import { useRefreshUser, useUser } from '@/api/selin-isik/useUser'
 import { UserBox } from '@/components/userBox/UserBox'
 import Link from 'next/link'
@@ -7,7 +8,7 @@ import Link from 'next/link'
 const Page = () => {
   const { data, refetch } = useUser({
     config: {
-      onSuccess: (data: Weather[]) => {
+      onSuccess: (data: User[]) => {
         if (data.length === 0) {
           refreshExchangeRate()
         }
