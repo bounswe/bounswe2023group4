@@ -6,5 +6,5 @@ from rest_framework import viewsets
 class CountryViewSet(viewsets.ModelViewSet):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
-    filterset_fields = ('name' ,'capital','population' ,'gdp')
+    filterset_fields = ('name' ,'capital','population','gdp')
 
