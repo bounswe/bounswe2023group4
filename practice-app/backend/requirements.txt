@@ -17,3 +17,4 @@ xlrd==2.0.1
 requests==2.30.0
 djangorestframework==3.14.0
 django-filter==23.2
+django-cors-headers==3.14.0
