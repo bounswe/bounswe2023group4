@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+.bg-movie {
+  background-image: url('../public/movie.jpg');
+}
 .bg-exchange-rate {
   background-image: url('../public/exchange-rate.jpg');
 }
