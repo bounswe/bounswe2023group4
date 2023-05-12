@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('api', '0002_league_season_standing'),
+        ('api', '0002_country'),
     ]
 
     operations = [
