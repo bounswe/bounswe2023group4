@@ -7,3 +7,4 @@ class CountryViewSet(viewsets.ModelViewSet):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
     filterset_fields = ('name' ,'capital','population' ,'gdp')
+
