@@ -32,7 +32,7 @@ class TestUrls(TestCase):
         self.countries = Country.objects.all()
 
     def test_get_all_countries(self):
-        # Testing for the successful case with a valid paper list id and valid credentials
+        # Test for getting all countries from the API 
         url = '/api/countries/'
         response = self.client.get(url)
 
