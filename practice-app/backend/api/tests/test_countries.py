@@ -32,7 +32,7 @@ class TestUrls(TestCase):
         self.countries = Country.objects.all()
 
     def test_get_all_countries(self):
-        # Testing for the successful case with a valid paper list id and valid credentials
+        # Test for getting all countries from the API 
         url = '/api/countries/'
         response = self.client.get(url)
 
@@ -64,14 +64,14 @@ class TestUrls(TestCase):
         assert(len(Country.objects.all())==3)
             
 
-    def test_country_view_url_is_resolved3(self):
+    def test_country_collect_data_from_api(self):
         # Collect view that collects data from 3rd party APIs
         url = '/api/countries_collect/'
         response = self.client.get(url)
 
         assert(len(Country.objects.all())>3)
 
-    def test_country_view_url_is_resolved2(self):
+    def test_country_clear_country_table_db(self):
         # Clearall view that clears all data from countries table
         url = '/api/countries_clearall/'
         response = self.client.delete(url)
