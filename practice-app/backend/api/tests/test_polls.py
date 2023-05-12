@@ -45,7 +45,7 @@ class TestUrls(TestCase):
         assert(response.json()[0]['question'] == 'Who would win the 2023 presidential elections?')
         assert(len(response.json())==1)
 
-    def test_post_country_with_param(self):
+    def test_post_poll_with_param(self):
         # Test for adding a poll to the API with post method
         url = '/api/polls/'
         _data = {
