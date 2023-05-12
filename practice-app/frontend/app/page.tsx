@@ -24,7 +24,7 @@ const StudentRoutes: Route[] = [
   {
     student: 'Enes Furkan Arslan',
     path: '/enes-furkan-arslan',
-    apiName: 'API',
+    apiName: 'Weather API',
   },
   { student: 'Halil Özkan', path: '/halil-ozkan', apiName: 'API' },
   { student: 'Ahmet Emre Şafak', path: '/ahmet-emre-safak', apiName: 'API' },
