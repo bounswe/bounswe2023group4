@@ -1,16 +1,30 @@
 'use client'
+import {
+  useExchangeRate,
+  useRefreshExchangeRate,
+} from '@/api/ali-alperen-sonmez/useExchangeRates'
 import { ExchangeRateCard } from '@/components/exchangeRate/ExchangeRateCard'
-import { ExchangeRate } from '@/components/exchangeRate/ExchangeRateCard.types'
 import { useState } from 'react'
 
 const Page = () => {
   const [isVisible, setIsVisible] = useState(false)
-  const [data, setData] = useState<ExchangeRate>({
-    fromCurrency: 'USD',
-    toCurrency: 'TL',
-    date: '2021-10-15',
-    amount: 1,
-    exchangeRate: 8.5,
+
+  const { data, refetch } = useExchangeRate({
+    config: {
+      onSuccess: (data: Weather[]) => {
+        if (data.length === 0) {
+          refreshExchangeRate()
+        }
+      },
+    },
+  })
+
+  const { mutate: refreshExchangeRate } = useRefreshExchangeRate({
+    config: {
+      onSuccess: () => {
+        refetch()
+      },
+    },
   })
 
   return (
@@ -28,9 +42,9 @@ const Page = () => {
         See Available Currencies
       </button>
 
-      {isVisible && (
+      {isVisible && data && (
         <div className="flex w-full h-full pt-12 justify-center">
-          <ExchangeRateCard currency={data} />
+          <ExchangeRateCard currency={data[0]} />
         </div>
       )}
     </div>
