@@ -11,3 +11,8 @@ export type Standing = {
   rank: number
   points: number
 }
+
+export type SportSuggestions = {
+  id: number
+  suggestion: string
+}
