@@ -1,26 +1,21 @@
-from django.urls import path,include
-from rest_framework.schemas import get_schema_view 
+from django.urls import path, include
+from rest_framework.schemas import get_schema_view
 from django.views.generic import TemplateView
-from api.views import country_views, sport_views, weather_views, poll_views, user_views, exchange_rate_views
+from api.views import (
+    country_views,
+    sport_views,
+    weather_views,
+    poll_views,
+    user_views,
+    exchange_rate_views,
+    movie_views,
+)
 from api.routers.country_router import country_router
-from api.routers.sport_router import league_season_router,standing_router
+from api.routers.sport_router import league_season_router, standing_router
 from api.routers.weather_router import weather_router
 from api.routers.poll_router import poll_router
 from api.routers.user_router import user_router
 from api.routers.exchange_rate_router import exchange_rate_router
-
-from api.views import country_views, sport_views, weather_views
-from rest_framework import routers
-from api.routers.poll_router import poll_router
-from rest_framework.schemas import get_schema_view 
-from django.views.generic import TemplateView
-
-
-
-from api.views import country_views, sport_views, weather_views, poll_views, movie_views
-from api.routers.country_router import country_router
-from api.routers.sport_router import league_season_router,standing_router
-from api.routers.weather_router import weather_router
 from api.routers.movie_router import Movie_router
 from rest_framework import routers
 
