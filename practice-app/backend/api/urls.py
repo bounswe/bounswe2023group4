@@ -25,7 +25,7 @@ urlpatterns = [
     path("countries_clearall/", country_views.ClearCountries.as_view()),
     path("countries_collect/", country_views.CollectData.as_view()),  
     path('polls_createPoll/', poll_views.createPoll.as_view()),
-    path('polls_clearPoll/', poll_views.clearPoll.as_view()),
+    path('polls_clearPoll/', poll_views.ClearPoll.as_view()),
     path('polls_collectPoll/', poll_views.collectPoll.as_view()),
     path("league_seasons_collect/",sport_views.CollectData.as_view()),
     path("league_seasons_clearall/",sport_views.ClearLeagueSeasons.as_view()),

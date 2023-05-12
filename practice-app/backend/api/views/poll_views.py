@@ -72,9 +72,7 @@ class collectPoll(APIView):
     serializer_class = poll_serializer
 
     def get(self,request,id=None):
-        serializer = self.serializer_class(data=request.query_params)
         try:
-            if serializer.is_valid():
                 load_dotenv()
                 Poll_SECRET_KEY = os.getenv('Poll_SECRET_KEY')
                 url = 'https://api.pollsapi.com/v1/create/poll'
@@ -91,10 +89,7 @@ class collectPoll(APIView):
                         poll = Poll.objects.create(question=_question,firstOption=_firstOption,secondOption=_secondOption,thirdOption=_thirdOption ,fourthOption=_fourthOption)
                     return Response(poll_serializer(poll).data,status=status.HTTP_201_CREATED)
                 else:
-                    return Response(status=response.status_code)
-            else:
-                return Response(status.HTTP_406_NOT_ACCEPTABLE)
-
+                    return Response(status=response.status_code)    
         except:
             return Response(status.HTTP_400_BAD_REQUEST)
         

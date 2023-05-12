@@ -65,7 +65,7 @@ class TestUrls(TestCase):
         url = '/api/polls_collectPoll/'
         response = self.client.get(url)
 
-        assert(len(Poll.objects.all())>3)
+        assert(len(Poll.objects.all())==2)
 
     def test_poll_clear_poll_table_db(self):
         # Clearall view that clears all data from countries table
