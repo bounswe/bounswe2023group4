@@ -49,7 +49,7 @@ urlpatterns = [
     path("weather_clearall/", weather_views.CLEARWeather.as_view()),
     path("location_collect/", location_views.GETLocation.as_view()),
     path("location_new/", location_views.POSTLocation.as_view()),
-    path("location_clearall/", location_views.CLEARLocation.as_view())
+    path("location_clearall/", location_views.CLEARLocation.as_view()),
     path("exchange_rate_collect/", exchange_rate_views.GetExchangeRate.as_view()),
     path("exchange_rate_new/", exchange_rate_views.POSTExchangeRate.as_view()),
     path("exchange_rate_clear/",exchange_rate_views.ClearExchangeRates.as_view()),
