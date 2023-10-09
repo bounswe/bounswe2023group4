@@ -18,17 +18,22 @@ And with our secure authentication process, you can trust that your personal inf
 <tr>
 <td><div><img width="250" height="250" alt="Ali Nasra" src="https://avatars.githubusercontent.com/u/52269552?s=400&u=ec67962d319ce2e44b0b3bc6ca58f044001b0fcd&v=4"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Ali-Nasra">Ali Nasra</a></td>
 <td><div><img width="250" height="250" alt="Selin Işık"  src="https://user-images.githubusercontent.com/56879777/222929548-706f3fae-a26a-491c-abbd-c53d178a0131.jpg"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Selin-I%C5%9F%C4%B1k">Selin Işık</a></td>
-<td><div><img width="250" height="250" alt="Yusuf Suat Polat" src="https://user-images.githubusercontent.com/56879777/226205506-02b216d9-2a48-45bb-b196-a311ce3a2cf9.jpg"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Yusuf-Suat-Polat">Yusuf Suat Polat</a></td>
+<td><div><img width="250" height="250" alt="Serhat Hebun Şimşek" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/d297ce15-9129-4472-835d-c493f8464bfd"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Serhat-Hebun-%C5%9Eim%C5%9Fek">Serhat Hebun Şimşek</a></td>
 </tr>
+
 <tr>
 <td><div><img width="250" height="250" alt="Ali Alperen Sönmez" src="https://avatars.githubusercontent.com/u/72912553?s=400&u=7573920cab3e8bc906ef682e4aca0a1f00678aa6&v=4"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Ali-Alperen-S%C3%B6nmez">Ali Alperen Sönmez</a></td>
 <td><div><img width="250" height="250" alt="Enes Furkan Arslan" src="https://user-images.githubusercontent.com/56879777/226205537-1629a321-8b0b-4efe-8d29-082fa0e3f0ca.jpg"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Enes-Furkan-Arslan">Enes Furkan Arslan</a></td>
-<td><div><img width="250" height="250" alt="Halil Özkan" src="https://user-images.githubusercontent.com/103820615/222950554-dd35003d-bb3b-4344-88b9-6c89a65e4091.jpg"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Halil-%C3%96zkan">Halil Özkan</a></td>
+<td><div><img width="250" height="250" alt="Şefik Palazoğlu" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/f6610c80-cba0-43af-8dea-eb26abf83c46"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/%C5%9Eefik-Palazo%C4%9Flu">Şefik Palazoğlu</a></td>
 </tr>
 <tr>
 <td><div><img width="250" height="250" alt="Ahmet Emre Şafak" src="https://user-images.githubusercontent.com/56879777/222963327-9573a886-26a2-480d-a974-95c7d271e2aa.jpg"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Ahmet-Emre-%C5%9Eafak">Ahmet Emre Şafak</a></td>
-<td><div><img width="250" height="250" alt="Emre Batuhan Göç" src="https://user-images.githubusercontent.com/93476131/222702648-b8a49e8e-4340-4b19-ab56-a68d60a59ef2.jpg"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Emre-Batuhan-G%C3%B6%C3%A7">Emre Batuhan Göç</a></td>
-<td><div><img width="250" height="250" alt="Yiğit Şekerci" src="https://user-images.githubusercontent.com/56599776/222902334-9b6bd332-e03f-48ff-9705-f5fe7434b5ce.jpg"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Yi%C4%9Fit-%C5%9Eekerci">Yiğit Şekerci</a></td>
+<td><div><img width="250" height="250" alt="Emre Batuhan Göç" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/13d91988-897a-42ec-b23a-ca932a425a1c"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Emre-Batuhan-G%C3%B6%C3%A7">Emre Batuhan Göç</a></td>
+<td><div><img width="250" height="250" alt="Yiğit Şekerci" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/4b586dba-287b-4081-be40-4daec8a34a8b"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Yi%C4%9Fit-%C5%9Eekerci">Yiğit Şekerci</a></td>
+</tr>
+<tr>
+<td><div><img width="250" height="250" alt="Kutay Saran" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/ec5307ac-e088-4a28-8a5c-235d495af493"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Kutay-Saran">Kutay Saran</a></td>
+<td><div><img width="250" height="250" alt="Fatih Akgöz" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/ec5307ac-e088-4a28-8a5c-235d495af493"> </div><a href="">Fatih Akgöz</a></td>
 </tr>
 
 </table
