@@ -33,7 +33,7 @@ And with our secure authentication process, you can trust that your personal inf
 </tr>
 <tr>
 <td><div><img width="250" height="250" alt="Kutay Saran" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/ec5307ac-e088-4a28-8a5c-235d495af493"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Kutay-Saran">Kutay Saran</a></td>
-<td><div><img width="250" height="250" alt="Fatih Akgöz" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/ec5307ac-e088-4a28-8a5c-235d495af493"> </div><a href="">Fatih Akgöz</a></td>
+<td><div><img width="250" height="250" alt="Fatih Akgöz" src="https://github.com/bounswe/bounswe2023group4/assets/44064984/6c9cd282-c29b-44e5-98b7-090f1dda7837"> </div><a href="https://github.com/bounswe/bounswe2023group4/wiki/Fatih-Akg%C3%B6z">Fatih Akgöz</a></td>
 </tr>
 
 </table
