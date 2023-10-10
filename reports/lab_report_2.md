@@ -1,7 +1,7 @@
 # Project Development Weekly Progress Report
 
 **Team Name:** Prediction Polls  
-**Date:** 05.10.2023
+**Date:** 10.10.2023
 
 ## Progress Summary
 **This week** we revised the project artifacts such as diagrams and requirements from last semester. We completed the onboarding process of newcomers. Responsibility Assignment Matrix. We prepared an outline for the Project Plan.
@@ -27,18 +27,18 @@
 | -------- | ----- | -------- | --- | --- |
 
 ## Planned vs. Actual
-- We discussed how to revise and improve diagrams. Our work needed to be revised by the instructor. We discussed the diagram issue and it it will take another week.
+- We discussed how to revise and improve diagrams. Our work needed to be revised by the instructor. We discussed the diagram issue and it will take another week.
 - We were undecided on how detailed the project plan needs to be. This issue is discussed with the instructor and we plan to finish the project plan until 12.10.2023
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
 | --- | --- | --- | --- | --- |
-| Project initialization for backend | [#](#) | Emre Batuhan Göç | 16.10.2023 | 6hr |
-| Project initialization for frontend | [#](#) | Kutay Saran, Enes Furkan Arslan | 16.10.2023 | 6hr |
-| Project initialization for mobile | [#](#) | Yiğit Şekerci, Ahmet Emre Şafak | 16.10.2023 | 6hr |
-| Project initialization for database | [#](#) | Şefik Palazoğlu, Hebun Şimşek | 16.10.2023 | 6hr |
-| Uploading the weekly report | [#160](#) | Şefik Palazoğlu | 10.10.2023 | 1.5hr |
-| Upload diagram source files | [#161](#) | Şefik Palazoğlu, Emre Batuhan Göç, Ali Nasra, Ali Alperen Sönmez | 16.10.2023 | 3hr |
+| Project initialization for backend | [](#) | Emre Batuhan Göç | 16.10.2023 | 6hr |
+| Project initialization for frontend | [](#) | Kutay Saran, Enes Furkan Arslan | 16.10.2023 | 6hr |
+| Project initialization for mobile | [](#) | Yiğit Şekerci, Ahmet Emre Şafak | 16.10.2023 | 6hr |
+| Project initialization for database | [#162](https://github.com/bounswe/bounswe2023group4/issues/162) | Şefik Palazoğlu, Hebun Şimşek | 16.10.2023 | 6hr |
+| Uploading the weekly report | [#160](https://github.com/bounswe/bounswe2023group4/issues/160) | Şefik Palazoğlu | 10.10.2023 | 1.5hr |
+| Upload diagram source files | [#161](https://github.com/bounswe/bounswe2023group4/issues/161) | Şefik Palazoğlu, Emre Batuhan Göç, Ali Nasra, Ali Alperen Sönmez | 16.10.2023 | 3hr |
 | Update RAM | [](#) | Enes Furkan Arslan | 16.10.2023 | 3hr |
 | Research and Study Front-end technologies | [](#) | Enes Furkan Arslan, Ali Nasra, Selin Işık, Kutay Saran | 16.10.2023 | 6hr |
 | Research and Study Back-end technologies | [](#) | Hebun Şimşek, Şefik Palazoğlu, Emre Batuhan Göç | 16.10.2023 | 6hr |
@@ -50,8 +50,7 @@
 | Jury requriements review | [](#) | Ahmet Emre Şafak | 16.10.2023 | 3hr |
 
 ## Risks
-- Extended user roles (e.g., facilitator, responder) may require additional fields that we did not consider in the initial design. We will address these issues as they arise.
-...
+- Deadlines may not be met due to need of exhaustive research for technologies. Project initialization issues partially depend on research issues, this may affect the deadline too.
 
 ## Participants
 - Ahmet Emre Şafak
