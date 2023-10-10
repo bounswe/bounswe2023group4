@@ -43,13 +43,14 @@
 | Upload diagram source files | [#161](https://github.com/bounswe/bounswe2023group4/issues/161) | Şefik Palazoğlu, Emre Batuhan Göç, Ali Nasra, Ali Alperen Sönmez | 16.10.2023 | 3hr |
 | Update RAM | [#172](https://github.com/bounswe/bounswe2023group4/issues/172) | Enes Furkan Arslan | 16.10.2023 | 3hr |
 | Research and Study Front-end technologies | [#166](https://github.com/bounswe/bounswe2023group4/issues/166) | Enes Furkan Arslan, Ali Nasra, Selin Işık, Kutay Saran | 16.10.2023 | 6hr |
-| Research and Study Back-end technologies | [](#) [#171](https://github.com/bounswe/bounswe2023group4/issues/171) | Hebun Şimşek, Şefik Palazoğlu, Emre Batuhan Göç | 16.10.2023 | 6hr |
-| Research and Study Database technologies | [](#) | Şefik Palazoğlu | 16.10.2023 | 6hr |
-| Research and Study Mobile technologies | [](#) | Ali Alperen Sönmez | 16.10.2023 | 6hr |
+| Research and Study Back-end technologies | [#171](https://github.com/bounswe/bounswe2023group4/issues/171) | Hebun Şimşek, Şefik Palazoğlu, Emre Batuhan Göç | 16.10.2023 | 6hr |
+| Research and Study Database technologies |[#163](https://github.com/bounswe/bounswe2023group4/issues/163)| Şefik Palazoğlu | 16.10.2023 | 6hr |
+| Research and Study Mobile technologies | [#176](https://github.com/bounswe/bounswe2023group4/issues/176) | Ali Alperen Sönmez | 16.10.2023 | 6hr |
 | Mockup Update | [#174](https://github.com/bounswe/bounswe2023group4/issues/174) | Selin Işık, Kutay Saran, Enes Furkan Arslan | 16.10.2023 | 3hr |
 | Requirements update for annotation | [#175](https://github.com/bounswe/bounswe2023group4/issues/175) | Selin Işık, Ali Nasra | 16.10.2023 | 3hr |
 | Requirements update for semantic tagging | [#173](https://github.com/bounswe/bounswe2023group4/issues/173) | Yiğit Şekerci | 16.10.2023 | 3hr |
 | Jury requriements review | [#151](https://github.com/bounswe/bounswe2023group4/issues/151) | Ahmet Emre Şafak | 16.10.2023 | 3hr |
+| Creating Project Plan for semester | [#140](https://github.com/bounswe/bounswe2023group4/issues/140) | Kutay Saran, Yiğit Şekerci, Selin Işık, Hebun Şimşek | 12.10.23 | 2hr |
 
 ## Risks
 - Deadlines may not be met due to need of exhaustive research for technologies. Project initialization issues partially depend on research issues, this may affect the deadline too.
@@ -60,7 +61,6 @@
 - Ali Alperen Sönmez
 - Emre Batuhan Göç
 - Enes Furkan Arslan
-- Fatih Akgöz
 - Hebun Şimşek
 - Kutay Saran
 - Selin Işık
