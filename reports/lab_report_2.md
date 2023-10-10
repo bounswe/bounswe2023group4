@@ -13,6 +13,7 @@
 | Creating a responsibility assignment matrix | [#152](https://github.com/bounswe/bounswe2023group4/issues/152) | Enes Furkan Arslan | 09.10.23 | - | 2hr | 2hr |
 | Creating Project Plan for semester (Not Finished) | [#140](https://github.com/bounswe/bounswe2023group4/issues/140) | Kutay Saran, Yiğit Şekerci, Selin Işık | 09.10.23 | - | 3hr | 2hr |
 | Deciding the subteams | [#141](https://github.com/bounswe/bounswe2023group4/issues/141) | Team | 06.10.2023 | - | 30min | 1hr |
+| Update the class, use case, sequence diagram w.r.t. updated requirements | [#143](https://github.com/bounswe/bounswe2023group4/issues/143) | Ali Alperen Sönmez, Emre Batuhan Göç, Ali Nasra, Şefik Palazoğlu| 16.10.23 | - | 4hr | 3hr |
 | Decide on what technologies are going to be used for the front-end | [#153](https://github.com/bounswe/bounswe2023group4/issues/153) | Front-Team | 09.10.2023 | - | 1hr | 1hr |
 | Decide on what technologies are going to be used for the back-end | [#154](https://github.com/bounswe/bounswe2023group4/issues/154) | Back-Team | 09.10.2023 | - | 1hr | 1hr |
 | Decide on what technologies are going to be used for the mobile | [#159](https://github.com/bounswe/bounswe2023group4/issues/159) | Mobile-Team | 09.10.2023 | - | 1hr | 1hr |
