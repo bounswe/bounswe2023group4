@@ -35,7 +35,7 @@
 | --- | --- | --- | --- | --- |
 | Project initialization for backend | [](#) | Emre Batuhan Göç | 16.10.2023 | 6hr |
 | Project initialization for frontend | [](#) | Kutay Saran, Enes Furkan Arslan | 16.10.2023 | 6hr |
-| Project initialization for mobile | [](#) | Yiğit Şekerci, Ahmet Emre Şafak | 16.10.2023 | 6hr |
+| Project initialization for mobile | [#169](https://github.com/bounswe/bounswe2023group4/issues/169) | Yiğit Şekerci, Ahmet Emre Şafak | 16.10.2023 | 6hr |
 | Project initialization for database | [#162](https://github.com/bounswe/bounswe2023group4/issues/162) | Şefik Palazoğlu, Hebun Şimşek | 16.10.2023 | 6hr |
 | Uploading the weekly report | [#160](https://github.com/bounswe/bounswe2023group4/issues/160) | Şefik Palazoğlu | 10.10.2023 | 1.5hr |
 | Upload diagram source files | [#161](https://github.com/bounswe/bounswe2023group4/issues/161) | Şefik Palazoğlu, Emre Batuhan Göç, Ali Nasra, Ali Alperen Sönmez | 16.10.2023 | 3hr |
@@ -47,7 +47,7 @@
 | Mockup Update | [](#) | Selin Işık, Kutay Saran, Enes Furkan Arslan | 16.10.2023 | 3hr |
 | Requirements update for annotation | [](#) | Selin Işık, Ali Nasra | 16.10.2023 | 3hr |
 | Requirements update for semantic tagging | [](#) | Yiğit Şekerci | 16.10.2023 | 3hr |
-| Jury requriements review | [](#) | Ahmet Emre Şafak | 16.10.2023 | 3hr |
+| Jury requriements review | [#151](https://github.com/bounswe/bounswe2023group4/issues/151) | Ahmet Emre Şafak | 16.10.2023 | 3hr |
 
 ## Risks
 - Deadlines may not be met due to need of exhaustive research for technologies. Project initialization issues partially depend on research issues, this may affect the deadline too.
