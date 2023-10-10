@@ -47,7 +47,7 @@
 | Research and Study Database technologies |[#163](https://github.com/bounswe/bounswe2023group4/issues/163)| Şefik Palazoğlu | 16.10.2023 | 6hr |
 | Research and Study Mobile technologies | [#176](https://github.com/bounswe/bounswe2023group4/issues/176) | Ali Alperen Sönmez | 16.10.2023 | 6hr |
 | Mockup Update | [#174](https://github.com/bounswe/bounswe2023group4/issues/174) | Selin Işık, Kutay Saran, Enes Furkan Arslan | 16.10.2023 | 3hr |
-| Requirements update for annotation | [#175](https://github.com/bounswe/bounswe2023group4/issues/175) | Selin Işık, Ali Nasra | 16.10.2023 | 3hr |
+| Requirements update for annotation | [#165](https://github.com/bounswe/bounswe2023group4/issues/165) | Selin Işık, Ali Nasra | 16.10.2023 | 3hr |
 | Requirements update for semantic tagging | [#173](https://github.com/bounswe/bounswe2023group4/issues/173) | Yiğit Şekerci | 16.10.2023 | 3hr |
 | Jury requriements review | [#151](https://github.com/bounswe/bounswe2023group4/issues/151) | Ahmet Emre Şafak | 16.10.2023 | 3hr |
 | Creating Project Plan for semester | [#140](https://github.com/bounswe/bounswe2023group4/issues/140) | Kutay Saran, Yiğit Şekerci, Selin Işık, Hebun Şimşek | 12.10.23 | 2hr |
