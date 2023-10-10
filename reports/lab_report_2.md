@@ -34,7 +34,7 @@
 | Description | Issue | Assignee | Due | Estimated Duration |
 | --- | --- | --- | --- | --- |
 | Project initialization for backend | [](#) | Emre Batuhan Göç | 16.10.2023 | 6hr |
-| Project initialization for frontend | [](#) | Kutay Saran, Enes Furkan Arslan | 16.10.2023 | 6hr |
+| Project initialization for frontend | [167](https://github.com/bounswe/bounswe2023group4/issues/167) | Kutay Saran, Enes Furkan Arslan | 16.10.2023 | 6hr |
 | Project initialization for mobile | [#169](https://github.com/bounswe/bounswe2023group4/issues/169) | Yiğit Şekerci, Ahmet Emre Şafak | 16.10.2023 | 6hr |
 | Project initialization for database | [#162](https://github.com/bounswe/bounswe2023group4/issues/162) | Şefik Palazoğlu, Hebun Şimşek | 16.10.2023 | 6hr |
 | Uploading the weekly report | [#160](https://github.com/bounswe/bounswe2023group4/issues/160) | Şefik Palazoğlu | 10.10.2023 | 1.5hr |
