@@ -39,6 +39,7 @@
 | Project initialization for mobile | [#169](https://github.com/bounswe/bounswe2023group4/issues/169) | Yiğit Şekerci, Ahmet Emre Şafak | 16.10.2023 | 6hr |
 | Project initialization for database | [#162](https://github.com/bounswe/bounswe2023group4/issues/162) | Şefik Palazoğlu, Hebun Şimşek | 16.10.2023 | 6hr |
 | Uploading the weekly report | [#160](https://github.com/bounswe/bounswe2023group4/issues/160) | Şefik Palazoğlu | 10.10.2023 | 1.5hr |
+| Update the class, use case, sequence diagram w.r.t. updated requirements | [#143](https://github.com/bounswe/bounswe2023group4/issues/143) | Ali Alperen Sönmez, Emre Batuhan Göç, Ali Nasra, Şefik Palazoğlu| 16.10.23 | 4hr |
 | Upload diagram source files | [#161](https://github.com/bounswe/bounswe2023group4/issues/161) | Şefik Palazoğlu, Emre Batuhan Göç, Ali Nasra, Ali Alperen Sönmez | 16.10.2023 | 3hr |
 | Update RAM | [#172](https://github.com/bounswe/bounswe2023group4/issues/172) | Enes Furkan Arslan | 16.10.2023 | 3hr |
 | Research and Study Front-end technologies | [#166](https://github.com/bounswe/bounswe2023group4/issues/166) | Enes Furkan Arslan, Ali Nasra, Selin Işık, Kutay Saran | 16.10.2023 | 6hr |
@@ -48,6 +49,7 @@
 | Mockup Update | [#174](https://github.com/bounswe/bounswe2023group4/issues/174) | Selin Işık, Kutay Saran, Enes Furkan Arslan | 16.10.2023 | 3hr |
 | Requirements update for annotation | [](#) | Selin Işık, Ali Nasra | 16.10.2023 | 3hr |
 | Requirements update for semantic tagging | [#173](https://github.com/bounswe/bounswe2023group4/issues/173) | Yiğit Şekerci | 16.10.2023 | 3hr |
+
 | Jury requriements review | [#151](https://github.com/bounswe/bounswe2023group4/issues/151) | Ahmet Emre Şafak | 16.10.2023 | 3hr |
 
 ## Risks
