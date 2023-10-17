@@ -49,6 +49,7 @@
 | Arrange Theme | [#203](https://github.com/bounswe/bounswe2023group4/issues/203), [#197](https://github.com/bounswe/bounswe2023group4/issues/197)  | Yiğit Şekerci, Ahmet Emre Şafak, Selin Işık | 23.10.2023 |  1hr |
 | Implementing the UI of the Sign-in page  | https://github.com/bounswe/bounswe2023group4/issues/205 | Ali Nasra | 23.10.2023 |  4hr |
 | Learn unit testing in node.js | [#206](https://github.com/bounswe/bounswe2023group4/issues/206) | Şefik Palazoğlu | 20.10.2023 | 2hr |
+| Prepare database for Authentication | [#206](https://github.com/bounswe/bounswe2023group4/issues/207) | Şefik Palazoğlu | 21.10.2023 | 3hr |
 
 
 ## Implementation Strategy
