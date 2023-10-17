@@ -58,12 +58,20 @@
 | Dockerizing the backend | [#213](https://github.com/bounswe/bounswe2023group4/issues/213) | Hebun Şimşek | 23.10.2023 | 3hr |
 | Handle the feedbacks on RAM | [#214](https://github.com/bounswe/bounswe2023group4/issues/214) | Enes Furkan Arslan | 23.10.2023 | 2 hr | 
 | Arrange Fonts | [#215](https://github.com/bounswe/bounswe2023group4/issues/215), [#198](https://github.com/bounswe/bounswe2023group4/issues/198) | Kutay Saran, Yiğit Şekerci | 23.10.2023 | 1.5 hr | 
-| Arranging Gradle Dependencies for Android Project | [#199](https://github.com/bounswe/bounswe2023group4/issues/199) | Ahmet Emre Şafak | 23.10.2023 | 2.5 hr | 
-| Learn kotlin basics | [#179](https://github.com/bounswe/bounswe2023group4/issues/179) | Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez | 23.10.2023 | 2 hr | 
-| Learn Android basics | [#180](https://github.com/bounswe/bounswe2023group4/issues/180) |Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez | 23.10.2023 | 2 hr | 
+| Arranging Gradle Dependencies for Android Project | [#199](https://github.com/bounswe/bounswe2023group4/issues/199) | Ahmet Emre Şafak | 23.10.2023 | 2 hr | 
+| Learn kotlin basics | [#179](https://github.com/bounswe/bounswe2023group4/issues/179) | Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez | 23.10.2023 | 3 hr | 
+| Learn Android basics | [#180](https://github.com/bounswe/bounswe2023group4/issues/180) |Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez | 23.10.2023 | 5 hr | 
 | Learn jetpack compose  | [#181](https://github.com/bounswe/bounswe2023group4/issues/181) | Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez| 23.10.2023 | 2 hr | 
-| Learn theming in jetpack compose  | [#182](https://github.com/bounswe/bounswe2023group4/issues/182) | Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez| 23.10.2023 | 2 hr | 
+| Learn theming in jetpack compose  | [#182](https://github.com/bounswe/bounswe2023group4/issues/182) | Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez| 23.10.2023 | 1 hr | 
 | Learn MVVM in Android  | [#183](https://github.com/bounswe/bounswe2023group4/issues/183) | Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez | 23.10.2023 | 2 hr | 
+| Learn gradle basics  | [#183](https://github.com/bounswe/bounswe2023group4/issues/217) | Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez | 23.10.2023 | 1 hr | 
+| Learn Retrofit Library  | [#183](https://github.com/bounswe/bounswe2023group4/issues/218) | Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez | 23.10.2023 | 2 hr | 
+| Learn dependency injection techniques  | [#183](https://github.com/bounswe/bounswe2023group4/issues/219) | Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez | 23.10.2023 | 3 hr | 
+| Learn testing in Android   | [#183](https://github.com/bounswe/bounswe2023group4/issues/220) | Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez | 23.10.2023 | 3 hr | 
+| Learn build variant system | [#183](https://github.com/bounswe/bounswe2023group4/issues/221) | Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez | 23.10.2023 | 1 hr | 
+| Implement build variant system  | [#183](https://github.com/bounswe/bounswe2023group4/issues/222) | Yiğit Şekerci | 23.10.2023 | 1 hr | 
+| Implement the network module   | [#183](https://github.com/bounswe/bounswe2023group4/issues/223) | Yiğit Şekerci| 23.10.2023 | 1 hr | 
+| Implement navigation drawer  | [#183](https://github.com/bounswe/bounswe2023group4/issues/224) | Yiğit Şekerci | 23.10.2023 | 2 hr |
 
 
 ## Implementation Strategy
