@@ -4,7 +4,7 @@
 **Date:** 17.10.2023
 
 ## Progress Summary
-**This week** have mostly finished revising project artifacts. We have made initializations for backend, frontend and mobile. We have made exhaustive research plans. We discussed annotation requirements with PO. In the following week, we will focus on authentication issues like login and signup.
+**This week** have mostly finished revising project artifacts. We have made initializations for backend, frontend and mobile. We have made exhaustive research plans. We discussed annotation requirements with PO. In the following week, we will focus on authentication issues like login and signup. Also we will be doing researches for the technologies we will use. 
 ## What was planned for the week? How did it go?
 
 | Description | Issue | Assignee | Due | PR | Estimated Duration | Actual Duration | 
