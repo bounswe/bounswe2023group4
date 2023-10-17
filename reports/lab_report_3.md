@@ -50,6 +50,7 @@
 | Implementing the UI of the Sign-in page  | https://github.com/bounswe/bounswe2023group4/issues/205 | Ali Nasra | 23.10.2023 |  4hr |
 | Learn unit testing in node.js | [#206](https://github.com/bounswe/bounswe2023group4/issues/206) | Şefik Palazoğlu | 20.10.2023 | 2hr |
 | Prepare database for Authentication | [#207](https://github.com/bounswe/bounswe2023group4/issues/207) | Şefik Palazoğlu | 21.10.2023 | 3hr |
+| Research Google auth requirements for backend | [#208](https://github.com/bounswe/bounswe2023group4/issues/208) | Şefik Palazoğlu | 23.10.2023 | 3hr |
 
 
 ## Implementation Strategy
