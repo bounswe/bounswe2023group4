@@ -47,7 +47,7 @@
 | Mockup Design Updates | [#201](https://github.com/bounswe/bounswe2023group4/issues/201) | Enes Furkan Arslan, Selin Işık, Kutay Saran | 23.10.2023 |  4hr |
 | Project Plan Update(Sadece Front issuesu ekli) | [#202](https://github.com/bounswe/bounswe2023group4/issues/202) | Yiğit Şekerci, Hebun Şimşek, Selin Işık | 23.10.2023 |  1hr |
 | Arrange Theme | [#203](https://github.com/bounswe/bounswe2023group4/issues/203), [#197](https://github.com/bounswe/bounswe2023group4/issues/197)  | Yiğit Şekerci, Ahmet Emre Şafak, Selin Işık | 23.10.2023 |  1hr |
-| Implementing the UI of the Sign-in page  | https://github.com/bounswe/bounswe2023group4/issues/205 | Ali Nasra | 26.10.2023 |  4hr |
+| Implementing the UI of the Sign-in page  | https://github.com/bounswe/bounswe2023group4/issues/205 | Ali Nasra | 23.10.2023 |  4hr |
 | Learn unit testing in node.js | [#206](https://github.com/bounswe/bounswe2023group4/issues/206) | Şefik Palazoğlu | 20.10.2023 | 2hr |
 
 
