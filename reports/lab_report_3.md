@@ -45,7 +45,7 @@
 | Requirements update for annotation | [#165](https://github.com/bounswe/bounswe2023group4/issues/165) | Selin Işık, Ali Nasra | 23.10.2023 |  2hr |
 | Frontend Research and Learning | [#189](https://github.com/bounswe/bounswe2023group4/issues/189), [#190](https://github.com/bounswe/bounswe2023group4/issues/190), [#192](https://github.com/bounswe/bounswe2023group4/issues/192) | Enes Furkan Arslan, Ali Nasra, Selin Işık, Kutay Saran | 23.10.2023 |  6hr |
 | Mockup Design Updates | [#201](https://github.com/bounswe/bounswe2023group4/issues/201) | Enes Furkan Arslan, Selin Işık, Kutay Saran | 23.10.2023 |  4hr |
-| Project Plan Update(Sadece Front issuesu ekli) | [#202](https://github.com/bounswe/bounswe2023group4/issues/202),[#204](https://github.com/bounswe/bounswe2023group4/issues/204) | Yiğit Şekerci, Hebun Şimşek, Selin Işık | 23.10.2023 |  1hr |
+| Project Plan Update | [#202](https://github.com/bounswe/bounswe2023group4/issues/202),[#204](https://github.com/bounswe/bounswe2023group4/issues/204), [#216](https://github.com/bounswe/bounswe2023group4/issues/216) | Yiğit Şekerci, Hebun Şimşek, Selin Işık | 23.10.2023 |  1hr |
 | Arrange Theme | [#203](https://github.com/bounswe/bounswe2023group4/issues/203), [#197](https://github.com/bounswe/bounswe2023group4/issues/197)  | Yiğit Şekerci, Ahmet Emre Şafak, Selin Işık | 23.10.2023 |  1hr |
 | Implementing the UI of the Sign-in page  | https://github.com/bounswe/bounswe2023group4/issues/205 | Ali Nasra, Selin Işık | 23.10.2023 |  4hr |
 | Learn unit testing in node.js | [#206](https://github.com/bounswe/bounswe2023group4/issues/206) | Şefik Palazoğlu | 20.10.2023 | 2hr |
