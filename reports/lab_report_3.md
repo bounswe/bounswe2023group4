@@ -63,7 +63,8 @@
 ### Coding style
 
 ## Risks
-- Deadlines may not be met due to need of exhaustive research for technologies. Project initialization issues partially depend on research issues, this may affect the deadline too.
+- Deadlines may not be met since groups will implement their part and we will try to integrate back and front parts at the end of the week.
+- We need to have multiple meetings this week. It is a risk that not everyone can be available.
 
 ## Participants
 - Ahmet Emre Şafak
