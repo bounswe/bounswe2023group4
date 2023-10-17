@@ -55,6 +55,7 @@
 | Learn unit testing in node.js | [#210](https://github.com/bounswe/bounswe2023group4/issues/210) | Emre Batuhan Göç | 20.10.2023 | 2hr |
 | Create authentication backend API | [#211](https://github.com/bounswe/bounswe2023group4/issues/211) | Emre Batuhan Göç | 23.10.2023 | 3hr |
 | Implementing the UI of the Sign-up page  | [#212](https://github.com/bounswe/bounswe2023group4/issues/212) | Kutay Saran, Enes Furkan Arslan | 23.10.2023 |  4hr |
+| Dockerizing the backend | [#213](https://github.com/bounswe/bounswe2023group4/issues/213) | Hebun Şimşek | 23.10.2023 | 3hr |
 
 
 ## Implementation Strategy
