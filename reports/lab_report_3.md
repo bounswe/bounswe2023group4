@@ -88,6 +88,7 @@
 - We will follow SOLID principles in mobile.
 ### Coding Convention
 - We will seperate our request handling and class logic in controller and service classses in node.js development.
+- We will use MVVM in mobile.
   
 ## Risks
 - Deadlines may not be met since groups will implement their part and we will try to integrate back and front parts at the end of the week.
