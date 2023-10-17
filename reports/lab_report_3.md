@@ -52,6 +52,8 @@
 | Prepare database for Authentication | [#207](https://github.com/bounswe/bounswe2023group4/issues/207) | Şefik Palazoğlu | 21.10.2023 | 3hr |
 | Research Google auth requirements for backend | [#208](https://github.com/bounswe/bounswe2023group4/issues/208) | Şefik Palazoğlu | 23.10.2023 | 3hr |
 | Database Deployment | [#209](https://github.com/bounswe/bounswe2023group4/issues/209) | Şefik Palazoğlu | 23.10.2023 | 2hr |
+| Learn unit testing in node.js | [#210](https://github.com/bounswe/bounswe2023group4/issues/210) | Emre Batuhan Göç | 20.10.2023 | 2hr |
+| Create authentication backend API | [#211](https://github.com/bounswe/bounswe2023group4/issues/211) | Emre Batuhan Göç | 23.10.2023 | 3hr |
 
 
 ## Implementation Strategy
@@ -64,7 +66,9 @@
 ### Coding style
 - We plan to use ESLint for node.js development in backend.
 - We will prioritize single responsibility, meaningful comments, external stylesheets, ESLint for code formatting, use of destructuring and spread operator and avoiding hardcoding in frontend.
-
+### Coding Convention
+- We will seperate our request handling and class logic in controller and service classses in node.js development.
+  
 ## Risks
 - Deadlines may not be met since groups will implement their part and we will try to integrate back and front parts at the end of the week.
 - We need to have multiple meetings this week. It is a risk that not everyone can be available.
