@@ -34,7 +34,7 @@
 | -------- | ----- | -------- | --- | --- |
 
 ## Planned vs. Actual
-- Front and mobile research issues were split into more detailed issues. We did not expet
+- Front and mobile research issues were split into more detailed issues. We did not expect
 - We discussed annotation requriments in the lecture and will revise the requirements accordingly.
 
 
