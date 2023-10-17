@@ -61,6 +61,7 @@
 ### Branching strategy
 - We will have a dedicated development branch for each team: backend/development, frontend/development, and mobile/development. We will have a development branch which team development branches merge to. Additionally, we have a main branch which the development merges into. Finally, each team will conform to the git flow during their development process, i.e., they must create feature branches for new features.
 ### Coding style
+- We plan to use ESLint for node.js development in backend.
 
 ## Risks
 - Deadlines may not be met since groups will implement their part and we will try to integrate back and front parts at the end of the week.
