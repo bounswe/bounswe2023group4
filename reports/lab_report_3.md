@@ -1,0 +1,84 @@
+# Project Development Weekly Progress Report
+
+**Team Name:** Prediction Polls  
+**Date:** 17.10.2023
+
+## Progress Summary
+**This week** have mostly finished revising project artifacts. We have made initializations for backend, frontend and mobile. We have made exhaustive research plans. We discussed annotation requirements with PO. In the following week, we will focus on authentication issues like login and signup.
+## What was planned for the week? How did it go?
+
+| Description | Issue | Assignee | Due | PR | Estimated Duration | Actual Duration | 
+| -------- | ----- | -------- | --- | --- | --- | --- |
+| Project initialization for backend | [#170](https://github.com/bounswe/bounswe2023group4/issues/170) | Emre Batuhan Göç | 16.10.2023 | [#194](https://github.com/bounswe/bounswe2023group4/pull/194) | 6hr | 2hr |  
+| Project initialization for frontend | [#167](https://github.com/bounswe/bounswe2023group4/issues/167) | Kutay Saran, Enes Furkan Arslan | 16.10.2023 | [#193](https://github.com/bounswe/bounswe2023group4/pull/193) | 6hr | 2hr |
+| Project initialization for mobile | [#169](https://github.com/bounswe/bounswe2023group4/issues/169) | Yiğit Şekerci, Ahmet Emre Şafak | 16.10.2023 | [#186](https://github.com/bounswe/bounswe2023group4/pull/186) | 6hr | 2.5hr |
+| Project initialization for database | [#162](https://github.com/bounswe/bounswe2023group4/issues/162) | Şefik Palazoğlu, Hebun Şimşek | 16.10.2023 | [#196](https://github.com/bounswe/bounswe2023group4/pull/196) | 6hr | 2hr |
+| Uploading the weekly report | [#160](https://github.com/bounswe/bounswe2023group4/issues/160) | Şefik Palazoğlu | 10.10.2023 | [link](https://github.com/bounswe/bounswe2023group4/blob/main/reports/lab_report_2.md) | 1.5hr | 1.5hr|
+| Update the class, use case, sequence diagram w.r.t. updated requirements | [#143](https://github.com/bounswe/bounswe2023group4/issues/143) | Ali Alperen Sönmez, Emre Batuhan Göç, Ali Nasra, Şefik Palazoğlu| 16.10.23 | 4hr |
+| Upload diagram source files | [#161](https://github.com/bounswe/bounswe2023group4/issues/161) | Şefik Palazoğlu, Emre Batuhan Göç, Ali Nasra, Ali Alperen Sönmez | 16.10.2023 | [#195](https://github.com/bounswe/bounswe2023group4/pull/195) | 3hr | 1hr |
+| Update RAM | [#172](https://github.com/bounswe/bounswe2023group4/issues/172) | Enes Furkan Arslan | 16.10.2023 | [link](https://github.com/bounswe/bounswe2023group4/wiki/RAM) | 3hr | 2hr |
+| Research and Study Front-end technologies | [#166](https://github.com/bounswe/bounswe2023group4/issues/166) | Enes Furkan Arslan, Ali Nasra, Selin Işık, Kutay Saran | 16.10.2023 | | 6hr | 6hr | 
+| Research and Study Back-end technologies | [#171](https://github.com/bounswe/bounswe2023group4/issues/171) | Hebun Şimşek, Şefik Palazoğlu, Emre Batuhan Göç | 16.10.2023 | | 6hr | 6hr |
+| Research and Study Database technologies |[#163](https://github.com/bounswe/bounswe2023group4/issues/163)| Şefik Palazoğlu | 16.10.2023 | | 6hr | 6hr |
+| Research and Study Mobile technologies | [#176](https://github.com/bounswe/bounswe2023group4/issues/176) | Ali Alperen Sönmez | 16.10.2023 | | 6hr | 6hr |
+| Mockup Update | [#174](https://github.com/bounswe/bounswe2023group4/issues/174) | Selin Işık, Kutay Saran, Enes Furkan Arslan | 16.10.2023 | | 3hr | 3.5hr |
+### | Requirements update for annotation | [#165](https://github.com/bounswe/bounswe2023group4/issues/165) | Selin Işık, Ali Nasra | 16.10.2023 | 3hr | | 
+### | Requirements update for semantic tagging | [#173](https://github.com/bounswe/bounswe2023group4/issues/173) | Yiğit Şekerci | 16.10.2023 | 3hr |
+| Jury requriements review | [#151](https://github.com/bounswe/bounswe2023group4/issues/151) | Ahmet Emre Şafak | 16.10.2023 | [link](https://github.com/bounswe/bounswe2023group4/wiki/Requirements) | 3hr | 2hr |
+| Creating Project Plan for semester | [#140](https://github.com/bounswe/bounswe2023group4/issues/140) | Kutay Saran, Yiğit Şekerci, Selin Işık, Hebun Şimşek | 12.10.23 | [link](https://github.com/bounswe/bounswe2023group4/wiki#project-plan) | 2hr | 2hr |
+
+
+## Completed tasks that were not planned for the week
+
+| Description  | Issue | Assignee | Due | PR |
+| -------- | ----- | -------- | --- | --- |
+
+## Planned vs. Actual
+- Front and mobile research issues were split into more detailed issues. We did not expet
+- We discussed annotation requriments in the lecture and will revise the requirements accordingly.
+- We were undecided on how detailed the project plan needs to be. This issue is discussed with the instructor and we plan to finish the project plan until 12.10.2023
+
+## Your plans for the next week
+| Description | Issue | Assignee | Due | Estimated Duration |
+| --- | --- | --- | --- | --- |
+| Project initialization for backend | [#170](https://github.com/bounswe/bounswe2023group4/issues/170) | Emre Batuhan Göç | 16.10.2023 | 6hr |
+| Project initialization for frontend | [#167](https://github.com/bounswe/bounswe2023group4/issues/167) | Kutay Saran, Enes Furkan Arslan | 16.10.2023 | 6hr |
+| Project initialization for mobile | [#169](https://github.com/bounswe/bounswe2023group4/issues/169) | Yiğit Şekerci, Ahmet Emre Şafak | 16.10.2023 | 6hr |
+| Project initialization for database | [#162](https://github.com/bounswe/bounswe2023group4/issues/162) | Şefik Palazoğlu, Hebun Şimşek | 16.10.2023 | 6hr |
+| Uploading the weekly report | [#160](https://github.com/bounswe/bounswe2023group4/issues/160) | Şefik Palazoğlu | 10.10.2023 | 1.5hr |
+| Update the class, use case, sequence diagram w.r.t. updated requirements | [#143](https://github.com/bounswe/bounswe2023group4/issues/143) | Ali Alperen Sönmez, Emre Batuhan Göç, Ali Nasra, Şefik Palazoğlu| 16.10.23 | 4hr |
+| Upload diagram source files | [#161](https://github.com/bounswe/bounswe2023group4/issues/161) | Şefik Palazoğlu, Emre Batuhan Göç, Ali Nasra, Ali Alperen Sönmez | 16.10.2023 | 3hr |
+| Update RAM | [#172](https://github.com/bounswe/bounswe2023group4/issues/172) | Enes Furkan Arslan | 16.10.2023 | 3hr |
+| Research and Study Front-end technologies | [#166](https://github.com/bounswe/bounswe2023group4/issues/166) | Enes Furkan Arslan, Ali Nasra, Selin Işık, Kutay Saran | 16.10.2023 | 6hr |
+| Research and Study Back-end technologies | [#171](https://github.com/bounswe/bounswe2023group4/issues/171) | Hebun Şimşek, Şefik Palazoğlu, Emre Batuhan Göç | 16.10.2023 | 6hr |
+| Research and Study Database technologies |[#163](https://github.com/bounswe/bounswe2023group4/issues/163)| Şefik Palazoğlu | 16.10.2023 | 6hr |
+| Research and Study Mobile technologies | [#176](https://github.com/bounswe/bounswe2023group4/issues/176) | Ali Alperen Sönmez | 16.10.2023 | 6hr |
+| Mockup Update | [#174](https://github.com/bounswe/bounswe2023group4/issues/174) | Selin Işık, Kutay Saran, Enes Furkan Arslan | 16.10.2023 | 3hr |
+| Requirements update for annotation | [#165](https://github.com/bounswe/bounswe2023group4/issues/165) | Selin Işık, Ali Nasra | 16.10.2023 | 3hr |
+| Requirements update for semantic tagging | [#173](https://github.com/bounswe/bounswe2023group4/issues/173) | Yiğit Şekerci | 16.10.2023 | 3hr |
+| Jury requriements review | [#151](https://github.com/bounswe/bounswe2023group4/issues/151) | Ahmet Emre Şafak | 16.10.2023 | 3hr |
+| Creating Project Plan for semester | [#140](https://github.com/bounswe/bounswe2023group4/issues/140) | Kutay Saran, Yiğit Şekerci, Selin Işık, Hebun Şimşek | 12.10.23 | 2hr |
+
+## Implementation Strategy
+### Unit tests
+- As a team, we will try our best to conform to test driven development standards. Hence, units tests will be written before the actual implementations, and unit tests will be written by the developer that implements the feature.
+### Main branch protection
+- We require a minimum of 1 review for each PR to main branch. It is disallowed to directly push to main branch. Normally, we merge the ongoing implementations to development branch.
+### Branching strategy
+- We will have a dedicated development branch for each team: backend/development, frontend/development, and mobile/development. We will have a development branch which team development branches merge to. Additionally, we have a main branch which the development merges into. Finally, each team will conform to the git flow during their development process, i.e., they must create feature branches for new features.
+### Coding style
+
+## Risks
+- Deadlines may not be met due to need of exhaustive research for technologies. Project initialization issues partially depend on research issues, this may affect the deadline too.
+
+## Participants
+- Ahmet Emre Şafak
+- Ali Nasra
+- Ali Alperen Sönmez
+- Emre Batuhan Göç
+- Enes Furkan Arslan
+- Hebun Şimşek
+- Kutay Saran
+- Selin Işık
+- Şefik Palazoğlu
+- Yiğit Şekerci
