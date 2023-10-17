@@ -34,8 +34,9 @@
 | -------- | ----- | -------- | --- | --- |
 
 ## Planned vs. Actual
-- Front and mobile research issues were split into more detailed issues. We did not expect
+- Front and mobile research issues were split into more detailed issues. We did not expect these issues to be this detailed when writing the previous report.
 - We discussed annotation requriments in the lecture and will revise the requirements accordingly.
+- There was a small hiccup in updating class diagrams. This affected [#143](https://github.com/bounswe/bounswe2023group4/issues/143) and [#161](https://github.com/bounswe/bounswe2023group4/issues/161). We plan to properly update the class diagram and close these issues until 17.10.2023.
 
 
 ## Your plans for the next week
