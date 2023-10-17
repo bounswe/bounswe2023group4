@@ -85,6 +85,7 @@
 ### Coding style
 - We plan to use ESLint for node.js development in backend.
 - We will prioritize single responsibility, meaningful comments, external stylesheets, ESLint for code formatting, use of destructuring and spread operator and avoiding hardcoding in frontend.
+- We will follow SOLID principles in mobile.
 ### Coding Convention
 - We will seperate our request handling and class logic in controller and service classses in node.js development.
   
