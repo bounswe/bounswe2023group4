@@ -58,6 +58,9 @@
 | Dockerizing the backend | [#213](https://github.com/bounswe/bounswe2023group4/issues/213) | Hebun Şimşek | 23.10.2023 | 3hr |
 | Handle the feedbacks on RAM | [#214](https://github.com/bounswe/bounswe2023group4/issues/214) | Enes Furkan Arslan | 23.10.2023 | 2 hr | 
 | Arrange Fonts | [#215](https://github.com/bounswe/bounswe2023group4/issues/215), [#198](https://github.com/bounswe/bounswe2023group4/issues/198) | Kutay Saran, Yiğit Şekerci | 23.10.2023 | 1.5 hr | 
+| Arranging Gradle Dependencies for Android Project | [#199](https://github.com/bounswe/bounswe2023group4/issues/199) | Ahmet Emre Şafak | 23.10.2023 |  | 
+| Setting up the navigation component for Android  | [#200](https://github.com/bounswe/bounswe2023group4/issues/200) | Ahmet Emre Şafak | 23.10.2023 |  | 
+
 
 ## Implementation Strategy
 ### Unit tests
