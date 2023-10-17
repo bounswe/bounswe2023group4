@@ -72,6 +72,7 @@
 | Implement build variant system  | [#183](https://github.com/bounswe/bounswe2023group4/issues/222) | Yiğit Şekerci | 23.10.2023 | 1 hr | 
 | Implement the network module   | [#183](https://github.com/bounswe/bounswe2023group4/issues/223) | Yiğit Şekerci| 23.10.2023 | 1 hr | 
 | Implement navigation drawer  | [#183](https://github.com/bounswe/bounswe2023group4/issues/224) | Yiğit Şekerci | 23.10.2023 | 2 hr |
+| Setting up the navigation component for Android  | [#183](https://github.com/bounswe/bounswe2023group4/issues/200) | Ahmet Emre Şafak | 23.10.2023 | 2 hr |
 
 
 ## Implementation Strategy
