@@ -15,3 +15,5 @@ app.delete('/logout', service.logOut)
 app.post("/login", service.logIn)
 
 app.listen(PORT, service.startServer(PORT));
+
+module.exports = app
