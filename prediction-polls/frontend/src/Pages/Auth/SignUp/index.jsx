@@ -1,72 +1,94 @@
 import React from 'react';
-import { Button, Input, Form, DatePicker, Checkbox, Typography} from 'antd';
+import { Button, Input, Form, DatePicker, Checkbox, Typography, Divider} from 'antd';
 import { Link } from 'react-router-dom';
 
 function SignUp() {
-  const containerStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100vh', 
-  };
 
   const splitContainerStyle = {
     display: 'flex',
-    width: '80%', 
+    width: '100%', 
     margin: '0 auto',
+    height: '100vh',
   };
+
+  const displayCenterStyle = {
+    display: 'flex' ,
+    alignItems: 'center' ,
+    justifyContent: 'center'
+  }
+
+  const formInputStyle = {
+    padding: '10px 5px',
+    width: '100%' ,
+  }
+
+  const formButtonStyle = {
+    ...displayCenterStyle,
+    padding: '22px 0px',
+    width: '100%' ,
+    opacity: '0.85'
+  }
+
+  const dividerStyle = {
+    color: 'rgba(22, 119, 255, 0.4)',
+    borderColor: 'rgba(22, 119, 255, 0.2)'
+};
+
+
+  const formDatePickerStyle = {
+    ...formInputStyle,
+    width: '100%'
+  }
 
   const imageContainerStyle = {
     flex: 1,
-    paddingRight: '20px', 
+    paddingRight: '20px',
+    backgroundImage: 'linear-gradient(to bottom, #EAF3FB, #BEDAF4)',
   };
 
   const formContainerStyle = {
     flex: 1,
-    paddingLeft: '20px', 
+    paddingLeft: '20px',
+    display: 'flex', 
+    flexDirection: 'column', 
+    alignItems: 'center'
   };
 
-  const formItemLayout = { // to put text above input areas
+  const formItemLayout = {
     labelCol: {
-      span: 24, 
+      span: 24,
     },
     wrapperCol: {
       span: 24,
     },
-  };
+};
 
   return (
-    <div style={containerStyle}>
       <div style={splitContainerStyle}>
-        <div style={imageContainerStyle}>
-          {/* Our sign up image from mock-up */}
-          <img
-            src="https://cdn.discordapp.com/attachments/887354522324852759/1165272221317611551/image.png?ex=65463f53&is=6533ca53&hm=7d6045db42bbb9a68f7cf30241535ded3c6caefb8ddc9c26001781c75bf064a6&"
-            alt="Sign-Up Image"
-            style={{ width: '100%', height: '100%' }}
-          />
-        </div>
         <div style={formContainerStyle}>
-          <h1>Prediction Polls</h1>
+          <h1> Prediction Polls </h1>
           <Form {...formItemLayout}>
           <Form.Item>
               <div>
-              <Button type="default" style={{ width: '100%', marginBottom: '10px' }}>
-                Sign Up with Google
+              <Button type="primary" style={formButtonStyle}>
+              <i className="fab fa-google fa-1x" style={{ marginRight: '10px' }}></i>  Sign Up with Google
               </Button>
               </div>
+              <Divider style={dividerStyle} orientation="center" plain>
+                or
+              </Divider>
             </Form.Item>
             <Form.Item label="EMAIL ADDRESS">
-              <Input type="email" placeholder="example@outlook.com" />
+              <Input type="email" style={formInputStyle}  placeholder="example@outlook.com" />
             </Form.Item>
             <Form.Item label="USERNAME">
-              <Input placeholder="exampleUsername" />
+              <Input style={formInputStyle} placeholder="exampleUsername" />
             </Form.Item>
             <Form.Item label="PASSWORD">
-              <Input type="password" placeholder="Password" />
+              <Input.Password style={formInputStyle} type="password" placeholder="Password" />
             </Form.Item>
             <Form.Item label="BIRTHDAY">
-              <DatePicker style={{ width: '100%' }} placeholder="01.01.2000" />
+              <DatePicker  style={formDatePickerStyle} placeholder="01.01.2000" />
             </Form.Item>
             <Form.Item>
               <Checkbox>
@@ -75,21 +97,33 @@ function SignUp() {
               </Checkbox>
             </Form.Item>
             <Form.Item>
-              <Button type="primary" htmlType="submit" style={{ width: '100%', marginBottom: '10px' }}>
+              <div>
+                <Button type="primary"  htmlType="submit" style={formButtonStyle}>
                 Sign Up
               </Button>
+              </div>
             </Form.Item>
             <Form.Item>
-              <div>
-                <Link to="/home">
-                  <Button type="default">Go to Home Page</Button>
+              <div style={displayCenterStyle}>
+                I Have an Account
+                <Link 
+                  to="/auth/sign-in" 
+                  style={{ marginLeft: '10px', textDecoration: 'underline' }}>
+                  Login
                 </Link>
               </div>
             </Form.Item>
           </Form>
         </div>
+        <div style={imageContainerStyle}>
+          {/* Our sign up image from mock-up */}
+          <img
+            src="https://cdn.discordapp.com/attachments/887354522324852759/1165272221317611551/image.png?ex=65463f53&is=6533ca53&hm=7d6045db42bbb9a68f7cf30241535ded3c6caefb8ddc9c26001781c75bf064a6&"
+            alt="Sign-Up"
+            style={{ width: '100%', height: '100%' }}
+          />
+        </div>
       </div>
-    </div>
   );
 }
 
