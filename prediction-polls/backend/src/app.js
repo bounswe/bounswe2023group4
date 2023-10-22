@@ -1,5 +1,5 @@
 const express = require('express');
-const authRouter = require('./routes/authRouter.js'); // Adjust the path if necessary
+const authRouter = require('./routes/AuthorizationRouter.js'); 
 
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -23,4 +23,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+module.exports = app
 
