@@ -57,7 +57,7 @@ router.post("/login", service.logIn)
 
 /**
  * @swagger
- * /token:
+ * /access-token:
  *   post:
  *     description: Create access token using refresh token.
  *     requestBody:
@@ -70,7 +70,7 @@ router.post("/login", service.logIn)
  *               refreshToken:
  *                 type: string
  *     responses:
- *       200:
+ *       204:
  *         description: Successful response
  *         content:
  *           application/json:
