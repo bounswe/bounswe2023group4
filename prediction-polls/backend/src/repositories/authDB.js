@@ -31,11 +31,18 @@ async function checkRefreshToken(token){
     }, () => {
         return false
     })
-
 }
 
 //Delete the given refresh token from db
-function deleteRefreshToken(refreshToken){
+function deleteRefreshToken(token){
+    const sql = 'DELETE FROM refresh_tokens WHERE token = ?';
+    const values = [token];
+
+    return pool.query(sql, values).then(([result]) => {
+        return result.affectedRows > 0;
+    }, () => {
+        return false
+    })
 
 }
 
