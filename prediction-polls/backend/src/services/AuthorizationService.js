@@ -1,10 +1,31 @@
 require('dotenv').config();
 const jwt = require("jsonwebtoken");
 const db = require("../repositories/authDB.js");
+const bcrypt = require('bcrypt')
 
 function homePage(req, res){
     res.json({"username":req.user.name,"key":"very secret"});
   }
+
+function signup(req, res){
+  // Authorize User  
+  const { username, password } = req.body;
+
+  // Hash the password
+  bcrypt.hash(password, 10, (err, hashedPassword) => {
+    // Store the user in the database
+    const sql = 'INSERT INTO users (username, password) VALUES (?, ?)';
+    const values = [username, hashedPassword];
+  
+    // Execute the SQL query to insert the user using mysql2
+    const result = db.pool.query(sql, values).then(() => {
+      res.send('Registration successful');
+    }, () => {
+        res.send('Registration failed');
+      }
+    );
+  });
+}
 
 function createAccessTokenFromRefreshToken(req, res){
     const refreshToken = req.body.token;
@@ -30,11 +51,10 @@ function logIn(req,res){
 function logOut(req, res) {
     if (db.checkRefreshToken(req.body.token)){
       db.deleteRefreshToken(req.body.token);
-      return res.sendStatus(204);
-  }
-    res.sendStatus(404);  
-
-    
+      res.sendStatus(204);
+    } else {
+      res.sendStatus(404);
+    }
 }
 
 function authorizeAccessToken(req, res, next) {
@@ -61,4 +81,4 @@ function startServer(port) {
     console.log(`Server is running on http://localhost:${port}`);
 }
 
-module.exports = {homePage,createAccessTokenFromRefreshToken,logIn,logOut,authorizeAccessToken,startServer}
+module.exports = {homePage, signup, createAccessTokenFromRefreshToken, logIn, logOut, authorizeAccessToken, startServer}
