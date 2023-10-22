@@ -1,20 +1,12 @@
 const swaggerOptions = {
-    swaggerDefinition: {
+    definition: {
+      openapi: "3.0.0",
       info: {
-        title: 'Your API',
+        title: 'Prediction Poll API',
         version: '1.0.0',
-        description: 'API Documentation for Your Project',
+        description: 'API Documentation for Prediction Poll API',
       },
     },
-    components: {
-      securitySchemes: {
-        BearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'JWT',
-          },
-        },
-      },
     apis: ["./src/routes/*.js"], // Adjust this path to match your project structure
   };
   
