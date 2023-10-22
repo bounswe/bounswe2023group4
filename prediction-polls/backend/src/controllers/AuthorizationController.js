@@ -6,9 +6,9 @@ app.use(express.json())
 
 const PORT = process.env.PORT || 3000;
 
-app.get('/', service.authenticateToken, service.homePage);
+app.get('/', service.authorizeAccessToken, service.homePage);
 
-app.post('/token', service.createAccessTokenFromRefresh)
+app.post('/token', service.createAccessTokenFromRefreshToken)
 
 app.delete('/logout', service.logOut)
 
