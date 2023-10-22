@@ -1,6 +1,6 @@
 require('dotenv').config();
 const jwt = require("jsonwebtoken");
-const db = require("../repositories/authDB.js");
+const db = require("../repositories/AuthorizationDB.js");
 
 const { checkCredentials } = require('./AuthenticationService.js');
 
@@ -43,12 +43,11 @@ function createAccessTokenFromRefreshToken(req, res){
 
 function logIn(req,res){
     // Authorize User  
-    console.log(req.body.username)
     const username = req.body.username;
     const password = req.body.password;
     const user = {name : username};
     
-    // if (!checkCredentials(username,password)) return res.sendStatus(401);
+    if (!checkCredentials(username,password)) return res.sendStatus(401);
 
     const accesToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user);
@@ -85,8 +84,4 @@ function generateRefreshToken(user) {
   return jwt.sign(user,process.env.REFRESH_TOKEN_SECRET);
 }
 
-function startServer(port) {
-    console.log(`Server is running on http://localhost:${port}`);
-}
-
-module.exports = {homePage, signup, createAccessTokenFromRefreshToken, logIn, logOut, authorizeAccessToken, startServer}
+module.exports = {homePage, signup, createAccessTokenFromRefreshToken, logIn, logOut, authorizeAccessToken}
