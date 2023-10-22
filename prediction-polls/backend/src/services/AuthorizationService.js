@@ -1,11 +1,12 @@
 require('dotenv').config();
 const jwt = require("jsonwebtoken");
+const db = require("../repositories/authDB.js");
 
 function homePage(req, res){
     res.json({"username":req.user.name,"key":"very secret"});
   }
 
-function createAccessTokenFromRefresh(req, res){
+function createAccessTokenFromRefreshToken(req, res){
     const refreshToken = req.body.token;
     if (refreshToken == null) return res.sendStatus(401);
     jwt.verify(refreshToken,process.env.REFRESH_TOKEN_SECRET, (err, user) => {
@@ -16,21 +17,26 @@ function createAccessTokenFromRefresh(req, res){
   }
 
 function logIn(req,res){
-    // Authenticate User  
+    // Authorize User  
     const username = req.body.username;
     const user = {name : username};
     
     const accesToken = generateAccessToken(user);
-    const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
+    const refreshToken = generateRefreshToken(user);
+    db.addRefreshToken(refreshToken);
     res.json({accessToken: accesToken, refreshToken: refreshToken})
 }
 
 function logOut(req, res) {
-    refreshTokens = refreshTokens.filter(token => token !== req.body.token);
-    res.sendStatus(204);
+    if (db.checkRefreshToken(req.body.token)){
+      db.deleteRefreshToken(req.body.token);
+      res.sendStatus(204);
+    }
+    res.sendStatus(404);
+    
 }
 
-function authenticateToken(req, res, next) {
+function authorizeAccessToken(req, res, next) {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
     if (token == null) return res.sendStatus(401);
@@ -46,8 +52,12 @@ function generateAccessToken(user) {
   return jwt.sign(user,process.env.ACCESS_TOKEN_SECRET, {expiresIn: "30m"});
 }
 
+function generateRefreshToken(user) {
+  return jwt.sign(user,process.env.REFRESH_TOKEN_SECRET);
+}
+
 function startServer(port) {
     console.log(`Server is running on http://localhost:${port}`);
 }
 
-module.exports = {homePage,createAccessTokenFromRefresh,logIn,logOut,authenticateToken,startServer}
+module.exports = {homePage,createAccessTokenFromRefreshToken,logIn,logOut,authorizeAccessToken,startServer}
