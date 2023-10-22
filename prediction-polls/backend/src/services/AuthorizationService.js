@@ -1,6 +1,7 @@
 require('dotenv').config();
 const jwt = require("jsonwebtoken");
 const db = require("../repositories/authDB.js");
+const { checkCredentials } = require('./AuthenticationService.js');
 
 function homePage(req, res){
     res.json({"username":req.user.name,"key":"very secret"});
@@ -19,8 +20,11 @@ function createAccessTokenFromRefreshToken(req, res){
 function logIn(req,res){
     // Authorize User  
     const username = req.body.username;
+    const password = req.body.password;
     const user = {name : username};
     
+    if (!checkCredentials(username,password)) return res.sendStatus(401);
+
     const accesToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user);
     db.addRefreshToken(refreshToken);
@@ -33,7 +37,6 @@ function logOut(req, res) {
       res.sendStatus(204);
     }
     res.sendStatus(404);
-    
 }
 
 function authorizeAccessToken(req, res, next) {
