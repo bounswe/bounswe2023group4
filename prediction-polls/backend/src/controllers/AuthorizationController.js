@@ -1,5 +1,6 @@
 const express = require('express');
 const service = require("../services/AuthorizationService");
+
 const app = express();
 
 app.use(express.json())
