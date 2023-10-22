@@ -12,6 +12,5 @@ CREATE TABLE refresh_tokens (
     token VARCHAR(255) NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     revoked BOOLEAN NOT NULL DEFAULT 0,
-    UNIQUE KEY token (token),
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    UNIQUE KEY token (token)
 );
