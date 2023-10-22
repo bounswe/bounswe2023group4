@@ -52,9 +52,9 @@ function logOut(req, res) {
     if (db.checkRefreshToken(req.body.token)){
       db.deleteRefreshToken(req.body.token);
       res.sendStatus(204);
+    } else {
+      res.sendStatus(404);
     }
-    res.sendStatus(404);
-    
 }
 
 function authorizeAccessToken(req, res, next) {
