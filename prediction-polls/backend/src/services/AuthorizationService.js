@@ -18,14 +18,12 @@ function signup(req, res){
     const values = [username, hashedPassword];
   
     // Execute the SQL query to insert the user using mysql2
-    db.pool.query(sql, values, (err, results) => {
-      if (err) {
-        console.error(err);
+    const result = db.pool.query(sql, values).then(() => {
+      res.send('Registration successful');
+    }, () => {
         res.send('Registration failed');
-      } else {
-        res.send('Registration successful');
       }
-    });
+    );
   });
 }
 
