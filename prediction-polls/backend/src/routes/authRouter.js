@@ -1,7 +1,6 @@
-const service = require("../services/AuthorizationService")
+const service = require("../services/AuthorizationService.js")
 const express = require('express');
 const router = express.Router();
-
 
 /**
  * @swagger
@@ -34,18 +33,18 @@ router.get('/', service.authorizeAccessToken, service.homePage)
  *           schema:
  *             type: object
  *             properties:
- *               username:
- *                 type: string
- *               email:
+ *               refreshToken:
  *                 type: string
  *     responses:
  *       200:
  *         description: Successful response
- *         schema:
- *           type: object
- *           properties:
- *             accessToken:
- *               type: string
+ *         content:
+ *           application/json:
+ *             schema:
+ *              type: object
+ *              properties:
+ *                accessToken:
+ *                  type: string
  */
 router.post('/token', service.createAccessTokenFromRefreshToken)
 
