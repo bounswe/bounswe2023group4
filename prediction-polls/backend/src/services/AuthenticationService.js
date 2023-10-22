@@ -1,12 +1,7 @@
-const db = require("../repositories/authDB.js");
+const db = require("../repositories/AuthorizationDB.js");
 
 function checkCredentials(username, password){
-    return db.checkCredentials(username,password);
+    return true;
 }
 
-function signUp(username, password){
-    db.createMember(username,password);
-}
-
-
-module.exports = {checkCredentials,signUp}
+module.exports = {checkCredentials}
