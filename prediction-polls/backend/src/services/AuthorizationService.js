@@ -30,9 +30,10 @@ function logIn(req,res){
 function logOut(req, res) {
     if (db.checkRefreshToken(req.body.token)){
       db.deleteRefreshToken(req.body.token);
-      res.sendStatus(204);
-    }
-    res.sendStatus(404);
+      return res.sendStatus(204);
+  }
+    res.sendStatus(404);  
+
     
 }
 
