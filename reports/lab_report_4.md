@@ -51,7 +51,7 @@
 ## Planned vs. Actual
 - Database preperation issue [#207](https://github.com/bounswe/bounswe2023group4/issues/207) was closed 1 days after it was due.
 - Arrange Fonts issue [#215](https://github.com/bounswe/bounswe2023group4/issues/215) is overdue. It will be closed at 24.10.2023
-- Mockup Design Updates issue [#201](https://github.com/bounswe/bounswe2023group4/issues/201) is overdue. Web part is done but mobile took more time than expected. Will be completed at 24.10.2023.
+- Mockup Design Updates issue [#201](https://github.com/bounswe/bounswe2023group4/issues/201) is overdue. Web part is done but mobile took more time. Please check the [issue comment](https://github.com/bounswe/bounswe2023group4/issues/201#issuecomment-1775785121) for more information. Will be completed at 24.10.2023.
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
