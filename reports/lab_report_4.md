@@ -13,7 +13,7 @@
 | Requirements update for annotation | [#165](https://github.com/bounswe/bounswe2023group4/issues/165) | Selin Işık, Ali Nasra | 23.10.2023 | | 2hr | 1hr |
 | Frontend Research and Learning | [#189](https://github.com/bounswe/bounswe2023group4/issues/189), [#190](https://github.com/bounswe/bounswe2023group4/issues/190), [#192](https://github.com/bounswe/bounswe2023group4/issues/192) | Enes Furkan Arslan, Ali Nasra, Selin Işık, Kutay Saran | 23.10.2023 | | 6hr | 7hr |
 | Mockup Design Updates | [#201](https://github.com/bounswe/bounswe2023group4/issues/201) | Enes Furkan Arslan, Selin Işık, Kutay Saran | 23.10.2023 | | 4hr | 4hr |
-| Project Plan Update | [#202](https://github.com/bounswe/bounswe2023group4/issues/202),[#204](https://github.com/bounswe/bounswe2023group4/issues/204), [#216](https://github.com/bounswe/bounswe2023group4/issues/216) | Yiğit Şekerci, Hebun Şimşek, Selin Işık | 23.10.2023 | | 1hr | 1.5hr |
+| Project Plan Update | [#202](https://github.com/bounswe/bounswe2023group4/issues/202),[#204](https://github.com/bounswe/bounswe2023group4/issues/204), [#216](https://github.com/bounswe/bounswe2023group4/issues/216) | Yiğit Şekerci, Hebun Şimşek, Selin Işık | 23.10.2023 | [link1](https://github.com/bounswe/bounswe2023group4/issues/202#issuecomment-1775865747),[link2](https://github.com/bounswe/bounswe2023group4/issues/204#issuecomment-1775904570),[link3](https://github.com/bounswe/bounswe2023group4/issues/216#issuecomment-1775670025) | 1hr | 1.5hr |
 | Arrange Theme | [#203](https://github.com/bounswe/bounswe2023group4/issues/203), [#197](https://github.com/bounswe/bounswe2023group4/issues/197)  | Yiğit Şekerci, Ahmet Emre Şafak, Selin Işık | 23.10.2023 | | 1hr | 2hr |
 | Implementing the UI of the Sign-in page  | https://github.com/bounswe/bounswe2023group4/issues/205 | Ali Nasra, Selin Işık | 23.10.2023 | | 4hr | 4hr |
 | Learn unit testing in node.js | [#206](https://github.com/bounswe/bounswe2023group4/issues/206) | Şefik Palazoğlu | 20.10.2023 | [#225](https://github.com/bounswe/bounswe2023group4/pull/225) | 2hr | 2.5hr |
@@ -23,7 +23,7 @@
 | Learn unit testing in node.js | [#210](https://github.com/bounswe/bounswe2023group4/issues/210) | Emre Batuhan Göç | 20.10.2023 | | 2hr | 2.5hr |
 | Create authentication backend API | [#211](https://github.com/bounswe/bounswe2023group4/issues/211) | Emre Batuhan Göç | 23.10.2023 | | 3hr | 5hr |
 | Implementing the UI of the Sign-up page  | [#212](https://github.com/bounswe/bounswe2023group4/issues/212) | Kutay Saran, Enes Furkan Arslan | 23.10.2023 | | 4hr | 2hr |
-| Dockerizing the backend | [#213](https://github.com/bounswe/bounswe2023group4/issues/213) | Hebun Şimşek | 23.10.2023 | | 3hr | 2hr |
+| Dockerizing the backend | [#213](https://github.com/bounswe/bounswe2023group4/issues/213) | Hebun Şimşek | 23.10.2023 | [link](https://github.com/bounswe/bounswe2023group4/issues/213#issuecomment-1775041367) | 3hr | 2hr |
 | Handle the feedbacks on RAM | [#214](https://github.com/bounswe/bounswe2023group4/issues/214) | Enes Furkan Arslan | 23.10.2023 | | 2 hr | 1hr |
 | Arrange Fonts | [#215](https://github.com/bounswe/bounswe2023group4/issues/215), [#198](https://github.com/bounswe/bounswe2023group4/issues/198) | Kutay Saran, Yiğit Şekerci | 23.10.2023 | | 1.5 hr | 1hr |
 | Arranging Gradle Dependencies for Android Project | [#199](https://github.com/bounswe/bounswe2023group4/issues/199) | Ahmet Emre Şafak | 23.10.2023 | | 2 hr | |
@@ -60,6 +60,9 @@
 | Add Email and Date of Birth in Registration Flow | [#247](https://github.com/bounswe/bounswe2023group4/issues/247) | Şefik Palazoğlu | 30.10.2023 | 1.5hr |
 | Google Authentication Backend | [#248](https://github.com/bounswe/bounswe2023group4/issues/248) | Şefik Palazoğlu | 30.10.2023 | 4hr |
 | Upload Report | [#249](https://github.com/bounswe/bounswe2023group4/issues/249) | Şefik Palazoğlu | 24.10.2023 | 1hr |
+| Database configuration | [#250](https://github.com/bounswe/bounswe2023group4/issues/250) | Hebun Şimşek, Şefik Palazoğlu | 30.10.2023 | 3hr |
+| Deploy the backend to EC2 | [#251](https://github.com/bounswe/bounswe2023group4/issues/251) | Hebun Şimşek | 30.10.2023 | 2hr |
+| Deployment of the finalized product | [#252](https://github.com/bounswe/bounswe2023group4/issues/252) | Hebun Şimşek | 30.10.2023 | 4hr |
 
   
 ## Risks
