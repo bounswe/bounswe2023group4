@@ -56,6 +56,9 @@
 - Database preperation issue [#207](https://github.com/bounswe/bounswe2023group4/issues/207) was closed 1 days after it was due.
 - Arrange Fonts issue [#215](https://github.com/bounswe/bounswe2023group4/issues/215) is overdue. It will be closed at 24.10.2023
 - Mockup Design Updates issue [#201](https://github.com/bounswe/bounswe2023group4/issues/201) is overdue. Web part is done but mobile took more time. Please check the [issue comment](https://github.com/bounswe/bounswe2023group4/issues/201#issuecomment-1775785121) for more information. Will be completed at 24.10.2023.
+- We made a mistake by assigning mobile research issues to team instead of opening a new issue for every teammate. Because every members' finish time is different we couldn't close the issues on time. Due to this reason, most of the research issues missed the deadline.
+- We have huge pull request review problem in mobile team. Reviews didn't send on time thus we couldn't finish some implementation issues before deadline even if the main part of the implementations are done.
+- Some mobile PR's sent too late thus we couldn't review them and they missed the deadline. We need to organize ourselves better.
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
