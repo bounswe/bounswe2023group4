@@ -59,7 +59,7 @@
 | Linking Refresh Token and Users in Database | [#241](https://github.com/bounswe/bounswe2023group4/issues/241) | Şefik Palazoğlu | 30.10.2023 | 2hr |
 | Add Email and Date of Birth in Registration Flow | [#247](https://github.com/bounswe/bounswe2023group4/issues/247) | Şefik Palazoğlu | 30.10.2023 | 1.5hr |
 | Google Authentication Backend | [#248](https://github.com/bounswe/bounswe2023group4/issues/248) | Şefik Palazoğlu | 30.10.2023 | 4hr |
-| Upload Report | [#249](https://github.com/bounswe/bounswe2023group4/issues/249) | Şefik Palazoğlu | 30.10.2023 | 1hr |
+| Upload Report | [#249](https://github.com/bounswe/bounswe2023group4/issues/249) | Şefik Palazoğlu | 24.10.2023 | 1hr |
 
   
 ## Risks
