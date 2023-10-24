@@ -22,10 +22,10 @@
 | Database Deployment | [#209](https://github.com/bounswe/bounswe2023group4/issues/209) | Şefik Palazoğlu | 23.10.2023 | [link](https://github.com/bounswe/bounswe2023group4/issues/209#issuecomment-1775701016) | 2hr | 2hr |
 | Learn unit testing in node.js | [#210](https://github.com/bounswe/bounswe2023group4/issues/210) | Emre Batuhan Göç | 20.10.2023 | [#225](https://github.com/bounswe/bounswe2023group4/pull/225) | 2hr | 2.5hr |
 | Create authentication backend API | [#211](https://github.com/bounswe/bounswe2023group4/issues/211) | Emre Batuhan Göç | 23.10.2023 | [#243](https://github.com/bounswe/bounswe2023group4/pull/243) | 3hr | 5hr |
-| Implementing the UI of the Sign-up page  | [#212](https://github.com/bounswe/bounswe2023group4/issues/212) | Kutay Saran, Enes Furkan Arslan | 23.10.2023 | | 4hr | 2hr |
+| Implementing the UI of the Sign-up page  | [#212](https://github.com/bounswe/bounswe2023group4/issues/212) | Kutay Saran, Enes Furkan Arslan | 23.10.2023 | [#227](https://github.com/bounswe/bounswe2023group4/pull/227),[#237](https://github.com/bounswe/bounswe2023group4/pull/237) | 4hr | 2hr |
 | Dockerizing the backend | [#213](https://github.com/bounswe/bounswe2023group4/issues/213) | Hebun Şimşek | 23.10.2023 | [link](https://github.com/bounswe/bounswe2023group4/issues/213#issuecomment-1775041367) | 3hr | 2hr |
 | Handle the feedbacks on RAM | [#214](https://github.com/bounswe/bounswe2023group4/issues/214) | Enes Furkan Arslan | 23.10.2023 | | 2 hr | 1hr |
-| Arrange Fonts | [#215](https://github.com/bounswe/bounswe2023group4/issues/215), [#198](https://github.com/bounswe/bounswe2023group4/issues/198) | Kutay Saran, Yiğit Şekerci | 23.10.2023 | | 1.5 hr | 1hr |
+| Arrange Fonts | [#215](https://github.com/bounswe/bounswe2023group4/issues/215), [#198](https://github.com/bounswe/bounswe2023group4/issues/198) | Kutay Saran, Yiğit Şekerci | 23.10.2023 | [#246](https://github.com/bounswe/bounswe2023group4/pull/246) | 1.5 hr | 1hr |
 | Arranging Gradle Dependencies for Android Project | [#199](https://github.com/bounswe/bounswe2023group4/issues/199) | Ahmet Emre Şafak | 23.10.2023 | | 2 hr | |
 | Learn kotlin basics | [#179](https://github.com/bounswe/bounswe2023group4/issues/179) | Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez | 23.10.2023 | | 3 hr | |
 | Learn Android basics | [#180](https://github.com/bounswe/bounswe2023group4/issues/180) |Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez | 23.10.2023 | | 5 hr | |
@@ -66,7 +66,7 @@
 | Implement fundamentals of poll API | [#254](https://github.com/bounswe/bounswe2023group4/issues/254) | Emre Batuhan Göç | 30.10.2023 | 5hr |
 | Update swagger to include poll API | [#255](https://github.com/bounswe/bounswe2023group4/issues/255) | Emre Batuhan Göç | 30.10.2023 | 1.5hr |
 | Implementing the UI of the poll card | [#256](https://github.com/bounswe/bounswe2023group4/issues/256) | Ali Nasra | 30.10.2023 | 4hr |
-
+| Google Authentication Frontend | [#253](https://github.com/bounswe/bounswe2023group4/issues/253) | Kutay Saran | 30.10.2023 | 4hr |
   
 ## Risks
 - We need to have multiple meetings for coordination among backend team and front teams this week. It is a risk that not everyone can be available.
