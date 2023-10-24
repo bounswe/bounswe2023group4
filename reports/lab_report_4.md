@@ -24,7 +24,7 @@
 | Create authentication backend API | [#211](https://github.com/bounswe/bounswe2023group4/issues/211) | Emre Batuhan Göç | 23.10.2023 | [#243](https://github.com/bounswe/bounswe2023group4/pull/243) | 3hr | 5hr |
 | Implementing the UI of the Sign-up page  | [#212](https://github.com/bounswe/bounswe2023group4/issues/212) | Kutay Saran, Enes Furkan Arslan | 23.10.2023 | [#227](https://github.com/bounswe/bounswe2023group4/pull/227),[#237](https://github.com/bounswe/bounswe2023group4/pull/237) | 4hr | 2hr |
 | Dockerizing the backend | [#213](https://github.com/bounswe/bounswe2023group4/issues/213) | Hebun Şimşek | 23.10.2023 | [link](https://github.com/bounswe/bounswe2023group4/issues/213#issuecomment-1775041367) | 3hr | 2hr |
-| Handle the feedbacks on RAM | [#214](https://github.com/bounswe/bounswe2023group4/issues/214) | Enes Furkan Arslan | 23.10.2023 | | 2 hr | 1hr |
+| Handle the feedbacks on RAM | [#214](https://github.com/bounswe/bounswe2023group4/issues/214) | Enes Furkan Arslan | 23.10.2023 | [ram](https://github.com/bounswe/bounswe2023group4/wiki/RAM) | 2 hr | 1hr |
 | Arrange Fonts | [#215](https://github.com/bounswe/bounswe2023group4/issues/215), [#198](https://github.com/bounswe/bounswe2023group4/issues/198) | Kutay Saran, Yiğit Şekerci | 23.10.2023 | [#246](https://github.com/bounswe/bounswe2023group4/pull/246) | 1.5 hr | 1hr |
 | Arranging Gradle Dependencies for Android Project | [#199](https://github.com/bounswe/bounswe2023group4/issues/199) | Ahmet Emre Şafak | 23.10.2023 | | 2 hr | |
 | Learn kotlin basics | [#179](https://github.com/bounswe/bounswe2023group4/issues/179) | Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez | 23.10.2023 | | 3 hr | |
