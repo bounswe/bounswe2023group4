@@ -65,6 +65,7 @@
 | Deployment of the finalized product | [#252](https://github.com/bounswe/bounswe2023group4/issues/252) | Hebun Şimşek | 30.10.2023 | 4hr |
 | Implement fundamentals of poll API | [#254](https://github.com/bounswe/bounswe2023group4/issues/254) | Emre Batuhan Göç | 30.10.2023 | 5hr |
 | Update swagger to include poll API | [#255](https://github.com/bounswe/bounswe2023group4/issues/255) | Emre Batuhan Göç | 30.10.2023 | 1.5hr |
+| Implementing the UI of a poll card | [#256](https://github.com/bounswe/bounswe2023group4/issues/256) | Ali Nasra | 30.10.2023 | 4hr |
 
   
 ## Risks
