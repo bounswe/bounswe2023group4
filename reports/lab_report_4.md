@@ -86,7 +86,7 @@
 | Implement sign in screen UI | [#263](https://github.com/bounswe/bounswe2023group4/issues/263) | Ali Alperen Sönmez | 30.10.23 | 3hr |
 | Implement sign in screen backend requests | [#264](https://github.com/bounswe/bounswe2023group4/issues/264) | Ali Alperen Sönmez | 30.10.23 | 1.5hr | 
 | Implement sign in with Google | [#265](https://github.com/bounswe/bounswe2023group4/issues/265) | Ali Alperen Sönmez | 30.10.23 | 2hr | 
-| Implement Feed Screen UI | [#266](https://github.com/bounswe/bounswe2023group4/issues/266) | Ahmet Emre Şafak | 30.10.23 | 6hr | 
+| Implement Feed Screen UI | [#266](https://github.com/bounswe/bounswe2023group4/issues/266) | Ahmet Emre Şafak | 37.10.23 | 6hr | 
 
 
   
