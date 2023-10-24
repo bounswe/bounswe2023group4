@@ -16,10 +16,10 @@
 | Project Plan Update | [#202](https://github.com/bounswe/bounswe2023group4/issues/202),[#204](https://github.com/bounswe/bounswe2023group4/issues/204), [#216](https://github.com/bounswe/bounswe2023group4/issues/216) | Yiğit Şekerci, Hebun Şimşek, Selin Işık | 23.10.2023 | | 1hr | 1.5hr |
 | Arrange Theme | [#203](https://github.com/bounswe/bounswe2023group4/issues/203), [#197](https://github.com/bounswe/bounswe2023group4/issues/197)  | Yiğit Şekerci, Ahmet Emre Şafak, Selin Işık | 23.10.2023 | | 1hr | 2hr |
 | Implementing the UI of the Sign-in page  | https://github.com/bounswe/bounswe2023group4/issues/205 | Ali Nasra, Selin Işık | 23.10.2023 | | 4hr | 4hr |
-| Learn unit testing in node.js | [#206](https://github.com/bounswe/bounswe2023group4/issues/206) | Şefik Palazoğlu | 20.10.2023 | | 2hr | 2.5hr |
-| Prepare database for Authentication | [#207](https://github.com/bounswe/bounswe2023group4/issues/207) | Şefik Palazoğlu | 21.10.2023 | | 3hr | 2.5hr  |
-| Research Google auth requirements for backend | [#208](https://github.com/bounswe/bounswe2023group4/issues/208) | Şefik Palazoğlu | 23.10.2023 | | 3hr | 2hr |
-| Database Deployment | [#209](https://github.com/bounswe/bounswe2023group4/issues/209) | Şefik Palazoğlu | 23.10.2023 | | 2hr | 2hr|
+| Learn unit testing in node.js | [#206](https://github.com/bounswe/bounswe2023group4/issues/206) | Şefik Palazoğlu | 20.10.2023 | [#225](https://github.com/bounswe/bounswe2023group4/pull/225) | 2hr | 2.5hr |
+| Prepare database for Authentication | [#207](https://github.com/bounswe/bounswe2023group4/issues/207) | Şefik Palazoğlu | 21.10.2023 | [#239](https://github.com/bounswe/bounswe2023group4/pull/239) | 3hr | 2.5hr  |
+| Research Google auth requirements for backend | [#208](https://github.com/bounswe/bounswe2023group4/issues/208) | Şefik Palazoğlu | 23.10.2023 | [link](https://github.com/bounswe/bounswe2023group4/issues/208#issuecomment-1775661942) | 3hr | 2hr |
+| Database Deployment | [#209](https://github.com/bounswe/bounswe2023group4/issues/209) | Şefik Palazoğlu | 23.10.2023 | [link](https://github.com/bounswe/bounswe2023group4/issues/209#issuecomment-1775701016) | 2hr | 2hr |
 | Learn unit testing in node.js | [#210](https://github.com/bounswe/bounswe2023group4/issues/210) | Emre Batuhan Göç | 20.10.2023 | | 2hr | 2.5hr |
 | Create authentication backend API | [#211](https://github.com/bounswe/bounswe2023group4/issues/211) | Emre Batuhan Göç | 23.10.2023 | | 3hr | 5hr |
 | Implementing the UI of the Sign-up page  | [#212](https://github.com/bounswe/bounswe2023group4/issues/212) | Kutay Saran, Enes Furkan Arslan | 23.10.2023 | | 4hr | 2hr |
