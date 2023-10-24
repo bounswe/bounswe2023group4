@@ -4,7 +4,11 @@
 **Date:** 24.10.2023
 
 ## Progress Summary
-**This week** we have dockerized and deployed the initial bare bones project. Front and mobile teams progressed in their login amd signup pages. This week we aim to connect the work of backend team with frontend and mobile team regarding authorization.
+* This week we have dockerized and deployed the initial bare bones project. 
+* Front team progressed in their login amd sign up pages. 
+* Mobile team finished their researches and implemented the base infrastructure for the app. Moreover, small UI components are implemented in mobile. 
+* This week we aim to finish sign in and sign up logics in our app that's why this week we aim to connect the work of backend team with frontend and mobile team.
+* We expect mobile team to finish their autharization related design issues until the meeting. 
 
 ## What was planned for the week? How did it go?
 
