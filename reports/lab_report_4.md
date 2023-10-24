@@ -75,7 +75,7 @@
 | Implementing the UI of the poll card | [#256](https://github.com/bounswe/bounswe2023group4/issues/256) | Ali Nasra | 30.10.2023 | 4hr |
 | Google Authentication Frontend | [#253](https://github.com/bounswe/bounswe2023group4/issues/253) | Kutay Saran | 30.10.2023 | 4hr |
 | Combining backend and frontend | [#257](https://github.com/bounswe/bounswe2023group4/issues/257) | Ali Nasra, Enes Furkan Arslan, Şefik Palazoğlu | 30.10.2023 | 4hr |
-| Implementing SideBar | [#258](https://github.com/bounswe/bounswe2023group4/issues/258) | Selin Işık | 30.10.23 | 3hr | 
+| Implementing SideBar | [#258](https://github.com/bounswe/bounswe2023group4/issues/258) | Selin Işık | 30.10.23 | 4hr | 
 | Implementing Feed Page | [#259](https://github.com/bounswe/bounswe2023group4/issues/259) | Selin Işık | 30.10.23 | 2hr |
 | Setting up the navigation component for Android | [#200](https://github.com/bounswe/bounswe2023group4/issues/200) | Ahmet Emre Şafak | 30.10.23 |  0.5hr | 
 | Implementing build variant system | [#222](https://github.com/bounswe/bounswe2023group4/issues/222) | Yiğit Şekerci | 30.10.23 | 0.5hr | 
