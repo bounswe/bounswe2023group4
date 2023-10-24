@@ -63,6 +63,8 @@
 | Database configuration | [#250](https://github.com/bounswe/bounswe2023group4/issues/250) | Hebun Şimşek, Şefik Palazoğlu | 30.10.2023 | 3hr |
 | Deploy the backend to EC2 | [#251](https://github.com/bounswe/bounswe2023group4/issues/251) | Hebun Şimşek | 30.10.2023 | 2hr |
 | Deployment of the finalized product | [#252](https://github.com/bounswe/bounswe2023group4/issues/252) | Hebun Şimşek | 30.10.2023 | 4hr |
+| Implement fundamentals of poll API | [#254](https://github.com/bounswe/bounswe2023group4/issues/254) | Emre Batuhan Göç | 30.10.2023 | 5hr |
+| Update swagger to include poll API | [#255](https://github.com/bounswe/bounswe2023group4/issues/255) | Emre Batuhan Göç | 30.10.2023 | 1.5hr |
 
   
 ## Risks
