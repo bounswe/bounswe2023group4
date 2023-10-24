@@ -46,7 +46,7 @@
 
 | Description  | Issue | Assignee | Due | PR |
 | -------- | ----- | -------- | --- | --- |
-| Create Swagger Documentation Backend | [#232](https://github.com/bounswe/bounswe2023group4/issues/232) | Emre Batuhan Göç | 24.10.2023 | |
+| Create Swagger Documentation Backend | [#232](https://github.com/bounswe/bounswe2023group4/issues/232) | Emre Batuhan Göç | 24.10.2023 | [#240](https://github.com/bounswe/bounswe2023group4/pull/240) |
 
 ## Planned vs. Actual
 - Database preperation issue [#207](https://github.com/bounswe/bounswe2023group4/issues/207) was closed 1 days after it was due.
