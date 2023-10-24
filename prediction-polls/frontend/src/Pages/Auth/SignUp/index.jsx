@@ -1,6 +1,9 @@
 import React from 'react';
 import { Button, Input, Form, DatePicker, Checkbox, Typography, Divider} from 'antd';
 import { Link } from 'react-router-dom';
+import { ReactComponent as Logo } from "../../../Assets/Logo.svg";
+import { ReactComponent as SignPageAnimation } from "../../../Assets/SignPageAnimation.svg";
+import '../../../index.css';
 
 function SignUp() {
 
@@ -9,6 +12,11 @@ function SignUp() {
     width: '100%', 
     margin: '0 auto',
     height: '100vh',
+  };
+
+  const animationStyle = {
+    maxWidth: "100%",
+    maxHeight: "100%",
   };
 
   const displayCenterStyle = {
@@ -42,8 +50,10 @@ function SignUp() {
 
   const imageContainerStyle = {
     flex: 1,
-    paddingRight: '20px',
-    backgroundImage: 'linear-gradient(to bottom, #EAF3FB, #BEDAF4)',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "linear-gradient(#EAF3FB, #BEDAF4)",
   };
 
   const formContainerStyle = {
@@ -52,6 +62,13 @@ function SignUp() {
     display: 'flex', 
     flexDirection: 'column', 
     alignItems: 'center'
+  };
+
+  const logoStyle = {
+    ...displayCenterStyle,
+    marginBottom: "20px",
+    maxWidth: "80%",
+    maxHeight: "80%",
   };
 
   const formItemLayout = {
@@ -66,7 +83,9 @@ function SignUp() {
   return (
       <div style={splitContainerStyle}>
         <div style={formContainerStyle}>
-          <h1> Prediction Polls </h1>
+          <Link to="/home" style={logoStyle}>
+          <Logo/>
+          </Link>
           <Form {...formItemLayout}>
           <Form.Item>
               <div>
@@ -108,7 +127,7 @@ function SignUp() {
                 I Have an Account
                 <Link 
                   to="/auth/sign-in" 
-                  style={{ marginLeft: '10px', textDecoration: 'underline' }}>
+                  style={{ marginLeft: '10px'}}>
                   Login
                 </Link>
               </div>
@@ -117,11 +136,7 @@ function SignUp() {
         </div>
         <div style={imageContainerStyle}>
           {/* Our sign up image from mock-up */}
-          <img
-            src="https://cdn.discordapp.com/attachments/887354522324852759/1165272221317611551/image.png?ex=65463f53&is=6533ca53&hm=7d6045db42bbb9a68f7cf30241535ded3c6caefb8ddc9c26001781c75bf064a6&"
-            alt="Sign-Up"
-            style={{ width: '100%', height: '100%' }}
-          />
+          <SignPageAnimation style={animationStyle} />
         </div>
       </div>
   );
