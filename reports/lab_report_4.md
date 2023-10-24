@@ -41,10 +41,10 @@
 | Learn dependency injection techniques  | [#219](https://github.com/bounswe/bounswe2023group4/issues/219) | Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez | 23.10.2023 | [Yigit Comment](https://github.com/bounswe/bounswe2023group4/issues/219#issuecomment-1773839439) [Ahmet Comment](https://github.com/bounswe/bounswe2023group4/issues/219#issuecomment-1777090159) [Alperen Comment](https://github.com/bounswe/bounswe2023group4/issues/219#issuecomment-1777101412) | 3 hr | 3 hr |
 | Learn testing in Android   | [#220](https://github.com/bounswe/bounswe2023group4/issues/220) | Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez | 23.10.2023 | [Yigit Comment](https://github.com/bounswe/bounswe2023group4/issues/220#issuecomment-1773845178) [Alperen Comment](https://github.com/bounswe/bounswe2023group4/issues/220#issuecomment-1777093278) [Ahmet Comment](https://github.com/bounswe/bounswe2023group4/issues/220#issuecomment-1777095133) | 3 hr | 4 hr |
 | Learn build variant system | [#221](https://github.com/bounswe/bounswe2023group4/issues/221) | Ahmet Emre Şafak, Yiğit Şekerci, Ali Alperen Sönmez | 23.10.2023 | [Yigit Comment](https://github.com/bounswe/bounswe2023group4/issues/221#issuecomment-1773838933) [Ahmet Comment](https://github.com/bounswe/bounswe2023group4/issues/221#issuecomment-1774140267) [Alperen Comment](https://github.com/bounswe/bounswe2023group4/issues/221#issuecomment-1777091142) | 1 hr | 1 hr |
-| Implement build variant system  | [#222](https://github.com/bounswe/bounswe2023group4/issues/222) | Yiğit Şekerci | 23.10.2023 | **Unfinished** | 1 hr | - |
+| Implement build variant system  | [#222](https://github.com/bounswe/bounswe2023group4/issues/222) | Yiğit Şekerci | 23.10.2023 | **Unfinished** | 1 hr | 0.5hr |
 | Implement the network module   | [#223](https://github.com/bounswe/bounswe2023group4/issues/223) | Yiğit Şekerci| 23.10.2023 | [PR#229](https://github.com/bounswe/bounswe2023group4/pull/229) | 1 hr | 2 hr |
-| Implement navigation drawer  | [#224](https://github.com/bounswe/bounswe2023group4/issues/224) | Yiğit Şekerci | 23.10.2023 | **Unfinished** | 2 hr | - |
-| Setting up the navigation component for Android  | [#200](https://github.com/bounswe/bounswe2023group4/issues/200) | Ahmet Emre Şafak | 23.10.2023 | **Unfinished** | 2 hr | - |
+| Implement navigation drawer  | [#224](https://github.com/bounswe/bounswe2023group4/issues/224) | Yiğit Şekerci | 23.10.2023 | **Unfinished** | 2 hr | 3hr |
+| Setting up the navigation component for Android  | [#200](https://github.com/bounswe/bounswe2023group4/issues/200) | Ahmet Emre Şafak | 23.10.2023 | **Unfinished** | 2 hr | 1.5hr |
 
 ## Completed tasks that were not planned for the week
 
