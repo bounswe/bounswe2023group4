@@ -68,6 +68,8 @@
 | Implementing the UI of the poll card | [#256](https://github.com/bounswe/bounswe2023group4/issues/256) | Ali Nasra | 30.10.2023 | 4hr |
 | Google Authentication Frontend | [#253](https://github.com/bounswe/bounswe2023group4/issues/253) | Kutay Saran | 30.10.2023 | 4hr |
 | Combining backend and frontend | [#257](https://github.com/bounswe/bounswe2023group4/issues/257) | Ali Nasra, Enes Furkan Arslan, Şefik Palazoğlu | 30.10.2023 | 4hr |
+| Implementing SideBar | [#258](https://github.com/bounswe/bounswe2023group4/issues/258) | Selin Işık | 30.10.23 | 3hr | 
+| Implementing Feed Page | [#259](https://github.com/bounswe/bounswe2023group4/issues/259) | Selin Işık | 30.10.23 | 2hr | 
   
 ## Risks
 - We need to have multiple meetings for coordination among backend team and front teams this week. It is a risk that not everyone can be available.
