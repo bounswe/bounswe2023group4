@@ -1,5 +1,6 @@
 const express = require('express');
 const authRouter = require('./routes/AuthorizationRouter.js'); 
+const pollRouter = require('./routes/PollRouter.js'); 
 
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -13,6 +14,7 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.use('/', authRouter);
+//app.use('/polls',pollRouter);
 
 const swaggerSpec = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
