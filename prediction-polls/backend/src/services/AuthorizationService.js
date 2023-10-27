@@ -13,19 +13,22 @@ function homePage(req, res){
 
 function signup(req, res){
   // Authorize User  
-  const { username, password } = req.body;
+  const { username, password, email, birthday } = req.body;
 
   // Hash the password
   bcrypt.hash(password, 10, (err, hashedPassword) => {
     // Store the user in the database
-    const sql = 'INSERT INTO users (username, password) VALUES (?, ?)';
-    const values = [username, hashedPassword];
+    const sql = 'INSERT INTO users (username, email, password, birthday) VALUES (?, ?, ?, ?)';
+    const values = [username, email, password, birthday];
+
+    //hashedPassword changes depending on time so it is not a great way to store passwords
+    //const values = [username, email, hashedPassword, birthday];
   
     // Execute the SQL query to insert the user using mysql2
     const result = db.pool.query(sql, values).then(() => {
       res.send('Registration successful');
-    }, () => {
-        res.send('Registration failed');
+    }, (err) => {
+        res.send('Registration failed: '+ err);
       }
     );
   });
@@ -41,13 +44,14 @@ function createAccessTokenFromRefreshToken(req, res){
     }) 
   }
 
-function logIn(req,res){
+async function logIn(req,res){
     // Authorize User  
     const username = req.body.username;
     const password = req.body.password;
     const user = {name : username};
     
-    if (!checkCredentials(username,password)) return res.sendStatus(401);
+    let userAuthenticated = await checkCredentials(username,password);
+    if (!userAuthenticated) return res.sendStatus(401);
 
     const accesToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user);
