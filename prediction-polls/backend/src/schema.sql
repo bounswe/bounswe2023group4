@@ -28,6 +28,14 @@ CREATE TABLE discrete_poll_choices (
     FOREIGN KEY (poll_id) REFERENCES discrete_polls(id)
 )
 
+CREATE TABLE discrete_polls_selections (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    poll_id INT,
+    user_id INT,
+    FOREIGN KEY (poll_id) REFERENCES discrete_polls(poll_id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+)
+
 CREATE TABLE continuous_polls (
     id INT PRIMARY KEY AUTO_INCREMENT,
     question VARCHAR(255) NOT NULL,
@@ -35,7 +43,7 @@ CREATE TABLE continuous_polls (
     max_value FLOAT NOT NULL
 );
 
-CREATE TABLE continuous_poll_choices (
+CREATE TABLE continuous_poll_selections (
     id INT PRIMARY KEY AUTO_INCREMENT,
     poll_id INT,
     user_id INT, 
