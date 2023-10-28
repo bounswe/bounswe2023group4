@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Prediction Polls</string>
+
+    <!-- Navigation Drawer Title-->
+    <string name="nav_drawer_profile">Profile</string>
+    <string name="nav_drawer_feed">Feed</string>
+    <string name="nav_drawer_vote">Vote</string>
+    <string name="nav_drawer_create">Create</string>
+    <string name="nav_drawer_moderation">Moderation</string>
+    <string name="nav_drawer_leaderboard">Leaderboard</string>
+    <string name="nav_drawer_notifications">Notifications</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_app_title">App Title</string>
+    <string name="cd_nav_item">Navigation drawer item: %1$s</string>
 </resources>
