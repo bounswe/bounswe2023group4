@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -39,6 +40,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.bounswe.predictionpolls.R
+import com.bounswe.predictionpolls.extensions.clickableWithoutIndicator
 import com.bounswe.predictionpolls.ui.common.CustomInputField
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 
@@ -65,7 +67,8 @@ fun LoginScreen(
                     navController
                 )
             )
-        }
+        },
+        isLoading = viewModel.isLoading
     )
 }
 
@@ -80,7 +83,8 @@ fun LoginScreenUI(
     isPasswordVisible: Boolean = false,
     onLoginClicked: () -> Unit = {},
     isLoginEnabled: Boolean = false,
-    onLoginWithGoogleClicked: () -> Unit = {}
+    onLoginWithGoogleClicked: () -> Unit = {},
+    isLoading: Boolean = false,
 ) {
     Column(
         modifier = Modifier
@@ -104,6 +108,26 @@ fun LoginScreenUI(
             isLoginEnabled = isLoginEnabled,
             onLoginClicked = onLoginClicked,
             onGoogleLoginClicked = onLoginWithGoogleClicked
+        )
+    }
+    LoadingIndicator(
+        isLoading = isLoading
+    )
+}
+
+@Composable
+fun LoadingIndicator(
+    isLoading: Boolean
+) {
+    if (isLoading.not()) return
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .clickableWithoutIndicator {}
+    ) {
+        CircularProgressIndicator(
+            modifier = Modifier.align(Alignment.Center)
         )
     }
 }

@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.Divider
@@ -48,6 +49,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.bounswe.predictionpolls.R
+import com.bounswe.predictionpolls.extensions.clickableWithoutIndicator
 import com.bounswe.predictionpolls.extensions.toTimeDateString
 import com.bounswe.predictionpolls.ui.common.CustomInputField
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
@@ -84,7 +86,8 @@ fun SignupScreen(
                     navController
                 )
             )
-        }
+        },
+        isLoading = viewModel.isLoading
     )
 }
 
@@ -107,7 +110,8 @@ fun SignupScreenUI(
     onAgreementChecked: (Boolean) -> Unit = {},
     onSignUpClicked: () -> Unit = {},
     isSignUpEnabled: Boolean = false,
-    onSignUpWithGoogleClicked: () -> Unit = {}
+    onSignUpWithGoogleClicked: () -> Unit = {},
+    isLoading: Boolean = false,
 ) {
     Column(
         modifier = Modifier
@@ -148,6 +152,24 @@ fun SignupScreenUI(
         isDatePickerVisible = isDatePickerVisible,
         onBirthdayChanged = onBirthdayChanged
     )
+    LoadingIndicator(isLoading = isLoading)
+}
+
+@Composable
+fun LoadingIndicator(
+    isLoading: Boolean
+) {
+    if (isLoading.not()) return
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .clickableWithoutIndicator {}
+    ) {
+        CircularProgressIndicator(
+            modifier = Modifier.align(Alignment.Center)
+        )
+    }
 }
 
 @Composable
