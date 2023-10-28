@@ -1,6 +1,7 @@
 package com.bounswe.predictionpolls.di
 
 import android.content.Context
+import com.bounswe.predictionpolls.BuildConfig
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import dagger.Module
 import dagger.Provides
@@ -38,7 +39,7 @@ object NetworkModule {
     ): Retrofit {
         return Retrofit
             .Builder()
-            .baseUrl("https://google.com/") // TODO: add base url when it is specified
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
