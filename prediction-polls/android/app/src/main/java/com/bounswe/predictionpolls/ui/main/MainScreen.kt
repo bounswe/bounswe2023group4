@@ -167,11 +167,11 @@ private fun MainScreenActionButton(
         modifier = Modifier
             .fillMaxWidth()
             .background(backgroundColor, shape)
-            .padding(vertical = 12.dp)
+            .clip(shape = shape)
             .clickable {
                 onClick()
             }
-            .clip(shape = shape),
+            .padding(vertical = 12.dp),
         text = stringResource(id = titleId),
         style = MaterialTheme.typography.labelMedium,
         fontSize = 14.sp,
@@ -188,11 +188,10 @@ private fun ContinueWithoutLoginButton(
 ) {
     Text(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp)
             .clickable {
                 onClick()
-            },
+            }
+            .padding(vertical = 8.dp),
         text = stringResource(id = R.string.welcome_page_continue_without_login),
         style = MaterialTheme.typography.labelMedium,
         fontSize = 12.sp,
