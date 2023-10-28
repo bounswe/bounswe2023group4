@@ -120,7 +120,7 @@ private fun DiscreteVoteProgress(fillPercentage: Float, modifier: Modifier = Mod
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun DiscreteVoteOptionPreview() {
+private fun DiscreteVoteOptionPreview() {
     PredictionPollsTheme(dynamicColor = false) {
         DiscreteVoteOption(
             optionName = "Golden State Warriors",

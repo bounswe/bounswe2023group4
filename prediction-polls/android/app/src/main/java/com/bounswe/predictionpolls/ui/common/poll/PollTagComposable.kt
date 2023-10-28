@@ -48,7 +48,7 @@ fun PollTagComposable(tagName: String, modifier: Modifier = Modifier) {
 // create a preview for above composable
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun PollTagComposablePreview() {
+private fun PollTagComposablePreview() {
     PredictionPollsTheme(dynamicColor = false) {
         PollTagComposable(tagName = "Android")
     }
@@ -56,7 +56,7 @@ fun PollTagComposablePreview() {
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun PollTagComposableDarkPreview() {
+private fun PollTagComposableDarkPreview() {
     PredictionPollsTheme(dynamicColor = false, darkTheme = true) {
         PollTagComposable(tagName = "Android")
     }

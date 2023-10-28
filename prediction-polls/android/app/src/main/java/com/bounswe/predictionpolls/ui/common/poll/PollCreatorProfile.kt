@@ -71,7 +71,7 @@ private fun PollProfilePicture(imageUri: String, modifier: Modifier = Modifier) 
 // create a preview for above composable
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun PollProfilePicturePreview() {
+private fun PollProfilePicturePreview() {
     PredictionPollsTheme(dynamicColor = false) {
         PollProfilePicture("https://picsum.photos/id/237/600/800", modifier = Modifier)
     }
