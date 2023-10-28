@@ -10,7 +10,14 @@
     <string name="nav_drawer_leaderboard">Leaderboard</string>
     <string name="nav_drawer_notifications">Notifications</string>
 
+    <!-- Welcome Page -->
+    <string name="welcome_page_title">Welcome To</string>
+    <string name="welcome_page_login">Login</string>
+    <string name="welcome_page_signup">Sign Up</string>
+    <string name="welcome_page_continue_without_login">Continue without login</string>
+
     <!-- Content Descriptions -->
     <string name="cd_app_title">App Title</string>
+    <string name="cd_welcome_page_image">Welcome page image</string>
     <string name="cd_nav_item">Navigation drawer item: %1$s</string>
 </resources>
