@@ -370,13 +370,13 @@ private fun SignupScreenActionButton(
         modifier = Modifier
             .fillMaxWidth()
             .background(backgroundColor, shape)
-            .padding(vertical = 18.dp)
+            .clip(shape = shape)
             .clickable(
                 enabled = isEnabled,
             ) {
                 onClick()
             }
-            .clip(shape = shape),
+            .padding(vertical = 18.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {

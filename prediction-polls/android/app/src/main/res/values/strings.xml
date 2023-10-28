@@ -17,6 +17,12 @@
     <string name="welcome_page_continue_without_login">Continue without login</string>
 
     <!-- Login Page -->
+    <string name="login_page_title">Login</string>
+    <string name="login_email_label">Email Address</string>
+    <string name="login_password_label">Password</string>
+    <string name="login_button">Login</string>
+    <string name="login_with_google_button">Sign in with Google</string>
+    <string name="cd_login_with_google_button">Sign in with Google</string>
 
     <!-- Sign Up Page -->
     <string name="signup_page_title">Sign Up</string>

@@ -14,6 +14,7 @@ data class SignupScreenState(
                 username.isNotBlank() &&
                 password.isNotBlank() &&
                 birthday.isNotBlank() &&
+                birthday.none { it.isDigit().not() } &&
                 isAgreementChecked
 
     fun reduce(event: SignupScreenEvent): SignupScreenState {
