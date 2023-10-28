@@ -46,6 +46,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.extensions.toTimeDateString
 import com.bounswe.predictionpolls.ui.common.CustomInputField
@@ -54,6 +55,7 @@ import com.bounswe.predictionpolls.utils.DateTransformation
 
 @Composable
 fun SignupScreen(
+    navController: NavController,
     viewModel: SignupScreenViewModel = hiltViewModel()
 ) {
     val dispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
@@ -74,9 +76,15 @@ fun SignupScreen(
         isDatePickerVisible = viewModel.screenState.isDatePickerVisible,
         isAgreementChecked = viewModel.screenState.isAgreementChecked,
         onAgreementChecked = { viewModel.onEvent(SignupScreenEvent.OnAgreementChecked) },
-        onSignUpClicked = { viewModel.onEvent(SignupScreenEvent.OnSignupButtonClicked) },
+        onSignUpClicked = { viewModel.onEvent(SignupScreenEvent.OnSignupButtonClicked(navController)) },
         isSignUpEnabled = viewModel.screenState.isSignupButtonEnabled,
-        onSignUpWithGoogleClicked = { viewModel.onEvent(SignupScreenEvent.OnSignupWithGoogleButtonClicked) }
+        onSignUpWithGoogleClicked = {
+            viewModel.onEvent(
+                SignupScreenEvent.OnSignupWithGoogleButtonClicked(
+                    navController
+                )
+            )
+        }
     )
 }
 

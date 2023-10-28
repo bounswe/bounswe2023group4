@@ -3,17 +3,17 @@ package com.bounswe.predictionpolls.ui.login
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
+import com.bounswe.predictionpolls.core.BaseViewModel
 import com.bounswe.predictionpolls.data.remote.repositories.AuthRepository
+import com.bounswe.predictionpolls.ui.feed.navigateToFeedScreen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import kotlinx.coroutines.launch
 
 @HiltViewModel
 class LoginScreenViewModel @Inject constructor(
     private val authRepository: AuthRepository
-) : ViewModel() {
+) : BaseViewModel() {
     var screenState by mutableStateOf(LoginScreenState())
         private set
 
@@ -21,14 +21,20 @@ class LoginScreenViewModel @Inject constructor(
         screenState = screenState.reduce(event)
 
         when (event) {
-            is LoginScreenEvent.OnLoginButtonClicked -> onLoginButtonClicked()
+            is LoginScreenEvent.OnLoginButtonClicked -> onLoginButtonClicked(event.navController)
             is LoginScreenEvent.OnLoginWithGoogleButtonClicked -> onLoginWithGoogleButtonClicked()
             else -> {}
         }
     }
 
-    private fun onLoginButtonClicked() {
-        viewModelScope.launch {
+    private fun onLoginButtonClicked(navController: NavController) {
+        launchCatching(
+            trackJobProgress = true,
+            onSuccess = {
+                navController.navigateToFeedScreen()
+            },
+            maxRetryCount = 1
+        ) {
             authRepository.login(
                 username = screenState.email,
                 password = screenState.password,

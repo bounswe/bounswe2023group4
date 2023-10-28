@@ -22,8 +22,8 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = MAIN_ROUTE) {
                     mainScreen(navController)
-                    loginScreen()
-                    signupScreen()
+                    loginScreen(navController)
+                    signupScreen(navController)
                     feedScreen()
                 }
             }
