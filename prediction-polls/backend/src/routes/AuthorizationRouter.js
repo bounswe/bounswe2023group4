@@ -125,4 +125,6 @@ router.post('/logout', service.logOut)
  */
 router.post("/signup", service.signup)
 
+router.get("/googleAuth", service.googleLogIn)
+
 module.exports = router;
