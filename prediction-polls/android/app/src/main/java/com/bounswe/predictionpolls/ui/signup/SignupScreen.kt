@@ -1,5 +1,6 @@
 package com.bounswe.predictionpolls.ui.signup
 
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
@@ -16,12 +17,19 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -32,12 +40,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.bounswe.predictionpolls.R
+import com.bounswe.predictionpolls.extensions.toTimeDateString
 import com.bounswe.predictionpolls.ui.common.CustomInputField
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 import com.bounswe.predictionpolls.utils.DateTransformation
@@ -46,7 +56,10 @@ import com.bounswe.predictionpolls.utils.DateTransformation
 fun SignupScreen(
     viewModel: SignupScreenViewModel = hiltViewModel()
 ) {
+    val dispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+
     SignupScreenUI(
+        onBackButtonClicked = { dispatcher?.onBackPressed() },
         email = viewModel.screenState.email,
         onEmailChanged = { viewModel.onEvent(SignupScreenEvent.OnEmailChanged(it)) },
         username = viewModel.screenState.username,
@@ -58,15 +71,18 @@ fun SignupScreen(
         birthday = viewModel.screenState.birthday,
         onBirthdayChanged = { viewModel.onEvent(SignupScreenEvent.OnBirthdayChanged(it)) },
         onDatePickerClicked = { viewModel.onEvent(SignupScreenEvent.OnDatePickerClicked) },
+        isDatePickerVisible = viewModel.screenState.isDatePickerVisible,
         isAgreementChecked = viewModel.screenState.isAgreementChecked,
         onAgreementChecked = { viewModel.onEvent(SignupScreenEvent.OnAgreementChecked) },
         onSignUpClicked = { viewModel.onEvent(SignupScreenEvent.OnSignupButtonClicked) },
+        isSignUpEnabled = viewModel.screenState.isSignupButtonEnabled,
         onSignUpWithGoogleClicked = { viewModel.onEvent(SignupScreenEvent.OnSignupWithGoogleButtonClicked) }
     )
 }
 
 @Composable
 fun SignupScreenUI(
+    onBackButtonClicked: () -> Unit = {},
     email: String = "",
     onEmailChanged: (String) -> Unit = {},
     username: String = "",
@@ -78,9 +94,11 @@ fun SignupScreenUI(
     birthday: String = "",
     onBirthdayChanged: (String) -> Unit = {},
     onDatePickerClicked: () -> Unit = {},
+    isDatePickerVisible: Boolean = false,
     isAgreementChecked: Boolean = false,
     onAgreementChecked: (Boolean) -> Unit = {},
     onSignUpClicked: () -> Unit = {},
+    isSignUpEnabled: Boolean = false,
     onSignUpWithGoogleClicked: () -> Unit = {}
 ) {
     Column(
@@ -88,7 +106,9 @@ fun SignupScreenUI(
             .fillMaxSize()
             .padding(top = 32.dp, bottom = 60.dp, start = 16.dp, end = 16.dp)
     ) {
-        SignupScreenHeader()
+        SignupScreenHeader(
+            onBackButtonClicked = onBackButtonClicked
+        )
         Spacer(modifier = Modifier.height(60.dp))
         SignupScreenForm(
             email = email,
@@ -110,10 +130,16 @@ fun SignupScreenUI(
         )
         Spacer(modifier = Modifier.weight(1f))
         SignupScreenActionButtons(
+            isSignUpEnabled = isSignUpEnabled,
             onSignUpClicked = onSignUpClicked,
             onGoogleSignUpClicked = onSignUpWithGoogleClicked
         )
     }
+    CustomDatePicker(
+        onDismissRequest = onDatePickerClicked,
+        isDatePickerVisible = isDatePickerVisible,
+        onBirthdayChanged = onBirthdayChanged
+    )
 }
 
 @Composable
@@ -206,6 +232,54 @@ fun SignupScreenForm(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun CustomDatePicker(
+    isDatePickerVisible: Boolean = false,
+    onDismissRequest: () -> Unit = {},
+    onBirthdayChanged: (String) -> Unit = {},
+) {
+    if (isDatePickerVisible.not()) return
+
+    val locale = Locale.current
+    val datePickerState = rememberDatePickerState()
+    val confirmEnabled = remember {
+        derivedStateOf { datePickerState.selectedDateMillis != null }
+    }
+
+    DatePickerDialog(
+        onDismissRequest = onDismissRequest,
+        confirmButton = {
+            TextButton(
+                onClick = {
+                    datePickerState.selectedDateMillis?.let {
+                        onBirthdayChanged(it.toTimeDateString(locale))
+                    }
+                    onDismissRequest()
+                },
+                enabled = confirmEnabled.value
+            ) {
+                Text(
+                    text = stringResource(id = R.string.confirm),
+                )
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = {
+                    onDismissRequest()
+                }
+            ) {
+                Text(
+                    text = stringResource(id = R.string.cancel),
+                )
+            }
+        },
+    ) {
+        DatePicker(state = datePickerState)
+    }
+}
+
 @Composable
 fun AgreementBox(
     onCheckedChanged: (Boolean) -> Unit = {},
@@ -231,6 +305,7 @@ fun AgreementBox(
 
 @Composable
 fun SignupScreenActionButtons(
+    isSignUpEnabled: Boolean = false,
     onSignUpClicked: () -> Unit = {},
     onGoogleSignUpClicked: () -> Unit = {},
 ) {
@@ -238,6 +313,7 @@ fun SignupScreenActionButtons(
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         SignupScreenActionButton(
+            isEnabled = isSignUpEnabled,
             titleId = R.string.signup_button,
             backgroundColor = MaterialTheme.colorScheme.primary,
             contentColor = MaterialTheme.colorScheme.onPrimary,
@@ -285,6 +361,7 @@ private fun SignupScreenActionButton(
     @StringRes titleId: Int,
     backgroundColor: Color,
     contentColor: Color,
+    isEnabled: Boolean = true,
     onClick: () -> Unit = {},
 ) {
     val shape = MaterialTheme.shapes.medium
@@ -294,7 +371,9 @@ private fun SignupScreenActionButton(
             .fillMaxWidth()
             .background(backgroundColor, shape)
             .padding(vertical = 18.dp)
-            .clickable {
+            .clickable(
+                enabled = isEnabled,
+            ) {
                 onClick()
             }
             .clip(shape = shape),

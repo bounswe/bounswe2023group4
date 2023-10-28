@@ -33,6 +33,8 @@
 
 
     <string name="or">or</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
 
     <!-- Content Descriptions -->
     <string name="cd_app_title">App Title</string>
