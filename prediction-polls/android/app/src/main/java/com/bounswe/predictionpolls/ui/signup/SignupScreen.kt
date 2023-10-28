@@ -36,14 +36,33 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.ui.common.CustomInputField
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 import com.bounswe.predictionpolls.utils.DateTransformation
 
 @Composable
-fun SignupScreen() {
-    SignupScreenUI()
+fun SignupScreen(
+    viewModel: SignupScreenViewModel = hiltViewModel()
+) {
+    SignupScreenUI(
+        email = viewModel.screenState.email,
+        onEmailChanged = { viewModel.onEvent(SignupScreenEvent.OnEmailChanged(it)) },
+        username = viewModel.screenState.username,
+        onUsernameChanged = { viewModel.onEvent(SignupScreenEvent.OnUsernameChanged(it)) },
+        password = viewModel.screenState.password,
+        onPasswordChanged = { viewModel.onEvent(SignupScreenEvent.OnPasswordChanged(it)) },
+        onPasswordVisibilityClicked = { viewModel.onEvent(SignupScreenEvent.OnPasswordVisibilityToggleClicked) },
+        isPasswordVisible = viewModel.screenState.isPasswordVisible,
+        birthday = viewModel.screenState.birthday,
+        onBirthdayChanged = { viewModel.onEvent(SignupScreenEvent.OnBirthdayChanged(it)) },
+        onDatePickerClicked = { viewModel.onEvent(SignupScreenEvent.OnDatePickerClicked) },
+        isAgreementChecked = viewModel.screenState.isAgreementChecked,
+        onAgreementChecked = { viewModel.onEvent(SignupScreenEvent.OnAgreementChecked) },
+        onSignUpClicked = { viewModel.onEvent(SignupScreenEvent.OnSignupButtonClicked) },
+        onSignUpWithGoogleClicked = { viewModel.onEvent(SignupScreenEvent.OnSignupWithGoogleButtonClicked) }
+    )
 }
 
 @Composable
@@ -59,6 +78,10 @@ fun SignupScreenUI(
     birthday: String = "",
     onBirthdayChanged: (String) -> Unit = {},
     onDatePickerClicked: () -> Unit = {},
+    isAgreementChecked: Boolean = false,
+    onAgreementChecked: (Boolean) -> Unit = {},
+    onSignUpClicked: () -> Unit = {},
+    onSignUpWithGoogleClicked: () -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -81,9 +104,15 @@ fun SignupScreenUI(
             onDatePickerClicked = onDatePickerClicked,
         )
         Spacer(modifier = Modifier.height(12.dp))
-        AgreementBox()
+        AgreementBox(
+            onCheckedChanged = onAgreementChecked,
+            isChecked = isAgreementChecked
+        )
         Spacer(modifier = Modifier.weight(1f))
-        SignupScreenActionButtons()
+        SignupScreenActionButtons(
+            onSignUpClicked = onSignUpClicked,
+            onGoogleSignUpClicked = onSignUpWithGoogleClicked
+        )
     }
 }
 
