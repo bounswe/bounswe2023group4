@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -48,67 +49,79 @@ fun PollComposable(
     commentCount: Int,
     modifier: Modifier = Modifier
 ) {
-    Column(
+    Box(
         modifier = modifier
             .shadow(4.dp, RoundedCornerShape(12.dp))
+            .background(Color.White, RoundedCornerShape(12.dp))
             .padding(16.dp)
-            .fillMaxWidth()
-            .wrapContentHeight()
+            .wrapContentSize()
     ) {
-        PollCreatorProfile(
-            imageUri = pollCreatorProfilePictureUri,
-            userName = pollCreatorName,
-            modifier = Modifier.align(Alignment.End)
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        PollTagsContent(tags)
-        PollQuestionTitle(pollQuestionTitle = pollQuestionTitle)
-        optionsContent()
-        Box(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .padding(top = 48.dp)
-                .padding(horizontal = 48.dp)
         ) {
-            DueDateComposable(dueDate = dueDate, modifier = Modifier.align(Alignment.CenterStart))
-            RejectionDateComposable(
-                rejectionText = rejectionText,
-                modifier = Modifier.align(Alignment.CenterEnd)
+            PollCreatorProfile(
+                imageUri = pollCreatorProfilePictureUri,
+                userName = pollCreatorName,
+                modifier = Modifier.align(Alignment.End)
             )
-        }
-        Row(
-            modifier = Modifier
-                .padding(horizontal = 48.dp)
-
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .padding(top = 48.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Column {
-                PollIcon(
-                    id = R.drawable.ic_comment,
-                    modifier = Modifier.background(MaterialTheme.colorScheme.primary, PollIconShape)
+            Spacer(modifier = Modifier.height(8.dp))
+            PollTagsContent(tags)
+            PollQuestionTitle(pollQuestionTitle = pollQuestionTitle)
+            optionsContent()
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .padding(top = 48.dp)
+                    .padding(horizontal = 48.dp)
+            ) {
+                DueDateComposable(
+                    dueDate = dueDate,
+                    modifier = Modifier.align(Alignment.CenterStart)
                 )
-                Text(
-                    commentCount.toString(),
-                    modifier = Modifier.align(Alignment.CenterHorizontally),
-                    fontFamily = MontserratFontFamily,
-                    color = MaterialTheme.colorScheme.scrim,
-                    textAlign = TextAlign.Center,
-                    fontSize = 14.sp
+                RejectionDateComposable(
+                    rejectionText = rejectionText,
+                    modifier = Modifier.align(Alignment.CenterEnd)
                 )
             }
-            PollIcon(
-                id = R.drawable.ic_share,
-                modifier = Modifier.background(MaterialTheme.colorScheme.primary, PollIconShape)
-            )
-            PollIcon(
-                id = R.drawable.ic_warning,
-                modifier = Modifier.background(MaterialTheme.colorScheme.error, PollIconShape)
-            )
+            Row(
+                modifier = Modifier
+                    .padding(horizontal = 48.dp)
 
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .padding(top = 48.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column {
+                    PollIcon(
+                        id = R.drawable.ic_comment,
+                        modifier = Modifier.background(
+                            MaterialTheme.colorScheme.primary,
+                            PollIconShape
+                        )
+                    )
+                    Text(
+                        commentCount.toString(),
+                        modifier = Modifier.align(Alignment.CenterHorizontally),
+                        fontFamily = MontserratFontFamily,
+                        color = MaterialTheme.colorScheme.scrim,
+                        textAlign = TextAlign.Center,
+                        fontSize = 14.sp
+                    )
+                }
+                PollIcon(
+                    id = R.drawable.ic_share,
+                    modifier = Modifier.background(MaterialTheme.colorScheme.primary, PollIconShape)
+                )
+                PollIcon(
+                    id = R.drawable.ic_warning,
+                    modifier = Modifier.background(MaterialTheme.colorScheme.error, PollIconShape)
+                )
+
+            }
         }
     }
 }
@@ -211,7 +224,7 @@ private fun PollQuestionTitle(pollQuestionTitle: String, modifier: Modifier = Mo
 @Composable
 @Preview(showBackground = true, showSystemUi = true)
 fun PollComposablePreview() {
-    PredictionPollsTheme {
+    PredictionPollsTheme(dynamicColor = false) {
         PollComposable(
             "https://picsum.photos/id/237/600/800",
             "Zehra Kaya",
