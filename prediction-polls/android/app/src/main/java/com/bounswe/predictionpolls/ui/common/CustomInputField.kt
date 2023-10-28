@@ -4,7 +4,6 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -111,14 +111,16 @@ fun CustomInputFieldTrailingIcon(
     onTrailingIconClicked: () -> Unit = {},
 ) {
     if (trailingIconId == null || trailingIconContentDescription == null) return
-
-    Icon(
-        painter = painterResource(id = trailingIconId),
-        contentDescription = stringResource(id = trailingIconContentDescription),
-        modifier = Modifier.clickable {
+    IconButton(
+        onClick = {
             onTrailingIconClicked()
         }
-    )
+    ) {
+        Icon(
+            painter = painterResource(id = trailingIconId),
+            contentDescription = stringResource(id = trailingIconContentDescription),
+        )
+    }
 }
 
 
