@@ -15,7 +15,7 @@ function hashPassword(password) {
 
 async function checkCredentials(username, password) {
     try {
-        const hashedPassword = await hashPassword(password);
+        // const hashedPassword = await hashPassword(password);
 
         const sql = 'SELECT * FROM users WHERE (username = ? || email = ?) && password = ?';
         const values = [username, username, password];
@@ -28,5 +28,21 @@ async function checkCredentials(username, password) {
     }
 }
 
+async function addUser(username, password,email,birthday){
+    console.log("Adding User : " + username + password +email + birthday);
+    try {
+        // const hashedPassword = await hashPassword(password);
+    
+        // Store the user in the database
+        const sql = 'INSERT INTO users (username, email, password, birthday) VALUES (?, ?, ?, ?)';
+        const values = [username, email, password, birthday];
+    
+        const result = await db.pool.query(sql, values);
+        return {"success":true,"error":undefined} ;
+      } catch (error) {
+        return {"success":false,"error":error} ;
+      }
+  }
 
-module.exports = {checkCredentials}
+
+module.exports = {checkCredentials,addUser}
