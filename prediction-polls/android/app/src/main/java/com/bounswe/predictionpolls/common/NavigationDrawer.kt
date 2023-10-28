@@ -149,14 +149,14 @@ private fun NavDrawerItem(
         ) {
             Icon(
                 modifier = Modifier.size(24.dp),
-                painter = painterResource(id = navItem.toDrawerIconId()),
+                painter = painterResource(id = navItem.iconId),
                 contentDescription = stringResource(
                     id = R.string.cd_nav_item,
                     navItem.route
                 ),
             )
             Text(
-                text = stringResource(id = navItem.toDrawerTitleId())
+                text = stringResource(id = navItem.titleId)
             )
         }
     }
