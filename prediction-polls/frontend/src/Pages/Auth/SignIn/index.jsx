@@ -79,14 +79,39 @@ const passwordDivStyle = {
 const labelStyle = {
   fontSize: "12px",
 };
+
 function SignIn() {
   const [passwordVisible, setPasswordVisible] = React.useState(false);
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const navigate = useNavigate();
+
+  let signClick = async (e) => {
+    e.preventDefault();
+    try {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+      };
+      const response = await fetch('http://localhost:8000/login', requestOptions);
+      if (response.status === 200) {
+        navigate("/home");
+      }
+    }
+    catch (error) {
+      console.log(error)
+    }
+  };
+
   return (
     <div style={splitContainerStyle}>
       <div style={formContainerStyle}>
         <Link to="/home" style={logoStyle}>
-          <Logo/>
+          <Logo />
         </Link>
         <Form {...formItemLayout}>
           <Form.Item>
@@ -104,11 +129,12 @@ function SignIn() {
             </Divider>
           </Form.Item>
           <Form.Item name="email">
-            <Text style={labelStyle}>EMAIL ADRESS</Text>
+            <Text style={labelStyle}>EMAIL ADDRESS</Text>
             <Input
               size="large"
               type="email"
               placeholder="example@outlook.com"
+              onChange={(e) => setUsername(e.target.value)}
             />
           </Form.Item>
           <Form.Item name="password">
@@ -121,6 +147,7 @@ function SignIn() {
                   visible: passwordVisible,
                   onVisibleChange: setPasswordVisible,
                 }}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <Button type="link" style={forgotPasswordStyle}>
                 Forgot Password?
@@ -128,7 +155,7 @@ function SignIn() {
             </div>
           </Form.Item>
           <Form.Item>
-            <Button style={formButtonStyle}>LOG IN</Button>
+            <Button style={formButtonStyle} onClick={signClick}>LOG IN</Button>
           </Form.Item>
           <Form.Item>
             <div style={displayCenterStyle}>
