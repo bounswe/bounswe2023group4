@@ -4,11 +4,11 @@ import javax.inject.Qualifier
 
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)
-annotation class TokenRefresherOkHttpClient
+annotation class UnauthenticatedOkHttpClient
 
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)
-annotation class TokenRefresherRetrofit
+annotation class UnauthenticatedRetrofit
 
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)

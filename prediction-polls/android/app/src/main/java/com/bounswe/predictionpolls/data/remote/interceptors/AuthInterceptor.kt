@@ -1,7 +1,7 @@
 package com.bounswe.predictionpolls.data.remote.interceptors
 
 import com.bounswe.predictionpolls.data.remote.TokenManager
-import com.bounswe.predictionpolls.data.remote.repositories.TokenRefresherRepository
+import com.bounswe.predictionpolls.data.remote.repositories.AuthRepository
 import javax.inject.Inject
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
@@ -10,7 +10,7 @@ import okhttp3.Response
 
 class AuthInterceptor @Inject constructor(
     private val tokenManager: TokenManager,
-    private val tokenRefresherRepository: TokenRefresherRepository
+    private val authRepository: AuthRepository
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
@@ -40,7 +40,7 @@ class AuthInterceptor @Inject constructor(
     private fun refreshAccessToken(): String? {
         val newAccessToken: String?
         runBlocking {
-            newAccessToken = tokenRefresherRepository.refreshAccessToken()
+            newAccessToken = authRepository.refreshAccessToken()
         }
         return newAccessToken
     }

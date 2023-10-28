@@ -28,4 +28,10 @@ class AuthRepository @Inject constructor(
             tokenManager.refreshToken = null
         }
     }
+
+    suspend fun refreshAccessToken(): String? {
+        val newToken = authService.refreshAccessToken().body()?.accessToken
+        tokenManager.accessToken = newToken
+        return newToken
+    }
 }

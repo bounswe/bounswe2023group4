@@ -4,7 +4,7 @@ import android.content.Context
 import com.bounswe.predictionpolls.BuildConfig
 import com.bounswe.predictionpolls.data.remote.TokenManager
 import com.bounswe.predictionpolls.data.remote.interceptors.AuthInterceptor
-import com.bounswe.predictionpolls.data.remote.repositories.TokenRefresherRepository
+import com.bounswe.predictionpolls.data.remote.repositories.AuthRepository
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import dagger.Module
 import dagger.Provides
@@ -38,7 +38,7 @@ object NetworkModule {
             .build()
     }
 
-    @TokenRefresherOkHttpClient
+    @UnauthenticatedOkHttpClient
     @Provides
     @Singleton
     fun provideOkHttpClient(
@@ -50,11 +50,11 @@ object NetworkModule {
             .build()
     }
 
-    @TokenRefresherRetrofit
+    @UnauthenticatedRetrofit
     @Provides
     @Singleton
     fun provideTokenRefresherRetrofit(
-        @TokenRefresherOkHttpClient okHttpClient: OkHttpClient
+        @UnauthenticatedOkHttpClient okHttpClient: OkHttpClient
     ): Retrofit {
         return Retrofit
             .Builder()
@@ -68,9 +68,9 @@ object NetworkModule {
     @Singleton
     fun provideAuthInterceptor(
         tokenManager: TokenManager,
-        tokenRefresherRepository: TokenRefresherRepository
+        authRepository: AuthRepository
     ): AuthInterceptor {
-        return AuthInterceptor(tokenManager, tokenRefresherRepository)
+        return AuthInterceptor(tokenManager, authRepository)
     }
 
     @AuthenticatedOkHttpClient
