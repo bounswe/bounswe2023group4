@@ -17,7 +17,7 @@ function SignUp() {
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let res = await fetch("URL", {
+      let res = await fetch("http://localhost:8000/signup", {
         method: "POST",
         body: JSON.stringify({
           name: username,
@@ -26,12 +26,13 @@ function SignUp() {
           birthday: birthday,
         }),
       });
-      //let resJson = await res.json(); 
+      let resJson = await res.json(); 
+      console.log()
       if (res.status === 200) {
         setUserName("");
         setEmail("");
         setPassword("");
-        setBirthday("");
+        setBirthday(new Date()); 
         setMessage("Your account has been created successfully");
       } else {
         setMessage("Some error occured");
@@ -131,8 +132,6 @@ function SignUp() {
               or
             </Divider>
           </Form.Item>
-        </Form>
-        <Form {...formItemLayout} onSubmit={handleSubmit}>
           <Form.Item label="EMAIL ADDRESS">
             <Input
               type="text"
@@ -172,7 +171,7 @@ function SignUp() {
           </Form.Item>
           <Form.Item>
             <div>
-              <Button type="primary" htmlType="submit" style={formButtonStyle}>
+              <Button type="primary" htmlType="submit" style={formButtonStyle} onClick={handleSubmit}>
                 Sign Up
               </Button>
             </div>
