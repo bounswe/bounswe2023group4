@@ -11,7 +11,7 @@ function SignUp() {
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [birthday, setBirthday] = useState(new Date()); 
+  const [birthday, setBirthday] = useState(new Date());
   const [message, setMessage] = useState("");
 
   let handleSubmit = async (e) => {
@@ -19,20 +19,23 @@ function SignUp() {
     try {
       let res = await fetch("http://localhost:8000/signup", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify({
-          name: username,
-          email: email,
-          password: password,
-          birthday: birthday,
+          "username": username,
+          "email": email,
+          "password": password,
+          "birthday": birthday,
         }),
       });
-      let resJson = await res.json(); 
+      //let resJson = await res.json();
       console.log()
       if (res.status === 200) {
         setUserName("");
         setEmail("");
         setPassword("");
-        setBirthday(new Date()); 
+        setBirthday(new Date());
         setMessage("Your account has been created successfully");
       } else {
         setMessage("Some error occured");
@@ -41,6 +44,17 @@ function SignUp() {
       console.log(err);
     }
   };
+
+  //Change format from "2023-10-28T16:08:59.525Z" to "2023-10-28"
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed, so we add 1
+    const day = String(date.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+  }
 
   const splitContainerStyle = {
     display: 'flex',
@@ -142,8 +156,8 @@ function SignUp() {
           </Form.Item>
           <Form.Item label="USERNAME">
             <Input
-              type="text" 
-              value={username} 
+              type="text"
+              value={username}
               style={formInputStyle}
               placeholder="exampleUsername"
               onChange={(e) => setUserName(e.target.value)} />
@@ -154,14 +168,14 @@ function SignUp() {
               type="password"
               placeholder="Password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)} /> 
+              onChange={(e) => setPassword(e.target.value)} />
           </Form.Item>
           <Form.Item label="BIRTHDAY">
             <DatePicker
               style={formDatePickerStyle}
               selected={birthday}
               placeholder="01.01.2000"
-              onChange={(e) => setBirthday(e)} />  
+              onChange={(e) => setBirthday(formatDate(e))} /> 
           </Form.Item>
           <Form.Item>
             <Checkbox>
@@ -186,7 +200,7 @@ function SignUp() {
               </Link>
             </div>
           </Form.Item>
-          <div className="message">{message ? <p>{message}</p> : null}</div> 
+          <div className="message">{message ? <p>{message}</p> : null}</div>
         </Form>
       </div>
       <div style={imageContainerStyle}>
