@@ -6,7 +6,8 @@ CREATE TABLE users (
     username VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    birthday DATETIME
+    birthday DATETIME,
+    UNIQUE (username)
 );
 
 CREATE TABLE refresh_tokens (
