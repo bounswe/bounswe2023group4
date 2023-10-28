@@ -38,12 +38,14 @@ import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 import com.bounswe.predictionpolls.utils.NavItem
 import kotlinx.coroutines.launch
 
+typealias ToggleDrawerState = () -> Unit
+
 @Composable
 fun NavigationDrawer(
     modifier: Modifier = Modifier,
     selectedNavItem: NavItem,
     onButtonClick: (NavItem) -> Unit = {},
-    content: @Composable (() -> Unit) -> Unit = {}
+    content: @Composable (ToggleDrawerState) -> Unit = {}
 ) {
     val drawerState = remember {
         DrawerState(
