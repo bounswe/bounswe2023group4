@@ -1,8 +1,9 @@
 import React, { useEffect, useState, createContext } from 'react';
+import '../../theme/colors.css';
 
 export const ThemeContext = createContext({
     theme: 'dark',
-    setTheme: (theme) => {},
+    toggleTheme: () => {},
 });
 
 export const ThemeProvider = ({ children }) => {
@@ -11,12 +12,17 @@ export const ThemeProvider = ({ children }) => {
         return storedTheme || 'light'; 
     });
 
+    const toggleTheme = () => {
+      setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    }
+
     useEffect(() => {
         localStorage.setItem('theme', theme);
+        document.body.className = theme + '-theme';
     }, [theme]);
 
     return (
-        <ThemeContext.Provider value={{ theme, setTheme }}>
+        <ThemeContext.Provider value={{ theme, toggleTheme }}>
             {children}
         </ThemeContext.Provider>
     );
