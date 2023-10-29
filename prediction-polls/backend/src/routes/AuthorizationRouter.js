@@ -108,7 +108,7 @@ router.post('/access-token', service.createAccessTokenFromRefreshToken)
  *       204:
  *         description: Successful response
  *       404:
- *         description: A problem occurred
+ *         description: Refresh token not found
  */
 router.post('/logout', service.logOut)
 

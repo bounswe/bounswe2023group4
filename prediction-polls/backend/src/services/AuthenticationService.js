@@ -21,7 +21,6 @@ async function checkCredentials(username, password) {
         const values = [username, username, password];
 
         const [rows] = await db.pool.query(sql, values);
-        console.log(rows)
         return rows.length > 0;
     } catch (error) {
         console.error(error);
@@ -32,11 +31,11 @@ async function checkCredentials(username, password) {
 async function addUser(username, password,email,birthday){
     
     try {
-        const hashedPassword = await hashPassword(password);
+        // const hashedPassword = await hashPassword(password);
     
         // Store the user in the database
         const sql = 'INSERT INTO users (username, email, password, birthday) VALUES (?, ?, ?, ?)';
-        const values = [username, email, hashedPassword, birthday];
+        const values = [username, email, password, birthday];
     
         const result = await db.pool.query(sql, values);
         return {"success":true,"error":undefined} ;
