@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Input, Form, DatePicker, Checkbox, Typography, Divider } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ReactComponent as Logo } from "../../../Assets/Logo.svg";
 import { ReactComponent as SignPageAnimation } from "../../../Assets/SignPageAnimation.svg";
 import '../../../index.css';
@@ -13,11 +13,12 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [birthday, setBirthday] = useState(new Date());
   const [message, setMessage] = useState("");
+  const navigate = useNavigate() 
 
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let res = await fetch("http://localhost:8000/signup", {
+      let res = await fetch("http://3.70.206.103:8000/signup", { 
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -31,17 +32,18 @@ function SignUp() {
       });
       //let resJson = await res.json();
       console.log()
-      if (res.status === 200) {
+      if (res.status === 201) {
         setUserName("");
         setEmail("");
         setPassword("");
         setBirthday(new Date());
-        setMessage("Your account has been created successfully");
+        setMessage("Your account has been created successfully!");
+        navigate("/auth/sign-in") 
       } else {
-        setMessage("Some error occured");
+        setMessage("Username should be unique!");
       }
     } catch (err) {
-      console.log(err);
+      setMessage("Username should be unique!"); 
     }
   };
 
@@ -148,6 +150,7 @@ function SignUp() {
           </Form.Item>
           <Form.Item label="EMAIL ADDRESS">
             <Input
+              required 
               type="text"
               value={email}
               style={formInputStyle}
@@ -156,6 +159,7 @@ function SignUp() {
           </Form.Item>
           <Form.Item label="USERNAME">
             <Input
+              required 
               type="text"
               value={username}
               style={formInputStyle}
@@ -164,6 +168,7 @@ function SignUp() {
           </Form.Item>
           <Form.Item label="PASSWORD">
             <Input.Password
+              required 
               style={formInputStyle}
               type="password"
               placeholder="Password"
@@ -178,7 +183,7 @@ function SignUp() {
               onChange={(e) => setBirthday(formatDate(e))} /> 
           </Form.Item>
           <Form.Item>
-            <Checkbox>
+            <Checkbox required>
               I agree to the{' '}
               <Typography.Link href="HERE GOES THE LINK">platform terms.</Typography.Link>
             </Checkbox>
@@ -200,7 +205,7 @@ function SignUp() {
               </Link>
             </div>
           </Form.Item>
-          <div className="message">{message ? <p>{message}</p> : null}</div>
+          <div style={displayCenterStyle} className="message">{message ? <p>{message}</p> : null}</div>
         </Form>
       </div>
       <div style={imageContainerStyle}>
