@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
   width: 90%;
-  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 2px 4px 8px var(--neutral-shadow);
   padding: 30px;
   border-radius: 8px;
   gap: 20px;

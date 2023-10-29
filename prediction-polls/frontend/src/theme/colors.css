@@ -37,6 +37,7 @@
     --neutral-900: #292c2f;
     --neutral-black: #000000;
     --neutral-pollCard:#FFFFFF;
+    --neutral-shadow: rgba(0, 0, 0, 0.25);
   
     /* Warning Colors */
     --warning-50: #fcebeb;
@@ -90,6 +91,8 @@
     --neutral-900: #eff0f1;
     --neutral-black: #FFFFFF;
     --neutral-pollCard:#292c2f;
+    --neutral-shadow: rgba(255, 255, 255, 0.25);
+    
   
     /* Dark Theme - Warning Colors */
     --warning-50: #5c1818;
@@ -143,6 +146,7 @@
     --neutral-900: #292c2f;
     --neutral-black: #000000;
     --neutral-pollCard:#FFFFFF;
+    --neutral-shadow: rgba(0, 0, 0, 0.25);
   
     /* Light Theme - Warning Colors */
     --warning-50: #fcebeb;
