@@ -1,29 +1,28 @@
 .option {
   display: flex;
+
+  width: 100%;
+}
+.optionText {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  gap: 3%;
-}
-.optionText {
   border: 2px solid var(--secondary-200);
   border-radius: 10px;
   font-size: 16px;
   font-weight: 500;
-  width: 75%;
-  padding: 10px;
+  width: 100%;
+  padding: 0px 10px ;
   box-sizing: border-box;
   font-weight: 700;
   position: relative;
   cursor: pointer;
+  display: flex;
 }
 .optionPoints {
   font-size: 14px;
-  padding-top: 10px;
   font-weight: normal;
-  width: 22%;
-  text-align: center;
+  z-index: 2;
 }
 .backgroundDiv {
   position: absolute;
@@ -36,6 +35,6 @@
 }
 
 .textDiv {
-    z-index: 2;
-    position: relative;
-  }
+  z-index: 2;
+  position: relative;
+}
