@@ -23,7 +23,7 @@ async function addRefreshToken(token){
 
 //Check the given refresh token's existence in db
 async function checkRefreshToken(token){
-    const sql = 'SELECT * FROM refresh_tokens WHERE token = ?';
+    const sql = 'SELECT * FROM refresh_tokens WHERE token = "?"';
     const values = [token];
 
     return pool.query(sql, values).then(([rows]) => {
@@ -34,8 +34,10 @@ async function checkRefreshToken(token){
 }
 
 //Delete the given refresh token from db
+
 async function deleteRefreshToken(token){
     const sql = 'DELETE FROM refresh_tokens WHERE token = ?';
+
     const values = [token];
 
     const [result] = await pool.query(sql, values);

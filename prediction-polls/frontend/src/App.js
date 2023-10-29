@@ -1,9 +1,12 @@
-import React from 'react';
-import AppRouter from './Routes/Router';
+import React from "react";
+import AppRouter from "./Routes/Router";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 function App() {
   return (
-      <AppRouter/>
+    <ThemeProvider>
+      <AppRouter />
+    </ThemeProvider>
   );
 }
 

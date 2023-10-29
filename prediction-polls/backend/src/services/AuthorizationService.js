@@ -16,6 +16,7 @@ async function signup(req, res){
   
   if(!success)  res.status(400).send('Registration failed '+ error);
   else{res.status(201).send("Registration successful")};
+
     
   }
 
@@ -63,6 +64,7 @@ function authorizeAccessToken(req, res, next) {
   
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
       if (err) return  res.status(401).send('The access token is invalid');
+
       req.user = user;
       next();
     })
