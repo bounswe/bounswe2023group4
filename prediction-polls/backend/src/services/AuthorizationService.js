@@ -6,34 +6,12 @@ const { checkCredentials, addUser } = require('./AuthenticationService.js');
 
 const bcrypt = require('bcrypt')
 
-
-function getGoogleOAuthURL() {
-  const rootUrl = "https://accounts.google.com/o/oauth2/v2/auth";
-
-  const options = {
-    redirect_uri: process.env.PUBLIC_GOOGLE_OAUTH_REDIRECT_URL,
-    client_id: process.env.PUBLIC_GOOGLE_CLIENT_ID,
-    access_type: "offline",
-    response_type: "code",
-    prompt: "consent",
-    scope: [
-      "https://www.googleapis.com/auth/userinfo.profile",
-      "https://www.googleapis.com/auth/userinfo.email",
-    ].join(" "),
-  };
-
-  const qs = new URLSearchParams(options);
-
-  return rootUrl + "?" + qs.toString();
-}
-
 function homePage(req, res){
     const link = getGoogleOAuthURL()
     res.status(200).json({"username":req.user.name,"key":link});
   }
 
 async function signup(req, res){
-  console.log("Request Recieved");
   const { username, password, email, birthday } = req.body;
   const { success,error} = await addUser( username, password, email, birthday );
   
@@ -59,7 +37,6 @@ async function logIn(req,res){
     const user = {name : username};
     
     let userAuthenticated = await checkCredentials(username,password);
-    console.log(userAuthenticated)
     if (!userAuthenticated) {
       res.status(401).send("Could not find a matching (username, email) - password tuple");
       return;
@@ -70,12 +47,13 @@ async function logIn(req,res){
     res.status(201).json({accessToken: accesToken, refreshToken: refreshToken})
 }
 
-function logOut(req, res) {
-    if (db.checkRefreshToken(req.body.token)){
-      db.deleteRefreshToken(req.body.token);
+async function logOut(req, res) {
+    const token = req.body.refreshToken;
+    const tokenDeleted = await db.deleteRefreshToken(token);
+    if (tokenDeleted){
       res.sendStatus(204);
     } else {
-      res.sendStatus(404);
+      res.status(404).send("Refresh token not found");
     }
 }
 
@@ -99,4 +77,5 @@ function generateRefreshToken(user) {
   return jwt.sign(user,process.env.REFRESH_TOKEN_SECRET);
 }
 
-module.exports = {homePage, signup, createAccessTokenFromRefreshToken, logIn, logOut, authorizeAccessToken}
+module.exports = {homePage, signup, createAccessTokenFromRefreshToken, logIn, 
+  logOut, authorizeAccessToken, generateAccessToken, generateRefreshToken}
