@@ -19,6 +19,9 @@ class TokenManager @Inject constructor(@ApplicationContext context: Context) {
         get() = prefs.getString(ACCESS_TOKEN_KEY, null)
         set(value) = prefs.edit().putString(ACCESS_TOKEN_KEY, value).apply()
 
+    val isLoggedIn: Boolean
+        get() = accessToken != null
+
     var refreshToken: String?
         get() = prefs.getString(REFRESH_TOKEN_KEY, null)
         set(value) = prefs.edit().putString(REFRESH_TOKEN_KEY, value).apply()
