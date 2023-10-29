@@ -26,6 +26,7 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             isMinifyEnabled = false
+            buildConfigField("String", "BASE_URL", "\"http://3.70.206.103:3000\"")
         }
         create("staging") {
             applicationIdSuffix = ".staging"
@@ -35,6 +36,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "BASE_URL", "\"http://3.70.206.103:3000\"")
         }
         release {
             isMinifyEnabled = true
@@ -42,6 +44,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "BASE_URL", "\"http://3.70.206.103:3000\"")
         }
     }
     compileOptions {
@@ -53,6 +56,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.3"
@@ -76,10 +80,8 @@ dependencies {
 
     // Navigation
     val navVersion = "2.7.4"
-
     implementation("androidx.navigation:navigation-compose:$navVersion")
-
-
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

@@ -8,9 +8,9 @@ import androidx.navigation.compose.composable
 
 const val MAIN_ROUTE = "home"
 
-fun NavGraphBuilder.mainScreen() {
+fun NavGraphBuilder.mainScreen(navController: NavController) {
     composable(MAIN_ROUTE) {
-        MainScreen()
+        MainScreen(navController = navController)
     }
 }
 
