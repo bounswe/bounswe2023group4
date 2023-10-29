@@ -41,7 +41,7 @@ router.get('/', service.authorizeAccessToken, service.homePage)
  *                 type: string
  *          
  *     responses:
- *       200:
+ *       201:
  *         description: Successful response
  *         content:
  *           application/json:
@@ -73,7 +73,7 @@ router.post("/login", service.logIn)
  *               refreshToken:
  *                 type: string
  *     responses:
- *       204:
+ *       201:
  *         description: Successful response
  *         content:
  *           application/json:
