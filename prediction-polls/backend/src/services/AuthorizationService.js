@@ -7,8 +7,7 @@ const { checkCredentials, addUser } = require('./AuthenticationService.js');
 const bcrypt = require('bcrypt')
 
 function homePage(req, res){
-    const link = getGoogleOAuthURL()
-    res.status(200).json({"username":req.user.name,"key":link});
+    res.status(200).json({"username":req.user.name,"key":"very-secret"});
   }
 
 async function signup(req, res){
