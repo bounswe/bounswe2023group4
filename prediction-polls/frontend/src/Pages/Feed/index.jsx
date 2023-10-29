@@ -8,9 +8,7 @@ function Feed() {
   return (
     <div className={styles.page}>
       <Menu currentPage="Feed" />
-      <div className = {styles.pollList}>
-      <h1>Feed Page</h1>
-      
+      <div className = {styles.pollList}>     
       {
         pollData.pollList.map((poll, index) => (
           <PollCard PollData={poll} key={index}/>
