@@ -153,5 +153,7 @@
   border: 2px solid var(--secondary-200);
   border-radius: 10px;
   font-size: 20px;
+  background-color: var(--neutral-pollCard);
+  color: var(--neutral-black);
 
 }
