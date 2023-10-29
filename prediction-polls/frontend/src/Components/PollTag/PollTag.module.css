@@ -1,0 +1,10 @@
+.pollTag{
+    padding: 8px;
+    background-color: var(--secondary-500);
+    color: var(--neutral-white);
+    align-items: center;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+}
