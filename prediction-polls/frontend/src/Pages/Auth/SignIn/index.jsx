@@ -103,7 +103,7 @@ function SignIn() {
           password: password
         })
       };
-      const response = await fetch('http://localhost:8000/login', requestOptions);
+      const response = await fetch('http://3.70.206.103:8000/login', requestOptions);
       if (response.status === 200) {
         navigate("/home");
       }
