@@ -21,6 +21,7 @@ async function checkCredentials(username, password) {
         const values = [username, username, password];
 
         const [rows] = await db.pool.query(sql, values);
+        console.log(rows)
         return rows.length > 0;
     } catch (error) {
         console.error(error);
@@ -38,9 +39,9 @@ async function addUser(username, password,email,birthday){
         const values = [username, email, hashedPassword, birthday];
     
         const result = await db.pool.query(sql, values);
-        res.send('Registration successful');
+        return {"success":true,"error":undefined} ;
       } catch (error) {
-        res.status(400).send('Registration failed: ' + error);
+        return {"success":false,"error":error} ;
       }
   }
 

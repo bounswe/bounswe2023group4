@@ -1,4 +1,5 @@
 const service = require("../services/AuthorizationService.js")
+const googleService = require("../services/AuthGoogleService.js")
 const express = require('express');
 const router = express.Router();
 
@@ -26,7 +27,7 @@ router.get('/', service.authorizeAccessToken, service.homePage)
  * @swagger
  * /login:
  *   post:
- *     description: Create session data for the user
+ *     description: Create session data for the user. username property can be also filled with email.
  *     requestBody:
  *       required: true
  *       content:
@@ -50,7 +51,9 @@ router.get('/', service.authorizeAccessToken, service.homePage)
  *                accessToken:
  *                  type: string
  *                refreshToken:
- *                  type: string 
+ *                  type: string
+ *       401:
+ *         description: Could not find a matching (username, email) - password tuple
  */
 router.post("/login", service.logIn)
 
@@ -79,6 +82,11 @@ router.post("/login", service.logIn)
  *              properties:
  *                accessToken:
  *                  type: string
+ *       400:
+ *         description: A refresh token is needed
+ *       401:
+ *         description: The refresh token is invalid
+ *       
  */
 router.post('/access-token', service.createAccessTokenFromRefreshToken)
 
@@ -97,8 +105,10 @@ router.post('/access-token', service.createAccessTokenFromRefreshToken)
  *               refreshToken:
  *                 type: string
  *     responses:
- *       200:
+ *       204:
  *         description: Successful response
+ *       404:
+ *         description: A problem occurred
  */
 router.post('/logout', service.logOut)
 
@@ -120,11 +130,14 @@ router.post('/logout', service.logOut)
  *                 type: string
  *          
  *     responses:
- *       200:
+ *       201:
  *         description: Successful response
+ * 
+ *       400:
+ *         description: Registration failed. See response for more details.
  */
 router.post("/signup", service.signup)
 
-router.get("/googleAuth", service.googleLogIn)
+router.get("/googleAuth", googleService.googleLogIn)
 
 module.exports = router;
