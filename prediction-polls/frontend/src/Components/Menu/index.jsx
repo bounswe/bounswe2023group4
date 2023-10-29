@@ -3,10 +3,10 @@ import Sidebar from "../Sidebar";
 import MobileMenu from "../MobileMenu";
 
 function Menu({currentPage}) {
-  return <div>
+  return <>
     <Sidebar currentPage={currentPage}/>
     <MobileMenu />
-  </div>;
+  </>;
 }
 
 export default Menu;

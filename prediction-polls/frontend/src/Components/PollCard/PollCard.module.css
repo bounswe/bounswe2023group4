@@ -1,0 +1,159 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  border-radius: 8px;
+  gap: 20px;
+  background-color: var(--neutral-pollCard);
+  margin-bottom: 20px;
+}
+.question {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.creator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.creatorImage {
+  width: 35px;
+  height: 35px;
+  border-radius: 100px;
+}
+.creatorName {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--neutral-black);
+}
+.questionPoints {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  gap: 3%;
+  align-items: start;
+}
+.question {
+  font-size: 20px;
+  font-weight: 700;
+  width: 75%;
+  color: var(--neutral-black);
+}
+.pointsPlaced {
+  font-size: 14px;
+  padding-top: 10px;
+  font-weight: normal;
+  width: 22%;
+  text-align: center;
+  color: var(--neutral-black);
+  
+}
+.textDescription {
+  font-size: 14px;
+  text-align: right;
+  color: var(--neutral-black);
+}
+.textDetail {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--warning-500);
+  text-align: right;
+}
+.textGroup {
+  padding-top: 10px;
+}
+.optionList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  padding-top: 30px;
+}
+
+.commentButton,
+.shareButton,
+.reportButton {
+  display: flex;
+  border: none;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 4px 12px;
+  gap: 5px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.commentButton {
+  background-color: var(--primary-400); 
+}
+.buttonWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+  justify-content: start;
+}
+
+.commentCount {
+  color: var(--neutral-black);
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.shareButton {
+  background-color: var(--primary-400);
+}
+
+.reportButton {
+  background-color: var(--warning-500);
+}
+
+.commentButton:hover,
+.shareButton:hover,
+.reportButton:hover {
+  opacity: 0.7;
+}
+
+.customOptionWrapper{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.customOptionText{
+  font-size: 16px;
+  font-weight: 500;
+}
+.customOption{
+  width: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 2px solid var(--secondary-200);
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: var(--neutral-pollCard);
+  color: var(--neutral-black);
+
+}

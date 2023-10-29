@@ -2,10 +2,15 @@
     display: flex;
     background-color: var(--neutral-white);
     width: 100%;
-    height: 100vh;
 }
 @media (max-width: 640px) {
     .page{
         flex-direction: column;
     }
+}
+.pollList{
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    width: 50%;
 }
