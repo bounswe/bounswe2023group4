@@ -29,7 +29,6 @@ async function checkCredentials(username, password) {
 }
 
 async function addUser(username, password,email,birthday){
-    console.log("Adding User : " + username + password +email + birthday);
     try {
         // const hashedPassword = await hashPassword(password);
     
