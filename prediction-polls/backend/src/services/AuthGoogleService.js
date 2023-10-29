@@ -1,5 +1,8 @@
 const qs = require("querystring");
 const axios = require("axios");
+const db = require("../repositories/AuthorizationDB.js");
+
+const { generateAccessToken, generateRefreshToken } = require('./AuthorizationService.js');
 
 
 async function googleLogIn(req,res){
@@ -30,15 +33,15 @@ async function googleLogIn(req,res){
   
     } catch (error) {
       console.log(error, "Failed to authorize Google user");
-      return res.redirect("http://localhost:3000/login");
+      return res.redirect(process.env.googleOAuthFailRedirectUrl);
     }
   }
   
-  async function getGoogleOAuthTokens(code){
+  async function getGoogleOAuthTokens({code}){
     const url = "https://oauth2.googleapis.com/token";
   
     const values = {
-      code,
+      code: code,
       client_id: process.env.googleClientId,
       client_secret: process.env.googleClientSecret,
       redirect_uri: process.env.googleOauthRedirectUrl,
@@ -47,7 +50,7 @@ async function googleLogIn(req,res){
   
     //Making the request
     try {
-      const res = await axios.post<GoogleTokensResult>(
+      const res = await axios.post(
         url,
         qs.stringify(values),
         {
@@ -58,8 +61,8 @@ async function googleLogIn(req,res){
       );
       return res.data;
     } catch (error) {
-      console.error(error.response.data.error);
-      log.error(error, "Failed to fetch Google Oauth Tokens");
+      //console.error(error.response.data.error);
+      console.error(error, "Failed to fetch Google Oauth Tokens");
       throw new Error(error.message);
     }
   
