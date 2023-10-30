@@ -36,8 +36,10 @@ class SignupScreenViewModel @Inject constructor(
             maxRetryCount = 1
         ) {
             authRepository.signup(
+                email = screenState.email,
                 username = screenState.username,
                 password = screenState.password,
+                birthday = screenState.birthday
             )
         }
     }

@@ -24,10 +24,12 @@ class AuthRepository @Inject constructor(
     }
 
     suspend fun signup(
+        email: String,
         username: String,
-        password: String
+        password: String,
+        birthday: String
     ) {
-        authService.signup(SignupRequest(username, password))
+        authService.signup(SignupRequest(email, username, password, birthday))
         login(username, password)
     }
 
