@@ -7,6 +7,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import com.bounswe.predictionpolls.core.BaseViewModel
 import com.bounswe.predictionpolls.data.remote.repositories.AuthRepository
+import com.bounswe.predictionpolls.extensions.isValidDate
+import com.bounswe.predictionpolls.extensions.isValidEmail
 import com.bounswe.predictionpolls.ui.feed.navigateToFeedScreen
 import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -34,7 +36,22 @@ class SignupScreenViewModel @Inject constructor(
         error = null
     }
 
+    // TODO handle form validation better
+    private fun isFormValid(): Boolean {
+        if (screenState.email.isValidEmail().not()) {
+            error = "Please enter a valid email address."
+            return false
+        } else if(screenState.birthday.isValidDate().not()){
+            error = "Please enter a valid birthday."
+            return false
+        }
+
+        return true
+    }
+
     private fun onSignupButtonClicked(navController: NavController) {
+        if(isFormValid().not()) return
+
         launchCatching(
             trackJobProgress = true,
             onSuccess = {
