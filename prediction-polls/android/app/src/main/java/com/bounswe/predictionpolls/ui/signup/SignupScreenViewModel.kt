@@ -23,8 +23,13 @@ class SignupScreenViewModel @Inject constructor(
         when (event) {
             is SignupScreenEvent.OnSignupButtonClicked -> onSignupButtonClicked(event.navController)
             is SignupScreenEvent.OnSignupWithGoogleButtonClicked -> onSignupWithGoogleButtonClicked()
+            is SignupScreenEvent.DismissErrorDialog -> onErrorDialogDismissed()
             else -> {}
         }
+    }
+
+    private fun onErrorDialogDismissed(){
+        error = null
     }
 
     private fun onSignupButtonClicked(navController: NavController) {

@@ -42,6 +42,7 @@ import androidx.navigation.NavController
 import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.extensions.clickableWithoutIndicator
 import com.bounswe.predictionpolls.ui.common.CustomInputField
+import com.bounswe.predictionpolls.ui.common.ErrorDialog
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 
 @Composable
@@ -68,7 +69,9 @@ fun LoginScreen(
                 )
             )
         },
-        isLoading = viewModel.isLoading
+        isLoading = viewModel.isLoading,
+        error = viewModel.error,
+        errorDismissed = { viewModel.onEvent(LoginScreenEvent.DismissErrorDialog) }
     )
 }
 
@@ -85,6 +88,8 @@ fun LoginScreenUI(
     isLoginEnabled: Boolean = false,
     onLoginWithGoogleClicked: () -> Unit = {},
     isLoading: Boolean = false,
+    error: String? = null,
+    errorDismissed: () -> Unit = {},
 ) {
     Column(
         modifier = Modifier
@@ -112,6 +117,10 @@ fun LoginScreenUI(
     }
     LoadingIndicator(
         isLoading = isLoading
+    )
+    ErrorDialog(
+        error = error,
+        onDismiss = errorDismissed
     )
 }
 

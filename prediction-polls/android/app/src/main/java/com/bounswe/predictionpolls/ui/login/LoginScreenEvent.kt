@@ -8,4 +8,5 @@ sealed class LoginScreenEvent {
     data class OnPasswordChanged(val password: String) : LoginScreenEvent()
     data class OnLoginButtonClicked(val navController: NavController) : LoginScreenEvent()
     data class OnLoginWithGoogleButtonClicked(val navController: NavController) : LoginScreenEvent()
+    data object DismissErrorDialog : LoginScreenEvent()
 }

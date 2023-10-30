@@ -23,8 +23,13 @@ class LoginScreenViewModel @Inject constructor(
         when (event) {
             is LoginScreenEvent.OnLoginButtonClicked -> onLoginButtonClicked(event.navController)
             is LoginScreenEvent.OnLoginWithGoogleButtonClicked -> onLoginWithGoogleButtonClicked()
+            is LoginScreenEvent.DismissErrorDialog -> onErrorDialogDismissed()
             else -> {}
         }
+    }
+
+    private fun onErrorDialogDismissed(){
+        error = null
     }
 
     private fun onLoginButtonClicked(navController: NavController) {
