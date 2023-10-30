@@ -5,6 +5,7 @@ import { ReactComponent as SignPageAnimation } from "../../../Assets/SignPageAni
 import { ReactComponent as GoogleLogo } from "../../../Assets/icons/GoogleIcon.svg";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import getGoogleOAuthURL from "../../../Config/googleOAuth"
 const { Text } = Typography;
 
 const splitContainerStyle = {
@@ -91,7 +92,7 @@ function SignIn() {
         <Form {...formItemLayout}>
           <Form.Item>
             <div>
-              <Button style={formButtonStyle}>
+              <Button style={formButtonStyle} onClick={() => window.location.href = getGoogleOAuthURL()}>
                 <GoogleLogo style={googleLogoStyle} />
 
                 <span>Sign In with Google</span>
