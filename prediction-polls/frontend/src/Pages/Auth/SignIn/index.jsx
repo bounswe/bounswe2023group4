@@ -93,7 +93,7 @@ function SignIn() {
   const [message, setMessage] = React.useState("");
   const navigate = useNavigate();
 
-  let signClick = async (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
     try {
       const requestOptions = {
@@ -105,12 +105,16 @@ function SignIn() {
         })
       };
       const response = await fetch('http://3.70.206.103:8000/login', requestOptions);
-      if (response.status === 200) {
-        navigate("/home");
-      }
-      else {
-        setMessage("Please check your data!")
-      }
+      const data = await response.json();
+    
+    if (response.status === 201 && data.accessToken && data.refreshToken) {
+      localStorage.setItem('accessToken', data.accessToken); 
+      localStorage.setItem('refreshToken', data.refreshToken);
+      navigate("/feed");
+    } else {
+      console.log('Login failed', data);
+    }
+
     }
     catch (error) {
       setMessage("An unexpected error has occurred. Please try again!")
@@ -138,12 +142,11 @@ function SignIn() {
               or
             </Divider>
           </Form.Item>
-          <Form.Item name="email">
-            <Text style={labelStyle}>EMAIL ADDRESS</Text>
+          <Form.Item name="username">
+            <Text style={labelStyle}>USERNAME</Text>
             <Input
               size="large"
-              type="email"
-              placeholder="example@outlook.com"
+              placeholder="exampleUsername"
               onChange={(e) => setUsername(e.target.value)}
             />
           </Form.Item>
@@ -165,7 +168,7 @@ function SignIn() {
             </div>
           </Form.Item>
           <Form.Item>
-            <Button style={formButtonStyle} onClick={signClick}>LOG IN</Button>
+            <Button style={formButtonStyle} onClick={handleSignIn}>LOG IN</Button>
           </Form.Item>
           <Form.Item>
             <div style={displayCenterStyle}>
