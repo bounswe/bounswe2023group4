@@ -10,6 +10,7 @@ import SettingsIcon from "../../Assets/icons/SettingsIcon.jsx";
 import { ReactComponent as Logo } from "../../Assets/Logo.svg";
 import styles from "./Sidebar.module.css";
 import { useNavigate } from "react-router-dom";
+import  logout  from "../../api/requests/logout.jsx";
 
 
 const menuData = [
@@ -31,6 +32,8 @@ const SidebarMenuItem = ({
   navigate,
   to,
 }) => {
+  
+
   const isSelected = currentPage === pageKey;
   return (
     <div
@@ -51,6 +54,14 @@ const SidebarMenuItem = ({
 const Sidebar = ({ currentPage, handlePageChange }) => {
   const navigate = useNavigate();
 
+  const handleLogout = async () => {
+    const refreshToken = localStorage.getItem('refreshToken'); 
+    const isLoggedOut = await logout(refreshToken);
+    if (isLoggedOut) {
+      navigate("/auth/sign-in");
+    }
+  };
+
   return (
     <div className={styles.sidebar}>
       <Logo className={styles.logo} />
@@ -64,7 +75,7 @@ const Sidebar = ({ currentPage, handlePageChange }) => {
           to={`/${item.key.toLowerCase()}`}
         />
       ))}
-      <button className={styles.logoutButton}>LOGOUT </button>
+      <button className={styles.logoutButton} onClick={handleLogout}>LOGOUT </button>
     </div>
   );
 };
