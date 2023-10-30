@@ -1,0 +1,14 @@
+{
+  "points": [
+    { "GP": 1500 },
+    { "Art": 200 },
+    { "Music": 350 },
+    { "Politics": 250 },
+    { "Earthquake": 180 },
+    { "Science": 275 },
+    { "Technology": 320 },
+    { "History": 210 },
+    { "Literature": 230 },
+    { "Environment": 300 }
+  ]
+}
