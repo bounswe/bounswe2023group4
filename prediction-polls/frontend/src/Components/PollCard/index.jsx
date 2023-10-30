@@ -37,6 +37,7 @@ function PollCard({ PollData }) {
                   navigate={navigate}
                   option={option}
                   index={index}
+                  key={index}
                 />
               );
             })}
