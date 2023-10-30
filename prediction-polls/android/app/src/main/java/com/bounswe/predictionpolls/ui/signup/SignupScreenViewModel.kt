@@ -51,5 +51,6 @@ class SignupScreenViewModel @Inject constructor(
 
     private fun onSignupWithGoogleButtonClicked() {
         //TODO google sign in implementation
+        error = "Sign up with Google is not implemented yet."
     }
 }
