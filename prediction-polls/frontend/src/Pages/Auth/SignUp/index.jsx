@@ -240,8 +240,9 @@ function SignUp() {
               placeholder="Password"
             />
           </Form.Item>
-          <Form.Item label="BIRTHDAY" name="birthday">
+          <Form.Item label="BIRTHDAY" name="birthday" htmlFor="birthday">
             <DatePicker
+              id="birthday" 
               style={formDatePickerStyle}
               placeholder="01.01.2000"
               format="YYYY-MM-DD"
