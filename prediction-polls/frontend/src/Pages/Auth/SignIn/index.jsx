@@ -81,10 +81,16 @@ const labelStyle = {
   fontSize: "12px",
 };
 
+const messageStyle = {
+  ...displayCenterStyle,
+  color: "#FC1612"
+}
+
 function SignIn() {
   const [passwordVisible, setPasswordVisible] = React.useState(false);
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [message, setMessage] = React.useState("");
   const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
@@ -111,7 +117,7 @@ function SignIn() {
 
     }
     catch (error) {
-      console.log(error)
+      setMessage("An unexpected error has occurred. Please try again!")
     }
   };
 
@@ -173,11 +179,13 @@ function SignIn() {
             </div>
           </Form.Item>
         </Form>
+        <div style={messageStyle} className="message">{message ? <p>{message}</p> : null}</div>
       </div>
       <div style={imageStyle}>
         <SignPageAnimation style={animationStyle} />
       </div>
-    </div>
+    </div >
+
   );
 }
 
