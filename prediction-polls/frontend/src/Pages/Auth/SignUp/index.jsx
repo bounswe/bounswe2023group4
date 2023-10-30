@@ -13,12 +13,12 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [birthday, setBirthday] = useState(new Date());
   const [message, setMessage] = useState("");
-  const navigate = useNavigate() 
+  const navigate = useNavigate()
 
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let res = await fetch("http://3.70.206.103:8000/signup", { 
+      let res = await fetch("http://3.70.206.103:8000/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -38,12 +38,12 @@ function SignUp() {
         setPassword("");
         setBirthday(new Date());
         setMessage("Your account has been created successfully!");
-        navigate("/auth/sign-in") 
+        navigate("/auth/sign-in")
       } else {
         setMessage("Username should be unique!");
       }
     } catch (err) {
-      setMessage("Username should be unique!"); 
+      setMessage("Username should be unique!");
     }
   };
 
@@ -148,39 +148,43 @@ function SignUp() {
               or
             </Divider>
           </Form.Item>
-          <Form.Item label="EMAIL ADDRESS">
+          <Form.Item label="EMAIL ADDRESS" htmlFor="email">
             <Input
-              required 
+              id="email"
+              required
               type="text"
               value={email}
               style={formInputStyle}
               placeholder="example@outlook.com"
               onChange={(e) => setEmail(e.target.value)} />
           </Form.Item>
-          <Form.Item label="USERNAME">
+          <Form.Item label="USERNAME" htmlFor="username">
             <Input
-              required 
+              id="username"
+              required
               type="text"
               value={username}
               style={formInputStyle}
               placeholder="exampleUsername"
               onChange={(e) => setUserName(e.target.value)} />
           </Form.Item>
-          <Form.Item label="PASSWORD">
+          <Form.Item label="PASSWORD" htmlFor="password">
             <Input.Password
-              required 
+              id="password" 
+              required
               style={formInputStyle}
               type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)} />
           </Form.Item>
-          <Form.Item label="BIRTHDAY">
+          <Form.Item label="BIRTHDAY" htmlFor="birthday">
             <DatePicker
+              id="birthday" 
               style={formDatePickerStyle}
               selected={birthday}
               placeholder="01.01.2000"
-              onChange={(e) => setBirthday(formatDate(e))} /> 
+              onChange={(e) => setBirthday(formatDate(e))} />
           </Form.Item>
           <Form.Item>
             <Checkbox required>
