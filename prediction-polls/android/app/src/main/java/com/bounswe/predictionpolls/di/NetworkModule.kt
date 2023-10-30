@@ -4,6 +4,7 @@ import android.content.Context
 import com.bounswe.predictionpolls.BuildConfig
 import com.bounswe.predictionpolls.data.remote.TokenManager
 import com.bounswe.predictionpolls.data.remote.interceptors.AuthInterceptor
+import com.bounswe.predictionpolls.data.remote.interceptors.ExceptionInterceptor
 import com.bounswe.predictionpolls.data.remote.repositories.AuthRepository
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import dagger.Module
@@ -41,19 +42,20 @@ object NetworkModule {
     @UnauthenticatedOkHttpClient
     @Provides
     @Singleton
-    fun provideOkHttpClient(
+    fun provideUnauthenticatedOkHttpClient(
         chucker: ChuckerInterceptor
     ): OkHttpClient {
         return OkHttpClient
             .Builder()
             .addInterceptor(chucker)
+            .addInterceptor(ExceptionInterceptor())
             .build()
     }
 
     @UnauthenticatedRetrofit
     @Provides
     @Singleton
-    fun provideTokenRefresherRetrofit(
+    fun provideUnauthenticatedRetrofit(
         @UnauthenticatedOkHttpClient okHttpClient: OkHttpClient
     ): Retrofit {
         return Retrofit
@@ -84,6 +86,7 @@ object NetworkModule {
             .Builder()
             .addInterceptor(chucker)
             .addInterceptor(authInterceptor)
+            .addInterceptor(ExceptionInterceptor())
             .build()
     }
 

@@ -27,23 +27,15 @@ class AuthRepository @Inject constructor(
         username: String,
         password: String
     ) {
-        val signupRequest = SignupRequest(username, password)
-        if (authService.signup(signupRequest).code() == 200) {
-            login(
-                username = username,
-                password = password
-            )
-        }
+        authService.signup(SignupRequest(username, password))
+        login(username, password)
     }
 
     suspend fun logout() {
         tokenManager.refreshToken?.let { token ->
-            val logoutRequest = LogoutRequest(token)
-            val response = authService.logout(logoutRequest)
-            if (response.code() == 200) {
-                tokenManager.accessToken = null
-                tokenManager.refreshToken = null
-            }
+            authService.logout(LogoutRequest(token))
+            tokenManager.accessToken = null
+            tokenManager.refreshToken = null
         }
     }
 

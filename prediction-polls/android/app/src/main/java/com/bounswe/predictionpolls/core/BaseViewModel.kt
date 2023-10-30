@@ -22,6 +22,11 @@ abstract class BaseViewModel : ViewModel() {
     val hasError: Boolean
         get() = error != null
 
+    private fun errorMapper(throwable: Throwable): String {
+        //TODO handle error messages better
+        return "Unexpected error occurred. Please try again later."
+    }
+
     fun <T> launchCatching(
         scope: CoroutineScope = viewModelScope,
         trackJobProgress: Boolean = false,
@@ -47,7 +52,7 @@ abstract class BaseViewModel : ViewModel() {
                             trackedActiveJobCount--
                         }
                         if (errorFilter?.invoke(it) != false) {
-                            error = it.message
+                            error = errorMapper(it)
                             onError?.invoke(it)
                         }
                     }
