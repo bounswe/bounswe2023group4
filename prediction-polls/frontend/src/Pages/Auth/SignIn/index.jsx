@@ -104,7 +104,7 @@ function SignIn() {
           password: password
         })
       };
-      const response = await fetch('http://3.70.206.103:8000/login', requestOptions);
+      const response = await fetch(process.env.REACT_APP_BACKEND_LINK+'/login', requestOptions);
       const data = await response.json();
     
     if (response.status === 201 && data.accessToken && data.refreshToken) {

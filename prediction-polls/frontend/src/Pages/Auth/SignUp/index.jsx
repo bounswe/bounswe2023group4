@@ -34,7 +34,7 @@ function SignUp() {
       formattedValues.birthday = undefined; 
     }
 
-      const res = await fetch("http://3.70.206.103:8000/signup", {
+      const res = await fetch(process.env.REACT_APP_BACKEND_LINK+"/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

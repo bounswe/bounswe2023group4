@@ -1,5 +1,5 @@
 // authService.js
-const baseUrl = 'http://3.70.206.103:8000'; // Replace with your actual base URL
+const baseUrl = process.env.REACT_APP_BACKEND_LINK; // Replace with your actual base URL
 
 async function logout(refreshToken) {
   try {
