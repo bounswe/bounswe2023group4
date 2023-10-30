@@ -4,9 +4,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import com.bounswe.predictionpolls.core.BaseViewModel
 import com.bounswe.predictionpolls.data.remote.repositories.AuthRepository
 import com.bounswe.predictionpolls.ui.feed.navigateToFeedScreen
+import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -36,7 +38,12 @@ class SignupScreenViewModel @Inject constructor(
         launchCatching(
             trackJobProgress = true,
             onSuccess = {
-                navController.navigateToFeedScreen()
+                navController.navigateToFeedScreen(
+                    navOptions = NavOptions
+                        .Builder()
+                        .setPopUpTo(MAIN_ROUTE, true)
+                        .build()
+                )
             },
             maxRetryCount = 1
         ) {
