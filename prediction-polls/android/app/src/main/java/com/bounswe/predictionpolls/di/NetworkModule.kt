@@ -4,7 +4,6 @@ import android.content.Context
 import com.bounswe.predictionpolls.BuildConfig
 import com.bounswe.predictionpolls.data.remote.TokenManager
 import com.bounswe.predictionpolls.data.remote.interceptors.AuthInterceptor
-import com.bounswe.predictionpolls.data.remote.interceptors.ExceptionInterceptor
 import com.bounswe.predictionpolls.data.remote.repositories.AuthRepository
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import dagger.Module
@@ -48,7 +47,6 @@ object NetworkModule {
         return OkHttpClient
             .Builder()
             .addInterceptor(chucker)
-            .addInterceptor(ExceptionInterceptor())
             .build()
     }
 
@@ -84,9 +82,8 @@ object NetworkModule {
     ): OkHttpClient {
         return OkHttpClient
             .Builder()
-            .addInterceptor(chucker)
             .addInterceptor(authInterceptor)
-            .addInterceptor(ExceptionInterceptor())
+            .addInterceptor(chucker)
             .build()
     }
 
