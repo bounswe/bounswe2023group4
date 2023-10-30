@@ -25,13 +25,7 @@ function PollCard({ PollData }) {
           <div className={styles.question}>
             <p>{PollData.question}</p>
           </div>
-          {!PollData.isCustomPoll ? (
-            <div className={styles.pointsPlaced}>
-              <p>Points Placed:</p>
-            </div>
-          ) : (
-            ""
-          )}
+
         </div>
         {!PollData.isCustomPoll ? (
           <div className={styles.optionList}>
