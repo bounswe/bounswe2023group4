@@ -8,9 +8,9 @@ import androidx.navigation.compose.composable
 
 const val FEED_ROUTE = "feed"
 
-fun NavGraphBuilder.feedScreen() {
+fun NavGraphBuilder.feedScreen(navController: NavController) {
     composable(FEED_ROUTE) {
-        FeedScreen()
+        FeedScreen(navController)
     }
 }
 

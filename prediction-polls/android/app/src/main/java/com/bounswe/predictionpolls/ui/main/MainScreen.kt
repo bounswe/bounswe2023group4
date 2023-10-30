@@ -14,6 +14,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,7 +30,9 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.ui.feed.navigateToFeedScreen
 import com.bounswe.predictionpolls.ui.login.navigateToLoginScreen
@@ -36,7 +41,20 @@ import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 
 
 @Composable
-fun MainScreen(modifier: Modifier = Modifier, navController: NavController) {
+fun MainScreen(
+    modifier: Modifier = Modifier,
+    navController: NavController,
+    viewModel: MainScreenViewModel = hiltViewModel()
+) {
+    val isLoggedIn by viewModel.tokenManager.isLoggedIn.collectAsState(initial = false)
+    LaunchedEffect(key1 = isLoggedIn){
+        if (isLoggedIn.not()) return@LaunchedEffect
+
+        navController.navigateToFeedScreen(
+            navOptions = NavOptions.Builder().setPopUpTo(MAIN_ROUTE, true).build()
+        )
+    }
+
     MainScreenUI(
         modifier = modifier,
         onLoginClick = {

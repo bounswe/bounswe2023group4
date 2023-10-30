@@ -13,4 +13,5 @@ sealed class SignupScreenEvent {
     data class OnSignupButtonClicked(val navController: NavController) : SignupScreenEvent()
     data class OnSignupWithGoogleButtonClicked(val navController: NavController) :
         SignupScreenEvent()
+    data object DismissErrorDialog : SignupScreenEvent()
 }

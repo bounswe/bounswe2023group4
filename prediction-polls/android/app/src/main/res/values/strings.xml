@@ -39,8 +39,10 @@
 
 
     <string name="or">or</string>
+    <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
+    <string name="error_dialog_title">Error</string>
 
     <!-- Content Descriptions -->
     <string name="cd_app_title">App Title</string>

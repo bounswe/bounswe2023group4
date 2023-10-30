@@ -4,8 +4,11 @@ import android.content.Context
 import com.bounswe.predictionpolls.BuildConfig
 import com.bounswe.predictionpolls.data.remote.TokenManager
 import com.bounswe.predictionpolls.data.remote.interceptors.AuthInterceptor
+import com.bounswe.predictionpolls.data.remote.interceptors.ResponseInterceptor
 import com.bounswe.predictionpolls.data.remote.repositories.AuthRepository
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,6 +22,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+    @Provides
+    @Singleton
+    fun provideGson(): Gson {
+        return GsonBuilder()
+            .serializeNulls()
+            .create()
+    }
+
     @Provides
     @Singleton
     fun provideTokenManager(
@@ -41,25 +52,27 @@ object NetworkModule {
     @UnauthenticatedOkHttpClient
     @Provides
     @Singleton
-    fun provideOkHttpClient(
+    fun provideUnauthenticatedOkHttpClient(
         chucker: ChuckerInterceptor
     ): OkHttpClient {
         return OkHttpClient
             .Builder()
             .addInterceptor(chucker)
+            .addInterceptor(ResponseInterceptor())
             .build()
     }
 
     @UnauthenticatedRetrofit
     @Provides
     @Singleton
-    fun provideTokenRefresherRetrofit(
-        @UnauthenticatedOkHttpClient okHttpClient: OkHttpClient
+    fun provideUnauthenticatedRetrofit(
+        @UnauthenticatedOkHttpClient okHttpClient: OkHttpClient,
+        gson: Gson
     ): Retrofit {
         return Retrofit
             .Builder()
             .baseUrl(BuildConfig.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .client(okHttpClient)
             .build()
     }
@@ -82,8 +95,9 @@ object NetworkModule {
     ): OkHttpClient {
         return OkHttpClient
             .Builder()
-            .addInterceptor(chucker)
             .addInterceptor(authInterceptor)
+            .addInterceptor(chucker)
+            .addInterceptor(ResponseInterceptor())
             .build()
     }
 
@@ -91,12 +105,13 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideAuthenticatedRetrofit(
-        @AuthenticatedOkHttpClient okHttpClient: OkHttpClient
+        @AuthenticatedOkHttpClient okHttpClient: OkHttpClient,
+        gson: Gson
     ): Retrofit {
         return Retrofit
             .Builder()
             .baseUrl(BuildConfig.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .client(okHttpClient)
             .build()
     }

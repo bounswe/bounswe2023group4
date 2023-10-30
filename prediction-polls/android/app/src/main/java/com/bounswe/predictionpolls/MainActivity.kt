@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     mainScreen(navController)
                     loginScreen(navController)
                     signupScreen(navController)
-                    feedScreen()
+                    feedScreen(navController)
                 }
             }
         }

@@ -52,6 +52,7 @@ import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.extensions.clickableWithoutIndicator
 import com.bounswe.predictionpolls.extensions.toTimeDateString
 import com.bounswe.predictionpolls.ui.common.CustomInputField
+import com.bounswe.predictionpolls.ui.common.ErrorDialog
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 import com.bounswe.predictionpolls.utils.DateTransformation
 
@@ -87,7 +88,9 @@ fun SignupScreen(
                 )
             )
         },
-        isLoading = viewModel.isLoading
+        isLoading = viewModel.isLoading,
+        error = viewModel.error,
+        errorDismissed = { viewModel.onEvent(SignupScreenEvent.DismissErrorDialog) }
     )
 }
 
@@ -112,6 +115,8 @@ fun SignupScreenUI(
     isSignUpEnabled: Boolean = false,
     onSignUpWithGoogleClicked: () -> Unit = {},
     isLoading: Boolean = false,
+    error: String? = null,
+    errorDismissed: () -> Unit = {},
 ) {
     Column(
         modifier = Modifier
@@ -153,6 +158,10 @@ fun SignupScreenUI(
         onBirthdayChanged = onBirthdayChanged
     )
     LoadingIndicator(isLoading = isLoading)
+    ErrorDialog(
+        error = error,
+        onDismiss = errorDismissed
+    )
 }
 
 @Composable

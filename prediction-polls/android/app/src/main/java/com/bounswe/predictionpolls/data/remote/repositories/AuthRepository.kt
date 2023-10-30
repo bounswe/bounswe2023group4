@@ -1,5 +1,6 @@
 package com.bounswe.predictionpolls.data.remote.repositories
 
+import com.bounswe.predictionpolls.core.BaseRepository
 import com.bounswe.predictionpolls.data.remote.TokenManager
 import com.bounswe.predictionpolls.data.remote.request.LoginRequest
 import com.bounswe.predictionpolls.data.remote.request.LogoutRequest
@@ -11,36 +12,36 @@ import javax.inject.Inject
 class AuthRepository @Inject constructor(
     private val authService: AuthService,
     private val tokenManager: TokenManager
-) {
+) : BaseRepository() {
     suspend fun login(
         username: String,
         password: String
     ) {
         val loginRequest = LoginRequest(username, password)
-        authService.login(loginRequest).body()?.let {
-            tokenManager.accessToken = it.accessToken
-            tokenManager.refreshToken = it.refreshToken
+        execute {
+            authService.login(loginRequest).let {
+                tokenManager.accessToken = it.accessToken
+                tokenManager.refreshToken = it.refreshToken
+            }
         }
     }
 
     suspend fun signup(
+        email: String,
         username: String,
-        password: String
+        password: String,
+        birthday: String
     ) {
-        val signupRequest = SignupRequest(username, password)
-        if (authService.signup(signupRequest).code() == 200) {
-            login(
-                username = username,
-                password = password
-            )
+        execute {
+            authService.signup(SignupRequest(email, username, password, birthday))
+            login(username, password)
         }
     }
 
     suspend fun logout() {
-        tokenManager.refreshToken?.let { token ->
-            val logoutRequest = LogoutRequest(token)
-            val response = authService.logout(logoutRequest)
-            if (response.code() == 200) {
+        execute {
+            tokenManager.refreshToken?.let { token ->
+                authService.logout(LogoutRequest(token))
                 tokenManager.accessToken = null
                 tokenManager.refreshToken = null
             }
@@ -50,8 +51,13 @@ class AuthRepository @Inject constructor(
     suspend fun refreshAccessToken(): String? {
         val refreshToken = tokenManager.refreshToken ?: return null
         val refreshAccessTokenRequest = RefreshAccessTokenRequest(refreshToken)
-        val newToken = authService.refreshAccessToken(refreshAccessTokenRequest).body()?.accessToken
-        tokenManager.accessToken = newToken
+        var newToken: String? = null
+        execute {
+            authService.refreshAccessToken(refreshAccessTokenRequest).accessToken.let {
+                newToken = it
+                tokenManager.accessToken = it
+            }
+        }
         return newToken
     }
 }
