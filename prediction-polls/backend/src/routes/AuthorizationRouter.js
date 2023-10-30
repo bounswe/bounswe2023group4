@@ -116,7 +116,7 @@ router.post('/logout', service.logOut)
  * @swagger
  * /signup:
  *   post:
- *     description: Create new user with the given credentials
+ *     description: Create new user with the given credentials. Birthday should follow format "YYYY-MM-DD"
  *     requestBody:
  *       required: true
  *       content:
@@ -128,6 +128,11 @@ router.post('/logout', service.logOut)
  *                 type: string
  *               password:
  *                 type: string
+ *               email:
+ *                 type: string
+ *               birthday:
+ *                 type: string
+ * 
  *          
  *     responses:
  *       201:

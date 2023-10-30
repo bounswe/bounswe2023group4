@@ -12,12 +12,11 @@ function homePage(req, res){
 
 async function signup(req, res){
   const { username, password, email, birthday } = req.body;
-  const { success,error} = await addUser( username, password, email, birthday );
+  const { success, error} = await addUser( username, password, email, birthday );
   
   if(!success)  res.status(400).send('Registration failed '+ error);
   else{res.status(201).send("Registration successful")};
 
-    
   }
 
 function createAccessTokenFromRefreshToken(req, res){
@@ -35,7 +34,6 @@ async function logIn(req,res){
     const username = req.body.username;
     const password = req.body.password;
     const user = {name : username};
-    
     let userAuthenticated = await checkCredentials(username,password);
     if (!userAuthenticated) {
       res.status(401).send("Could not find a matching (username, email) - password tuple");
@@ -51,7 +49,7 @@ async function logOut(req, res) {
     const token = req.body.refreshToken;
     const tokenDeleted = await db.deleteRefreshToken(token);
     if (tokenDeleted){
-      res.sendStatus(204);
+      res.status(204).send("Token deleted successfully");
     } else {
       res.status(404).send("Refresh token not found");
     }
