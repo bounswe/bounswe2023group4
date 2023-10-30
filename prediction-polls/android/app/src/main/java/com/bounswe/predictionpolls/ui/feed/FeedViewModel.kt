@@ -12,8 +12,14 @@ class FeedViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ): BaseViewModel() {
     //TODO Demo function correct the logic when the feed is implemented
-    fun logout() {
-        launchCatching {
+    fun logout(
+        onSuccess: () -> Unit = {},
+    ) {
+        launchCatching(
+            onSuccess = {
+                onSuccess()
+            }
+        ) {
             authRepository.logout()
         }
     }
