@@ -35,6 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -228,7 +229,7 @@ fun SignupScreenForm(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CustomInputField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().testTag("email_input"),
             labelId = R.string.signup_email_label,
             text = email,
             onTextChanged = onEmailChanged,
@@ -237,13 +238,13 @@ fun SignupScreenForm(
             )
         )
         CustomInputField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().testTag("username_input"),
             labelId = R.string.signup_username_label,
             text = username,
             onTextChanged = onUsernameChanged,
         )
         CustomInputField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().testTag("password_input"),
             labelId = R.string.signup_password_label,
             text = password,
             onTextChanged = onPasswordChanged,
@@ -256,7 +257,7 @@ fun SignupScreenForm(
             visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation()
         )
         CustomInputField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().testTag("birthday_input"),
             labelId = R.string.signup_birthday_label,
             text = birthday,
             onTextChanged = onBirthdayChanged,
@@ -329,6 +330,7 @@ fun AgreementBox(
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Checkbox(
+            modifier = Modifier.testTag("agreement_checkbox"),
             checked = isChecked,
             onCheckedChange = onCheckedChanged
         )
@@ -352,6 +354,7 @@ fun SignupScreenActionButtons(
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         SignupScreenActionButton(
+            modifier = Modifier.testTag("signup_button"),
             isEnabled = isSignUpEnabled,
             titleId = R.string.signup_button,
             backgroundColor = MaterialTheme.colorScheme.primary,
@@ -395,6 +398,7 @@ private fun ActionButtonDivider() {
 
 @Composable
 private fun SignupScreenActionButton(
+    modifier: Modifier = Modifier,
     @DrawableRes leadingIconId: Int? = null,
     @StringRes leadIconContentDescription: Int? = null,
     @StringRes titleId: Int,
@@ -406,7 +410,7 @@ private fun SignupScreenActionButton(
     val shape = MaterialTheme.shapes.medium
 
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .background(backgroundColor, shape)
             .clip(shape = shape)
