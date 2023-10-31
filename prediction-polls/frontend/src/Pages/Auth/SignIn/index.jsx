@@ -111,9 +111,7 @@ function SignIn() {
       localStorage.setItem('accessToken', data.accessToken); 
       localStorage.setItem('refreshToken', data.refreshToken);
       navigate("/feed");
-    } else {
-      console.log('Login failed', data);
-    }
+    } 
 
     }
     catch (error) {

@@ -15,11 +15,9 @@ async function logout(refreshToken) {
       localStorage.removeItem('refreshToken');
       return true;
     } else {
-      console.error('Logout failed', await response.text());
       return false;
     }
   } catch (error) {
-    console.error('Logout error', error);
     return false;
   }
 }
