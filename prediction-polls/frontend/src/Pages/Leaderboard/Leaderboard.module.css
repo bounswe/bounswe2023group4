@@ -1,0 +1,10 @@
+.page{
+    display: flex;
+    background-color: var(--neutral-white);
+    width: 100%;
+}
+@media (max-width: 640px) {
+    .page{
+        flex-direction: column;
+    }
+}
