@@ -1,0 +1,107 @@
+{
+  "pollList": [
+    {
+      "id": 1,
+      "question": "What is your favorite color?",
+      "tags": ["Color", "Favorite"],
+      "creatorName": "Zehra Kaya",
+      "creatorId": 6327697326,
+      "creatorImage": "https://www.w3schools.com/howto/img_lights_wide.jpg",
+      "isCustomPoll": false,
+      "options": [
+        {
+          "id": 1,
+          "title": "Red",
+          "votes": 10
+        },
+        {
+          "id": 2,
+          "title": "Blue",
+          "votes": 15
+        },
+        {
+          "id": 3,
+          "title": "Green",
+          "votes": 25
+        },
+        {
+          "id": 4,
+          "title": "Yellow",
+          "votes": 35
+        }
+      ],
+      "closingDate": "2023-06-18",
+      "rejectVotes": "5 days",
+      "isOpen": true,
+      "comments": [
+        {
+          "userId": 34892738947,
+          "comment": "I love the color red!"
+        },
+        {
+          "userId": 340537547,
+          "comment": "Blue has always been my favorite."
+        },
+        {
+          "userId": 98432934,
+          "comment": "Why isn't purple on the list?"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "question": "When is your birthday?",
+      "tags": ["Birthday", "Personal"],
+      "creatorName": "Can Gezer",
+      "creatorId": 6578493045,
+      "creatorImage": "https://www.w3schools.com/howto/img_woods_wide.jpg",
+      "isCustomPoll": true,
+      "optionType": "date",
+      "closingDate": "2023-07-20",
+      "rejectVotes": "6 days",
+      "isOpen": true,
+      "comments": [
+        {
+          "userId": 34892738947,
+          "comment": "I don't like sharing my birthday."
+        },
+        {
+          "userId": 340537547,
+          "comment": "It's in September!"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "question": "How many books have you read this year?",
+      "tags": ["Reading", "Hobby"],
+      "creatorName": "Pelin Kaya",
+      "creatorId": 9472638473,
+      "creatorImage": "https://www.w3schools.com/howto/img_mountains_wide.jpg",
+      "isCustomPoll": true,
+      "optionType": "number",
+      "closingDate": "2023-08-12",
+      "rejectVotes": "7 days",
+      "isOpen": true,
+      "comments": [
+        {
+          "userId": 34892738947,
+          "comment": "I've read 20 books so far."
+        },
+        {
+          "userId": 34053547,
+          "comment": "Only 5, been a busy year."
+        },
+        {
+          "userId": 2843234,
+          "comment": "I'm at 30 and counting!"
+        },
+        {
+          "userId": 984329,
+          "comment": "I'm at 40!"
+
+        }
+      ]
+    }
+  ]
+}

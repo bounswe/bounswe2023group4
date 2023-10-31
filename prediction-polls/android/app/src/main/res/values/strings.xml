@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Prediction Polls</string>
+
+    <!-- Navigation Drawer Title-->
+    <string name="nav_drawer_profile">Profile</string>
+    <string name="nav_drawer_feed">Feed</string>
+    <string name="nav_drawer_vote">Vote</string>
+    <string name="nav_drawer_create">Create</string>
+    <string name="nav_drawer_moderation">Moderation</string>
+    <string name="nav_drawer_leaderboard">Leaderboard</string>
+    <string name="nav_drawer_notifications">Notifications</string>
+
+    <!-- Welcome Page -->
+    <string name="welcome_page_title">Welcome To</string>
+    <string name="welcome_page_login">Login</string>
+    <string name="welcome_page_signup">Sign Up</string>
+    <string name="welcome_page_continue_without_login">Continue without login</string>
+
+    <!-- Login Page -->
+    <string name="login_page_title">Login</string>
+    <string name="login_email_label">Email Address</string>
+    <string name="login_password_label">Password</string>
+    <string name="login_button">Login</string>
+    <string name="login_with_google_button">Sign in with Google</string>
+    <string name="cd_login_with_google_button">Sign in with Google</string>
+
+    <!-- Sign Up Page -->
+    <string name="signup_page_title">Sign Up</string>
+    <string name="signup_email_label">Email Address</string>
+    <string name="signup_username_label">Username</string>
+    <string name="signup_password_label">Password</string>
+    <string name="signup_birthday_label">Birthday</string>
+    <string name="signup_agreement_text">I agree to the Platform Terms</string>
+    <string name="signup_button">Sign Up</string>
+    <string name="signup_with_google_button">Sign Up with Google</string>
+    <string name="cd_signup_with_google_button">Sign Up with Google</string>
+    <string name="cd_visible">Change password visibility</string>
+    <string name="cd_calendar">Calendar image</string>
+
+
+    <string name="or">or</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="error_dialog_title">Error</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_app_title">App Title</string>
+    <string name="cd_back">Back Button</string>
+    <string name="cd_welcome_page_image">Welcome page image</string>
+    <string name="cd_nav_item">Navigation drawer item: %1$s</string>
+</resources>

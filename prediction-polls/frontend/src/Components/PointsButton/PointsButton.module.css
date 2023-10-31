@@ -1,0 +1,65 @@
+.pointsContainer {
+    position: fixed;
+    top: 10px;
+    right: 50px;
+    max-height: 100vh;
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background-color: var(--primary-500);
+    box-shadow: 2px 4px 8px var(--neutral-shadow);
+    z-index: 3;
+}
+  
+.pointsButton {
+    width: 100%;
+    background-color:#2d87da;
+    border: none;
+    color: white;
+    padding: 10px 25px; 
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3;
+    font-size: 28px;
+}
+  
+.pointsButton:hover {
+    background-color: var(--primary-400);
+}
+  
+.pointsButton span {
+    font-size: 18px;
+    margin-left: 8px;
+}
+  
+.pointsList {
+    max-height: calc(100vh - 75px);
+    overflow-y: auto;
+}
+  
+.point {
+    padding: 20px 25px; 
+    font-size: 20px;
+    color: var(--neutral-black);
+    background-color: var(--primary-200);
+    border-bottom: 1px solid var(--neutral-50);
+
+}
+  
+.point:last-child {
+    border-bottom: none;
+}
+  
+.point:hover {
+    background-color: var(--primary-100);
+}
+
+.iconStyle {
+    width: 40px;
+    height: 40px;
+}

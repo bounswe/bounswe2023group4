@@ -1,0 +1,16 @@
+.containerStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--neutral-white);
+  height: 100vh;
+}
+.buttonContainerStyle {
+  margin-top: 20px;
+  background-color: var(--primary-200);
+  color: var(--neutral-black);
+}
+.header {
+  color: var(--neutral-black);
+}
