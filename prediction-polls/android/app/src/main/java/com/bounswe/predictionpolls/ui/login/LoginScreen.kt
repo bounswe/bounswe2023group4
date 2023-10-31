@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -183,7 +184,7 @@ fun LoginScreenForm(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CustomInputField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().testTag("email_input"),
             labelId = R.string.login_email_label,
             text = email,
             onTextChanged = onEmailChanged,
@@ -192,7 +193,7 @@ fun LoginScreenForm(
             )
         )
         CustomInputField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().testTag("password_input"),
             labelId = R.string.login_password_label,
             text = password,
             onTextChanged = onPasswordChanged,
@@ -217,6 +218,7 @@ fun LoginScreenActionButtons(
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         LoginScreenActionButton(
+            modifier = Modifier.testTag("login_button"),
             isEnabled = isLoginEnabled,
             titleId = R.string.login_button,
             backgroundColor = MaterialTheme.colorScheme.primary,
@@ -260,6 +262,7 @@ private fun ActionButtonDivider() {
 
 @Composable
 private fun LoginScreenActionButton(
+    modifier: Modifier = Modifier,
     @DrawableRes leadingIconId: Int? = null,
     @StringRes leadIconContentDescription: Int? = null,
     @StringRes titleId: Int,
@@ -271,7 +274,7 @@ private fun LoginScreenActionButton(
     val shape = MaterialTheme.shapes.medium
 
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .background(backgroundColor, shape)
             .clip(shape = shape)
