@@ -7,19 +7,14 @@ const { generateAccessToken, generateRefreshToken } = require('./AuthorizationSe
 
 async function googleLogIn(req,res){
 
-    console.log("GOOGLE REQUEST IS RECIEVED")
-
     const code = req.query.code;
   
     try {
       // get the id and access token with the code
       const { id_token, access_token } = await getGoogleOAuthTokens({ code });
-      console.log({ id_token, access_token });
   
       // get user with tokens
       const googleUser = await getGoogleUser({ id_token, access_token });
-  
-      console.log({ googleUser });
   
       if (!googleUser.verified_email) {
         return res.status(403).send("Google account is not verified");
@@ -32,7 +27,6 @@ async function googleLogIn(req,res){
       res.json({accessToken: accesToken, refreshToken: refreshToken})
   
     } catch (error) {
-      console.log(error, "Failed to authorize Google user");
       return res.redirect(process.env.googleOAuthFailRedirectUrl);
     }
   }
@@ -61,8 +55,6 @@ async function googleLogIn(req,res){
       );
       return res.data;
     } catch (error) {
-      //console.error(error.response.data.error);
-      console.error(error, "Failed to fetch Google Oauth Tokens");
       throw new Error(error.message);
     }
   
@@ -83,7 +75,6 @@ async function googleLogIn(req,res){
       );
       return res.data;
     } catch (error) {
-      log.error(error, "Error fetching Google user");
       throw new Error(error.message);
     }
   }
