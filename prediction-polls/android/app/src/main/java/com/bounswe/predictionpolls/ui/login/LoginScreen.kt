@@ -40,10 +40,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.extensions.clickableWithoutIndicator
 import com.bounswe.predictionpolls.ui.common.CustomInputField
 import com.bounswe.predictionpolls.ui.common.ErrorDialog
+import com.bounswe.predictionpolls.ui.feed.navigateToFeedScreen
+import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 
 @Composable
@@ -61,13 +64,20 @@ fun LoginScreen(
         onPasswordChanged = { viewModel.onEvent(LoginScreenEvent.OnPasswordChanged(it)) },
         onPasswordVisibilityClicked = { viewModel.onEvent(LoginScreenEvent.OnPasswordVisibilityToggleClicked) },
         isPasswordVisible = viewModel.screenState.isPasswordVisible,
-        onLoginClicked = { viewModel.onEvent(LoginScreenEvent.OnLoginButtonClicked(navController)) },
+        onLoginClicked = {
+            viewModel.onEvent(LoginScreenEvent.OnLoginButtonClicked {
+                navController.navigateToFeedScreen(
+                    navOptions = NavOptions
+                        .Builder()
+                        .setPopUpTo(MAIN_ROUTE, true)
+                        .build()
+                )
+            })
+        },
         isLoginEnabled = viewModel.screenState.isLoginButtonEnabled,
         onLoginWithGoogleClicked = {
             viewModel.onEvent(
-                LoginScreenEvent.OnLoginWithGoogleButtonClicked(
-                    navController
-                )
+                LoginScreenEvent.OnLoginWithGoogleButtonClicked {}
             )
         },
         isLoading = viewModel.isLoading,
@@ -184,7 +194,9 @@ fun LoginScreenForm(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CustomInputField(
-            modifier = Modifier.fillMaxWidth().testTag("email_input"),
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag("email_input"),
             labelId = R.string.login_email_label,
             text = email,
             onTextChanged = onEmailChanged,
@@ -193,7 +205,9 @@ fun LoginScreenForm(
             )
         )
         CustomInputField(
-            modifier = Modifier.fillMaxWidth().testTag("password_input"),
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag("password_input"),
             labelId = R.string.login_password_label,
             text = password,
             onTextChanged = onPasswordChanged,
