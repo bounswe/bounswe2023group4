@@ -27,9 +27,7 @@ function SignUp() {
     if (values.birthday) {
       if (typeof values.birthday.format === 'function') {
         formattedValues.birthday = formatDate(values.birthday.toDate());
-      } else {
-        console.error('Birthday is not a moment object');
-      }
+      } 
     } else {
       formattedValues.birthday = undefined; 
     }
@@ -51,8 +49,7 @@ function SignUp() {
         setUsernameHelp("Username should be unique");
       }
     } catch (err) {
-      console.error(err);
-      //setMessage("An error occurred. Please try again later.");
+      
     }
   };
 
