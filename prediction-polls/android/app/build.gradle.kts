@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -26,7 +28,7 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             isMinifyEnabled = false
-            buildConfigField("String", "BASE_URL", "\"http://3.70.206.103:8000\"")
+            buildConfigField("String", "BASE_URL", gradleLocalProperties(rootDir).getProperty("base_url"))
         }
         create("staging") {
             applicationIdSuffix = ".staging"
@@ -36,7 +38,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "BASE_URL", "\"http://3.70.206.103:8000\"")
+            buildConfigField("String", "BASE_URL", gradleLocalProperties(rootDir).getProperty("base_url"))
         }
         release {
             isMinifyEnabled = true
@@ -44,7 +46,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "BASE_URL", "\"http://3.70.206.103:8000\"")
+            buildConfigField("String", "BASE_URL", gradleLocalProperties(rootDir).getProperty("base_url"))
         }
     }
     compileOptions {
