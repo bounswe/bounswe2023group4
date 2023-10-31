@@ -15,6 +15,11 @@ function hashPassword(password) {
 
 async function checkCredentials(username, password) {
     try {
+        /* We want to store our passwords hashed in the db But currently 
+         * our hashing function does not return the same hashed password
+         * for the same password value. This creates an issue with verification.
+         */
+
         // const hashedPassword = await hashPassword(password);
 
         const sql = 'SELECT * FROM users WHERE (username = ? || email = ?) && password = ?';
@@ -30,6 +35,10 @@ async function checkCredentials(username, password) {
 
 async function addUser(username, password,email,birthday){
     try {
+        /* We want to store our passwords hashed in the db But currently 
+         * our hashing function does not return the same hashed password
+         * for the same password value. This creates an issue with verification.
+         */
         // const hashedPassword = await hashPassword(password);
     
         // Store the user in the database
