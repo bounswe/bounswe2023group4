@@ -3,13 +3,9 @@ package com.bounswe.predictionpolls.ui.login
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.navigation.NavController
-import androidx.navigation.NavOptions
 import com.bounswe.predictionpolls.core.BaseViewModel
 import com.bounswe.predictionpolls.data.remote.repositories.AuthRepository
 import com.bounswe.predictionpolls.extensions.isValidEmail
-import com.bounswe.predictionpolls.ui.feed.navigateToFeedScreen
-import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -24,7 +20,7 @@ class LoginScreenViewModel @Inject constructor(
         screenState = screenState.reduce(event)
 
         when (event) {
-            is LoginScreenEvent.OnLoginButtonClicked -> onLoginButtonClicked(event.navController)
+            is LoginScreenEvent.OnLoginButtonClicked -> onLoginButtonClicked(event.onSuccess)
             is LoginScreenEvent.OnLoginWithGoogleButtonClicked -> onLoginWithGoogleButtonClicked()
             is LoginScreenEvent.DismissErrorDialog -> onErrorDialogDismissed()
             else -> {}
@@ -46,18 +42,13 @@ class LoginScreenViewModel @Inject constructor(
         return true
     }
 
-    private fun onLoginButtonClicked(navController: NavController) {
+    private fun onLoginButtonClicked(onSuccess: () -> Unit) {
         if(isFormValid().not()) return
 
         launchCatching(
             trackJobProgress = true,
             onSuccess = {
-                navController.navigateToFeedScreen(
-                    navOptions = NavOptions
-                        .Builder()
-                        .setPopUpTo(MAIN_ROUTE, true)
-                        .build()
-                )
+                onSuccess()
             },
             maxRetryCount = 1
         ) {

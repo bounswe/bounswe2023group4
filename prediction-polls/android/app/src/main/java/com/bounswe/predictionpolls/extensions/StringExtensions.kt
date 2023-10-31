@@ -11,8 +11,8 @@ fun String.isValidEmail(): Boolean {
 // TODO handle date validation better
 fun String.isValidDate(): Boolean {
     if (this.length != 8) return false
-    val day = this.substring(0, 2).toInt()
-    val month = this.substring(2, 4).toInt()
+    val day = this.substring(0, 2).toIntOrNull() ?: return false
+    val month = this.substring(2, 4).toIntOrNull() ?: return false
 
     if (day !in 1..31) return false
     if (month !in 1..12) return false
