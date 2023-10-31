@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -70,7 +71,7 @@ fun MainScreen(
 }
 
 @Composable
-private fun MainScreenUI(
+fun MainScreenUI(
     modifier: Modifier = Modifier,
     onLoginClick: () -> Unit = {},
     onSignUpClick: () -> Unit = {},
@@ -153,6 +154,7 @@ private fun ActionButtons(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         MainScreenActionButton(
+            modifier = Modifier.testTag("login_button"),
             titleId = R.string.welcome_page_login,
             backgroundColor = MaterialTheme.colorScheme.primary,
             contentColor = MaterialTheme.colorScheme.onPrimary,
@@ -160,6 +162,7 @@ private fun ActionButtons(
         )
         Spacer(modifier = Modifier.height(24.dp))
         MainScreenActionButton(
+            modifier = Modifier.testTag("signup_button"),
             titleId = R.string.welcome_page_signup,
             backgroundColor = MaterialTheme.colorScheme.onPrimary,
             contentColor = MaterialTheme.colorScheme.primary,
@@ -174,6 +177,7 @@ private fun ActionButtons(
 
 @Composable
 private fun MainScreenActionButton(
+    modifier: Modifier = Modifier,
     @StringRes titleId: Int,
     backgroundColor: Color,
     contentColor: Color,
@@ -182,7 +186,7 @@ private fun MainScreenActionButton(
     val shape = MaterialTheme.shapes.medium
 
     Text(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .background(backgroundColor, shape)
             .clip(shape = shape)
@@ -209,7 +213,8 @@ private fun ContinueWithoutLoginButton(
             .clickable {
                 onClick()
             }
-            .padding(vertical = 8.dp),
+            .padding(vertical = 8.dp)
+            .testTag("continue_without_login_button"),
         text = stringResource(id = R.string.welcome_page_continue_without_login),
         style = MaterialTheme.typography.labelMedium,
         fontSize = 12.sp,
