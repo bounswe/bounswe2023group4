@@ -49,11 +49,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.extensions.clickableWithoutIndicator
 import com.bounswe.predictionpolls.extensions.toTimeDateString
 import com.bounswe.predictionpolls.ui.common.CustomInputField
 import com.bounswe.predictionpolls.ui.common.ErrorDialog
+import com.bounswe.predictionpolls.ui.feed.navigateToFeedScreen
+import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 import com.bounswe.predictionpolls.utils.DateTransformation
 
@@ -80,13 +83,20 @@ fun SignupScreen(
         isDatePickerVisible = viewModel.screenState.isDatePickerVisible,
         isAgreementChecked = viewModel.screenState.isAgreementChecked,
         onAgreementChecked = { viewModel.onEvent(SignupScreenEvent.OnAgreementChecked) },
-        onSignUpClicked = { viewModel.onEvent(SignupScreenEvent.OnSignupButtonClicked(navController)) },
+        onSignUpClicked = {
+            viewModel.onEvent(SignupScreenEvent.OnSignupButtonClicked {
+                navController.navigateToFeedScreen(
+                    navOptions = NavOptions
+                        .Builder()
+                        .setPopUpTo(MAIN_ROUTE, true)
+                        .build()
+                )
+            })
+        },
         isSignUpEnabled = viewModel.screenState.isSignupButtonEnabled,
         onSignUpWithGoogleClicked = {
             viewModel.onEvent(
-                SignupScreenEvent.OnSignupWithGoogleButtonClicked(
-                    navController
-                )
+                SignupScreenEvent.OnSignupWithGoogleButtonClicked {}
             )
         },
         isLoading = viewModel.isLoading,
@@ -229,7 +239,9 @@ fun SignupScreenForm(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CustomInputField(
-            modifier = Modifier.fillMaxWidth().testTag("email_input"),
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag("email_input"),
             labelId = R.string.signup_email_label,
             text = email,
             onTextChanged = onEmailChanged,
@@ -238,13 +250,17 @@ fun SignupScreenForm(
             )
         )
         CustomInputField(
-            modifier = Modifier.fillMaxWidth().testTag("username_input"),
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag("username_input"),
             labelId = R.string.signup_username_label,
             text = username,
             onTextChanged = onUsernameChanged,
         )
         CustomInputField(
-            modifier = Modifier.fillMaxWidth().testTag("password_input"),
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag("password_input"),
             labelId = R.string.signup_password_label,
             text = password,
             onTextChanged = onPasswordChanged,
@@ -257,7 +273,9 @@ fun SignupScreenForm(
             visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation()
         )
         CustomInputField(
-            modifier = Modifier.fillMaxWidth().testTag("birthday_input"),
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag("birthday_input"),
             labelId = R.string.signup_birthday_label,
             text = birthday,
             onTextChanged = onBirthdayChanged,
