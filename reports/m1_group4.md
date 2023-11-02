@@ -39,6 +39,53 @@
 </ul>
 
 # Milestone Review 
+## A summary of the project status and any changes that are planned for moving forward.
+### Backend project status
+<ul>
+  <li>Authorization with access and refresh tokens is working.</li>
+  <li>Google log in mechanism is implemented but currently collects data only on backend.</li>
+  <li>Registration mechanism is working and is connected to database.</li>
+</ul>
+
+### Backend plans
+<ul>
+  <li>Google log in mechanism will be finalized.</li>
+  <li>Poll endpoints will be working</li>
+  <li>Profile endpoints will be working</li>
+</ul>
+
+## A summary of the customer feedback and reflections.
+<ul>
+  <li>‘Access token’ should not be visible on UI.</li>
+  <li>Poll topics should be predictable.</li>
+  <li>Be more clear about the poll's status on UI.</li>
+</ul>
+
+## List and status of deliverables.
+
+## Evaluation of the status of deliverables and its impact on your project plan (reflection).
+
+## Evaluation of tools and processes you have used to manage your team project.
+### Backend
+<ul>
+  <li>Node.js has stalled the team a bit since it was kind of new among the team</li>
+  <li>MySql was easy for team to use. Team easily designed tables and database was easily deployed. Plus connections from the local machines to deployed database was set which made controlling deployed database easier</li>
+</ul>
+
+## The requirements addressed in this milestone.
+<ul>
+  <li>1.1.2.1.1 Users should be able to sign up with an unused e-mail, unused nickname and a password.</li>
+  <li>1.1.2.1.2 Passwords determined by users while signing up shall be at least 8 characters and shall contain at least three of the following:<ul>
+<li>Lower case letters (a-z)</li>
+<li>Upper case letters (A-Z)</li>
+<li>Numbers (0-9)</li>
+<li>Special characters (e.g. !@#$%^&*)</li></ul></li>
+  <li>1.1.2.1.4 Users should be able to sign up with google.</li>
+  <li>Users should be able to sign in with google.</li>
+</ul>
+  
+
+
 # Individual Contributions
 
 ## Member: Emre Batuhan Göç
