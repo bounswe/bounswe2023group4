@@ -79,3 +79,34 @@ I have opened the routes for sign up, log in, logout, access token request endpo
 
 ### Additional information:
 I have tried to resolve all misunderstandings and code problems related to backend . I have helped my teammates with their work when needed and I recieved help when I encountered problems. I tried to keep the communication alive by managing the discord channels. I wanted to make sure backend related work was always on track so I asked my teammates about their status on the work. I hope I did not cause any unnecessary stress in the team :).
+## Member: Ali Nasra
+### Responsibilities: 
+My responsibilities mainly revolve around providing aesthetic and decent UI designs as an associate of the front-end team while assisting the back-end team in case of an issue.
+### Main contributions: 
+My contributions incorporate reviewing the design requirements, revising the UML diagrams, implementing the UI of the sign-in page, and integrating the page with the backend server.
+### Code-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+| Learning CSS, React, Javascript, and other relevant technologies to front-end development  | https://github.com/bounswe/bounswe2023group4/issues/187 , https://github.com/bounswe/bounswe2023group4/issues/188 , https://github.com/bounswe/bounswe2023group4/issues/189 , https://github.com/bounswe/bounswe2023group4/issues/190 , https://github.com/bounswe/bounswe2023group4/issues/191 , https://github.com/bounswe/bounswe2023group4/issues/192 |
+| Implementing the UI of the sign-in page | https://github.com/bounswe/bounswe2023group4/issues/205 |
+| Implementing the UI for poll cards | https://github.com/bounswe/bounswe2023group4/issues/256 |
+| Integrating the UI of the sign-in page with the frontend server | https://github.com/bounswe/bounswe2023group4/issues/257 |
+| Discussing the implementation of tables in the backend | https://github.com/bounswe/bounswe2023group4/issues/241 |
+
+
+### Management-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+| Revising the sequence diagrams 1-6 | https://github.com/bounswe/bounswe2023group4/issues/147 |
+| Reviewing and updating requirements pertinent to semantic annotation  | https://github.com/bounswe/bounswe2023group4/issues/165 |
+
+### Pull requests:
+|Task|Relevant Pull Requests|
+| --- | --- |
+| Implementing the UI of the sign-in page| https://github.com/bounswe/bounswe2023group4/pull/236 |
+| Integrating the sign-in UI with the backend | https://github.com/bounswe/bounswe2023group4/pull/268 |
+| Updating the request mechanism to fit the deployment settings | https://github.com/bounswe/bounswe2023group4/pull/278  |
+| Writing tests for the sign-in UI | https://github.com/bounswe/bounswe2023group4/pull/288 |
+
+### Additional information:
+The poll cards should have been fully implemented. Indeed, a prototype design was submitted for the UI of discrete poll cards, but due to the urgency of the deployment pending the first milestone presentation, the task was delegated to Selin Işık, who thankfully and dutifully completed it.  
