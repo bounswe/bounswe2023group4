@@ -104,6 +104,22 @@
 
 
 ## Evaluation of tools and processes you have used to manage your team project.
+### General
+<ul>
+  <li>Github is crucial for our project management with its features.</li>
+  <li>Discord is good platform for team to communicate effectively and takes note about what is being done and what to do. Also useful for online meetings.</li>
+  <li>Excel is beneficial for planning part, it is used for both communication plan and RAM.</li>
+  <li>Drawio is helpful for diagrams. We used it for sequence and UML diagrams.</li>
+  <li>Figma is used for preparing and updating mock ups. Its collaborative feature helped very much.</li>
+</ul>
+
+### Frontend
+<ul>
+  <li>React and Javascript presented good features for frontend development. It will be more useful as we have accustomed to it.</li>
+  <li>CSS has been used for UI and it done well.</li>
+  <li>Ant design library has been used for its ready components. It was good for speeding up processes. </li>
+</ul>
+
 ### Backend
 <ul>
   <li>Node.js has stalled the team a bit since it was kind of new among the team</li>
