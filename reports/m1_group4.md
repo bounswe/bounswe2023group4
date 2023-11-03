@@ -332,7 +332,6 @@ I have reviewed our requirements, done some polishing on it when I first joined.
 ### Pull requests:
 I have no pull requests. 
 
-
 # Member: Ahmet Emre Safak
 ### Responsibilities: 
 Initiating the android application project and managing its dependencies. Establishing the navigation framework within the app, and revising the project requirements. Apart from fulfilling my core responsibilities, I also participated in reviewing my teammates' workflows.
@@ -341,18 +340,24 @@ Initiating the android application project and managing its dependencies. Establ
 I successfully initialized the mobile application project and configured the necessary gradle dependencies to ensure a smooth development process. I was in charge of setting up the navigation graph, which is vital for the user experience on the app. Additionally, I critically analyzed and revised the project requirements to align with the project's objectives and stakeholder expectations.
 
 ### Code-related significant issues:
-1. [Mobile app project init](https://github.com/bounswe/bounswe2023group4/issues/169) - Undertook the initialization of the mobile app project, setting a strong foundation for development.
-2. [Arranging gradle dependencies](https://github.com/bounswe/bounswe2023group4/issues/199) - Managed gradle dependencies, ensuring the development environment is up-to-date and efficient.
-3. [Setting up nav graph](https://github.com/bounswe/bounswe2023group4/issues/200) - Established the navigation graph, essential for effective user navigation within the app.
+| Task                                 | Relevant Significant Issues                                         |
+|--------------------------------------|----------------------------------------------------------------------|
+| Mobile app project initialization    | [Issue #169](https://github.com/bounswe/bounswe2023group4/issues/169) |
+| Arranging gradle dependencies        | [Issue #199](https://github.com/bounswe/bounswe2023group4/issues/199) |
+| Setting up navigation graph          | [Issue #200](https://github.com/bounswe/bounswe2023group4/issues/200) |
 
 ### Management-related significant issues:
-1. [Participating in the decision of team division](https://github.com/bounswe/bounswe2023group4/issues/141) - Actively contributed to the team division process, promoting a well-organized team structure.
-2. [Revising requirements](https://github.com/bounswe/bounswe2023group4/issues/151) - Participated in the refinement of project requirements, ensuring clarity and achievability.
+| Task                              | Relevant Significant Issues                                       |
+|-----------------------------------|--------------------------------------------------------------------|
+| Team division decision            | [Issue #141](https://github.com/bounswe/bounswe2023group4/issues/141) |
+| Revising project requirements     | [Issue #151](https://github.com/bounswe/bounswe2023group4/issues/151) |
 
 ### Pull requests:
-1. [Initializing the project](https://github.com/bounswe/bounswe2023group4/pull/186) - My first major task was setting up the project repository, which is the cornerstone of the app's development lifecycle.
-2. [Updating gradle dependencies](https://github.com/bounswe/bounswe2023group4/pull/226) - Updated the gradle dependencies to streamline the development process.
-3. [Implementing navigation infrastructure](https://github.com/bounswe/bounswe2023group4/pull/245) - Implemented the navigation infrastructure to provide a seamless user experience.
+| Task                                   | Relevant Pull Requests                                           |
+|----------------------------------------|------------------------------------------------------------------|
+| Initializing the mobile app project    | [PR #186](https://github.com/bounswe/bounswe2023group4/pull/186) |
+| Updating gradle dependencies           | [PR #226](https://github.com/bounswe/bounswe2023group4/pull/226) |
+| Implementing navigation infrastructure | [PR #245](https://github.com/bounswe/bounswe2023group4/pull/245) |
 
 ## Member: Yiğit Şekerci
 ### Responsibilities: 
