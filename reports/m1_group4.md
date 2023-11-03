@@ -354,3 +354,92 @@ I successfully initialized the mobile application project and configured the nec
 2. [Updating gradle dependencies](https://github.com/bounswe/bounswe2023group4/pull/226) - Updated the gradle dependencies to streamline the development process.
 3. [Implementing navigation infrastructure](https://github.com/bounswe/bounswe2023group4/pull/245) - Implemented the navigation infrastructure to provide a seamless user experience.
 
+## Member: Yiğit Şekerci
+### Responsibilities: 
+I was responsible to handle mobile app progress. I have created the project plan and assigned to the assignees but unfortunately with the one of the mobile team member's subteam change, I took his tasks. Thus, I had to do the most of the coding parts for Milestone 1 in mobile app (Which was very frustrating we will make sure that will never happen again). Also, I was responsible to check semenatic tagging requirements.
+
+### Main contributions: 
+* In management aspect:
+  -  I kept mobile project plan up-to-date 
+  -  I have checked the mobile team progress regularly.
+* In project aspect:
+  -  I have checked semantic tagging requirements.
+  -  I find out what we should research in mobile.
+  -  I have opened most of the mobile issues. (This should be change. This is happend because I am the one who created mobile project plan. We need to integrate others better to project plan.)
+  -  I have prepared the milestone 1 release.
+* In code aspect:
+  -  I have initialized the mobile project.
+  -  I have arranged theme for the mobile app.
+  -  I have implemented token management system in mobile app.
+  -  I have implemented dependency injection system in mobile app.
+  -  I have implemented sign in and sign up pages in mobile app.
+  -  I have implement navigation drawer in mobile app. (We didn't show this in demo but it was already implemented.)
+  -  I have prepared testing enviroment for project in mobile app.
+  -  I have implemented build variant system in mobile app.
+  -  I have implemented base clases in mobile app.
+  -  I have implemented exception handler system in mobile app.
+  -  I have implemented network system (instances, interceptors) in mobile app.
+
+### Code-related significant issues:
+|Task|Relevant significant issues| My duty |
+| --- | --- | --- |
+|Mobile Application Project Initialization| [#169](https://github.com/bounswe/bounswe2023group4/issues/169)| Resolver |
+|Arrange Theme Colors| [#197](https://github.com/bounswe/bounswe2023group4/issues/197)| Resolver |
+|Decide the font for the mobile app| [#198](https://github.com/bounswe/bounswe2023group4/issues/198)| Resolver |
+|Implement build variant system| [#222](https://github.com/bounswe/bounswe2023group4/issues/222)| Resolver |
+|Implement the network module| [#223](https://github.com/bounswe/bounswe2023group4/issues/223)| Resolver |
+|Implement navigation drawer| [#224](https://github.com/bounswe/bounswe2023group4/issues/224)| Resolver |
+|Implement sign up screen UI| [#260](https://github.com/bounswe/bounswe2023group4/issues/159)| Resolver |
+|Implement sign up screen backend requests| [#261](https://github.com/bounswe/bounswe2023group4/issues/261)| Resolver |
+|Implement sign in screen UI| [#263](https://github.com/bounswe/bounswe2023group4/issues/263)| Resolver |
+|Implement sign in screen backend requests| [#264](https://github.com/bounswe/bounswe2023group4/issues/264)| Resolver |
+|Mobile app tests| [#290](https://github.com/bounswe/bounswe2023group4/issues/290)| Resolver |
+|Setting up the navigation component for Android| [#200](https://github.com/bounswe/bounswe2023group4/issues/200)| Reviewer |
+|Arranging Gradle Dependencies for Android Project| [#199](https://github.com/bounswe/bounswe2023group4/issues/199)| Reviewer |
+
+### Management-related significant issues:
+|Task|Relevant significant issues| My duty |
+| --- | --- | --- |
+|Creating Project Plan| [#140](https://github.com/bounswe/bounswe2023group4/issues/140)| Resolver |
+|Update Semantic Tagging Requirements| [#173](https://github.com/bounswe/bounswe2023group4/issues/173)| Resolver |
+|Project Plan Update Mobile| [#216](https://github.com/bounswe/bounswe2023group4/issues/216)| Resolver |
+|Milestone 1 release prep| [#295](https://github.com/bounswe/bounswe2023group4/issues/295)| Resolver |
+
+### Pull requests:
+|Task|Relevant Pull Requests| My duty | Conflict |
+| --- | --- | --- | --- |
+| Android Project init | [PR#186](https://github.com/bounswe/bounswe2023group4/pull/186)| Resolver |-|
+| Implement Build variants in mobile | [PR#228](https://github.com/bounswe/bounswe2023group4/pull/228)| Resolver |-|
+| Implement network module | [PR#229](https://github.com/bounswe/bounswe2023group4/pull/229)| Resolver |-|
+| Add selected font | [PR#233](https://github.com/bounswe/bounswe2023group4/pull/233)| Resolver |-|
+| Implement theming | [PR#235](https://github.com/bounswe/bounswe2023group4/pull/235)| Resolver |-|
+| Implement Navigation Drawer | [PR#244](https://github.com/bounswe/bounswe2023group4/pull/244)| Resolver |-|
+| Implement Navigation | [PR#245](https://github.com/bounswe/bounswe2023group4/pull/245)| Reviewer | No conflict |
+| Sign in and Sign up initial version | [PR#273](https://github.com/bounswe/bounswe2023group4/pull/273)| Resolver |-|
+| Auth Logic Improvements | [PR#285](https://github.com/bounswe/bounswe2023group4/pull/285)| Resolver |-|
+| Add mobile UI and Unit tests | [PR#293](https://github.com/bounswe/bounswe2023group4/pull/293)| Resolver |-|
+| Update Development | [PR#294](https://github.com/bounswe/bounswe2023group4/pull/294)| Resolver |-|
+| Update Master | [PR#297](https://github.com/bounswe/bounswe2023group4/pull/297)| Resolver |-|
+| Frontend Merge for Milestone | [PR#292](https://github.com/bounswe/bounswe2023group4/pull/292)| Reviewer | There were development related codes like console logs. I asked them to refactor the code. |
+| Backend Merge for Milestone | [PR#291](https://github.com/bounswe/bounswe2023group4/pull/291)| Reviewer | There were development related codes like console logs and commented codes. I asked them to refactor the code.|
+
+### Additional information:
+I have conducted many researches to learn to mobile app developmement with mobile team.
+
+|Research Task|Relevant significant issues|
+| --- | --- |
+|Decide on what technologies are going to be used for the mobile| [#159](https://github.com/bounswe/bounswe2023group4/issues/159)|
+|Learn kotlin basics | [#179](https://github.com/bounswe/bounswe2023group4/issues/179)|
+|Learn Android basics| [#180](https://github.com/bounswe/bounswe2023group4/issues/180)|
+|Learn jetpack compose| [#181](https://github.com/bounswe/bounswe2023group4/issues/181)|
+|Learn theming in jetpack compose.| [#182](https://github.com/bounswe/bounswe2023group4/issues/182)|
+|Learn MVVM in Android.| [#183](https://github.com/bounswe/bounswe2023group4/issues/183)| 
+|Learn gradle basics| [#217](https://github.com/bounswe/bounswe2023group4/issues/217)|
+|Learn Retrofit Library| [#218](https://github.com/bounswe/bounswe2023group4/issues/218)|
+|Learn dependency injection techniques| [#219](https://github.com/bounswe/bounswe2023group4/issues/219)|
+|Learn testing in Android| [#220](https://github.com/bounswe/bounswe2023group4/issues/220)|
+|Learn build variant system| [#221](https://github.com/bounswe/bounswe2023group4/issues/221)|
+
+| Additional Task | Issue |
+| --- | --- |
+|Branch clean up| [#184](https://github.com/bounswe/bounswe2023group4/issues/184)|
