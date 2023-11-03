@@ -94,7 +94,7 @@
   <li>We will find a way to test injected components.</li>
   <li>We will increase our tests code coverage.</li>
   <li>We will implement our feed, profile, create poll, poll detail and leaderboard pages until our first internal milestone.</li>
-  <li>After internal milestone we will connect feed, profile, create poll and poll detail pages to backend.</li>
+  <li>After internal milestone we will connect feed, profile, create poll and poll detail pages to backend until milestone 2.</li>
 </ul>
 
 ## A summary of the customer feedback and reflections.
