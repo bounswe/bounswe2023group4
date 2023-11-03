@@ -212,3 +212,44 @@ I do not have  any pull requests, but I merged one.
 | Deciding the font of mobile app for easy use | https://github.com/bounswe/bounswe2023group4/pull/233|
 ### Additional information:
 I also received feedback and instructions for revising the diagrams from Suzan Hoca and shared them with the diagram team. Additionally, Emre Batuhan reviewed and finalized the version of the class diagram that I had created.
+
+## Member: Selin Işık
+### Responsibilities: 
+My primary responsibilities were divided into two categories. First part was improving our procuct design and the second one was working with the frontend team to create web aspect of our product.
+ 
+### Main contributions: 
+I have been actively involved in various aspects of the project, including the creation of the project plan for the frontend. In addition, I have played a key role in updating the project's requirements and mock-up design. I also took charge of addressing annotation requirements issues and establishing the color and theme structure for the entire project. Furthermore, I contributed to the development of several important components, such as the sign-in page, sidebar component, poll card component, and the UI for the feed page.
+
+### Code-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+| Learning CSS, React, Javascript, and other relevant technologies to front-end development  | https://github.com/bounswe/bounswe2023group4/issues/187 , https://github.com/bounswe/bounswe2023group4/issues/188 , https://github.com/bounswe/bounswe2023group4/issues/189 , https://github.com/bounswe/bounswe2023group4/issues/190 , https://github.com/bounswe/bounswe2023group4/issues/191 , https://github.com/bounswe/bounswe2023group4/issues/192 |
+| Arrange Theme Colors in Frontend Project | https://github.com/bounswe/bounswe2023group4/issues/203 |
+| Implementing the UI of the sign-in page | https://github.com/bounswe/bounswe2023group4/issues/205 |
+| Implementing the UI for poll cards | https://github.com/bounswe/bounswe2023group4/issues/256 |
+| Implementing Sidebar component | https://github.com/bounswe/bounswe2023group4/issues/258 |
+| Implementing Feed Page| https://github.com/bounswe/bounswe2023group4/issues/259 |
+
+
+### Management-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+| Deciding on Subteams | https://github.com/bounswe/bounswe2023group4/issues/141 |
+| Decide on what technologies are going to be used for the front-end  | https://github.com/bounswe/bounswe2023group4/issues/153 |
+| Requirements update on Annotation | https://github.com/bounswe/bounswe2023group4/issues/165 , https://github.com/bounswe/bounswe2023group4/issues/175 |
+| Mockup Update | https://github.com/bounswe/bounswe2023group4/issues/174 ,  https://github.com/bounswe/bounswe2023group4/issues/201 |
+| Creating Project Plan | https://github.com/bounswe/bounswe2023group4/issues/140 , https://github.com/bounswe/bounswe2023group4/issues/202 | 
+
+### Pull requests:
+|Task|Relevant Pull Requests|
+| --- | --- |
+| Implementing color and theme | https://github.com/bounswe/bounswe2023group4/pull/238 |
+| Updating the UI of the sign-in page| https://github.com/bounswe/bounswe2023group4/pull/242 |
+| Implementing Sidebar | https://github.com/bounswe/bounswe2023group4/pull/274 |
+| Implementing the Poll Card | https://github.com/bounswe/bounswe2023group4/pull/279 |
+| Implementing the Feed Page | https://github.com/bounswe/bounswe2023group4/pull/280 |
+| Feed Page Tests | https://github.com/bounswe/bounswe2023group4/pull/283 | 
+| Added logout and sign up input validation | https://github.com/bounswe/bounswe2023group4/pull/287 |
+
+### Additional information:
+I have actively maintained and updated the project's wiki, offering guidance and support to members who are learning frontend skills from scratch. I tried to assist these team members in their journey by providing them with valuable insights and resources. Furthermore, I have consistently provided constructive feedback on their work to enhance their skills and contribute to the overall success of our team. I am also the communicator of the group, so during lab hours I tried to improve communication between team members and product owners.
