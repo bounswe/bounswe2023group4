@@ -154,8 +154,8 @@
 
 ### Mobile
 <ul>
-  <li>We have chosen to continue with native android/kotlin and jetpack compose. Logical programming with jetpack compose made our learning process relatively easy. /li>
-  <li>We have chosen the Android Studio as our IDE since its integration with native android apps is good. We have used IDE's many built-in functions like app inspector and layout inspector to enhance our development process./li>
+  <li>We have chosen to continue with native android/kotlin and jetpack compose. Logical programming with jetpack compose made our learning process relatively easy. </li>
+  <li>We have chosen the Android Studio as our IDE since its integration with native android apps is good. We have used IDE's many built-in functions like app inspector and layout inspector to enhance our development process. </li>
   <li>We have used retrofit library for our backend requests since it is a well-known library it was easy to find solutions for our problems.</li>
   <li>We have used Dagger-Hilt library for dependency injection. Learning was hard but testing was harder. Optimization comes with a price a guess.</li>
   <li>We have used Mockito library to mock object in tests.</li>
