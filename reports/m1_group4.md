@@ -474,3 +474,37 @@ I have conducted many researches to learn to mobile app developmement with mobil
 | Additional Task | Issue |
 | --- | --- |
 |Branch clean up| [#184](https://github.com/bounswe/bounswe2023group4/issues/184)|
+
+## Member: Kutay Saran
+### Responsibilities: 
+Initiating the frontend project and managing its dependencies. Establishing the navigation and UI library within the app.
+ 
+### Main contributions: 
+I have successfully set up the frontend project and arranged the some dependencies. My other contributions are arranging font size , updating sign-up page UI, implementing Google Sign-in , and creating a  mockup for forgot-password .
+
+
+### Code-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+| Learning CSS, React, Javascript, and other relevant technologies to front-end development  | https://github.com/bounswe/bounswe2023group4/issues/187 , https://github.com/bounswe/bounswe2023group4/issues/188 , https://github.com/bounswe/bounswe2023group4/issues/189 , https://github.com/bounswe/bounswe2023group4/issues/190 , https://github.com/bounswe/bounswe2023group4/issues/191 , https://github.com/bounswe/bounswe2023group4/issues/192 |
+| Arrange Fonts in Frontend Project | https://github.com/bounswe/bounswe2023group4/issues/215 |
+| Project Initialization for Front-end | https://github.com/bounswe/bounswe2023group4/issues/167 |
+| Google Authentication Frontend | https://github.com/bounswe/bounswe2023group4/issues/253 |
+| Sign-up page implementation | https://github.com/bounswe/bounswe2023group4/issues/212 |
+
+
+### Management-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+| Deciding on Subteams | https://github.com/bounswe/bounswe2023group4/issues/141 |
+| Decide on what technologies are going to be used for the front-end  | https://github.com/bounswe/bounswe2023group4/issues/153 |
+| Mockup Update | https://github.com/bounswe/bounswe2023group4/issues/174 ,  https://github.com/bounswe/bounswe2023group4/issues/201 |
+
+### Pull requests:
+|Task|Relevant Pull Requests|
+| --- | --- |
+| initialize frontend project | https://github.com/bounswe/bounswe2023group4/pull/193 |
+| Updating the UI of the sign-up page| https://github.com/bounswe/bounswe2023group4/pull/237 |
+| Arrange fonts  | https://github.com/bounswe/bounswe2023group4/pull/246 |
+| Google Sign In Functionality | https://github.com/bounswe/bounswe2023group4/pull/281 |
+| Update development branch for milestone | https://github.com/bounswe/bounswe2023group4/pull/292 |
