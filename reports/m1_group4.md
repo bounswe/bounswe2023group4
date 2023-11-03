@@ -519,3 +519,45 @@ I have successfully set up the frontend project and arranged the some dependenci
 | Arrange fonts  | https://github.com/bounswe/bounswe2023group4/pull/246 |
 | Google Sign In Functionality | https://github.com/bounswe/bounswe2023group4/pull/281 |
 | Update development branch for milestone | https://github.com/bounswe/bounswe2023group4/pull/292 |
+
+## Member: Enes Furkan Arslan
+### Responsibilities: 
+My main responsibilites are implementing necessary components on frontend and make them functional by linking them with backend. Other than that I am responsible for updating the design of the project as necessarily. Finally I am responsible for taking my part on the management of the project and reviewing the works done by other members of the team. 
+### Main contributions: 
+I have involved in a lot of processes until this milestone from management to implementation aspects. Some of my management related contributions are preparing new RAM and communication plan, taking part in division of team into subteams, deciding on the technologies to be used on frontend with front team, updating mock-up designs, organizing extra meetings for ongoing tasks and keep checking the progress of other tasks and reviewing them. About implementation part I have mainly contributed to the sign up page and took the key part there. Details can be found in next sections. 
+
+### Code-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+|I have reviewed the initial work base of the frontend|[#167](https://github.com/bounswe/bounswe2023group4/issues/167)| 
+|I have researched and studied frontend technologies that we used in the project|[#187](https://github.com/bounswe/bounswe2023group4/issues/187),[#188](https://github.com/bounswe/bounswe2023group4/issues/188),[#189](https://github.com/bounswe/bounswe2023group4/issues/189),[#190](https://github.com/bounswe/bounswe2023group4/issues/190),[#191](https://github.com/bounswe/bounswe2023group4/issues/191),[#192](https://github.com/bounswe/bounswe2023group4/issues/192)|
+|I have implemented sign up form, sign up button, sign up with google button and link to home, structured the sign up page as in the mock up design and added sign up photo|[#212](https://github.com/bounswe/bounswe2023group4/issues/212)|
+|I have make the integration of sign up page with the backend|[#257](https://github.com/bounswe/bounswe2023group4/issues/257)|
+|I have added some features to sign up page like redirecting user to sign in page if sign up is succesfull and informing user in case username already exists.|[#276](https://github.com/bounswe/bounswe2023group4/issues/276)|
+|I have implemented necessary tests for sign up page|[#286](https://github.com/bounswe/bounswe2023group4/issues/286)| 
+
+### Management-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+| I took part in division of our team to subteams|[#141](https://github.com/bounswe/bounswe2023group4/issues/141)|
+| I took part in the frontend technology selection|[#153](https://github.com/bounswe/bounswe2023group4/issues/153)|
+|I have created a responsibility assignment matrix for the team|[#152](https://github.com/bounswe/bounswe2023group4/issues/152), [#172](https://github.com/bounswe/bounswe2023group4/issues/172), [#214](https://github.com/bounswe/bounswe2023group4/issues/214)|
+|I have taken part on updating our mock up designs|[#174](https://github.com/bounswe/bounswe2023group4/issues/174),[#201](https://github.com/bounswe/bounswe2023group4/issues/201)|
+|I have created the new communication plan of the team|[#299](https://github.com/bounswe/bounswe2023group4/issues/299)| 
+
+### Pull requests:
+|Task|Relevant Pull Requests|
+| --- | --- |
+|I have reviewed the initial work base of the frontend. There was no conflicts|[#167](https://github.com/bounswe/bounswe2023group4/issues/167)| 
+|I have implemented sign up form, sign up button, sign up with google button and link to home, structured the sign up page as in the mock up design and added sign up photo|[#227](https://github.com/bounswe/bounswe2023group4/pull/227)|
+|I have make the integration of sign up page with the backend|[#269](https://github.com/bounswe/bounswe2023group4/pull/269)|
+|I have added some features to sign up page like redirecting user to sign in page if sign up is succesfull and informing user in case username already exists.|[#277](https://github.com/bounswe/bounswe2023group4/pull/277)|
+|I have implemented necessary tests for sign up page|[#284](https://github.com/bounswe/bounswe2023group4/pull/284)|
+|To milestone report 1, I have added communication plan and RAM, list and status of deliverables part, evaluation of deliverables part, milestone review for frontend part, evaluation of tools part for general and frontend. I have also reviewed the other parts.|[#298](https://github.com/bounswe/bounswe2023group4/pull/298)|
+|I have reviewed sign in page UI updates. The request was going to wrong URL and status code being checked was wrong. We resolved the issue with necessary changes. |[#278](https://github.com/bounswe/bounswe2023group4/pull/278)|
+|I have reviewed sign in page implementation. It was a request to merge to main which is not our convention. Other than that UI was not suitable with our new mock up design. It is resolved with another PR|[#231](https://github.com/bounswe/bounswe2023group4/pull/231)|
+|I have reviewed other PRs that are merged without conflicts|[#288](https://github.com/bounswe/bounswe2023group4/pull/288),[#287](https://github.com/bounswe/bounswe2023group4/pull/287),[#283](https://github.com/bounswe/bounswe2023group4/pull/283),[#281](https://github.com/bounswe/bounswe2023group4/pull/281),[#280](https://github.com/bounswe/bounswe2023group4/pull/280),[#279](https://github.com/bounswe/bounswe2023group4/pull/279),[#274](https://github.com/bounswe/bounswe2023group4/pull/274),[#272](https://github.com/bounswe/bounswe2023group4/pull/272),[#270](https://github.com/bounswe/bounswe2023group4/pull/270),[#268](https://github.com/bounswe/bounswe2023group4/pull/268),[#246](https://github.com/bounswe/bounswe2023group4/pull/246),[#242](https://github.com/bounswe/bounswe2023group4/pull/242),[#238](https://github.com/bounswe/bounswe2023group4/pull/238)|
+
+
+### Additional information:
+I have tried to be active as much as possible and resolve all problems within the team. Other than above, I have also took note about our project owner's gestures during the presentation. 
