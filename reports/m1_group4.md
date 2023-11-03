@@ -7,7 +7,7 @@
 <ul>
   <li> <a href="https://github.com/bounswe/bounswe2023group4/wiki/UML---Class-Diagram">Class Diagram</a> </li>
   <li> <a href="https://github.com/bounswe/bounswe2023group4/wiki/UML-Sequence-Diagrams">Sequence Diagrams</a> </li>
-  <li> <a href="https://github.com/bounswe/bounswe2023group4/wiki/UML-Use-Cases-Diagram">Use Cases Diagram</a> </li>
+  <li> <a href="https://github.com/bounswe/bounswe2023group4/wiki/UML-Use-Cases-Diagram">Use Cases Diagram</a> </li> 
 </ul>
 
 # Scenarios and Mockups
@@ -28,6 +28,9 @@
   <li><a href="https://github.com/bounswe/bounswe2023group4/wiki/Frontend-Project-Plan">Frontend Plan</a></li>
   <li><a href="https://github.com/bounswe/bounswe2023group4/wiki/Backend-Project-Plan">Backend Plan</a></li>
   <li><a href="https://github.com/bounswe/bounswe2023group4/wiki/Mobile-Project-Plan">Mobile Plan</a></li>
+  <li><a href="https://github.com/bounswe/bounswe2023group4/wiki/Communication-Plan-New-Semester">Communication Plan</a></li> 
+  <li><a href="https://github.com/bounswe/bounswe2023group4/wiki/RAM">RAM</a></li> 
+  
 </ul>
 
 # Weekly reports and any additional meeting notes
