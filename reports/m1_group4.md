@@ -77,6 +77,17 @@
 </ul>
 
 ## Evaluation of the status of deliverables and its impact on your project plan (reflection).
+<ul>
+  <li>Requirements have been updated and addressed on this milestone. They may require further updates according to the feedbacks we got and other parts of the project planned.</li>
+  <li>UML diagrams have been updated and addressed on this milestone. They may require further updates according to the feedbacks we got and other parts of the project planned.</li> 
+  <li>Scenarios and Mockups have been updated and addressed on this milestone. They may require further updates according to the feedbacks we got and other parts of the project planned.</li>
+  <li>Our team created new project plan, communication plan and responsiblity assignment matrix for this semester. They may be updated according to the works done that are not planned and works not done that are planned for this milestone.</li>
+  <li>Weekly reports have been very beneficial for the team so we will continue with what we have been doing.</li>
+  <li>Milestone review is beneficial for subteams and team as a whole to see the parts that are nice and parts that are missing. So according to that new weekly plans will be made.</li>
+  <li>Individual Contribution reports are good for self assessment about works done on the project. Team members can see their both good and missing contributions and adapt themselves accordingly. </li>
+  <li>Pre release version of our software have been completed and presented to our project owners. It was generally as we want and we have took the chance for getting feedbacks. We will change necessary part of the project accordingly. </li> 
+</ul>
+
 
 ## Evaluation of tools and processes you have used to manage your team project.
 ### Backend
