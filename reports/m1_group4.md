@@ -307,3 +307,27 @@ I have created a mySql database to store users and connected this database to ou
 
 ### Additional information:
 I have communicated actively with my team on our discord channel. Unfortunately, I was ill in the 5th week so I have low contributions at that time.
+
+## Member: Serhat Hebun Şimşek
+### Responsibilities: 
+I have been mainly involved with DevOps. So I have mainly done dockerization and deployment of our product. 
+### Main Contributions:
+I have reviewed our requirements, done some polishing on it when I first joined. Other than that I have helped with our initial database creation, I have deployed our database to AWS RDS and I have created our backend project plan. In addition I have dockerized our backend, deployed our backend and dockerized our frontend and deployed it as well. 
+### Code-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+|I have helped database deployment and configuration | [#209](https://github.com/bounswe/bounswe2023group4/issues/209), [#250](https://github.com/bounswe/bounswe2023group4/issues/250)|
+| I have dockerized our backend | [#213](https://github.com/bounswe/bounswe2023group4/issues/213)|
+| I have deployed our backend to an EC2 instance | [#251](https://github.com/bounswe/bounswe2023group4/issues/251)|
+| I have deployed our finalized product for milestone1 | [#252](https://github.com/bounswe/bounswe2023group4/issues/252)|
+
+### Management-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+| I created my introduction page | [#149](https://github.com/bounswe/bounswe2023group4/issues/149) |
+| I helped deciding subteam division |[#141](https://github.com/bounswe/bounswe2023group4/issues/141)|
+| I got familiar with project resources as I was a new member | [#157](https://github.com/bounswe/bounswe2023group4/issues/157)
+| I created the backend project plan | [#204](https://github.com/bounswe/bounswe2023group4/issues/204)
+
+### Pull requests:
+I have no pull requests. 
