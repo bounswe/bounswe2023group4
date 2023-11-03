@@ -269,3 +269,41 @@ I have been actively involved in various aspects of the project, including the c
 
 ### Additional information:
 I have actively maintained and updated the project's wiki, offering guidance and support to members who are learning frontend skills from scratch. I tried to assist these team members in their journey by providing them with valuable insights and resources. Furthermore, I have consistently provided constructive feedback on their work to enhance their skills and contribute to the overall success of our team. I am also the communicator of the group, so during lab hours I tried to improve communication between team members and product owners.
+
+## Member: Şefik Palazoğlu
+### Responsibilities: 
+Setting up backend logic and database logic. Ensuring frontend structures are stored properly at the backend and are reachable.
+
+### Main contributions: 
+I have created a mySql database to store users and connected this database to our node.js application. When we started implementing JWT tokens I took part in how to store these tokens in the backend. I took part in storing username/email and password tuples and oversee the hashing protocol of passwords. I prepared and uploaded weekly reports.
+
+### Code-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+| I revised and updated profile and search sequence diagrams | [#143](https://github.com/bounswe/bounswe2023group4/issues/143), [#145](https://github.com/bounswe/bounswe2023group4/issues/145),[#161](https://github.com/bounswe/bounswe2023group4/issues/161)| 
+| I have written unit tests for sign up, log in, logout, access token request endpoints|[#210](https://github.com/bounswe/bounswe2023group4/issues/210)|
+| I initialized project’s database | [#162](https://github.com/bounswe/bounswe2023group4/issues/162), [#163](https://github.com/bounswe/bounswe2023group4/issues/163) |
+| Learned unit testing in node.js and implement a small test | [#206](https://github.com/bounswe/bounswe2023group4/issues/206) |
+| Studied Google authentication and prepare environment| [#208](https://github.com/bounswe/bounswe2023group4/issues/208), [#248](https://github.com/bounswe/bounswe2023group4/issues/248) |
+| I have helped database deployment and configuration |[#209](https://github.com/bounswe/bounswe2023group4/issues/209), [#250](https://github.com/bounswe/bounswe2023group4/issues/250)|
+| Uploaded and written weekly reports |[#249](https://github.com/bounswe/bounswe2023group4/issues/249), [#160](https://github.com/bounswe/bounswe2023group4/issues/160)|
+| I helped coordination of work between backend and frontend teams’ work | [#257](https://github.com/bounswe/bounswe2023group4/issues/257)
+
+### Management-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+| I created my introduction page | [#146](https://github.com/bounswe/bounswe2023group4/issues/146) |
+| I helped deciding subteam division |[#141](https://github.com/bounswe/bounswe2023group4/issues/141)|
+| I helped update the diagrams|[#143](https://github.com/bounswe/bounswe2023group4/issues/143)|
+| I got familiar with project resources as I was a new member | [#148](https://github.com/bounswe/bounswe2023group4/issues/148)
+| I took part in the backend tech selection|[#154](https://github.com/bounswe/bounswe2023group4/issues/154)|
+
+### Pull requests:
+|Task|Relevant Pull Requests|
+| --- | --- |
+| I prepared database for authentication | [#239](https://github.com/bounswe/bounswe2023group4/pull/239) |
+| I helped create initial testing environment | [#225](https://github.com/bounswe/bounswe2023group4/pull/225) |
+| I uploaded sequence diagrams | [#195](https://github.com/bounswe/bounswe2023group4/pull/195)
+
+### Additional information:
+I have communicated actively with my team on our discord channel. Unfortunately, I was ill in the 5th week so I have low contributions at that time.
