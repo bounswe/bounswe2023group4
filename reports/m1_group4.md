@@ -158,5 +158,22 @@ My contributions incorporate reviewing the design requirements, revising the UML
 | Updating the request mechanism to fit the deployment settings | https://github.com/bounswe/bounswe2023group4/pull/278  |
 | Writing tests for the sign-in UI | https://github.com/bounswe/bounswe2023group4/pull/288 |
 
+## Member: Ali Alperen Sönmez
+### Responsibilities: 
+I've been involved in two main tasks: first, I worked on improving the UML diagrams, and second, I focused on presenting the mobile app effectively. Furthermore, I collaborated with Suzan Hoca to get feedback and guidance for enhancing the UML diagrams, which I then shared with the team. Additionally, I was tasked with implementing the sign-in page for the mobile application. However, I realized that I would not be able to complete it on time, so my teammate Yiğit Şekerci took over and implemented the mobile sign-in page instead.
+### Main contributions: 
+My contributions are involve revising the UML diagrams and presentation of the mobile application.
+### Code-related significant issues:
+I had committed to implementing the mobile sign-in page, but I couldn't.
+### Management-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+| Revising six of the authentication and poll system sequence diagrams | https://github.com/bounswe/bounswe2023group4/issues/178|
+| Revising the class diagram  | https://github.com/bounswe/bounswe2023group4/issues/177 |
+### Pull requests:
+I do not have  any pull requests, but I merged one.
+|Task|Relevant Pull Requests|
+| --- | --- |
+| Deciding the font of mobile app for easy use | https://github.com/bounswe/bounswe2023group4/pull/233|
 ### Additional information:
-The poll cards should have been fully implemented. Indeed, a prototype design was submitted for the UI of discrete poll cards, but due to the urgency of the deployment pending the first milestone presentation, the task was delegated to Selin Işık, who thankfully and dutifully completed it.  
+I also received feedback and instructions for revising the diagrams from Suzan Hoca and shared them with the diagram team. Additionally, Emre Batuhan reviewed and finalized the version of the class diagram that I had created.
