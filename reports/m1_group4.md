@@ -394,7 +394,7 @@ I was responsible to handle mobile app progress. I have created the project plan
 |Implement build variant system| [#222](https://github.com/bounswe/bounswe2023group4/issues/222)| Resolver |
 |Implement the network module| [#223](https://github.com/bounswe/bounswe2023group4/issues/223)| Resolver |
 |Implement navigation drawer| [#224](https://github.com/bounswe/bounswe2023group4/issues/224)| Resolver |
-|Implement sign up screen UI| [#260](https://github.com/bounswe/bounswe2023group4/issues/159)| Resolver |
+|Implement sign up screen UI| [#260](https://github.com/bounswe/bounswe2023group4/issues/260)| Resolver |
 |Implement sign up screen backend requests| [#261](https://github.com/bounswe/bounswe2023group4/issues/261)| Resolver |
 |Implement sign in screen UI| [#263](https://github.com/bounswe/bounswe2023group4/issues/263)| Resolver |
 |Implement sign in screen backend requests| [#264](https://github.com/bounswe/bounswe2023group4/issues/264)| Resolver |
