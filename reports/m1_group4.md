@@ -48,6 +48,7 @@
   <li>Authorization with access and refresh tokens is working.</li>
   <li>Google log in mechanism is implemented but currently collects data only on backend.</li>
   <li>Registration mechanism is working and is connected to database.</li>
+  <li>Auth validation missing.</li>
 </ul>
 
 ### Backend plans
@@ -55,6 +56,7 @@
   <li>Google log in mechanism will be finalized.</li>
   <li>Poll endpoints will be working</li>
   <li>Profile endpoints will be working</li>
+  <li>Auth validation will be completed.</li>
 </ul>
 
 ### Frontend project status
@@ -69,6 +71,30 @@
   <li>Sign in and sign up pages will be improved and finalized.</li>
   <li>All communication setting with backend will be finalized about authentication process.</li>
   <li>Feed page implementation will be done with real data coming from backend.</li>  
+</ul>
+
+### Mobile project status
+<ul>
+  <li>Project initialized and added required dependencies.</li>
+  <li>Network system implemented.</li>
+  <li>Token Management system implemented.</li>
+  <li>Exception handler implemented.</li>
+  <li>Landing Page implemented.</li>
+  <li>Sign in and sign up page UIs have implemented.</li>
+  <li>Empty feed page implemented to show the status of auth.</li>
+  <li>We couldn't integrate our mobile and backend in google authentication. We need to wait for backend to support the mobile.</li>
+  <li>We didn't have enough time to add password validation but the auth works since backend also didn't have any validation.</li>
+  <li>We have written many tests but components with dependency injection gave error. Thus, we had to skip some of these components which led to decrease in our code coverage.</li>
+</ul>
+
+### Mobile plans
+<ul>
+  <li>We will improve form validation in login and signup pages.</li>
+  <li>We will find new modern way for mobile users to authenticate users with Google with the help of backend team.</li>
+  <li>We will find a way to test injected components.</li>
+  <li>We will increase our tests code coverage.</li>
+  <li>We will implement our feed, profile, create poll, poll detail and leaderboard pages until our first internal milestone.</li>
+  <li>After internal milestone we will connect feed, profile, create poll and poll detail pages to backend.</li>
 </ul>
 
 ## A summary of the customer feedback and reflections.
