@@ -57,6 +57,20 @@
   <li>Profile endpoints will be working</li>
 </ul>
 
+### Frontend project status
+<ul>
+  <li>Sign in and sign up page UIs have implemented parallel to new mock ups.</li>
+  <li>Communication with backend has implemented and it works as intended.</li>
+  <li>An example feed page with navigation bar has implemented with mock data that is suitable with our mock up.</li>
+</ul>
+
+### Frontend plans
+<ul>
+  <li>Sign in and sign up pages will be improved and finalized.</li>
+  <li>All communication setting with backend will be finalized about authentication process.</li>
+  <li>Feed page implementation will be done with real data coming from backend.</li>  
+</ul>
+
 ## A summary of the customer feedback and reflections.
 <ul>
   <li>‘Access token’ should not be visible on UI.</li>
