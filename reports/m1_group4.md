@@ -111,8 +111,8 @@
   <li>Scenarios and Mockups -> Completed and Link Provided on the Report </li>
   <li>Project Plan, Communication Plan, Responsibility Assignment Matrix -> Completed and Link Provided on the Report</li>
   <li>Weekly reports and any additional meeting notes -> Completed and Link Provided on the Report</li>
-  <li>Milestone Review -> In Progress </li>
-  <li>Individual Contributions -> In Progress</li>
+  <li>Milestone Review -> Completed </li>
+  <li>Individual Contributions -> Completed </li>
   <li>A pre-release version of your software -> Completed and Added To Repo as pre release</li> 
 </ul>
 
