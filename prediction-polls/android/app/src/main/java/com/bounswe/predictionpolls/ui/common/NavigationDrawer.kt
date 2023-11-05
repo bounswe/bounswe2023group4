@@ -1,4 +1,4 @@
-package com.bounswe.predictionpolls.common
+package com.bounswe.predictionpolls.ui.common
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

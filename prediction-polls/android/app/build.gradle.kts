@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -26,6 +28,7 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             isMinifyEnabled = false
+            buildConfigField("String", "BASE_URL", gradleLocalProperties(rootDir).getProperty("base_url"))
         }
         create("staging") {
             applicationIdSuffix = ".staging"
@@ -35,6 +38,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "BASE_URL", gradleLocalProperties(rootDir).getProperty("base_url"))
         }
         release {
             isMinifyEnabled = true
@@ -42,6 +46,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "BASE_URL", gradleLocalProperties(rootDir).getProperty("base_url"))
         }
     }
     compileOptions {
@@ -53,6 +58,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.3"
@@ -76,22 +82,34 @@ dependencies {
 
     // Navigation
     val navVersion = "2.7.4"
-
     implementation("androidx.navigation:navigation-compose:$navVersion")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
-
-
+    // Testing
+    testImplementation("org.mockito:mockito-core:5.3.1")
+    testImplementation("org.mockito:mockito-inline:5.2.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.10.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     // Dagger Hilt
     implementation("com.google.dagger:hilt-android:2.48.1")
     ksp("com.google.dagger:hilt-compiler:2.48.1")
+
+    // For instrumentation tests Dagger hilt
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.48.1")
+    androidTestAnnotationProcessor("com.google.dagger:hilt-compiler:2.48.1")
+
+    // For local unit tests Dagger hilt
+    testImplementation("com.google.dagger:hilt-android-testing:2.48.1")
+    testAnnotationProcessor("com.google.dagger:hilt-compiler:2.48.1")
 
     // OkHttp
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
