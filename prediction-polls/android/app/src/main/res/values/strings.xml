@@ -14,4 +14,9 @@
     <string name="cd_app_title">App Title</string>
     <string name="cd_nav_item">Navigation drawer item: %1$s</string>
     <string name="cd_poll_profile_picture">Poll Profile Picture</string>
+
+
+
+    <string name="date_picker_ok">Tamam</string>
+    <string name="date_picker_cancel">İptal</string>
 </resources>
