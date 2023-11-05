@@ -1,5 +1,6 @@
 package com.bounswe.predictionpolls.ui.feed
 
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
@@ -10,7 +11,8 @@ const val FEED_ROUTE = "feed"
 
 fun NavGraphBuilder.feedScreen(navController: NavController) {
     composable(FEED_ROUTE) {
-        FeedScreen(navController)
+        val feedViewModel: FeedViewModel = hiltViewModel() // will be used later
+        FeedScreen()
     }
 }
 
