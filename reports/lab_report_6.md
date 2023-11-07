@@ -49,7 +49,7 @@
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
 | --- | --- | --- | --- | --- |
-| Implement Poll Logic | [#302](https://github.com/bounswe/bounswe2023group4/issues/302) | Şefik Palazoğlu, Ali Nasra | 14.11.2023 | 5hr |
+| Implement Poll Logic | [#302](https://github.com/bounswe/bounswe2023group4/issues/302) | Şefik Palazoğlu, Ali Nasra | 14.11.2023 | 6hr |
 
 ## Risks
 - We need to have multiple meetings for coordination among backend team and front teams this week. It is a risk that not everyone can be available.
