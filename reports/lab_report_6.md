@@ -50,6 +50,7 @@
 ## Planned vs. Actual
 * Şefik was ill in 5th week, most of his tasks were handled by Emre Batuhan. As a consequence [#241](https://github.com/bounswe/bounswe2023group4/issues/241) was overdue.
 * The task of designing the poll cards was transferred from Ali to Selin due to the urgency of Frontend-backend integration. Selin's work can be found in [#279](https://github.com/bounswe/bounswe2023group4/pull/279) pull request.
+* Alperen's task are given to Yiğit that's why we couldn't manage to finish some tasks on time. These tasks are given in the reflection part of release and will be done this week.
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
@@ -60,8 +61,10 @@
 | Implement Profile Page UI | [#306](https://github.com/bounswe/bounswe2023group4/issues/306) | Selin Işık | 14.11.2023 | 4hr |
 | Mobile compatibility of Auth pages and Feed page | [#307](https://github.com/bounswe/bounswe2023group4/issues/307), [#309](https://github.com/bounswe/bounswe2023group4/issues/309),[#310](https://github.com/bounswe/bounswe2023group4/issues/310)| Selin Işık | 14.11.2023 | 3.5hr |
 | Update CSS structure of Sign-In and Sign-Up pages | [#305](https://github.com/bounswe/bounswe2023group4/issues/305) | Selin Işık | 14.11.2023 | 1.5hr |
+
 ## Risks
 - We have an internal milestone next week. Frontend will be implemented with mock data. It could be made without consideration with backend's plan if it changes. These issues need to be communicated throughout the week as they are hard to predict before starting to work.
+- Mobile team shrank that's why the amount of work per student is increase significantly we have to change plan or get new member from other sub teams to be able develop the app according to the plan.
 
 ## Participants
 - Ali Nasra
