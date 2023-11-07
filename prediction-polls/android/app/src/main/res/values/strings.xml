@@ -49,4 +49,10 @@
     <string name="cd_back">Back Button</string>
     <string name="cd_welcome_page_image">Welcome page image</string>
     <string name="cd_nav_item">Navigation drawer item: %1$s</string>
+    <string name="cd_poll_profile_picture">Poll Profile Picture</string>
+
+
+
+    <string name="date_picker_ok">Tamam</string>
+    <string name="date_picker_cancel">İptal</string>
 </resources>
