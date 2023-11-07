@@ -61,6 +61,14 @@
 | Implement Profile Page UI | [#306](https://github.com/bounswe/bounswe2023group4/issues/306) | Selin Işık | 14.11.2023 | 4hr |
 | Mobile compatibility of Auth pages and Feed page | [#307](https://github.com/bounswe/bounswe2023group4/issues/307), [#309](https://github.com/bounswe/bounswe2023group4/issues/309),[#310](https://github.com/bounswe/bounswe2023group4/issues/310)| Selin Işık | 14.11.2023 | 3.5hr |
 | Update CSS structure of Sign-In and Sign-Up pages | [#305](https://github.com/bounswe/bounswe2023group4/issues/305) | Selin Işık | 14.11.2023 | 1.5hr |
+| Implement sign in with Google | [#265](https://github.com/bounswe/bounswe2023group4/issues/265) | Yiğit Şekerci | 14.11.23 | 3hr |
+| Implement sign up with Google | [#262](https://github.com/bounswe/bounswe2023group4/issues/262) | Yiğit Şekerci | 14.11.23 | 3hr |
+| Update Mobile project plan | [#315](https://github.com/bounswe/bounswe2023group4/issues/315) | Yiğit Şekerci | 14.11.23 | 1hr |
+| Implement create poll screen UI | [#314](https://github.com/bounswe/bounswe2023group4/issues/314) | Yiğit Şekerci | 14.11.23 | 4.5 hr |
+| Implement leaderboard screen UI | [#313](https://github.com/bounswe/bounswe2023group4/issues/313) | Yiğit Şekerci | 14.11.23 | 4hr |
+| Implement poll detail screen UI | [#312](https://github.com/bounswe/bounswe2023group4/issues/312) | Ahmet Emre Şafak | 14.11.23 | 4.5hr |
+| Implement profile screen UI | [#311](https://github.com/bounswe/bounswe2023group4/issues/311) | Ahmet Emre Şafak | 14.11.23 | 4hr |
+
 
 ## Risks
 - We have an internal milestone next week. Frontend will be implemented with mock data. It could be made without consideration with backend's plan if it changes. These issues need to be communicated throughout the week as they are hard to predict before starting to work.
