@@ -56,6 +56,7 @@
 | Description | Issue | Assignee | Due | Estimated Duration |
 | --- | --- | --- | --- | --- |
 | Implement Poll Logic | [#302](https://github.com/bounswe/bounswe2023group4/issues/302) | Şefik Palazoğlu, Ali Nasra | 14.11.2023 | 6hr |
+| Upload Report | [#301](https://github.com/bounswe/bounswe2023group4/issues/301) | Şefik Palazoğlu | 8.11.2023 | [link](https://github.com/bounswe/bounswe2023group4/blob/main/reports/lab_report_6.md) | 1hr | 1hr |
 | Update swagger for added Poll Logic | [#323](https://github.com/bounswe/bounswe2023group4/issues/323) | Şefik Palazoğlu, Emre Batuhan Göç | 14.11.23 | 2hr |
 | Implement Voting Page UI | [#304](https://github.com/bounswe/bounswe2023group4/issues/304) | Ali Nasra | 11.11.2023 | 3hr |
 | Auth form validation |[#308](https://github.com/bounswe/bounswe2023group4/issues/308) | Hebun Şimşek | 13.11.2023 | 5hr |
