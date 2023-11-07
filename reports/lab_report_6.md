@@ -75,7 +75,7 @@
 | The implementation of the Leaderboard page UI | [#316](https://github.com/bounswe/bounswe2023group4/issues/316) | Kutay Saran | 14.11.23 | 4hr |
 | Implement Sign In with Google from Backend to Frontend | [#321](https://github.com/bounswe/bounswe2023group4/issues/321) | Emre Batuhan Göç | 12.11.23 | 4hr |
 | Implement Sign In with Google from Backend to Mobile | [#322](https://github.com/bounswe/bounswe2023group4/issues/322) | Emre Batuhan Göç | 14.11.23 | 3hr |
-| Implement Creating Poll Page UI | [#320](https://github.com/bounswe/bounswe2023group4/issues/320) | Enes Furkan Arslan | 14.11.2023 | 5h |
+| Implement Creating Poll Page UI | [#320](https://github.com/bounswe/bounswe2023group4/issues/320) | Enes Furkan Arslan | 14.11.2023 | 5hr |
 
 
 
