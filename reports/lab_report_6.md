@@ -5,10 +5,9 @@
 
 ## Progress Summary
 * This week we have dockerized and deployed the milestone 1 version of our project. 
-* // Front team progressed in their login amd sign up pages. 
-* // Mobile team finished their researches and implemented the base infrastructure for the app. Moreover, small UI components are implemented in mobile. 
-* // This week we aim to finish sign in and sign up logics in our app that's why this week we aim to connect the work of backend team with frontend and mobile team.
-* // We expect mobile team to finish their autharization related design issues until the meeting. 
+* Front and Mobile Team's work was integrated with the deployed backend of the project, so signin and signup works now.
+* This week we aim to finish poll related issues like how to create a poll, how to store it in the database etc.
+* We also need to implement front end and mobile views and feeds for polls.
 
 ## What was planned for the week? How did it go?
 
@@ -45,13 +44,12 @@
 | Create Swagger Documentation Backend | [#232](https://github.com/bounswe/bounswe2023group4/issues/232) | Emre Batuhan Göç | 24.10.2023 | [#240](https://github.com/bounswe/bounswe2023group4/pull/240) |
 
 ## Planned vs. Actual
-( Şefik was ill in 5th week, most of his tasks were handled by Emre Batuhan. As a consequence [#241](https://github.com/bounswe/bounswe2023group4/issues/241) was overdue.
+* Şefik was ill in 5th week, most of his tasks were handled by Emre Batuhan. As a consequence [#241](https://github.com/bounswe/bounswe2023group4/issues/241) was overdue.
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
 | --- | --- | --- | --- | --- |
-| Issue Name | [#IssueNumber](https://github.com/bounswe/bounswe2023group4/issues/241) | Assignee | 14.11.2023 | 2hr |
-
+| Implement Poll Logic | [#302](https://github.com/bounswe/bounswe2023group4/issues/302) | Şefik Palazoğlu, Ali Nasra | 14.11.2023 | 5hr |
 
 ## Risks
 - We need to have multiple meetings for coordination among backend team and front teams this week. It is a risk that not everyone can be available.
