@@ -34,11 +34,11 @@
 | Implementing Navigation Drawer | [#224](https://github.com/bounswe/bounswe2023group4/issues/224) | Yiğit Şekerci | 30.10.23 | [#244](https://github.com/bounswe/bounswe2023group4/pull/244) | 0.5hr | 0.5hr |
 | Implement sign up screen UI | [#260](https://github.com/bounswe/bounswe2023group4/issues/260) | Yiğit Şekerci | 30.10.23 | [#273](https://github.com/bounswe/bounswe2023group4/pull/273) | 3hr | 3hr | 
 | Implement sign up screen backend requests | [#261](https://github.com/bounswe/bounswe2023group4/issues/261) | Yiğit Şekerci | 30.10.23 | [#285](https://github.com/bounswe/bounswe2023group4/pull/285), [#273](https://github.com/bounswe/bounswe2023group4/pull/273) | 1.5hr | 1.5hr |
-| Implement sign up with Google | [#262](https://github.com/bounswe/bounswe2023group4/issues/262) | Yiğit Şekerci | 30.10.23 | | 2hr | Unfinished |
+| Implement sign up with Google | [#262](https://github.com/bounswe/bounswe2023group4/issues/262) | Yiğit Şekerci | 30.10.23 | - | 2hr | Unfinished |
 | Implement sign in screen UI | [#263](https://github.com/bounswe/bounswe2023group4/issues/263) | Yiğit Şekerci | 30.10.23 | [#273](https://github.com/bounswe/bounswe2023group4/pull/273) | 3hr | 3.5hr |
 | Implement sign in screen backend requests | [#264](https://github.com/bounswe/bounswe2023group4/issues/264) | Yiğit Şekerci | 30.10.23 | [#273](https://github.com/bounswe/bounswe2023group4/pull/273), [#285](https://github.com/bounswe/bounswe2023group4/pull/285) | 1.5hr | 1.5hr |
-| Implement sign in with Google | [#265](https://github.com/bounswe/bounswe2023group4/issues/265) | Yiğit Şekerci | 30.10.23 | | 2hr | Unfinished |
-| Implement Feed Screen UI | [#266](https://github.com/bounswe/bounswe2023group4/issues/266) | Ahmet Emre Şafak | 06.11.23 | [#273](https://github.com/bounswe/bounswe2023group4/pull/273), [#300](https://github.com/bounswe/bounswe2023group4/pull/300) | 6hr | 5.5hr |
+| Implement sign in with Google | [#265](https://github.com/bounswe/bounswe2023group4/issues/265) | Yiğit Şekerci | 30.10.23 | - | 2hr | Unfinished |
+| Implement Feed Screen UI | [#266](https://github.com/bounswe/bounswe2023group4/issues/266) | Ahmet Emre Şafak | 06.11.23 | [#300](https://github.com/bounswe/bounswe2023group4/pull/300) | 6hr | 6hr |
 
 ## Completed tasks that were not planned for the week
 
