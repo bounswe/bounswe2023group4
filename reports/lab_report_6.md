@@ -41,7 +41,6 @@
 
 | Description  | Issue | Assignee | Due | PR |
 | -------- | ----- | -------- | --- | --- |
-| Create Swagger Documentation Backend | [#232](https://github.com/bounswe/bounswe2023group4/issues/232) | Emre Batuhan Göç | 24.10.2023 | [#240](https://github.com/bounswe/bounswe2023group4/pull/240) |
 
 ## Planned vs. Actual
 * Şefik was ill in 5th week, most of his tasks were handled by Emre Batuhan. As a consequence [#241](https://github.com/bounswe/bounswe2023group4/issues/241) was overdue.
