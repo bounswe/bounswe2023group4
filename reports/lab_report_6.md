@@ -44,6 +44,8 @@
 
 | Description  | Issue | Assignee | Due | PR |
 | -------- | ----- | -------- | --- | --- |
+| Add mobile app tests | [#290](https://github.com/bounswe/bounswe2023group4/issues/290) | Yiğit Şekerci | 30.10.2023 | [PR#293](https://github.com/bounswe/bounswe2023group4/pull/293) |
+| Milestone 1 Release prep | [#295](https://github.com/bounswe/bounswe2023group4/issues/295) | Yiğit Şekerci | 30.10.2023 | [Release](https://github.com/bounswe/bounswe2023group4/releases/tag/customer-milestone-1)
 
 ## Planned vs. Actual
 * Şefik was ill in 5th week, most of his tasks were handled by Emre Batuhan. As a consequence [#241](https://github.com/bounswe/bounswe2023group4/issues/241) was overdue.
