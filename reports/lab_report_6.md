@@ -55,6 +55,9 @@
 | Implement Poll Logic | [#302](https://github.com/bounswe/bounswe2023group4/issues/302) | Şefik Palazoğlu, Ali Nasra | 14.11.2023 | 6hr |
 | Implement Voting Page UI | [#304](https://github.com/bounswe/bounswe2023group4/issues/304) | Ali Nasra | 11.11.2023 | 3hr |
 | Auth form validation |[#308](https://github.com/bounswe/bounswe2023group4/issues/308) | Hebun Şimşek | 13.11.2023 | 5hr |
+| Implement Profile Page UI | [#306](https://github.com/bounswe/bounswe2023group4/issues/306) | Selin Işık | 14.11.2023 | 4hr |
+| Mobile compatibility of Auth pages and Feed page | [#307](https://github.com/bounswe/bounswe2023group4/issues/307), [#309](https://github.com/bounswe/bounswe2023group4/issues/309),[#310](https://github.com/bounswe/bounswe2023group4/issues/310)| Selin Işık | 14.11.2023 | 3.5hr |
+| Update CSS structure of Sign-In and Sign-Up pages | [#305](https://github.com/bounswe/bounswe2023group4/issues/305) | Selin Işık | 14.11.2023 | 1.5hr |
 ## Risks
 - We have an internal milestone next week. Frontend will be implemented with mock data. It could be made without consideration with backend's plan if it changes. These issues need to be communicated throughout the week as they are hard to predict before starting to work.
 
