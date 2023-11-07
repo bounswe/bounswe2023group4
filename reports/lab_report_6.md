@@ -26,7 +26,7 @@
 | Update swagger to include poll API | [#255](https://github.com/bounswe/bounswe2023group4/issues/255) | Emre Batuhan Göç | 30.10.2023 | [branch](https://github.com/bounswe/bounswe2023group4/tree/backend/feature/polls) | 1.5hr | 1.5hr |
 | Implementing the UI of the poll card | [#279](https://github.com/bounswe/bounswe2023group4/pull/279) | Selin Işık | 30.10.2023 | [#279](https://github.com/bounswe/bounswe2023group4/pull/279) | 4hr | 4hr |
 | Google Authentication Frontend | [#253](https://github.com/bounswe/bounswe2023group4/issues/253) | Kutay Saran | 30.10.2023 | [#281](https://github.com/bounswe/bounswe2023group4/pull/281) | 4hr | 3hr |
-| Combining backend and frontend | [#257](https://github.com/bounswe/bounswe2023group4/issues/257) | Ali Nasra, Enes Furkan Arslan, Şefik Palazoğlu, Emre Batuhan Göç | 30.10.2023 | [#268](https://github.com/bounswe/bounswe2023group4/pull/268), [#269](https://github.com/bounswe/bounswe2023group4/pull/269), [#270](https://github.com/bounswe/bounswe2023group4/pull/270) | 4hr | 4hr |
+| Combining backend and frontend | [#257](https://github.com/bounswe/bounswe2023group4/issues/257) | Ali Nasra, Enes Furkan Arslan, Şefik Palazoğlu, Emre Batuhan Göç | 30.10.2023 | [#268](https://github.com/bounswe/bounswe2023group4/pull/268), [#269](https://github.com/bounswe/bounswe2023group4/pull/269), [#270](https://github.com/bounswe/bounswe2023group4/pull/270) | 4hr | 3hr |
 | Implementing SideBar | [#258](https://github.com/bounswe/bounswe2023group4/issues/258) | Selin Işık | 30.10.23 | [#274](https://github.com/bounswe/bounswe2023group4/pull/274) | 4hr | 4hr |
 | Implementing Feed Page | [#259](https://github.com/bounswe/bounswe2023group4/issues/259) | Selin Işık | 30.10.23 | [#280](https://github.com/bounswe/bounswe2023group4/pull/280) | 2hr | 2hr |
 | Setting up the navigation component for Android | [#200](https://github.com/bounswe/bounswe2023group4/issues/200) | Ahmet Emre Şafak | 30.10.23 | [#245](https://github.com/bounswe/bounswe2023group4/pull/245) | 0.5hr | 0.5hr | 
@@ -56,6 +56,7 @@
 | Description | Issue | Assignee | Due | Estimated Duration |
 | --- | --- | --- | --- | --- |
 | Implement Poll Logic | [#302](https://github.com/bounswe/bounswe2023group4/issues/302) | Şefik Palazoğlu, Ali Nasra | 14.11.2023 | 6hr |
+| Update swagger for added Poll Logic | [#323](https://github.com/bounswe/bounswe2023group4/issues/323) | Şefik Palazoğlu, Emre Batuhan Göç | 14.11.23 | 2hr |
 | Implement Voting Page UI | [#304](https://github.com/bounswe/bounswe2023group4/issues/304) | Ali Nasra | 11.11.2023 | 3hr |
 | Auth form validation |[#308](https://github.com/bounswe/bounswe2023group4/issues/308) | Hebun Şimşek | 13.11.2023 | 5hr |
 | Implement Profile Page UI | [#306](https://github.com/bounswe/bounswe2023group4/issues/306) | Selin Işık | 14.11.2023 | 4hr |
@@ -72,7 +73,10 @@
 | Increase Mobile App tests' code coverage | [#317](https://github.com/bounswe/bounswe2023group4/issues/317) | Yiğit Şekerci | 14.11.23 | 3.5hr |
 | Implement Sign In with Google | [#319](https://github.com/bounswe/bounswe2023group4/issues/319) | Kutay Saran | 14.11.23 | 3hr |
 | The implementation of the Leaderboard page UI | [#316](https://github.com/bounswe/bounswe2023group4/issues/316) | Kutay Saran | 14.11.23 | 4hr |
-| Implement Creating Poll Page UI | [#320](https://github.com/bounswe/bounswe2023group4/issues/320) | Enes Furkan Arslan | 14.11.2023 | 5h |
+| Implement Sign In with Google from Backend to Frontend | [#321](https://github.com/bounswe/bounswe2023group4/issues/321) | Emre Batuhan Göç | 12.11.23 | 4hr |
+| Implement Sign In with Google from Backend to Mobile | [#322](https://github.com/bounswe/bounswe2023group4/issues/322) | Emre Batuhan Göç | 14.11.23 | 3hr |
+
+
 
 
 ## Risks
