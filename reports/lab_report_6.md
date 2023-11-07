@@ -44,14 +44,16 @@
 
 ## Planned vs. Actual
 * Şefik was ill in 5th week, most of his tasks were handled by Emre Batuhan. As a consequence [#241](https://github.com/bounswe/bounswe2023group4/issues/241) was overdue.
+* The task of designing the poll cards was transferred from Ali to Selin due to the urgency of Frontend-backend integration. Selin's work can be found in [#279](https://github.com/bounswe/bounswe2023group4/pull/279) pull request.
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
 | --- | --- | --- | --- | --- |
 | Implement Poll Logic | [#302](https://github.com/bounswe/bounswe2023group4/issues/302) | Şefik Palazoğlu, Ali Nasra | 14.11.2023 | 6hr |
+| Implement Voting Page UI | [#304](https://github.com/bounswe/bounswe2023group4/issues/304) | Ali Nasra | 11.11.2023 | 3hr |
 
 ## Risks
-- We have an internal milestone next week. Frontend will be implemented with mock data. It could be made without consideration with backends plan if it changes. These issues need to be communicated throughout the week as they are hard to predict before starting to work.
+- We have an internal milestone next week. Frontend will be implemented with mock data. It could be made without consideration with backend's plan if it changes. These issues need to be communicated throughout the week as they are hard to predict before starting to work.
 
 ## Participants
 - Ali Nasra
