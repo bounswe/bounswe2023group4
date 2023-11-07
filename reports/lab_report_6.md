@@ -4,11 +4,11 @@
 **Date:** 07.11.2023
 
 ## Progress Summary
-* This week we have dockerized and deployed the initial bare bones project. 
-* Front team progressed in their login amd sign up pages. 
-* Mobile team finished their researches and implemented the base infrastructure for the app. Moreover, small UI components are implemented in mobile. 
-* This week we aim to finish sign in and sign up logics in our app that's why this week we aim to connect the work of backend team with frontend and mobile team.
-* We expect mobile team to finish their autharization related design issues until the meeting. 
+* This week we have dockerized and deployed the milestone 1 version of our project. 
+* // Front team progressed in their login amd sign up pages. 
+* // Mobile team finished their researches and implemented the base infrastructure for the app. Moreover, small UI components are implemented in mobile. 
+* // This week we aim to finish sign in and sign up logics in our app that's why this week we aim to connect the work of backend team with frontend and mobile team.
+* // We expect mobile team to finish their autharization related design issues until the meeting. 
 
 ## What was planned for the week? How did it go?
 
@@ -45,45 +45,19 @@
 | Create Swagger Documentation Backend | [#232](https://github.com/bounswe/bounswe2023group4/issues/232) | Emre Batuhan Göç | 24.10.2023 | [#240](https://github.com/bounswe/bounswe2023group4/pull/240) |
 
 ## Planned vs. Actual
-| Linking Refresh Token and Users in Database | [#241](https://github.com/bounswe/bounswe2023group4/issues/241) | Şefik Palazoğlu | 30.10.2023 | | 2hr | |
+( Şefik was ill in 5th week, most of his tasks were handled by Emre Batuhan. As a consequence [#241](https://github.com/bounswe/bounswe2023group4/issues/241) was overdue.
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
 | --- | --- | --- | --- | --- |
-| Linking Refresh Token and Users in Database | [#241](https://github.com/bounswe/bounswe2023group4/issues/241) | Şefik Palazoğlu | 30.10.2023 | 2hr |
-| Add Email and Date of Birth in Registration Flow | [#247](https://github.com/bounswe/bounswe2023group4/issues/247) | Şefik Palazoğlu | 30.10.2023 | 1.5hr |
-| Google Authentication Backend | [#248](https://github.com/bounswe/bounswe2023group4/issues/248) | Şefik Palazoğlu | 30.10.2023 | 4hr |
-| Upload Report | [#249](https://github.com/bounswe/bounswe2023group4/issues/249) | Şefik Palazoğlu | 24.10.2023 | 1hr |
-| Database configuration | [#250](https://github.com/bounswe/bounswe2023group4/issues/250) | Hebun Şimşek, Şefik Palazoğlu | 30.10.2023 | 3hr |
-| Deploy the backend to EC2 | [#251](https://github.com/bounswe/bounswe2023group4/issues/251) | Hebun Şimşek | 30.10.2023 | 2hr |
-| Deployment of the finalized product | [#252](https://github.com/bounswe/bounswe2023group4/issues/252) | Hebun Şimşek | 30.10.2023 | 4hr |
-| Implement fundamentals of poll API | [#254](https://github.com/bounswe/bounswe2023group4/issues/254) | Emre Batuhan Göç | 30.10.2023 | 5hr |
-| Update swagger to include poll API | [#255](https://github.com/bounswe/bounswe2023group4/issues/255) | Emre Batuhan Göç | 30.10.2023 | 1.5hr |
-| Implementing the UI of the poll card | [#256](https://github.com/bounswe/bounswe2023group4/issues/256) | Ali Nasra | 30.10.2023 | 4hr |
-| Google Authentication Frontend | [#253](https://github.com/bounswe/bounswe2023group4/issues/253) | Kutay Saran | 30.10.2023 | 4hr |
-| Combining backend and frontend | [#257](https://github.com/bounswe/bounswe2023group4/issues/257) | Ali Nasra, Enes Furkan Arslan, Şefik Palazoğlu | 30.10.2023 | 4hr |
-| Implementing SideBar | [#258](https://github.com/bounswe/bounswe2023group4/issues/258) | Selin Işık | 30.10.23 | 4hr | 
-| Implementing Feed Page | [#259](https://github.com/bounswe/bounswe2023group4/issues/259) | Selin Işık | 30.10.23 | 2hr |
-| Setting up the navigation component for Android | [#200](https://github.com/bounswe/bounswe2023group4/issues/200) | Ahmet Emre Şafak | 30.10.23 |  0.5hr | 
-| Implementing build variant system | [#222](https://github.com/bounswe/bounswe2023group4/issues/222) | Yiğit Şekerci | 30.10.23 | 0.5hr | 
-| Implementing Navigation Drawer | [#224](https://github.com/bounswe/bounswe2023group4/issues/224) | Yiğit Şekerci | 30.10.23 | 0.5hr | 
-| Implement sign up screen UI | [#260](https://github.com/bounswe/bounswe2023group4/issues/260) | Yiğit Şekerci | 30.10.23 | 3hr | 
-| Implement sign up screen backend requests | [#261](https://github.com/bounswe/bounswe2023group4/issues/261) | Yiğit Şekerci | 30.10.23 | 1.5hr | 
-| Implement sign up with Google | [#262](https://github.com/bounswe/bounswe2023group4/issues/262) | Yiğit Şekerci | 30.10.23 | 2hr | 
-| Implement sign in screen UI | [#263](https://github.com/bounswe/bounswe2023group4/issues/263) | Ali Alperen Sönmez | 30.10.23 | 3hr |
-| Implement sign in screen backend requests | [#264](https://github.com/bounswe/bounswe2023group4/issues/264) | Ali Alperen Sönmez | 30.10.23 | 1.5hr | 
-| Implement sign in with Google | [#265](https://github.com/bounswe/bounswe2023group4/issues/265) | Ali Alperen Sönmez | 30.10.23 | 2hr | 
-| Implement Feed Screen UI | [#266](https://github.com/bounswe/bounswe2023group4/issues/266) | Ahmet Emre Şafak | 06.11.23 | 6hr | 
+| Issue Name | [#IssueNumber](https://github.com/bounswe/bounswe2023group4/issues/241) | Assignee | 14.11.2023 | 2hr |
 
 
-  
 ## Risks
 - We need to have multiple meetings for coordination among backend team and front teams this week. It is a risk that not everyone can be available.
 
 ## Participants
-- Ahmet Emre Şafak
 - Ali Nasra
-- Ali Alperen Sönmez
 - Emre Batuhan Göç
 - Enes Furkan Arslan
 - Hebun Şimşek
