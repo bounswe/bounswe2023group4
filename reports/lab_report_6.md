@@ -51,7 +51,7 @@
 | Implement Poll Logic | [#302](https://github.com/bounswe/bounswe2023group4/issues/302) | Şefik Palazoğlu, Ali Nasra | 14.11.2023 | 6hr |
 
 ## Risks
-- We need to have multiple meetings for coordination among backend team and front teams this week. It is a risk that not everyone can be available.
+- We have an internal milestone next week. Frontend will be implemented with mock data. It could be made without consideration with backends plan if it changes. These issues need to be communicated throughout the week as they are hard to predict before starting to work.
 
 ## Participants
 - Ali Nasra
