@@ -7,7 +7,10 @@
 * This week we have dockerized and deployed the milestone 1 version of our project. 
 * Front and Mobile Team's work was integrated with the deployed backend of the project, so signin and signup works now.
 * This week we aim to finish poll related issues like how to create a poll, how to store it in the database etc.
-* We also need to implement front end and mobile views and feeds for polls.
+* We also need to implement frontend and feeds for polls.
+* In mobile, after milestone we have implemented feed page UI.
+* In mobile, this week we will finish the reflections from milestone and will also the continue the task according the mobile plan.
+* In mobile, one of the members wanted to change his sub team that's why we have to update the mobile plan again.
 
 ## What was planned for the week? How did it go?
 
@@ -31,10 +34,10 @@
 | Implementing Navigation Drawer | [#224](https://github.com/bounswe/bounswe2023group4/issues/224) | Yiğit Şekerci | 30.10.23 | [#244](https://github.com/bounswe/bounswe2023group4/pull/244) | 0.5hr | 0.5hr |
 | Implement sign up screen UI | [#260](https://github.com/bounswe/bounswe2023group4/issues/260) | Yiğit Şekerci | 30.10.23 | [#273](https://github.com/bounswe/bounswe2023group4/pull/273) | 3hr | 3hr | 
 | Implement sign up screen backend requests | [#261](https://github.com/bounswe/bounswe2023group4/issues/261) | Yiğit Şekerci | 30.10.23 | [#285](https://github.com/bounswe/bounswe2023group4/pull/285), [#273](https://github.com/bounswe/bounswe2023group4/pull/273) | 1.5hr | 1.5hr |
-| Implement sign up with Google | [#262](https://github.com/bounswe/bounswe2023group4/issues/262) | Yiğit Şekerci | 30.10.23 | [#228](https://github.com/bounswe/bounswe2023group4/pull/228), [#285](https://github.com/bounswe/bounswe2023group4/pull/285), [#273](https://github.com/bounswe/bounswe2023group4/pull/273) | 2hr | 2hr |
-| Implement sign in screen UI | [#263](https://github.com/bounswe/bounswe2023group4/issues/263) | Ali Alperen Sönmez | 30.10.23 | [#273](https://github.com/bounswe/bounswe2023group4/pull/273) | 3hr | 3.5hr |
-| Implement sign in screen backend requests | [#264](https://github.com/bounswe/bounswe2023group4/issues/264) | Ali Alperen Sönmez | 30.10.23 | [#273](https://github.com/bounswe/bounswe2023group4/pull/273), [#285](https://github.com/bounswe/bounswe2023group4/pull/285) | 1.5hr | 1.5hr |
-| Implement sign in with Google | [#265](https://github.com/bounswe/bounswe2023group4/issues/265) | Ali Alperen Sönmez | 30.10.23 | [#273](https://github.com/bounswe/bounswe2023group4/pull/273), [#285](https://github.com/bounswe/bounswe2023group4/pull/285) | 2hr | 2.5hr |
+| Implement sign up with Google | [#262](https://github.com/bounswe/bounswe2023group4/issues/262) | Yiğit Şekerci | 30.10.23 | | 2hr | Unfinished |
+| Implement sign in screen UI | [#263](https://github.com/bounswe/bounswe2023group4/issues/263) | Yiğit Şekerci | 30.10.23 | [#273](https://github.com/bounswe/bounswe2023group4/pull/273) | 3hr | 3.5hr |
+| Implement sign in screen backend requests | [#264](https://github.com/bounswe/bounswe2023group4/issues/264) | Yiğit Şekerci | 30.10.23 | [#273](https://github.com/bounswe/bounswe2023group4/pull/273), [#285](https://github.com/bounswe/bounswe2023group4/pull/285) | 1.5hr | 1.5hr |
+| Implement sign in with Google | [#265](https://github.com/bounswe/bounswe2023group4/issues/265) | Yiğit Şekerci | 30.10.23 | | 2hr | Unfinished |
 | Implement Feed Screen UI | [#266](https://github.com/bounswe/bounswe2023group4/issues/266) | Ahmet Emre Şafak | 06.11.23 | [#273](https://github.com/bounswe/bounswe2023group4/pull/273), [#300](https://github.com/bounswe/bounswe2023group4/pull/300) | 6hr | 5.5hr |
 
 ## Completed tasks that were not planned for the week
