@@ -41,7 +41,7 @@ async function googleLogInWithCode(code,res){
       }
 
       generatedPassword = generateRandomPassword(12);
-      addUser(googleUser.given_name,generatedPassword,googleUser.email,None);
+      addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
 
       const user = {name : googleUser.name};
       const accesToken = generateAccessToken(user);
@@ -64,7 +64,7 @@ async function googleLogInWithCode(code,res){
       }
 
       generatedPassword = generateRandomPassword(12);
-      addUser(googleUser.given_name,generatedPassword,googleUser.email,None);
+      addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
 
       const user = {name : googleUser.name};
       const accesToken = generateAccessToken(user);
@@ -86,7 +86,7 @@ async function googleLogInWithCode(code,res){
       code: code,
       client_id: process.env.googleClientId,
       client_secret: process.env.googleClientSecret,
-      redirect_uri: process.env.googleOauthRedirectUrl,
+      redirect_uri: process.env.googleOAuthRedirectUrl,
       grant_type: "authorization_code",
     };
   
