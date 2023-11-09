@@ -86,12 +86,16 @@ const messageStyle = {
   color: "#FC1612"
 }
 
+
 function SignIn() {
   const [passwordVisible, setPasswordVisible] = React.useState(false);
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [message, setMessage] = React.useState("");
   const navigate = useNavigate();
+  const handleLogin = () => {
+    window.location.href = getGoogleOAuthURL();
+  };
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -104,7 +108,7 @@ function SignIn() {
           password: password
         })
       };
-      const response = await fetch(process.env.REACT_APP_BACKEND_LINK+'/login', requestOptions);
+      const response = await fetch(process.env.REACT_APP_BACKEND_LINK+'/auth/login', requestOptions);
       const data = await response.json();
     
     if (response.status === 201 && data.accessToken && data.refreshToken) {
@@ -128,7 +132,7 @@ function SignIn() {
         <Form {...formItemLayout}>
           <Form.Item>
             <div>
-              <Button style={formButtonStyle} onClick={() => window.location.href = getGoogleOAuthURL()}>
+              <Button style={formButtonStyle} onClick={handleLogin}>
                 <GoogleLogo style={googleLogoStyle} />
 
                 <span>Sign In with Google</span>
