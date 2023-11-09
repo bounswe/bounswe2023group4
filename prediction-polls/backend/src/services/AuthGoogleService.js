@@ -3,6 +3,7 @@ const axios = require("axios");
 const db = require("../repositories/AuthorizationDB.js");
 const crypto = require('crypto');
 
+const { addUser } = require('./AuthenticationService.js');
 const { generateAccessToken, generateRefreshToken } = require('./AuthorizationService.js');
 
 
@@ -25,8 +26,8 @@ async function googleLogInWithCode(code,res){
   
     try {
       // get the id and access token with the code
-      const { error, id_token, access_token } = await getGoogleOAuthTokens({ code });
-      if(error){return res.status(403).send("Invalid Code")}
+      const { token_error, id_token, access_token } = await getGoogleOAuthTokens({ code });
+      if(token_error){return res.status(403).send("Invalid Code")}
 
       console.log({ id_token, access_token });
   
@@ -40,10 +41,10 @@ async function googleLogInWithCode(code,res){
         return res.status(403).send("Google account is not verified");
       }
 
-      generatedPassword = generateRandomPassword(12);
-      addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+      const generatedPassword = generateRandomPassword(12);
+      const { success, error} = await addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
 
-      const user = {name : googleUser.name};
+      const user = {name : googleUser.given_name};
       const accesToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
       db.addRefreshToken(refreshToken);
@@ -63,10 +64,10 @@ async function googleLogInWithCode(code,res){
         return res.status(403).send("Google account is not verified");
       }
 
-      generatedPassword = generateRandomPassword(12);
-      addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+      const generatedPassword = generateRandomPassword(12);
+      const { success, error} = await addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
 
-      const user = {name : googleUser.name};
+      const user = {name : googleUser.given_name};
       const accesToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
 
@@ -103,7 +104,7 @@ async function googleLogInWithCode(code,res){
       );
       return res.data;
     } catch (error) {
-      return {"error":error.message};
+      return {token_error:error.message};
     }
   }
   
