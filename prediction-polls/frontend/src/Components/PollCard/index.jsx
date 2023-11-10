@@ -8,36 +8,58 @@ import { ReactComponent as ReportIcon } from "../../Assets/icons/Warning.svg";
 import PollOption from "../PollOption";
 
 function PollCard({ PollData }) {
-  const totalPoints = !PollData.isCustomPoll
+  const [selectedArray, setSelectedArray] = React.useState(!PollData.isCustomPoll? Array(PollData['options'].length).fill(false): []);
+  const [pollData, setPollData] = React.useState(JSON.parse(JSON.stringify(PollData)));
+  var totalPoints = !PollData.isCustomPoll
     ? PollData.options.reduce((acc, curr) => acc + curr.votes, 0)
     : 0;
-
+  const handleSelect = (newList) => {
+    setSelectedArray(newList);
+    var newPoll = JSON.parse(JSON.stringify(PollData));
+    for (let i = 0; i < PollData['options'].length; i++) {
+      if (newList[i] == true){
+        newPoll['options'][i]['votes'] =  newPoll['options'][i]['votes'] + 1;
+        break;
+      }
+    } 
+    setPollData(JSON.parse(JSON.stringify(newPoll)));
+    totalPoints = !PollData.isCustomPoll
+    ? PollData.options.reduce((acc, curr) => acc + curr.votes, 0)
+    : 0;
+  };
   const navigate = useNavigate();
+  const clickHandle = (e)=>{
+    e.preventDefault();
+    navigate("/vote/"+pollData.id);
+  }
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={clickHandle}>
       <div className={styles.question}>
         <div className={styles.tags}>
-          {PollData.tags.map((tag, index) => (
+          {pollData.tags.map((tag, index) => (
             <PollTag TagName={tag} key={index} />
           ))}
         </div>
         <div className={styles.questionPoints}>
           <div className={styles.question}>
-            <p>{PollData.question}</p>
+            <p>{pollData.question}</p>
           </div>
 
         </div>
-        {!PollData.isCustomPoll ? (
+        {!pollData.isCustomPoll ? (
           <div className={styles.optionList}>
-            {PollData.options.map((option, index) => {
+            {pollData.options.map((option, index) => {
               const widthPercentage = (option.votes / totalPoints) * 100;
               return (
                 <PollOption
                   widthPercentage={widthPercentage}
                   navigate={navigate}
                   option={option}
+                  isSelected={selectedArray[index]}
                   index={index}
+                  arrayLength={PollData['options'].length}
                   key={index}
+                  selectOption={handleSelect}
                 />
               );
             })}
@@ -60,9 +82,8 @@ function PollCard({ PollData }) {
               <CommentIcon /> Comments
             </button>
             <span className={styles.commentCount}>
-              {`${PollData.comments.length} comment${
-                PollData.comments.length > 1 ? "s" : ""
-              }`}
+              {`${PollData.comments.length} comment${PollData.comments.length > 1 ? "s" : ""
+                }`}
             </span>
           </div>
 
