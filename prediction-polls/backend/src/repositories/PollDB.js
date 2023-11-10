@@ -41,8 +41,8 @@ async function addDiscretePoll(question, choices){
     const sql_choice = 'INSERT INTO discrete_poll_choices (choice_text, poll_id) VALUES (?, ?)';
 
     try {
-        const result = await pool.query(sql_poll, [question]);
-        poll_id = result[0].insertId;
+        const [resultSetHeader] = await pool.query(sql_poll, [question]);
+        poll_id = resultSetHeader.insertId;
         if (!poll_id) {
             return false;
         }
