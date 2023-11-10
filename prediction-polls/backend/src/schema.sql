@@ -48,6 +48,6 @@ CREATE TABLE continuous_poll_selections (
     poll_id INT,
     user_id INT, 
     selected_value FLOAT NOT NULL,
-    FOREIGN KEY (poll_id) REFERENCES continuous_polls(poll_id),
+    FOREIGN KEY (poll_id) REFERENCES continuous_polls(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
