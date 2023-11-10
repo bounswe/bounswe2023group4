@@ -17,8 +17,8 @@ CREATE TABLE refresh_tokens (
 
 CREATE TABLE discrete_polls (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    question VARCHAR(255) NOT NULL,
-)
+    question VARCHAR(255) NOT NULL
+);
 
 CREATE TABLE discrete_poll_choices (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -26,7 +26,7 @@ CREATE TABLE discrete_poll_choices (
     poll_id INT, 
     voter_count INT DEFAULT 0,
     FOREIGN KEY (poll_id) REFERENCES discrete_polls(id)
-)
+);
 
 CREATE TABLE discrete_polls_selections (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -34,7 +34,7 @@ CREATE TABLE discrete_polls_selections (
     user_id INT,
     FOREIGN KEY (poll_id) REFERENCES discrete_polls(poll_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
-)
+);
 
 CREATE TABLE continuous_polls (
     id INT PRIMARY KEY AUTO_INCREMENT,
