@@ -36,8 +36,24 @@ async function getContinuousPollWithId(){
 
 }
 
-async function addDiscretePoll(){
+async function addDiscretePoll(question, choices){
+    const sql_poll = 'INSERT INTO discrete_polls (question) VALUES (?)';
+    const sql_choice = 'INSERT INTO discrete_poll_choices (choice_text, poll_id) VALUES (?, ?)';
 
+    try {
+        const result = await pool.query(sql_poll, [question]);
+        poll_id = result[0].insertId;
+        if (!poll_id) {
+            return false;
+        }
+        await Promise.all(choices.map(choice => {
+            return pool.query(sql_choice, [choice, poll_id]);
+        }))
+        return true;
+    } catch (error) {
+        console.error('addDiscretePoll(): Database Error');
+        throw error;
+    }
 }
 
 async function addContinuousPoll(){
