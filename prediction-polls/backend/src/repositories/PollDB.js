@@ -41,8 +41,6 @@ async function getDiscretePollWithId(pollId){
 
 }
 
-getDiscretePollWithId(4);
-
 async function getContinuousPollWithId(){
 
 }
