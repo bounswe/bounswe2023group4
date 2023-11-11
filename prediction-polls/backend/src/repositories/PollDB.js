@@ -63,8 +63,21 @@ async function addDiscretePoll(question, choices){
     }
 }
 
-async function addContinuousPoll(){
+async function addContinuousPoll(question, min, max){
+    const sql_poll = 'INSERT INTO continuous_polls (question, min_value, max_value) VALUES (?, ?, ?)';
 
+    try {
+        const [resultSetHeader] = await pool.query(sql_poll, [question, min, max]);
+        poll_id = resultSetHeader.insertId;
+        console.log(poll_id)
+        if (!poll_id) {
+            return false;
+        }
+        return true;
+    } catch (error) {
+        console.error('addContinuousPoll(): Database Error');
+        throw error;
+    }
 }
 
 async function voteDiscretePoll(){
