@@ -17,12 +17,17 @@ function getDiscretePollWithId(req,res){
         // return res.status(400).json({ error: 'Invalid number parameter' });
     // }
     console.log(pollId);
-    db.getDiscretePollWithId(pollId).then((rows) => {
+    db.getDiscretePollWithId(pollId)
+    .then((rows) => {
         if (rows.length === 0) {
             res.status(404).end("Resource Not Found");
         } else {
             res.json(rows);
         }
+    })
+    .catch((error) => {
+        console.error(error);
+        res.status(500).json({ message: "Internal Server Error" });
     })
 }
 
