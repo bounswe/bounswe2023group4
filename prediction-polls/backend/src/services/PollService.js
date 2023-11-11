@@ -77,7 +77,38 @@ function getContinuousPollWithId(req,res){
 }
 
 function addContinuousPoll(req,res){
+    if (!validateAddContinuousPoll(req.body)) {
+        return res.status(400).json({ error: 'Invalid request body' });
+    }
+    const question = req.body.question;
+    const min = req.body.min;
+    const max = req.body.max;
 
+    if (max <= min) {
+        return res.status(400).json({ error: 'minValue higher than maxValue' });
+    }
+
+    db.addContinuousPoll(question, min, max)
+    .then((result) => {
+        res.end(result.toString());
+    })
+    .catch((error) => {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    });
+}
+
+function validateAddContinuousPoll(body) {
+    if (
+        typeof body !== 'object' ||
+        typeof body.question !== 'string' ||
+        typeof body.min !== 'number' ||
+        typeof body.max !== 'number'
+    ) {
+        return false;
+    }
+    
+    return true;
 }
 
 function voteDiscretePoll(req,res){
