@@ -42,9 +42,9 @@ async function googleLogInWithCode(code,res){
       }
 
       const generatedPassword = generateRandomPassword(12);
-      const { success, error} = await addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+      const { success, error, userid} = await addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
 
-      const user = {name : googleUser.given_name};
+      const user = {name : googleUser.given_name, id: userid};
       const accesToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
       db.addRefreshToken(refreshToken);
@@ -65,9 +65,9 @@ async function googleLogInWithCode(code,res){
       }
 
       const generatedPassword = generateRandomPassword(12);
-      const { success, error} = await addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+      const { success, error, userid} = await addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
 
-      const user = {name : googleUser.given_name};
+      const user = {name : googleUser.given_name, id: userid};
       const accesToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
 
