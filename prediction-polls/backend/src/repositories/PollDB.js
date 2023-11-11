@@ -12,16 +12,14 @@ const pool = mysql.createPool({
 
 async function getDiscretePolls(){
     const sql = 'SELECT * FROM discrete_polls';
-    
 
-    return pool.query(sql).then(([rows]) => {
-        console.log("ROWS")
-        console.log(rows);
-        return rows;
-    }, (err) => {
-        console.log(err);
-        return undefined
-    })
+    try {
+        const [rows, fields] = await pool.query(sql);
+        return rows
+    } catch (error) {
+        console.error('getDiscretePolls(): Database Error');
+        throw error;
+    }
 }
 
 async function getContinuousPolls(){
