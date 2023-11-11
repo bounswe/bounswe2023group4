@@ -1,10 +1,11 @@
 const service = require("../services/AuthorizationService.js")
+const googleService = require("../services/AuthGoogleService.js")
 const express = require('express');
 const router = express.Router();
 
 /**
  * @swagger
- * /:
+ * /auth/:
  *   get:
  *     description: Get data after authentication. Include Header Authorization set to "BEARER {access-key}"
  *     responses:
@@ -24,9 +25,9 @@ router.get('/', service.authorizeAccessToken, service.homePage)
 
 /**
  * @swagger
- * /login:
+ * /auth/login:
  *   post:
- *     description: Create session data for the user
+ *     description: Create session data for the user. username property can be also filled with email.
  *     requestBody:
  *       required: true
  *       content:
@@ -40,7 +41,7 @@ router.get('/', service.authorizeAccessToken, service.homePage)
  *                 type: string
  *          
  *     responses:
- *       200:
+ *       201:
  *         description: Successful response
  *         content:
  *           application/json:
@@ -50,14 +51,16 @@ router.get('/', service.authorizeAccessToken, service.homePage)
  *                accessToken:
  *                  type: string
  *                refreshToken:
- *                  type: string 
+ *                  type: string
+ *       401:
+ *         description: Could not find a matching (username, email) - password tuple
  */
 router.post("/login", service.logIn)
 
 
 /**
  * @swagger
- * /access-token:
+ * /auth/access-token:
  *   post:
  *     description: Create access token using refresh token.
  *     requestBody:
@@ -70,7 +73,7 @@ router.post("/login", service.logIn)
  *               refreshToken:
  *                 type: string
  *     responses:
- *       204:
+ *       201:
  *         description: Successful response
  *         content:
  *           application/json:
@@ -79,12 +82,17 @@ router.post("/login", service.logIn)
  *              properties:
  *                accessToken:
  *                  type: string
+ *       400:
+ *         description: A refresh token is needed
+ *       401:
+ *         description: The refresh token is invalid
+ *       
  */
 router.post('/access-token', service.createAccessTokenFromRefreshToken)
 
 /**
  * @swagger
- * /logout:
+ * /auth/logout:
  *   post:
  *     description: Delete session data of the user
  *     requestBody:
@@ -97,16 +105,18 @@ router.post('/access-token', service.createAccessTokenFromRefreshToken)
  *               refreshToken:
  *                 type: string
  *     responses:
- *       200:
+ *       204:
  *         description: Successful response
+ *       404:
+ *         description: Refresh token not found
  */
 router.post('/logout', service.logOut)
 
 /**
  * @swagger
- * /signup:
+ * /auth/signup:
  *   post:
- *     description: Create new user with the given credentials
+ *     description: Create new user with the given credentials. Birthday should follow format "YYYY-MM-DD"
  *     requestBody:
  *       required: true
  *       content:
@@ -118,11 +128,50 @@ router.post('/logout', service.logOut)
  *                 type: string
  *               password:
  *                 type: string
+ *               email:
+ *                 type: string
+ *               birthday:
+ *                 type: string
+ * 
  *          
+ *     responses:
+ *       201:
+ *         description: Successful response
+ * 
+ *       400:
+ *         description: Registration failed. See response for more details.
+ */
+router.post("/signup", service.signup)
+
+/**
+ * @swagger
+ * /auth/google:
+ *   post:
+ *     description: Log in using the recieved google data. Put either googleId or code in body.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               googleId:
+ *                 type: string
+ *               code:
+ *                 type: string
+ *        
  *     responses:
  *       200:
  *         description: Successful response
+ * 
+ *       403:
+ *         description: Google account is not verified.
+ * 
+ *       500:
+ *         description: Server was not able to log in user with the given data.
  */
-router.post("/signup", service.signup)
+router.post("/google", googleService.googleLogIn)
+
+
 
 module.exports = router;

@@ -23,7 +23,7 @@ async function addRefreshToken(token){
 
 //Check the given refresh token's existence in db
 async function checkRefreshToken(token){
-    const sql = 'SELECT * FROM refresh_tokens WHERE token = ?';
+    const sql = 'SELECT * FROM refresh_tokens WHERE token = "?"';
     const values = [token];
 
     return pool.query(sql, values).then(([rows]) => {
@@ -34,16 +34,13 @@ async function checkRefreshToken(token){
 }
 
 //Delete the given refresh token from db
-function deleteRefreshToken(token){
+async function deleteRefreshToken(token){
     const sql = 'DELETE FROM refresh_tokens WHERE token = ?';
+
     const values = [token];
 
-    return pool.query(sql, values).then(([result]) => {
-        return result.affectedRows > 0;
-    }, () => {
-        return false
-    })
-
+    const [result] = await pool.query(sql, values);
+    return result.affectedRows > 0;
 }
 
 module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken}
