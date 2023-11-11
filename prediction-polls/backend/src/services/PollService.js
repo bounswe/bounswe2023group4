@@ -14,8 +14,23 @@ async function getDiscretePolls(req,res){
 }
 
 function getDiscretePollWithId(req,res){
-
+    const pollId = req.params.pollId;
+    // if (!isValidPollId(pollId)) {
+        // return res.status(400).json({ error: 'Invalid number parameter' });
+    // }
+    console.log(pollId);
+    db.getDiscretePollWithId(pollId).then((rows) => {
+        if (rows.length === 0) {
+            res.status(404).end("Resource Not Found");
+        } else {
+            res.json(rows);
+        }
+    })
 }
+
+// function isValidPollId(value) {
+    // return /^[0-9]+$/.test(value);
+// }
 
 function addDiscretePoll(req,res){
     if (!validateAddDiscretePoll(req.body)) {
