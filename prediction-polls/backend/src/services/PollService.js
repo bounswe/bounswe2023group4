@@ -1,16 +1,14 @@
 const db = require("../repositories/PollDB.js");
 
-async function getDiscretePolls(req,res){
-    try{
-    const result_polls = await db.getDiscretePolls();
-    console.log("result_polls")
-    console.log(result_polls);
-    res.json(result_polls)
-    }
-    catch (error) {
+function getDiscretePolls(req,res){
+    db.getDiscretePolls()
+    .then((rows) => {
+        res.json(rows);
+    })
+    .catch((error) => {
         console.error(error);
         res.status(500).json({ message: "Internal Server Error" });
-    }
+    })
 }
 
 function getDiscretePollWithId(req,res){
