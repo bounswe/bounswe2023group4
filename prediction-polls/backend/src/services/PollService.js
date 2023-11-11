@@ -72,7 +72,14 @@ function validateAddDiscretePoll(body) {
 }
 
 function getContinuousPolls(req,res){
-
+    db.getContinuousPolls()
+    .then((rows) => {
+        res.json(rows);
+    })
+    .catch((error) => {
+        console.error(error);
+        res.status(500).json({ message: "Internal Server Error" });
+    })
 }
 
 function getContinuousPollWithId(req,res){
