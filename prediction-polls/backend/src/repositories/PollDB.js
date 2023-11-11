@@ -85,7 +85,6 @@ async function addContinuousPoll(question, min, max){
     try {
         const [resultSetHeader] = await pool.query(sql_poll, [question, min, max]);
         poll_id = resultSetHeader.insertId;
-        console.log(poll_id)
         if (!poll_id) {
             return false;
         }
