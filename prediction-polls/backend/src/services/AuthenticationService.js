@@ -26,7 +26,7 @@ async function checkCredentials(username, password) {
         const values = [username, username, password];
 
         const [rows] = await db.pool.query(sql, values);
-        return rows.length > 0;
+        return rows;
     } catch (error) {
         console.error(error);
         return false;
@@ -45,8 +45,8 @@ async function addUser(username, password,email,birthday){
         const sql = 'INSERT INTO users (username, email, password, birthday) VALUES (?, ?, ?, ?)';
         const values = [username, email, password, birthday];
     
-        const result = await db.pool.query(sql, values);
-        return {"success":true,"error":undefined} ;
+        const [result] = await db.pool.query(sql, values);
+        return {"success":true,"error":undefined, "userid": result.insertId} ;
       } catch (error) {
         return {"success":false,"error":error} ;
       }
