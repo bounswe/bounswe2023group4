@@ -16,7 +16,6 @@ function getDiscretePollWithId(req,res){
     // if (!isValidPollId(pollId)) {
         // return res.status(400).json({ error: 'Invalid number parameter' });
     // }
-    console.log(pollId);
     db.getDiscretePollWithId(pollId)
     .then((rows) => {
         if (rows.length === 0) {
@@ -83,7 +82,22 @@ function getContinuousPolls(req,res){
 }
 
 function getContinuousPollWithId(req,res){
-
+    const pollId = req.params.pollId;
+    // if (!isValidPollId(pollId)) {
+        // return res.status(400).json({ error: 'Invalid number parameter' });
+    // }
+    db.getContinuousPollWithId(pollId)
+    .then((rows) => {
+        if (rows.length === 0) {
+            res.status(404).end("Resource Not Found");
+        } else {
+            res.json(rows);
+        }
+    })
+    .catch((error) => {
+        console.error(error);
+        res.status(500).json({ message: "Internal Server Error" });
+    })
 }
 
 function addContinuousPoll(req,res){
