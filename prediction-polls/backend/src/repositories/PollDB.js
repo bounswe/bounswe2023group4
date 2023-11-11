@@ -28,9 +28,20 @@ async function getContinuousPolls(){
 
 }
 
-async function getDiscretePollWithId(){
+async function getDiscretePollWithId(pollId){
+    const sql = 'SELECT * FROM discrete_polls WHERE id = ?';
+
+    try {
+        const [rows, fields] = await pool.query(sql, [pollId]);
+        return rows;
+    } catch (error) {
+        console.error('getDiscretePollWithId(): Database Error');
+        throw error;
+    }
 
 }
+
+getDiscretePollWithId(4);
 
 async function getContinuousPollWithId(){
 
