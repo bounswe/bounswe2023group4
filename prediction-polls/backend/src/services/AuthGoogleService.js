@@ -28,16 +28,12 @@ async function googleLogInWithCode(code,res){
       // get the id and access token with the code
       const { token_error, id_token, access_token } = await getGoogleOAuthTokens({ code });
       if(token_error){return res.status(403).send("Invalid Code")}
-
-      console.log({ id_token, access_token });
   
       // get user with tokens
       const googleUser = await getGoogleUser({ id_token, access_token });
       if(googleUser.error){return res.status(403).send(googleUser.error)}
-
-      console.log(googleUser);
   
-      if (!googleUser.verified_email) {
+      if (!( googleUser.verified_email || googleUser.email_verified)) {
         return res.status(403).send("Google account is not verified");
       }
 
@@ -60,7 +56,7 @@ async function googleLogInWithCode(code,res){
       const googleUser = await getGoogleIdTokenData(googleId)
       if(googleUser.error){return res.status(403).send("Invalid Google Id")}
 
-      if (!googleUser.verified_email) {
+      if (!( googleUser.verified_email || googleUser.email_verified)) {
         return res.status(403).send("Google account is not verified");
       }
 
