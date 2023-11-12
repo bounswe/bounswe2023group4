@@ -33,9 +33,9 @@ CREATE TABLE discrete_poll_choices (
 
 CREATE TABLE discrete_polls_selections (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    poll_id INT,
+    choice_id INT,
     user_id INT,
-    FOREIGN KEY (poll_id) REFERENCES discrete_polls(id),
+    FOREIGN KEY (choice_id) REFERENCES discrete_poll_choices(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
