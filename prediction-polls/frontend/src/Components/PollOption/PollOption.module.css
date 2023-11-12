@@ -23,7 +23,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid #F0B041;
+  border: 2px solid var(--secondary-500);
   border-radius: 10px;
   font-size: 16px;
   font-weight: 500;
@@ -45,7 +45,7 @@
   top: 0;
   left: 0;
   height: 100%;
-  background-color: #FEF7EC;
+  background-color: var(--secondary-50);
   border-radius: 8px;
   z-index: 1;
 }
@@ -54,7 +54,7 @@
   top: 0;
   left: 0;
   height: 100%;
-  background-color: #F0B041;
+  background-color: var(--secondary-500);
   border-radius: 8px;
   z-index: 1;
 }
