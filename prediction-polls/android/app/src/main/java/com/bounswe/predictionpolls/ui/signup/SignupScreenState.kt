@@ -15,6 +15,11 @@ data class SignupScreenState(
     val showPasswordError: Boolean = false,
     val showBirthdayError: Boolean = false,
 ) {
+    companion object {
+        const val MIN_PASSWORD_LENGTH = 8
+        const val MAX_BIRTHDAY_LENGTH = 8
+    }
+
     val isEmailValid: Boolean
         get() = email.isValidEmail()
     val shouldShowEmailError: Boolean
@@ -23,7 +28,8 @@ data class SignupScreenState(
     val isPasswordValid: Boolean
         get() =  password.any { it.isLowerCase() } && password.any { it.isUpperCase() }
                 && password.any { it.isDigit() } && password.any { it.isLetterOrDigit().not() }
-                && password.length >= 8
+                && password.length >= MIN_PASSWORD_LENGTH
+
     val shouldShowPasswordError: Boolean
         get() = showPasswordError && password.isBlank().not() && isPasswordValid.not()
 
@@ -46,7 +52,7 @@ data class SignupScreenState(
             is SignupScreenEvent.OnUsernameChanged -> copy(username = event.username)
             is SignupScreenEvent.OnPasswordChanged -> copy(password = event.password, showPasswordError = false)
             is SignupScreenEvent.OnPasswordVisibilityToggleClicked -> copy(isPasswordVisible = !isPasswordVisible)
-            is SignupScreenEvent.OnBirthdayChanged -> copy(birthday = event.birthday, showBirthdayError = false)
+            is SignupScreenEvent.OnBirthdayChanged -> copy(birthday = event.birthday.take(MAX_BIRTHDAY_LENGTH), showBirthdayError = false)
             is SignupScreenEvent.OnAgreementChecked -> copy(isAgreementChecked = !isAgreementChecked)
             is SignupScreenEvent.OnDatePickerClicked -> copy(isDatePickerVisible = !isDatePickerVisible)
             else -> this
