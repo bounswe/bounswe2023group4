@@ -26,7 +26,7 @@ function AppRouter() {
         <Route path="/auth/sign-up" element={<SignUp />} />
         <Route path="/auth/sign-in" element={<SignIn />} />
         <Route path="/feed" element={
-          <PrivateRoute><Feed /></PrivateRoute>
+          <Feed />
         } />
         <Route path="/create" element={
           <PrivateRoute><Create /></PrivateRoute>
@@ -46,8 +46,9 @@ function AppRouter() {
         <Route path="/settings" element={
           <PrivateRoute><Settings /></PrivateRoute>
         } />
-        <Route path="/vote" element={
-          <PrivateRoute><Vote /></PrivateRoute>
+        <Route path="/vote/:id" element={
+          //<PrivateRoute><Vote /></PrivateRoute>
+          <Vote/>
         } />
       </Routes>
     </BrowserRouter>
