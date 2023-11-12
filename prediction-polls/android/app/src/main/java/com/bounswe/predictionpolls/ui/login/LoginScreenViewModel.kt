@@ -20,7 +20,7 @@ class LoginScreenViewModel @Inject constructor(
 
         when (event) {
             is LoginScreenEvent.OnLoginButtonClicked -> onLoginButtonClicked(event.onSuccess)
-            is LoginScreenEvent.OnLoginWithGoogleButtonClicked -> onLoginWithGoogleButtonClicked()
+            is LoginScreenEvent.OnGoogleTokenReceived -> onGoogleTokenReceived(event.token, event.onSuccess)
             is LoginScreenEvent.DismissErrorDialog -> onErrorDialogDismissed()
             else -> {}
         }
@@ -59,8 +59,21 @@ class LoginScreenViewModel @Inject constructor(
         }
     }
 
-    private fun onLoginWithGoogleButtonClicked() {
-        //TODO google sign in implementation
-        error = "Login with Google is not implemented yet."
+    private fun onGoogleTokenReceived(
+        googleToken: String,
+        onSuccess: () -> Unit
+    ) {
+        launchCatching(
+            trackJobProgress = true,
+            onSuccess = {
+                onSuccess()
+            },
+            onError = {
+                error = it?.message
+            },
+            maxRetryCount = 1
+        ) {
+            authRepository.loginWithGoogle(googleToken)
+        }
     }
 }

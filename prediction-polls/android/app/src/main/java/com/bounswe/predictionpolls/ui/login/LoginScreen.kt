@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
+import com.bounswe.predictionpolls.BuildConfig
 import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.extensions.clickableWithoutIndicator
 import com.bounswe.predictionpolls.ui.common.CustomInputField
@@ -48,6 +49,8 @@ import com.bounswe.predictionpolls.ui.common.ErrorDialog
 import com.bounswe.predictionpolls.ui.feed.navigateToFeedScreen
 import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
+import com.stevdzasan.onetap.OneTapSignInWithGoogle
+import com.stevdzasan.onetap.rememberOneTapSignInState
 
 @Composable
 fun LoginScreen(
@@ -55,6 +58,7 @@ fun LoginScreen(
     viewModel: LoginScreenViewModel = hiltViewModel()
 ) {
     val dispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+    val state = rememberOneTapSignInState()
 
     LoginScreenUI(
         onBackButtonClicked = { dispatcher?.onBackPressed() },
@@ -77,13 +81,28 @@ fun LoginScreen(
         },
         isLoginEnabled = viewModel.screenState.isLoginButtonEnabled,
         onLoginWithGoogleClicked = {
-            viewModel.onEvent(
-                LoginScreenEvent.OnLoginWithGoogleButtonClicked {}
-            )
+            state.open()
         },
         isLoading = viewModel.isLoading,
         error = viewModel.error,
         errorDismissed = { viewModel.onEvent(LoginScreenEvent.DismissErrorDialog) }
+    )
+
+    OneTapSignInWithGoogle(
+        state = state,
+        clientId = BuildConfig.GOOGLE_CLIENT_ID,
+        rememberAccount = false,
+        onTokenIdReceived = {
+            viewModel.onEvent(LoginScreenEvent.OnGoogleTokenReceived(it) {
+                navController.navigateToFeedScreen(
+                    navOptions = NavOptions
+                        .Builder()
+                        .setPopUpTo(MAIN_ROUTE, true)
+                        .build()
+                )
+            })
+        },
+        onDialogDismissed = {}
     )
 }
 

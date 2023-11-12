@@ -29,6 +29,7 @@ android {
             applicationIdSuffix = ".debug"
             isMinifyEnabled = false
             buildConfigField("String", "BASE_URL", gradleLocalProperties(rootDir).getProperty("base_url"))
+            buildConfigField("String", "GOOGLE_CLIENT_ID", gradleLocalProperties(rootDir).getProperty("google_client_id"))
         }
         create("staging") {
             applicationIdSuffix = ".staging"
@@ -39,6 +40,7 @@ android {
                 "proguard-rules.pro"
             )
             buildConfigField("String", "BASE_URL", gradleLocalProperties(rootDir).getProperty("base_url"))
+            buildConfigField("String", "GOOGLE_CLIENT_ID", gradleLocalProperties(rootDir).getProperty("google_client_id"))
         }
         release {
             isMinifyEnabled = true
@@ -47,6 +49,8 @@ android {
                 "proguard-rules.pro"
             )
             buildConfigField("String", "BASE_URL", gradleLocalProperties(rootDir).getProperty("base_url"))
+            buildConfigField("String", "GOOGLE_CLIENT_ID", gradleLocalProperties(rootDir).getProperty("google_client_id"))
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -128,4 +132,6 @@ dependencies {
     // Coil
     implementation("io.coil-kt:coil-compose:2.4.0")
 
+    // Easy Google Login
+    implementation("com.github.stevdza-san:OneTapCompose:1.0.9")
 }
