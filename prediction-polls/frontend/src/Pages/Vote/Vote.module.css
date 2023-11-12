@@ -28,23 +28,45 @@
     font-family: sans-serif ;
     font-size: 18px;
     font-weight: 700;
-    color: #363A3D;
+    color: var(--neutral-100);
 }
 .chooseText{
     font-family: sans-serif ;
     margin-top: 80px;
     font-size: 18px;
     font-weight: 700;
-    color: #363A3D;
+    color: var(--neutral-100);
 }
-.buttonStyle{
+.buttonDivStyle{
     margin-top: 40px;
     justify-content: center;
+}
+.inputStyle{
+    margin-top: 40px;
+    justify-content: center;
+    width: 60%;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--neutral-100);
+    border-color: var(--secondary-500);
+    border-width: 3px;
+    padding-left: 10px;
+
+}
+.bottonStyle{
+    width: 50%;
+    height: 100%;
+    margin-top: 40px;
+    justify-content: center;
+    background-color: var(--secondary-500);
+    color: var(--neutral-white);
+    font-size: 32px;
+    font-weight: 700;
 }
 .messageStyle{
     margin-top: 20px;
     justify-content: center;
-    color: #C83333;
+    color: var(--warning-600);
     font-weight: 700;
     font-size: 16px;
 }

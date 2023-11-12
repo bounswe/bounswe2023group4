@@ -17,29 +17,7 @@ function Vote() {
   const [betPoint, setBetPoint] = React.useState(0);
   const [message, setMessage] = React.useState("");
   const [selectedOption, setSelectedOption] = React.useState();
-  const InputStyle = {
-    marginTop: '40px',
-    justifyContent: 'center',
-    width: '60%',
-    fontSize: '28px',
-    fontWeight: '700',
-    color: '#363A3D',
-    borderColor: '#F0B041',
-    borderWidth: '3px',
-    paddingLeft: '10px'
-
-  };
-  const bottonStyle = {
-    width: '50%',
-    height: '100%',
-    marginTop: '40px',
-    justifyContent: 'center',
-    backgroundColor: '#F0B041',
-    color: '#FFFFFF',
-    fontSize: '32px',
-    fontWeight: '700',
-    fontFamily: 'sans-serif'
-  };
+  
   const handleVoting = () =>{
 
   };
@@ -73,14 +51,14 @@ function Vote() {
           <PointsButton points={pointData.points} />
           <div className={styles.infoText}><div>{sentence}</div>
             <div className={styles.chooseText}>How many points do you want to place?</div>
-            <div className={styles.datepickerStyle}><InputNumber
+            <div><InputNumber
               id="bet"
-              style={InputStyle}
+              className={styles.inputStyle}
               placeholder=""
               onChange={(e) => setBetPoint(e.target.value)}
             /></div>
-            <div className={styles.buttonStyle}><Button
-              style={bottonStyle}
+            <div className={styles.buttonDivStyle}><Button
+              className={styles.bottonStyle}
               onClick={handleVoting}
             >Vote</Button></div>
             <div className={styles.messageStyle}>{message}</div>
