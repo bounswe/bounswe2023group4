@@ -5,7 +5,7 @@ import styles from "./Vote.module.css";
 import pollData from "../../MockData/PollData.json"
 import PointsButton from "../../Components/PointsButton";
 import pointData from "../../MockData/PointList.json"
-import { Button, Input} from 'antd';
+import { Button, InputNumber} from 'antd';
 import {useParams} from 'react-router-dom';
 
 
@@ -73,7 +73,7 @@ function Vote() {
           <PointsButton points={pointData.points} />
           <div className={styles.infoText}><div>{sentence}</div>
             <div className={styles.chooseText}>How many points do you want to place?</div>
-            <div className={styles.datepickerStyle}><Input
+            <div className={styles.datepickerStyle}><InputNumber
               id="bet"
               style={InputStyle}
               placeholder=""
