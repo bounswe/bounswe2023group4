@@ -95,16 +95,62 @@ async function addContinuousPoll(question, min, max){
     }
 }
 
-async function voteDiscretePoll(){
-    
+async function getDiscretePollChoices(pollid) {
+    const sql = "SELECT * FROM discrete_poll_choices WHERE poll_id = ?";
+
+    try {
+        [rows] = await pool.query(sql, [pollid]);
+        return rows;
+    } catch (error) {
+        console.error('getPollChoices(): Database Error');
+        throw error;
+    }
 }
 
-async function voteContinuousPoll(){
+async function getDiscreteVoteCount(choiceid) {
+    const sql = "SELECT COUNT(*) AS 'count' FROM discrete_polls_selections WHERE choice_id = ?";
+
+    try {
+        [result] = await pool.query(sql, [choiceid]);
+        return result[0].count;
+    } catch (error) {
+        console.error('getPollChoices(): Database Error');
+        throw error;
+    }
+}
+
+async function voteDiscretePoll(pollId, userId, choiceId){
+    const deleteExistingSql = "DELETE FROM discrete_polls_selections WHERE poll_id = ? AND user_id = ?"
+    const addVoteSql = "INSERT INTO discrete_polls_selections (poll_id, choice_id, user_id) VALUES (?, ?, ?)"
+
+    try {
+        // TODO: Consider making this a transaction, commit
+        deleteResult = await pool.query(deleteExistingSql, [pollId, userId]);
+        addResult = await pool.query(addVoteSql, [pollId, choiceId, userId]);
+    } catch (error) { 
+        console.error('voteDiscretePoll(): Database Error');
+        throw error;
+    }
+
+}
+
+async function voteContinuousPoll(pollId, userId, choice){
+    const deleteExistingSql = "DELETE FROM continuous_poll_selections WHERE poll_id = ? AND user_id = ?"
+    const addVoteSql = "INSERT INTO continuous_poll_selections (poll_id, user_id, selected_value) VALUES (?, ?, ?)"
+
+    try {
+        // TODO: Consider making this a transaction, commit
+        deleteResult = await pool.query(deleteExistingSql, [pollId, userId]);
+        addResult = await pool.query(addVoteSql, [pollId, userId, choice]);
+    } catch (error) { 
+        console.error('voteContinuousPoll(): Database Error');
+        throw error;
+    }
     
 }
 
 
 
 module.exports = {getDiscretePolls, getContinuousPolls, getDiscretePollWithId, getContinuousPollWithId, 
-    addDiscretePoll,addContinuousPoll, voteDiscretePoll, voteContinuousPoll}
+    addDiscretePoll,addContinuousPoll, getDiscretePollChoices, getDiscreteVoteCount, voteDiscretePoll, voteContinuousPoll}
     

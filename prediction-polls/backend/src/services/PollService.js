@@ -19,7 +19,22 @@ function getDiscretePollWithId(req,res){
         if (rows.length === 0) {
             res.status(404).end("Resource Not Found");
         } else {
-            res.json(rows);
+            db.getDiscretePollChoices(pollId)
+            .then((choices) => {
+                
+                const choicesWithVoteCount = choices.map((choice) => {
+                    // Call your function and set the "voter_count" property based on the result
+                    return db.getDiscreteVoteCount(choice.id)
+                    .then((voterCount) => {
+                        return { ...choice, voter_count: voterCount };
+                    })
+                });
+
+                Promise.all(choicesWithVoteCount)
+                .then((updatedChoices) => {
+                    res.json({ "poll": rows[0], "choices": updatedChoices });
+                })
+            })
         }
     })
     .catch((error) => {
@@ -128,11 +143,47 @@ function validateAddContinuousPoll(body) {
 }
 
 function voteDiscretePoll(req,res){
+    const pollId = req.params.pollId;
+    const userId = req.user.id;
+    const choiceId = req.body.choiceId;
 
+    db.getDiscretePollChoices(pollId)
+    .then((choices) => {
+        const choiceExists = choices.some(choice => choice.id === choiceId);
+        if (!choiceExists) {
+            res.status(404).json({ error: "choice with specified id does not exist" });
+        } else {
+            db.voteDiscretePoll(pollId, userId, choiceId)
+            .then(() => {
+                res.json({ message: "Vote Successful" });
+            })
+        }
+    })
+    .catch((error) => {
+        console.error(error);
+        res.status(500).json({ message: "Internal Server Error" });
+    })
 }
 
 function voteContinuousPoll(req,res){
+    const pollId = req.params.pollId;
+    const userId = req.user.id;
+    const choice = req.body.choice;
 
+    db.getContinuousPollWithId(pollId)
+    .then((result) => {
+        const minValue = result[0].min_value;
+        const maxValue = result[0].max_value;
+        const choiceValid = minValue <= choice && choice <= maxValue;
+        if (!choiceValid) {
+            res.status(404).json({ error: "choice is out of bounds" });
+        } else {
+            db.voteContinuousPoll(pollId, userId, choice)
+            .then(() => {
+                res.json({ message: "Vote Successful" });
+            })
+        }
+    })
 }
 
 module.exports = {getDiscretePolls,getDiscretePollWithId,addDiscretePoll,getContinuousPolls,
