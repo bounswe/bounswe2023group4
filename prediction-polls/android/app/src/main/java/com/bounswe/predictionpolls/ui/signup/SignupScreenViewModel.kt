@@ -5,8 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.bounswe.predictionpolls.core.BaseViewModel
 import com.bounswe.predictionpolls.data.remote.repositories.AuthRepository
-import com.bounswe.predictionpolls.extensions.isValidDate
-import com.bounswe.predictionpolls.extensions.isValidEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -32,17 +30,18 @@ class SignupScreenViewModel @Inject constructor(
         error = null
     }
 
-    // TODO handle form validation better
     private fun isFormValid(): Boolean {
-        if (screenState.email.isValidEmail().not()) {
-            error = "Please enter a valid email address."
-            return false
-        } else if(screenState.birthday.isValidDate().not()){
-            error = "Please enter a valid birthday."
-            return false
-        }
+        val isEmailValid = screenState.isEmailValid
+        val isPasswordValid = screenState.isPasswordValid
+        val isBirthdayValid = screenState.isBirthdayValid
 
-        return true
+        screenState = screenState.copy(
+            showEmailError = isEmailValid.not(),
+            showPasswordError = isPasswordValid.not(),
+            showBirthdayError = isBirthdayValid.not()
+        )
+
+        return isEmailValid && isPasswordValid && isBirthdayValid
     }
 
     private fun onSignupButtonClicked(onSuccess: () -> Unit) {
@@ -52,6 +51,9 @@ class SignupScreenViewModel @Inject constructor(
             trackJobProgress = true,
             onSuccess = {
                 onSuccess()
+            },
+            onError = {
+                error = it?.message
             },
             maxRetryCount = 1
         ) {

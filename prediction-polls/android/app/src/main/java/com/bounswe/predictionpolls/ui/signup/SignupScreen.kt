@@ -71,14 +71,17 @@ fun SignupScreen(
         onBackButtonClicked = { dispatcher?.onBackPressed() },
         email = viewModel.screenState.email,
         onEmailChanged = { viewModel.onEvent(SignupScreenEvent.OnEmailChanged(it)) },
+        isEmailValid = viewModel.screenState.shouldShowEmailError.not(),
         username = viewModel.screenState.username,
         onUsernameChanged = { viewModel.onEvent(SignupScreenEvent.OnUsernameChanged(it)) },
         password = viewModel.screenState.password,
         onPasswordChanged = { viewModel.onEvent(SignupScreenEvent.OnPasswordChanged(it)) },
         onPasswordVisibilityClicked = { viewModel.onEvent(SignupScreenEvent.OnPasswordVisibilityToggleClicked) },
         isPasswordVisible = viewModel.screenState.isPasswordVisible,
+        isPasswordValid = viewModel.screenState.shouldShowPasswordError.not(),
         birthday = viewModel.screenState.birthday,
         onBirthdayChanged = { viewModel.onEvent(SignupScreenEvent.OnBirthdayChanged(it)) },
+        isBirthdayValid = viewModel.screenState.shouldShowBirthdayError.not(),
         onDatePickerClicked = { viewModel.onEvent(SignupScreenEvent.OnDatePickerClicked) },
         isDatePickerVisible = viewModel.screenState.isDatePickerVisible,
         isAgreementChecked = viewModel.screenState.isAgreementChecked,
@@ -110,16 +113,19 @@ fun SignupScreenUI(
     onBackButtonClicked: () -> Unit = {},
     email: String = "",
     onEmailChanged: (String) -> Unit = {},
+    isEmailValid: Boolean = true,
     username: String = "",
     onUsernameChanged: (String) -> Unit = {},
     password: String = "",
     onPasswordChanged: (String) -> Unit = {},
     onPasswordVisibilityClicked: () -> Unit = {},
     isPasswordVisible: Boolean = false,
+    isPasswordValid: Boolean = true,
     birthday: String = "",
     onBirthdayChanged: (String) -> Unit = {},
     onDatePickerClicked: () -> Unit = {},
     isDatePickerVisible: Boolean = false,
+    isBirthdayValid: Boolean = true,
     isAgreementChecked: Boolean = false,
     onAgreementChecked: (Boolean) -> Unit = {},
     onSignUpClicked: () -> Unit = {},
@@ -141,14 +147,17 @@ fun SignupScreenUI(
         SignupScreenForm(
             email = email,
             onEmailChanged = onEmailChanged,
+            isEmailValid = isEmailValid,
             username = username,
             onUsernameChanged = onUsernameChanged,
             password = password,
             onPasswordChanged = onPasswordChanged,
             onPasswordVisibilityClicked = onPasswordVisibilityClicked,
             isPasswordVisible = isPasswordVisible,
+            isPasswordValid = isPasswordValid,
             birthday = birthday,
             onBirthdayChanged = onBirthdayChanged,
+            isBirthdayValid = isBirthdayValid,
             onDatePickerClicked = onDatePickerClicked,
         )
         Spacer(modifier = Modifier.height(12.dp))
@@ -223,15 +232,18 @@ fun SignupScreenHeader(
 fun SignupScreenForm(
     email: String = "",
     onEmailChanged: (String) -> Unit = {},
+    isEmailValid: Boolean = true,
     username: String = "",
     onUsernameChanged: (String) -> Unit = {},
     password: String = "",
     onPasswordChanged: (String) -> Unit = {},
     onPasswordVisibilityClicked: () -> Unit = {},
     isPasswordVisible: Boolean = false,
+    isPasswordValid: Boolean = true,
     birthday: String = "",
     onBirthdayChanged: (String) -> Unit = {},
     onDatePickerClicked: () -> Unit = {},
+    isBirthdayValid: Boolean = true,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
@@ -247,7 +259,9 @@ fun SignupScreenForm(
             onTextChanged = onEmailChanged,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email
-            )
+            ),
+            isError = isEmailValid.not(),
+            error = if (isEmailValid.not()) stringResource(id = R.string.signup_email_error) else null,
         )
         CustomInputField(
             modifier = Modifier
@@ -270,7 +284,9 @@ fun SignupScreenForm(
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password
             ),
-            visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation()
+            visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            isError = isPasswordValid.not(),
+            error = if (isPasswordValid.not()) stringResource(id = R.string.signup_password_error) else null,
         )
         CustomInputField(
             modifier = Modifier
@@ -285,7 +301,9 @@ fun SignupScreenForm(
             visualTransformation = DateTransformation(),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
-            )
+            ),
+            isError = isBirthdayValid.not(),
+            error = if (isBirthdayValid.not()) stringResource(id = R.string.signup_birthday_error) else null,
         )
     }
 }

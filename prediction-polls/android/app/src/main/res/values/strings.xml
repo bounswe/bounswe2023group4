@@ -25,13 +25,15 @@
     <string name="login_with_google_button">Sign in with Google</string>
     <string name="cd_login_with_google_button">Sign in with Google</string>
 
-
     <!-- Sign Up Page -->
     <string name="signup_page_title">Sign Up</string>
     <string name="signup_email_label">Email Address</string>
+    <string name="signup_email_error">Please enter a valid email address.</string>
     <string name="signup_username_label">Username</string>
     <string name="signup_password_label">Password</string>
+    <string name="signup_password_error">Password should be at least 8 characters and contain at least one lower case, one upper case, one number and one special character.</string>
     <string name="signup_birthday_label">Birthday</string>
+    <string name="signup_birthday_error">Birthday should be in the DD/MM/YYYY format.</string>
     <string name="signup_agreement_text">I agree to the Platform Terms</string>
     <string name="signup_button">Sign Up</string>
     <string name="signup_with_google_button">Sign Up with Google</string>
