@@ -149,8 +149,21 @@ async function voteContinuousPoll(pollId, userId, choice){
     
 }
 
+async function getContinuousPollVotes(pollId) {
+    const sql = "SELECT selected_value FROM continuous_poll_selections";
+
+    try {
+        [rows, fields] = await pool.query(sql);
+        return rows;
+    } catch (error) { 
+        console.error('getContinuousPollVotes(): Database Error');
+        throw error;
+    }
+}
+
 
 
 module.exports = {getDiscretePolls, getContinuousPolls, getDiscretePollWithId, getContinuousPollWithId, 
-    addDiscretePoll,addContinuousPoll, getDiscretePollChoices, getDiscreteVoteCount, voteDiscretePoll, voteContinuousPoll}
+    addDiscretePoll,addContinuousPoll, getDiscretePollChoices, getDiscreteVoteCount, voteDiscretePoll, voteContinuousPoll,
+    getContinuousPollVotes}
     
