@@ -8,8 +8,11 @@ data class LoginScreenState(
     val isPasswordVisible: Boolean = false,
     val showEmailError: Boolean = false,
 ) {
+    val isEmailValid: Boolean
+        get() = email.isValidEmail()
+
     val shouldShowEmailError: Boolean
-        get() = showEmailError && email.isBlank().not() && email.isValidEmail().not()
+        get() = showEmailError && email.isBlank().not() && isEmailValid.not()
 
     val isLoginButtonEnabled: Boolean
         get() = email.isNotBlank() &&

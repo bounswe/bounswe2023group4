@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.bounswe.predictionpolls.core.BaseViewModel
 import com.bounswe.predictionpolls.data.remote.repositories.AuthRepository
-import com.bounswe.predictionpolls.extensions.isValidEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -32,7 +31,7 @@ class LoginScreenViewModel @Inject constructor(
     }
 
     private fun isFormValid(): Boolean {
-        if (screenState.email.isValidEmail().not()) {
+        if (screenState.isEmailValid.not()) {
             screenState = screenState.copy(showEmailError = true)
             return false
         }
