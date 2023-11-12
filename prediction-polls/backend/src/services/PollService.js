@@ -98,7 +98,10 @@ function getContinuousPollWithId(req,res){
         if (rows.length === 0) {
             res.status(404).end("Resource Not Found");
         } else {
-            res.json(rows);
+            db.getContinuousPollVotes(pollId)
+            .then((choices) => {
+                res.json({"poll": rows[0], "choices": choices})
+            })
         }
     })
     .catch((error) => {
