@@ -60,6 +60,7 @@ fun LoginScreen(
         onBackButtonClicked = { dispatcher?.onBackPressed() },
         email = viewModel.screenState.email,
         onEmailChanged = { viewModel.onEvent(LoginScreenEvent.OnEmailChanged(it)) },
+        isEmailValid = viewModel.screenState.shouldShowEmailError.not(),
         password = viewModel.screenState.password,
         onPasswordChanged = { viewModel.onEvent(LoginScreenEvent.OnPasswordChanged(it)) },
         onPasswordVisibilityClicked = { viewModel.onEvent(LoginScreenEvent.OnPasswordVisibilityToggleClicked) },
@@ -90,6 +91,7 @@ fun LoginScreen(
 fun LoginScreenUI(
     onBackButtonClicked: () -> Unit = {},
     email: String = "",
+    isEmailValid: Boolean = true,
     onEmailChanged: (String) -> Unit = {},
     password: String = "",
     onPasswordChanged: (String) -> Unit = {},
@@ -114,6 +116,7 @@ fun LoginScreenUI(
         LoginScreenForm(
             email = email,
             onEmailChanged = onEmailChanged,
+            isEmailValid = isEmailValid,
             password = password,
             onPasswordChanged = onPasswordChanged,
             onPasswordVisibilityClicked = onPasswordVisibilityClicked,
@@ -183,6 +186,7 @@ fun LoginScreenHeader(
 fun LoginScreenForm(
     email: String = "",
     onEmailChanged: (String) -> Unit = {},
+    isEmailValid: Boolean = true,
     password: String = "",
     onPasswordChanged: (String) -> Unit = {},
     onPasswordVisibilityClicked: () -> Unit = {},
@@ -202,7 +206,9 @@ fun LoginScreenForm(
             onTextChanged = onEmailChanged,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email
-            )
+            ),
+            isError = isEmailValid.not(),
+            error = if(isEmailValid) null else stringResource(id = R.string.login_email_error)
         )
         CustomInputField(
             modifier = Modifier

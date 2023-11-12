@@ -31,11 +31,9 @@ class LoginScreenViewModel @Inject constructor(
         error = null
     }
 
-
-    // TODO handle form validation better
     private fun isFormValid(): Boolean {
         if (screenState.email.isValidEmail().not()) {
-            error = "Please enter a valid email address."
+            screenState = screenState.copy(showEmailError = true)
             return false
         }
 
@@ -49,6 +47,9 @@ class LoginScreenViewModel @Inject constructor(
             trackJobProgress = true,
             onSuccess = {
                 onSuccess()
+            },
+            onError = {
+                error = it?.message
             },
             maxRetryCount = 1
         ) {
