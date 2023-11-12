@@ -9,8 +9,6 @@ sealed class SignupScreenEvent {
     data object OnDatePickerClicked : SignupScreenEvent()
     data object OnAgreementChecked : SignupScreenEvent()
     data class OnSignupButtonClicked(val onSuccess: () -> Unit) : SignupScreenEvent()
-    data class OnSignupWithGoogleButtonClicked(val onSuccess: () -> Unit) :
-        SignupScreenEvent()
 
     data object DismissErrorDialog : SignupScreenEvent()
 }

@@ -20,7 +20,6 @@ class SignupScreenViewModel @Inject constructor(
 
         when (event) {
             is SignupScreenEvent.OnSignupButtonClicked -> onSignupButtonClicked(event.onSuccess)
-            is SignupScreenEvent.OnSignupWithGoogleButtonClicked -> onSignupWithGoogleButtonClicked()
             is SignupScreenEvent.DismissErrorDialog -> onErrorDialogDismissed()
             else -> {}
         }
@@ -67,10 +66,5 @@ class SignupScreenViewModel @Inject constructor(
                 birthday = formattedBirthday
             )
         }
-    }
-
-    private fun onSignupWithGoogleButtonClicked() {
-        //TODO google sign in implementation
-        error = "Sign up with Google is not implemented yet."
     }
 }

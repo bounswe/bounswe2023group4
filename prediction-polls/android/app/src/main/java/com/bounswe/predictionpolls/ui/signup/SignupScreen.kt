@@ -20,7 +20,6 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -97,11 +96,6 @@ fun SignupScreen(
             })
         },
         isSignUpEnabled = viewModel.screenState.isSignupButtonEnabled,
-        onSignUpWithGoogleClicked = {
-            viewModel.onEvent(
-                SignupScreenEvent.OnSignupWithGoogleButtonClicked {}
-            )
-        },
         isLoading = viewModel.isLoading,
         error = viewModel.error,
         errorDismissed = { viewModel.onEvent(SignupScreenEvent.DismissErrorDialog) }
@@ -130,7 +124,6 @@ fun SignupScreenUI(
     onAgreementChecked: (Boolean) -> Unit = {},
     onSignUpClicked: () -> Unit = {},
     isSignUpEnabled: Boolean = false,
-    onSignUpWithGoogleClicked: () -> Unit = {},
     isLoading: Boolean = false,
     error: String? = null,
     errorDismissed: () -> Unit = {},
@@ -169,7 +162,6 @@ fun SignupScreenUI(
         SignupScreenActionButtons(
             isSignUpEnabled = isSignUpEnabled,
             onSignUpClicked = onSignUpClicked,
-            onGoogleSignUpClicked = onSignUpWithGoogleClicked
         )
     }
     CustomDatePicker(
@@ -384,52 +376,15 @@ fun AgreementBox(
 fun SignupScreenActionButtons(
     isSignUpEnabled: Boolean = false,
     onSignUpClicked: () -> Unit = {},
-    onGoogleSignUpClicked: () -> Unit = {},
 ) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(24.dp),
-    ) {
-        SignupScreenActionButton(
-            modifier = Modifier.testTag("signup_button"),
-            isEnabled = isSignUpEnabled,
-            titleId = R.string.signup_button,
-            backgroundColor = MaterialTheme.colorScheme.primary,
-            contentColor = MaterialTheme.colorScheme.onPrimary,
-            onClick = onSignUpClicked
-        )
-        ActionButtonDivider()
-        SignupScreenActionButton(
-            leadingIconId = R.drawable.ic_google,
-            leadIconContentDescription = R.string.cd_signup_with_google_button,
-            titleId = R.string.signup_with_google_button,
-            backgroundColor = MaterialTheme.colorScheme.primary,
-            contentColor = MaterialTheme.colorScheme.onPrimary,
-            onClick = onGoogleSignUpClicked
-        )
-    }
-}
-
-@Composable
-private fun ActionButtonDivider() {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Divider(
-            modifier = Modifier
-                .weight(1f),
-            color = MaterialTheme.colorScheme.primary
-        )
-        Text(
-            text = stringResource(id = R.string.or),
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(horizontal = 16.dp),
-        )
-        Divider(
-            modifier = Modifier
-                .weight(1f),
-            color = MaterialTheme.colorScheme.primary
-        )
-    }
+    SignupScreenActionButton(
+        modifier = Modifier.testTag("signup_button"),
+        isEnabled = isSignUpEnabled,
+        titleId = R.string.signup_button,
+        backgroundColor = MaterialTheme.colorScheme.primary,
+        contentColor = MaterialTheme.colorScheme.onPrimary,
+        onClick = onSignUpClicked
+    )
 }
 
 @Composable
