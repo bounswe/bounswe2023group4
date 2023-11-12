@@ -79,8 +79,8 @@ function SignUp() {
           <Logo />
         </Link>
         <Form
-          style=
-          {[{ labelCol: { span: 24 }}, {wrapperCol: { span: 24 } }]}
+          className=
+          {{labelCol: { span: 24 }, wrapperCol: { span: 24 }}}
           form={form}
           onFinish={handleSubmit}
           validateTrigger="onSubmit"
@@ -89,8 +89,7 @@ function SignUp() {
             <div>
               <Button type="primary" className={styles.formButtonStyle}>
                 <i
-                  //className="fab fa-google fa-1x"
-                  style={{ marginRight: "10px" }}
+                  className={{ marginRight: "10px" , fontFamily: "fab fa-google fa-1x"}}
                 ></i>{" "}
                 Sign Up with Google
               </Button>
@@ -169,7 +168,7 @@ function SignUp() {
           <Form.Item label="BIRTHDAY" name="birthday" htmlFor="birthday">
             <DatePicker
               id="birthday"
-              style={styles.formDatePickerStyle}
+              className={styles.formDatePickerStyle}
               placeholder="01.01.2000"
               format="YYYY-MM-DD"
             />
@@ -208,7 +207,7 @@ function SignUp() {
           <Form.Item>
             <div className={styles.displayCenterStyle}>
               I Have an Account
-              <Link to="/auth/sign-in" style={{ marginLeft: "10px" }}>
+              <Link to="/auth/sign-in" className={{ marginLeft: "10px" }}>
                 Login
               </Link>
             </div>
