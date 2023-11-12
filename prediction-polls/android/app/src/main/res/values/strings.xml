@@ -37,6 +37,11 @@
     <string name="cd_visible">Change password visibility</string>
     <string name="cd_calendar">Calendar image</string>
 
+    <!-- Leaderboard Page -->
+    <string name="leaderboard_header_position">#</string>
+    <string name="leaderboard_header_username">Username</string>
+    <string name="leaderboard_header_point">Point</string>
+    <string name="leaderboard_load_more">Load more</string>
 
     <string name="or">or</string>
     <string name="ok">OK</string>
@@ -50,8 +55,6 @@
     <string name="cd_welcome_page_image">Welcome page image</string>
     <string name="cd_nav_item">Navigation drawer item: %1$s</string>
     <string name="cd_poll_profile_picture">Poll Profile Picture</string>
-
-
 
     <string name="date_picker_ok">Tamam</string>
     <string name="date_picker_cancel">İptal</string>

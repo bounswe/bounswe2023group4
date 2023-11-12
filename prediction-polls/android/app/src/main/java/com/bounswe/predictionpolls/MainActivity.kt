@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.bounswe.predictionpolls.ui.feed.feedScreen
+import com.bounswe.predictionpolls.ui.leaderboard.leaderboardScreen
 import com.bounswe.predictionpolls.ui.login.loginScreen
 import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
 import com.bounswe.predictionpolls.ui.main.mainScreen
@@ -25,6 +26,7 @@ class MainActivity : ComponentActivity() {
                     loginScreen(navController)
                     signupScreen(navController)
                     feedScreen(navController)
+                    leaderboardScreen(navController)
                 }
             }
         }
