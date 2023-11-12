@@ -79,8 +79,8 @@ function SignUp() {
           <Logo />
         </Link>
         <Form
-          className=
-          {{labelCol: { span: 24 }, wrapperCol: { span: 24 }}}
+          labelCol={{ span: 24 }}
+          wrapperCol={{ span: 24 }}
           form={form}
           onFinish={handleSubmit}
           validateTrigger="onSubmit"
