@@ -23,5 +23,6 @@ class StringExtensionTest {
         assertFalse("32121999".isValidDate())
         assertFalse("31131999".isValidDate())
         assertFalse("abcd1234".isValidDate())
+        assertFalse("30022001".isValidDate())
     }
 }

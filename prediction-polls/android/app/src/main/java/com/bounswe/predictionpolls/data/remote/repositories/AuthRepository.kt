@@ -2,10 +2,11 @@ package com.bounswe.predictionpolls.data.remote.repositories
 
 import com.bounswe.predictionpolls.core.BaseRepository
 import com.bounswe.predictionpolls.data.remote.TokenManager
-import com.bounswe.predictionpolls.data.remote.request.LoginRequest
-import com.bounswe.predictionpolls.data.remote.request.LogoutRequest
-import com.bounswe.predictionpolls.data.remote.request.RefreshAccessTokenRequest
-import com.bounswe.predictionpolls.data.remote.request.SignupRequest
+import com.bounswe.predictionpolls.data.remote.model.request.LoginRequest
+import com.bounswe.predictionpolls.data.remote.model.request.LogoutRequest
+import com.bounswe.predictionpolls.data.remote.model.request.RefreshAccessTokenRequest
+import com.bounswe.predictionpolls.data.remote.model.request.SignInWithGoogleRequest
+import com.bounswe.predictionpolls.data.remote.model.request.SignupRequest
 import com.bounswe.predictionpolls.data.remote.services.AuthService
 import javax.inject.Inject
 
@@ -59,5 +60,17 @@ class AuthRepository @Inject constructor(
             }
         }
         return newToken
+    }
+
+    suspend fun loginWithGoogle(
+        idToken: String
+    ) {
+        val loginWithGoogleRequest = SignInWithGoogleRequest(idToken)
+        execute {
+            authService.loginWithGoogle(loginWithGoogleRequest).let {
+                tokenManager.accessToken = it.accessToken
+                tokenManager.refreshToken = it.refreshToken
+            }
+        }
     }
 }
