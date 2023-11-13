@@ -1,11 +1,14 @@
 import React from "react";
 import styles from "./PollOption.module.css";
 
-function PollOption({ widthPercentage, navigate, option, index }) {
+function PollOption({ widthPercentage, isSelected, navigate, option, index, arrayLength , selectOption}) {
+  const updatePollColor = ()=>{
+    selectOption(Array.from({length : arrayLength}, (_, i) => i == index? true: false));
+  };
   return (
-    <div className={styles.optionText} onClick={() => navigate("/vote")}>
+    <div className={isSelected == true? styles.selectedOptionText: styles.optionText} onClick={updatePollColor}>
       <div
-        className={styles.backgroundDiv}
+        className={isSelected == true?styles.selectedBackgroundDiv :styles.backgroundDiv}
         style={{ width: `${widthPercentage}%` }}
       ></div>
       <div className={styles.textDiv}>{option.title}</div>
