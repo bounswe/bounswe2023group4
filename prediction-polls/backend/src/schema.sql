@@ -27,15 +27,16 @@ CREATE TABLE discrete_poll_choices (
     id INT AUTO_INCREMENT PRIMARY KEY,
     choice_text VARCHAR(255) NOT NULL,
     poll_id INT, 
-    voter_count INT DEFAULT 0,
     FOREIGN KEY (poll_id) REFERENCES discrete_polls(id)
 );
 
 CREATE TABLE discrete_polls_selections (
     id INT AUTO_INCREMENT PRIMARY KEY,
     poll_id INT,
+    choice_id INT,
     user_id INT,
     FOREIGN KEY (poll_id) REFERENCES discrete_polls(id),
+    FOREIGN KEY (choice_id) REFERENCES discrete_poll_choices(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
