@@ -179,7 +179,7 @@ function voteContinuousPoll(req,res){
         const maxValue = result[0].max_value;
         const choiceValid = minValue <= choice && choice <= maxValue;
         if (!choiceValid) {
-            res.status(404).json({ error: "choice is out of bounds" });
+            res.status(400).json({ error: "Choice is out of bounds" });
         } else {
             db.voteContinuousPoll(pollId, userId, choice)
             .then(() => {

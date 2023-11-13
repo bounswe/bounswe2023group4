@@ -7,6 +7,8 @@ const router = express.Router();
  * @swagger
  * /auth/:
  *   get:
+ *     tags:
+ *       - authorization
  *     description: Get data after authentication. Include Header Authorization set to "BEARER {access-key}"
  *     responses:
  *       200:
@@ -27,6 +29,8 @@ router.get('/', service.authorizeAccessToken, service.homePage)
  * @swagger
  * /auth/login:
  *   post:
+ *     tags:
+ *       - authorization
  *     description: Create session data for the user. username property can be also filled with email.
  *     requestBody:
  *       required: true
@@ -62,6 +66,8 @@ router.post("/login", service.logIn)
  * @swagger
  * /auth/access-token:
  *   post:
+ *     tags:
+ *       - authorization
  *     description: Create access token using refresh token.
  *     requestBody:
  *       required: true
@@ -94,6 +100,8 @@ router.post('/access-token', service.createAccessTokenFromRefreshToken)
  * @swagger
  * /auth/logout:
  *   post:
+ *     tags:
+ *       - authorization
  *     description: Delete session data of the user
  *     requestBody:
  *       required: true
@@ -116,6 +124,8 @@ router.post('/logout', service.logOut)
  * @swagger
  * /auth/signup:
  *   post:
+ *     tags:
+ *       - authorization
  *     description: Create new user with the given credentials. Birthday should follow format "YYYY-MM-DD"
  *     requestBody:
  *       required: true
@@ -147,6 +157,8 @@ router.post("/signup", service.signup)
  * @swagger
  * /auth/google:
  *   post:
+ *     tags:
+ *       - authorization
  *     description: Log in using the recieved google data. Put either googleId or code in body.
  *     requestBody:
  *       required: true
