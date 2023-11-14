@@ -1,34 +1,79 @@
 const qs = require("querystring");
 const axios = require("axios");
 const db = require("../repositories/AuthorizationDB.js");
+const crypto = require('crypto');
 
+const { addUser } = require('./AuthenticationService.js');
 const { generateAccessToken, generateRefreshToken } = require('./AuthorizationService.js');
 
 
 async function googleLogIn(req,res){
+    const googleId = req.body.googleId
+    const code = req.body.code
 
-    const code = req.query.code;
+    if(googleId){
+      googleLogInWithGoogleId(googleId,res);
+    }
+    else if(code){
+      googleLogInWithCode(code,res);
+    }
+    else{
+      res.status(400).send("Invalid Body");
+    }
+}
+  
+async function googleLogInWithCode(code,res){
   
     try {
       // get the id and access token with the code
-      const { id_token, access_token } = await getGoogleOAuthTokens({ code });
+      const { token_error, id_token, access_token } = await getGoogleOAuthTokens({ code });
+      if(token_error){return res.status(403).send("Invalid Code")}
   
       // get user with tokens
       const googleUser = await getGoogleUser({ id_token, access_token });
+      if(googleUser.error){return res.status(403).send(googleUser.error)}
   
-      if (!googleUser.verified_email) {
+      if (!( googleUser.verified_email || googleUser.email_verified)) {
         return res.status(403).send("Google account is not verified");
       }
-  
-      const user = {name : googleUser.name};
+
+      const generatedPassword = generateRandomPassword(12);
+      const { success, error, userid} = await addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+
+      const user = {name : googleUser.given_name, id: userid};
       const accesToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
       db.addRefreshToken(refreshToken);
       res.json({accessToken: accesToken, refreshToken: refreshToken})
   
     } catch (error) {
-      return res.redirect(process.env.googleOAuthFailRedirectUrl);
+      return res.status(500).send("Google Auth Failed");
     }
+  }
+
+  async function googleLogInWithGoogleId(googleId,res){
+    try {
+      const googleUser = await getGoogleIdTokenData(googleId)
+      if(googleUser.error){return res.status(403).send("Invalid Google Id")}
+
+      if (!( googleUser.verified_email || googleUser.email_verified)) {
+        return res.status(403).send("Google account is not verified");
+      }
+
+      const generatedPassword = generateRandomPassword(12);
+      const { success, error, userid} = await addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+
+      const user = {name : googleUser.given_name, id: userid};
+      const accesToken = generateAccessToken(user);
+      const refreshToken = generateRefreshToken(user);
+
+      db.addRefreshToken(refreshToken);
+      res.json({accessToken: accesToken, refreshToken: refreshToken})
+
+    } catch (error) {
+      return res.status(500).send("Google Auth Failed");
+    }
+
   }
   
   async function getGoogleOAuthTokens({code}){
@@ -38,7 +83,7 @@ async function googleLogIn(req,res){
       code: code,
       client_id: process.env.googleClientId,
       client_secret: process.env.googleClientSecret,
-      redirect_uri: process.env.googleOauthRedirectUrl,
+      redirect_uri: process.env.googleOAuthRedirectUrl,
       grant_type: "authorization_code",
     };
   
@@ -55,9 +100,8 @@ async function googleLogIn(req,res){
       );
       return res.data;
     } catch (error) {
-      throw new Error(error.message);
+      return {token_error:error.message};
     }
-  
   }
   
   async function getGoogleUser({
@@ -75,10 +119,33 @@ async function googleLogIn(req,res){
       );
       return res.data;
     } catch (error) {
-      throw new Error(error.message);
+      return {"error":error.message};
     }
   }
 
+  async function getGoogleIdTokenData(google_id_token) {
+    try {
+      const res = await axios.get(
+        `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${google_id_token}`
+      );
+      return res.data;
+    } catch (error) {
+      return {"error":error.message};
+    }
+  }
 
+  function generateRandomPassword(length){
+    const randomBytes = crypto.randomBytes(length);
 
-module.exports = {googleLogIn}
+    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
+    let password = "";
+
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(randomBytes[i] / 256 * charset.length);
+      password += charset[randomIndex];
+    }
+
+  return password;
+  }
+
+module.exports = {googleLogIn,googleLogInWithGoogleId}

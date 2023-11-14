@@ -5,8 +5,10 @@ const router = express.Router();
 
 /**
  * @swagger
- * /:
+ * /auth/:
  *   get:
+ *     tags:
+ *       - authorization
  *     description: Get data after authentication. Include Header Authorization set to "BEARER {access-key}"
  *     responses:
  *       200:
@@ -25,8 +27,10 @@ router.get('/', service.authorizeAccessToken, service.homePage)
 
 /**
  * @swagger
- * /login:
+ * /auth/login:
  *   post:
+ *     tags:
+ *       - authorization
  *     description: Create session data for the user. username property can be also filled with email.
  *     requestBody:
  *       required: true
@@ -60,8 +64,10 @@ router.post("/login", service.logIn)
 
 /**
  * @swagger
- * /access-token:
+ * /auth/access-token:
  *   post:
+ *     tags:
+ *       - authorization
  *     description: Create access token using refresh token.
  *     requestBody:
  *       required: true
@@ -92,8 +98,10 @@ router.post('/access-token', service.createAccessTokenFromRefreshToken)
 
 /**
  * @swagger
- * /logout:
+ * /auth/logout:
  *   post:
+ *     tags:
+ *       - authorization
  *     description: Delete session data of the user
  *     requestBody:
  *       required: true
@@ -114,8 +122,10 @@ router.post('/logout', service.logOut)
 
 /**
  * @swagger
- * /signup:
+ * /auth/signup:
  *   post:
+ *     tags:
+ *       - authorization
  *     description: Create new user with the given credentials. Birthday should follow format "YYYY-MM-DD"
  *     requestBody:
  *       required: true
@@ -143,6 +153,37 @@ router.post('/logout', service.logOut)
  */
 router.post("/signup", service.signup)
 
-router.get("/googleAuth", googleService.googleLogIn)
+/**
+ * @swagger
+ * /auth/google:
+ *   post:
+ *     tags:
+ *       - authorization
+ *     description: Log in using the recieved google data. Put either googleId or code in body.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               googleId:
+ *                 type: string
+ *               code:
+ *                 type: string
+ *        
+ *     responses:
+ *       200:
+ *         description: Successful response
+ * 
+ *       403:
+ *         description: Google account is not verified.
+ * 
+ *       500:
+ *         description: Server was not able to log in user with the given data.
+ */
+router.post("/google", googleService.googleLogIn)
+
+
 
 module.exports = router;
