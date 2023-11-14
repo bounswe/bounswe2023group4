@@ -29,6 +29,7 @@
      padding: 22px 0px;
      width: 100%;
      opacity: 0.85;
+        background: var(--primary-500);
  }
 
  .dividerStyle {

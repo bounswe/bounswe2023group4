@@ -206,8 +206,8 @@ function SignUp() {
           </Form.Item>
           <Form.Item>
             <div className={styles.displayCenterStyle}>
-              I Have an Account
-              <Link to="/auth/sign-in" className={{ marginLeft: "10px" }}>
+              I Have an Account 
+              <Link to="/auth/sign-in" style={{ paddingLeft: "10px" }}>
                 Login
               </Link>
             </div>
