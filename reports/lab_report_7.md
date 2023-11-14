@@ -63,6 +63,9 @@
 | Unit Tests for Poll Endpoints | [#344](https://github.com/bounswe/bounswe2023group4/issues/344) | Şefik Palazoğlu | 20.11.2023 | 4hr |
 | Implement email verification| [#345](https://github.com/bounswe/bounswe2023group4/issues/345) | Hebun Şimşek | 21.11.2023 | 6hr |
 | Implement search bar component| [#346](https://github.com/bounswe/bounswe2023group4/issues/346) | Kutay Saran | 21.11.2023 | 4hr |
+| Integrating the Vote Page UI with the back-end server| [#347](https://github.com/bounswe/bounswe2023group4/issues/347) | Ali Nasra| 21.11.2023 | 4hr |
+
+
 
 ## UI/UX Considerations
 ### Existing Nice Features
