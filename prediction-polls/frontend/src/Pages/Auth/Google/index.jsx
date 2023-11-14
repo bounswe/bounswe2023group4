@@ -1,33 +1,29 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import googleLogin from '../../../api/requests/googleLogin';
 
 function GoogleLogin() {
+  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
     const code = new URLSearchParams(location.search).get('code');
-    console.log(code);
-    if (code) {
-      // Call the googleLogin function with the code
-      googleLogin(code).then(success => {
-        if (success) {
-          // Redirect to home page or dashboard if login was successful
-          console.log('Logged in successfully');
-          // Replace with your path to redirect
-          // this could be using history.push('/path') if you're using react-router
-        } else {
-          // Handle the error scenario, maybe set an error message state and display it
-          console.error('Failed to log in with Google');
-        }
-      });
+      if (code) {
+        googleLogin(code).then(success => {
+          if (success) {
+            // Redirect to profile if login was successful
+            navigate('/profile');
+          } else {
+            // Redirect to a login error page or back to login
+            navigate('/auth/sign-in');
+          }
+        });
     }
-  }, [location]);
+  }, [location.search, navigate]);
 
   return (
     <div>
-      <h1>Google Login Page</h1>
-      {/* Render additional UI elements or messages here if needed */}
+      <h1>Redirecting..</h1>
     </div>
   );
 }
