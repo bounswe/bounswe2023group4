@@ -20,8 +20,8 @@
 | Update swagger for added Poll Logic | [#323](https://github.com/bounswe/bounswe2023group4/issues/323) | Şefik Palazoğlu, Emre Batuhan Göç | 14.11.23 | [#334](https://github.com/bounswe/bounswe2023group4/pull/334) | 2hr | 1.5hr |
 | Implement Voting Page UI | [#304](https://github.com/bounswe/bounswe2023group4/issues/304) | Ali Nasra | 11.11.2023 | [#329](https://github.com/bounswe/bounswe2023group4/pull/329) | 3hr | 3hr |
 | Auth form validation |[#308](https://github.com/bounswe/bounswe2023group4/issues/308) | Hebun Şimşek | 13.11.2023 | | 5hr | Unfinished |
-| Implement Profile Page UI | [#306](https://github.com/bounswe/bounswe2023group4/issues/306) | Selin Işık | 14.11.2023 | | 4hr | |
-| Mobile compatibility of Auth pages and Feed page | [#307](https://github.com/bounswe/bounswe2023group4/issues/307), [#309](https://github.com/bounswe/bounswe2023group4/issues/309),[#310](https://github.com/bounswe/bounswe2023group4/issues/310)| Selin Işık | 14.11.2023 | | 3.5hr | |
+| Implement Profile Page UI | [#306](https://github.com/bounswe/bounswe2023group4/issues/306) | Selin Işık | 14.11.2023 | [#363](https://github.com/bounswe/bounswe2023group4/pull/363) | 4hr | 3.5hr |
+| Mobile compatibility of Auth pages and Feed page | [#307](https://github.com/bounswe/bounswe2023group4/issues/307), [#309](https://github.com/bounswe/bounswe2023group4/issues/309),[#310](https://github.com/bounswe/bounswe2023group4/issues/310)| Selin Işık | 14.11.2023 | -  | 3.5hr | Unfinished |
 | Update CSS structure of Sign-In and Sign-Up pages | [#305](https://github.com/bounswe/bounswe2023group4/issues/305) | Selin Işık, Ali Nasra | 14.11.2023 | [#330](https://github.com/bounswe/bounswe2023group4/pull/330) | 1.5hr | 1.5hr |
 | Implement sign in with Google | [#265](https://github.com/bounswe/bounswe2023group4/issues/265) | Yiğit Şekerci | 14.11.23 | [#331](https://github.com/bounswe/bounswe2023group4/pull/331) | 3hr | 2.5hr |
 | Implement sign up with Google | [#262](https://github.com/bounswe/bounswe2023group4/issues/262) | Yiğit Şekerci | 14.11.23 | [#331](https://github.com/bounswe/bounswe2023group4/pull/331) | 3hr | 0.5hr |
@@ -55,6 +55,7 @@
 * [#241](https://github.com/bounswe/bounswe2023group4/issues/241) is still not done because we did not decide how the flow with refresh token happens in the app. As soon as that is finished, this issue will be worked on.
 * Ali Nasra helped and done [#305](https://github.com/bounswe/bounswe2023group4/issues/305) while he was not initially assigned.
 * After adding reflection tasks and leaving teammate's tasks to other members, mobile team couldnt catch their program and they are still behind the project plan. We pushed some upcoming tasks to next week to patch old tasks and mobile app.
+* Mobile compatibility of Auth pages and Feed page task is currently unfinished but it will be done until 23.59. PR status of those tasks can be followed from their issues.
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
