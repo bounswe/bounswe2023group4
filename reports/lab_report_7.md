@@ -45,7 +45,7 @@
 | Dockerization and redeployment of our backend | [#336](https://github.com/bounswe/bounswe2023group4/issues/336) | Hebun Şimşek | 14.11.2023 | [link](https://github.com/bounswe/bounswe2023group4/issues/336#issuecomment-1810026633) |
 
 ## Unexpected Events
-- Alperen Sönmez decided to leave the course. We are trying to manage and shift his wo
+- Alperen Sönmez decided to leave the course. We are trying to manage and shift his works.
 
 ## Planned vs. Actual
 * [#325](https://github.com/bounswe/bounswe2023group4/issues/325) was incomplete because Alperen left the course.
@@ -64,6 +64,9 @@
 | Implement email verification| [#345](https://github.com/bounswe/bounswe2023group4/issues/345) | Hebun Şimşek | 21.11.2023 | 6hr |
 | Implement search bar component| [#346](https://github.com/bounswe/bounswe2023group4/issues/346) | Kutay Saran | 21.11.2023 | 4hr |
 | Integrating the Vote Page UI with the back-end server| [#347](https://github.com/bounswe/bounswe2023group4/issues/347) | Ali Nasra| 21.11.2023 | 4hr |
+|Completing the UI/UX design of the create poll page| [#348](https://github.com/bounswe/bounswe2023group4/issues/348) | Enes Furkan Arslan | 19.11.2023 | 3h |
+|Linking create poll page to backend, frontend part | [#349](https://github.com/bounswe/bounswe2023group4/issues/348) | Enes Furkan Arslan | 20.11.2023 | 4h |
+|Update Ram for leaving teammate | [#350](https://github.com/bounswe/bounswe2023group4/issues/350) | Enes Furkan Arslan | 20.11.2023 | 1h | 
 
 
 
