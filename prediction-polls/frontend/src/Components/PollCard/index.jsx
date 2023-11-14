@@ -79,7 +79,7 @@ function PollCard({ PollData }) {
         <div className={styles.actionButtons}>
           <div className={styles.buttonWrapper}>
             <button className={styles.commentButton}>
-              <CommentIcon /> Comments
+              <CommentIcon /> <p className={styles.buttonText}>Comments</p>
             </button>
             <span className={styles.commentCount}>
               {`${PollData.comments.length} comment${
@@ -90,13 +90,14 @@ function PollCard({ PollData }) {
 
           <div className={styles.buttonWrapper}>
             <button className={styles.shareButton}>
-              <ShareIcon /> Share
+              <ShareIcon /> <p className={styles.buttonText}>Share</p>
             </button>
           </div>
           <div className={styles.buttonWrapper}>
             <button className={styles.reportButton}>
               <ReportIcon />
-              Report
+              <p className={styles.buttonText}>Report</p>
+              
             </button>
           </div>
         </div>
