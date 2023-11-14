@@ -56,4 +56,7 @@
 
     <string name="date_picker_ok">Tamam</string>
     <string name="date_picker_cancel">İptal</string>
+    <string name="vote_screen_text">Choose one of the options you want to vote for</string>
+    <string name="vote_screen_vote_button_text">Vote</string>
+    <string name="poll_vote_input_title">Vote points</string>
 </resources>
