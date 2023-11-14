@@ -20,7 +20,7 @@
 | Update swagger for added Poll Logic | [#323](https://github.com/bounswe/bounswe2023group4/issues/323) | Şefik Palazoğlu, Emre Batuhan Göç | 14.11.23 | [#334](https://github.com/bounswe/bounswe2023group4/pull/334) | 2hr | 1.5hr |
 | Implement Voting Page UI | [#304](https://github.com/bounswe/bounswe2023group4/issues/304) | Ali Nasra | 11.11.2023 | [#329](https://github.com/bounswe/bounswe2023group4/pull/329) | 3hr | 3hr |
 | Auth form validation |[#308](https://github.com/bounswe/bounswe2023group4/issues/308) | Hebun Şimşek | 13.11.2023 | | 5hr | Unfinished |
-| Implement Profile Page UI | [#306](https://github.com/bounswe/bounswe2023group4/issues/306) | Selin Işık | 14.11.2023 | [#363](https://github.com/bounswe/bounswe2023group4/pull/363) | 4hr | 3.5hr |
+| Implement Profile Page UI | [#306](https://github.com/bounswe/bounswe2023group4/issues/306) | Selin Işık | 14.11.2023 | [#368](https://github.com/bounswe/bounswe2023group4/pull/368) | 4hr | 3.5hr |
 | Mobile compatibility of Auth pages and Feed page | [#307](https://github.com/bounswe/bounswe2023group4/issues/307), [#309](https://github.com/bounswe/bounswe2023group4/issues/309),[#310](https://github.com/bounswe/bounswe2023group4/issues/310)| Selin Işık | 14.11.2023 | -  | 3.5hr | Unfinished |
 | Update CSS structure of Sign-In and Sign-Up pages | [#305](https://github.com/bounswe/bounswe2023group4/issues/305) | Selin Işık, Ali Nasra | 14.11.2023 | [#330](https://github.com/bounswe/bounswe2023group4/pull/330) | 1.5hr | 1.5hr |
 | Implement sign in with Google | [#265](https://github.com/bounswe/bounswe2023group4/issues/265) | Yiğit Şekerci | 14.11.23 | [#331](https://github.com/bounswe/bounswe2023group4/pull/331) | 3hr | 2.5hr |
