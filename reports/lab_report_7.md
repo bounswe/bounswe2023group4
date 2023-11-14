@@ -33,7 +33,7 @@
 | Add validation to auth pages | [#318](https://github.com/bounswe/bounswe2023group4/issues/318) | Yiğit Şekerci | 14.11.23 | [#331](https://github.com/bounswe/bounswe2023group4/pull/331) | 1.5hr | 3hr |
 | Increase Mobile App tests' code coverage | [#317](https://github.com/bounswe/bounswe2023group4/issues/317) | Yiğit Şekerci | 14.11.23 | - | 3.5hr | Unfinished |
 | Implement Sign In with Google | [#319](https://github.com/bounswe/bounswe2023group4/issues/319) | Kutay Saran | 14.11.23 | [#341](https://github.com/bounswe/bounswe2023group4/pull/341) | 3hr | 4hr |
-| The implementation of the Leaderboard page UI | [#316](https://github.com/bounswe/bounswe2023group4/issues/316) | Kutay Saran | 14.11.23 | | 4hr | |
+| The implementation of the Leaderboard page UI | [#316](https://github.com/bounswe/bounswe2023group4/issues/316) | Kutay Saran | 14.11.23 | [#367](https://github.com/bounswe/bounswe2023group4/pull/367) | 4hr | 3hr |
 | Implement Sign In with Google from Backend to Frontend | [#321](https://github.com/bounswe/bounswe2023group4/issues/321) | Emre Batuhan Göç | 12.11.23 | [#275](https://github.com/bounswe/bounswe2023group4/pull/275), [#328](https://github.com/bounswe/bounswe2023group4/pull/328) | 4hr | 4.5hr |
 | Implement Sign In with Google from Backend to Mobile | [#322](https://github.com/bounswe/bounswe2023group4/issues/322) | Emre Batuhan Göç | 14.11.23 | [#328](https://github.com/bounswe/bounswe2023group4/pull/328) | 3hr | 3.5hr |
 | Implement Creating Poll Page UI | [#320](https://github.com/bounswe/bounswe2023group4/issues/320) | Enes Furkan Arslan | 14.11.2023 | [#332](https://github.com/bounswe/bounswe2023group4/pull/332) | 5hr | 6hr |
