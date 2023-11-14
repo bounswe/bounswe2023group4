@@ -23,15 +23,15 @@
 | Implement Profile Page UI | [#306](https://github.com/bounswe/bounswe2023group4/issues/306) | Selin Işık | 14.11.2023 | | 4hr | |
 | Mobile compatibility of Auth pages and Feed page | [#307](https://github.com/bounswe/bounswe2023group4/issues/307), [#309](https://github.com/bounswe/bounswe2023group4/issues/309),[#310](https://github.com/bounswe/bounswe2023group4/issues/310)| Selin Işık | 14.11.2023 | | 3.5hr | |
 | Update CSS structure of Sign-In and Sign-Up pages | [#305](https://github.com/bounswe/bounswe2023group4/issues/305) | Selin Işık, Ali Nasra | 14.11.2023 | | 1.5hr | |
-| Implement sign in with Google | [#265](https://github.com/bounswe/bounswe2023group4/issues/265) | Yiğit Şekerci | 14.11.23 | [#331](https://github.com/bounswe/bounswe2023group4/pull/331) | 3hr | |
+| Implement sign in with Google | [#265](https://github.com/bounswe/bounswe2023group4/issues/265) | Yiğit Şekerci | 14.11.23 | [#331](https://github.com/bounswe/bounswe2023group4/pull/331) | 3hr | 2.5hr |
 | Implement sign up with Google | [#262](https://github.com/bounswe/bounswe2023group4/issues/262) | Yiğit Şekerci | 14.11.23 | [#331](https://github.com/bounswe/bounswe2023group4/pull/331) | 3hr | 0.5hr |
 | Update Mobile project plan | [#315](https://github.com/bounswe/bounswe2023group4/issues/315) | Yiğit Şekerci | 14.11.23 | [link](https://github.com/bounswe/bounswe2023group4/wiki/General-Plan) | 1hr | 1hr |
-| Implement create poll screen UI | [#314](https://github.com/bounswe/bounswe2023group4/issues/314) | Yiğit Şekerci | 14.11.23 | | 4.5hr | |
-| Implement leaderboard screen UI | [#313](https://github.com/bounswe/bounswe2023group4/issues/313) | Yiğit Şekerci | 14.11.23 | | 4hr | |
-| Implement poll detail screen UI | [#312](https://github.com/bounswe/bounswe2023group4/issues/312) | Ahmet Emre Şafak | 14.11.23 | | 4.5hr | |
-| Implement profile screen UI | [#311](https://github.com/bounswe/bounswe2023group4/issues/311) | Ahmet Emre Şafak | 14.11.23 | | 4hr | |
-| Add validation to auth pages | [#318](https://github.com/bounswe/bounswe2023group4/issues/318) | Yiğit Şekerci | 14.11.23 | [#331](https://github.com/bounswe/bounswe2023group4/pull/331) | 1.5hr | 2.5hr |
-| Increase Mobile App tests' code coverage | [#317](https://github.com/bounswe/bounswe2023group4/issues/317) | Yiğit Şekerci | 14.11.23 | | 3.5hr | |
+| Implement create poll screen UI | [#314](https://github.com/bounswe/bounswe2023group4/issues/314) | Yiğit Şekerci | 14.11.23 | - | 4.5hr | Unfinished |
+| Implement leaderboard screen UI | [#313](https://github.com/bounswe/bounswe2023group4/issues/313) | Yiğit Şekerci | 14.11.23 | [#340](https://github.com/bounswe/bounswe2023group4/pull/340) | 4hr | 4.5hr |
+| Implement poll detail screen UI | [#312](https://github.com/bounswe/bounswe2023group4/issues/312) | Ahmet Emre Şafak | 14.11.23 | [#339](https://github.com/bounswe/bounswe2023group4/pull/339) | 4.5hr | 4.5hr |
+| Implement profile screen UI | [#311](https://github.com/bounswe/bounswe2023group4/issues/311) | Ahmet Emre Şafak | 14.11.23 | - | 4hr | Unfinished |
+| Add validation to auth pages | [#318](https://github.com/bounswe/bounswe2023group4/issues/318) | Yiğit Şekerci | 14.11.23 | [#331](https://github.com/bounswe/bounswe2023group4/pull/331) | 1.5hr | 3hr |
+| Increase Mobile App tests' code coverage | [#317](https://github.com/bounswe/bounswe2023group4/issues/317) | Yiğit Şekerci | 14.11.23 | - | 3.5hr | Unfinished |
 | Implement Sign In with Google | [#319](https://github.com/bounswe/bounswe2023group4/issues/319) | Kutay Saran | 14.11.23 | [#341](https://github.com/bounswe/bounswe2023group4/pull/341) | 3hr | 4hr |
 | The implementation of the Leaderboard page UI | [#316](https://github.com/bounswe/bounswe2023group4/issues/316) | Kutay Saran | 14.11.23 | | 4hr | |
 | Implement Sign In with Google from Backend to Frontend | [#321](https://github.com/bounswe/bounswe2023group4/issues/321) | Emre Batuhan Göç | 12.11.23 | [#275](https://github.com/bounswe/bounswe2023group4/pull/275), [#328](https://github.com/bounswe/bounswe2023group4/pull/328) | 4hr | 4.5hr |
