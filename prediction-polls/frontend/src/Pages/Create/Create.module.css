@@ -1,10 +1,73 @@
-.page{
+.page {
     display: flex;
     background-color: var(--neutral-white);
     width: 100%;
-}
-@media (max-width: 640px) {
-    .page{
-        flex-direction: column;
+  }
+  
+  @media (max-width: 640px) {
+    .page {
+      flex-direction: column;
     }
-}
+  }
+  
+  .createContainer {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    width: 60%;
+  }
+  
+  .questionContainer {
+    margin-bottom: 16px;
+  }
+  
+  .pollTypeContainer {
+    margin-bottom: 16px;
+  }
+  
+  .submitContainer {
+    position: absolute;
+    bottom: 40px; 
+    width: 40%;
+  }
+
+  .multipleChoiceInputs {
+    margin-bottom: 16px;
+  }
+  
+  .choiceInput {
+    margin-bottom: 8px;
+  }
+
+  .datePickerContainer {
+    margin-top: 8px;
+  }
+
+  .numericInputContainer {
+    margin-top: 8px;
+  }
+
+  .dueDatePollInputContainer {
+    margin-top: 8px;
+  }
+
+  .setDueDateContainer {
+    margin-top: 8px;
+  }
+
+  .dateOptionsContainer {
+    margin-top: 8px;
+  }
+  
+  .timeInput {
+    width: 60px;
+    margin-right: 8px;
+  }
+
+  .openVisibilityContainer {
+    position: absolute;
+    bottom: 100px;
+  }
+
