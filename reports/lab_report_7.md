@@ -69,10 +69,10 @@
 |Update Ram for leaving teammate | [#350](https://github.com/bounswe/bounswe2023group4/issues/350) | Enes Furkan Arslan | 20.11.2023 | 1h |
 | Update swagger for profile endpoints | [#355](https://github.com/bounswe/bounswe2023group4/issues/355) | Emre Batuhan Göç | 20.11.2023 | 1h |
 | Write unit tests for profile endpoints | [#354](https://github.com/bounswe/bounswe2023group4/issues/354) | Emre Batuhan Göç | 20.11.2023 | 1h |
-| Restruct backend responses for errors | [#353](https://github.com/bounswe/bounswe2023group4/issues/353) | Emre Batuhan Göç | 20.11.2023 | 1h |
-| Implement Profile Logic | [#352](https://github.com/bounswe/bounswe2023group4/issues/352) | Emre Batuhan Göç | 19.11.2023 | 1h |
-| Implement Profile Fundamentals | [#351](https://github.com/bounswe/bounswe2023group4/issues/351) | Emre Batuhan Göç | 18.11.2023 | 1h |
-| 
+| Restruct backend responses for errors | [#353](https://github.com/bounswe/bounswe2023group4/issues/353) | Emre Batuhan Göç | 20.11.2023 | 2h |
+| Implement Profile Logic | [#352](https://github.com/bounswe/bounswe2023group4/issues/352) | Emre Batuhan Göç | 19.11.2023 | 4h |
+| Implement Profile Fundamentals | [#351](https://github.com/bounswe/bounswe2023group4/issues/351) | Emre Batuhan Göç | 18.11.2023 | 2h |
+
 
 
 
