@@ -54,6 +54,7 @@
 * [#308](https://github.com/bounswe/bounswe2023group4/issues/308) is overdue due to unexpected amount of work received from other classes.
 * [#241](https://github.com/bounswe/bounswe2023group4/issues/241) is still not done because we did not decide how the flow with refresh token happens in the app. As soon as that is finished, this issue will be worked on.
 * Ali Nasra helped and done [#305](https://github.com/bounswe/bounswe2023group4/issues/305) while he was not initially assigned.
+* After adding reflection tasks and leaving teammate's tasks to other members, mobile team couldnt catch their program and they are still behind the project plan. We pushed some upcoming tasks to next week to patch old tasks and mobile app.
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
@@ -98,6 +99,7 @@
 
 ## Risks
 - Backend endpoints need to be configured in accordance of front and mobile's requests. This requires constant communication which can be difficult because of workload of other classes.
+- Mobile team is behind the project plan and it is not known that they can catch up their plan until milestone 2. We may have to push some tasks to the next milestone.
 
 ## Participants
 - Ali Nasra
