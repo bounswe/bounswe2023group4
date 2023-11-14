@@ -1,10 +1,175 @@
-.page{
-    display: flex;
-    background-color: var(--neutral-white);
-    width: 100%;
+.page {
+  display: flex;
+  background-color: var(--neutral-white);
+  width: 100%;
 }
 @media (max-width: 640px) {
-    .page{
-        flex-direction: column;
-    }
+  .page {
+    flex-direction: column;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 95%;
+  box-shadow: 2px 4px 8px var(--neutral-shadow);
+  border-radius: 8px;
+  background-color: var(--neutral-pollCard);
+  margin-bottom: 20px;
+}
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  width: 60%;
+  margin-top: 30px;
+}
+.thumbnailImage {
+  display: flex;
+  width: 100%;
+  height: 200px;
+  position: relative;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px 8px 0px 0px;
+  object-fit: cover;
+}
+.profileImage {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 100px;
+  position: absolute;
+  left: 50px;
+  bottom: -75px;
+}
+.info {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  background-color: var(--primary-50);
+  border-radius: 0px 0px 8px 8px;
+}
+.nameAndButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+}
+.name {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  margin-left: 230px;
+  gap:10px;
+  padding-top: 20px;
+  
+}
+.button {
+  background-color: var(--primary-500);
+  color: var(--neutral-white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  gap: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+}
+.buttonText{
+    margin: 0px;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
+}
+.aboutContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 0px 10px;
+    padding-left: 50px;
+    padding-top: 10px;
+    gap:10
+}
+.aboutTitle{
+    font-weight: 700;
+    color: var(--neutral-black);
+    line-height: 24px;
+    font-size: 24px;
+    margin: 0px 0px;
+}
+.aboutText{
+    color:var(--neutral-black);
+    margin: 0px;
+    font-size: 20px;
+}
+
+.nameUsernameText{
+    font-weight: 700;
+    color: var(--neutral-black);
+    line-height: 24px;
+    font-size: 24px;
+    margin: 0px 0px;
+
+}
+.badgesContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    padding-left: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.badge{
+    width: 85px;
+    height: 85px;
+    border-radius: 100%;
+    background-color: gold;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    box-sizing: border-box;
+    overflow-wrap:anywhere;
+    padding: 4px;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+
+}
+.badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 85px;
+    height: 85px;
+    background-color: var(--neutral-white);
+    opacity: 0.2; /* Adjust this value for desired opacity */
+    border-radius: 100%; /* To maintain the circular shape of the badge */
+    pointer-events: none; /* So that the overlay does not interfere with interaction */
+}
+.badgeText{
+    font-weight: 700;
+    color: var(--neutral-black);
+    line-height: 14px;
+    font-size: 14px;
+    margin: 0px 0px;
+    z-index: 1;
+    
 }

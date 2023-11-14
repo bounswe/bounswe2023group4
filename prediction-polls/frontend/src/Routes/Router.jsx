@@ -12,6 +12,7 @@ import Profile from '../Pages/Profile';
 import Settings from '../Pages/Settings';
 import Vote from '../Pages/Vote';
 import PrivateRoute from '../Components/PrivateRoute';
+import EditProfile from '../Pages/EditProfile';
 
 function AppRouter() {
   return (
@@ -21,7 +22,7 @@ function AppRouter() {
           <PrivateRoute><Home /></PrivateRoute>
         } />
         <Route path="/home" element={
-          <PrivateRoute><Home /></PrivateRoute>
+          <Home />
         } />
         <Route path="/auth/sign-up" element={<SignUp />} />
         <Route path="/auth/sign-in" element={<SignIn />} />
@@ -40,8 +41,8 @@ function AppRouter() {
         <Route path="/notifications" element={
           <PrivateRoute><Notifications /></PrivateRoute>
         } />
-        <Route path="/profile" element={
-          <PrivateRoute><Profile /></PrivateRoute>
+        <Route path="/profile/:username" element={
+         <Profile />
         } />
         <Route path="/settings" element={
           <PrivateRoute><Settings /></PrivateRoute>
@@ -49,6 +50,10 @@ function AppRouter() {
         <Route path="/vote/:id" element={
           //<PrivateRoute><Vote /></PrivateRoute>
           <Vote/>
+        } />
+        <Route path="/editProfile" element={
+          //<PrivateRoute><EditProfile/></PrivateRoute>
+          <EditProfile/>
         } />
       </Routes>
     </BrowserRouter>
