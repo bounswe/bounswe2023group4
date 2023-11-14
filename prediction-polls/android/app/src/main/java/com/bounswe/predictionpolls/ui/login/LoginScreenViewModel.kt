@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.bounswe.predictionpolls.core.BaseViewModel
 import com.bounswe.predictionpolls.data.remote.repositories.AuthRepository
-import com.bounswe.predictionpolls.extensions.isValidEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -21,7 +20,7 @@ class LoginScreenViewModel @Inject constructor(
 
         when (event) {
             is LoginScreenEvent.OnLoginButtonClicked -> onLoginButtonClicked(event.onSuccess)
-            is LoginScreenEvent.OnLoginWithGoogleButtonClicked -> onLoginWithGoogleButtonClicked()
+            is LoginScreenEvent.OnGoogleTokenReceived -> onGoogleTokenReceived(event.token, event.onSuccess)
             is LoginScreenEvent.DismissErrorDialog -> onErrorDialogDismissed()
             else -> {}
         }
@@ -31,11 +30,9 @@ class LoginScreenViewModel @Inject constructor(
         error = null
     }
 
-
-    // TODO handle form validation better
     private fun isFormValid(): Boolean {
-        if (screenState.email.isValidEmail().not()) {
-            error = "Please enter a valid email address."
+        if (screenState.isEmailValid.not()) {
+            screenState = screenState.copy(showEmailError = true)
             return false
         }
 
@@ -50,6 +47,9 @@ class LoginScreenViewModel @Inject constructor(
             onSuccess = {
                 onSuccess()
             },
+            onError = {
+                error = it?.message
+            },
             maxRetryCount = 1
         ) {
             authRepository.login(
@@ -59,8 +59,21 @@ class LoginScreenViewModel @Inject constructor(
         }
     }
 
-    private fun onLoginWithGoogleButtonClicked() {
-        //TODO google sign in implementation
-        error = "Login with Google is not implemented yet."
+    private fun onGoogleTokenReceived(
+        googleToken: String,
+        onSuccess: () -> Unit
+    ) {
+        launchCatching(
+            trackJobProgress = true,
+            onSuccess = {
+                onSuccess()
+            },
+            onError = {
+                error = it?.message
+            },
+            maxRetryCount = 1
+        ) {
+            authRepository.loginWithGoogle(googleToken)
+        }
     }
 }

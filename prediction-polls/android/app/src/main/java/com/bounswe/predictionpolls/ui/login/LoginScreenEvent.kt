@@ -5,6 +5,6 @@ sealed class LoginScreenEvent {
     data object OnPasswordVisibilityToggleClicked : LoginScreenEvent()
     data class OnPasswordChanged(val password: String) : LoginScreenEvent()
     data class OnLoginButtonClicked(val onSuccess: () -> Unit) : LoginScreenEvent()
-    data class OnLoginWithGoogleButtonClicked(val onSuccess: () -> Unit) : LoginScreenEvent()
+    data class OnGoogleTokenReceived(val token: String, val onSuccess: () -> Unit) : LoginScreenEvent()
     data object DismissErrorDialog : LoginScreenEvent()
 }
