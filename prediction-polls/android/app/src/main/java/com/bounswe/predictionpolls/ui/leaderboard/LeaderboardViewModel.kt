@@ -11,4 +11,8 @@ import javax.inject.Inject
 class LeaderboardViewModel @Inject constructor() : BaseViewModel() {
     var screenState by mutableStateOf(LeaderboardScreenState())
         private set
+
+    fun onEvent(event: LeaderboardScreenEvent){
+        screenState = screenState.reduce(event)
+    }
 }

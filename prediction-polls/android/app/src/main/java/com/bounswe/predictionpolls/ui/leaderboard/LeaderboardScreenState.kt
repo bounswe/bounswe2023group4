@@ -1,12 +1,14 @@
 package com.bounswe.predictionpolls.ui.leaderboard
 
 data class LeaderboardScreenState(
-    val dropdownItems: List<String> = emptyList(),
+    val tags: List<String> = emptyList(),
+    val selectedTag: String = "",
     val leaderboardList: List<LeaderboardItem> = emptyList(),
 ) {
     companion object {
         val DUMMY_STATE = LeaderboardScreenState(
-            dropdownItems = listOf("E-sport", "NBA", "Football", "Tennis"),
+            tags = listOf("E-sport", "NBA", "Football", "Tennis"),
+            selectedTag = "E-sport",
             leaderboardList = (0..20).reversed().map {
                 LeaderboardItem(
                     username = "user$it",
@@ -22,4 +24,13 @@ data class LeaderboardScreenState(
         val image: String,
         val score: Int,
     )
+
+    fun reduce(event: LeaderboardScreenEvent): LeaderboardScreenState {
+        return when (event) {
+            is LeaderboardScreenEvent.OnTagSelected -> this.copy(selectedTag = event.tag)
+            else -> {
+                this
+            }
+        }
+    }
 }

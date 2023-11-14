@@ -17,6 +17,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,15 +28,19 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.PopupProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.bounswe.predictionpolls.R
@@ -48,12 +55,20 @@ fun LeaderboardScreen(
     viewModel: LeaderboardViewModel = hiltViewModel()
 ) {
     LeaderboardScreenUI(
-        items = viewModel.screenState.leaderboardList
+        tags = viewModel.screenState.tags,
+        items = viewModel.screenState.leaderboardList,
+        selectedTag = viewModel.screenState.selectedTag,
+        onTagSelected = {
+            viewModel.onEvent(LeaderboardScreenEvent.OnTagSelected(it))
+        }
     )
 }
 
 @Composable
 private fun LeaderboardScreenUI(
+    tags: List<String> = emptyList(),
+    onTagSelected: (String) -> Unit = {},
+    selectedTag: String = "",
     items: List<LeaderboardScreenState.LeaderboardItem>
 ) {
     Column(
@@ -62,19 +77,84 @@ private fun LeaderboardScreenUI(
             .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 24.dp),
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
-        Text(text = "Esports")
+        LeaderboardScreenTagSelection(
+            items = tags,
+            onItemSelected = onTagSelected,
+            selectedItem = selectedTag
+        )
         Leaderboard(items)
         LoadMore()
     }
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun LeaderboardScreenTagSelection(
     items: List<String>,
     onItemSelected: (String) -> Unit = {},
-    selectedIndex: Int = 0,
+    selectedItem: String = ""
 ) {
     var expanded by remember { mutableStateOf(false) }
+    val shape = RoundedCornerShape(8.dp)
+
+    Column{
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.primaryContainer, shape)
+                .clip(shape = shape)
+                .clickable {
+                    expanded = true
+                }
+                .padding(vertical = 12.dp, horizontal = 16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = selectedItem,
+                style = MaterialTheme.typography.labelMedium,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Medium,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                textAlign = TextAlign.Center,
+            )
+            Icon(
+                painter = painterResource(id = R.drawable.ic_back),
+                contentDescription = stringResource(id = R.string.leaderboard_cd_tag),
+                modifier = Modifier.rotate(-90f)
+            )
+        }
+
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+            properties = PopupProperties(
+                usePlatformDefaultWidth = false,
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+                .background(MaterialTheme.colorScheme.primaryContainer)
+        ) {
+            items.forEach { item ->
+                DropdownMenuItem(
+                    onClick = {
+                        onItemSelected(item)
+                        expanded = false
+                    },
+                    text = {
+                        Text(
+                            text = item,
+                            style = MaterialTheme.typography.labelMedium,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Medium,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            textAlign = TextAlign.Center,
+                        )
+                    }
+                )
+            }
+        }
+    }
 }
 
 @Composable
@@ -140,7 +220,8 @@ private fun LeaderboardRow(
         )
         LeaderboardRowText(
             modifier = Modifier.weight(1f),
-            text = point
+            text = point,
+            align = TextAlign.Center
         )
     }
 }
@@ -213,7 +294,8 @@ private fun LeaderboardHeader() {
         )
         LeaderboardHeaderText(
             modifier = Modifier.weight(1f),
-            text = stringResource(id = R.string.leaderboard_header_point)
+            text = stringResource(id = R.string.leaderboard_header_point),
+            align = TextAlign.Center
         )
     }
 }
@@ -252,7 +334,7 @@ private fun LoadMore(
             .padding(vertical = 12.dp),
         text = stringResource(id = R.string.leaderboard_load_more),
         style = MaterialTheme.typography.labelMedium,
-        fontSize = 24.sp,
+        fontSize = 18.sp,
         fontWeight = FontWeight.Medium,
         color = MaterialTheme.colorScheme.onPrimary,
         textAlign = TextAlign.Center,
@@ -268,8 +350,12 @@ private fun LeaderboardScreenUIPreview() {
                 .fillMaxSize()
                 .background(Color.White)
         ) {
+            val dummyState = LeaderboardScreenState.DUMMY_STATE
             LeaderboardScreenUI(
-                LeaderboardScreenState.DUMMY_STATE.leaderboardList
+                tags = dummyState.tags,
+                selectedTag = dummyState.selectedTag,
+                items = dummyState.leaderboardList,
+                onTagSelected = {}
             )
         }
     }

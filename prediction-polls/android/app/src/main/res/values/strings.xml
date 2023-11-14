@@ -42,6 +42,7 @@
     <string name="leaderboard_header_username">Username</string>
     <string name="leaderboard_header_point">Point</string>
     <string name="leaderboard_load_more">Load more</string>
+    <string name="leaderboard_cd_tag">Toggle tag selection</string>
 
     <string name="or">or</string>
     <string name="ok">OK</string>
