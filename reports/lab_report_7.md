@@ -59,7 +59,7 @@
 | Write and Upload 7th Week Report | [#335](https://github.com/bounswe/bounswe2023group4/issues/335) | Şefik Palazoğlu | 14.11.2023 | 1.5hr |
 | Linking Refresh Token and Users in Database | [#241](https://github.com/bounswe/bounswe2023group4/issues/241) | Şefik Palazoğlu | 21.11.2023 | 3hr |
 | Implement Poll Comment | [#342](https://github.com/bounswe/bounswe2023group4/issues/342) | Şefik Palazoğlu | 19.11.2023 | 3hr |
-
+| Poll Response Restructuring | [#343](https://github.com/bounswe/bounswe2023group4/issues/343) | Şefik Palazoğlu | 20.11.2023 | 6hr |
 
 ## UI/UX Considerations
 ### Existing Nice Features
