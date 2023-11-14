@@ -65,7 +65,7 @@
 | Implement search bar component| [#346](https://github.com/bounswe/bounswe2023group4/issues/346) | Kutay Saran | 21.11.2023 | 4hr |
 | Integrating the Vote Page UI with the back-end server| [#347](https://github.com/bounswe/bounswe2023group4/issues/347) | Ali Nasra| 21.11.2023 | 4hr |
 |Completing the UI/UX design of the create poll page| [#348](https://github.com/bounswe/bounswe2023group4/issues/348) | Enes Furkan Arslan | 19.11.2023 | 3h |
-|Linking create poll page to backend, frontend part | [#349](https://github.com/bounswe/bounswe2023group4/issues/348) | Enes Furkan Arslan | 20.11.2023 | 4h |
+|Linking create poll page to backend, frontend part | [#349](https://github.com/bounswe/bounswe2023group4/issues/349) | Enes Furkan Arslan | 20.11.2023 | 4h |
 |Update Ram for leaving teammate | [#350](https://github.com/bounswe/bounswe2023group4/issues/350) | Enes Furkan Arslan | 20.11.2023 | 1h | 
 
 
