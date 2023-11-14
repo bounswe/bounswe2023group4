@@ -12,6 +12,7 @@ import Profile from '../Pages/Profile';
 import Settings from '../Pages/Settings';
 import Vote from '../Pages/Vote';
 import PrivateRoute from '../Components/PrivateRoute';
+import GoogleLogin from '../Pages/Auth/Google'
 import EditProfile from '../Pages/EditProfile';
 
 function AppRouter() {
@@ -28,6 +29,9 @@ function AppRouter() {
         <Route path="/auth/sign-in" element={<SignIn />} />
         <Route path="/feed" element={
           <Feed />
+        } />
+        <Route path="/googleAuth" element={
+          <GoogleLogin />
         } />
         <Route path="/create" element={
           <PrivateRoute><Create /></PrivateRoute>

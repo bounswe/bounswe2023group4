@@ -15,6 +15,9 @@ function SignIn() {
   const [password, setPassword] = React.useState("");
   const [message, setMessage] = React.useState("");
   const navigate = useNavigate();
+  const handleLogin = () => {
+    window.location.href = getGoogleOAuthURL();
+  };
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -27,7 +30,7 @@ function SignIn() {
           password: password
         })
       };
-      const response = await fetch(process.env.REACT_APP_BACKEND_LINK+'/login', requestOptions);
+      const response = await fetch(process.env.REACT_APP_BACKEND_LINK+'/auth/login', requestOptions);
       const data = await response.json();
     
     if (response.status === 201 && data.accessToken && data.refreshToken) {
@@ -51,9 +54,8 @@ function SignIn() {
         <Form className = {{...styles.formItemLayout,labelCol: { span: 24 }, wrapperCol: { span: 24 }}}>
           <Form.Item>
             <div>
-              <Button className={styles.formButtonStyle} onClick={() => window.location.href = getGoogleOAuthURL()}>
-                <GoogleLogo className={styles.googleLogoStyle} />
-
+              <Button style={formButtonStyle} onClick={handleLogin}>
+                <GoogleLogo style={googleLogoStyle} />
                 <span>Sign In with Google</span>
               </Button>
             </div>
