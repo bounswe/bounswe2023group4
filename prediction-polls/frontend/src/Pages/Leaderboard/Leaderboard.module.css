@@ -8,3 +8,31 @@
         flex-direction: column;
     }
 }
+
+.dropdowns {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.dropdown {
+  flex-grow: 1; /* This ensures the buttons grow and space between works */
+  margin: 0 10px; /* Add a little space between the dropdowns */
+}
+
+.leaderboardList {
+  width: 100%;
+  max-width: 600px; /* Set a max-width for the list */
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.rank {
+  margin-left: 12px;
+}
