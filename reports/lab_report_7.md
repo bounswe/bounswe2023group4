@@ -50,11 +50,26 @@
 ## Planned vs. Actual
 * [#325](https://github.com/bounswe/bounswe2023group4/issues/325) was incomplete because Alperen left the course.
 * [#308](https://github.com/bounswe/bounswe2023group4/issues/308) was overdue due to unexpected amount of work received from other classes.
+* [#241](https://github.com/bounswe/bounswe2023group4/issues/241) is still not done because we did not decide how the flow with refresh token happens in the app. As soon as that is finished, this issue will be worked on.
+* Ali Nasra helped and done [#305](https://github.com/bounswe/bounswe2023group4/issues/305) while he was not initially assigned.
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
 | --- | --- | --- | --- | --- |
 | Write and Upload 7th Week Report | [#335](https://github.com/bounswe/bounswe2023group4/issues/335) | Şefik Palazoğlu | 14.11.2023 | 1.5hr |
+| Linking Refresh Token and Users in Database | [#241](https://github.com/bounswe/bounswe2023group4/issues/241) | Şefik Palazoğlu | 21.11.2023 | 3hr |
+
+
+## UI/UX Considerations
+### Existing Nice Features
+-  Google and normal registration are linked. Using the same email and google registration with the same email results in a single account.
+-  In poll creation, options for creating a poll get revealed as user enters the options to not overwhelm the user.
+-  Google mail selection mobile UI is intriguing.
+-  We have light and dark color theme. This option considers the user's preference in their machine.
+-  Mobile form validation is interactive and helps to user write their forms easily.
+### Would-be Good Features if Implemented
+-  We could make a landing page that introduces the site and its functionalities to the user.
+-  It would be good if users could see their friends' votes in the polls they created like Instagram's likes.
 
 ## Risks
 - Backend endpoints need to be configured in accordance of front and mobile's requests. This requires constant communication which can be difficult because of workload of other classes.
