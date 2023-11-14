@@ -164,3 +164,25 @@
 a{
   text-decoration: none;
 }
+
+.buttonText{
+  margin: 0px;
+}
+
+@media (max-width:769px){
+  .buttonText{
+    display: none;
+  }
+  .commentButton,
+.shareButton,
+.reportButton {
+  padding: 12px;
+}
+}
+@media (max-width:1025px){
+  .card{
+    padding: 25px 15px ;
+    
+  }
+
+}

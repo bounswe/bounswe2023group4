@@ -16,7 +16,8 @@ function Feed() {
           <PollCard PollData={poll} key={index}/>
         ))
       }</div>
-      <PointsButton points={pointData.points}/>
+     <div className={styles.pointsButton}>
+      <PointsButton points={pointData.points}/></div> 
     </div>
   );
 }

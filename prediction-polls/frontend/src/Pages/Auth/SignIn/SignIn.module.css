@@ -86,3 +86,9 @@
   color: var(--neutral-100);
   color: var(--warning-600)
 }
+@media (max-width: 768px) {
+  .imageStyle{
+    display: none;
+  }
+  
+}
