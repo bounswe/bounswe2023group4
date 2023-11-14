@@ -8,6 +8,7 @@ import {
   Typography,
   Divider,
 } from "antd";
+import styles from "./SignUp.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as Logo } from "../../../Assets/Logo.svg";
 import { ReactComponent as SignPageAnimation } from "../../../Assets/SignPageAnimation.svg";
@@ -24,15 +25,15 @@ function SignUp() {
   const handleSubmit = async (values) => {
     try {
       const formattedValues = { ...values };
-    if (values.birthday) {
-      if (typeof values.birthday.format === 'function') {
-        formattedValues.birthday = formatDate(values.birthday.toDate());
-      } 
-    } else {
-      formattedValues.birthday = undefined; 
-    }
+      if (values.birthday) {
+        if (typeof values.birthday.format === 'function') {
+          formattedValues.birthday = formatDate(values.birthday.toDate());
+        }
+      } else {
+        formattedValues.birthday = undefined;
+      }
 
-      const res = await fetch(process.env.REACT_APP_BACKEND_LINK+"/signup", {
+      const res = await fetch(process.env.REACT_APP_BACKEND_LINK + "/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,7 +50,7 @@ function SignUp() {
         setUsernameHelp("Username should be unique");
       }
     } catch (err) {
-      
+
     }
   };
 
@@ -71,102 +72,29 @@ function SignUp() {
     }
   };
 
-  const splitContainerStyle = {
-    display: "flex",
-    width: "100%",
-    margin: "0 auto",
-    height: "100vh",
-  };
-
-  const animationStyle = {
-    maxWidth: "100%",
-    maxHeight: "100%",
-  };
-
-  const displayCenterStyle = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  };
-
-  const formInputStyle = {
-    padding: "5px 5px",
-    width: "100%",
-  };
-
-  const formButtonStyle = {
-    ...displayCenterStyle,
-    padding: "22px 0px",
-    width: "100%",
-    opacity: "0.85",
-  };
-
-  const dividerStyle = {
-    color: "rgba(22, 119, 255, 0.4)",
-    borderColor: "rgba(22, 119, 255, 0.2)",
-    margin: "8px 0px 8px 0px",
-  };
-
-  const formDatePickerStyle = {
-    ...formInputStyle,
-    width: "100%",
-  };
-
-  const imageContainerStyle = {
-    flex: 1,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    background: "linear-gradient(#EAF3FB, #BEDAF4)",
-  };
-
-  const formContainerStyle = {
-    flex: 1,
-    paddingLeft: "20px",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  };
-
-  const logoStyle = {
-    ...displayCenterStyle,
-    marginBottom: "20px",
-    maxWidth: "80%",
-    maxHeight: "80%",
-  };
-
-  const formItemLayout = {
-    labelCol: {
-      span: 24,
-    },
-    wrapperCol: {
-      span: 24,
-    },
-  };
-
   return (
-    <div style={splitContainerStyle}>
-      <div style={formContainerStyle}>
-        <Link to="/home" style={logoStyle}>
+    <div className={styles.splitContainerStyle}>
+      <div className={styles.formContainerStyle}>
+        <Link to="/home" className={styles.logoStyle}>
           <Logo />
         </Link>
         <Form
-          {...formItemLayout}
+          labelCol={{ span: 24 }}
+          wrapperCol={{ span: 24 }}
           form={form}
           onFinish={handleSubmit}
           validateTrigger="onSubmit"
         >
           <Form.Item>
             <div>
-              <Button type="primary" style={formButtonStyle}>
+              <Button type="primary" className={styles.formButtonStyle}>
                 <i
-                  className="fab fa-google fa-1x"
-                  style={{ marginRight: "10px" }}
+                  className={{ marginRight: "10px" , fontFamily: "fab fa-google fa-1x"}}
                 ></i>{" "}
                 Sign Up with Google
               </Button>
             </div>
-            <Divider style={dividerStyle} orientation="center" plain>
+            <Divider className={styles.dividerStyle} orientation="center" plain>
               or
             </Divider>
           </Form.Item>
@@ -187,7 +115,7 @@ function SignUp() {
             <Input
               required
               type="text"
-              style={formInputStyle}
+              className={styles.formInputStyle}
               placeholder="example@outlook.com"
             />
           </Form.Item>
@@ -206,7 +134,7 @@ function SignUp() {
             <Input
               required
               type="text"
-              style={formInputStyle}
+              className={styles.formInputStyle}
               onChange={handleUsernameChange}
               placeholder="exampleUsername"
             />
@@ -232,15 +160,15 @@ function SignUp() {
           >
             <Input.Password
               required
-              style={formInputStyle}
+              className={styles.formInputStyle}
               type="password"
               placeholder="Password"
             />
           </Form.Item>
           <Form.Item label="BIRTHDAY" name="birthday" htmlFor="birthday">
             <DatePicker
-              id="birthday" 
-              style={formDatePickerStyle}
+              id="birthday"
+              className={styles.formDatePickerStyle}
               placeholder="01.01.2000"
               format="YYYY-MM-DD"
             />
@@ -269,7 +197,7 @@ function SignUp() {
               <Button
                 type="primary"
                 htmlType="submit"
-                style={formButtonStyle}
+                className={styles.formButtonStyle}
                 onClick={handleSubmit}
               >
                 Sign Up
@@ -277,20 +205,20 @@ function SignUp() {
             </div>
           </Form.Item>
           <Form.Item>
-            <div style={displayCenterStyle}>
-              I Have an Account
-              <Link to="/auth/sign-in" style={{ marginLeft: "10px" }}>
+            <div className={styles.displayCenterStyle}>
+              I Have an Account 
+              <Link to="/auth/sign-in" style={{ paddingLeft: "10px" }}>
                 Login
               </Link>
             </div>
           </Form.Item>
         </Form>
       </div>
-      <div style={imageContainerStyle}>
+      <div className={styles.imageContainerStyle}>
         {/* Our sign up image from mock-up */}
-        <SignPageAnimation style={animationStyle} />
+        <SignPageAnimation className={styles.animationStyle} />
       </div>
-    </div>
+    </div >
   );
 }
 
