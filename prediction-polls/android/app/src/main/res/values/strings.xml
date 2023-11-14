@@ -41,6 +41,13 @@
     <string name="cd_visible">Change password visibility</string>
     <string name="cd_calendar">Calendar image</string>
 
+    <!-- Leaderboard Page -->
+    <string name="leaderboard_header_position">#</string>
+    <string name="leaderboard_header_username">Username</string>
+    <string name="leaderboard_header_point">Point</string>
+    <string name="leaderboard_load_more">Load more</string>
+    <string name="leaderboard_cd_tag">Toggle tag selection</string>
+    
     <string name="or">or</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
