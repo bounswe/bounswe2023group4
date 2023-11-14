@@ -2,9 +2,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 90%;
+  width: 95%;
   box-shadow: 2px 4px 8px var(--neutral-shadow);
   padding: 30px;
+  box-sizing: border-box;
   border-radius: 8px;
   gap: 20px;
   background-color: var(--neutral-pollCard);
@@ -28,11 +29,13 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  cursor: pointer;
 }
 .creatorImage {
   width: 35px;
   height: 35px;
   border-radius: 100px;
+  cursor: pointer;
 }
 .creatorName {
   font-size: 16px;
@@ -155,5 +158,31 @@
   font-size: 20px;
   background-color: var(--neutral-pollCard);
   color: var(--neutral-black);
+
+}
+
+a{
+  text-decoration: none;
+}
+
+.buttonText{
+  margin: 0px;
+}
+
+@media (max-width:769px){
+  .buttonText{
+    display: none;
+  }
+  .commentButton,
+.shareButton,
+.reportButton {
+  padding: 12px;
+}
+}
+@media (max-width:1025px){
+  .card{
+    padding: 25px 15px ;
+    
+  }
 
 }

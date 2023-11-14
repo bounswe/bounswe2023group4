@@ -1,0 +1,78 @@
+ .splitContainerStyle {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    height: 100vh;
+ }
+
+ .animationStyle {
+     max-width: 100%;
+     max-height: 100%;
+ }
+
+
+ .displayCenterStyle {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
+ .formInputStyle {
+     padding: 5px 5px;
+     width: 100%;
+ }
+
+ .formButtonStyle {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 22px 0px;
+     width: 100%;
+     opacity: 0.85;
+        background: var(--primary-500);
+ }
+
+ .dividerStyle {
+     color: var(--primary-900);
+     border-color: var(--primary-900);
+     margin: 8px 0px 8px 0px;
+ }
+
+ .formDatePickerStyle {
+     padding: 5px 5px;
+     width: 100%;
+     width: 100%;
+ }
+
+ .imageContainerStyle {
+     flex: 1;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background: linear-gradient(var(--primary-50), var(--primary-100));
+ }
+
+ .formContainerStyle {
+     flex: 1;
+     padding-left: 20px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center
+ }
+
+ .logoStyle {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin-bottom: 20px;
+     max-width: 80%;
+     max-height: 80%;
+ }
+
+ @media (max-width: 768px) {
+    .imageContainerStyle{
+      display: none;
+    }
+    
+  }

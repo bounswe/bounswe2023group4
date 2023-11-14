@@ -26,9 +26,7 @@ const menuData = [
 const MobileMenuItem = ({ pageKey, Icon, label, navigate, to, theme }) => {
   return (
     <div key={pageKey} className={styles.menuItem} onClick={() => navigate(to)}>
-      {Icon && (
-        <Icon width={30} height={30} />
-      )}
+      {Icon && <Icon width={30} height={30} />}
       {label || pageKey}
     </div>
   );
@@ -44,11 +42,13 @@ const MobileMenu = () => {
 
   return (
     <>
-      {!menuActive && (
+      {!menuActive ? (
         <MenuOutlined
           className={styles.mobileMenuButton}
           onClick={toggleMenu}
         />
+      ) : (
+        <div className={styles.mobileMenuButton}></div>
       )}
       {menuActive && (
         <div className={styles.wrapper} onClick={() => setMenuActive(false)}>

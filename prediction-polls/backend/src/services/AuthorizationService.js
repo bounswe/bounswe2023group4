@@ -24,7 +24,7 @@ function createAccessTokenFromRefreshToken(req, res){
     if (refreshToken == null) return res.status(400).send('A refresh token is needed');
     jwt.verify(refreshToken,process.env.REFRESH_TOKEN_SECRET, (err, user) => {
       if (err) return res.status(401).send('The refresh token is invalid')
-      const accessToken = generateAccessToken({name : user.name});
+      const accessToken = generateAccessToken({name : user.name, id : user.id});
       res.status(201).json({accessToken:accessToken});
     }) 
   }
@@ -33,12 +33,13 @@ async function logIn(req,res){
     // Authorize User  
     const username = req.body.username;
     const password = req.body.password;
-    const user = {name : username};
-    let userAuthenticated = await checkCredentials(username,password);
+    let [userAuthenticated] = await checkCredentials(username,password);
     if (!userAuthenticated) {
       res.status(401).send("Could not find a matching (username, email) - password tuple");
       return;
     }
+
+    const user = {name : username, id: userAuthenticated.id};
     const accesToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user);
     db.addRefreshToken(refreshToken);
