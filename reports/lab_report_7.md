@@ -8,7 +8,9 @@
 * Create Poll Page is created in frontend. Leaderboard is implemented in frontend.
 * This week, we will fully implement poll and vote functionalities. We will implement profile endpoint and connect the frontend.
 * Also, we plan to implement email verification this week.
-
+* In mobile we have implemented leaderboard screen, poll detail screen, added validation to auth page and updated the mobile project plan.
+* Unfortunately we have some tasks that hasn't finished completely or require extra effort in mobile. We will take few new tasks this week in mobile and will focus on patching the current flaws our app.
+  
 ## What was planned for the week? How did it go?
 
 | Description | Issue | Assignee | Due | PR | Estimated Duration | Actual Duration | 
