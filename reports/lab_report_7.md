@@ -82,6 +82,7 @@
 | Increase Mobile App tests' code coverage | [#317](https://github.com/bounswe/bounswe2023group4/issues/317) | Yiğit Şekerci | 21.11.23 | 5hr |
 | Implement feed screen backend requests | [#362](https://github.com/bounswe/bounswe2023group4/issues/362) | Ahmet Emre Şafak | 21.11.23 | 4hr |
 | Implement create poll screen backend requests| [#361](https://github.com/bounswe/bounswe2023group4/issues/361) | Yiğit Şekerci | 21.11.23 | 4hr |
+| Implement Edit Profile Page | [#364](https://github.com/bounswe/bounswe2023group4/issues/364) | Selin Işık | 21.11.23 | 3.5 hr |
 
 
 
