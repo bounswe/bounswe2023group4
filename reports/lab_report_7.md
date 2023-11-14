@@ -30,7 +30,7 @@
 | Implement profile screen UI | [#311](https://github.com/bounswe/bounswe2023group4/issues/311) | Ahmet Emre Şafak | 14.11.23 | | 4hr | |
 | Add validation to auth pages | [#318](https://github.com/bounswe/bounswe2023group4/issues/318) | Yiğit Şekerci | 14.11.23 | [#331](https://github.com/bounswe/bounswe2023group4/pull/331) | 1.5hr | 2.5hr |
 | Increase Mobile App tests' code coverage | [#317](https://github.com/bounswe/bounswe2023group4/issues/317) | Yiğit Şekerci | 14.11.23 | | 3.5hr | |
-| Implement Sign In with Google | [#319](https://github.com/bounswe/bounswe2023group4/issues/319) | Kutay Saran | 14.11.23 | | 3hr | |
+| Implement Sign In with Google | [#319](https://github.com/bounswe/bounswe2023group4/issues/319) | Kutay Saran | 14.11.23 | [#341](https://github.com/bounswe/bounswe2023group4/pull/341) | 3hr | 4hr |
 | The implementation of the Leaderboard page UI | [#316](https://github.com/bounswe/bounswe2023group4/issues/316) | Kutay Saran | 14.11.23 | | 4hr | |
 | Implement Sign In with Google from Backend to Frontend | [#321](https://github.com/bounswe/bounswe2023group4/issues/321) | Emre Batuhan Göç | 12.11.23 | [#275](https://github.com/bounswe/bounswe2023group4/pull/275), [#328](https://github.com/bounswe/bounswe2023group4/pull/328) | 4hr | 4.5hr |
 | Implement Sign In with Google from Backend to Mobile | [#322](https://github.com/bounswe/bounswe2023group4/issues/322) | Emre Batuhan Göç | 14.11.23 | [#328](https://github.com/bounswe/bounswe2023group4/pull/328) | 3hr | 3.5hr |
@@ -62,6 +62,7 @@
 | Poll Response Restructuring | [#343](https://github.com/bounswe/bounswe2023group4/issues/343) | Şefik Palazoğlu | 20.11.2023 | 6hr |
 | Unit Tests for Poll Endpoints | [#344](https://github.com/bounswe/bounswe2023group4/issues/344) | Şefik Palazoğlu | 20.11.2023 | 4hr |
 | Implement email verification| [#345](https://github.com/bounswe/bounswe2023group4/issues/345) | Hebun Şimşek | 21.11.2023 | 6hr |
+| Implement search bar component| [#346](https://github.com/bounswe/bounswe2023group4/issues/346) | Kutay Saran | 21.11.2023 | 4hr |
 
 ## UI/UX Considerations
 ### Existing Nice Features
