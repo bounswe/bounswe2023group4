@@ -14,14 +14,14 @@ import  logout  from "../../api/requests/logout.jsx";
 
 
 const menuData = [
-  { key: "Profile", Icon: ProfileIcon },
-  { key: "Feed", Icon: FeedIcon },
-  { key: "Vote", Icon: VoteIcon },
-  { key: "Create", Icon: CreateIcon },
-  { key: "Moderation", Icon: ModerationIcon },
-  { key: "Leaderboard", Icon: LeaderboardIcon },
-  { key: "Notifications", Icon: NotificationsIcon },
-  { key: "Settings", Icon: SettingsIcon },
+  { key: "Profile", Icon: ProfileIcon, to:"profile/can.gezer" },
+  { key: "Feed", Icon: FeedIcon, to:"feed" },
+  { key: "Vote", Icon: VoteIcon, to:"vote" },
+  { key: "Create", Icon: CreateIcon , to:"create"},
+  { key: "Moderation", Icon: ModerationIcon , to:"moderation"},
+  { key: "Leaderboard", Icon: LeaderboardIcon, to:"leaderboard" },
+  { key: "Notifications", Icon: NotificationsIcon, to:"notifications" },
+  { key: "Settings", Icon: SettingsIcon, to:"settings" },
 ];
 
 const SidebarMenuItem = ({
@@ -72,7 +72,7 @@ const Sidebar = ({ currentPage, handlePageChange }) => {
           pageKey={item.key}
           Icon={item.Icon}
           navigate={navigate}
-          to={`/${item.key.toLowerCase()}`}
+          to={`/${item.to}`}
         />
       ))}
       <button className={styles.logoutButton} onClick={handleLogout}>LOGOUT </button>
