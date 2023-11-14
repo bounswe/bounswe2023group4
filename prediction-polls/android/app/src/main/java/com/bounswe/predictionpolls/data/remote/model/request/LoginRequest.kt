@@ -1,4 +1,4 @@
-package com.bounswe.predictionpolls.data.remote.request
+package com.bounswe.predictionpolls.data.remote.model.request
 
 data class LoginRequest(
     val username: String,

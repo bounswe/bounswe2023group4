@@ -20,7 +20,6 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -71,14 +70,17 @@ fun SignupScreen(
         onBackButtonClicked = { dispatcher?.onBackPressed() },
         email = viewModel.screenState.email,
         onEmailChanged = { viewModel.onEvent(SignupScreenEvent.OnEmailChanged(it)) },
+        isEmailValid = viewModel.screenState.shouldShowEmailError.not(),
         username = viewModel.screenState.username,
         onUsernameChanged = { viewModel.onEvent(SignupScreenEvent.OnUsernameChanged(it)) },
         password = viewModel.screenState.password,
         onPasswordChanged = { viewModel.onEvent(SignupScreenEvent.OnPasswordChanged(it)) },
         onPasswordVisibilityClicked = { viewModel.onEvent(SignupScreenEvent.OnPasswordVisibilityToggleClicked) },
         isPasswordVisible = viewModel.screenState.isPasswordVisible,
+        isPasswordValid = viewModel.screenState.shouldShowPasswordError.not(),
         birthday = viewModel.screenState.birthday,
         onBirthdayChanged = { viewModel.onEvent(SignupScreenEvent.OnBirthdayChanged(it)) },
+        isBirthdayValid = viewModel.screenState.shouldShowBirthdayError.not(),
         onDatePickerClicked = { viewModel.onEvent(SignupScreenEvent.OnDatePickerClicked) },
         isDatePickerVisible = viewModel.screenState.isDatePickerVisible,
         isAgreementChecked = viewModel.screenState.isAgreementChecked,
@@ -94,11 +96,6 @@ fun SignupScreen(
             })
         },
         isSignUpEnabled = viewModel.screenState.isSignupButtonEnabled,
-        onSignUpWithGoogleClicked = {
-            viewModel.onEvent(
-                SignupScreenEvent.OnSignupWithGoogleButtonClicked {}
-            )
-        },
         isLoading = viewModel.isLoading,
         error = viewModel.error,
         errorDismissed = { viewModel.onEvent(SignupScreenEvent.DismissErrorDialog) }
@@ -110,21 +107,23 @@ fun SignupScreenUI(
     onBackButtonClicked: () -> Unit = {},
     email: String = "",
     onEmailChanged: (String) -> Unit = {},
+    isEmailValid: Boolean = true,
     username: String = "",
     onUsernameChanged: (String) -> Unit = {},
     password: String = "",
     onPasswordChanged: (String) -> Unit = {},
     onPasswordVisibilityClicked: () -> Unit = {},
     isPasswordVisible: Boolean = false,
+    isPasswordValid: Boolean = true,
     birthday: String = "",
     onBirthdayChanged: (String) -> Unit = {},
     onDatePickerClicked: () -> Unit = {},
     isDatePickerVisible: Boolean = false,
+    isBirthdayValid: Boolean = true,
     isAgreementChecked: Boolean = false,
     onAgreementChecked: (Boolean) -> Unit = {},
     onSignUpClicked: () -> Unit = {},
     isSignUpEnabled: Boolean = false,
-    onSignUpWithGoogleClicked: () -> Unit = {},
     isLoading: Boolean = false,
     error: String? = null,
     errorDismissed: () -> Unit = {},
@@ -141,14 +140,17 @@ fun SignupScreenUI(
         SignupScreenForm(
             email = email,
             onEmailChanged = onEmailChanged,
+            isEmailValid = isEmailValid,
             username = username,
             onUsernameChanged = onUsernameChanged,
             password = password,
             onPasswordChanged = onPasswordChanged,
             onPasswordVisibilityClicked = onPasswordVisibilityClicked,
             isPasswordVisible = isPasswordVisible,
+            isPasswordValid = isPasswordValid,
             birthday = birthday,
             onBirthdayChanged = onBirthdayChanged,
+            isBirthdayValid = isBirthdayValid,
             onDatePickerClicked = onDatePickerClicked,
         )
         Spacer(modifier = Modifier.height(12.dp))
@@ -160,7 +162,6 @@ fun SignupScreenUI(
         SignupScreenActionButtons(
             isSignUpEnabled = isSignUpEnabled,
             onSignUpClicked = onSignUpClicked,
-            onGoogleSignUpClicked = onSignUpWithGoogleClicked
         )
     }
     CustomDatePicker(
@@ -223,15 +224,18 @@ fun SignupScreenHeader(
 fun SignupScreenForm(
     email: String = "",
     onEmailChanged: (String) -> Unit = {},
+    isEmailValid: Boolean = true,
     username: String = "",
     onUsernameChanged: (String) -> Unit = {},
     password: String = "",
     onPasswordChanged: (String) -> Unit = {},
     onPasswordVisibilityClicked: () -> Unit = {},
     isPasswordVisible: Boolean = false,
+    isPasswordValid: Boolean = true,
     birthday: String = "",
     onBirthdayChanged: (String) -> Unit = {},
     onDatePickerClicked: () -> Unit = {},
+    isBirthdayValid: Boolean = true,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
@@ -247,7 +251,9 @@ fun SignupScreenForm(
             onTextChanged = onEmailChanged,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email
-            )
+            ),
+            isError = isEmailValid.not(),
+            error = if (isEmailValid.not()) stringResource(id = R.string.signup_email_error) else null,
         )
         CustomInputField(
             modifier = Modifier
@@ -270,7 +276,9 @@ fun SignupScreenForm(
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password
             ),
-            visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation()
+            visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            isError = isPasswordValid.not(),
+            error = if (isPasswordValid.not()) stringResource(id = R.string.signup_password_error) else null,
         )
         CustomInputField(
             modifier = Modifier
@@ -285,7 +293,9 @@ fun SignupScreenForm(
             visualTransformation = DateTransformation(),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
-            )
+            ),
+            isError = isBirthdayValid.not(),
+            error = if (isBirthdayValid.not()) stringResource(id = R.string.signup_birthday_error) else null,
         )
     }
 }
@@ -366,52 +376,15 @@ fun AgreementBox(
 fun SignupScreenActionButtons(
     isSignUpEnabled: Boolean = false,
     onSignUpClicked: () -> Unit = {},
-    onGoogleSignUpClicked: () -> Unit = {},
 ) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(24.dp),
-    ) {
-        SignupScreenActionButton(
-            modifier = Modifier.testTag("signup_button"),
-            isEnabled = isSignUpEnabled,
-            titleId = R.string.signup_button,
-            backgroundColor = MaterialTheme.colorScheme.primary,
-            contentColor = MaterialTheme.colorScheme.onPrimary,
-            onClick = onSignUpClicked
-        )
-        ActionButtonDivider()
-        SignupScreenActionButton(
-            leadingIconId = R.drawable.ic_google,
-            leadIconContentDescription = R.string.cd_signup_with_google_button,
-            titleId = R.string.signup_with_google_button,
-            backgroundColor = MaterialTheme.colorScheme.primary,
-            contentColor = MaterialTheme.colorScheme.onPrimary,
-            onClick = onGoogleSignUpClicked
-        )
-    }
-}
-
-@Composable
-private fun ActionButtonDivider() {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Divider(
-            modifier = Modifier
-                .weight(1f),
-            color = MaterialTheme.colorScheme.primary
-        )
-        Text(
-            text = stringResource(id = R.string.or),
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(horizontal = 16.dp),
-        )
-        Divider(
-            modifier = Modifier
-                .weight(1f),
-            color = MaterialTheme.colorScheme.primary
-        )
-    }
+    SignupScreenActionButton(
+        modifier = Modifier.testTag("signup_button"),
+        isEnabled = isSignUpEnabled,
+        titleId = R.string.signup_button,
+        backgroundColor = MaterialTheme.colorScheme.primary,
+        contentColor = MaterialTheme.colorScheme.onPrimary,
+        onClick = onSignUpClicked
+    )
 }
 
 @Composable

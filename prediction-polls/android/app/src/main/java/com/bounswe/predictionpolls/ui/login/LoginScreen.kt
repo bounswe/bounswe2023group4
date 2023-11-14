@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
+import com.bounswe.predictionpolls.BuildConfig
 import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.extensions.clickableWithoutIndicator
 import com.bounswe.predictionpolls.ui.common.CustomInputField
@@ -48,6 +49,8 @@ import com.bounswe.predictionpolls.ui.common.ErrorDialog
 import com.bounswe.predictionpolls.ui.feed.navigateToFeedScreen
 import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
+import com.stevdzasan.onetap.OneTapSignInWithGoogle
+import com.stevdzasan.onetap.rememberOneTapSignInState
 
 @Composable
 fun LoginScreen(
@@ -55,11 +58,13 @@ fun LoginScreen(
     viewModel: LoginScreenViewModel = hiltViewModel()
 ) {
     val dispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+    val state = rememberOneTapSignInState()
 
     LoginScreenUI(
         onBackButtonClicked = { dispatcher?.onBackPressed() },
         email = viewModel.screenState.email,
         onEmailChanged = { viewModel.onEvent(LoginScreenEvent.OnEmailChanged(it)) },
+        isEmailValid = viewModel.screenState.shouldShowEmailError.not(),
         password = viewModel.screenState.password,
         onPasswordChanged = { viewModel.onEvent(LoginScreenEvent.OnPasswordChanged(it)) },
         onPasswordVisibilityClicked = { viewModel.onEvent(LoginScreenEvent.OnPasswordVisibilityToggleClicked) },
@@ -76,13 +81,28 @@ fun LoginScreen(
         },
         isLoginEnabled = viewModel.screenState.isLoginButtonEnabled,
         onLoginWithGoogleClicked = {
-            viewModel.onEvent(
-                LoginScreenEvent.OnLoginWithGoogleButtonClicked {}
-            )
+            state.open()
         },
         isLoading = viewModel.isLoading,
         error = viewModel.error,
         errorDismissed = { viewModel.onEvent(LoginScreenEvent.DismissErrorDialog) }
+    )
+
+    OneTapSignInWithGoogle(
+        state = state,
+        clientId = BuildConfig.GOOGLE_CLIENT_ID,
+        rememberAccount = false,
+        onTokenIdReceived = {
+            viewModel.onEvent(LoginScreenEvent.OnGoogleTokenReceived(it) {
+                navController.navigateToFeedScreen(
+                    navOptions = NavOptions
+                        .Builder()
+                        .setPopUpTo(MAIN_ROUTE, true)
+                        .build()
+                )
+            })
+        },
+        onDialogDismissed = {}
     )
 }
 
@@ -90,6 +110,7 @@ fun LoginScreen(
 fun LoginScreenUI(
     onBackButtonClicked: () -> Unit = {},
     email: String = "",
+    isEmailValid: Boolean = true,
     onEmailChanged: (String) -> Unit = {},
     password: String = "",
     onPasswordChanged: (String) -> Unit = {},
@@ -114,6 +135,7 @@ fun LoginScreenUI(
         LoginScreenForm(
             email = email,
             onEmailChanged = onEmailChanged,
+            isEmailValid = isEmailValid,
             password = password,
             onPasswordChanged = onPasswordChanged,
             onPasswordVisibilityClicked = onPasswordVisibilityClicked,
@@ -183,6 +205,7 @@ fun LoginScreenHeader(
 fun LoginScreenForm(
     email: String = "",
     onEmailChanged: (String) -> Unit = {},
+    isEmailValid: Boolean = true,
     password: String = "",
     onPasswordChanged: (String) -> Unit = {},
     onPasswordVisibilityClicked: () -> Unit = {},
@@ -202,7 +225,9 @@ fun LoginScreenForm(
             onTextChanged = onEmailChanged,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email
-            )
+            ),
+            isError = isEmailValid.not(),
+            error = if(isEmailValid) null else stringResource(id = R.string.login_email_error)
         )
         CustomInputField(
             modifier = Modifier

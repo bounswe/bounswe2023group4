@@ -63,3 +63,8 @@ val md_theme_dark_shadow = Color(0xFF000000)
 val md_theme_dark_surfaceTint = Color(0xFF66D3FF)
 val md_theme_dark_outlineVariant = Color(0xFF40484C)
 val md_theme_dark_scrim = Color(0xFF000000)
+
+
+val firstPositionBadgeColor = Color(0xFFF1D230)
+val secondPositionBadgeColor = Color(0xFFDDDDDD)
+val thirdPositionBadgeColor = Color(0xFFE78E37)
