@@ -72,7 +72,7 @@
 
 ## UI/UX Considerations
 ### Existing Nice Features
--  Google and normal registration are linked. Using the same email and google registration with the same email results in a single account.
+-  Google and normal registration are linked. Using the normal registration and google registration with the same email results in a single account.
 -  In poll creation, options for creating a poll get revealed as user enters the options to not overwhelm the user.
 -  Google mail selection mobile UI is intriguing.
 -  We have light and dark color theme. This option considers the user's preference in their machine.
