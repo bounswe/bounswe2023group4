@@ -49,7 +49,7 @@
 
 ## Planned vs. Actual
 * [#325](https://github.com/bounswe/bounswe2023group4/issues/325) was incomplete because Alperen left the course.
-* [#308](https://github.com/bounswe/bounswe2023group4/issues/308) was overdue due to unexpected amount of work received from other classes.
+* [#308](https://github.com/bounswe/bounswe2023group4/issues/308) is overdue due to unexpected amount of work received from other classes.
 * [#241](https://github.com/bounswe/bounswe2023group4/issues/241) is still not done because we did not decide how the flow with refresh token happens in the app. As soon as that is finished, this issue will be worked on.
 * Ali Nasra helped and done [#305](https://github.com/bounswe/bounswe2023group4/issues/305) while he was not initially assigned.
 
@@ -61,6 +61,7 @@
 | Implement Poll Comment | [#342](https://github.com/bounswe/bounswe2023group4/issues/342) | Şefik Palazoğlu | 19.11.2023 | 3hr |
 | Poll Response Restructuring | [#343](https://github.com/bounswe/bounswe2023group4/issues/343) | Şefik Palazoğlu | 20.11.2023 | 6hr |
 | Unit Tests for Poll Endpoints | [#344](https://github.com/bounswe/bounswe2023group4/issues/344) | Şefik Palazoğlu | 20.11.2023 | 4hr |
+| Implement email verification| [#345](https://github.com/bounswe/bounswe2023group4/issues/345) | Hebun Şimşek | 21.11.2023 | 6hr |
 
 ## UI/UX Considerations
 ### Existing Nice Features
