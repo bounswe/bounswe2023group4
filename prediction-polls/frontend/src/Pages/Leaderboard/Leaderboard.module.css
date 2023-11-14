@@ -8,3 +8,71 @@
         flex-direction: column;
     }
 }
+
+.listContainer {
+  margin-left: 5em;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  height: 70%;
+  border: 1px solid #e8e8e8;
+  margin-top: 10em  ;
+}
+
+.listHeader {
+  display: flex;
+  padding: 10px;
+  color: white;
+  background-color: #156cd6;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.rankHeader,
+.usernameHeader,
+.pointsHeader {
+  font-weight: normal;
+  font-size: 15px;
+}
+
+.rankHeader {
+  width: 50px;
+  text-align: center;
+}
+
+.usernameHeader {
+  flex: 1;
+  padding-left: 50px;
+}
+
+.avatar{
+  background-color: '#000';
+  color: '#fff';
+}
+
+.pointsHeader {
+  width: 100px;
+  text-align: right;
+  padding-right: 20px;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e8e8e8;
+  background-color: #eaf3fb;
+}
+
+.rank {
+  width: 50px;
+  text-align: center;
+}
+
+.username {
+  flex: 1;
+  margin-left: 2.1em;
+  width: 250px;
+}
+
+.points {
+  width: 50px;
+  margin-right: 1em;
+} 
+
