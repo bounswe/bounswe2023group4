@@ -72,6 +72,8 @@
 | Restruct backend responses for errors | [#353](https://github.com/bounswe/bounswe2023group4/issues/353) | Emre Batuhan Göç | 20.11.2023 | 2h |
 | Implement Profile Logic | [#352](https://github.com/bounswe/bounswe2023group4/issues/352) | Emre Batuhan Göç | 19.11.2023 | 4h |
 | Implement Profile Fundamentals | [#351](https://github.com/bounswe/bounswe2023group4/issues/351) | Emre Batuhan Göç | 18.11.2023 | 2h |
+| Update Polls Swagger Documentation | [#357](https://github.com/bounswe/bounswe2023group4/issues/357) | Şefik Palazoğlu, Emre Batuhan Göç | 18.11.2023 | 2hr |
+| Returning Error Codes | [#359](https://github.com/bounswe/bounswe2023group4/issues/359) | Şefik Palazoğlu | 18.11.2023 | 2hr | 
 
 
 
