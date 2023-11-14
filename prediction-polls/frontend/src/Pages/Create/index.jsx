@@ -67,12 +67,6 @@ function Create() {
   };
 
   const handleSubmit = () => {
-    console.log('Question:', question);
-    console.log('Poll Type:', pollType);
-    console.log('Additional Choices:', additionalChoices);
-    console.log('Customized Type:', customizedType);
-    console.log('Customized Options:', customizedOptions);
-    console.log('Selected Date:', selectedDate);
     // Additional logic will be added
   };
 
