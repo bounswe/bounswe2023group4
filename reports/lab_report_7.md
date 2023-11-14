@@ -76,6 +76,11 @@
 | Implement Profile Fundamentals | [#351](https://github.com/bounswe/bounswe2023group4/issues/351) | Emre Batuhan Göç | 18.11.2023 | 2h |
 | Update Polls Swagger Documentation | [#357](https://github.com/bounswe/bounswe2023group4/issues/357) | Şefik Palazoğlu, Emre Batuhan Göç | 18.11.2023 | 2hr |
 | Returning Error Codes | [#359](https://github.com/bounswe/bounswe2023group4/issues/359) | Şefik Palazoğlu | 18.11.2023 | 2hr | 
+| Implement create poll screen UI | [#314](https://github.com/bounswe/bounswe2023group4/issues/314) | Yiğit Şekerci | 21.11.23 | 4hr |
+| Implement profile screen UI | [#311](https://github.com/bounswe/bounswe2023group4/issues/311) | Ahmet Emre Şafak | 21.11.23 | 4hr |
+| Increase Mobile App tests' code coverage | [#317](https://github.com/bounswe/bounswe2023group4/issues/317) | Yiğit Şekerci | 21.11.23 | 5hr |
+| Implement feed screen backend requests | [#362](https://github.com/bounswe/bounswe2023group4/issues/362) | Ahmet Emre Şafak | 21.11.23 | 4hr |
+| Implement create poll screen backend requests| [#361](https://github.com/bounswe/bounswe2023group4/issues/361) | Yiğit Şekerci | 21.11.23 | 4hr |
 
 
 
