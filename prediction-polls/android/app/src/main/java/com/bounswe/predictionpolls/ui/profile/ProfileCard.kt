@@ -46,6 +46,7 @@ import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 fun ProfileCard(
     username: String,
     userFullName: String,
+    coverPhotoUri: String,
     profilePictureUri: String,
     userDescription: String,
     badgeUris: List<String>,
@@ -62,7 +63,7 @@ fun ProfileCard(
             .fillMaxWidth()
     ) {
         CoverPhoto(
-            imageUri = profilePictureUri,
+            imageUri = coverPhotoUri,
             modifier = Modifier
                 .clip(
                     MaterialTheme.shapes.medium.copy(
@@ -309,6 +310,7 @@ private fun ProfileCardPreview() {
         ProfileCard(
             "can.gezer13",
             "Can Gezer",
+            "https://picsum.photos/400/400",
             "https://picsum.photos/400/400",
             "This is a long description text. Lorem ipsum dolor sit amet, consectet adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
             listOf(
