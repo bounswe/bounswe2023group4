@@ -8,8 +8,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -17,6 +19,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -25,11 +28,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -38,16 +43,106 @@ import com.bounswe.predictionpolls.ui.theme.MontserratFontFamily
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 
 @Composable
-fun ProfileCard(modifier: Modifier = Modifier) {
-    Box(
+fun ProfileCard(
+    username: String,
+    userFullName: String,
+    profilePictureUri: String,
+    userDescription: String,
+    badgeUris: List<String>,
+    onProfileEditPressed: () -> Unit,
+    onRequestsClicked: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val paddingAroundContent: Dp = 16.dp
+    Column(
         modifier = modifier
             .clip(MaterialTheme.shapes.medium)
-            .background(MaterialTheme.colorScheme.primary)
-            .padding(16.dp)
+            .background(MaterialTheme.colorScheme.primaryContainer)
             .wrapContentHeight()
             .fillMaxWidth()
     ) {
+        CoverPhoto(
+            imageUri = profilePictureUri,
+            modifier = Modifier
+                .clip(
+                    MaterialTheme.shapes.medium.copy(
+                        bottomEnd = CornerSize(0.dp),
+                        bottomStart = CornerSize(0.dp)
+                    )
+                )
+                .aspectRatio(2.5f)
+                .fillMaxWidth()
+        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(paddingAroundContent),
+            verticalAlignment = Alignment.Bottom,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            val profilePictureSize: Dp = 100.dp
+            Column(
+                modifier = Modifier.offset(y = profilePictureSize / -2f - (paddingAroundContent)),
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                ProfilePicture(
+                    imageUri = profilePictureUri,
+                    modifier = Modifier.size(profilePictureSize)
+                )
+                UserInfoText(username = username)
+                UserInfoText(username = userFullName)
+            }
+            ProfileCardButtons(
+                onRequestsClicked = onRequestsClicked,
+                onProfileEditPressed = onProfileEditPressed,
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(paddingAroundContent)
+            )
 
+        }
+
+        UserDescription(
+            description = userDescription,
+            modifier = Modifier.padding(paddingAroundContent)
+        )
+
+        Badges(badgeUris = badgeUris, modifier = Modifier.padding(paddingAroundContent))
+
+
+    }
+}
+
+@Composable
+private fun ProfileCardButtons(
+    onRequestsClicked: () -> Unit,
+    onProfileEditPressed: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+    ) {
+        ProfileEditButton(
+            onProfileEditPressed = onProfileEditPressed,
+            modifier = Modifier
+                .clip(MaterialTheme.shapes.medium)
+                .fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        RequestsButton(
+            onRequestsClicked = onRequestsClicked,
+            modifier = Modifier
+                .border(
+                    1.dp,
+                    MaterialTheme.colorScheme.primary,
+                    MaterialTheme.shapes.medium
+                )
+                .clip(MaterialTheme.shapes.medium)
+                .fillMaxWidth()
+        )
     }
 }
 
@@ -74,7 +169,7 @@ private fun ProfileEditButton(onProfileEditPressed: () -> Unit, modifier: Modifi
                 text = "Edit Profile",
                 color = MaterialTheme.colorScheme.onPrimary,
                 fontWeight = FontWeight.Normal,
-                fontSize = 20.sp,
+                fontSize = 12.sp,
                 letterSpacing = 1.5.sp
             )
         }
@@ -88,7 +183,8 @@ private fun CoverPhoto(imageUri: String, modifier: Modifier) {
         contentDescription = "User Badge",
         modifier = modifier,
         contentScale = ContentScale.Crop,
-        alignment = Alignment.Center
+        alignment = Alignment.Center,
+        error = painterResource(id = R.drawable.ic_warning),
     )
 }
 
@@ -115,7 +211,7 @@ private fun RequestsButton(onRequestsClicked: () -> Unit, modifier: Modifier = M
                 text = "Requests",
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Normal,
-                fontSize = 20.sp,
+                fontSize = 12.sp,
                 letterSpacing = 1.5.sp
             )
         }
@@ -124,7 +220,7 @@ private fun RequestsButton(onRequestsClicked: () -> Unit, modifier: Modifier = M
 }
 
 @Composable
-fun Badges(badgeUris: List<String>, modifier: Modifier = Modifier) {
+private fun Badges(badgeUris: List<String>, modifier: Modifier = Modifier) {
     LazyRow(modifier = modifier) {
         items(badgeUris) { uri ->
             AsyncImage(
@@ -132,8 +228,8 @@ fun Badges(badgeUris: List<String>, modifier: Modifier = Modifier) {
                 contentDescription = "User Badge",
                 modifier = modifier
                     .clip(CircleShape)
-                    .padding(16.dp)
-                    .size(48.dp),
+                    .size(48.dp)
+                    .background(Color.Red),
                 contentScale = ContentScale.Crop,
                 alignment = Alignment.Center
             )
@@ -167,21 +263,6 @@ private fun UserDescription(description: String, modifier: Modifier = Modifier) 
     )
 }
 
-/**
- * Displays the user name and user full name information.
- */
-@Composable
-private fun UserInfoColumn(username: String, userFullName: String, modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.SpaceBetween,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        UserInfoText(username = username)
-        UserInfoText(username = userFullName)
-    }
-}
-
 @Composable
 private fun UserInfoText(username: String, modifier: Modifier = Modifier) {
     Text(
@@ -212,7 +293,7 @@ private fun ProfileEditButtonPreview() {
             RequestsButton(
                 onRequestsClicked = {},
                 modifier = Modifier
-                    .border(1.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(12.dp))
+                    .border(2.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(12.dp))
                     .clip(RoundedCornerShape(12.dp))
                     .fillMaxWidth()
             )
@@ -223,18 +304,25 @@ private fun ProfileEditButtonPreview() {
 
 @Preview
 @Composable
-private fun UsernameTextPrev() {
-    PredictionPollsTheme {
-        UserInfoColumn("can.gezer13", "Can Gezer")
-    }
-}
-
-
-@Preview
-@Composable
 private fun ProfileCardPreview() {
     PredictionPollsTheme {
-        ProfileCard(modifier = Modifier.height(128.dp))
+        ProfileCard(
+            "can.gezer13",
+            "Can Gezer",
+            "https://picsum.photos/400/400",
+            "This is a long description text. Lorem ipsum dolor sit amet, consectet adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+            listOf(
+                "https://picsum.photos/400/400",
+                "https://picsum.photos/400/400",
+                "https://picsum.photos/400/400",
+                "https://picsum.photos/400/400",
+                "https://picsum.photos/400/400",
+                "https://picsum.photos/400/400", "https://picsum.photos/400/400"
+            ),
+            {},
+            {},
+            modifier = Modifier
+        )
     }
 
 }
