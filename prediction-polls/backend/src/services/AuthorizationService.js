@@ -2,7 +2,7 @@ require('dotenv').config();
 const jwt = require("jsonwebtoken");
 const db = require("../repositories/AuthorizationDB.js");
 
-const { checkCredentials, addUser } = require('./AuthenticationService.js');
+const { checkCredentials, addUser, isUsernameOrEmailInUse } = require('./AuthenticationService.js');
 
 const bcrypt = require('bcrypt')
 
@@ -10,13 +10,48 @@ function homePage(req, res){
     res.status(200).json({"username":req.user.name,"key":"very-secret"});
   }
 
-async function signup(req, res){
-  const { username, password, email, birthday } = req.body;
-  const { success, error} = await addUser( username, password, email, birthday );
+  async function signup(req, res){
+    const { username, password, email, birthday } = req.body;
   
-  if(!success)  res.status(400).send('Registration failed '+ error);
-  else{res.status(201).send("Registration successful")};
-
+    // Check if username or email is in use
+    const { inUse, error } = await isUsernameOrEmailInUse(username, email);
+    if (error) {
+      return res.status(500).send('Internal server error');
+    }
+    if (inUse) {
+      return res.status(400).send('Username or email is already in use');
+    }
+  
+    // Validate password
+    if (!isValidPassword(password)) {
+      return res.status(400).send('Password does not meet the required criteria');
+    }
+  
+    // Attempt to add user
+    const { success, error: addUserError } = await addUser(username, password, email, birthday);
+    
+    if (!success) {
+      // You can further refine this by checking the nature of the addUserError 
+      // and respond with different status codes or messages as needed.
+      res.status(400).send('Registration failed: ' + addUserError);
+    } else {
+      res.status(201).send("Registration successful");
+    }
+  }
+  
+  function isValidPassword(password) {
+    const lower = /[a-z]/;
+    const upper = /[A-Z]/;
+    const number = /[0-9]/;
+    const special = /[!@#$%^&*]/;
+  
+    let count = 0;
+    if (lower.test(password)) count++;
+    if (upper.test(password)) count++;
+    if (number.test(password)) count++;
+    if (special.test(password)) count++;
+  
+    return password.length >= 8 && count >= 3;
   }
 
 function createAccessTokenFromRefreshToken(req, res){
