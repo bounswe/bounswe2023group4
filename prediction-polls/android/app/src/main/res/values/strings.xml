@@ -41,6 +41,13 @@
     <string name="cd_visible">Change password visibility</string>
     <string name="cd_calendar">Calendar image</string>
 
+    <!-- Leaderboard Page -->
+    <string name="leaderboard_header_position">#</string>
+    <string name="leaderboard_header_username">Username</string>
+    <string name="leaderboard_header_point">Point</string>
+    <string name="leaderboard_load_more">Load more</string>
+    <string name="leaderboard_cd_tag">Toggle tag selection</string>
+    
     <string name="or">or</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
@@ -56,4 +63,7 @@
 
     <string name="date_picker_ok">Tamam</string>
     <string name="date_picker_cancel">İptal</string>
+    <string name="vote_screen_text">Choose one of the options you want to vote for</string>
+    <string name="vote_screen_vote_button_text">Vote</string>
+    <string name="poll_vote_input_title">Vote points</string>
 </resources>
