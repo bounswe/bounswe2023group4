@@ -1,4 +1,5 @@
 const db = require("../repositories/PollDB.js");
+const errorCodes = require("../errorCodes.js")
 
 function getDiscretePolls(req,res){
     db.getDiscretePolls()
@@ -7,7 +8,7 @@ function getDiscretePolls(req,res){
     })
     .catch((error) => {
         console.error(error);
-        res.status(500).json({ message: "Internal Server Error" });
+        res.status(500).json({ code: errorCodes.DATABASE_ERROR.code, message: errorCodes.DATABASE_ERROR.message});
     })
 }
 
@@ -17,7 +18,7 @@ function getDiscretePollWithId(req,res){
     db.getDiscretePollWithId(pollId)
     .then((rows) => {
         if (rows.length === 0) {
-            res.status(404).end("Resource Not Found");
+            res.status(404).json({ code: errorCodes.NO_SUCH_POLL_ERROR.code, message: errorCodes.NO_SUCH_POLL_ERROR.message });
         } else {
             db.getDiscretePollChoices(pollId)
             .then((choices) => {
@@ -39,13 +40,13 @@ function getDiscretePollWithId(req,res){
     })
     .catch((error) => {
         console.error(error);
-        res.status(500).json({ message: "Internal Server Error" });
+        res.status(500).json({ code: errorCodes.DATABASE_ERROR.code, message: errorCodes.DATABASE_ERROR.message});
     })
 }
 
 function addDiscretePoll(req,res){
     if (!validateAddDiscretePoll(req.body)) {
-        return res.status(400).json({ error: 'Invalid request body' });
+        return res.status(400).json({ code: errorCodes.BAD_DISCRETE_POLL_REQUEST_ERROR.code, message: errorCodes.BAD_DISCRETE_POLL_REQUEST_ERROR.message });
     }
     const question = req.body.question;
     const choices = req.body.choices;
@@ -56,7 +57,7 @@ function addDiscretePoll(req,res){
     })
     .catch((error) => {
         console.error(error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).json({ code: errorCodes.DATABASE_ERROR.code, message: errorCodes.DATABASE_ERROR.message});
     });
 }
 
@@ -86,7 +87,7 @@ function getContinuousPolls(req,res){
     })
     .catch((error) => {
         console.error(error);
-        res.status(500).json({ message: "Internal Server Error" });
+        res.status(500).json({ code: errorCodes.DATABASE_ERROR.code, message: errorCodes.DATABASE_ERROR.message});
     })
 }
 
@@ -96,7 +97,7 @@ function getContinuousPollWithId(req,res){
     db.getContinuousPollWithId(pollId)
     .then((rows) => {
         if (rows.length === 0) {
-            res.status(404).end("Resource Not Found");
+            res.status(404).json({ code: errorCodes.NO_SUCH_POLL_ERROR.code, message: errorCodes.NO_SUCH_POLL_ERROR.message });
         } else {
             db.getContinuousPollVotes(pollId)
             .then((choices) => {
@@ -106,20 +107,20 @@ function getContinuousPollWithId(req,res){
     })
     .catch((error) => {
         console.error(error);
-        res.status(500).json({ message: "Internal Server Error" });
+        res.status(500).json({ code: errorCodes.DATABASE_ERROR.code, message: errorCodes.DATABASE_ERROR.message});
     })
 }
 
 function addContinuousPoll(req,res){
     if (!validateAddContinuousPoll(req.body)) {
-        return res.status(400).json({ error: 'Invalid request body' });
+        return res.status(400).json({ code: errorCodes.BAD_CONT_POLL_REQUEST_ERROR.code, message: errorCodes.BAD_CONT_POLL_REQUEST_ERROR.message });
     }
     const question = req.body.question;
     const min = req.body.min;
     const max = req.body.max;
 
     if (max <= min) {
-        return res.status(400).json({ error: 'minValue higher than maxValue' });
+        return res.status(400).json({ code: errorCodes.MINMAX_BAD_CONT_POLL_REQUEST_ERROR.code, message: errorCodes.MINMAX_BAD_CONT_POLL_REQUEST_ERROR.message });
     }
 
     db.addContinuousPoll(question, min, max)
@@ -128,7 +129,7 @@ function addContinuousPoll(req,res){
     })
     .catch((error) => {
         console.error(error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).json({ code: errorCodes.DATABASE_ERROR.code, message: errorCodes.DATABASE_ERROR.message});
     });
 }
 
@@ -154,7 +155,7 @@ function voteDiscretePoll(req,res){
     .then((choices) => {
         const choiceExists = choices.some(choice => choice.id === choiceId);
         if (!choiceExists) {
-            res.status(404).json({ error: "choice with specified id does not exist" });
+            res.status(404).json({ code: errorCodes.CHOICE_DOES_NOT_EXIST_ERROR.code, message: errorCodes.CHOICE_DOES_NOT_EXIST_ERROR.message });
         } else {
             db.voteDiscretePoll(pollId, userId, choiceId)
             .then(() => {
@@ -164,7 +165,7 @@ function voteDiscretePoll(req,res){
     })
     .catch((error) => {
         console.error(error);
-        res.status(500).json({ message: "Internal Server Error" });
+        res.status(500).json({ code: errorCodes.DATABASE_ERROR.code, message: errorCodes.DATABASE_ERROR.message});
     })
 }
 
@@ -179,7 +180,7 @@ function voteContinuousPoll(req,res){
         const maxValue = result[0].max_value;
         const choiceValid = minValue <= choice && choice <= maxValue;
         if (!choiceValid) {
-            res.status(400).json({ error: "Choice is out of bounds" });
+            res.status(400).json({ code: errorCodes.CHOICE_OUT_OF_BOUNDS_ERROR.code, message: errorCodes.CHOICE_OUT_OF_BOUNDS_ERROR.message });
         } else {
             db.voteContinuousPoll(pollId, userId, choice)
             .then(() => {
