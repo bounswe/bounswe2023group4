@@ -5,6 +5,26 @@ const errorCodes = {
     message: 'An unexpected error occurred.',
   },
 
+  ACCESS_TOKEN_INVALID_ERROR: {
+    code: 1001,
+    message: 'The access token is invalid.',
+  },
+
+  REFRESH_TOKEN_INVALID_ERROR: {
+    code: 1002,
+    message: 'The refresh token is invalid.',
+  },
+
+  REFRESH_TOKEN_NEEDED_ERROR: {
+    code: 1003,
+    message: 'A refresh token is needed',
+  },
+
+  REGISTRATION_FAILED: {
+    code: 1004,
+    message: 'Registration failed'
+  },
+
   USER_NOT_FOUND: {
     code: 2000,
     message: 'User not found.',
