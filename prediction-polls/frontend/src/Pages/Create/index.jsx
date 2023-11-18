@@ -13,7 +13,7 @@ function Create() {
   const [additionalChoices, setAdditionalChoices] = useState(['']);
   const [customizedType, setCustomizedType] = useState('text');
   const [customizedOptions, setCustomizedOptions] = useState(['']);
-  const [selectedDate, setSelectedDate] = useState(null); 
+  const [selectedDate, setSelectedDate] = useState(null);
   const [setDueDate, setSetDueDate] = useState(false);
   const [dueDatePoll, setDueDatePoll] = useState(null);
   const [numericFieldValue, setNumericFieldValue] = useState('');
@@ -76,15 +76,17 @@ function Create() {
     // Additional logic will be added
   };
 
+
+
   return (
     <div className={styles.page}>
       <Menu mode="horizontal" defaultSelectedKeys={['create']}>
         <Menu.Item key="create">Create</Menu.Item>
       </Menu>
       <div className={styles.createContainer}>
-        <h1>Create Poll</h1>
         <div className={styles.questionContainer}>
-          <label htmlFor="question">Enter the question title:</label>
+          <label htmlFor="question">Enter the question title</label>
+          <br />
           <br />
           <TextArea
             rows={1}
@@ -96,65 +98,80 @@ function Create() {
           />
         </div>
         <div className={styles.pollTypeContainer}>
-          <p>Select the type of the poll:</p>
+          <p>Choose input type</p>
           <Button
+            className={styles.optButton}
             type={pollType === 'multipleChoice' ? 'primary' : 'default'}
             onClick={() => handlePollTypeChange('multipleChoice')}
-            style={{ marginRight: '8px' }}
+            style={{ marginRight: '8px', backgroundColor: pollType === 'multipleChoice' ? 'var(--secondary-500)' : 'var(--secondary-300)' }}
           >
             Multiple Choice
           </Button>
           <Button
+            className={styles.optButton}
             type={pollType === 'customized' ? 'primary' : 'default'}
             onClick={() => handlePollTypeChange('customized')}
+            style={{ marginRight: '8px', backgroundColor: pollType === 'customized' ? 'var(--secondary-500)' : 'var(--secondary-300)' }}
           >
             Customized
           </Button>
         </div>
         {showMultipleChoiceInputs && (
-          <div className={styles.multipleChoiceInputs}>
-            {additionalChoices.map((choice, index) => (
-              <div key={index} className={styles.choiceInput}>
-                <Input
-                  placeholder={`Choice ${index + 1}`}
-                  style={{ width: '50%' }}
-                  value={choice}
-                  onChange={(e) => handleChoiceChange(index, e.target.value)}
-                />
-                <Button onClick={() => handleDeleteChoice(index)}>
-                  Delete
-                </Button>
-              </div>
-            ))}
-            <Button onClick={handleAddChoice}>Add Choice</Button>
-          </div>
+          <>
+            <div className={styles.multipleChoiceInputs}>
+              {additionalChoices.map((choice, index) => (
+                <div key={index} className={styles.choiceInput}>
+                  <Input
+                    className={styles.choiceInput}
+                    placeholder={`Choice ${index + 1}`}
+                    style={{ width: '50%'}}
+                    value={choice}
+                    onChange={(e) => handleChoiceChange(index, e.target.value)}
+                  />
+                  <Button className={styles.submitButton} onClick={() => handleDeleteChoice(index)}>
+                    Delete
+                  </Button>
+                </div>
+
+              ))}
+              <Button className={styles.submitButton} onClick={handleAddChoice}>+ Add</Button>
+            </div>
+            <div className={styles.openVisibilityContainer}>
+              <Checkbox className={styles.openVisibility} onChange={handleOpenVisibilityChange}>
+                Open Distribution Visibility
+              </Checkbox>
+            </div>
+          </>
         )}
         {pollType === 'customized' && (
           <div className={styles.customizedOptions}>
             <Button
+              className={styles.optButton}
               type={customizedType === 'date' ? 'primary' : 'default'}
               onClick={() => handleCustomizedTypeChange('date')}
-              style={{ marginRight: '8px' }}
+              style={{ marginRight: '8px', backgroundColor: customizedType === 'date' ? 'var(--secondary-500)' : 'var(--secondary-300)' }}
             >
               Date
             </Button>
             <Button
+              className={styles.optButton}
               type={customizedType === 'numeric' ? 'primary' : 'default'}
               onClick={() => handleCustomizedTypeChange('numeric')}
+              style={{ marginRight: '8px', backgroundColor: customizedType === 'numeric' ? 'var(--secondary-500)' : 'var(--secondary-300)' }}
             >
               Numeric
             </Button>
             {customizedType === 'date' && (
               <div className={styles.datePickerContainer}>
-                <DatePicker onChange={handleDateChange} />
+                <DatePicker onChange={handleDateChange}  />
               </div>
             )}
             {customizedType === 'numeric' && (
-              <div className={styles.numericInputContainer}>
+              <div className={styles.numericInputContainer} >
                 <Input
+                  style={{ width: '50%'}}
                   type="number"
                   placeholder="Enter numeric answer"
-                  style={{ width: '50%' }}
                 />
               </div>
             )}
@@ -165,23 +182,23 @@ function Create() {
           {setDueDate && (
             <>
               <div className={styles.dueDatePollInputContainer}>
-                <DatePicker onChange={handleDueDatePollChange} />
+                <DatePicker onChange={handleDueDatePollChange}  />
               </div>
               <div className={styles.dateOptionsContainer}>
                 <p>Do not accept any votes in last:</p>
                 <Input
-          type="number"
-          placeholder="Enter a number"
-          className={styles.timeInput}
-          value={numericFieldValue}
-          onChange={(e) => setNumericFieldValue(e.target.value)}
-        />
+                  type="number"
+                  placeholder="Number"
+                  className={styles.timeInput}
+                  value={numericFieldValue}
+                  onChange={(e) => setNumericFieldValue(e.target.value)}
+                />
                 <Select
+                  className= {styles.customSelect}
                   defaultValue="min"
-                  style={{ width: 80 }}
                   onChange={(value) => setSelectedTimeUnit(value)}
                 >
-                  <Option value="min">min</Option>
+                  <Option value="min">min </Option>
                   <Option value="h">h</Option>
                   <Option value="day">day</Option>
                   <Option value="mth">mth</Option>
@@ -190,15 +207,10 @@ function Create() {
             </>
           )}
         </div>
-        <div className={styles.openVisibilityContainer}>
-          <Checkbox onChange={handleOpenVisibilityChange}>Open Distribution Visibility</Checkbox>
-        </div>
         <div className={styles.submitContainer}>
           <Button
-            type="primary"
-            onClick={handleSubmit}
-            style={{ width: '40%' }}
-          >
+            className={styles.submitButton}
+            onClick={handleSubmit}>
             Create Poll
           </Button>
         </div>
