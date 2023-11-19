@@ -3,15 +3,6 @@ const service = require("../services/ProfileService.js");
 const express = require('express');
 const router = express.Router();
 
-/**
- * @swagger
- * /polls/discrete:
- *   get:
- *     tags:
- *       - polls
- *     description: Get profile using profile id
- */
-router.get('/:profileId', service.getProfileWithProfileId);
 
 /**
  * @swagger
@@ -23,6 +14,16 @@ router.get('/:profileId', service.getProfileWithProfileId);
  */
 
 router.get('/', service.getProfile);
+
+/**
+ * @swagger
+ * /polls/discrete:
+ *   get:
+ *     tags:
+ *       - polls
+ *     description: Get profile using profile id
+ */
+router.get('/:profileId', service.getProfileWithProfileId);
 
 router.post('/', service.addProfile);
 
