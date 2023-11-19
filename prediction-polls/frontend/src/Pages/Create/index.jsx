@@ -90,6 +90,8 @@ function Create() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,  
+            
           },
           body: JSON.stringify(multipleChoiceData),
         });
@@ -100,7 +102,7 @@ function Create() {
         const responseData = await response.json();
         console.log('API Response:', responseData);
         // Redirect or navigate to another page after successful API request
-        navigate('/pages/feed');
+        navigate('/feed');
       } catch (error) {
         console.error('API Request Failed:', error.message);
       }
@@ -119,6 +121,7 @@ function Create() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,  
           },
           body: JSON.stringify(multipleChoiceData),
         });
@@ -129,7 +132,7 @@ function Create() {
         const responseData = await response.json();
         console.log('API Response:', responseData);
         // Redirect or navigate to another page after successful API request
-        navigate('/pages/feed');
+        navigate('/feed');
       } catch (error) {
         console.error('API Request Failed:', error.message);
       }
@@ -150,6 +153,7 @@ function Create() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,  
           },
           body: JSON.stringify(customizedData),
         });
@@ -160,7 +164,7 @@ function Create() {
         const responseData = await response.json();
         console.log('API Response:', responseData);
         // Redirect or navigate to another page after successful API request
-        navigate('/pages/feed');
+        navigate('/feed');
       } catch (error) {
         console.error('API Request Failed:', error.message);
       }
@@ -178,6 +182,7 @@ function Create() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,  
           },
           body: JSON.stringify(customizedData),
         });
@@ -188,7 +193,7 @@ function Create() {
         const responseData = await response.json();
         console.log('API Response:', responseData);
         // Redirect or navigate to another page after successful API request
-        navigate('/pages/feed');
+        navigate('/feed');
       } catch (error) {
         console.error('API Request Failed:', error.message);
       }
@@ -209,6 +214,7 @@ function Create() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,  
           },
           body: JSON.stringify(customizedData),
         });
@@ -219,7 +225,7 @@ function Create() {
         const responseData = await response.json();
         console.log('API Response:', responseData);
         // Redirect or navigate to another page after successful API request
-        navigate('/pages/feed');
+        navigate('/feed');
       } catch (error) {
         console.error('API Request Failed:', error.message);
       }
@@ -237,6 +243,7 @@ function Create() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("accessToken")}`,  
           },
           body: JSON.stringify(customizedData),
         });
@@ -247,7 +254,7 @@ function Create() {
         const responseData = await response.json();
         console.log('API Response:', responseData);
         // Redirect or navigate to another page after successful API request
-        navigate('/pages/feed');
+        navigate('/feed');
       } catch (error) {
         console.error('API Request Failed:', error.message);
       }
