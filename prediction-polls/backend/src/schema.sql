@@ -7,7 +7,8 @@ CREATE TABLE users (
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     birthday DATETIME,
-    UNIQUE (username)
+    UNIQUE (username),
+    UNIQUE (email)
 );
 
 CREATE TABLE refresh_tokens (
@@ -60,4 +61,15 @@ CREATE TABLE continuous_poll_selections (
     selected_value FLOAT NOT NULL,
     FOREIGN KEY (poll_id) REFERENCES polls(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE profiles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    profile_picture_data MEDIUMBLOB,
+    biography VARCHAR(5000),
+    birthday DATETIME,
+    isHidden BOOLEAN DEFAULT False,
+    FOREIGN KEY (userId) REFERENCES users(id)
 );

@@ -3,7 +3,7 @@ const axios = require("axios");
 const db = require("../repositories/AuthorizationDB.js");
 const crypto = require('crypto');
 
-const { addUser } = require('./AuthenticationService.js');
+
 const { generateAccessToken, generateRefreshToken } = require('./AuthorizationService.js');
 
 
@@ -38,7 +38,7 @@ async function googleLogInWithCode(code,res){
       }
 
       const generatedPassword = generateRandomPassword(12);
-      const { success, error, userid} = await addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+      const { success, error, userid} = await db.addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
 
       const user = {name : googleUser.given_name, id: userid};
       const accesToken = generateAccessToken(user);
@@ -61,7 +61,7 @@ async function googleLogInWithCode(code,res){
       }
 
       const generatedPassword = generateRandomPassword(12);
-      const { success, error, userid} = await addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+      const { success, error, userid} = await db.addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
 
       const user = {name : googleUser.given_name, id: userid};
       const accesToken = generateAccessToken(user);

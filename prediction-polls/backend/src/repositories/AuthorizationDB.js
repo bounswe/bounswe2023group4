@@ -9,6 +9,71 @@ const pool = mysql.createPool({
     database: process.env.MYSQL_DATABASE
 }).promise()
 
+function hashPassword(password) {
+    return new Promise((resolve, reject) => {
+        bcrypt.hash(password, 10, (err, hashedPassword) => {
+            if (err) reject(err);
+            resolve(hashedPassword);
+        });
+    });
+}
+
+async function checkCredentials(username, password) {
+    try {
+        /* We want to store our passwords hashed in the db But currently 
+         * our hashing function does not return the same hashed password
+         * for the same password value. This creates an issue with verification.
+         */
+
+        // const hashedPassword = await hashPassword(password);
+
+        const sql = 'SELECT * FROM users WHERE (username = ? || email = ?) && password = ?';
+        const values = [username, username, password];
+
+        const [rows] = await pool.query(sql, values);
+        return rows;
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+
+async function addUser(username, password,email,birthday){
+    try {
+        /* We want to store our passwords hashed in the db But currently 
+         * our hashing function does not return the same hashed password
+         * for the same password value. This creates an issue with verification.
+         */
+        // const hashedPassword = await hashPassword(password);
+    
+        // Store the user in the database
+        const sql = 'INSERT INTO users (username, email, password, birthday) VALUES (?, ?, ?, ?)';
+        const values = [username, email, password, birthday];
+    
+        const [result] = await pool.query(sql, values);
+        return {"success":true,"error":undefined, "userid": result.insertId} ;
+      } catch (error) {
+        return {"success":false,"error":error} ;
+      }
+  }
+
+
+async function findUserId({username,email}){
+    if(username){
+        const sql = 'SELECT id FROM users WHERE username = ?';
+    
+        const [result] = await pool.query(sql, [username]);
+        return result[0].id;
+    }
+    if(email){
+        const sql = 'SELECT id FROM users WHERE email = ?';
+    
+        const [result] = await pool.query(sql, [email]);
+        return result[0].id;
+    }
+}
+
+
 //Add the given refresh token to db
 async function addRefreshToken(token){
     const sql = 'INSERT INTO refresh_tokens (token) VALUES (?)';
@@ -43,4 +108,4 @@ async function deleteRefreshToken(token){
     return result.affectedRows > 0;
 }
 
-module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken}
+module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken,checkCredentials,addUser,findUserId}
