@@ -25,6 +25,11 @@ const errorCodes = {
     message: 'Registration failed'
   },
 
+  ACCESS_TOKEN_NULL: {
+    code: 1005,
+    message: 'The access token is null.',
+  },
+
   USER_NOT_FOUND: {
     code: 2000,
     message: 'User not found.',

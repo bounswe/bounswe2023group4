@@ -60,10 +60,10 @@ async function logOut(req, res) {
 function authorizeAccessToken(req, res, next) {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
-    if (token == null) return res.sendStatus(400);
+    if (token == null) return res.sendStatus(400).json({ code: errorCodes.ACCESS_TOKEN_NULL.code, message: errorCodes.ACCESS_TOKEN_NULL.message });
   
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-      if (err) return  res.status(401).send({ code: errorCodes.ACCESS_TOKEN_INVALID_ERROR.code, message: errorCodes.ACCESS_TOKEN_INVALID_ERROR.message });
+      if (err) return  res.status(401).json({ code: errorCodes.ACCESS_TOKEN_INVALID_ERROR.code, message: errorCodes.ACCESS_TOKEN_INVALID_ERROR.message });
 
       req.user = user;
       next();
