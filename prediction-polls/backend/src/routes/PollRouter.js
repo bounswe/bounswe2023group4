@@ -27,6 +27,22 @@ const router = express.Router();
  *                   question:
  *                     type: string
  *                     example: "Who will become POTUS?"
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 code:
+ *                   type: integer
+ *             examples:
+ *               databaseError:
+ *                 value:
+ *                   message: Error while accessing the database.
+ *                   code: 3000
  */
 router.get('/discrete', service.getDiscretePolls);
 
@@ -122,9 +138,57 @@ router.get('/discrete/:pollId', authenticator.authorizeAccessToken, service.getD
  *       201:
  *         description: true
  *       400:
- *         description: Bad request
+ *         description: Bad Request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 code:
+ *                   type: integer
+ *             examples:
+ *               badRequest:
+ *                 value:
+ *                   message: Bad request body for creating a discrete poll.
+ *                   code: 4000
+ *               accessTokenNull:
+ *                 value:
+ *                   message: The access token is null
+ *                   code: 1005
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 code:
+ *                   type: integer
+ *             examples:
+ *               accessTokenInvalid:
+ *                 value:
+ *                   message: The access token is invalid.
+ *                   code: 1001
  *       500:
  *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 code:
+ *                   type: integer
+ *             examples:
+ *               databaseError:
+ *                 value:
+ *                   message: Error while accessing the database.
+ *                   code: 3000
  */
 router.post('/discrete', authenticator.authorizeAccessToken, service.addDiscretePoll);
 
@@ -244,9 +308,61 @@ router.get('/continuous/:pollId', authenticator.authorizeAccessToken, service.ge
  *       201:
  *         description: true
  *       400:
- *         description: Bad request
+ *         description: Bad Request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 code:
+ *                   type: integer
+ *             examples:
+ *               badRequest:
+ *                 value:
+ *                   message: Bad request body for creating a continuous poll.
+ *                   code: 4001
+ *               MINMAX_BAD_CONT_POLL_REQUEST_ERROR:
+ *                 value:
+ *                   message: Minimum value allowed was higher than maximum value allowed in the poll.
+ *                   code: 4002
+ *               accessTokenNull:
+ *                 value:
+ *                   message: The access token is null
+ *                   code: 1005
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 code:
+ *                   type: integer
+ *             examples:
+ *               accessTokenInvalid:
+ *                 value:
+ *                   message: The access token is invalid.
+ *                   code: 1001
  *       500:
  *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 code:
+ *                   type: integer
+ *             examples:
+ *               databaseError:
+ *                 value:
+ *                   message: Error while accessing the database.
+ *                   code: 3000
  */
 router.post('/continuous', authenticator.authorizeAccessToken, service.addContinuousPoll);
 
