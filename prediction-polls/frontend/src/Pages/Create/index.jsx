@@ -3,22 +3,26 @@ import Menu from '../../Components/Menu'
 import styles from './Create.module.css'
 import { useState } from 'react';
 import { Button, Input, DatePicker, Checkbox, Select } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const { TextArea } = Input;
 const { Option } = Select;
+
 function Create() {
   const [question, setQuestion] = useState('');
   const [pollType, setPollType] = useState('');
   const [showMultipleChoiceInputs, setShowMultipleChoiceInputs] = useState(false);
   const [additionalChoices, setAdditionalChoices] = useState(['']);
   const [customizedType, setCustomizedType] = useState('text');
-  const [customizedOptions, setCustomizedOptions] = useState(['']);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [customizedNumeric, setCustomizedNumeric] = useState('');
   const [setDueDate, setSetDueDate] = useState(false);
   const [dueDatePoll, setDueDatePoll] = useState(null);
   const [numericFieldValue, setNumericFieldValue] = useState('');
   const [selectedTimeUnit, setSelectedTimeUnit] = useState('min');
   const [openVisibility, setOpenVisibility] = useState(false);
+  let urlDiscrete = "http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:8000/"
+  const navigate = useNavigate()
 
   const handleOpenVisibilityChange = (e) => {
     setOpenVisibility(e.target.checked);
@@ -66,14 +70,187 @@ function Create() {
     setSelectedDate(date);
   };
 
-  const handleSubmit = () => {
-    console.log('Question:', question);
-    console.log('Poll Type:', pollType);
-    console.log('Additional Choices:', additionalChoices);
-    console.log('Customized Type:', customizedType);
-    console.log('Customized Options:', customizedOptions);
-    console.log('Selected Date:', selectedDate);
-    // Additional logic will be added
+  const handleSubmit = async () => {
+
+    if (pollType === 'multipleChoice' && setDueDate) {
+      const choicesData = additionalChoices.filter(choice => choice.trim() !== ''); // Remove empty choices
+      const multipleChoiceData = {
+        question: question,
+        openVisibility: openVisibility,
+        choices: choicesData,
+        setDueDate: setDueDate,
+        dueDatePoll: dueDatePoll ? dueDatePoll.format() : null, // Convert dueDatePoll to a string format if it exists
+        numericFieldValue: numericFieldValue,
+        selectedTimeUnit: selectedTimeUnit,
+      };
+
+      try {
+        const response = await fetch(urlDiscrete + "polls/discrete/", { // TODO: Replace URL_MULTIPLE_CHOICE with API URL
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(multipleChoiceData),
+        });
+        if (!response.ok) {
+          console.error('Error:', response.statusText);
+          return;
+        }
+        const responseData = await response.json();
+        console.log('API Response:', responseData);
+        // Redirect or navigate to another page after successful API request
+        navigate('/pages/feed');
+      } catch (error) {
+        console.error('API Request Failed:', error.message);
+      }
+
+    } else if (pollType === 'multipleChoice' && !setDueDate) {
+      const choicesData = additionalChoices.filter(choice => choice.trim() !== ''); // Remove empty choices
+      const multipleChoiceData = {
+        question: question,
+        openVisibility: openVisibility,
+        choices: choicesData,
+        setDueDate: setDueDate,
+      };
+
+      try {
+        const response = await fetch(urlDiscrete + "polls/discrete/", { // TODO: Replace URL_MULTIPLE_CHOICE with API URL
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(multipleChoiceData),
+        });
+        if (!response.ok) {
+          console.error('Error:', response.statusText);
+          return;
+        }
+        const responseData = await response.json();
+        console.log('API Response:', responseData);
+        // Redirect or navigate to another page after successful API request
+        navigate('/pages/feed');
+      } catch (error) {
+        console.error('API Request Failed:', error.message);
+      }
+
+    } else if (pollType === 'customized' && setDueDate && customizedType === 'date') {
+
+      const customizedData = {
+        question: question,
+        selectedDate: selectedDate ? selectedDate.format() : null, // Convert selectedDate to a string format if it exists
+        setDueDate: setDueDate,
+        dueDatePoll: dueDatePoll ? dueDatePoll.format() : null, // Convert dueDatePoll to a string format if it exists
+        numericFieldValue: numericFieldValue,
+        selectedTimeUnit: selectedTimeUnit,
+      };
+
+      try {
+        const response = await fetch(urlDiscrete + "polls/continuous/", { // TODO: Replace URL_MULTIPLE_CHOICE with API URL 
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(customizedData),
+        });
+        if (!response.ok) {
+          console.error('Error:', response.statusText);
+          return;
+        }
+        const responseData = await response.json();
+        console.log('API Response:', responseData);
+        // Redirect or navigate to another page after successful API request
+        navigate('/pages/feed');
+      } catch (error) {
+        console.error('API Request Failed:', error.message);
+      }
+
+    } else if (pollType === 'customized' && !setDueDate && customizedType === 'date') {
+
+      const customizedData = {
+        question: question,
+        selectedDate: selectedDate ? selectedDate.format() : null, // Convert selectedDate to a string format if it exists
+        setDueDate: setDueDate,
+      };
+
+      try {
+        const response = await fetch(urlDiscrete + "polls/continuous/", { // TODO: Replace URL_MULTIPLE_CHOICE with API URL 
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(customizedData),
+        });
+        if (!response.ok) {
+          console.error('Error:', response.statusText);
+          return;
+        }
+        const responseData = await response.json();
+        console.log('API Response:', responseData);
+        // Redirect or navigate to another page after successful API request
+        navigate('/pages/feed');
+      } catch (error) {
+        console.error('API Request Failed:', error.message);
+      }
+
+    } else if (pollType === 'customized' && setDueDate && customizedType === 'numeric') {
+
+      const customizedData = {
+        question: question,
+        customizedNumeric: customizedNumeric,
+        setDueDate: setDueDate,
+        dueDatePoll: dueDatePoll ? dueDatePoll.format() : null, // Convert dueDatePoll to a string format if it exists
+        numericFieldValue: numericFieldValue,
+        selectedTimeUnit: selectedTimeUnit,
+      };
+
+      try {
+        const response = await fetch(urlDiscrete + "polls/continuous/", { // TODO: Replace URL_MULTIPLE_CHOICE with API URL 
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(customizedData),
+        });
+        if (!response.ok) {
+          console.error('Error:', response.statusText);
+          return;
+        }
+        const responseData = await response.json();
+        console.log('API Response:', responseData);
+        // Redirect or navigate to another page after successful API request
+        navigate('/pages/feed');
+      } catch (error) {
+        console.error('API Request Failed:', error.message);
+      }
+
+    } else if (pollType === 'customized' && !setDueDate && customizedType === 'numeric') {
+
+      const customizedData = {
+        question: question,
+        customizedNumeric: customizedNumeric,
+        setDueDate: setDueDate,
+      };
+
+      try {
+        const response = await fetch(urlDiscrete + "polls/continuous/", { // TODO: Replace URL_MULTIPLE_CHOICE with API URL 
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(customizedData),
+        });
+        if (!response.ok) {
+          console.error('Error:', response.statusText);
+          return;
+        }
+        const responseData = await response.json();
+        console.log('API Response:', responseData);
+        // Redirect or navigate to another page after successful API request
+        navigate('/pages/feed');
+      } catch (error) {
+        console.error('API Request Failed:', error.message);
+      }
+    }
   };
 
 
@@ -124,7 +301,7 @@ function Create() {
                   <Input
                     className={styles.choiceInput}
                     placeholder={`Choice ${index + 1}`}
-                    style={{ width: '50%'}}
+                    style={{ width: '50%' }}
                     value={choice}
                     onChange={(e) => handleChoiceChange(index, e.target.value)}
                   />
@@ -163,15 +340,16 @@ function Create() {
             </Button>
             {customizedType === 'date' && (
               <div className={styles.datePickerContainer}>
-                <DatePicker onChange={handleDateChange}  />
+                <DatePicker onChange={handleDateChange} />
               </div>
             )}
             {customizedType === 'numeric' && (
               <div className={styles.numericInputContainer} >
                 <Input
-                  style={{ width: '50%'}}
+                  style={{ width: '50%' }}
                   type="number"
                   placeholder="Enter numeric answer"
+                  onChange={(e) => setCustomizedNumeric(e.target.value)}
                 />
               </div>
             )}
@@ -182,7 +360,7 @@ function Create() {
           {setDueDate && (
             <>
               <div className={styles.dueDatePollInputContainer}>
-                <DatePicker onChange={handleDueDatePollChange}  />
+                <DatePicker onChange={handleDueDatePollChange} />
               </div>
               <div className={styles.dateOptionsContainer}>
                 <p>Do not accept any votes in last:</p>
@@ -194,7 +372,7 @@ function Create() {
                   onChange={(e) => setNumericFieldValue(e.target.value)}
                 />
                 <Select
-                  className= {styles.customSelect}
+                  className={styles.customSelect}
                   defaultValue="min"
                   onChange={(value) => setSelectedTimeUnit(value)}
                 >
