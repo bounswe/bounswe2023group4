@@ -18,16 +18,29 @@ CREATE TABLE refresh_tokens (
     UNIQUE KEY token (token)
 );
 
-CREATE TABLE discrete_polls (
+CREATE TABLE polls (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    question VARCHAR(255) NOT NULL
+    question VARCHAR(255) NOT NULL,
+    poll_type ENUM('discrete', 'continuous') NOT NULL
+);
+
+CREATE TABLE discrete_polls (
+    id INT PRIMARY KEY,
+    FOREIGN KEY (id) REFERENCES polls(id)
+);
+
+CREATE TABLE continuous_polls (
+    id INT PRIMARY KEY,
+    min_value FLOAT NOT NULL,
+    max_value FLOAT NOT NULL,
+    FOREIGN KEY (id) REFERENCES polls(id)
 );
 
 CREATE TABLE discrete_poll_choices (
     id INT AUTO_INCREMENT PRIMARY KEY,
     choice_text VARCHAR(255) NOT NULL,
     poll_id INT, 
-    FOREIGN KEY (poll_id) REFERENCES discrete_polls(id)
+    FOREIGN KEY (poll_id) REFERENCES polls(id)
 );
 
 CREATE TABLE discrete_polls_selections (
@@ -35,16 +48,9 @@ CREATE TABLE discrete_polls_selections (
     poll_id INT,
     choice_id INT,
     user_id INT,
-    FOREIGN KEY (poll_id) REFERENCES discrete_polls(id),
+    FOREIGN KEY (poll_id) REFERENCES polls(id),
     FOREIGN KEY (choice_id) REFERENCES discrete_poll_choices(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
-CREATE TABLE continuous_polls (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    question VARCHAR(255) NOT NULL,
-    min_value FLOAT NOT NULL,
-    max_value FLOAT NOT NULL
 );
 
 CREATE TABLE continuous_poll_selections (
@@ -52,6 +58,6 @@ CREATE TABLE continuous_poll_selections (
     poll_id INT,
     user_id INT, 
     selected_value FLOAT NOT NULL,
-    FOREIGN KEY (poll_id) REFERENCES continuous_polls(id),
+    FOREIGN KEY (poll_id) REFERENCES polls(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
