@@ -6,11 +6,11 @@ const router = express.Router();
 
 /**
  * @swagger
- * /polls/discrete:
+ * /polls:
  *   get:
  *     tags:
  *       - polls
- *     description: Get all discrete polls
+ *     description: Get all polls
  *     responses:
  *       200:
  *         description: Successful response
@@ -20,13 +20,26 @@ const router = express.Router();
  *               type: array
  *               items:
  *                 type: object
+ *                 required: ["id", "question", "poll_type"]
  *                 properties: 
  *                   id:
  *                     type: integer
- *                     example: 1
  *                   question:
  *                     type: string
- *                     example: "Who will become POTUS?"
+ *                   poll_type:
+ *                     type: string
+ *             examples:
+ *               genericExample:
+ *                 value:
+ *                   - id: 1
+ *                     question: "Who will become POTUS?"
+ *                     poll_type: "discrete"
+ *                   - id: 2
+ *                     question: "Test3?"
+ *                     poll_type: "continuous"
+ *                   - id: 3
+ *                     question: "Who will become POTUS?"
+ *                     poll_type: "discrete"
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -44,11 +57,11 @@ const router = express.Router();
  *                   message: Error while accessing the database.
  *                   code: 3000
  */
-router.get('/discrete', service.getDiscretePolls);
+router.get('/', service.getPolls);
 
 /**
  * @swagger
- * /polls/discrete/{pollId}:
+ * /polls/{pollId}:
  *   get:
  *     tags:
  *       - polls
@@ -67,53 +80,72 @@ router.get('/discrete', service.getDiscretePolls);
  *           application/json:
  *             schema:
  *               type: object
+ *               required: ["id", "question", "poll_type", "poll", "choices"]
  *               properties:
+ *                 id:
+ *                   type: integer
+ *                 question:
+ *                   type: string
+ *                 poll_type:
+ *                   type: string
  *                 poll:
  *                   type: object
  *                   properties:
  *                     id:
  *                       type: integer
- *                       example: 1
- *                     question:
- *                       type: string
- *                       example: "Who will become POTUS?"
  *                 choices:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       id:
+ *                   oneOf:
+ *                     - type: array
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           id:
+ *                             type: integer
+ *                           choice_text:
+ *                             type: string
+ *                           poll_id:
+ *                             type: integer
+ *                           voter_count:
+ *                             type: integer
+ *                     - type: array
+ *                       items:
  *                         type: integer
- *                         example: 1
- *                       choice_text:
- *                         type: string
- *                         example: "Trumpo"
- *                       poll_id:
- *                         type: integer
- *                         example: 1
- *                       voter_count:
- *                         type: integer
- *                         example: 0
- *               example:
- *                 poll:
+ * 
+ *             examples:
+ *               discrete:
+ *                 value:
  *                   id: 1
  *                   question: "Who will become POTUS?"
- *                 choices:
- *                   - id: 1
- *                     choice_text: "Trumpo"
- *                     poll_id: 1
- *                     voter_count: 0
- *                   - id: 2
- *                     choice_text: "Biden"
- *                     poll_id: 1
- *                     voter_count: 1
- *
+ *                   poll_type: "discrete"
+ *                   poll:
+ *                     id: 1
+ *                   choices:
+ *                     - id: 1
+ *                       choice_text: "Trumpo"
+ *                       poll_id: 1
+ *                       voter_count: 0
+ *                     - id: 2
+ *                       choice_text: "Biden"
+ *                       poll_id: 1
+ *                       voter_count: 1
+ *               continuous:
+ *                 value:
+ *                   id: 2
+ *                   question: "Test question?"
+ *                   poll_type: "continuous"
+ *                   poll:
+ *                     id: 2
+ *                     min_value: 6
+ *                     max_value: 10
+ *                   choices:
+ *                     - 7
+ *                     - 8   
  */
-router.get('/discrete/:pollId', authenticator.authorizeAccessToken, service.getDiscretePollWithId);
+router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId);
 
 /**
  * @swagger
- * /polls/discrete/:
+ * /polls/discrete:
  *   post:
  *     tags:
  *       - polls
@@ -191,94 +223,6 @@ router.get('/discrete/:pollId', authenticator.authorizeAccessToken, service.getD
  *                   code: 3000
  */
 router.post('/discrete', authenticator.authorizeAccessToken, service.addDiscretePoll);
-
-/**
- * @swagger
- * /polls/continuous:
- *   get:
- *     tags:
- *       - polls
- *     description: Get a list of continuous polls
- *     responses:
- *       200:
- *         description: Successful response
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   id:
- *                     type: integer
- *                     example: 1
- *                   question:
- *                     type: string
- *                     example: "Test3?"
- *                   min_value:
- *                     type: integer
- *                     example: 6
- *                   max_value:
- *                     type: integer
- *                     example: 10
- *       404:
- *         description: Polls not found
- *       500:
- *         description: Internal Server Error
- */
-router.get('/continuous', authenticator.authorizeAccessToken, service.getContinuousPolls);
-
-/**
- * @swagger
- * /polls/continuous/{pollId}:
- *   get:
- *     tags:
- *       - polls
- *     description: Get a specific continuous poll by ID
- *     parameters:
- *       - in: path
- *         name: pollId
- *         required: true
- *         schema:
- *           type: integer
- *         description: The ID of the continuous poll.
- *     responses:
- *       200:
- *         description: Successful response
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 poll:
- *                   type: object
- *                   properties:
- *                     id:
- *                       type: integer
- *                       example: 1
- *                     question:
- *                       type: string
- *                       example: "Test3?"
- *                     min_value:
- *                       type: integer
- *                       example: 6
- *                     max_value:
- *                       type: integer
- *                       example: 10
- *                 choices:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       selected_value:
- *                         type: integer
- *                         example: 7
- *       404:
- *         description: Poll not found
- *       500:
- *         description: Internal Server Error
- */
-router.get('/continuous/:pollId', authenticator.authorizeAccessToken, service.getContinuousPollWithId);
 
 /**
  * @swagger

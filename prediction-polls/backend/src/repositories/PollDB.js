@@ -10,8 +10,8 @@ const pool = mysql.createPool({
 }).promise()
 
 
-async function getDiscretePolls(){
-    const sql = 'SELECT * FROM discrete_polls';
+async function getPolls(){
+    const sql = 'SELECT * FROM polls';
 
     try {
         const [rows, fields] = await pool.query(sql);
@@ -22,14 +22,14 @@ async function getDiscretePolls(){
     }
 }
 
-async function getContinuousPolls(){
-    const sql = 'SELECT * FROM continuous_polls';
+async function getPollWithId(pollId){
+    const sql = 'SELECT * FROM polls WHERE id = ?';
 
     try {
-        const [rows, fields] = await pool.query(sql);
-        return rows
+        const [rows, fields] = await pool.query(sql, [pollId]);
+        return rows;
     } catch (error) {
-        console.error('getDiscretePolls(): Database Error');
+        console.error('getPollWithID(): Database Error');
         throw error;
     }
 }
@@ -60,38 +60,64 @@ async function getContinuousPollWithId(pollId){
 }
 
 async function addDiscretePoll(question, choices){
-    const sql_poll = 'INSERT INTO discrete_polls (question) VALUES (?)';
+    const connection = await pool.getConnection();
+
+    const sql_poll = 'INSERT INTO polls (question, poll_type) VALUES (?, ?)';
+    const sql_discrete_poll = 'INSERT INTO discrete_polls (id) VALUES (?)';
     const sql_choice = 'INSERT INTO discrete_poll_choices (choice_text, poll_id) VALUES (?, ?)';
 
     try {
-        const [resultSetHeader] = await pool.query(sql_poll, [question]);
+        await connection.beginTransaction()
+        const [resultSetHeader] = await connection.query(sql_poll, [question, 'discrete']);
         poll_id = resultSetHeader.insertId;
+
         if (!poll_id) {
+            await connection.rollback();
             return false;
         }
+
+        await connection.query(sql_discrete_poll, [poll_id]);
+
         await Promise.all(choices.map(choice => {
-            return pool.query(sql_choice, [choice, poll_id]);
+            return connection.query(sql_choice, [choice, poll_id]);
         }))
+
+        await connection.commit();
         return true;
     } catch (error) {
         console.error('addDiscretePoll(): Database Error');
+        await connection.rollback();
         throw error;
+    } finally {
+        connection.release();
     }
 }
 
 async function addContinuousPoll(question, min, max){
-    const sql_poll = 'INSERT INTO continuous_polls (question, min_value, max_value) VALUES (?, ?, ?)';
+    const connection = await pool.getConnection();
+
+    const sql_poll = 'INSERT INTO polls (question, poll_type) VALUES (?, ?)';
+    const sql_continuous_poll = 'INSERT INTO continuous_polls (id, min_value, max_value) VALUES (?, ?, ?)';
 
     try {
-        const [resultSetHeader] = await pool.query(sql_poll, [question, min, max]);
-        poll_id = resultSetHeader.insertId;
+        const [pollResultSetHeader] = await connection.query(sql_poll, [question, 'continuous']);
+        const poll_id = pollResultSetHeader.insertId;
+
         if (!poll_id) {
+            await connection.rollback();
             return false;
         }
+
+        await connection.query(sql_continuous_poll, [poll_id, min, max]);
+
+        await connection.commit();
         return true;
     } catch (error) {
         console.error('addContinuousPoll(): Database Error');
+        await connection.rollback();
         throw error;
+    } finally {
+        connection.release();
     }
 }
 
@@ -163,7 +189,7 @@ async function getContinuousPollVotes(pollId) {
 
 
 
-module.exports = {getDiscretePolls, getContinuousPolls, getDiscretePollWithId, getContinuousPollWithId, 
+module.exports = {getPolls, getPollWithId, getDiscretePollWithId, getContinuousPollWithId, 
     addDiscretePoll,addContinuousPoll, getDiscretePollChoices, getDiscreteVoteCount, voteDiscretePoll, voteContinuousPoll,
     getContinuousPollVotes}
     

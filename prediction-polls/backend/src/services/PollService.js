@@ -1,8 +1,8 @@
 const db = require("../repositories/PollDB.js");
 const errorCodes = require("../errorCodes.js")
 
-function getDiscretePolls(req,res){
-    db.getDiscretePolls()
+function getPolls(req,res){
+    db.getPolls()
     .then((rows) => {
         res.json(rows);
     })
@@ -12,7 +12,25 @@ function getDiscretePolls(req,res){
     })
 }
 
-function getDiscretePollWithId(req,res){
+function getPollWithId(req, res) {
+    const pollId = req.params.pollId;
+    db.getPollWithId(pollId)
+    .then((rows) => {
+        if (rows.length === 0) {
+            res.status(404).json({ code: errorCodes.NO_SUCH_POLL_ERROR.code, message: errorCodes.NO_SUCH_POLL_ERROR.message });
+        } else {
+            const pollType = rows[0].poll_type;
+            const responseBody = rows[0];
+            if (pollType === 'discrete') {
+                getDiscretePollWithId(req, res, responseBody);
+            } else if (pollType === 'continuous') {
+                getContinuousPollWithId(req, res, responseBody);
+            }
+        }
+    })
+}
+
+function getDiscretePollWithId(req,res, responseBody){
     const pollId = req.params.pollId;
 
     db.getDiscretePollWithId(pollId)
@@ -24,7 +42,6 @@ function getDiscretePollWithId(req,res){
             .then((choices) => {
                 
                 const choicesWithVoteCount = choices.map((choice) => {
-                    // Call your function and set the "voter_count" property based on the result
                     return db.getDiscreteVoteCount(choice.id)
                     .then((voterCount) => {
                         return { ...choice, voter_count: voterCount };
@@ -33,7 +50,8 @@ function getDiscretePollWithId(req,res){
 
                 Promise.all(choicesWithVoteCount)
                 .then((updatedChoices) => {
-                    res.json({ "poll": rows[0], "choices": updatedChoices });
+                    responseBody = { ...responseBody, "poll": rows[0], "choices": updatedChoices };
+                    res.json(responseBody);
                 })
             })
         }
@@ -91,7 +109,7 @@ function getContinuousPolls(req,res){
     })
 }
 
-function getContinuousPollWithId(req,res){
+function getContinuousPollWithId(req,res, responseBody){
     const pollId = req.params.pollId;
 
     db.getContinuousPollWithId(pollId)
@@ -101,7 +119,8 @@ function getContinuousPollWithId(req,res){
         } else {
             db.getContinuousPollVotes(pollId)
             .then((choices) => {
-                res.json({"poll": rows[0], "choices": choices})
+                responseBody = {...responseBody, "poll": rows[0], "choices": choices}
+                res.json(responseBody)
             })
         }
     })
@@ -190,5 +209,4 @@ function voteContinuousPoll(req,res){
     })
 }
 
-module.exports = {getDiscretePolls,getDiscretePollWithId,addDiscretePoll,getContinuousPolls,
-    getContinuousPollWithId,addContinuousPoll,voteDiscretePoll,voteContinuousPoll}
+module.exports = {getPolls, getPollWithId, addDiscretePoll, addContinuousPoll, voteDiscretePoll, voteContinuousPoll}
