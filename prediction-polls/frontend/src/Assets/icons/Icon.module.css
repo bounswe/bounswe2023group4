@@ -4,3 +4,7 @@
 .iconFill{
     fill:var(--neutral-900)
 }
+.iconEdit{
+    stroke:var(--neutral-white)
+
+}

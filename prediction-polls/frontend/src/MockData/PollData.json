@@ -6,6 +6,7 @@
       "tags": ["Color", "Favorite"],
       "creatorName": "Zehra Kaya",
       "creatorId": 6327697326,
+      "creatorUsername":  "zehra.kaya",
       "creatorImage": "https://www.w3schools.com/howto/img_lights_wide.jpg",
       "isCustomPoll": false,
       "options": [
@@ -53,6 +54,7 @@
       "question": "When is your birthday?",
       "tags": ["Birthday", "Personal"],
       "creatorName": "Can Gezer",
+      "creatorUsername": "can.gezer",
       "creatorId": 6578493045,
       "creatorImage": "https://www.w3schools.com/howto/img_woods_wide.jpg",
       "isCustomPoll": true,
@@ -76,6 +78,7 @@
       "question": "How many books have you read this year?",
       "tags": ["Reading", "Hobby"],
       "creatorName": "Pelin Kaya",
+      "creatorUsername": "pelin.kaya",
       "creatorId": 9472638473,
       "creatorImage": "https://www.w3schools.com/howto/img_mountains_wide.jpg",
       "isCustomPoll": true,

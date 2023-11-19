@@ -70,6 +70,7 @@ function Create() {
     setSelectedDate(date);
   };
 
+
   const handleSubmit = async () => {
 
     if (pollType === 'multipleChoice' && setDueDate) {
@@ -251,6 +252,7 @@ function Create() {
         console.error('API Request Failed:', error.message);
       }
     }
+
   };
 
 
