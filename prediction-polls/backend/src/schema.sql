@@ -59,11 +59,11 @@ CREATE TABLE continuous_poll_selections (
 
 CREATE TABLE profiles (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
+    userId INT NOT NULL,
     username VARCHAR(255) NOT NULL,
     profile_picture_data MEDIUMBLOB,
     biography VARCHAR(5000),
     birthday DATETIME,
-    is_hidden BOOLEAN DEFAULT False,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    isHidden BOOLEAN DEFAULT False,
+    FOREIGN KEY (userId) REFERENCES users(id)
 );
