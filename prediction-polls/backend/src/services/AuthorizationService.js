@@ -2,8 +2,6 @@ require('dotenv').config();
 const jwt = require("jsonwebtoken");
 const db = require("../repositories/AuthorizationDB.js");
 
-const { checkCredentials, addUser } = require('./AuthenticationService.js');
-
 const bcrypt = require('bcrypt')
 
 function homePage(req, res){
@@ -12,7 +10,7 @@ function homePage(req, res){
 
 async function signup(req, res){
   const { username, password, email, birthday } = req.body;
-  const { success, error} = await addUser( username, password, email, birthday );
+  const { success, error} = await db.addUser( username, password, email, birthday );
   
   if(!success)  res.status(400).send('Registration failed '+ error);
   else{res.status(201).send("Registration successful")};
@@ -33,7 +31,7 @@ async function logIn(req,res){
     // Authorize User  
     const username = req.body.username;
     const password = req.body.password;
-    let [userAuthenticated] = await checkCredentials(username,password);
+    let [userAuthenticated] = await db.checkCredentials(username,password);
     if (!userAuthenticated) {
       res.status(401).send("Could not find a matching (username, email) - password tuple");
       return;
