@@ -54,8 +54,8 @@ function SignIn() {
         <Form className = {{...styles.formItemLayout,labelCol: { span: 24 }, wrapperCol: { span: 24 }}}>
           <Form.Item>
             <div>
-              <Button style={formButtonStyle} onClick={handleLogin}>
-                <GoogleLogo style={googleLogoStyle} />
+              <Button className={styles.formButtonStyle} onClick={handleLogin}>
+                <GoogleLogo className={styles.googleLogoStyle} />
                 <span>Sign In with Google</span>
               </Button>
             </div>
