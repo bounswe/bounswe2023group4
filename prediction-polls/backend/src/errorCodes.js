@@ -52,12 +52,12 @@ const errorCodes = {
 
   BAD_DISCRETE_POLL_REQUEST_ERROR: {
     code: 4000,
-    message: 'Request body for creating a discrete poll was bad.'
+    message: 'Bad request body for creating a discrete poll.'
   },
   
   BAD_CONT_POLL_REQUEST_ERROR: {
     code: 4001,
-    message: 'Request body for creating a continuous poll was bad.'
+    message: 'Bad request body for creating a continuous poll.'
   },
 
   MINMAX_BAD_CONT_POLL_REQUEST_ERROR: {
