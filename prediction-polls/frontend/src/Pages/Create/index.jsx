@@ -21,7 +21,7 @@ function Create() {
   const [numericFieldValue, setNumericFieldValue] = useState('');
   const [selectedTimeUnit, setSelectedTimeUnit] = useState('min');
   const [openVisibility, setOpenVisibility] = useState(false);
-  let urlDiscrete = "http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:8000/"
+  const url = process.env.REACT_APP_BACKEND_LINK; 
   const navigate = useNavigate()
 
   const handleOpenVisibilityChange = (e) => {
@@ -86,7 +86,7 @@ function Create() {
       };
 
       try {
-        const response = await fetch(urlDiscrete + "polls/discrete/", { // TODO: Replace URL_MULTIPLE_CHOICE with API URL
+        const response = await fetch(url + "/polls/discrete/", { 
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ function Create() {
       };
 
       try {
-        const response = await fetch(urlDiscrete + "polls/discrete/", { // TODO: Replace URL_MULTIPLE_CHOICE with API URL
+        const response = await fetch(url + "/polls/discrete/", { 
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -146,7 +146,7 @@ function Create() {
       };
 
       try {
-        const response = await fetch(urlDiscrete + "polls/continuous/", { // TODO: Replace URL_MULTIPLE_CHOICE with API URL 
+        const response = await fetch(url + "/polls/continuous/", { 
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -174,7 +174,7 @@ function Create() {
       };
 
       try {
-        const response = await fetch(urlDiscrete + "polls/continuous/", { // TODO: Replace URL_MULTIPLE_CHOICE with API URL 
+        const response = await fetch(url + "/polls/continuous/", {  
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -205,7 +205,7 @@ function Create() {
       };
 
       try {
-        const response = await fetch(urlDiscrete + "polls/continuous/", { // TODO: Replace URL_MULTIPLE_CHOICE with API URL 
+        const response = await fetch(url + "/polls/continuous/", { 
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -233,7 +233,7 @@ function Create() {
       };
 
       try {
-        const response = await fetch(urlDiscrete + "polls/continuous/", { // TODO: Replace URL_MULTIPLE_CHOICE with API URL 
+        const response = await fetch(url + "/polls/continuous/", { 
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
