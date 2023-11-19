@@ -98,17 +98,6 @@ function validateAddDiscretePoll(body) {
     return true;
 }
 
-function getContinuousPolls(req,res){
-    db.getContinuousPolls()
-    .then((rows) => {
-        res.json(rows);
-    })
-    .catch((error) => {
-        console.error(error);
-        res.status(500).json({ code: errorCodes.DATABASE_ERROR.code, message: errorCodes.DATABASE_ERROR.message});
-    })
-}
-
 function getContinuousPollWithId(req,res, responseBody){
     const pollId = req.params.pollId;
 
