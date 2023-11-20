@@ -2,9 +2,10 @@ require('dotenv').config();
 const jwt = require("jsonwebtoken");
 const db = require("../repositories/AuthorizationDB.js");
 
-const { checkCredentials, addUser, isUsernameOrEmailInUse } = require('./AuthenticationService.js');
+const { checkCredentials, addUser, isUsernameOrEmailInUse, createTransporter } = require('./AuthenticationService.js');
 
 const bcrypt = require('bcrypt')
+const { saveEmailVerificationToken } = require('../repositories/AuthorizationDB.js');
 
 function homePage(req, res){
     res.status(200).json({"username":req.user.name,"key":"very-secret"});
@@ -42,7 +43,9 @@ function homePage(req, res){
     if (!isValidPassword(password)) {
         return res.status(400).send('Password does not meet the required criteria');
     }
-
+    const verificationToken = generateVerificationToken();
+    await saveEmailVerificationToken(username, verificationToken);
+    await sendVerificationEmail(email, verificationToken);
     // Attempt to add user
     const { success, error: addUserError } = await addUser(username, password, email, birthday);
 
@@ -52,7 +55,29 @@ function homePage(req, res){
         res.status(201).send("Registration successful");
     }
 }
+async function sendVerificationEmail(email, token) {
+  const transporter = createTransporter();
+  const verificationUrl = `http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/verify-email?token=${token}`;
 
+  const mailOptions = {
+      from: '"Prediction Polls" <predictionpolls@zohomail.eu>',
+      to: email,
+      subject: 'Email Verification',
+      html: `<p>Please verify your email by clicking on the link: <a href="${verificationUrl}">${verificationUrl}</a></p>`
+  };
+
+  try {
+      await transporter.sendMail(mailOptions);
+  } catch (error) {
+      console.error("Error sending email: ", error);
+      // Handle email sending error
+  }
+}
+const crypto = require('crypto');
+
+function generateVerificationToken() {
+    return crypto.randomBytes(20).toString('hex');
+}
   
   function isValidPassword(password) {
     const lower = /[a-z]/;

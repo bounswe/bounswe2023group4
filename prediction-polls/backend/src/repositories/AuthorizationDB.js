@@ -43,4 +43,18 @@ async function deleteRefreshToken(token){
     return result.affectedRows > 0;
 }
 
-module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken}
+async function saveEmailVerificationToken(userId, token) {
+    const sql = 'UPDATE users SET email_verification_token = ? WHERE id = ?';
+    const values = [token, userId];
+
+    return pool.query(sql, values);
+}
+
+async function verifyEmail(token) {
+    const sql = 'UPDATE users SET email_verified = TRUE WHERE email_verification_token = ?';
+    const values = [token];
+
+    return pool.query(sql, values);
+}
+
+module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken,saveEmailVerificationToken,verifyEmail}

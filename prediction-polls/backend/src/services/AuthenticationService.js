@@ -70,6 +70,20 @@ async function addUser(username, password,email,birthday){
     }
 }
 
+const nodemailer = require('nodemailer');
+
+function createTransporter() {
+    return nodemailer.createTransport({
+        host: 'smtp.zoho.eu',
+        port: 465,
+        secure: true,
+        auth: {
+            user: 'predictionpolls@zohomail.eu',
+            pass: 'nzDnTajTmFpz' // this is not safe change to env later
+        }
+    });
+}
 
 
-module.exports = {checkCredentials,addUser,isUsernameOrEmailInUse}
+
+module.exports = {checkCredentials,addUser,isUsernameOrEmailInUse,createTransporter}
