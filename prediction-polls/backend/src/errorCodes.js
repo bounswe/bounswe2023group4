@@ -15,19 +15,19 @@ const errorCodes = {
     message: 'The refresh token is invalid.',
   },
 
-  REFRESH_TOKEN_NEEDED_ERROR: {
+  ACCESS_TOKEN_NEEDED_ERROR: {
     code: 1003,
+    message: 'A access token is needed',
+  },
+
+  REFRESH_TOKEN_NEEDED_ERROR: {
+    code: 1004,
     message: 'A refresh token is needed',
   },
 
   REGISTRATION_FAILED: {
-    code: 1004,
-    message: 'Registration failed'
-  },
-
-  ACCESS_TOKEN_NULL: {
     code: 1005,
-    message: 'The access token is null.',
+    message: 'Registration failed'
   },
 
   USER_NOT_FOUND: {
@@ -35,9 +35,19 @@ const errorCodes = {
     message: 'User not found.',
   },
 
-  INVALID_CREDENTIALS: {
+  WRONG_PASSWORD: {
     code: 2001,
-    message: 'Invalid username or password.',
+    message: 'Given password is wrong',
+  },
+
+  USERNAME_ALREADY_EXISTS: {
+    code: 2002,
+    message: 'Given username is taken',
+  },
+
+  EMAIL_ALREADY_EXISTS: {
+    code: 2002,
+    message: 'Given email is already in use',
   },
 
   DATABASE_ERROR: {

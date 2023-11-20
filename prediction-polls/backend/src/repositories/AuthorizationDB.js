@@ -1,4 +1,5 @@
 const mysql = require('mysql2')
+const errorCodes = require("../errorCodes.js")
 
 require('dotenv').config();
 
@@ -63,14 +64,21 @@ async function findUserId({username,email}){
         const sql = 'SELECT id FROM users WHERE username = ?';
     
         const [result] = await pool.query(sql, [username]);
+        if(result.length == 0){
+            throw {error:errorCodes.GENERIC_ERROR}
+        }
         return result[0].id;
     }
     if(email){
         const sql = 'SELECT id FROM users WHERE email = ?';
     
         const [result] = await pool.query(sql, [email]);
+        if(result.length == 0){
+            throw {error:errorCodes.GENERIC_ERROR}
+        }
         return result[0].id;
     }
+    throw {error:errorCodes.GENERIC_ERROR}
 }
 
 
