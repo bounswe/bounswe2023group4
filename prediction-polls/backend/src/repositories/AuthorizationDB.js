@@ -95,6 +95,24 @@ async function findUser({userId,username,email}){
     }
 }
 
+async function isUsernameOrEmailInUse(username, email) {
+    try {
+        const usernameSql = 'SELECT 1 FROM users WHERE username = ?';
+        const [usernameRows] = await pool.query(usernameSql, [username]);
+
+        const emailSql = 'SELECT 1 FROM users WHERE email = ?';
+        const [emailRows] = await pool.query(emailSql, [email]);
+
+        const isUsernameInUse = usernameRows.length > 0;
+        const isEmailInUse = emailRows.length > 0;
+
+        return { usernameInUse: isUsernameInUse, emailInUse: isEmailInUse };
+    } catch (error) {
+        console.error("Database error in isUsernameOrEmailInUse:", error);
+        return { usernameInUse: false, emailInUse: false, error: 'Database error occurred' };
+    }
+}
+
 
 //Add the given refresh token to db
 async function addRefreshToken(token){
@@ -130,4 +148,5 @@ async function deleteRefreshToken(token){
     return result.affectedRows > 0;
 }
 
-module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken,checkCredentials,addUser,findUser}
+module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken,isUsernameOrEmailInUse,checkCredentials,addUser,findUser}
+
