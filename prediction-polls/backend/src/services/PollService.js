@@ -63,7 +63,6 @@ function getDiscretePollWithId(req,res, responseBody){
 }
 
 function addDiscretePoll(req,res){
-    console.log(req.body)
     if (!validateAddDiscretePoll(req.body)) {
         return res.status(400).json({ code: errorCodes.BAD_DISCRETE_POLL_REQUEST_ERROR.code, message: errorCodes.BAD_DISCRETE_POLL_REQUEST_ERROR.message });
     }
@@ -74,12 +73,6 @@ function addDiscretePoll(req,res){
     const numericFieldValue = req.body.numericFieldValue;
     const dueDatePoll = setDueDate ? new Date(req.body.dueDatePoll).toISOString().split('T')[0] : null;
     const selectedTimeUnit = req.body.selectedTimeUnit;
-
-    console.log("openVisibility: ", openVisibility);
-    console.log("setDueDate: ", setDueDate);
-    console.log("numericFieldValue: ", numericFieldValue);
-    console.log("dueDatePoll: ", dueDatePoll);
-    console.log("selectedTimeUnit: ", selectedTimeUnit);
 
     db.addDiscretePoll(question, choices, openVisibility, setDueDate, dueDatePoll, numericFieldValue, selectedTimeUnit)
     .then((result) => {
