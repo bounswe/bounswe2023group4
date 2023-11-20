@@ -8,7 +8,7 @@ function getPolls(req,res){
     })
     .catch((error) => {
         console.error(error);
-        res.status(500).json({ code: errorCodes.DATABASE_ERROR.code, message: errorCodes.DATABASE_ERROR.message});
+        res.status(500).json({error: errorCodes.DATABASE_ERROR});
     })
 }
 
@@ -17,7 +17,7 @@ function getPollWithId(req, res) {
     db.getPollWithId(pollId)
     .then((rows) => {
         if (rows.length === 0) {
-            res.status(404).json({ code: errorCodes.NO_SUCH_POLL_ERROR.code, message: errorCodes.NO_SUCH_POLL_ERROR.message });
+            res.status(404).json({error: errorCodes.NO_SUCH_POLL_ERROR});
         } else {
             const pollType = rows[0].poll_type;
             const responseBody = rows[0];
@@ -36,7 +36,7 @@ function getDiscretePollWithId(req,res, responseBody){
     db.getDiscretePollWithId(pollId)
     .then((rows) => {
         if (rows.length === 0) {
-            res.status(404).json({ code: errorCodes.NO_SUCH_POLL_ERROR.code, message: errorCodes.NO_SUCH_POLL_ERROR.message });
+            res.status(404).json({error: errorCodes.NO_SUCH_POLL_ERROR});
         } else {
             db.getDiscretePollChoices(pollId)
             .then((choices) => {
@@ -58,13 +58,13 @@ function getDiscretePollWithId(req,res, responseBody){
     })
     .catch((error) => {
         console.error(error);
-        res.status(500).json({ code: errorCodes.DATABASE_ERROR.code, message: errorCodes.DATABASE_ERROR.message});
+        res.status(500).json({error: errorCodes.DATABASE_ERROR});
     })
 }
 
 function addDiscretePoll(req,res){
     if (!validateAddDiscretePoll(req.body)) {
-        return res.status(400).json({ code: errorCodes.BAD_DISCRETE_POLL_REQUEST_ERROR.code, message: errorCodes.BAD_DISCRETE_POLL_REQUEST_ERROR.message });
+        return res.status(400).json({error: errorCodes.BAD_DISCRETE_POLL_REQUEST_ERROR});
     }
     const question = req.body.question;
     const choices = req.body.choices;
@@ -80,7 +80,7 @@ function addDiscretePoll(req,res){
     })
     .catch((error) => {
         console.error(error);
-        res.status(500).json({ code: errorCodes.DATABASE_ERROR.code, message: errorCodes.DATABASE_ERROR.message});
+        res.status(500).json({error: errorCodes.DATABASE_ERROR});
     });
 }
 
@@ -111,7 +111,7 @@ function getContinuousPollWithId(req,res, responseBody){
     db.getContinuousPollWithId(pollId)
     .then((rows) => {
         if (rows.length === 0) {
-            res.status(404).json({ code: errorCodes.NO_SUCH_POLL_ERROR.code, message: errorCodes.NO_SUCH_POLL_ERROR.message });
+            res.status(404).json({error: errorCodes.NO_SUCH_POLL_ERROR});
         } else {
             db.getContinuousPollVotes(pollId)
             .then((choices) => {
@@ -122,13 +122,13 @@ function getContinuousPollWithId(req,res, responseBody){
     })
     .catch((error) => {
         console.error(error);
-        res.status(500).json({ code: errorCodes.DATABASE_ERROR.code, message: errorCodes.DATABASE_ERROR.message});
+        res.status(500).json({error: errorCodes.DATABASE_ERROR});
     })
 }
 
 function addContinuousPoll(req,res){
     if (!validateAddContinuousPoll(req.body)) {
-        return res.status(400).json({ code: errorCodes.BAD_CONT_POLL_REQUEST_ERROR.code, message: errorCodes.BAD_CONT_POLL_REQUEST_ERROR.message });
+        return res.status(400).json({error: errorCodes.BAD_CONT_POLL_REQUEST_ERROR});
     }
 
     const question = req.body.question;
@@ -145,7 +145,7 @@ function addContinuousPoll(req,res){
     })
     .catch((error) => {
         console.error(error);
-        res.status(500).json({ code: errorCodes.DATABASE_ERROR.code, message: errorCodes.DATABASE_ERROR.message});
+        res.status(500).json({error: errorCodes.DATABASE_ERROR});
     });
 }
 
@@ -169,7 +169,7 @@ function voteDiscretePoll(req,res){
     .then((choices) => {
         const choiceExists = choices.some(choice => choice.id === choiceId);
         if (!choiceExists) {
-            res.status(404).json({ code: errorCodes.CHOICE_DOES_NOT_EXIST_ERROR.code, message: errorCodes.CHOICE_DOES_NOT_EXIST_ERROR.message });
+            res.status(404).json({error: errorCodes.CHOICE_DOES_NOT_EXIST_ERROR});
         } else {
             db.voteDiscretePoll(pollId, userId, choiceId)
             .then(() => {
@@ -179,7 +179,7 @@ function voteDiscretePoll(req,res){
     })
     .catch((error) => {
         console.error(error);
-        res.status(500).json({ code: errorCodes.DATABASE_ERROR.code, message: errorCodes.DATABASE_ERROR.message});
+        res.status(500).json({error: errorCodes.DATABASE_ERROR});
     })
 }
 
@@ -194,7 +194,7 @@ function voteContinuousPoll(req,res){
         const maxValue = result[0].max_value;
         const choiceValid = minValue <= choice && choice <= maxValue;
         if (!choiceValid) {
-            res.status(400).json({ code: errorCodes.CHOICE_OUT_OF_BOUNDS_ERROR.code, message: errorCodes.CHOICE_OUT_OF_BOUNDS_ERROR.message });
+            res.status(400).json({error: errorCodes.CHOICE_OUT_OF_BOUNDS_ERROR});
         } else {
             db.voteContinuousPoll(pollId, userId, choice)
             .then(() => {
