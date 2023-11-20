@@ -12,7 +12,15 @@ function homePage(req, res){
 
   async function signup(req, res){
     const { username, password, email, birthday } = req.body;
-  
+    // Email validation
+    if (!isValidEmail(email)) {
+      return res.status(400).send('Invalid email format');
+    }
+
+  // Birthday validation
+    if (!isValidBirthday(birthday)) {
+      return res.status(400).send('Invalid or unreasonable birthday');
+    }
     // Check if username or email is in use
     const { inUse, error } = await isUsernameOrEmailInUse(username, email);
     if (error) {
@@ -54,6 +62,18 @@ function homePage(req, res){
     return password.length >= 8 && count >= 3;
   }
 
+function isValidBirthday(birthday) {
+    const date = new Date(birthday);
+    const now = new Date();
+    // Check if birthday is a valid date and if the date is in the past
+    return date instanceof Date && !isNaN(date) && date < now;
+  }
+
+function isValidEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return emailRegex.test(email);
+  }
+    
 function createAccessTokenFromRefreshToken(req, res){
     const refreshToken = req.body.refreshToken;
     if (refreshToken == null) return res.status(400).send('A refresh token is needed');
