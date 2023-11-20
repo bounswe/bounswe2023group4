@@ -37,9 +37,8 @@ CREATE TABLE discrete_polls (
 
 CREATE TABLE continuous_polls (
     id INT PRIMARY KEY,
-    min_value FLOAT NOT NULL,
-    max_value FLOAT NOT NULL,
-    FOREIGN KEY (id) REFERENCES polls(id)
+    FOREIGN KEY (id) REFERENCES polls(id),
+    cont_poll_type ENUM('date', 'numeric') NOT NULL
 );
 
 CREATE TABLE discrete_poll_choices (
