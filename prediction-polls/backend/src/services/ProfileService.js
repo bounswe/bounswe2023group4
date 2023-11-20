@@ -4,51 +4,69 @@ const authDb = require("../repositories/AuthorizationDB.js");
 
 async function getProfile(req,res){
     const {userId, username, email} = req.query;
-
-    let user_Id = userId
     try{
-        if(!user_Id){
-            user_Id = await authDb.findUserId({username,email})
-            throw {code:1023113,message:"wdojfnwaev"}
+        const result = await authDb.findUser({userId,username,email})
+        if(result.error){
+            throw result.error;
         }
-        if(userId){
-            console.log("Found UserId");
-            const profile = await db.getProfileWithUserId(userId);
-            return res.status(200).json(profile);
+    
+        const {profile,error} = await db.getProfileWithUserId(result.id);
+        if(error){
+            throw error;
         }
+        return res.status(200).json(profile);
+        
     }catch(error){
         return res.status(400).json({error:error});
     }
-        console.log("Did not find UserId");
-        const profile = await db.getProfileWithUserInfo({username,email})
-        res.status(200).json(profile);
 }
 
 async function getProfileWithProfileId(req,res){
     const profileId = req.params.profileId;
-    const {profile,error} = await db.getProfileWithProfileId(profileId);
-    if(error){
+    try{
+        const {profile,error} = await db.getProfileWithProfileId(profileId);
+        if(error){
+            throw error
+        }
+        res.status(200).json(profile);
+    }catch(error){
         return res.status(400).json({error:error});
     }
-    res.status(200).json(profile);
 }
 
 async function addProfile(req,res){
     const {userId,username,email,profile_picture,biography, birthday, isHidden} = req.body;
-    const {profile_id,error} = await db.addProfile({userId,username,email,profile_picture,biography, birthday, isHidden});
-    if(error){
+    try{
+        const result = await authDb.findUser({userId,username,email})
+        if(result.error){
+            throw result.error;
+        }
+        const {profile_id,error} = await db.addProfile({userId:result.id,username:result.username,email:result.email,profile_picture,biography, birthday, isHidden});
+        if(error){
+            throw error;
+        }
+        return res.status(200).json({profileId:profile_id});
+    }catch(error){
         return res.status(400).json({error:error});
     }
-    return res.status(200).json({profileId:profile_id});
 }
 
 async function updateProfile(req,res){
-    const {userId,username,profile_picture,biography, birthday, isHidden} = req.body;
-    const {status,error} = await db.updateProfile({userId,username,profile_picture,biography, birthday, isHidden});
-    if(error){
+    const {userId,username,email,profile_picture,biography, birthday, isHidden} = req.body;
+
+    try{
+        const result = await authDb.findUser({userId,username,email})
+        if(result.error){
+            throw result.error;
+        }
+        const {status,error} = await db.updateProfile({userId:result.id,profile_picture,biography, birthday, isHidden});
+        if(error){
+            throw error;
+        }
+        return res.status(200).json({status:status});
+    }catch(error){
         return res.status(400).json({error:error});
     }
-    return res.status(200).json({status:status});
 }
 
 module.exports = {getProfile,getProfileWithProfileId,addProfile,updateProfile}

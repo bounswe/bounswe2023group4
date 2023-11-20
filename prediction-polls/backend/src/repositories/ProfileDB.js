@@ -1,5 +1,6 @@
 const authDb = require("../repositories/AuthorizationDB.js");
 const mysql = require('mysql2')
+const errorCodes = require("../errorCodes.js")
 
 require('dotenv').config();
 
@@ -12,18 +13,17 @@ const pool = mysql.createPool({
 
 
 async function getProfileWithProfileId(profileId){
-    console.log("profileId")
-    console.log(profileId)
 
     const sql = 'SELECT * FROM profiles WHERE id= ?';
 
     try {
         const [rows] = await pool.query(sql, [profileId]);
-        console.log(rows)
-        return rows;
+        if(rows.length == 0){
+            throw {error:errorCodes.PROFILE_NOT_FOUND}
+        }
+        return {profile:rows[0]};
     } catch (error) {
-        console.error('getProfileWithProfileId(): Database Error');
-        throw error;
+        return error;
     }
 }
 
@@ -31,17 +31,23 @@ async function getProfileWithUserId(userId){
     const sql = 'SELECT * FROM profiles WHERE user_id= ?';
 
     try {
-        const [rows, fields] = await pool.query(sql, [userId]);
+        const [rows] = await pool.query(sql, [userId]);
+        if(rows.length == 0){
+            throw {error:errorCodes.PROFILE_NOT_FOUND}
+        }
         return {profile:rows[0]};
     } catch (error) {
-        return {error:{code:1000,message:"An error occured:" + error}};
+        return error;
     }
 }
 
 async function getProfileWithUserInfo({username,email}){
-    const userId = await authDb.findUserId({username,email});
-    const user = await getProfileWithUserId(userId);
-    return user;
+    const {userId,error} = await authDb.findUserId({username,email});
+    if(error){
+        return error;
+    }
+    const profile = await getProfileWithUserId(userId);
+    return profile;
 }
 
 async function addProfile({
@@ -81,43 +87,36 @@ async function addProfile({
 
 async function updateProfile({
     userId,
-    username ,
     profile_picture,
     biography,
     birthday ,
     isHidden}){
 
-    let user_id = userId
-
-    if(!userId){
-        user_id = await authDb.findUserId({username});
-    }
     try {
         if(profile_picture){
             const sql = 'UPDATE profiles SET profile_picture_data = ? WHERE user_id = ?';
-            values = [profile_picture,user_id];
+            values = [profile_picture,userId];
 
             const [resultSetHeader] = await pool.query(sql, values);
         }
         if(biography){
             const sql = 'UPDATE profiles SET biography = ? WHERE user_id = ?';
-            values = [biography,user_id];
+            values = [biography,userId];
 
             const [resultSetHeader] = await pool.query(sql, values);
         }
         if(birthday){
             const sql = 'UPDATE profiles SET birthday = ? WHERE user_id = ?';
-            values = [birthday,user_id];
+            values = [birthday,userId];
 
             const [resultSetHeader] = await pool.query(sql, values);
         }
         if(isHidden){
             const sql = 'UPDATE profiles SET is_hidden = ? WHERE user_id = ?';
-            values = [isHidden,user_id];
+            values = [isHidden,userId];
 
             const [resultSetHeader] = await pool.query(sql, values);
         }
-        console.log("Im done");
         return {status:"success"};
     }catch(error) {
         return {error:{code:1000,message:"An error occured:" + error}};
