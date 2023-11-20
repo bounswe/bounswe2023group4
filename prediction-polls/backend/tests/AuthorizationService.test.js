@@ -1,6 +1,6 @@
+
 const service = require('../src/services/AuthorizationService.js');
 const db = require('../src/repositories/AuthorizationDB.js');
-const authService = require('../src/services/AuthenticationService.js');
 const jwt = require('jsonwebtoken');
 
 require('dotenv').config();
@@ -10,19 +10,13 @@ jest.mock('../src/repositories/AuthorizationDB.js', () => ({
     addRefreshToken: jest.fn(),
     checkRefreshToken: jest.fn(),
     deleteRefreshToken: jest.fn(),
+    checkCredentials: jest.fn().mockImplementation(async (username, password) => {
+      return true; // Customize this based on your test scenarios
+    }),
+    addUser: jest.fn().mockImplementation(async (username, password,email,birthday) => {
+      return {"success":true,"error":undefined};
+    })
 }));
-
-// Mock the AuthenticationService module
-jest.mock('../src/services/AuthenticationService.js', () => {
-    return {
-        checkCredentials: jest.fn().mockImplementation(async (username, password) => {
-            return true; // Customize this based on your test scenarios
-        }),
-        addUser: jest.fn().mockImplementation(async (username, password,email,birthday) => {
-            return {"success":true,"error":undefined};
-        })
-    };
-});
 
 // Mock the jwt.verify function
 jest.mock('jsonwebtoken', () => ({
@@ -54,7 +48,7 @@ test('test if logIn returns accessToken and refreshToken', async () => {
     await service.logIn(req, res);
 
     // Assert that the correct functions were called and with the correct arguments
-    expect(authService.checkCredentials).toHaveBeenCalledWith(username, password);
+    expect(db.checkCredentials).toHaveBeenCalledWith(username, password);
     expect(db.addRefreshToken).toHaveBeenCalledWith(expect.any(String));
 
     // Assert that the response was sent with the correct data
@@ -82,7 +76,7 @@ test('test if signup returns registration successful response ', async () => {
     await service.signup(req, res);
 
     // Assert that the correct functions were called and with the correct arguments
-    expect(authService.addUser).toHaveBeenCalledWith(username, password, email, birthday);
+    expect(db.addUser).toHaveBeenCalledWith(username, password, email, birthday);
 
     // Assert that the response was sent with the correct data
     expect(res.status).toHaveBeenCalledWith(201);
@@ -231,3 +225,4 @@ test('test if authorizeAccessToken authorizes correctly', async () => {
     // Assert that next was not called
     expect(next).not.toHaveBeenCalled();
   });
+  
