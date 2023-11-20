@@ -79,3 +79,13 @@ CREATE TABLE profiles (
     unique(userId),
     FOREIGN KEY (userId) REFERENCES users(id)
 );
+
+CREATE TABLE comments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    content VARCHAR(255) NOT NULL,
+    user_id INT,
+    poll_id INT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (poll_id) REFERENCES polls(id)
+);
