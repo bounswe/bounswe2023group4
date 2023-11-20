@@ -59,26 +59,40 @@ async function addUser(username, password,email,birthday){
   }
 
 
-async function findUserId({username,email}){
-    if(username){
-        const sql = 'SELECT id FROM users WHERE username = ?';
-    
-        const [result] = await pool.query(sql, [username]);
-        if(result.length == 0){
-            throw {error:errorCodes.GENERIC_ERROR}
+async function findUser({userId,username,email}){
+    try{
+        if(userId){
+            const sql = 'SELECT * FROM users WHERE id = ?';
+        
+            const [result] = await pool.query(sql, [userId]);
+            if(result.length == 0){
+                throw {error:errorCodes.USER_NOT_FOUND_WITH_USERID}
+            }
+            return result[0];
         }
-        return result[0].id;
-    }
-    if(email){
-        const sql = 'SELECT id FROM users WHERE email = ?';
-    
-        const [result] = await pool.query(sql, [email]);
-        if(result.length == 0){
-            throw {error:errorCodes.GENERIC_ERROR}
+
+        if(username){
+            const sql = 'SELECT * FROM users WHERE username = ?';
+        
+            const [result] = await pool.query(sql, [username]);
+            if(result.length == 0){
+                throw {error:errorCodes.USER_NOT_FOUND_WITH_USERNAME}
+            }
+            return result[0];
         }
-        return result[0].id;
+        if(email){
+            const sql = 'SELECT * FROM users WHERE email = ?';
+        
+            const [result] = await pool.query(sql, [email]);
+            if(result.length == 0){
+                throw {error:errorCodes.USER_NOT_FOUND_WITH_EMAIL}
+            }
+            return result[0];
+        }
+        throw {error:errorCodes.USER_NOT_FOUND}
+    } catch(error){
+        return error
     }
-    throw {error:errorCodes.GENERIC_ERROR}
 }
 
 
@@ -116,4 +130,4 @@ async function deleteRefreshToken(token){
     return result.affectedRows > 0;
 }
 
-module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken,checkCredentials,addUser,findUserId}
+module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken,checkCredentials,addUser,findUser}
