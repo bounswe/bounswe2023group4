@@ -156,16 +156,45 @@ router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId
  *       content:
  *         application/json:
  *           schema:
+ *             required: ["question", "choices", "openVisibility", "setDueDate"]
  *             type: object
  *             properties:
  *               question:
  *                 type: string
- *                 example: "Who will become POTUS?"
  *               choices:
  *                 type: array
  *                 items:
  *                   type: string
- *                 example: ["Trumpino", "Biden"]
+ *               openVisibility:
+ *                 type: boolean
+ *               setDueDate:
+ *                 type: boolean
+ *               dueDatePoll:
+ *                 type: string
+ *               numericFieldValue:
+ *                 type: integer
+ *               selectedTimeUnit:
+ *                 type: string
+ *           examples:
+ *             setDueDateTrue:
+ *               value:
+ *                 question: Question 4
+ *                 choices:
+ *                   - choice 1
+ *                   - choice 2
+ *                 openVisibility: true
+ *                 setDueDate: true
+ *                 dueDatePoll: 2023-11-21T11:39:00+03:00
+ *                 numericFieldValue: 2
+ *                 selectedTimeUnit: min
+ *             setDueDateFalse:
+ *               value:
+ *                 question: Question 4
+ *                 choices:
+ *                   - choice 1
+ *                   - choice 2
+ *                 openVisibility: true
+ *                 setDueDate: false
  *     responses:
  *       201:
  *         description: true
