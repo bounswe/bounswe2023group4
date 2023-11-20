@@ -57,7 +57,7 @@ function PollCard({ PollData }) {
                   option={option}
                   isSelected={selectedArray[index]}
                   index={index}
-                  arrayLength={PollData["options"].length}
+                  arrayLength={PollData["options"]?.length || 0}
                   key={index}
                   selectOption={handleSelect}
                 />
