@@ -183,7 +183,23 @@ router.post("/signup", service.signup)
  *         description: Server was not able to log in user with the given data.
  */
 router.post("/google", googleService.googleLogIn)
+router.get('/verify-email', async (req, res) => {
+    const token = req.query.token;
 
+    try {
+        // Verify the token and update the user's email_verified status in the database
+        const verificationSuccessful = await verifyEmailToken(token);
+
+        if (verificationSuccessful) {
+            res.send('Email successfully verified');
+        } else {
+            res.status(400).send('Invalid or expired verification token');
+        }
+    } catch (error) {
+        console.error("Error during email verification:", error);
+        res.status(500).send('Internal server error');
+    }
+});
 
 
 module.exports = router;

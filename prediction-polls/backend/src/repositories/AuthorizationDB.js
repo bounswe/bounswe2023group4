@@ -148,5 +148,31 @@ async function deleteRefreshToken(token){
     return result.affectedRows > 0;
 }
 
-module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken,isUsernameOrEmailInUse,checkCredentials,addUser,findUser}
+async function saveEmailVerificationToken(userId, token) {
+    const sql = 'UPDATE users SET email_verification_token = ? WHERE id = ?';
+    const values = [token, userId];
 
+    return pool.query(sql, values);
+}
+
+async function verifyEmail(token) {
+    const sql = 'UPDATE users SET email_verified = TRUE WHERE email_verification_token = ?';
+    const values = [token];
+
+    return pool.query(sql, values);
+}
+const nodemailer = require('nodemailer');
+
+function createTransporter() {
+    return nodemailer.createTransport({
+        host: 'smtp.zoho.eu',
+        port: 465,
+        secure: true,
+        auth: {
+            user: 'predictionpolls@zohomail.eu',
+            pass: 'nzDnTajTmFpz' // this is not safe change to env later
+        }
+    });
+}
+
+module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken,isUsernameOrEmailInUse,checkCredentials,addUser,findUser,saveEmailVerificationToken,verifyEmail,createTransporter}

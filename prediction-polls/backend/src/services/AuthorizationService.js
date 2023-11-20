@@ -9,47 +9,72 @@ function homePage(req, res){
     res.status(200).json({"username":req.user.name,"key":"very-secret"});
   }
 
-async function signup(req, res) {
-  const { username, password, email, birthday } = req.body;
+  async function signup(req, res) {
+    const { username, password, email, birthday } = req.body;
 
-  // Email validation
-  if (!isValidEmail(email)) {
-      return res.status(400).send('Invalid email format');
+    // Email validation
+    if (!isValidEmail(email)) {
+        return res.status(400).send('Invalid email format');
+    }
+
+    // Birthday validation
+    if (!isValidBirthday(birthday)) {
+        return res.status(400).send('Invalid or unreasonable birthday');
+    }
+
+    // Check if username or email is in use
+    const { usernameInUse, emailInUse, error } = await db.isUsernameOrEmailInUse(username, email);
+    
+    if (error) {
+        return res.status(500).send('Internal server error');
+    }
+
+    if (usernameInUse) {
+        return res.status(400).send('Username is already in use');
+    }
+
+    if (emailInUse) {
+        return res.status(400).send('Email is already in use');
+    }
+
+    // Validate password
+    if (!isValidPassword(password)) {
+        return res.status(400).send('Password does not meet the required criteria');
+    }
+    const verificationToken = generateVerificationToken();
+    await db.saveEmailVerificationToken(username, verificationToken);
+    await sendVerificationEmail(email, verificationToken);
+    // Attempt to add user
+    const { success, error: addUserError } = await db.addUser(username, password, email, birthday);
+
+    if (!success) {
+        return res.status(400).send('Registration failed: ' + addUserError);
+    } else {
+        res.status(201).send("Registration successful");
+    }
+}
+async function sendVerificationEmail(email, token) {
+  const transporter = db.createTransporter();
+  const verificationUrl = `http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/verify-email?token=${token}`;
+
+  const mailOptions = {
+      from: '"Prediction Polls" <predictionpolls@zohomail.eu>',
+      to: email,
+      subject: 'Email Verification',
+      html: `<p>Please verify your email by clicking on the link: <a href="${verificationUrl}">${verificationUrl}</a></p>`
+  };
+
+  try {
+      await transporter.sendMail(mailOptions);
+  } catch (error) {
+      console.error("Error sending email: ", error);
+      // Handle email sending error
   }
+}
+const crypto = require('crypto');
 
-  // Birthday validation
-  if (!isValidBirthday(birthday)) {
-      return res.status(400).send('Invalid or unreasonable birthday');
-  }
-
-  // Check if username or email is in use
-  const { usernameInUse, emailInUse, error } = await db.isUsernameOrEmailInUse(username, email);
-  
-  if (error) {
-      return res.status(500).send('Internal server error');
-  }
-
-  if (usernameInUse) {
-      return res.status(400).send('Username is already in use');
-  }
-
-  if (emailInUse) {
-      return res.status(400).send('Email is already in use');
-  }
-
-  // Validate password
-  if (!isValidPassword(password)) {
-      return res.status(400).send('Password does not meet the required criteria');
-  }
-
-  // Attempt to add user
-  const { success, error: addUserError } = await db.addUser(username, password, email, birthday);
-
-  if (!success) {
-      return res.status(400).send('Registration failed: ' + addUserError);
-  } else {
-      res.status(201).send("Registration successful");
-  }
+function generateVerificationToken() {
+    return crypto.randomBytes(20).toString('hex');
 }
 
   

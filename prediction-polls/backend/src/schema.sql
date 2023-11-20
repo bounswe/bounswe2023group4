@@ -22,7 +22,12 @@ CREATE TABLE refresh_tokens (
 CREATE TABLE polls (
     id INT AUTO_INCREMENT PRIMARY KEY,
     question VARCHAR(255) NOT NULL,
-    poll_type ENUM('discrete', 'continuous') NOT NULL
+    poll_type ENUM('discrete', 'continuous') NOT NULL,
+    openVisibility BOOLEAN NOT NULL,
+    setDueDate BOOLEAN NOT NULL,
+    dueDatePoll DATE,
+    numericFieldValue INT,
+    selectedTimeUnit ENUM('min', 'h', 'day', 'mth')
 );
 
 CREATE TABLE discrete_polls (
@@ -32,9 +37,8 @@ CREATE TABLE discrete_polls (
 
 CREATE TABLE continuous_polls (
     id INT PRIMARY KEY,
-    min_value FLOAT NOT NULL,
-    max_value FLOAT NOT NULL,
-    FOREIGN KEY (id) REFERENCES polls(id)
+    FOREIGN KEY (id) REFERENCES polls(id),
+    cont_poll_type ENUM('date', 'numeric') NOT NULL
 );
 
 CREATE TABLE discrete_poll_choices (
