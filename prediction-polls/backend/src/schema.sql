@@ -72,5 +72,6 @@ CREATE TABLE profiles (
     biography VARCHAR(5000),
     birthday DATETIME,
     isHidden BOOLEAN DEFAULT False,
+    unique(userId),
     FOREIGN KEY (userId) REFERENCES users(id)
 );

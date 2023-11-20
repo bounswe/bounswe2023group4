@@ -28,7 +28,7 @@ async function getProfileWithProfileId(profileId){
 }
 
 async function getProfileWithUserId(userId){
-    const sql = 'SELECT * FROM profiles WHERE user_id= ?';
+    const sql = 'SELECT * FROM profiles WHERE userId= ?';
 
     try {
         const [rows] = await pool.query(sql, [userId]);
@@ -41,46 +41,30 @@ async function getProfileWithUserId(userId){
     }
 }
 
-async function getProfileWithUserInfo({username,email}){
-    const {userId,error} = await authDb.findUserId({username,email});
-    if(error){
-        return error;
-    }
-    const profile = await getProfileWithUserId(userId);
-    return profile;
-}
-
 async function addProfile({
     userId,
-    username ,
+    username,
+    email,
     profile_picture,
     biography,
     birthday ,
     isHidden}){
 
     try {
-        const sql = 'INSERT INTO profiles (user_id, username, profile_picture_data, biography, birthday, is_hidden) VALUES (?, ?, ?, ?, ?, ?)';
-        values = [userId,username,profile_picture,biography,birthday,isHidden]
-            
+        const {error} = await getProfileWithUserId(userId);
+        if(error != errorCodes.PROFILE_NOT_FOUND){
+            throw {error:errorCodes.USER_ALREADY_HAS_PROFILE};
+        }
+
+        const sql = 'INSERT INTO profiles (userId, username, email, profile_picture, biography, birthday, isHidden) VALUES (?, ?, ?, ?, ?, ?, ?)';
+        values = [userId,username,email,profile_picture,biography,birthday,isHidden]   
         const [resultSetHeader] = await pool.query(sql, values);
-        profile_id = resultSetHeader.insertId;
-        if (!profile_id) {
-            return {error:{code:1111,message:"Could not insert"}};
+        if(!resultSetHeader.insertId){
+            throw {error:errorCodes.PROFILE_COULD_NOT_BE_CREATED};
         }
-        return {profile_id:profile_id};
+        return {profileId:resultSetHeader.insertId};
     }catch(error){
-        // Error management will be handled later
-        /*
-        console.log(error);
-        if(error.sqlMessage == "Error: Column 'user_id' cannot be null"){
-            return {error:{code:1111,message:"Gimme user id"}}
-        }
-        if(error.sqlMessage == "Error: Cannot add or update a child row: a foreign key constraint "+
-        "fails (`predict_app`.`profiles`, CONSTRAINT `profiles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`))"){
-            return {error:{code:1110,message:"No user exists with the given user id"}}
-        }
-        */
-        return {error:{code:1000,message:"An error occured:" + error}};
+        return error;
     }
 
 }
@@ -93,43 +77,46 @@ async function updateProfile({
     isHidden}){
 
     try {
+        const {error} = await getProfileWithUserId(userId);
+        if(error){
+            throw {error:errorCodes.PROFILE_NOT_FOUND};
+        }
         if(profile_picture){
-            const sql = 'UPDATE profiles SET profile_picture_data = ? WHERE user_id = ?';
+            const sql = 'UPDATE profiles SET profile_picture = ? WHERE userId = ?';
             values = [profile_picture,userId];
 
             const [resultSetHeader] = await pool.query(sql, values);
         }
         if(biography){
-            const sql = 'UPDATE profiles SET biography = ? WHERE user_id = ?';
+            const sql = 'UPDATE profiles SET biography = ? WHERE userId = ?';
             values = [biography,userId];
 
             const [resultSetHeader] = await pool.query(sql, values);
         }
         if(birthday){
-            const sql = 'UPDATE profiles SET birthday = ? WHERE user_id = ?';
+            const sql = 'UPDATE profiles SET birthday = ? WHERE userId = ?';
             values = [birthday,userId];
 
             const [resultSetHeader] = await pool.query(sql, values);
         }
         if(isHidden){
-            const sql = 'UPDATE profiles SET is_hidden = ? WHERE user_id = ?';
+            const sql = 'UPDATE profiles SET isHidden = ? WHERE userId = ?';
             values = [isHidden,userId];
 
             const [resultSetHeader] = await pool.query(sql, values);
         }
         return {status:"success"};
     }catch(error) {
-        return {error:{code:1000,message:"An error occured:" + error}};
+        return {error:errorCodes.PROFILE_COULD_NOT_BE_UPDATED};
     } 
 }
 
 
 async function getProfileIsHidden(profileId){
     profile = await getProfileWithProfileId(profileId);
-    return profile.is_hidden;
-
+    return profile.isHidden;
 }
 
 
-module.exports = {getProfileWithProfileId,getProfileWithUserId,getProfileWithUserInfo,addProfile,updateProfile}
+module.exports = {getProfileWithProfileId,getProfileWithUserId,addProfile,updateProfile}
     

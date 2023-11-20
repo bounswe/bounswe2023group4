@@ -70,6 +70,21 @@ const errorCodes = {
     message: 'Profile not found.',
   },
 
+  USER_ALREADY_HAS_PROFILE: {
+    code: 3001,
+    message: 'User already has profile',
+  },
+
+  PROFILE_COULD_NOT_BE_CREATED: {
+    code: 3002,
+    message: 'Profile could not be created.',
+  },
+
+  PROFILE_COULD_NOT_BE_UPDATED: {
+    code: 3003,
+    message: 'Profile could not be updated.',
+  },
+
   DATABASE_ERROR: {
     code: 3000,
     message: 'Error while accessing the database.',
