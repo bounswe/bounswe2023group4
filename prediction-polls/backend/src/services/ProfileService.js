@@ -46,12 +46,12 @@ async function addProfile(req,res){
             throw error;
         }
 
-        const {profile,user_error} = await db.getProfileWithUserId(result.id);
-        if(user_error){
-            throw user_error;
+        const result_profile = await db.getProfileWithUserId(result.id);
+        if(result_profile.error){
+            throw result_profile.error;
         }
 
-        return res.status(200).json(profile);
+        return res.status(200).json(result_profile.profile);
     }catch(error){
         return res.status(400).json({error:error});
     }
@@ -70,12 +70,12 @@ async function updateProfile(req,res){
             throw error;
         }
 
-        const {profile,user_error} = await db.getProfileWithUserId(result.id);
-        if(user_error){
-            throw user_error;
+        const result_profile = await db.getProfileWithUserId(result.id);
+        if(result_profile.error){
+            throw result_profile.error;
         }
 
-        return res.status(200).json(profile);
+        return res.status(200).json(result_profile.profile);
     }catch(error){
         return res.status(400).json({error:error});
     }
