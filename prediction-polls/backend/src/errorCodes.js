@@ -35,19 +35,39 @@ const errorCodes = {
     message: 'User not found.',
   },
 
-  WRONG_PASSWORD: {
+  USER_NOT_FOUND_WITH_USERID: {
     code: 2001,
-    message: 'Given password is wrong',
+    message: 'User with the given user id not found.',
+  },
+
+  USER_NOT_FOUND_WITH_USERNAME: {
+    code: 2002,
+    message: 'User with the given username not found.',
+  },
+
+  USER_NOT_FOUND_WITH_EMAIL: {
+    code: 2003,
+    message: 'User with the given email not found.',
   },
 
   USERNAME_ALREADY_EXISTS: {
-    code: 2002,
-    message: 'Given username is taken',
+    code: 2004,
+    message: 'Username is taken',
   },
 
   EMAIL_ALREADY_EXISTS: {
-    code: 2002,
-    message: 'Given email is already in use',
+    code: 2005,
+    message: 'Email is already in use',
+  },
+
+  WRONG_PASSWORD: {
+    code: 2006,
+    message: 'Password is wrong',
+  },
+
+  PROFILE_NOT_FOUND: {
+    code: 3000,
+    message: 'Profile not found.',
   },
 
   DATABASE_ERROR: {
