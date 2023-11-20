@@ -94,7 +94,9 @@ function addDiscretePoll(req,res){
 function validateAddDiscretePoll(body) {
     if (
         typeof body !== 'object' ||
-        typeof body.question !== 'string'
+        typeof body.question !== 'string' ||
+        typeof body.openVisibility !== 'boolean' ||
+        typeof body.setDueDate !== 'boolean'
     ) {
         return false;
     }
