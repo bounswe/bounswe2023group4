@@ -54,15 +54,22 @@ async function addUser(username, password,email,birthday){
 
   async function isUsernameOrEmailInUse(username, email) {
     try {
-        const sql = 'SELECT 1 FROM users WHERE username = ? OR email = ?';
-        const values = [username, email];
+        const usernameSql = 'SELECT 1 FROM users WHERE username = ?';
+        const [usernameRows] = await db.pool.query(usernameSql, [username]);
 
-        const [rows] = await db.pool.query(sql, values);
-        return rows.length > 0;
+        const emailSql = 'SELECT 1 FROM users WHERE email = ?';
+        const [emailRows] = await db.pool.query(emailSql, [email]);
+
+        const isUsernameInUse = usernameRows.length > 0;
+        const isEmailInUse = emailRows.length > 0;
+
+        return { usernameInUse: isUsernameInUse, emailInUse: isEmailInUse };
     } catch (error) {
         console.error("Database error in isUsernameOrEmailInUse:", error);
-        return { inUse: false, error: 'Database error occurred' };
+        return { usernameInUse: false, emailInUse: false, error: 'Database error occurred' };
     }
 }
+
+
 
 module.exports = {checkCredentials,addUser,isUsernameOrEmailInUse}

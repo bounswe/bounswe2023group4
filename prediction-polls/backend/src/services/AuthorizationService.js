@@ -10,42 +10,49 @@ function homePage(req, res){
     res.status(200).json({"username":req.user.name,"key":"very-secret"});
   }
 
-  async function signup(req, res){
+  async function signup(req, res) {
     const { username, password, email, birthday } = req.body;
+
     // Email validation
     if (!isValidEmail(email)) {
-      return res.status(400).send('Invalid email format');
+        return res.status(400).send('Invalid email format');
     }
 
-  // Birthday validation
+    // Birthday validation
     if (!isValidBirthday(birthday)) {
-      return res.status(400).send('Invalid or unreasonable birthday');
+        return res.status(400).send('Invalid or unreasonable birthday');
     }
+
     // Check if username or email is in use
-    const { inUse, error } = await isUsernameOrEmailInUse(username, email);
+    const { usernameInUse, emailInUse, error } = await isUsernameOrEmailInUse(username, email);
+    
     if (error) {
-      return res.status(500).send('Internal server error');
+        return res.status(500).send('Internal server error');
     }
-    if (inUse) {
-      return res.status(400).send('Username or email is already in use');
+
+    if (usernameInUse) {
+        return res.status(400).send('Username is already in use');
     }
-  
+
+    if (emailInUse) {
+        return res.status(400).send('Email is already in use');
+    }
+
     // Validate password
     if (!isValidPassword(password)) {
-      return res.status(400).send('Password does not meet the required criteria');
+        return res.status(400).send('Password does not meet the required criteria');
     }
-  
+
     // Attempt to add user
     const { success, error: addUserError } = await addUser(username, password, email, birthday);
-    
+
     if (!success) {
-      // You can further refine this by checking the nature of the addUserError 
-      // and respond with different status codes or messages as needed.
-      res.status(400).send('Registration failed: ' + addUserError);
+        return res.status(400).send('Registration failed: ' + addUserError);
     } else {
-      res.status(201).send("Registration successful");
+        res.status(201).send("Registration successful");
     }
-  }
+}
+
   
   function isValidPassword(password) {
     const lower = /[a-z]/;
