@@ -137,15 +137,16 @@ function addContinuousPoll(req,res){
     if (!validateAddContinuousPoll(req.body)) {
         return res.status(400).json({ code: errorCodes.BAD_CONT_POLL_REQUEST_ERROR.code, message: errorCodes.BAD_CONT_POLL_REQUEST_ERROR.message });
     }
+
     const question = req.body.question;
-    const min = req.body.min;
-    const max = req.body.max;
+    const cont_poll_type = req.body.cont_poll_type;
+    const openVisibility = req.body.openVisibility;
+    const setDueDate = req.body.setDueDate;
+    const numericFieldValue = req.body.numericFieldValue;
+    const dueDatePoll = setDueDate ? new Date(req.body.dueDatePoll).toISOString().split('T')[0] : null;
+    const selectedTimeUnit = req.body.selectedTimeUnit;
 
-    if (max <= min) {
-        return res.status(400).json({ code: errorCodes.MINMAX_BAD_CONT_POLL_REQUEST_ERROR.code, message: errorCodes.MINMAX_BAD_CONT_POLL_REQUEST_ERROR.message });
-    }
-
-    db.addContinuousPoll(question, min, max)
+    db.addContinuousPoll(question, cont_poll_type, openVisibility, setDueDate, dueDatePoll, numericFieldValue, selectedTimeUnit)
     .then((result) => {
         res.end(result.toString());
     })
@@ -158,9 +159,7 @@ function addContinuousPoll(req,res){
 function validateAddContinuousPoll(body) {
     if (
         typeof body !== 'object' ||
-        typeof body.question !== 'string' ||
-        typeof body.min !== 'number' ||
-        typeof body.max !== 'number'
+        typeof body.question !== 'string'
     ) {
         return false;
     }
