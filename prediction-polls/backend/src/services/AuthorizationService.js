@@ -9,13 +9,75 @@ function homePage(req, res){
     res.status(200).json({"username":req.user.name,"key":"very-secret"});
   }
 
-async function signup(req, res){
+async function signup(req, res) {
   const { username, password, email, birthday } = req.body;
-  const { success, error} = await db.addUser( username, password, email, birthday );
-  
-  if(!success)  res.status(400).json({ code: errorCodes.REGISTRATION_FAILED.code, message: errorCodes.REGISTRATION_FAILED.message });
-  else{res.status(201).send("Registration successful")};
 
+  // Email validation
+  if (!isValidEmail(email)) {
+      return res.status(400).send('Invalid email format');
+  }
+
+  // Birthday validation
+  if (!isValidBirthday(birthday)) {
+      return res.status(400).send('Invalid or unreasonable birthday');
+  }
+
+  // Check if username or email is in use
+  const { usernameInUse, emailInUse, error } = await db.isUsernameOrEmailInUse(username, email);
+  
+  if (error) {
+      return res.status(500).send('Internal server error');
+  }
+
+  if (usernameInUse) {
+      return res.status(400).send('Username is already in use');
+  }
+
+  if (emailInUse) {
+      return res.status(400).send('Email is already in use');
+  }
+
+  // Validate password
+  if (!isValidPassword(password)) {
+      return res.status(400).send('Password does not meet the required criteria');
+  }
+
+  // Attempt to add user
+  const { success, error: addUserError } = await db.addUser(username, password, email, birthday);
+
+  if (!success) {
+      return res.status(400).send('Registration failed: ' + addUserError);
+  } else {
+      res.status(201).send("Registration successful");
+  }
+}
+
+  
+function isValidPassword(password) {
+  const lower = /[a-z]/;
+  const upper = /[A-Z]/;
+  const number = /[0-9]/;
+  const special = /[!@#$%^&*]/;
+
+  let count = 0;
+  if (lower.test(password)) count++;
+  if (upper.test(password)) count++;
+  if (number.test(password)) count++;
+  if (special.test(password)) count++;
+
+  return password.length >= 8 && count >= 3;
+}
+
+function isValidBirthday(birthday) {
+    const date = new Date(birthday);
+    const now = new Date();
+    // Check if birthday is a valid date and if the date is in the past
+    return date instanceof Date && !isNaN(date) && date < now;
+  }
+
+function isValidEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return emailRegex.test(email);
   }
 
 function createAccessTokenFromRefreshToken(req, res){
