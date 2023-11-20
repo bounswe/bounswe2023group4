@@ -1,4 +1,5 @@
 const mysql = require('mysql2')
+const errorCodes = require("../errorCodes.js")
 
 require('dotenv').config();
 
@@ -58,18 +59,39 @@ async function addUser(username, password,email,birthday){
   }
 
 
-async function findUserId({username,email}){
-    if(username){
-        const sql = 'SELECT id FROM users WHERE username = ?';
-    
-        const [result] = await pool.query(sql, [username]);
-        return result[0].id;
-    }
-    if(email){
-        const sql = 'SELECT id FROM users WHERE email = ?';
-    
-        const [result] = await pool.query(sql, [email]);
-        return result[0].id;
+async function findUser({userId,username,email}){
+    try{
+        if(userId){
+            const sql = 'SELECT * FROM users WHERE id = ?';
+        
+            const [result] = await pool.query(sql, [userId]);
+            if(result.length == 0){
+                throw {error:errorCodes.USER_NOT_FOUND_WITH_USERID}
+            }
+            return result[0];
+        }
+
+        if(username){
+            const sql = 'SELECT * FROM users WHERE username = ?';
+        
+            const [result] = await pool.query(sql, [username]);
+            if(result.length == 0){
+                throw {error:errorCodes.USER_NOT_FOUND_WITH_USERNAME}
+            }
+            return result[0];
+        }
+        if(email){
+            const sql = 'SELECT * FROM users WHERE email = ?';
+        
+            const [result] = await pool.query(sql, [email]);
+            if(result.length == 0){
+                throw {error:errorCodes.USER_NOT_FOUND_WITH_EMAIL}
+            }
+            return result[0];
+        }
+        throw {error:errorCodes.USER_NOT_FOUND}
+    } catch(error){
+        return error
     }
 }
 
@@ -153,4 +175,4 @@ function createTransporter() {
     });
 }
 
-module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken,isUsernameOrEmailInUse,checkCredentials,addUser,findUserId,saveEmailVerificationToken,verifyEmail,createTransporter}
+module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken,isUsernameOrEmailInUse,checkCredentials,addUser,findUser,saveEmailVerificationToken,verifyEmail,createTransporter}

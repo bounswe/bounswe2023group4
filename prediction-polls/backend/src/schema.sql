@@ -71,9 +71,11 @@ CREATE TABLE profiles (
     id INT AUTO_INCREMENT PRIMARY KEY,
     userId INT NOT NULL,
     username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
     profile_picture_data MEDIUMBLOB,
     biography VARCHAR(5000),
     birthday DATETIME,
     isHidden BOOLEAN DEFAULT False,
+    unique(userId),
     FOREIGN KEY (userId) REFERENCES users(id)
 );

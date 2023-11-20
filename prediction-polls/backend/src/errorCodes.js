@@ -15,19 +15,19 @@ const errorCodes = {
     message: 'The refresh token is invalid.',
   },
 
-  REFRESH_TOKEN_NEEDED_ERROR: {
+  ACCESS_TOKEN_NEEDED_ERROR: {
     code: 1003,
+    message: 'A access token is needed',
+  },
+
+  REFRESH_TOKEN_NEEDED_ERROR: {
+    code: 1004,
     message: 'A refresh token is needed',
   },
 
   REGISTRATION_FAILED: {
-    code: 1004,
-    message: 'Registration failed'
-  },
-
-  ACCESS_TOKEN_NULL: {
     code: 1005,
-    message: 'The access token is null.',
+    message: 'Registration failed'
   },
 
   USER_NOT_FOUND: {
@@ -35,9 +35,54 @@ const errorCodes = {
     message: 'User not found.',
   },
 
-  INVALID_CREDENTIALS: {
+  USER_NOT_FOUND_WITH_USERID: {
     code: 2001,
-    message: 'Invalid username or password.',
+    message: 'User with the given user id not found.',
+  },
+
+  USER_NOT_FOUND_WITH_USERNAME: {
+    code: 2002,
+    message: 'User with the given username not found.',
+  },
+
+  USER_NOT_FOUND_WITH_EMAIL: {
+    code: 2003,
+    message: 'User with the given email not found.',
+  },
+
+  USERNAME_ALREADY_EXISTS: {
+    code: 2004,
+    message: 'Username is taken',
+  },
+
+  EMAIL_ALREADY_EXISTS: {
+    code: 2005,
+    message: 'Email is already in use',
+  },
+
+  WRONG_PASSWORD: {
+    code: 2006,
+    message: 'Password is wrong',
+  },
+
+  PROFILE_NOT_FOUND: {
+    code: 3000,
+    message: 'Profile not found.',
+  },
+
+  USER_ALREADY_HAS_PROFILE: {
+    code: 3001,
+    message: 'User already has profile',
+  },
+
+  PROFILE_COULD_NOT_BE_CREATED: {
+    code: 3002,
+    message: 'Profile could not be created.',
+  },
+
+  PROFILE_COULD_NOT_BE_UPDATED: {
+    code: 3003,
+    message: 'Profile could not be updated.',
   },
 
   DATABASE_ERROR: {
