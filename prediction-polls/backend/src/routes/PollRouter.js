@@ -47,15 +47,19 @@ const router = express.Router();
  *             schema:
  *               type: object
  *               properties:
- *                 message:
- *                   type: string
- *                 code:
- *                   type: integer
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                    message:
+ *                      type: string
+ *                    code:
+ *                      type: integer
  *             examples:
  *               databaseError:
  *                 value:
- *                   message: Error while accessing the database.
- *                   code: 3000
+ *                   error:
+ *                     message: Error while accessing the database.
+ *                     code: 3000
  */
 router.get('/', service.getPolls);
 
@@ -140,6 +144,46 @@ router.get('/', service.getPolls);
  *                   choices:
  *                     - 7
  *                     - 8   
+ *       404:
+ *         description: Resource Not Found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                    message:
+ *                      type: string
+ *                    code:
+ *                      type: integer
+ *             examples:
+ *               NO_SUCH_POLL_ERROR:
+ *                 value:
+ *                   error:
+ *                     message: No such poll found.
+ *                     code: 3001
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                    message:
+ *                      type: string
+ *                    code:
+ *                      type: integer
+ *             examples:
+ *               databaseError:
+ *                 value:
+ *                   error:
+ *                     message: Error while accessing the database.
+ *                     code: 3000
  */
 router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId);
 
@@ -205,19 +249,24 @@ router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId
  *             schema:
  *               type: object
  *               properties:
- *                 message:
- *                   type: string
- *                 code:
- *                   type: integer
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     message:
+ *                       type: string
+ *                     code:
+ *                       type: integer
  *             examples:
  *               badRequest:
  *                 value:
- *                   message: Bad request body for creating a discrete poll.
- *                   code: 4000
- *               accessTokenNull:
+ *                   error:
+ *                     message: Bad request body for creating a discrete poll.
+ *                     code: 4000
+ *               ACCESS_TOKEN_INVALID_ERROR:
  *                 value:
- *                   message: The access token is null
- *                   code: 1005
+ *                   error:
+ *                     message: The access token is invalid.
+ *                     code: 1001
  *       401:
  *         description: Unauthorized
  *         content:
@@ -225,15 +274,19 @@ router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId
  *             schema:
  *               type: object
  *               properties:
- *                 message:
- *                   type: string
- *                 code:
- *                   type: integer
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     message:
+ *                       type: string
+ *                     code:
+ *                       type: integer
  *             examples:
- *               accessTokenInvalid:
+ *               ACCESS_TOKEN_INVALID_ERROR:
  *                 value:
- *                   message: The access token is invalid.
- *                   code: 1001
+ *                   error:
+ *                     message: The access token is invalid.
+ *                     code: 1001
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -241,15 +294,19 @@ router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId
  *             schema:
  *               type: object
  *               properties:
- *                 message:
- *                   type: string
- *                 code:
- *                   type: integer
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     message:
+ *                       type: string
+ *                     code:
+ *                       type: integer
  *             examples:
  *               databaseError:
  *                 value:
- *                   message: Error while accessing the database.
- *                   code: 3000
+ *                   error:
+ *                     message: Error while accessing the database.
+ *                     code: 3000
  */
 router.post('/discrete', authenticator.authorizeAccessToken, service.addDiscretePoll);
 
@@ -324,23 +381,19 @@ router.post('/discrete', authenticator.authorizeAccessToken, service.addDiscrete
  *             schema:
  *               type: object
  *               properties:
- *                 message:
- *                   type: string
- *                 code:
- *                   type: integer
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     message:
+ *                       type: string
+ *                     code:
+ *                       type: integer
  *             examples:
  *               badRequest:
  *                 value:
- *                   message: Bad request body for creating a continuous poll.
- *                   code: 4001
- *               MINMAX_BAD_CONT_POLL_REQUEST_ERROR:
- *                 value:
- *                   message: Minimum value allowed was higher than maximum value allowed in the poll.
- *                   code: 4002
- *               accessTokenNull:
- *                 value:
- *                   message: The access token is null
- *                   code: 1005
+ *                   error:
+ *                     message: Bad request body for creating a continuous poll.
+ *                     code: 4001
  *       401:
  *         description: Unauthorized
  *         content:
@@ -353,10 +406,11 @@ router.post('/discrete', authenticator.authorizeAccessToken, service.addDiscrete
  *                 code:
  *                   type: integer
  *             examples:
- *               accessTokenInvalid:
+ *               ACCESS_TOKEN_INVALID_ERROR:
  *                 value:
- *                   message: The access token is invalid.
- *                   code: 1001
+ *                   error:
+ *                     message: The access token is invalid.
+ *                     code: 1001
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -364,15 +418,19 @@ router.post('/discrete', authenticator.authorizeAccessToken, service.addDiscrete
  *             schema:
  *               type: object
  *               properties:
- *                 message:
- *                   type: string
- *                 code:
- *                   type: integer
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     message:
+ *                       type: string
+ *                     code:
+ *                       type: integer
  *             examples:
  *               databaseError:
  *                 value:
- *                   message: Error while accessing the database.
- *                   code: 3000
+ *                   error:
+ *                     message: Error while accessing the database.
+ *                     code: 3000
  */
 router.post('/continuous', authenticator.authorizeAccessToken, service.addContinuousPoll);
 
