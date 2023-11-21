@@ -187,6 +187,26 @@ async function getContinuousPollVotes(pollId) {
     }
 }
 
+async function addComment(comment, userId, pollId) {
+    const connection = await pool.getConnection();
+
+    const sql = "INSERT INTO comments (content, user_id, poll_id) VALUES (?, ?, ?)";
+    values = [comment, userId, pollId];
+
+    try {
+        const [resultSetHeader] = await connection.query(sql, values);
+
+        await connection.commit();
+        return true;
+    } catch (error) {
+        console.error('addComment(): Database Error');
+        await connection.rollback();
+        throw error;
+    } finally {
+        connection.release();
+    }
+}
+
 
 
 module.exports = {getPolls, getPollWithId, getDiscretePollWithId, getContinuousPollWithId, 
