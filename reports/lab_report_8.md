@@ -64,6 +64,41 @@
 | Authentication Error Response Management | | Emre Batuhan Göç | 22.11.2023 | |
 | Email Verification Improvement | | Hebun Şimşek | 24.11.2023 | |
 
+## Scenario Plan
+Our scenario for milestone presentation includes two football enthusiast characters Ali and Bekir.
+Ali is a Besiktas fan and Bekir is a Fenerbahce fan. They are good friends but they argue about who would win. Their choices should be obvious!
+After their talk Ali is convinced that every rational person thinks that Besiktas will win. So, Ali goes to prediction-polls to check if there is a poll about who wins the upcoming Besiktas-Fenerbahce match at 9/12/2023.
+
+- Ali logs in to his account and looks at the feed. 
+	- 1.1.2.2.1 Users should be able to sign in with their username/email and password if they have verified their e-mail via the verification mail stated in requirement.
+- Ali does not see the poll he is looking for so he wants to create a poll
+	- 1.1.5.1 Poll Opening
+- Ali tries creating a discrete poll Where the question is "What will be the result of the Besiktas vs. Fenerbahce football match at 9.12.2023?"
+	- 1.1.5.1.2 Each poll must have a question.
+	- 1.1.5.1.7 Poll opener shall choose poll type as multiple-choice or continuous.
+- Ali enters the choices as "Besiktas", "Fenerbahce", "Tie"
+	- 1.1.5.1.8 Poll opener shall choose the number of the options.
+	- 1.1.5.1.9 Poll opener shall fill every option.
+- Ali wants to set the due date of this poll, so he enters the date 9.12.2023.
+- And Ali also sets the time before vote changing process to 2 hours since football matches are 90 minutes and have a break through the Create Poll UI.
+	- 1.1.5.1.5 Poll opener shall choose a final voting date or vote change acceptance time-the time that system takes to accept a vote changing process-.
+- Ali is redirected to the feed page, sees his recently-opened poll, and votes for it with the selection: "Besiktas".
+	- 1.1.5.2.1 Members shall be able to vote on active polls.
+
+After this, Bekir logs in to his account from the mobile app.
+- Bekir logs in to his account and looks at the feed. 
+	- 1.1.2.2.1 Users should be able to sign in with their username/email and password if they have verified their e-mail via the verification mail stated in requirement.
+- Bekir sees Ali's poll in feed page and clicks on his username to visit his profile page.
+	- 1.1.3.1 Members shall have a profile page which they can display their name, username, profile picture, bio, polls that they created, or they voted for, their domain specific badges and their domain specific ranks.
+- Then, Bekir goes back to the feed page, and selects the poll and votes "Fenerbahce" in the poll.
+	- 1.1.5.2.1 Members shall be able to vote on active polls.
+- Since Bekir is so sure that Fenerbahce will win, he has an idea of creating a continuous poll.
+	- 1.1.5.1.7 Poll opener shall choose poll type as multiple-choice or continuous.
+- Bekir makes the poll's question "How many more goals will Fenerbahce score compared to Besiktas in the upcoming Besiktas vs. Fenerbahce football match at 9.12.2023?"
+  	- 1.1.5.1.2 Each poll must have a question.
+- Bekir answers the poll with a 2 as he believes Fenerbahce will win with a 3-1 score.
+	- 1.1.5.2.1 Members shall be able to vote on active polls.
+
 ## Risks
 -
 
