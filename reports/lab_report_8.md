@@ -37,9 +37,9 @@
 | Increase Mobile App tests' code coverage | [#317](https://github.com/bounswe/bounswe2023group4/issues/317) | Yiğit Şekerci | 21.11.23 | | 5hr | |
 | Implement feed screen backend requests | [#362](https://github.com/bounswe/bounswe2023group4/issues/362) | Ahmet Emre Şafak | 21.11.23 | | 4hr | |
 | Implement create poll screen backend requests| [#361](https://github.com/bounswe/bounswe2023group4/issues/361) | Yiğit Şekerci | 21.11.23 | | 4hr | |
-| Implement Edit Profile page | [#364](https://github.com/bounswe/bounswe2023group4/issues/364) | Selin Işık | 21.11.23 | | 3.5 hr | |
-| Make Vote page responsive | [#366](https://github.com/bounswe/bounswe2023group4/issues/366) | Selin Işık | 21.11.23 | | 1hr | |
-| Make Profile page responsive | [#365](https://github.com/bounswe/bounswe2023group4/issues/365) | Selin Işık | 21.11.23 | | 1hr | |
+| Implement Edit Profile page | [#364](https://github.com/bounswe/bounswe2023group4/issues/364) | Selin Işık | 21.11.23 | [398](https://github.com/bounswe/bounswe2023group4/pull/398) | 3.5 hr | 3hr |
+| Make Vote page responsive | [#366](https://github.com/bounswe/bounswe2023group4/issues/366) | Selin Işık | 21.11.23 | | 1hr | unfinished |
+| Make Profile page responsive | [#365](https://github.com/bounswe/bounswe2023group4/issues/365) | Selin Işık | 21.11.23 | | 1hr | unfinished |
 
 ## Completed tasks that were not planned for the week
 
