@@ -69,7 +69,10 @@
 | Poll GET return format | [#402](https://github.com/bounswe/bounswe2023group4/issues/402) | Şefik Palazoğlu | 23.11.2023 | 3hr |
 | Poll GET Poll Creator Name | [#403](https://github.com/bounswe/bounswe2023group4/issues/403) | Şefik Palazoğlu | 22.11.2023 | 2hr |
 | Point System | [#405](https://github.com/bounswe/bounswe2023group4/issues/405) | Şefik Palazoğlu, Emre Batuhan Göç | 24.11.2023 | 6hr |
-| Finalize Authentication pages' backend connections | [#401](https://github.com/bounswe/bounswe2023group4/issues/401) | Kutay Saran, Enes Furkan Arslan | 24.11.2023 | 3h |
+| Finalize Authentication pages' backend connections | [#401](https://github.com/bounswe/bounswe2023group4/issues/401) | Kutay Saran, Enes Furkan Arslan | 27.11.2023 | 3h |
+| Add point indicator component to create poll page | [#404](https://github.com/bounswe/bounswe2023group4/issues/404) | Enes Furkan Arslan | 27.11.2023 | 1h |
+| Validate user input on create poll page | [#406](https://github.com/bounswe/bounswe2023group4/issues/406) | Enes Furkan Arslan | 27.11.2023 | 4h |
+| Finalize Create poll page's backend connections | [#407](https://github.com/bounswe/bounswe2023group4/issues/407) | Enes Furkan Arslan | 27.11.2023 | 4h | 
 
 ## Scenario Plan
 Our scenario for milestone presentation includes two football enthusiast characters Ali and Bekir.
