@@ -7,6 +7,8 @@ CREATE TABLE users (
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     birthday DATETIME,
+    email_verified BOOLEAN DEFAULT FALSE,
+    email_verification_token VARCHAR(255),
     UNIQUE (username),
     UNIQUE (email)
 );
