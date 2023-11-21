@@ -46,6 +46,7 @@
 | -------- | ----- | -------- | --- | --- |
 | Install nodemailer package | [#336](https://github.com/bounswe/bounswe2023group4/issues/391) | Şefik Palazoğlu | 21.11.2023 | [#392](https://github.com/bounswe/bounswe2023group4/pull/392) |
 | Update Schema for email verification | [#394](https://github.com/bounswe/bounswe2023group4/issues/394) | Şefik Palazoğlu | 21.11.2023 | [#395](https://github.com/bounswe/bounswe2023group4/pull/395)
+|error fix on frontend | [#377](https://github.com/bounswe/bounswe2023group4/issues/377) | Enes Furkan Arslan | 21.11.2023 | [#378](https://github.com/bounswe/bounswe2023group4/pull/378) |
 
 ## Planned vs. Actual
 * [#343](https://github.com/bounswe/bounswe2023group4/issues/343) was closed one day late because there were unexpected problems about how to restructure the database schema and deployment of the changes.
