@@ -55,6 +55,8 @@
 * [#359](https://github.com/bounswe/bounswe2023group4/issues/359) was closed 2 days late because we needed an additional format change after the initial work is done, hence the two pull requests.
 * [#241](https://github.com/bounswe/bounswe2023group4/issues/241) is still not done because we did not decide how the flow with refresh token happens in the database. As soon as that is finished, this issue will be worked on.
 * [#342](https://github.com/bounswe/bounswe2023group4/issues/342) is not finished because before we started working on this, we merged the email verification branch and this caused issues which prevented Şefik from working on this issue in his local database. As soon as this problem is resolved, basic comment feature will be implemented.
+* Unfortunately mobile tasks require 1-2 days more to finish because of tight schedule.
+* [Testing issue](https://github.com/bounswe/bounswe2023group4/issues/317) is nearly impossible to finish as we mentioned in mobile task. We might need to merge the current one and add create new one since this issue is ongoing for weeks.
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
