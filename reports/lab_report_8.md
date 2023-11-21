@@ -83,6 +83,8 @@
 | Create mock badges for profiles | [#412](https://github.com/bounswe/bounswe2023group4/issues/412) | Emre Batuhan Göç | 24.11.2023 | 1hr |
 | Generate profile automatically on sign up | [#411](https://github.com/bounswe/bounswe2023group4/issues/411) | Emre Batuhan Göç | 24.11.2023 | 1hr |
 | Profile implement get my profile endpoint | [#410](https://github.com/bounswe/bounswe2023group4/issues/410) | Emre Batuhan Göç | 24.11.2023 | 1hr |
+| Profile Page Backend Integration | [#419](https://github.com/bounswe/bounswe2023group4/issues/420) | Selin Işık | 27.11.23 | 1.5h |
+| Edit Profile Page Backend Integration | [#420](https://github.com/bounswe/bounswe2023group4/issues/419) | Selin Işık| 27.11.23 | 2hr |
 
 ## Scenario Plan
 Our scenario for milestone presentation includes two football enthusiast characters Ali and Bekir.
