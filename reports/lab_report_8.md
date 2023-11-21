@@ -8,6 +8,7 @@
 * Other than some needed changes in page request body format, Create Poll page is implemented.
 * Email verification in signup is done but needs testing.
 * Unfortunately we have some tasks that hasn't finished completely or require extra effort in backend. These are related to testing and basic poll comment implementation.
+* In mobile we made significant progess however we couldn't manage to finish our tasks. Current tasks require 1-2 more days. This week we don't have that much new issue in Android but we need to review our flow to catch any possible issue for milestone.
   
 ## What was planned for the week? How did it go?
 
@@ -31,7 +32,7 @@
 | Implement Profile Fundamentals | [#351](https://github.com/bounswe/bounswe2023group4/issues/351) | Emre Batuhan Göç | 18.11.2023 | [#382](https://github.com/bounswe/bounswe2023group4/pull/382) | 2h | 2h |
 | Update Polls Swagger Documentation | [#357](https://github.com/bounswe/bounswe2023group4/issues/357) | Şefik Palazoğlu, Emre Batuhan Göç | 18.11.2023 | [#380](https://github.com/bounswe/bounswe2023group4/pull/380), [#388](https://github.com/bounswe/bounswe2023group4/pull/388) | 2hr | 2hr |
 | Returning Error Codes | [#359](https://github.com/bounswe/bounswe2023group4/issues/359) | Şefik Palazoğlu | 18.11.2023 | [#379](https://github.com/bounswe/bounswe2023group4/pull/379), [#393](https://github.com/bounswe/bounswe2023group4/pull/393) | 2hr | 3hr |
-| Implement create poll screen UI | [#314](https://github.com/bounswe/bounswe2023group4/issues/314) | Yiğit Şekerci | 21.11.23 | | 4hr | |
+| Implement create poll screen UI | [#314](https://github.com/bounswe/bounswe2023group4/issues/314) | Yiğit Şekerci | 21.11.23 | - | 4hr | Unfinished |
 | Implement profile screen UI | [#311](https://github.com/bounswe/bounswe2023group4/issues/311) | Ahmet Emre Şafak | 21.11.23 |  | 4hr | |
 | Increase Mobile App tests' code coverage | [#317](https://github.com/bounswe/bounswe2023group4/issues/317) | Yiğit Şekerci | 21.11.23 | | 5hr | |
 | Implement feed screen backend requests | [#362](https://github.com/bounswe/bounswe2023group4/issues/362) | Ahmet Emre Şafak | 21.11.23 | | 4hr | |
