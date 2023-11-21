@@ -43,7 +43,7 @@ function Profile() {
                 </p>
               </div>
               <div className={styles.buttonContainer}>
-                <button className={styles.button} onClick={() => navigate("/editProfile")}>
+                <button className={styles.button} onClick={() => navigate(`/editProfile/${userData.username}`)}>
                   {userData.username === "can.gezer" ? <><EditIcon />
                   <p className={styles.buttonText}>Edit Profile</p></> : <p className={styles.buttonText}>Follow</p>}
                   

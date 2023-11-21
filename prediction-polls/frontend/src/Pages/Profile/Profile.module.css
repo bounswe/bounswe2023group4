@@ -160,9 +160,9 @@
     width: 85px;
     height: 85px;
     background-color: var(--neutral-white);
-    opacity: 0.2; /* Adjust this value for desired opacity */
-    border-radius: 100%; /* To maintain the circular shape of the badge */
-    pointer-events: none; /* So that the overlay does not interfere with interaction */
+    opacity: 0.2; 
+    border-radius: 100%; 
+    pointer-events: none; 
 }
 .badgeText{
     font-weight: 700;
