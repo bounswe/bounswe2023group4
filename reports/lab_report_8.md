@@ -73,7 +73,6 @@
 | Add point indicator component to create poll page | [#404](https://github.com/bounswe/bounswe2023group4/issues/404) | Enes Furkan Arslan | 27.11.2023 | 1h |
 | Validate user input on create poll page | [#406](https://github.com/bounswe/bounswe2023group4/issues/406) | Enes Furkan Arslan | 27.11.2023 | 4h |
 | Finalize Create poll page's backend connections | [#407](https://github.com/bounswe/bounswe2023group4/issues/407) | Enes Furkan Arslan | 27.11.2023 | 4h | 
-| Finalize Create poll page's backend connections | [#407](https://github.com/bounswe/bounswe2023group4/issues/407) | Enes Furkan Arslan | 27.11.2023 | 4h | 
 | Implement Authentication Token Management Middleware | [#409](https://github.com/bounswe/bounswe2023group4/issues/409) | Kutay Saran | 27.11.2023 | 5hr |
 | Implement Poll Feed Page's Backend Connection | [#408](https://github.com/bounswe/bounswe2023group4/issues/408) | Kutay Saran | 27.11.2023 | 2hr |
 
