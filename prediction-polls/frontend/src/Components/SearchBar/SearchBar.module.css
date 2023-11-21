@@ -1,0 +1,12 @@
+.searchbar {
+  margin-bottom: 20px;
+  margin-top: -50px;
+  max-width: 400px;
+  padding: 10px;
+}
+
+@media (max-width: 990px) {
+  .searchbar {
+    max-width: 250px;
+  }
+}
