@@ -134,4 +134,9 @@ dependencies {
 
     // Easy Google Login
     implementation("com.github.stevdza-san:OneTapCompose:1.0.9")
+
+    // Immutable Kotlin Collections
+    // Used for creating stable domain classes. Check stability meaning in terms of compose if you do not know what I mean.
+    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.6")
+
 }
