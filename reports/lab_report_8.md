@@ -65,7 +65,8 @@
 | Email Verification Improvement | | Hebun Şimşek | 24.11.2023 | |
 | Swagger Correction for Poll | [#399](https://github.com/bounswe/bounswe2023group4/issues/399) | Şefik Palazoğlu | 24.11.2023 | 3hr |
 | Poll Voting | [#400](https://github.com/bounswe/bounswe2023group4/issues/400) | Şefik Palazoğlu | 23.11.2023 | 2hr |
-| Poll GET return format | [#402](https://github.com/bounswe/bounswe2023group4/issues/402) |  Şefik Palazoğlu | 23.11.2023 | 3hr |
+| Poll GET return format | [#402](https://github.com/bounswe/bounswe2023group4/issues/402) | Şefik Palazoğlu | 23.11.2023 | 3hr |
+| Poll GET Poll Creator Name | [#403](https://github.com/bounswe/bounswe2023group4/issues/403) | Şefik Palazoğlu | 22.11.2023 | 2hr |
 
 ## Scenario Plan
 Our scenario for milestone presentation includes two football enthusiast characters Ali and Bekir.
