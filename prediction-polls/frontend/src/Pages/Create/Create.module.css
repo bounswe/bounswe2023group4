@@ -20,17 +20,44 @@
   }
   
   .questionContainer {
+    margin-top: 64px;
     margin-bottom: 16px;
   }
   
   .pollTypeContainer {
     margin-bottom: 16px;
   }
+
+  .optButton {
+    padding-left: 25px;
+    padding-right: 25px;
+    border:none;
+    color: #fff;
+  }
+
+  .optButton:hover {
+    border: none;
+    color:#fff !important ;
+  }
   
   .submitContainer {
     position: absolute;
     bottom: 40px; 
     width: 40%;
+
+  }
+
+  .submitButton {
+    background-color: var(--secondary-500);
+    color: #fff;
+    padding-left: 25px;
+    padding-right: 25px;
+    border:none;
+  }
+
+  .submitButton:hover {
+    background-color: var(--secondary-300);
+    color:#fff !important ;
   }
 
   .multipleChoiceInputs {
@@ -39,6 +66,7 @@
   
   .choiceInput {
     margin-bottom: 8px;
+    margin-right: 4px;
   }
 
   .datePickerContainer {
@@ -70,4 +98,3 @@
     position: absolute;
     bottom: 100px;
   }
-
