@@ -95,7 +95,7 @@
 | Implement Poll Detail Screen Backend Requests| [#417](https://github.com/bounswe/bounswe2023group4/issues/417) | Ahmet Emre Şafak | 27.11.23 | 2.5hr |
 | Implement Moderation Screen UI| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 27.11.23 | 3.5hr |
 | Deployment of our frontend and backend for milestone | [#423](https://github.com/bounswe/bounswe2023group4/issues/423) | Hebun Şimşek | 28.11.2023 | 2hr |
-
+| Writing Scenario Test| [#347](https://github.com/bounswe/bounswe2023group4/issues/347) | Ali Nasra| 22.11.2023 | | 2hr | Uncompleted|
 ## Scenario Plan
 Our scenario for milestone presentation includes two football enthusiast characters Ali and Bekir.
 Ali is a Besiktas fan and Bekir is a Fenerbahce fan. They are good friends but they argue about who would win. Their choices should be obvious!
