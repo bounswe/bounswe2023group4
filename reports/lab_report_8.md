@@ -67,6 +67,7 @@
 | Poll Voting | [#400](https://github.com/bounswe/bounswe2023group4/issues/400) | Şefik Palazoğlu | 23.11.2023 | 2hr |
 | Poll GET return format | [#402](https://github.com/bounswe/bounswe2023group4/issues/402) | Şefik Palazoğlu | 23.11.2023 | 3hr |
 | Poll GET Poll Creator Name | [#403](https://github.com/bounswe/bounswe2023group4/issues/403) | Şefik Palazoğlu | 22.11.2023 | 2hr |
+| Point System | [#405](https://github.com/bounswe/bounswe2023group4/issues/405) | Şefik Palazoğlu, Emre Batuhan Göç | 24.11.2023 | 6hr |
 
 ## Scenario Plan
 Our scenario for milestone presentation includes two football enthusiast characters Ali and Bekir.
