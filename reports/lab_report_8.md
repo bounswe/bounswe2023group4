@@ -57,7 +57,7 @@
 * [#342](https://github.com/bounswe/bounswe2023group4/issues/342) is not finished because before we started working on this, we merged the email verification branch and this caused issues which prevented Şefik from working on this issue in his local database. As soon as this problem is resolved, basic comment feature will be implemented.
 * Unfortunately mobile tasks require 1-2 days more to finish because of tight schedule.
 * [Testing issue](https://github.com/bounswe/bounswe2023group4/issues/317) is nearly impossible to finish as we mentioned in mobile task. We might need to merge the current one and create new one since this issue is ongoing for weeks.
-* * [#365](https://github.com/bounswe/bounswe2023group4/issues/342) , [#366](https://github.com/bounswe/bounswe2023group4/issues/342) are unfinished because Selin could not spare as much time as she thought due to her busy schedule. She will complete them by next week.
+* [#365](https://github.com/bounswe/bounswe2023group4/issues/342) , [#366](https://github.com/bounswe/bounswe2023group4/issues/342) are unfinished because Selin could not spare as much time as she thought due to her busy schedule. She will complete them by next week.
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
