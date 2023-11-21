@@ -19,7 +19,7 @@
 | Implement Poll Comment | [#342](https://github.com/bounswe/bounswe2023group4/issues/342) | Şefik Palazoğlu | 19.11.2023 | | 3hr | Unfinished |
 | Poll Response Restructuring | [#343](https://github.com/bounswe/bounswe2023group4/issues/343) | Şefik Palazoğlu | 20.11.2023 | [#388](https://github.com/bounswe/bounswe2023group4/pull/388), [#380](https://github.com/bounswe/bounswe2023group4/pull/380) | 6hr | 6hr |
 | Unit Tests for Poll Endpoints | [#344](https://github.com/bounswe/bounswe2023group4/issues/344) | Şefik Palazoğlu | 20.11.2023 | | 4hr | Unfinished |
-| Implement email verification| [#345](https://github.com/bounswe/bounswe2023group4/issues/345) | Hebun Şimşek | 21.11.2023 | | 6hr | |
+| Implement email verification| [#345](https://github.com/bounswe/bounswe2023group4/issues/345) | Hebun Şimşek | 21.11.2023 | [#386](https://github.com/bounswe/bounswe2023group4/pull/386)| 6hr | 5hr |
 | Implement search bar component| [#346](https://github.com/bounswe/bounswe2023group4/issues/346) | Kutay Saran | 21.11.2023 | [#383](https://github.com/bounswe/bounswe2023group4/pull/383) | 4hr | 3hr |
 | Integrating the Vote Page UI with the back-end server| [#347](https://github.com/bounswe/bounswe2023group4/issues/347) | Ali Nasra| 21.11.2023 | | 4hr | |
 |Completing the UI/UX design of the create poll page| [#348](https://github.com/bounswe/bounswe2023group4/issues/348) | Enes Furkan Arslan | 19.11.2023 | [#374](https://github.com/bounswe/bounswe2023group4/pull/374) | 3h | 3h |
@@ -48,6 +48,7 @@
 | Install nodemailer package | [#336](https://github.com/bounswe/bounswe2023group4/issues/391) | Şefik Palazoğlu | 21.11.2023 | [#392](https://github.com/bounswe/bounswe2023group4/pull/392) |
 | Update Schema for email verification | [#394](https://github.com/bounswe/bounswe2023group4/issues/394) | Şefik Palazoğlu | 21.11.2023 | [#395](https://github.com/bounswe/bounswe2023group4/pull/395)
 |error fix on frontend | [#377](https://github.com/bounswe/bounswe2023group4/issues/377) | Enes Furkan Arslan | 21.11.2023 | [#378](https://github.com/bounswe/bounswe2023group4/pull/378) |
+| Deployment of backend | [#396](https://github.com/bounswe/bounswe2023group4/issues/396) | Hebun Şimşek | 21.11.2023 | [link](https://github.com/bounswe/bounswe2023group4/issues/396#issuecomment-1820741006) |
 
 ## Planned vs. Actual
 * [#343](https://github.com/bounswe/bounswe2023group4/issues/343) was closed one day late because there were unexpected problems about how to restructure the database schema and deployment of the changes.
@@ -65,9 +66,9 @@
 | Linking Refresh Token and Users in Database | [#241](https://github.com/bounswe/bounswe2023group4/issues/241) | Şefik Palazoğlu | 28.11.2023 | 3hr |
 | Unit Tests for Poll Endpoints | [#344](https://github.com/bounswe/bounswe2023group4/issues/344) | Şefik Palazoğlu | 26.11.2023 | 4hr |
 | Implement Poll Comment | [#342](https://github.com/bounswe/bounswe2023group4/issues/342) | Şefik Palazoğlu | 26.11.2023 |  3hr |
-| Signup Birthday Requirement | | Hebun Şimşek | 22.11.2023 | |
+| Signup Birthday Requirement |[#421](https://github.com/bounswe/bounswe2023group4/issues/421) | Hebun Şimşek | 22.11.2023 | 1hr |
 | Authentication error management | [#413](https://github.com/bounswe/bounswe2023group4/issues/413) | Emre Batuhan Göç | 22.11.2023 | 2hr |
-| Email Verification Improvement | | Hebun Şimşek | 24.11.2023 | |
+| Email Verification Improvement | [#422](https://github.com/bounswe/bounswe2023group4/issues/422) | Hebun Şimşek | 24.11.2023 | 1hr |
 | Swagger Correction for Poll | [#399](https://github.com/bounswe/bounswe2023group4/issues/399) | Şefik Palazoğlu | 24.11.2023 | 3hr |
 | Poll Voting | [#400](https://github.com/bounswe/bounswe2023group4/issues/400) | Şefik Palazoğlu | 23.11.2023 | 2hr |
 | Poll GET return format | [#402](https://github.com/bounswe/bounswe2023group4/issues/402) | Şefik Palazoğlu | 23.11.2023 | 3hr |
@@ -93,6 +94,7 @@
 | Implement Profile Screen Backend Requests| [#416](https://github.com/bounswe/bounswe2023group4/issues/416) | Ahmet Emre Şafak | 27.11.23 | 3hr |
 | Implement Poll Detail Screen Backend Requests| [#417](https://github.com/bounswe/bounswe2023group4/issues/417) | Ahmet Emre Şafak | 27.11.23 | 2.5hr |
 | Implement Moderation Screen UI| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 27.11.23 | 3.5hr |
+| Deployment of our frontend and backend for milestone | [#423](https://github.com/bounswe/bounswe2023group4/issues/423) | Hebun Şimşek | 28.11.2023 | 2hr |
 
 ## Scenario Plan
 Our scenario for milestone presentation includes two football enthusiast characters Ali and Bekir.
