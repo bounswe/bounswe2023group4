@@ -24,12 +24,12 @@
 |Completing the UI/UX design of the create poll page| [#348](https://github.com/bounswe/bounswe2023group4/issues/348) | Enes Furkan Arslan | 19.11.2023 | [#374](https://github.com/bounswe/bounswe2023group4/pull/374) | 3h | 3h |
 |Linking create poll page to backend, frontend part | [#349](https://github.com/bounswe/bounswe2023group4/issues/349) | Enes Furkan Arslan | 20.11.2023 | [#374](https://github.com/bounswe/bounswe2023group4/pull/374) | 4h | 5h |
 |Update Ram for leaving teammate | [#350](https://github.com/bounswe/bounswe2023group4/issues/350) | Enes Furkan Arslan | 20.11.2023 | [ram](https://github.com/bounswe/bounswe2023group4/wiki/RAM) | 1h | 1h |
-| Update swagger for profile endpoints | [#355](https://github.com/bounswe/bounswe2023group4/issues/355) | Emre Batuhan Göç | 20.11.2023 | | 1h | |
-| Write unit tests for profile endpoints | [#354](https://github.com/bounswe/bounswe2023group4/issues/354) | Emre Batuhan Göç | 20.11.2023 | | 1h | |
-| Restruct backend responses for errors | [#353](https://github.com/bounswe/bounswe2023group4/issues/353) | Emre Batuhan Göç | 20.11.2023 | | 2h | |
-| Implement Profile Logic | [#352](https://github.com/bounswe/bounswe2023group4/issues/352) | Emre Batuhan Göç | 19.11.2023 | | 4h | |
-| Implement Profile Fundamentals | [#351](https://github.com/bounswe/bounswe2023group4/issues/351) | Emre Batuhan Göç | 18.11.2023 | | 2h | |
-| Update Polls Swagger Documentation | [#357](https://github.com/bounswe/bounswe2023group4/issues/357) | Şefik Palazoğlu, Emre Batuhan Göç | 18.11.2023 | | 2hr | |
+| Update swagger for profile endpoints | [#355](https://github.com/bounswe/bounswe2023group4/issues/355) | Emre Batuhan Göç | 20.11.2023 | [#389](https://github.com/bounswe/bounswe2023group4/pull/389) | 1h | 1h |
+| Write unit tests for profile endpoints | [#354](https://github.com/bounswe/bounswe2023group4/issues/354) | Emre Batuhan Göç | 20.11.2023 | [#390](https://github.com/bounswe/bounswe2023group4/pull/390) | 1h | 1h |
+| Restruct backend responses for errors | [#353](https://github.com/bounswe/bounswe2023group4/issues/353) | Emre Batuhan Göç | 20.11.2023 | [#387](https://github.com/bounswe/bounswe2023group4/pull/387) | 2h | 2h |
+| Implement Profile Logic | [#352](https://github.com/bounswe/bounswe2023group4/issues/352) | Emre Batuhan Göç | 19.11.2023 | [#382](https://github.com/bounswe/bounswe2023group4/pull/382) | 4h | 3hr |
+| Implement Profile Fundamentals | [#351](https://github.com/bounswe/bounswe2023group4/issues/351) | Emre Batuhan Göç | 18.11.2023 | [#382](https://github.com/bounswe/bounswe2023group4/pull/382) | 2h | 2h |
+| Update Polls Swagger Documentation | [#357](https://github.com/bounswe/bounswe2023group4/issues/357) | Şefik Palazoğlu, Emre Batuhan Göç | 18.11.2023 | [#380](https://github.com/bounswe/bounswe2023group4/pull/380), [#388](https://github.com/bounswe/bounswe2023group4/pull/388) | 2hr | 2hr |
 | Returning Error Codes | [#359](https://github.com/bounswe/bounswe2023group4/issues/359) | Şefik Palazoğlu | 18.11.2023 | [#379](https://github.com/bounswe/bounswe2023group4/pull/379), [#393](https://github.com/bounswe/bounswe2023group4/pull/393) | 2hr | 3hr |
 | Implement create poll screen UI | [#314](https://github.com/bounswe/bounswe2023group4/issues/314) | Yiğit Şekerci | 21.11.23 | | 4hr | |
 | Implement profile screen UI | [#311](https://github.com/bounswe/bounswe2023group4/issues/311) | Ahmet Emre Şafak | 21.11.23 |  | 4hr | |
