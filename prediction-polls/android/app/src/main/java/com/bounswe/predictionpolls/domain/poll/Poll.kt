@@ -1,7 +1,9 @@
 package com.bounswe.predictionpolls.domain.poll
 
+import androidx.compose.runtime.Immutable
 import kotlinx.collections.immutable.ImmutableList
 
+@Immutable
 sealed interface Poll {
     val creatorProfilePictureUri: String
     val pollCreatorName: String
