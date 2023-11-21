@@ -1,4 +1,5 @@
 const db = require("../repositories/PollDB.js");
+const { findUser } = require('../repositories/AuthorizationDB.js');
 const errorCodes = require("../errorCodes.js")
 
 function getPolls(req,res){
@@ -73,8 +74,9 @@ function addDiscretePoll(req,res){
     const numericFieldValue = req.body.numericFieldValue;
     const dueDatePoll = setDueDate ? new Date(req.body.dueDatePoll).toISOString().split('T')[0] : null;
     const selectedTimeUnit = req.body.selectedTimeUnit;
+    const username = req.user.name;
 
-    db.addDiscretePoll(question, choices, openVisibility, setDueDate, dueDatePoll, numericFieldValue, selectedTimeUnit)
+    db.addDiscretePoll(question, username, choices, openVisibility, setDueDate, dueDatePoll, numericFieldValue, selectedTimeUnit)
     .then((result) => {
         res.end(result.toString());
     })
@@ -138,8 +140,9 @@ function addContinuousPoll(req,res){
     const numericFieldValue = req.body.numericFieldValue;
     const dueDatePoll = setDueDate ? new Date(req.body.dueDatePoll).toISOString().split('T')[0] : null;
     const selectedTimeUnit = req.body.selectedTimeUnit;
+    const username = req.user.name;
 
-    db.addContinuousPoll(question, cont_poll_type, openVisibility, setDueDate, dueDatePoll, numericFieldValue, selectedTimeUnit)
+    db.addContinuousPoll(question, username, cont_poll_type, openVisibility, setDueDate, dueDatePoll, numericFieldValue, selectedTimeUnit)
     .then((result) => {
         res.end(result.toString());
     })
