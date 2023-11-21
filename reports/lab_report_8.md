@@ -63,6 +63,7 @@
 | Signup Birthday Requirement | | Hebun Şimşek | 22.11.2023 | |
 | Authentication Error Response Management | | Emre Batuhan Göç | 22.11.2023 | |
 | Email Verification Improvement | | Hebun Şimşek | 24.11.2023 | |
+| Swagger Correction for Poll | [#399](https://github.com/bounswe/bounswe2023group4/issues/399) | Şefik Palazoğlu | 24.11.2023 | 3hr |
 
 ## Scenario Plan
 Our scenario for milestone presentation includes two football enthusiast characters Ali and Bekir.
