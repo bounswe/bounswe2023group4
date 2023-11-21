@@ -132,7 +132,7 @@ After this, Bekir logs in to his account from the mobile app.
 	- 1.1.5.2.1 Members shall be able to vote on active polls.
 
 ## Risks
--
+- If things are didn't go as expected in mobile we may delay the [moderation UI issue](https://github.com/bounswe/bounswe2023group4/issues/418) since we won't integrate it to backend it is safe to delay it for the sake of other componenents.
 
 ## Participants
 - Ali Nasra
