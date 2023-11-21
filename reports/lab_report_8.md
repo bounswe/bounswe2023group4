@@ -19,7 +19,7 @@
 | Poll Response Restructuring | [#343](https://github.com/bounswe/bounswe2023group4/issues/343) | Şefik Palazoğlu | 20.11.2023 | [#388](https://github.com/bounswe/bounswe2023group4/pull/388), [#380](https://github.com/bounswe/bounswe2023group4/pull/380) | 6hr | 6hr |
 | Unit Tests for Poll Endpoints | [#344](https://github.com/bounswe/bounswe2023group4/issues/344) | Şefik Palazoğlu | 20.11.2023 | | 4hr | Unfinished |
 | Implement email verification| [#345](https://github.com/bounswe/bounswe2023group4/issues/345) | Hebun Şimşek | 21.11.2023 | | 6hr | |
-| Implement search bar component| [#346](https://github.com/bounswe/bounswe2023group4/issues/346) | Kutay Saran | 21.11.2023 | | 4hr | |
+| Implement search bar component| [#346](https://github.com/bounswe/bounswe2023group4/issues/346) | Kutay Saran | 21.11.2023 | [#383](https://github.com/bounswe/bounswe2023group4/pull/383) | 4hr | 3hr |
 | Integrating the Vote Page UI with the back-end server| [#347](https://github.com/bounswe/bounswe2023group4/issues/347) | Ali Nasra| 21.11.2023 | | 4hr | |
 |Completing the UI/UX design of the create poll page| [#348](https://github.com/bounswe/bounswe2023group4/issues/348) | Enes Furkan Arslan | 19.11.2023 | [#374](https://github.com/bounswe/bounswe2023group4/pull/374) | 3h | 3h |
 |Linking create poll page to backend, frontend part | [#349](https://github.com/bounswe/bounswe2023group4/issues/349) | Enes Furkan Arslan | 20.11.2023 | [#374](https://github.com/bounswe/bounswe2023group4/pull/374) | 4h | 5h |
@@ -73,6 +73,9 @@
 | Add point indicator component to create poll page | [#404](https://github.com/bounswe/bounswe2023group4/issues/404) | Enes Furkan Arslan | 27.11.2023 | 1h |
 | Validate user input on create poll page | [#406](https://github.com/bounswe/bounswe2023group4/issues/406) | Enes Furkan Arslan | 27.11.2023 | 4h |
 | Finalize Create poll page's backend connections | [#407](https://github.com/bounswe/bounswe2023group4/issues/407) | Enes Furkan Arslan | 27.11.2023 | 4h | 
+| Finalize Create poll page's backend connections | [#407](https://github.com/bounswe/bounswe2023group4/issues/407) | Enes Furkan Arslan | 27.11.2023 | 4h | 
+| Implement Authentication Token Management Middleware | [#409](https://github.com/bounswe/bounswe2023group4/issues/409) | Kutay Saran | 27.11.2023 | 5hr |
+| Implement Poll Feed Page's Backend Connection | [#408](https://github.com/bounswe/bounswe2023group4/issues/408) | Kutay Saran | 27.11.2023 | 2hr |
 
 ## Scenario Plan
 Our scenario for milestone presentation includes two football enthusiast characters Ali and Bekir.
