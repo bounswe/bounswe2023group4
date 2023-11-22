@@ -11,6 +11,7 @@ sealed interface Poll {
     val dueDate: String
     val rejectionText: String
     val commentCount: Int
+    val tags: List<String>
 
     data class ContinuousPoll(
         override val creatorProfilePictureUri: String,
@@ -19,7 +20,8 @@ sealed interface Poll {
         override val pollQuestionTitle: String,
         override val rejectionText: String,
         override val commentCount: Int,
-        val options: ImmutableList<PollOption.ContinuousPollOption>
+        override val tags: List<String>,
+        val inputType: ContinuousVoteInputType,
     ) : Poll
 
     data class DiscretePoll(
@@ -29,5 +31,8 @@ sealed interface Poll {
         override val pollQuestionTitle: String,
         override val rejectionText: String,
         override val commentCount: Int,
+        override val tags: List<String>,
+        val options: ImmutableList<PollOption.DiscreteOption>
+
     ) : Poll
 }
