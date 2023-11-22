@@ -23,12 +23,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bounswe.predictionpolls.R
-import com.bounswe.predictionpolls.ui.common.poll.ContinuousVoteInputType
+import com.bounswe.predictionpolls.domain.poll.ContinuousVoteInputType
 import com.bounswe.predictionpolls.ui.common.poll.ContinuousVoteOption
 import com.bounswe.predictionpolls.ui.common.poll.PollComposable
 import com.bounswe.predictionpolls.ui.theme.MontserratFontFamily
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
-import java.util.Date
 
 /**
  * This composable represents the vote screen for a poll.
@@ -116,8 +115,8 @@ private fun PollVotePreview() {
                 pollCreatorName = "Zehra Eser",
                 tags = listOf("Basketball", "Cleveland Cavaliers", "Lebron James"),
                 pollQuestionTitle = "Who is the best basketball player of all time?",
-                optionsContent = { /*TODO*/ },
-                dueDate = Date(),
+                optionsContent = {  },
+                dueDate = "",
                 rejectionText = "Last 5 days",
                 commentCount = 145
             )
