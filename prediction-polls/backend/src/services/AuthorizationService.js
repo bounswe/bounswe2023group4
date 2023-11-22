@@ -18,7 +18,7 @@ function homePage(req, res){
     }
 
     // Birthday validation
-    if (!isValidBirthday(birthday)) {
+    if (birthday && !isValidBirthday(birthday)) {
         return res.status(400).send('Invalid or unreasonable birthday');
     }
 
