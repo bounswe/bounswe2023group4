@@ -13,7 +13,6 @@ import androidx.compose.ui.unit.dp
 import com.bounswe.predictionpolls.ui.common.poll.DiscreteVoteOption
 import com.bounswe.predictionpolls.ui.common.poll.PollComposable
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
-import java.util.Date
 
 /**
  * This composable is used to display profile information and polls of a user.
