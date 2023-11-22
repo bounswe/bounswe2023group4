@@ -124,6 +124,16 @@ router.get('/', service.getPolls);
  *                   type: string
  *                 poll_type:
  *                   type: string
+ *                 openVisibility:
+ *                   type: integer
+ *                 setDueDate:
+ *                   type: integer
+ *                 dueDatePoll:
+ *                   type: string
+ *                 numericFieldValue:
+ *                   type: integer
+ *                 selectedTimeUnit:
+ *                   type: string
  *                 poll:
  *                   type: object
  *                   properties:
@@ -154,6 +164,11 @@ router.get('/', service.getPolls);
  *                   question: "Who will become POTUS?"
  *                   username: "user123"
  *                   poll_type: "discrete"
+ *                   openVisibility: 1 
+ *                   setDueDate: 1 
+ *                   dueDatePoll: "2023-11-20T21:00:00.000Z"
+ *                   numericFieldValue: 2 
+ *                   selectedTimeUnit: "min"
  *                   poll:
  *                     id: 1
  *                   choices:
@@ -171,6 +186,11 @@ router.get('/', service.getPolls);
  *                   question: "Test question?"
  *                   username: "GhostDragon"
  *                   poll_type: "continuous"
+ *                   openVisibility: 0 
+ *                   setDueDate: 0 
+ *                   dueDatePoll: null
+ *                   numericFieldValue: null
+ *                   selectedTimeUnit: null
  *                   poll:
  *                     id: 2
  *                   choices:
