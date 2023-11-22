@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetFeedUseCase @Inject constructor(
     private val feedRepository: FeedRepository
 ) {
-    suspend operator fun invoke(page: Int): Result<Poll> {
+    suspend operator fun invoke(page: Int): Result<List<Poll>> {
         return feedRepository.getPolls(page)
     }
 }

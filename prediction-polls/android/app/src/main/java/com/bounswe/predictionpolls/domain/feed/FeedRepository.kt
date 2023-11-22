@@ -7,5 +7,5 @@ interface FeedRepository {
     /**
      * Fetches the list of polls and returns the result.
      */
-    suspend fun getPolls(page: Int): Result<Poll>
+    suspend fun getPolls(page: Int): Result<List<Poll>>
 }
