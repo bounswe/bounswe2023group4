@@ -86,7 +86,7 @@ private fun ProfileScreenPreview() {
 
                         },
                         modifier = Modifier.padding(16.dp),
-                        dueDate = Date(),
+                        dueDate = "",
                         rejectionText = "Last 5 days",
                         commentCount = 530
                     )

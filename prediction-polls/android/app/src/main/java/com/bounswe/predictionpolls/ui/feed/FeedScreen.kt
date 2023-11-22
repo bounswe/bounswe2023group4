@@ -19,6 +19,7 @@ import com.bounswe.predictionpolls.domain.poll.PollOption
 import com.bounswe.predictionpolls.ui.common.poll.ContinuousVoteOption
 import com.bounswe.predictionpolls.ui.common.poll.DiscreteVoteOption
 import com.bounswe.predictionpolls.ui.common.poll.PollComposable
+import com.bounswe.predictionpolls.ui.common.poll.Polls
 import kotlinx.collections.immutable.ImmutableList
 
 @Composable
@@ -70,54 +71,3 @@ private fun FeedLoading(modifier: Modifier = Modifier) {
     }
 }
 
-
-@Composable
-private fun Polls(polls: ImmutableList<Poll>, modifier: Modifier = Modifier) {
-    LazyColumn(modifier = modifier) {
-        items(polls) {
-            PollComposable(
-                pollCreatorProfilePictureUri = it.creatorProfilePictureUri,
-                pollCreatorName = it.pollCreatorName,
-                tags = it.tags,
-                pollQuestionTitle = it.pollQuestionTitle,
-                optionsContent = {
-                    when (it) {
-                        is Poll.ContinuousPoll -> {
-                            ContinuousVoteOption(
-                                title = "Enter your vote",
-                                vote = "",
-                                isVotingEnabled = false,
-                                voteType = it.inputType,
-                                onVoteInputChanged = {}
-                            )
-                        }
-
-                        is Poll.DiscretePoll -> {
-                            DiscretePollOptions(it.options)
-                        }
-                    }
-                },
-                dueDate = it.dueDate,
-                rejectionText = it.rejectionText,
-                commentCount = it.commentCount
-            )
-        }
-    }
-}
-
-@Composable
-private fun DiscretePollOptions(options: ImmutableList<PollOption.DiscreteOption>) {
-    val totalVotes = remember(options) {
-        options.sumOf { it.voteCount }
-    }
-    Column {
-        options.forEach {
-            DiscreteVoteOption(
-                optionName = it.text,
-                voteCount = it.voteCount,
-                fillPercentage = it.voteCount.toFloat() / totalVotes,
-                isSelected = false
-            )
-        }
-    }
-}
