@@ -26,20 +26,50 @@ const router = express.Router();
  *                     type: integer
  *                   question:
  *                     type: string
+ *                   username:
+ *                     type: string
  *                   poll_type:
+ *                     type: string
+ *                   openVisibility:
+ *                     type: integer
+ *                   setDueDate:
+ *                     type: integer
+ *                   dueDatePoll:
+ *                     type: string
+ *                   numericFieldValue:
+ *                     type: integer
+ *                   selectedTimeUnit:
  *                     type: string
  *             examples:
  *               genericExample:
  *                 value:
  *                   - id: 1
  *                     question: "Who will become POTUS?"
+ *                     username: "user1234"
  *                     poll_type: "discrete"
+ *                     openVisibility: 1 
+ *                     setDueDate: 1 
+ *                     dueDatePoll: "2023-11-20T21:00:00.000Z"
+ *                     numericFieldValue: 2 
+ *                     selectedTimeUnit: "min"
  *                   - id: 2
  *                     question: "Test3?"
+ *                     username: "GoodGambler"
  *                     poll_type: "continuous"
+ *                     openVisibility: 0 
+ *                     setDueDate: 0 
+ *                     dueDatePoll: null
+ *                     numericFieldValue: null
+ *                     selectedTimeUnit: null
  *                   - id: 3
  *                     question: "Who will become POTUS?"
+ *                     username: "GhostDragon"
  *                     poll_type: "discrete"
+ *                     openVisibility: 1 
+ *                     setDueDate: 1 
+ *                     dueDatePoll: "2023-11-20T21:00:00.000Z"
+ *                     numericFieldValue: 3
+ *                     selectedTimeUnit: "h"
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -90,7 +120,19 @@ router.get('/', service.getPolls);
  *                   type: integer
  *                 question:
  *                   type: string
+ *                 username:
+ *                   type: string
  *                 poll_type:
+ *                   type: string
+ *                 openVisibility:
+ *                   type: integer
+ *                 setDueDate:
+ *                   type: integer
+ *                 dueDatePoll:
+ *                   type: string
+ *                 numericFieldValue:
+ *                   type: integer
+ *                 selectedTimeUnit:
  *                   type: string
  *                 poll:
  *                   type: object
@@ -120,7 +162,13 @@ router.get('/', service.getPolls);
  *                 value:
  *                   id: 1
  *                   question: "Who will become POTUS?"
+ *                   username: "user123"
  *                   poll_type: "discrete"
+ *                   openVisibility: 1 
+ *                   setDueDate: 1 
+ *                   dueDatePoll: "2023-11-20T21:00:00.000Z"
+ *                   numericFieldValue: 2 
+ *                   selectedTimeUnit: "min"
  *                   poll:
  *                     id: 1
  *                   choices:
@@ -136,11 +184,15 @@ router.get('/', service.getPolls);
  *                 value:
  *                   id: 2
  *                   question: "Test question?"
+ *                   username: "GhostDragon"
  *                   poll_type: "continuous"
+ *                   openVisibility: 0 
+ *                   setDueDate: 0 
+ *                   dueDatePoll: null
+ *                   numericFieldValue: null
+ *                   selectedTimeUnit: null
  *                   poll:
  *                     id: 2
- *                     min_value: 6
- *                     max_value: 10
  *                   choices:
  *                     - 7
  *                     - 8   
