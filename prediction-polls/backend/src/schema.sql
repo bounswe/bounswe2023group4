@@ -75,7 +75,7 @@ CREATE TABLE profiles (
     userId INT NOT NULL,
     username VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    profile_picture_data MEDIUMBLOB,
+    profile_picture MEDIUMBLOB,
     biography VARCHAR(5000),
     birthday DATETIME,
     isHidden BOOLEAN DEFAULT False,

@@ -41,14 +41,7 @@ async function getProfileWithUserId(userId){
     }
 }
 
-async function addProfile({
-    userId,
-    username,
-    email,
-    profile_picture,
-    biography,
-    birthday ,
-    isHidden}){
+async function addProfile(userId, username, email){
 
     try {
         const {error} = await getProfileWithUserId(userId);
@@ -57,7 +50,7 @@ async function addProfile({
         }
 
         const sql = 'INSERT INTO profiles (userId, username, email, profile_picture, biography, birthday, isHidden) VALUES (?, ?, ?, ?, ?, ?, ?)';
-        values = [userId,username,email,profile_picture,biography,birthday,isHidden]   
+        values = [userId,username,email,null,null,null,null]
         const [resultSetHeader] = await pool.query(sql, values);
         if(!resultSetHeader.insertId){
             throw {error:errorCodes.PROFILE_COULD_NOT_BE_CREATED};
