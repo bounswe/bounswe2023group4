@@ -140,7 +140,7 @@ const router = express.Router();
  *                 value:
  *                   error:
  *                     message: Error while accessing the database.
- *                     code: 3000
+ *                     code: 3004
  */
 router.get('/', service.getPolls);
 
@@ -216,7 +216,7 @@ router.get('/', service.getPolls);
  *                 value:
  *                   error:
  *                     message: No such poll found.
- *                     code: 3001
+ *                     code: 3005
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -228,7 +228,7 @@ router.get('/', service.getPolls);
  *                 value:
  *                   error:
  *                     message: Error while accessing the database.
- *                     code: 3000
+ *                     code: 3004
  */
 router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId);
 
@@ -303,7 +303,7 @@ router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId
  *                 value:
  *                   error:
  *                     message: The access token is invalid.
- *                     code: 1001
+ *                     code: 1002
  *       401:
  *         description: Unauthorized
  *         content:
@@ -315,7 +315,7 @@ router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId
  *                 value:
  *                   error:
  *                     message: The access token is invalid.
- *                     code: 1001
+ *                     code: 1002
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -327,7 +327,7 @@ router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId
  *                 value:
  *                   error:
  *                     message: Error while accessing the database.
- *                     code: 3000
+ *                     code: 3004
  */
 router.post('/discrete', authenticator.authorizeAccessToken, service.addDiscretePoll);
 
@@ -418,7 +418,7 @@ router.post('/discrete', authenticator.authorizeAccessToken, service.addDiscrete
  *                 value:
  *                   error:
  *                     message: The access token is invalid.
- *                     code: 1001
+ *                     code: 1002
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -430,7 +430,7 @@ router.post('/discrete', authenticator.authorizeAccessToken, service.addDiscrete
  *                 value:
  *                   error:
  *                     message: Error while accessing the database.
- *                     code: 3000
+ *                     code: 3004
  */
 router.post('/continuous', authenticator.authorizeAccessToken, service.addContinuousPoll);
 
