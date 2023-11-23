@@ -13,4 +13,6 @@ sealed class CreatePollScreenEvent {
     data class OnAcceptValueTypeChanged(val type: CreatePollScreenState.AcceptValueType): CreatePollScreenEvent()
     data class OnDistributionVisibilityChanged(val isChecked: Boolean): CreatePollScreenEvent()
     data object OnCreatePollClicked: CreatePollScreenEvent()
+    data object OnErrorDismissed: CreatePollScreenEvent()
+    data object ToggleDatePicker: CreatePollScreenEvent()
 }

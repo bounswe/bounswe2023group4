@@ -7,7 +7,7 @@ data class CreateDiscretePollRequest(
     val setDueDate: Boolean,
     val dueDatePoll: String?,
     val numericFieldValue: Int?,
-    val selectedTimeUnit: TimeUnit?,
+    val selectedTimeUnit: String,
 ) {
     enum class TimeUnit(val value: String) {
         MINUTE("min"),

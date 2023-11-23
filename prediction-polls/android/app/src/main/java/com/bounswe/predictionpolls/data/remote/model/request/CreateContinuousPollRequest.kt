@@ -6,8 +6,8 @@ data class CreateContinuousPollRequest(
     val setDueDate: Boolean,
     val dueDatePoll: String?,
     val numericFieldValue: Int?,
-    val selectedTimeUnit: TimeUnit?,
-    val pollType: PollRequestType,
+    val selectedTimeUnit: String,
+    val pollType: String,
 ) {
     enum class TimeUnit(val value: String) {
         MINUTE("min"),

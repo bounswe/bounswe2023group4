@@ -14,8 +14,8 @@ class PollRepository(
         setDueDate: Boolean,
         dueDatePoll: String? = null,
         numericFieldValue: Int? = null,
-        selectedTimeUnit: CreateContinuousPollRequest.TimeUnit? = null,
-        pollType: CreateContinuousPollRequest.PollRequestType
+        selectedTimeUnit: String,
+        pollType: String,
     ){
         val request = CreateContinuousPollRequest(
             question,
@@ -38,7 +38,7 @@ class PollRepository(
         setDueDate: Boolean,
         dueDatePoll: String? = null,
         numericFieldValue: Int? = null,
-        selectedTimeUnit: CreateDiscretePollRequest.TimeUnit? = null,
+        selectedTimeUnit: String
     ){
         val request = CreateDiscretePollRequest(
             question,

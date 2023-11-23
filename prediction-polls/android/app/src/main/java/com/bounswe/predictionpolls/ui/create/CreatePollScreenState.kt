@@ -1,18 +1,23 @@
 package com.bounswe.predictionpolls.ui.create
 
+import androidx.annotation.StringRes
+import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.data.remote.model.request.CreateContinuousPollRequest
 import com.bounswe.predictionpolls.data.remote.model.request.CreateDiscretePollRequest
+import com.bounswe.predictionpolls.extensions.isValidDate
 
 data class CreatePollScreenState(
     val question: String = "",
     val pollType: PollType = PollType.DISCRETE,
-    val discreteOptions: List<String> = listOf(""),
+    val discreteOptions: List<String> = listOf("",""),
     val continuousInputType: ContinuousInputType = ContinuousInputType.DATE,
     val isDueDateEnabled: Boolean = false,
     val dueDate: String = "",
     val lastAcceptValue: String = "",
     val acceptValueType: AcceptValueType = AcceptValueType.MINUTE,
     val isDistributionVisible: Boolean = false,
+    @StringRes val inputValidationError: Int? = null,
+    val isDatePickerVisible: Boolean = false,
 ) {
     enum class PollType(val type: String) {
         DISCRETE("Multiple Choice"),
@@ -56,6 +61,15 @@ data class CreatePollScreenState(
         }
     }
 
+    val isQuestionValid: Boolean
+        get() = question.isNotBlank()
+
+    val isDiscreteOptionsValid: Boolean
+        get() = pollType == PollType.CONTINUOUS ||  discreteOptions.all { it.isNotBlank() }
+
+    val isDueDateValid: Boolean
+        get() =  isDueDateEnabled.not() || dueDate.none { it.isDigit().not() } && dueDate.isValidDate()
+
     fun reduce(event: CreatePollScreenEvent): CreatePollScreenState {
         return when (event) {
             is CreatePollScreenEvent.OnQuestionChanged -> {
@@ -83,11 +97,17 @@ data class CreatePollScreenState(
             }
 
             is CreatePollScreenEvent.OnDiscreteOptionRemoved -> {
-                this.copy(
-                    discreteOptions = discreteOptions.filterIndexed { index, _ ->
-                        index != event.position
-                    }
-                )
+                if (discreteOptions.size <= 2) {
+                    this.copy(
+                        inputValidationError = R.string.poll_create_screen_option_count_error
+                    )
+                } else {
+                    this.copy(
+                        discreteOptions = discreteOptions.filterIndexed { index, _ ->
+                            index != event.position
+                        }
+                    )
+                }
             }
 
             is CreatePollScreenEvent.OnDueDateChecked -> {
@@ -112,6 +132,14 @@ data class CreatePollScreenState(
 
             is CreatePollScreenEvent.OnContinuousInputTypeChanged -> {
                 this.copy(continuousInputType = event.inputType)
+            }
+
+            is CreatePollScreenEvent.OnErrorDismissed -> {
+                this.copy(inputValidationError = null)
+            }
+
+            is CreatePollScreenEvent.ToggleDatePicker -> {
+                this.copy(isDatePickerVisible = !isDatePickerVisible)
             }
 
             else -> {
