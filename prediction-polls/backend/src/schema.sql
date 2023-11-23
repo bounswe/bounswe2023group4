@@ -82,3 +82,11 @@ CREATE TABLE profiles (
     unique(userId),
     FOREIGN KEY (userId) REFERENCES users(id)
 );
+
+CREATE TABLE badges (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userRank INT NOT NULL,
+    topic VARCHAR(255) NOT NULL,
+    userId INT,
+    FOREIGN KEY (userId) REFERENCES users(id) ON DELETE SET NULL
+);
