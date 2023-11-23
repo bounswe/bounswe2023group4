@@ -30,6 +30,7 @@ function getPollWithId(req, res) {
                 "creatorUsername": pollObject.username,
                 "creatorImage": null,
                 "pollType": pollObject.poll_type,
+                "closingDate": pollObject.closingDate,
                 "rejectVotes": `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}`,
                 "isOpen": true,
                 "comments": []
