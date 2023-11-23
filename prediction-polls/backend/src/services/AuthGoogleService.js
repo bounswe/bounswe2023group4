@@ -2,6 +2,7 @@ const qs = require("querystring");
 const axios = require("axios");
 const db = require("../repositories/AuthorizationDB.js");
 const crypto = require('crypto');
+const errorCodes = require("../errorCodes.js");
 
 
 const { generateAccessToken, generateRefreshToken } = require('./AuthorizationService.js');
@@ -18,7 +19,7 @@ async function googleLogIn(req,res){
       googleLogInWithCode(code,res);
     }
     else{
-      res.status(400).send("Invalid Body");
+      res.status(400).send({error:errorCodes.GOOGLE_LOGIN_BODY_EMPTY});
     }
 }
   
@@ -27,18 +28,18 @@ async function googleLogInWithCode(code,res){
     try {
       // get the id and access token with the code
       const { token_error, id_token, access_token } = await getGoogleOAuthTokens({ code });
-      if(token_error){return res.status(403).send("Invalid Code")}
+      if(token_error){return res.status(403).json({error:errorCodes.GOOGLE_LOGIN_INVALID_GOOGLE_CODE}) };
   
       // get user with tokens
       const googleUser = await getGoogleUser({ id_token, access_token });
-      if(googleUser.error){return res.status(403).send(googleUser.error)}
+      if(googleUser.error){return res.status(403).json({error:errorCodes.GOOGLE_LOGIN_INVALID_GOOGLE_CODE}) };
   
       if (!( googleUser.verified_email || googleUser.email_verified)) {
-        return res.status(403).send("Google account is not verified");
+        return res.status(403).json({error:errorCodes.GOOGLE_LOGIN_NONVERIFIED_GOOGLE_ACCOUNT});
       }
 
       const generatedPassword = generateRandomPassword(12);
-      const { success, error, userid} = await db.addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+      const { error, userid} = await db.addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
 
       const user = {name : googleUser.given_name, id: userid};
       const accesToken = generateAccessToken(user);
@@ -47,23 +48,23 @@ async function googleLogInWithCode(code,res){
       res.json({accessToken: accesToken, refreshToken: refreshToken})
   
     } catch (error) {
-      return res.status(500).send("Google Auth Failed");
+      return res.status(500).json({error:errorCodes.GOOGLE_LOGIN_FAILED});
     }
   }
 
   async function googleLogInWithGoogleId(googleId,res){
     try {
       const googleUser = await getGoogleIdTokenData(googleId)
-      if(googleUser.error){return res.status(403).send("Invalid Google Id")}
+      if(googleUser.error){return res.status(403).json({error:errorCodes.GOOGLE_LOGIN_INVALID_GOOGLEID})}
 
       if (!( googleUser.verified_email || googleUser.email_verified)) {
-        return res.status(403).send("Google account is not verified");
+        return res.status(403).json({error:errorCodes.GOOGLE_LOGIN_NONVERIFIED_GOOGLE_ACCOUNT});
       }
 
       const generatedPassword = generateRandomPassword(12);
-      const { success, error, userid} = await db.addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+      const {error, userId} = await db.addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
 
-      const user = {name : googleUser.given_name, id: userid};
+      const user = {name : googleUser.given_name, id: userId};
       const accesToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
 
@@ -71,7 +72,7 @@ async function googleLogInWithCode(code,res){
       res.json({accessToken: accesToken, refreshToken: refreshToken})
 
     } catch (error) {
-      return res.status(500).send("Google Auth Failed");
+      return res.status(500).json({error:errorCodes.GOOGLE_LOGIN_FAILED});
     }
 
   }
@@ -100,7 +101,7 @@ async function googleLogInWithCode(code,res){
       );
       return res.data;
     } catch (error) {
-      return {token_error:error.message};
+      return {token_error:error};
     }
   }
   
@@ -119,7 +120,7 @@ async function googleLogInWithCode(code,res){
       );
       return res.data;
     } catch (error) {
-      return {"error":error.message};
+      return {error:error};
     }
   }
 
@@ -130,7 +131,7 @@ async function googleLogInWithCode(code,res){
       );
       return res.data;
     } catch (error) {
-      return {"error":error.message};
+      return {error:error};
     }
   }
 
