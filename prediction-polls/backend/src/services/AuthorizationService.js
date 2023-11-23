@@ -18,8 +18,9 @@ function homePage(req, res){
     }
 
     // Birthday validation
-    if (!isValidBirthday(birthday)) {
+    if (birthday && !isValidBirthday(birthday)) {
         return res.status(400).send({error:errorCodes.INVALID_DATE});
+
     }
 
     // Check if username or email is in use
@@ -42,7 +43,8 @@ function homePage(req, res){
         return res.status(400).send({error:errorCodes.INVALID_PASSWORD});
     }
     const verificationToken = generateVerificationToken();
-    await db.saveEmailVerificationToken(username, verificationToken);
+    userData = await db.findUser({username: username})
+    await db.saveEmailVerificationToken(userData.id, verificationToken);
     await sendVerificationEmail(email, verificationToken);
     // Attempt to add user
     const { success, error: addUserError } = await db.addUser(username, password, email, birthday);

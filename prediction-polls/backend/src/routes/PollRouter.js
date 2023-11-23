@@ -26,20 +26,50 @@ const router = express.Router();
  *                     type: integer
  *                   question:
  *                     type: string
+ *                   username:
+ *                     type: string
  *                   poll_type:
+ *                     type: string
+ *                   openVisibility:
+ *                     type: integer
+ *                   setDueDate:
+ *                     type: integer
+ *                   dueDatePoll:
+ *                     type: string
+ *                   numericFieldValue:
+ *                     type: integer
+ *                   selectedTimeUnit:
  *                     type: string
  *             examples:
  *               genericExample:
  *                 value:
  *                   - id: 1
  *                     question: "Who will become POTUS?"
+ *                     username: "user1234"
  *                     poll_type: "discrete"
+ *                     openVisibility: 1 
+ *                     setDueDate: 1 
+ *                     dueDatePoll: "2023-11-20T21:00:00.000Z"
+ *                     numericFieldValue: 2 
+ *                     selectedTimeUnit: "min"
  *                   - id: 2
  *                     question: "Test3?"
+ *                     username: "GoodGambler"
  *                     poll_type: "continuous"
+ *                     openVisibility: 0 
+ *                     setDueDate: 0 
+ *                     dueDatePoll: null
+ *                     numericFieldValue: null
+ *                     selectedTimeUnit: null
  *                   - id: 3
  *                     question: "Who will become POTUS?"
+ *                     username: "GhostDragon"
  *                     poll_type: "discrete"
+ *                     openVisibility: 1 
+ *                     setDueDate: 1 
+ *                     dueDatePoll: "2023-11-20T21:00:00.000Z"
+ *                     numericFieldValue: 3
+ *                     selectedTimeUnit: "h"
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -47,15 +77,19 @@ const router = express.Router();
  *             schema:
  *               type: object
  *               properties:
- *                 message:
- *                   type: string
- *                 code:
- *                   type: integer
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                    message:
+ *                      type: string
+ *                    code:
+ *                      type: integer
  *             examples:
  *               databaseError:
  *                 value:
- *                   message: Error while accessing the database.
- *                   code: 3000
+ *                   error:
+ *                     message: Error while accessing the database.
+ *                     code: 3000
  */
 router.get('/', service.getPolls);
 
@@ -86,13 +120,26 @@ router.get('/', service.getPolls);
  *                   type: integer
  *                 question:
  *                   type: string
- *                 poll_type:
+ *                 tags:
+ *                   type: array
+ *                   items: 
+ *                     type: string
+ *                 creatorName:
  *                   type: string
- *                 poll:
- *                   type: object
- *                   properties:
- *                     id:
- *                       type: integer
+ *                 creatorUsername:
+ *                   type: string
+ *                 creatorImage:
+ *                   type: string
+ *                 pollType:
+ *                   type: string
+ *                 rejectVotes:
+ *                   type: string
+ *                 setDueDate:
+ *                   type: integer
+ *                 closingDate:
+ *                   type: string
+ *                 isOpen:
+ *                   type: integer
  *                 choices:
  *                   oneOf:
  *                     - type: array
@@ -116,9 +163,15 @@ router.get('/', service.getPolls);
  *                 value:
  *                   id: 1
  *                   question: "Who will become POTUS?"
- *                   poll_type: "discrete"
- *                   poll:
- *                     id: 1
+ *                   tags: ["tag1", "tag2"]
+ *                   creatorName: "user123"
+ *                   creatorUsername: "GhostDragon"
+ *                   creatorImage: null
+ *                   pollType: "discrete"
+ *                   rejectVotes: "5 min"
+ *                   setDueDate: 1 
+ *                   closingDate: "2023-11-20T21:00:00.000Z"
+ *                   isOpen: 1 
  *                   choices:
  *                     - id: 1
  *                       choice_text: "Trumpo"
@@ -132,14 +185,59 @@ router.get('/', service.getPolls);
  *                 value:
  *                   id: 2
  *                   question: "Test question?"
- *                   poll_type: "continuous"
- *                   poll:
- *                     id: 2
- *                     min_value: 6
- *                     max_value: 10
+ *                   tags: ["tag1", "tag2"]
+ *                   creatorName: "GhostDragon"
+ *                   creatorUsername: "GhostDragon"
+ *                   creatorImage: null
+ *                   pollType: "continuous"
+ *                   rejectVotes: "2 hr"
+ *                   setDueDate: 0 
+ *                   closingDate: null
+ *                   isOpen: 1 
+ *                   cont_poll_type: "numeric"
  *                   choices:
  *                     - 7
  *                     - 8   
+ *       404:
+ *         description: Resource Not Found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                    message:
+ *                      type: string
+ *                    code:
+ *                      type: integer
+ *             examples:
+ *               NO_SUCH_POLL_ERROR:
+ *                 value:
+ *                   error:
+ *                     message: No such poll found.
+ *                     code: 3001
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                    message:
+ *                      type: string
+ *                    code:
+ *                      type: integer
+ *             examples:
+ *               databaseError:
+ *                 value:
+ *                   error:
+ *                     message: Error while accessing the database.
+ *                     code: 3000
  */
 router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId);
 
@@ -205,19 +303,24 @@ router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId
  *             schema:
  *               type: object
  *               properties:
- *                 message:
- *                   type: string
- *                 code:
- *                   type: integer
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     message:
+ *                       type: string
+ *                     code:
+ *                       type: integer
  *             examples:
  *               badRequest:
  *                 value:
- *                   message: Bad request body for creating a discrete poll.
- *                   code: 4000
- *               accessTokenNull:
+ *                   error:
+ *                     message: Bad request body for creating a discrete poll.
+ *                     code: 4000
+ *               ACCESS_TOKEN_INVALID_ERROR:
  *                 value:
- *                   message: The access token is null
- *                   code: 1005
+ *                   error:
+ *                     message: The access token is invalid.
+ *                     code: 1001
  *       401:
  *         description: Unauthorized
  *         content:
@@ -225,15 +328,19 @@ router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId
  *             schema:
  *               type: object
  *               properties:
- *                 message:
- *                   type: string
- *                 code:
- *                   type: integer
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     message:
+ *                       type: string
+ *                     code:
+ *                       type: integer
  *             examples:
- *               accessTokenInvalid:
+ *               ACCESS_TOKEN_INVALID_ERROR:
  *                 value:
- *                   message: The access token is invalid.
- *                   code: 1001
+ *                   error:
+ *                     message: The access token is invalid.
+ *                     code: 1001
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -241,15 +348,19 @@ router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId
  *             schema:
  *               type: object
  *               properties:
- *                 message:
- *                   type: string
- *                 code:
- *                   type: integer
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     message:
+ *                       type: string
+ *                     code:
+ *                       type: integer
  *             examples:
  *               databaseError:
  *                 value:
- *                   message: Error while accessing the database.
- *                   code: 3000
+ *                   error:
+ *                     message: Error while accessing the database.
+ *                     code: 3000
  */
 router.post('/discrete', authenticator.authorizeAccessToken, service.addDiscretePoll);
 
@@ -324,23 +435,19 @@ router.post('/discrete', authenticator.authorizeAccessToken, service.addDiscrete
  *             schema:
  *               type: object
  *               properties:
- *                 message:
- *                   type: string
- *                 code:
- *                   type: integer
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     message:
+ *                       type: string
+ *                     code:
+ *                       type: integer
  *             examples:
  *               badRequest:
  *                 value:
- *                   message: Bad request body for creating a continuous poll.
- *                   code: 4001
- *               MINMAX_BAD_CONT_POLL_REQUEST_ERROR:
- *                 value:
- *                   message: Minimum value allowed was higher than maximum value allowed in the poll.
- *                   code: 4002
- *               accessTokenNull:
- *                 value:
- *                   message: The access token is null
- *                   code: 1005
+ *                   error:
+ *                     message: Bad request body for creating a continuous poll.
+ *                     code: 4001
  *       401:
  *         description: Unauthorized
  *         content:
@@ -353,10 +460,11 @@ router.post('/discrete', authenticator.authorizeAccessToken, service.addDiscrete
  *                 code:
  *                   type: integer
  *             examples:
- *               accessTokenInvalid:
+ *               ACCESS_TOKEN_INVALID_ERROR:
  *                 value:
- *                   message: The access token is invalid.
- *                   code: 1001
+ *                   error:
+ *                     message: The access token is invalid.
+ *                     code: 1001
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -364,15 +472,19 @@ router.post('/discrete', authenticator.authorizeAccessToken, service.addDiscrete
  *             schema:
  *               type: object
  *               properties:
- *                 message:
- *                   type: string
- *                 code:
- *                   type: integer
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     message:
+ *                       type: string
+ *                     code:
+ *                       type: integer
  *             examples:
  *               databaseError:
  *                 value:
- *                   message: Error while accessing the database.
- *                   code: 3000
+ *                   error:
+ *                     message: Error while accessing the database.
+ *                     code: 3000
  */
 router.post('/continuous', authenticator.authorizeAccessToken, service.addContinuousPoll);
 

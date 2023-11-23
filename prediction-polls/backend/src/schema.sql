@@ -7,6 +7,8 @@ CREATE TABLE users (
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     birthday DATETIME,
+    email_verified BOOLEAN DEFAULT FALSE,
+    email_verification_token VARCHAR(255),
     UNIQUE (username),
     UNIQUE (email)
 );
@@ -22,10 +24,11 @@ CREATE TABLE refresh_tokens (
 CREATE TABLE polls (
     id INT AUTO_INCREMENT PRIMARY KEY,
     question VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
     poll_type ENUM('discrete', 'continuous') NOT NULL,
     openVisibility BOOLEAN NOT NULL,
     setDueDate BOOLEAN NOT NULL,
-    dueDatePoll DATE,
+    closingDate DATE,
     numericFieldValue INT,
     selectedTimeUnit ENUM('min', 'h', 'day', 'mth')
 );
