@@ -5,28 +5,33 @@ const errorCodes = {
     message: 'An unexpected error occurred.',
   },
 
-  ACCESS_TOKEN_INVALID_ERROR: {
+  INTERNAL_SERVER_ERROR: {
     code: 1001,
+    message: "Something went wrong",
+  },
+
+  ACCESS_TOKEN_INVALID_ERROR: {
+    code: 1002,
     message: 'The access token is invalid.',
   },
 
   REFRESH_TOKEN_INVALID_ERROR: {
-    code: 1002,
+    code: 1003,
     message: 'The refresh token is invalid.',
   },
 
   ACCESS_TOKEN_NEEDED_ERROR: {
-    code: 1003,
+    code: 1004,
     message: 'A access token is needed',
   },
 
   REFRESH_TOKEN_NEEDED_ERROR: {
-    code: 1004,
+    code: 1005,
     message: 'A refresh token is needed',
   },
 
   REGISTRATION_FAILED: {
-    code: 1005,
+    code: 1006,
     message: 'Registration failed'
   },
 
@@ -63,6 +68,46 @@ const errorCodes = {
   WRONG_PASSWORD: {
     code: 2006,
     message: 'Password is wrong',
+  },
+
+  INVALID_EMAIL: {
+    code: 2007,
+    message: 'Email does not meet required criteria',
+  },
+
+  INVALID_DATE: {
+    code: 2008,
+    message: 'Date does not meet required criteria',
+  },
+
+  INVALID_PASSWORD: {
+    code: 2009,
+    message: 'Password does not meet required criteria',
+  },
+
+  GOOGLE_LOGIN_FAILED: {
+    code: 2100,
+    message: 'Google authentication failed',
+  },
+
+  GOOGLE_LOGIN_BODY_EMPTY: {
+    code: 2101,
+    message: 'Google login requires code or googleId',
+  },
+
+  GOOGLE_LOGIN_INVALID_GOOGLE_CODE: {
+    code: 2102,
+    message: 'Given google code is not valid',
+  },
+
+  GOOGLE_LOGIN_INVALID_GOOGLE_ID: {
+    code: 2103,
+    message: 'Given google id is not valid',
+  },
+
+  GOOGLE_LOGIN_NONVERIFIED_GOOGLE_ACCOUNT: {
+    code: 2104,
+    message: 'Google account is not verified',
   },
 
   PROFILE_NOT_FOUND: {
