@@ -34,29 +34,6 @@ async function getProfileWithProfileId(req,res){
     }
 }
 
-async function addProfile(req,res){
-    const {userId,username,email,profile_picture,biography, birthday, isHidden} = req.body;
-    try{
-        const result = await authDb.findUser({userId,username,email})
-        if(result.error){
-            throw result.error;
-        }
-        const {profileId,error} = await db.addProfile({userId:result.id,username:result.username,email:result.email,profile_picture,biography, birthday, isHidden});
-        if(error){
-            throw error;
-        }
-
-        const result_profile = await db.getProfileWithUserId(result.id);
-        if(result_profile.error){
-            throw result_profile.error;
-        }
-
-        return res.status(200).json(result_profile.profile);
-    }catch(error){
-        return res.status(400).json({error:error});
-    }
-}
-
 async function updateProfile(req,res){
     const {userId,username,email,profile_picture,biography, birthday, isHidden} = req.body;
 
@@ -81,4 +58,4 @@ async function updateProfile(req,res){
     }
 }
 
-module.exports = {getProfile,getProfileWithProfileId,addProfile,updateProfile}
+module.exports = {getProfile,getProfileWithProfileId,updateProfile}

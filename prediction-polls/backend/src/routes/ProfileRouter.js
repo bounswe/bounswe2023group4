@@ -131,46 +131,6 @@ router.get('/:profileId', service.getProfileWithProfileId);
 /**
  * @swagger
  * /profiles:
- *   post:
- *     tags:
- *       - profiles
- *     description: Add a new profile. UserId, username and email only one of them have to be added. The others wont be used
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Profile'
- *     responses:
- *       201:
- *         description: Profile created successfully
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Profile'
- *       400:
- *         description: Bad Request
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                 code:
- *                   type: integer
- *             examples:
- *               ProfileNotFound:
- *                 value:
- *                   error:
- *                     code: 3002,
- *                     message: Profile could not be created.
- */
-router.post('/', service.addProfile);
-
-/**
- * @swagger
- * /profiles:
  *   patch:
  *     tags:
  *       - profiles
