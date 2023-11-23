@@ -120,25 +120,26 @@ router.get('/', service.getPolls);
  *                   type: integer
  *                 question:
  *                   type: string
- *                 username:
+ *                 tags:
+ *                   type: array
+ *                   items: 
+ *                     type: string
+ *                 creatorName:
  *                   type: string
- *                 poll_type:
+ *                 creatorUsername:
  *                   type: string
- *                 openVisibility:
- *                   type: integer
+ *                 creatorImage:
+ *                   type: string
+ *                 pollType:
+ *                   type: string
+ *                 closingDate:
+ *                   type: string
+ *                 rejectVotes:
+ *                   type: string
  *                 setDueDate:
  *                   type: integer
  *                 dueDatePoll:
  *                   type: string
- *                 numericFieldValue:
- *                   type: integer
- *                 selectedTimeUnit:
- *                   type: string
- *                 poll:
- *                   type: object
- *                   properties:
- *                     id:
- *                       type: integer
  *                 choices:
  *                   oneOf:
  *                     - type: array
@@ -162,15 +163,14 @@ router.get('/', service.getPolls);
  *                 value:
  *                   id: 1
  *                   question: "Who will become POTUS?"
- *                   username: "user123"
- *                   poll_type: "discrete"
- *                   openVisibility: 1 
+ *                   tags: ["tag1", "tag2"]
+ *                   creatorName: "user123"
+ *                   creatorUsername: "GhostDragon"
+ *                   creatorImage: null
+ *                   pollType: "discrete"
+ *                   rejectVotes: "5 min"
  *                   setDueDate: 1 
- *                   dueDatePoll: "2023-11-20T21:00:00.000Z"
- *                   numericFieldValue: 2 
- *                   selectedTimeUnit: "min"
- *                   poll:
- *                     id: 1
+ *                   closingDate: "2023-11-20T21:00:00.000Z"
  *                   choices:
  *                     - id: 1
  *                       choice_text: "Trumpo"
@@ -184,15 +184,14 @@ router.get('/', service.getPolls);
  *                 value:
  *                   id: 2
  *                   question: "Test question?"
- *                   username: "GhostDragon"
- *                   poll_type: "continuous"
- *                   openVisibility: 0 
+ *                   tags: ["tag1", "tag2"]
+ *                   creatorName: "GhostDragon"
+ *                   creatorUsername: "GhostDragon"
+ *                   creatorImage: null
+ *                   pollType: "continuous"
+ *                   rejectVotes: "2 hr"
  *                   setDueDate: 0 
- *                   dueDatePoll: null
- *                   numericFieldValue: null
- *                   selectedTimeUnit: null
- *                   poll:
- *                     id: 2
+ *                   closingDate: null
  *                   choices:
  *                     - 7
  *                     - 8   
