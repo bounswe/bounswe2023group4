@@ -36,43 +36,25 @@ function getPollWithId(req, res) {
             }
 
             if (pollType === 'discrete') {
-                getDiscretePollWithId(req, res, properties);
+                db.getDiscretePollChoices(pollId)
+                .then((choices) => {
+                
+                    const choicesWithVoteCount = choices.map((choice) => {
+                        return db.getDiscreteVoteCount(choice.id)
+                        .then((voterCount) => {
+                            return { ...choice, voter_count: voterCount };
+                        })
+                    });
+
+                    Promise.all(choicesWithVoteCount)
+                    .then((options) => {
+                        res.json({...properties, "options": options});
+                    })
+                })
             } else if (pollType === 'continuous') {
                 getContinuousPollWithId(req, res, properties);
             }
         }
-    })
-}
-
-function getDiscretePollWithId(req,res, responseBody){
-    const pollId = req.params.pollId;
-
-    db.getDiscretePollWithId(pollId)
-    .then((rows) => {
-        if (rows.length === 0) {
-            res.status(404).json({error: errorCodes.NO_SUCH_POLL_ERROR});
-        } else {
-            db.getDiscretePollChoices(pollId)
-            .then((choices) => {
-                
-                const choicesWithVoteCount = choices.map((choice) => {
-                    return db.getDiscreteVoteCount(choice.id)
-                    .then((voterCount) => {
-                        return { ...choice, voter_count: voterCount };
-                    })
-                });
-
-                Promise.all(choicesWithVoteCount)
-                .then((updatedChoices) => {
-                    responseBody = { ...responseBody, "options": updatedChoices };
-                    res.json(responseBody);
-                })
-            })
-        }
-    })
-    .catch((error) => {
-        console.error(error);
-        res.status(500).json({error: errorCodes.DATABASE_ERROR});
     })
 }
 
