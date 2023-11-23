@@ -89,6 +89,46 @@ router.get('/', service.getProfile);
 
 /**
  * @swagger
+ * /profiles:
+ *   get:
+ *     tags:
+ *       - profiles
+ *     description: Get your profile.  
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               schema:
+ *               $ref: '#/components/schemas/Profile'
+ *       400:
+ *         description: Bad Request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 code:
+ *                   type: integer
+ *             examples:
+ *               userNotFoundWithUserId:
+ *                 value:
+ *                   error:
+ *                     code: 2001,
+ *                     message: User with the given user id not found
+ *               ProfileNotFound:
+ *                 value:
+ *                   error:
+ *                     code: 3000,
+ *                     message: Profile not found,
+ */
+router.get('/myProfile',authenticator.authorizeAccessToken ,service.getMyProfile);
+
+/**
+ * @swagger
  * /profiles/{profileId}:
  *   get:
  *     tags:
