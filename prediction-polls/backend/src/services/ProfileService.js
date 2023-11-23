@@ -14,6 +14,13 @@ async function getProfile(req,res){
         if(error){
             throw error;
         }
+
+        const {badges,error:badge_error} = await db.getBadges(result.id);
+        if(badge_error){
+            throw badge_error;
+        }
+        profile.badges = badges;
+
         return res.status(200).json(profile);
         
     }catch(error){
@@ -28,6 +35,13 @@ async function getProfileWithProfileId(req,res){
         if(error){
             throw error
         }
+
+        const {badges,error:badge_error} = await db.getBadges(result.id);
+        if(badge_error){
+            throw badge_error;
+        }
+        profile.badges = badges;
+
         res.status(200).json(profile);
     }catch(error){
         return res.status(400).json({error:error});

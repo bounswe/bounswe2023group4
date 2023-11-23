@@ -106,10 +106,23 @@ async function updateProfile({
 
 
 async function getProfileIsHidden(profileId){
-    profile = await getProfileWithProfileId(profileId);
-    return profile.isHidden;
+    result = await getProfileWithProfileId(profileId);
+    return result.profile.isHidden;
+}
+
+async function getBadges(userId){
+    const sql = 'SELECT * FROM badges WHERE userId= ?';
+
+    try {
+        const [rows] = await pool.query(sql, [userId]);
+        const badges = rows.map(badge => {return {topic:badge.topic,rank:badge.userRank}})
+        
+        return {badges:badges};
+    } catch (error) {
+        return {error:errorCodes.DATABASE_ERROR};
+    }
 }
 
 
-module.exports = {getProfileWithProfileId,getProfileWithUserId,addProfile,updateProfile}
+module.exports = {getProfileWithProfileId,getProfileWithUserId,addProfile,updateProfile,getBadges}
     
