@@ -20,46 +20,52 @@ function getPollWithId(req, res) {
         if (rows.length === 0) {
             res.status(404).json({error: errorCodes.NO_SUCH_POLL_ERROR});
         } else {
-            const pollType = rows[0].poll_type;
-            const responseBody = rows[0];
+            const pollObject = rows[0];
+            const pollType = pollObject.poll_type;
+            const properties = {
+                "id": pollObject.id,
+                "question": pollObject.question,
+                "tags": [],
+                "creatorName": pollObject.username,
+                "creatorUsername": pollObject.username,
+                "creatorImage": null,
+                "pollType": pollObject.poll_type,
+                "closingDate": pollObject.closingDate,
+                "rejectVotes": `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}`,
+                "isOpen": true,
+                "comments": []
+            }
+
             if (pollType === 'discrete') {
-                getDiscretePollWithId(req, res, responseBody);
+                db.getDiscretePollChoices(pollId)
+                .then((choices) => {
+                
+                    const choicesWithVoteCount = choices.map((choice) => {
+                        return db.getDiscreteVoteCount(choice.id)
+                        .then((voterCount) => {
+                            return { ...choice, voter_count: voterCount };
+                        })
+                    });
+
+                    Promise.all(choicesWithVoteCount)
+                    .then((options) => {
+                        res.json({...properties, "options": options});
+                    })
+                })
             } else if (pollType === 'continuous') {
-                getContinuousPollWithId(req, res, responseBody);
+                db.getContinuousPollWithId(pollId)
+                .then((rows) => {
+                    if (rows.length === 0) {
+                        res.status(404).json({error: errorCodes.NO_SUCH_POLL_ERROR});
+                    } else {
+                        db.getContinuousPollVotes(pollId)
+                        .then((choices) => {
+                            res.json({...properties, "cont_poll_type": rows[0].cont_poll_type, "options": choices});
+                        })
+                    }
+                })
             }
         }
-    })
-}
-
-function getDiscretePollWithId(req,res, responseBody){
-    const pollId = req.params.pollId;
-
-    db.getDiscretePollWithId(pollId)
-    .then((rows) => {
-        if (rows.length === 0) {
-            res.status(404).json({error: errorCodes.NO_SUCH_POLL_ERROR});
-        } else {
-            db.getDiscretePollChoices(pollId)
-            .then((choices) => {
-                
-                const choicesWithVoteCount = choices.map((choice) => {
-                    return db.getDiscreteVoteCount(choice.id)
-                    .then((voterCount) => {
-                        return { ...choice, voter_count: voterCount };
-                    })
-                });
-
-                Promise.all(choicesWithVoteCount)
-                .then((updatedChoices) => {
-                    responseBody = { ...responseBody, "poll": rows[0], "choices": updatedChoices };
-                    res.json(responseBody);
-                })
-            })
-        }
-    })
-    .catch((error) => {
-        console.error(error);
-        res.status(500).json({error: errorCodes.DATABASE_ERROR});
     })
 }
 
@@ -105,27 +111,6 @@ function validateAddDiscretePoll(body) {
     }
     
     return true;
-}
-
-function getContinuousPollWithId(req,res, responseBody){
-    const pollId = req.params.pollId;
-
-    db.getContinuousPollWithId(pollId)
-    .then((rows) => {
-        if (rows.length === 0) {
-            res.status(404).json({error: errorCodes.NO_SUCH_POLL_ERROR});
-        } else {
-            db.getContinuousPollVotes(pollId)
-            .then((choices) => {
-                responseBody = {...responseBody, "poll": rows[0], "choices": choices}
-                res.json(responseBody)
-            })
-        }
-    })
-    .catch((error) => {
-        console.error(error);
-        res.status(500).json({error: errorCodes.DATABASE_ERROR});
-    })
 }
 
 function addContinuousPoll(req,res){
