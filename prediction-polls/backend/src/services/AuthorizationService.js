@@ -1,6 +1,7 @@
 require('dotenv').config();
 const jwt = require("jsonwebtoken");
 const db = require("../repositories/AuthorizationDB.js");
+const profileDb = require("../repositories/ProfileDB.js");
 const errorCodes = require("../errorCodes.js")
 
 const bcrypt = require('bcrypt')
@@ -9,51 +10,56 @@ function homePage(req, res){
     res.status(200).json({"username":req.user.name,"key":"very-secret"});
   }
 
-  async function signup(req, res) {
-    const { username, password, email, birthday } = req.body;
+async function signup(req, res) {
+  const { username, password, email, birthday } = req.body;
 
-    // Email validation
-    if (!isValidEmail(email)) {
-        return res.status(400).json({error:errorCodes.INVALID_EMAIL});
-    }
+  // Email validation
+  if (!isValidEmail(email)) {
+      return res.status(400).json({error:errorCodes.INVALID_EMAIL});
+  }
 
-    // Birthday validation
-    if (birthday && !isValidBirthday(birthday)) {
-        return res.status(400).send({error:errorCodes.INVALID_DATE});
+  // Birthday validation
+  if (birthday && !isValidBirthday(birthday)) {
+      return res.status(400).send({error:errorCodes.INVALID_DATE});
 
-    }
+  }
 
-    // Check if username or email is in use
-    const { usernameInUse, emailInUse, error } = await db.isUsernameOrEmailInUse(username, email);
-    
-    if (error) {
-        return res.status(500).json({error:errorCodes.DATABASE_ERROR});
-    }
+  // Check if username or email is in use
+  const { usernameInUse, emailInUse, error } = await db.isUsernameOrEmailInUse(username, email);
+  
+  if (error) {
+      return res.status(500).json({error:errorCodes.DATABASE_ERROR});
+  }
 
-    if (usernameInUse) {
-        return res.status(400).send({error:errorCodes.USERNAME_ALREADY_EXISTS});
-    }
+  if (usernameInUse) {
+      return res.status(400).send({error:errorCodes.USERNAME_ALREADY_EXISTS});
+  }
 
-    if (emailInUse) {
-        return res.status(400).send({error:errorCodes.USERNAME_ALREADY_EXISTS});
-    }
+  if (emailInUse) {
+      return res.status(400).send({error:errorCodes.USERNAME_ALREADY_EXISTS});
+  }
 
-    // Validate password
-    if (!isValidPassword(password)) {
-        return res.status(400).send({error:errorCodes.INVALID_PASSWORD});
-    }
-    const verificationToken = generateVerificationToken();
-    userData = await db.findUser({username: username})
-    await db.saveEmailVerificationToken(userData.id, verificationToken);
-    await sendVerificationEmail(email, verificationToken);
-    // Attempt to add user
-    const { success, error: addUserError } = await db.addUser(username, password, email, birthday);
+  // Validate password
+  if (!isValidPassword(password)) {
+      return res.status(400).send({error:errorCodes.INVALID_PASSWORD});
+  }
+  // Attempt to add user
+  const { userId, error: addUserError } = await db.addUser(username, password, email, birthday);
+  if (error) {
+    return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
+  }
 
-    if (!success) {
-        return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
-    } else {
-        res.status(201).send({status:"success"});
-    }
+  const result = await profileDb.addProfile(userId,username,email);
+  if(!result.profileId){
+    return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
+  }
+
+  const verificationToken = generateVerificationToken();
+  await db.saveEmailVerificationToken(userId, verificationToken);
+  await sendVerificationEmail(email, verificationToken);
+
+  res.status(201).send({status:"success"});
+  
 }
 
 async function sendVerificationEmail(email, token) {
