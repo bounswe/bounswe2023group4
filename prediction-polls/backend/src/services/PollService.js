@@ -20,12 +20,25 @@ function getPollWithId(req, res) {
         if (rows.length === 0) {
             res.status(404).json({error: errorCodes.NO_SUCH_POLL_ERROR});
         } else {
-            const pollType = rows[0].poll_type;
-            const responseBody = rows[0];
+            const pollObject = rows[0];
+            const pollType = pollObject.poll_type;
+            const properties = {
+                "id": pollObject.id,
+                "question": pollObject.question,
+                "tags": [],
+                "creatorName": pollObject.username,
+                "creatorUsername": pollObject.username,
+                "creatorImage": null,
+                "pollType": pollObject.poll_type,
+                "rejectVotes": `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}`,
+                "isOpen": true,
+                "comments": []
+            }
+
             if (pollType === 'discrete') {
-                getDiscretePollWithId(req, res, responseBody);
+                getDiscretePollWithId(req, res, properties);
             } else if (pollType === 'continuous') {
-                getContinuousPollWithId(req, res, responseBody);
+                getContinuousPollWithId(req, res, properties);
             }
         }
     })
