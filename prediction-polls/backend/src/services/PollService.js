@@ -51,7 +51,7 @@ function getDiscretePollWithId(req,res, responseBody){
 
                 Promise.all(choicesWithVoteCount)
                 .then((updatedChoices) => {
-                    responseBody = { ...responseBody, "poll": rows[0], "options": updatedChoices };
+                    responseBody = { ...responseBody, "options": updatedChoices };
                     res.json(responseBody);
                 })
             })
@@ -117,7 +117,7 @@ function getContinuousPollWithId(req,res, responseBody){
         } else {
             db.getContinuousPollVotes(pollId)
             .then((choices) => {
-                responseBody = {...responseBody, "poll": rows[0], "options": choices}
+                responseBody = {...responseBody, "options": choices}
                 res.json(responseBody)
             })
         }
