@@ -132,14 +132,14 @@ router.get('/', service.getPolls);
  *                   type: string
  *                 pollType:
  *                   type: string
- *                 closingDate:
- *                   type: string
  *                 rejectVotes:
  *                   type: string
  *                 setDueDate:
  *                   type: integer
- *                 dueDatePoll:
+ *                 closingDate:
  *                   type: string
+ *                 isOpen:
+ *                   type: integer
  *                 choices:
  *                   oneOf:
  *                     - type: array
@@ -171,6 +171,7 @@ router.get('/', service.getPolls);
  *                   rejectVotes: "5 min"
  *                   setDueDate: 1 
  *                   closingDate: "2023-11-20T21:00:00.000Z"
+ *                   isOpen: 1 
  *                   choices:
  *                     - id: 1
  *                       choice_text: "Trumpo"
@@ -192,6 +193,8 @@ router.get('/', service.getPolls);
  *                   rejectVotes: "2 hr"
  *                   setDueDate: 0 
  *                   closingDate: null
+ *                   isOpen: 1 
+ *                   cont_poll_type: "numeric"
  *                   choices:
  *                     - 7
  *                     - 8   
