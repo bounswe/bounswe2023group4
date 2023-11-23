@@ -28,7 +28,7 @@ CREATE TABLE polls (
     poll_type ENUM('discrete', 'continuous') NOT NULL,
     openVisibility BOOLEAN NOT NULL,
     setDueDate BOOLEAN NOT NULL,
-    dueDatePoll DATE,
+    closingDate DATE,
     numericFieldValue INT,
     selectedTimeUnit ENUM('min', 'h', 'day', 'mth')
 );
