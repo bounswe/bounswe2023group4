@@ -20,56 +20,96 @@ const router = express.Router();
  *               type: array
  *               items:
  *                 type: object
- *                 required: ["id", "question", "poll_type"]
+ *                 required: ["id", "question", "tags", "creatorName", "creatorUsername", "creatorImage", "pollType", "closingDate", "rejectVotes", "isOpen", "comments", "options"]
  *                 properties: 
  *                   id:
  *                     type: integer
  *                   question:
  *                     type: string
- *                   username:
+ *                   tags:
+ *                     type: array
+ *                     items: 
+ *                       type: string
+ *                   creatorName:
  *                     type: string
- *                   poll_type:
+ *                   creatorUsername:
  *                     type: string
- *                   openVisibility:
- *                     type: integer
- *                   setDueDate:
- *                     type: integer
- *                   dueDatePoll:
+ *                   creatorImage:
  *                     type: string
- *                   numericFieldValue:
- *                     type: integer
- *                   selectedTimeUnit:
+ *                   pollType:
  *                     type: string
+ *                   closingDate:
+ *                     type: string
+ *                   rejectVotes:
+ *                     type: string
+ *                   isOpen:
+ *                     type: boolean
+ *                   cont_poll_type:
+ *                     type: string
+ *                   comments:
+ *                     type: array
+ *                     items: 
+ *                       type: object
+ *                       properties:
+ *                         id:
+ *                           type: integer
+ *                         content:
+ *                           type: string
+ *                   options:
+ *                     oneOf:
+ *                       - type: array
+ *                         items:
+ *                           type: object
+ *                           properties:
+ *                             id:
+ *                               type: integer
+ *                             choice_text:
+ *                               type: string
+ *                             poll_id:
+ *                               type: integer
+ *                             voter_count:
+ *                               type: integer
+ *                       - type: array
+ *                         items:
+ *                           type: integer
  *             examples:
  *               genericExample:
  *                 value:
  *                   - id: 1
  *                     question: "Who will become POTUS?"
- *                     username: "user1234"
- *                     poll_type: "discrete"
- *                     openVisibility: 1 
+ *                     tags: ["tag1", "tag2"]
+ *                     creatorName: "user123"
+ *                     creatorUsername: "GhostDragon"
+ *                     creatorImage: null
+ *                     pollType: "discrete"
+ *                     rejectVotes: "5 min"
  *                     setDueDate: 1 
- *                     dueDatePoll: "2023-11-20T21:00:00.000Z"
- *                     numericFieldValue: 2 
- *                     selectedTimeUnit: "min"
+ *                     closingDate: "2023-11-20T21:00:00.000Z"
+ *                     isOpen: 1 
+ *                     options:
+ *                       - id: 1
+ *                         choice_text: "Trumpo"
+ *                         poll_id: 1
+ *                         voter_count: 0
+ *                       - id: 2
+ *                         choice_text: "Biden"
+ *                         poll_id: 1
+ *                         voter_count: 1
  *                   - id: 2
- *                     question: "Test3?"
- *                     username: "GoodGambler"
- *                     poll_type: "continuous"
- *                     openVisibility: 0 
+ *                     question: "Test question?"
+ *                     tags: ["tag1", "tag2"]
+ *                     creatorName: "GhostDragon"
+ *                     creatorUsername: "GhostDragon"
+ *                     creatorImage: null
+ *                     pollType: "continuous"
+ *                     rejectVotes: "2 hr"
  *                     setDueDate: 0 
- *                     dueDatePoll: null
- *                     numericFieldValue: null
- *                     selectedTimeUnit: null
- *                   - id: 3
- *                     question: "Who will become POTUS?"
- *                     username: "GhostDragon"
- *                     poll_type: "discrete"
- *                     openVisibility: 1 
- *                     setDueDate: 1 
- *                     dueDatePoll: "2023-11-20T21:00:00.000Z"
- *                     numericFieldValue: 3
- *                     selectedTimeUnit: "h"
+ *                     closingDate: null
+ *                     isOpen: 1 
+ *                     cont_poll_type: "numeric"
+ *                     options:
+ *                       - 7
+ *                       - 8   
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -114,7 +154,7 @@ router.get('/', service.getPolls);
  *           application/json:
  *             schema:
  *               type: object
- *               required: ["id", "question", "poll_type", "poll", "choices"]
+ *               required: ["id", "question", "poll_type", "poll", "options"]
  *               properties:
  *                 id:
  *                   type: integer
@@ -140,7 +180,9 @@ router.get('/', service.getPolls);
  *                   type: string
  *                 isOpen:
  *                   type: integer
- *                 choices:
+ *                 cont_poll_type:
+ *                   type: string
+ *                 options:
  *                   oneOf:
  *                     - type: array
  *                       items:
@@ -172,7 +214,7 @@ router.get('/', service.getPolls);
  *                   setDueDate: 1 
  *                   closingDate: "2023-11-20T21:00:00.000Z"
  *                   isOpen: 1 
- *                   choices:
+ *                   options:
  *                     - id: 1
  *                       choice_text: "Trumpo"
  *                       poll_id: 1
@@ -195,7 +237,7 @@ router.get('/', service.getPolls);
  *                   closingDate: null
  *                   isOpen: 1 
  *                   cont_poll_type: "numeric"
- *                   choices:
+ *                   options:
  *                     - 7
  *                     - 8   
  *       404:
