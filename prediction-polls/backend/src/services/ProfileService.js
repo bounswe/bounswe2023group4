@@ -34,6 +34,25 @@ async function getProfileWithProfileId(req,res){
     }
 }
 
+async function getMyProfile(req,res){
+    const userId = req.user.id;
+    try{
+        const result = await authDb.findUser({userId})
+        if(result.error){
+            throw result.error;
+        }
+    
+        const {profile,error} = await db.getProfileWithUserId(result.id);
+        if(error){
+            throw error;
+        }
+        return res.status(200).json(profile);
+        
+    }catch(error){
+        return res.status(400).json({error:error});
+    }
+}
+
 async function updateProfile(req,res){
     const {userId,username,email,profile_picture,biography, birthday, isHidden} = req.body;
 
@@ -58,4 +77,4 @@ async function updateProfile(req,res){
     }
 }
 
-module.exports = {getProfile,getProfileWithProfileId,updateProfile}
+module.exports = {getProfile,getProfileWithProfileId,getMyProfile,updateProfile}
