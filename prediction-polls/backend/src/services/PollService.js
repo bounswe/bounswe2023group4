@@ -5,7 +5,51 @@ const errorCodes = require("../errorCodes.js")
 function getPolls(req,res){
     db.getPolls()
     .then((rows) => {
-        res.json(rows);
+        const pollObjects = rows.map((pollObject) => {
+            const properties =  {
+                "id": pollObject.id,
+                "question": pollObject.question,
+                "tags": [],
+                "creatorName": pollObject.username,
+                "creatorUsername": pollObject.username,
+                "creatorImage": null,
+                "pollType": pollObject.poll_type,
+                "closingDate": pollObject.closingDate,
+                "rejectVotes": `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}`,
+                "isOpen": true,
+                "comments": []
+            }
+            if (properties.pollType === 'discrete') {
+                return db.getDiscretePollChoices(properties.id)
+                .then((choices) => {
+                
+                    const choicesWithVoteCount = choices.map((choice) => {
+                        return db.getDiscreteVoteCount(choice.id)
+                        .then((voterCount) => {
+                            return { ...choice, voter_count: voterCount };
+                        })
+                    });
+
+                    return Promise.all(choicesWithVoteCount)
+                    .then((options) => {
+                        return {...properties, "options": options};
+                    })
+                })
+            } else if (properties.pollType === 'continuous') {
+                return db.getContinuousPollWithId(properties.id)
+                .then((rows) => {
+                    return db.getContinuousPollVotes(properties.id)
+                    .then((choices) => {
+                        return {...properties, "cont_poll_type": rows[0].cont_poll_type, "options": choices};
+                    })
+                })
+            }
+
+        });
+        Promise.all(pollObjects)
+        .then((result) => {
+            res.json(result);
+        })
     })
     .catch((error) => {
         console.error(error);
