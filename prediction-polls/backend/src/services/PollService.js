@@ -52,7 +52,17 @@ function getPollWithId(req, res) {
                     })
                 })
             } else if (pollType === 'continuous') {
-                getContinuousPollWithId(req, res, properties);
+                db.getContinuousPollWithId(pollId)
+                .then((rows) => {
+                    if (rows.length === 0) {
+                        res.status(404).json({error: errorCodes.NO_SUCH_POLL_ERROR});
+                    } else {
+                        db.getContinuousPollVotes(pollId)
+                        .then((choices) => {
+                            res.json({...properties, "cont_poll_type": rows[0].cont_poll_type, "options": choices});
+                        })
+                    }
+                })
             }
         }
     })
@@ -100,27 +110,6 @@ function validateAddDiscretePoll(body) {
     }
     
     return true;
-}
-
-function getContinuousPollWithId(req,res, responseBody){
-    const pollId = req.params.pollId;
-
-    db.getContinuousPollWithId(pollId)
-    .then((rows) => {
-        if (rows.length === 0) {
-            res.status(404).json({error: errorCodes.NO_SUCH_POLL_ERROR});
-        } else {
-            db.getContinuousPollVotes(pollId)
-            .then((choices) => {
-                responseBody = {...responseBody, "cont_poll_type": rows[0].cont_poll_type, "options": choices}
-                res.json(responseBody)
-            })
-        }
-    })
-    .catch((error) => {
-        console.error(error);
-        res.status(500).json({error: errorCodes.DATABASE_ERROR});
-    })
 }
 
 function addContinuousPoll(req,res){
