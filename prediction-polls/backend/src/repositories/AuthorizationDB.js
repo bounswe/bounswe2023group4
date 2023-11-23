@@ -34,8 +34,7 @@ async function checkCredentials(username, password) {
         const [rows] = await pool.query(sql, values);
         return rows;
     } catch (error) {
-        console.error(error);
-        return false;
+        return {error:errorCodes.WRONG_PASSWORD};
     }
 }
 
@@ -52,9 +51,10 @@ async function addUser(username, password,email,birthday){
         const values = [username, email, password, birthday];
     
         const [result] = await pool.query(sql, values);
-        return {"success":true,"error":undefined, "userid": result.insertId} ;
+
+        return {userId: result.insertId} ;
       } catch (error) {
-        return {"success":false,"error":error} ;
+        return {error:error} ;
       }
   }
 
@@ -152,14 +152,14 @@ async function saveEmailVerificationToken(userId, token) {
     const sql = 'UPDATE users SET email_verification_token = ? WHERE id = ?';
     const values = [token, userId];
 
-    return pool.query(sql, values);
+    return await pool.query(sql, values);
 }
 
 async function verifyEmail(token) {
     const sql = 'UPDATE users SET email_verified = TRUE WHERE email_verification_token = ?';
     const values = [token];
 
-    return pool.query(sql, values);
+    return await pool.query(sql, values);
 }
 const nodemailer = require('nodemailer');
 

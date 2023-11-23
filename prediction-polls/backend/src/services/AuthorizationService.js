@@ -14,32 +14,32 @@ function homePage(req, res){
 
     // Email validation
     if (!isValidEmail(email)) {
-        return res.status(400).send('Invalid email format');
+        return res.status(400).json({error:errorCodes.INVALID_EMAIL});
     }
 
     // Birthday validation
     if (!isValidBirthday(birthday)) {
-        return res.status(400).send('Invalid or unreasonable birthday');
+        return res.status(400).send({error:errorCodes.INVALID_DATE});
     }
 
     // Check if username or email is in use
     const { usernameInUse, emailInUse, error } = await db.isUsernameOrEmailInUse(username, email);
     
     if (error) {
-        return res.status(500).send('Internal server error');
+        return res.status(500).json({error:errorCodes.DATABASE_ERROR});
     }
 
     if (usernameInUse) {
-        return res.status(400).send('Username is already in use');
+        return res.status(400).send({error:errorCodes.USERNAME_ALREADY_EXISTS});
     }
 
     if (emailInUse) {
-        return res.status(400).send('Email is already in use');
+        return res.status(400).send({error:errorCodes.USERNAME_ALREADY_EXISTS});
     }
 
     // Validate password
     if (!isValidPassword(password)) {
-        return res.status(400).send('Password does not meet the required criteria');
+        return res.status(400).send({error:errorCodes.INVALID_PASSWORD});
     }
     const verificationToken = generateVerificationToken();
     await db.saveEmailVerificationToken(username, verificationToken);
@@ -48,11 +48,12 @@ function homePage(req, res){
     const { success, error: addUserError } = await db.addUser(username, password, email, birthday);
 
     if (!success) {
-        return res.status(400).send('Registration failed: ' + addUserError);
+        return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
     } else {
-        res.status(201).send("Registration successful");
+        res.status(201).send({status:"success"});
     }
 }
+
 async function sendVerificationEmail(email, token) {
   const transporter = db.createTransporter();
   const verificationUrl = `http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/verify-email?token=${token}`;
@@ -67,8 +68,7 @@ async function sendVerificationEmail(email, token) {
   try {
       await transporter.sendMail(mailOptions);
   } catch (error) {
-      console.error("Error sending email: ", error);
-      // Handle email sending error
+      res.status(500).send({error:errorCodes.INTERNAL_SERVER_ERROR})
   }
 }
 const crypto = require('crypto');
@@ -107,9 +107,9 @@ function isValidEmail(email) {
 
 function createAccessTokenFromRefreshToken(req, res){
     const refreshToken = req.body.refreshToken;
-    if (refreshToken == null) return res.status(400).json({ code: errorCodes.REFRESH_TOKEN_NEEDED_ERROR.code, message: errorCodes.REFRESH_TOKEN_NEEDED_ERROR.message });
+    if (refreshToken == null) return res.status(400).json({ error: errorCodes.REFRESH_TOKEN_NEEDED_ERROR});
     jwt.verify(refreshToken,process.env.REFRESH_TOKEN_SECRET, (err, user) => {
-      if (err) return res.status(401).json({ code: errorCodes.REFRESH_TOKEN_INVALID_ERROR.code, message: errorCodes.REFRESH_TOKEN_INVALID_ERROR.message })
+      if (err) return res.status(401).json({ error: errorCodes.REFRESH_TOKEN_INVALID_ERROR })
       const accessToken = generateAccessToken({name : user.name, id : user.id});
       res.status(201).json({accessToken:accessToken});
     }) 
@@ -119,16 +119,16 @@ async function logIn(req,res){
     // Authorize User  
     const username = req.body.username;
     const password = req.body.password;
+
     let [userAuthenticated] = await db.checkCredentials(username,password);
     if (!userAuthenticated) {
-      res.status(401).json({ code: errorCodes.USER_NOT_FOUND.code, message: errorCodes.USER_NOT_FOUND.message });
-      return;
+      return res.status(401).json({ error: errorCodes.USER_NOT_FOUND });
     }
 
     const user = {name : username, id: userAuthenticated.id};
     const accesToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user);
-    db.addRefreshToken(refreshToken);
+    await db.addRefreshToken(refreshToken);
     res.status(201).json({accessToken: accesToken, refreshToken: refreshToken})
 }
 
@@ -138,17 +138,17 @@ async function logOut(req, res) {
     if (tokenDeleted){
       res.status(204).send("Token deleted successfully");
     } else {
-      res.status(404).json({ code: errorCodes.REFRESH_TOKEN_NEEDED_ERROR.code, message: errorCodes.REFRESH_TOKEN_NEEDED_ERROR.message });
+      res.status(404).json({ error: errorCodes.REFRESH_TOKEN_INVALID_ERROR });
     }
 }
 
 function authorizeAccessToken(req, res, next) {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
-    if (token == null) return res.sendStatus(400).json({ code: errorCodes.ACCESS_TOKEN_NULL.code, message: errorCodes.ACCESS_TOKEN_NULL.message });
+    if (token == null) return res.sendStatus(400).json({ error: errorCodes.ACCESS_TOKEN_NEEDED_ERROR});
   
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-      if (err) return  res.status(401).json({ code: errorCodes.ACCESS_TOKEN_INVALID_ERROR.code, message: errorCodes.ACCESS_TOKEN_INVALID_ERROR.message });
+      if (err) return  res.status(401).json({ error: errorCodes.ACCESS_TOKEN_INVALID_ERROR });
 
       req.user = user;
       next();
