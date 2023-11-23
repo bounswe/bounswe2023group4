@@ -117,7 +117,7 @@ function getContinuousPollWithId(req,res, responseBody){
         } else {
             db.getContinuousPollVotes(pollId)
             .then((choices) => {
-                responseBody = {...responseBody, "options": choices}
+                responseBody = {...responseBody, "cont_poll_type": rows[0].cont_poll_type, "options": choices}
                 res.json(responseBody)
             })
         }
