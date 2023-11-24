@@ -40,8 +40,8 @@ fun Polls(polls: ImmutableList<Poll>, modifier: Modifier = Modifier) {
                         }
                     }
                 },
-                dueDate = it.dueDate,
-                rejectionText = it.rejectionText,
+                dueDate = it.dueDate ?: "",
+                rejectionText = it.rejectionText ?: "",
                 commentCount = it.commentCount
             )
         }

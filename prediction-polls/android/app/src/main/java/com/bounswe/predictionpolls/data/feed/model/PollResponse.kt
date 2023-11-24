@@ -86,7 +86,7 @@ data class PollResponse(
         }
 }
 
-class PollDeserializer : JsonDeserializer<PollResponse> {
+class PollResponseDeserializer : JsonDeserializer<PollResponse> {
     override fun deserialize(
         json: JsonElement,
         typeOfT: Type,

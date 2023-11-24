@@ -36,7 +36,7 @@ import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 
 @Composable
 fun PollComposable(
-    pollCreatorProfilePictureUri: String,
+    pollCreatorProfilePictureUri: String?,
     pollCreatorName: String,
     tags: List<String>,
     pollQuestionTitle: String,
