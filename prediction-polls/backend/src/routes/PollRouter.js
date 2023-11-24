@@ -60,8 +60,12 @@ const router = express.Router();
  *                     type: integer
  *             - type: array
  *               items:
- *                 type: integer
- * 
+ *                 type: object
+ *                 properties:
+ *                   float_value:
+ *                     type: integer
+ *                   date_value:
+ *                     type: string
  *   schemas:
  *     error:
  *       type: object
@@ -127,8 +131,10 @@ const router = express.Router();
  *                     cont_poll_type: "numeric"
  *                     comments: []
  *                     options:
- *                       - 7
- *                       - 8   
+ *                       - float_value: 7
+ *                         date_value: null
+ *                       - float_value: 8
+ *                         date_value: null
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -203,8 +209,10 @@ router.get('/', service.getPolls);
  *                   cont_poll_type: "numeric"
  *                   comments: []
  *                   options:
- *                     - 7
- *                     - 8   
+ *                       - float_value: 7
+ *                         date_value: null
+ *                       - float_value: 8
+ *                         date_value: null
  *       404:
  *         description: Resource Not Found
  *         content:
@@ -494,8 +502,11 @@ router.post('/discrete/:pollId/vote',authenticator.authorizeAccessToken, service
  *             type: object
  *             properties:
  *               choice:
- *                 type: integer
- *                 example: 9
+ *                 oneOf:
+ *                   - type: integer
+ *                     example: 9
+ *                   - type: string
+ *                     example: 2023-11-26
  *     responses:
  *       201:
  *         description: Vote submitted successfully
