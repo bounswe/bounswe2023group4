@@ -5,8 +5,8 @@ import kotlinx.collections.immutable.ImmutableList
 data class ProfileInfo(
     val username: String,
     val userFullName: String,
-    val coverPhotoUri: String,
-    val profilePictureUri: String,
+    val coverPhotoUri: String?,
+    val profilePictureUri: String?,
     val userDescription: String,
     val badgeUris: ImmutableList<String>
 )
