@@ -66,4 +66,22 @@
     <string name="vote_screen_text">Choose one of the options you want to vote for</string>
     <string name="vote_screen_vote_button_text">Vote</string>
     <string name="poll_vote_input_title">Vote points</string>
+
+    <string name="poll_create_screen_title">Create Poll</string>
+    <string name="poll_create_screen_question">Enter the question title</string>
+    <string name="poll_create_screen_question_error">Question cannot be empty</string>
+    <string name="poll_create_screen_type">Choose input type</string>
+    <string name="poll_create_screen_add_options">Add Option</string>
+    <string name="poll_create_screen_enter_options">Enter the options</string>
+    <string name="poll_create_screen_options_error">Every option must be filled</string>
+    <string name="poll_create_screen_option_count_error">At least 2 options must exist.</string>
+    <string name="poll_create_screen_poll_end">Don\'t accept any\nvotes in last</string>
+    <string name="poll_create_screen_poll_end_selection">Enter the options</string>
+    <string name="poll_create_screen_cd_delete">Delete the option</string>
+    <string name="poll_create_due_date">Set Due Date</string>
+    <string name="poll_create_due_date_error">Due date must be valid date</string>
+    <string name="poll_create_screen_create_button">Create</string>
+    <string name="poll_create_screen_choose_continuous_type">Choose customized input type</string>
+    <string name="poll_create_screen_distribution_visibility">Open distribution visibility</string>
+    <string name="poll_create_action">Create</string>
 </resources>
