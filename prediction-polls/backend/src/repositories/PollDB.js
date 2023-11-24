@@ -147,6 +147,8 @@ async function getDiscreteVoteCount(choiceid) {
 }
 
 async function voteDiscretePoll(pollId, userId, choiceId){
+    const connection = await pool.getConnection();
+
     const deleteExistingSql = "DELETE FROM discrete_polls_selections WHERE poll_id = ? AND user_id = ?"
     const addVoteSql = "INSERT INTO discrete_polls_selections (poll_id, choice_id, user_id) VALUES (?, ?, ?)"
 
@@ -155,6 +157,8 @@ async function voteDiscretePoll(pollId, userId, choiceId){
 
         deleteResult = await connection.query(deleteExistingSql, [pollId, userId]);
         addResult = await connection.query(addVoteSql, [pollId, choiceId, userId]);
+
+        connection.commit();
     } catch (error) { 
         await connection.rollback();
         console.error('voteDiscretePoll(): Database Error');
@@ -166,6 +170,8 @@ async function voteDiscretePoll(pollId, userId, choiceId){
 }
 
 async function voteContinuousPoll(pollId, userId, choice, contPollType){
+    const connection = await pool.getConnection();
+
     const deleteExistingSql = "DELETE FROM continuous_poll_selections WHERE poll_id = ? AND user_id = ?"
     const addVoteSql = "INSERT INTO continuous_poll_selections (poll_id, user_id, float_value, date_value) VALUES (?, ?, ?, ?)"
 
