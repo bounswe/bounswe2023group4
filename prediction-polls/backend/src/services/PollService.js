@@ -224,7 +224,7 @@ function voteContinuousPoll(req,res){
     .then((result) => {
         db.voteContinuousPoll(pollId, userId, choice)
         .then(() => {
-            res.json({ message: "Vote Successful" });
+            res.json({ success: true });
         })
     })
 }
