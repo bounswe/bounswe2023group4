@@ -1,7 +1,8 @@
 const db = require("../repositories/ProfileDB.js");
 const authDb = require("../repositories/AuthorizationDB.js");
-const {S3Client,PutObjectCommand,GetObjectCommand} = require('aws-sdk');
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
+const aws = require('aws-sdk');
+const {PutObjectCommand,GetObjectCommand} = require('aws-sdk');
+const { getSignedUrl } = require('aws-sdk');
 
 const generateFileName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
 
@@ -10,13 +11,13 @@ const region = process.env.AWS_BUCKET_REGION
 const accessKeyId = process.env.AWS_ACCESS_KEY
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
 
-const s3Client = new S3Client({
-    region,
-    credentials: {
-      accessKeyId,
-      secretAccessKey
-    }
-  })
+aws.config.update({
+    accessKeyId: accessKeyId,
+    secretAccessKey: secretAccessKey,
+    region: region, 
+});
+
+const s3Client = new aws.S3();
 
 
 async function getImagefromS3(imageName){
