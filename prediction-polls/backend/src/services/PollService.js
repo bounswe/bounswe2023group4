@@ -222,7 +222,8 @@ function voteContinuousPoll(req,res){
 
     db.getContinuousPollWithId(pollId)
     .then((result) => {
-        db.voteContinuousPoll(pollId, userId, choice)
+        const contPollType = result[0].cont_poll_type;
+        db.voteContinuousPoll(pollId, userId, choice, contPollType)
         .then(() => {
             res.json({ success: true });
         })
