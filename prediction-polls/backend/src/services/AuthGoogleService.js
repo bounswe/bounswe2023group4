@@ -39,9 +39,14 @@ async function googleLogInWithCode(code,res){
       }
 
       const generatedPassword = generateRandomPassword(12);
-      const { error, userid} = await db.addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+      const { error, userId} = await db.addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
 
-      const user = {name : googleUser.given_name, id: userid};
+      const result = await profileDb.addProfile(userId,googleUser.given_name,googleUser.email);
+      if(!result.profileId){
+        return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
+      }
+
+      const user = {name : googleUser.given_name, id: userId};
       const accesToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
       db.addRefreshToken(refreshToken);
@@ -63,6 +68,11 @@ async function googleLogInWithCode(code,res){
 
       const generatedPassword = generateRandomPassword(12);
       const {error, userId} = await db.addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+
+      const result = await profileDb.addProfile(userId,googleUser.given_name,googleUser.email);
+      if(!result.profileId){
+        return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
+      }
 
       const user = {name : googleUser.given_name, id: userId};
       const accesToken = generateAccessToken(user);
