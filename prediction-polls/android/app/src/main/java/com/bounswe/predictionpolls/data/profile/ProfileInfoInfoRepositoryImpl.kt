@@ -12,7 +12,17 @@ class ProfileInfoInfoRepositoryImpl @Inject constructor(
         profileInfoRemoteDataSource.fetchProfileInfo(userId).let { result ->
             return when (result) {
                 is Result.Success -> {
-                    Result.Success(result.data.toProfileInfo())
+                    val profileInfo = result.data.toProfileInfo()
+                    if (profileInfo != null) {
+                        Result.Success(profileInfo)
+                    } else {
+                        Result.Error(
+                            Exception(
+                                result.data.predictionPollsError?.message
+                                    ?: "ProfileInfoResponse is not valid"
+                            )
+                        )
+                    }
                 }
 
                 is Result.Error -> {
