@@ -60,12 +60,11 @@ const router = express.Router();
  *                     type: integer
  *             - type: array
  *               items:
- *                 type: object
- *                 properties:
- *                   float_value:
- *                     type: integer
- *                   date_value:
- *                     type: string
+ *                 oneOf:
+ *                   - type: integer
+ *                     example: 9
+ *                   - type: string
+ *                     example: 2023-11-26
  *   schemas:
  *     error:
  *       type: object
@@ -131,10 +130,8 @@ const router = express.Router();
  *                     cont_poll_type: "numeric"
  *                     comments: []
  *                     options:
- *                       - float_value: 7
- *                         date_value: null
- *                       - float_value: 8
- *                         date_value: null
+ *                       - 7
+ *                       - 8
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -194,7 +191,7 @@ router.get('/', service.getPolls);
  *                       choice_text: "Biden"
  *                       poll_id: 1
  *                       voter_count: 1
- *               continuous:
+ *               continuousNumeric:
  *                 value:
  *                   id: 2
  *                   question: "Test question?"
@@ -209,10 +206,25 @@ router.get('/', service.getPolls);
  *                   cont_poll_type: "numeric"
  *                   comments: []
  *                   options:
- *                       - float_value: 7
- *                         date_value: null
- *                       - float_value: 8
- *                         date_value: null
+ *                       - 7
+ *                       - 8
+ *               continuousDate:
+ *                 value:
+ *                   id: 2
+ *                   question: "Test question?"
+ *                   tags: ["tag1", "tag2"]
+ *                   creatorName: "GhostDragon"
+ *                   creatorUsername: "GhostDragon"
+ *                   creatorImage: null
+ *                   pollType: "continuous"
+ *                   rejectVotes: "2 hr"
+ *                   closingDate: null
+ *                   isOpen: 1 
+ *                   cont_poll_type: "date"
+ *                   comments: []
+ *                   options:
+ *                       - "2023-12-22T21:00:00.000Z"
+ *                       - "2023-12-24T21:00:00.000Z"
  *       404:
  *         description: Resource Not Found
  *         content:
