@@ -131,12 +131,12 @@ const errorCodes = {
   },
 
   DATABASE_ERROR: {
-    code: 3000,
+    code: 3004,
     message: 'Error while accessing the database.',
   },
 
   NO_SUCH_POLL_ERROR: {
-    code: 3001,
+    code: 3005,
     message: 'No such poll found.'
   },
 

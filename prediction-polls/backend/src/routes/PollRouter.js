@@ -3,6 +3,77 @@ const service = require("../services/PollService.js");
 const express = require('express');
 const router = express.Router();
 
+/**
+ * @swagger
+ * components:
+ *   objects:
+ *     pollObject:
+ *       type: object
+ *       required: ["id", "question", "tags", "creatorName", "creatorUsername", "creatorImage", "pollType", "closingDate", "rejectVotes", "isOpen", "comments", "options"]
+ *       properties: 
+ *         id:
+ *           type: integer
+ *         question:
+ *           type: string
+ *         tags:
+ *           type: array
+ *           items: 
+ *             type: string
+ *         creatorName:
+ *           type: string
+ *         creatorUsername:
+ *           type: string
+ *         creatorImage:
+ *           type: string
+ *         pollType:
+ *           type: string
+ *         closingDate:
+ *           type: string
+ *         rejectVotes:
+ *           type: string
+ *         isOpen:
+ *           type: boolean
+ *         cont_poll_type:
+ *           type: string
+ *         comments:
+ *           type: array
+ *           items: 
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: integer
+ *               content:
+ *                 type: string
+ *         options:
+ *           oneOf:
+ *             - type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   choice_text:
+ *                     type: string
+ *                   poll_id:
+ *                     type: integer
+ *                   voter_count:
+ *                     type: integer
+ *             - type: array
+ *               items:
+ *                 type: integer
+ * 
+ *   schemas:
+ *     error:
+ *       type: object
+ *       properties:
+ *         error:
+ *           type: object
+ *           properties:
+ *            message:
+ *              type: string
+ *            code:
+ *              type: integer
+ */
 
 /**
  * @swagger
@@ -19,59 +90,7 @@ const router = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 type: object
- *                 required: ["id", "question", "tags", "creatorName", "creatorUsername", "creatorImage", "pollType", "closingDate", "rejectVotes", "isOpen", "comments", "options"]
- *                 properties: 
- *                   id:
- *                     type: integer
- *                   question:
- *                     type: string
- *                   tags:
- *                     type: array
- *                     items: 
- *                       type: string
- *                   creatorName:
- *                     type: string
- *                   creatorUsername:
- *                     type: string
- *                   creatorImage:
- *                     type: string
- *                   pollType:
- *                     type: string
- *                   closingDate:
- *                     type: string
- *                   rejectVotes:
- *                     type: string
- *                   isOpen:
- *                     type: boolean
- *                   cont_poll_type:
- *                     type: string
- *                   comments:
- *                     type: array
- *                     items: 
- *                       type: object
- *                       properties:
- *                         id:
- *                           type: integer
- *                         content:
- *                           type: string
- *                   options:
- *                     oneOf:
- *                       - type: array
- *                         items:
- *                           type: object
- *                           properties:
- *                             id:
- *                               type: integer
- *                             choice_text:
- *                               type: string
- *                             poll_id:
- *                               type: integer
- *                             voter_count:
- *                               type: integer
- *                       - type: array
- *                         items:
- *                           type: integer
+ *                 $ref: '#/components/objects/pollObject'
  *             examples:
  *               genericExample:
  *                 value:
@@ -83,9 +102,9 @@ const router = express.Router();
  *                     creatorImage: null
  *                     pollType: "discrete"
  *                     rejectVotes: "5 min"
- *                     setDueDate: 1 
  *                     closingDate: "2023-11-20T21:00:00.000Z"
  *                     isOpen: 1 
+ *                     comments: []
  *                     options:
  *                       - id: 1
  *                         choice_text: "Trumpo"
@@ -103,10 +122,10 @@ const router = express.Router();
  *                     creatorImage: null
  *                     pollType: "continuous"
  *                     rejectVotes: "2 hr"
- *                     setDueDate: 0 
  *                     closingDate: null
  *                     isOpen: 1 
  *                     cont_poll_type: "numeric"
+ *                     comments: []
  *                     options:
  *                       - 7
  *                       - 8   
@@ -115,21 +134,13 @@ const router = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 error:
- *                   type: object
- *                   properties:
- *                    message:
- *                      type: string
- *                    code:
- *                      type: integer
+ *               $ref: '#/components/schemas/error'
  *             examples:
  *               databaseError:
  *                 value:
  *                   error:
  *                     message: Error while accessing the database.
- *                     code: 3000
+ *                     code: 3004
  */
 router.get('/', service.getPolls);
 
@@ -153,53 +164,7 @@ router.get('/', service.getPolls);
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               required: ["id", "question", "poll_type", "poll", "options"]
- *               properties:
- *                 id:
- *                   type: integer
- *                 question:
- *                   type: string
- *                 tags:
- *                   type: array
- *                   items: 
- *                     type: string
- *                 creatorName:
- *                   type: string
- *                 creatorUsername:
- *                   type: string
- *                 creatorImage:
- *                   type: string
- *                 pollType:
- *                   type: string
- *                 rejectVotes:
- *                   type: string
- *                 setDueDate:
- *                   type: integer
- *                 closingDate:
- *                   type: string
- *                 isOpen:
- *                   type: integer
- *                 cont_poll_type:
- *                   type: string
- *                 options:
- *                   oneOf:
- *                     - type: array
- *                       items:
- *                         type: object
- *                         properties:
- *                           id:
- *                             type: integer
- *                           choice_text:
- *                             type: string
- *                           poll_id:
- *                             type: integer
- *                           voter_count:
- *                             type: integer
- *                     - type: array
- *                       items:
- *                         type: integer
- * 
+ *               $ref: '#/components/objects/pollObject'
  *             examples:
  *               discrete:
  *                 value:
@@ -211,9 +176,9 @@ router.get('/', service.getPolls);
  *                   creatorImage: null
  *                   pollType: "discrete"
  *                   rejectVotes: "5 min"
- *                   setDueDate: 1 
  *                   closingDate: "2023-11-20T21:00:00.000Z"
  *                   isOpen: 1 
+ *                   comments: [] 
  *                   options:
  *                     - id: 1
  *                       choice_text: "Trumpo"
@@ -233,10 +198,10 @@ router.get('/', service.getPolls);
  *                   creatorImage: null
  *                   pollType: "continuous"
  *                   rejectVotes: "2 hr"
- *                   setDueDate: 0 
  *                   closingDate: null
  *                   isOpen: 1 
  *                   cont_poll_type: "numeric"
+ *                   comments: []
  *                   options:
  *                     - 7
  *                     - 8   
@@ -245,41 +210,25 @@ router.get('/', service.getPolls);
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 error:
- *                   type: object
- *                   properties:
- *                    message:
- *                      type: string
- *                    code:
- *                      type: integer
+ *               $ref: '#/components/schemas/error'
  *             examples:
  *               NO_SUCH_POLL_ERROR:
  *                 value:
  *                   error:
  *                     message: No such poll found.
- *                     code: 3001
+ *                     code: 3005
  *       500:
  *         description: Internal Server Error
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 error:
- *                   type: object
- *                   properties:
- *                    message:
- *                      type: string
- *                    code:
- *                      type: integer
+ *               $ref: '#/components/schemas/error'
  *             examples:
  *               databaseError:
  *                 value:
  *                   error:
  *                     message: Error while accessing the database.
- *                     code: 3000
+ *                     code: 3004
  */
 router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId);
 
@@ -343,15 +292,7 @@ router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 error:
- *                   type: object
- *                   properties:
- *                     message:
- *                       type: string
- *                     code:
- *                       type: integer
+ *               $ref: '#/components/schemas/error'
  *             examples:
  *               badRequest:
  *                 value:
@@ -362,47 +303,31 @@ router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId
  *                 value:
  *                   error:
  *                     message: The access token is invalid.
- *                     code: 1001
+ *                     code: 1002
  *       401:
  *         description: Unauthorized
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 error:
- *                   type: object
- *                   properties:
- *                     message:
- *                       type: string
- *                     code:
- *                       type: integer
+ *               $ref: '#/components/schemas/error'
  *             examples:
  *               ACCESS_TOKEN_INVALID_ERROR:
  *                 value:
  *                   error:
  *                     message: The access token is invalid.
- *                     code: 1001
+ *                     code: 1002
  *       500:
  *         description: Internal Server Error
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 error:
- *                   type: object
- *                   properties:
- *                     message:
- *                       type: string
- *                     code:
- *                       type: integer
+ *               $ref: '#/components/schemas/error'
  *             examples:
  *               databaseError:
  *                 value:
  *                   error:
  *                     message: Error while accessing the database.
- *                     code: 3000
+ *                     code: 3004
  */
 router.post('/discrete', authenticator.authorizeAccessToken, service.addDiscretePoll);
 
@@ -475,15 +400,7 @@ router.post('/discrete', authenticator.authorizeAccessToken, service.addDiscrete
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 error:
- *                   type: object
- *                   properties:
- *                     message:
- *                       type: string
- *                     code:
- *                       type: integer
+ *               $ref: '#/components/schemas/error'
  *             examples:
  *               badRequest:
  *                 value:
@@ -495,38 +412,25 @@ router.post('/discrete', authenticator.authorizeAccessToken, service.addDiscrete
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                 code:
- *                   type: integer
+ *               $ref: '#/components/schemas/error'
  *             examples:
  *               ACCESS_TOKEN_INVALID_ERROR:
  *                 value:
  *                   error:
  *                     message: The access token is invalid.
- *                     code: 1001
+ *                     code: 1002
  *       500:
  *         description: Internal Server Error
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 error:
- *                   type: object
- *                   properties:
- *                     message:
- *                       type: string
- *                     code:
- *                       type: integer
+ *               $ref: '#/components/schemas/error'
  *             examples:
  *               databaseError:
  *                 value:
  *                   error:
  *                     message: Error while accessing the database.
- *                     code: 3000
+ *                     code: 3004
  */
 router.post('/continuous', authenticator.authorizeAccessToken, service.addContinuousPoll);
 
