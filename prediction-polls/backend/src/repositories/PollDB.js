@@ -151,12 +151,16 @@ async function voteDiscretePoll(pollId, userId, choiceId){
     const addVoteSql = "INSERT INTO discrete_polls_selections (poll_id, choice_id, user_id) VALUES (?, ?, ?)"
 
     try {
-        // TODO: Consider making this a transaction, commit
-        deleteResult = await pool.query(deleteExistingSql, [pollId, userId]);
-        addResult = await pool.query(addVoteSql, [pollId, choiceId, userId]);
+        await connection.beginTransaction()
+
+        deleteResult = await connection.query(deleteExistingSql, [pollId, userId]);
+        addResult = await connection.query(addVoteSql, [pollId, choiceId, userId]);
     } catch (error) { 
+        await connection.rollback();
         console.error('voteDiscretePoll(): Database Error');
         throw error;
+    } finally {
+        connection.release();
     }
 
 }
@@ -166,16 +170,23 @@ async function voteContinuousPoll(pollId, userId, choice, contPollType){
     const addVoteSql = "INSERT INTO continuous_poll_selections (poll_id, user_id, float_value, date_value) VALUES (?, ?, ?, ?)"
 
     try {
-        // TODO: Consider making this a transaction, commit
-        deleteResult = await pool.query(deleteExistingSql, [pollId, userId]);
+        await connection.beginTransaction()
+
+        deleteResult = await connection.query(deleteExistingSql, [pollId, userId]);
         if (contPollType === "numeric") {
-            addResult = await pool.query(addVoteSql, [pollId, userId, choice, null]);
+            addResult = await connection.query(addVoteSql, [pollId, userId, choice, null]);
         } else if (contPollType === "date") {
-            addResult = await pool.query(addVoteSql, [pollId, userId, null, choice]);
+            addResult = await connection.query(addVoteSql, [pollId, userId, null, choice]);
+        } else {
+            await connection.rollback();
         }
+        connection.commit();
     } catch (error) { 
+        await connection.rollback();
         console.error('voteContinuousPoll(): Database Error');
         throw error;
+    } finally {
+        connection.release();
     }
     
 }
