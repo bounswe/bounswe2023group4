@@ -222,17 +222,10 @@ function voteContinuousPoll(req,res){
 
     db.getContinuousPollWithId(pollId)
     .then((result) => {
-        const minValue = result[0].min_value;
-        const maxValue = result[0].max_value;
-        const choiceValid = minValue <= choice && choice <= maxValue;
-        if (!choiceValid) {
-            res.status(400).json({error: errorCodes.CHOICE_OUT_OF_BOUNDS_ERROR});
-        } else {
-            db.voteContinuousPoll(pollId, userId, choice)
-            .then(() => {
-                res.json({ message: "Vote Successful" });
-            })
-        }
+        db.voteContinuousPoll(pollId, userId, choice)
+        .then(() => {
+            res.json({ message: "Vote Successful" });
+        })
     })
 }
 
