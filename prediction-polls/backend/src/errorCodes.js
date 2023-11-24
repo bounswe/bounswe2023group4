@@ -140,6 +140,16 @@ const errorCodes = {
     message: 'No such poll found.'
   },
 
+  INSUFFICIENT_POINTS_ERROR: {
+    code: 3006,
+    message: 'User does not have enough points'
+  },
+
+  USER_MUST_GIVE_POINTS_ERROR: {
+    code: 3007,
+    message: 'User has to put points to be able to vote polls'
+  },
+
   BAD_DISCRETE_POLL_REQUEST_ERROR: {
     code: 4000,
     message: 'Bad request body for creating a discrete poll.'
