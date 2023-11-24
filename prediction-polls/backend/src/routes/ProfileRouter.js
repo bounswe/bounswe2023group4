@@ -1,7 +1,11 @@
 const authenticator = require("../services/AuthorizationService.js");
 const service = require("../services/ProfileService.js");
+const multer = require('multer');
 const express = require('express');
 const router = express.Router();
+
+const storage = multer.memoryStorage()
+const upload = multer({ storage: storage })
 
 /**
  * @swagger
@@ -167,6 +171,8 @@ router.get('/myProfile',authenticator.authorizeAccessToken ,service.getMyProfile
  *                     message: Profile not found,
  */
 router.get('/:profileId', service.getProfileWithProfileId);
+
+router.post("/photo",authenticator.authorizeAccessToken,upload.single('image'),service.uploadImagetoS3);
 
 /**
  * @swagger
