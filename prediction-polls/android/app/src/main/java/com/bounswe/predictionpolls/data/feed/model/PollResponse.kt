@@ -1,6 +1,7 @@
 package com.bounswe.predictionpolls.data.feed.model
 
 
+import com.bounswe.predictionpolls.common.PredictionPollsError
 import com.bounswe.predictionpolls.domain.poll.ContinuousVoteInputType
 import com.bounswe.predictionpolls.domain.poll.Poll
 import com.bounswe.predictionpolls.domain.poll.PollOption
@@ -11,6 +12,8 @@ import kotlinx.collections.immutable.toImmutableList
 import java.lang.reflect.Type
 
 data class PollResponse(
+    @SerializedName("error")
+    val predictionPollsError: PredictionPollsError?,
     val id: Int,
     val question: String,
     val tags: List<String>,
@@ -92,6 +95,15 @@ class PollResponseDeserializer : JsonDeserializer<PollResponse> {
         context: JsonDeserializationContext
     ): PollResponse {
         val jsonObject = json.asJsonObject
+        val error = try {
+            val errorJson = jsonObject.get("error").asJsonObject
+            PredictionPollsError(
+                errorJson.get("code").asString,
+                errorJson.get("message").asString
+            )
+        } catch (e: Exception) {
+            null
+        }
         val id = jsonObject.get("id").asInt
         val question = jsonObject.get("question").asString
         val tags = context.deserialize<List<String>>(
@@ -144,6 +156,7 @@ class PollResponseDeserializer : JsonDeserializer<PollResponse> {
         }
 
         return PollResponse(
+            error,
             id,
             question,
             tags,
