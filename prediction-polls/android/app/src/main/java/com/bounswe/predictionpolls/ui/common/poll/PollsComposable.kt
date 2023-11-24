@@ -36,7 +36,7 @@ fun Polls(polls: ImmutableList<Poll>, modifier: Modifier = Modifier) {
                         }
 
                         is Poll.DiscretePoll -> {
-                            DiscretePollOptions(it.options)
+                            ReadOnlyDiscretePollOptions(it.options)
                         }
                     }
                 },
@@ -49,7 +49,10 @@ fun Polls(polls: ImmutableList<Poll>, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun DiscretePollOptions(options: ImmutableList<PollOption.DiscreteOption>) {
+fun ReadOnlyDiscretePollOptions(
+    options: ImmutableList<PollOption.DiscreteOption>,
+    modifier: Modifier = Modifier
+) {
     val totalVotes = remember(options) {
         val sum = options.sumOf { it.voteCount }
         if (sum == 0) {
@@ -57,7 +60,7 @@ fun DiscretePollOptions(options: ImmutableList<PollOption.DiscreteOption>) {
         } else sum
     }
 
-    Column {
+    Column(modifier) {
         options.forEach {
             DiscreteVoteOption(
                 optionName = it.text,
