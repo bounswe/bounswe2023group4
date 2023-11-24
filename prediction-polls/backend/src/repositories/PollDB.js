@@ -1,4 +1,5 @@
-const mysql = require('mysql2')
+const mysql = require('mysql2');
+const { addRefreshToken } = require('./AuthorizationDB');
 
 require('dotenv').config();
 
@@ -160,14 +161,18 @@ async function voteDiscretePoll(pollId, userId, choiceId){
 
 }
 
-async function voteContinuousPoll(pollId, userId, choice){
+async function voteContinuousPoll(pollId, userId, choice, contPollType){
     const deleteExistingSql = "DELETE FROM continuous_poll_selections WHERE poll_id = ? AND user_id = ?"
-    const addVoteSql = "INSERT INTO continuous_poll_selections (poll_id, user_id, selected_value) VALUES (?, ?, ?)"
+    const addVoteSql = "INSERT INTO continuous_poll_selections (poll_id, user_id, float_value, date_value) VALUES (?, ?, ?, ?)"
 
     try {
         // TODO: Consider making this a transaction, commit
         deleteResult = await pool.query(deleteExistingSql, [pollId, userId]);
-        addResult = await pool.query(addVoteSql, [pollId, userId, choice]);
+        if (contPollType === "numeric") {
+            addResult = await pool.query(addVoteSql, [pollId, userId, choice, null]);
+        } else if (contPollType === "date") {
+            addResult = await pool.query(addVoteSql, [pollId, userId, null, choice]);
+        }
     } catch (error) { 
         console.error('voteContinuousPoll(): Database Error');
         throw error;
@@ -176,10 +181,10 @@ async function voteContinuousPoll(pollId, userId, choice){
 }
 
 async function getContinuousPollVotes(pollId) {
-    const sql = "SELECT selected_value FROM continuous_poll_selections";
+    const sql = "SELECT float_value, date_value FROM continuous_poll_selections WHERE poll_id = ?";
 
     try {
-        [rows, fields] = await pool.query(sql);
+        [rows, fields] = await pool.query(sql, [pollId]);
         return rows;
     } catch (error) { 
         console.error('getContinuousPollVotes(): Database Error');
