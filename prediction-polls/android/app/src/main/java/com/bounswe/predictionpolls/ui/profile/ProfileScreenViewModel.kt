@@ -57,9 +57,9 @@ class ProfileScreenViewModel @Inject constructor(
             .stateIn(viewModelScope, SharingStarted.Eagerly, ProfileScreenUiState.Loading)
 
 
-    fun fetchProfileInfo(userId: Int) = viewModelScope.launch {
+    fun fetchProfileInfo(username: String) = viewModelScope.launch {
         _profileScreenUiState.update { it.copy(isLoading = true) }
-        when (val result = getProfileInfoUseCase(userId)) {
+        when (val result = getProfileInfoUseCase(username)) {
             is Result.Success -> {
                 _profileScreenUiState.update {
                     it.copy(

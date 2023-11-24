@@ -1,5 +1,6 @@
 package com.bounswe.predictionpolls.ui.profile
 
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -13,9 +14,17 @@ const val PROFILE_SCREEN_ROUTE = "profile"
 
 fun NavGraphBuilder.profileScreen(navController: NavController) {
     composable(PROFILE_SCREEN_ROUTE) {
+
+        val username = "ahmetknk" // TODO: fetch this from navController arguments
+
         val profileViewModel: ProfileScreenViewModel = hiltViewModel()
-
-
+        LaunchedEffect(key1 = Unit) {
+            if (
+                profileViewModel.profileScreenUiState.value is ProfileScreenUiState.Loading ||
+                profileViewModel.profileScreenUiState.value is ProfileScreenUiState.Error
+            )
+                profileViewModel.fetchProfileInfo(username)
+        }
         val profileScreenUiState by profileViewModel.profileScreenUiState.collectAsStateWithLifecycle()
 
         ProfileScreen(profileScreenUiState)

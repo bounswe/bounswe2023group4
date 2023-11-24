@@ -7,6 +7,6 @@ data class ProfileInfo(
     val userFullName: String,
     val coverPhotoUri: String?,
     val profilePictureUri: String?,
-    val userDescription: String,
+    val userDescription: String?,
     val badgeUris: ImmutableList<String>
 )

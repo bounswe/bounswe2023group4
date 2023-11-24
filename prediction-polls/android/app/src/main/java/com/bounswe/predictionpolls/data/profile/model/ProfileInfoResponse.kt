@@ -20,7 +20,7 @@ data class ProfileInfoResponse(
 ) {
 
     fun toProfileInfo(): ProfileInfo? {
-        return if (predictionPollsError == null &&  username != null && biography != null) {
+        return if (predictionPollsError == null &&  username != null) {
             ProfileInfo(username, "", coverPicture, profilePicture, biography, persistentListOf())
         } else {
             null

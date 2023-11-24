@@ -5,5 +5,5 @@ import com.bounswe.predictionpolls.data.profile.model.ProfileInfoResponse
 
 interface ProfileInfoRemoteDataSource {
 
-    suspend fun fetchProfileInfo(userId: Int): Result<ProfileInfoResponse>
+    suspend fun fetchProfileInfo(username: String): Result<ProfileInfoResponse>
 }

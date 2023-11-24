@@ -9,12 +9,13 @@ import javax.inject.Inject
 class ProfileInfoRemoteDataSourceImpl @Inject constructor(
     private val profileApi: ProfileApi
 ) : ProfileInfoRemoteDataSource {
-    override suspend fun fetchProfileInfo(userId: Int): Result<ProfileInfoResponse> = withContext(Dispatchers.IO) {
-        try {
-            val response = profileApi.fetchProfileInfo(userId.toString())
-            Result.Success(response)
-        } catch (e: Exception) {
-            Result.Error(e)
+    override suspend fun fetchProfileInfo(username: String): Result<ProfileInfoResponse> =
+        withContext(Dispatchers.IO) {
+            try {
+                val response = profileApi.fetchProfileInfo(username)
+                Result.Success(response)
+            } catch (e: Exception) {
+                Result.Error(e)
+            }
         }
-    }
 }
