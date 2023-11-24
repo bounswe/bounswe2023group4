@@ -181,12 +181,13 @@ async function voteContinuousPoll(pollId, userId, choice, contPollType){
         deleteResult = await connection.query(deleteExistingSql, [pollId, userId]);
         if (contPollType === "numeric") {
             addResult = await connection.query(addVoteSql, [pollId, userId, choice, null]);
+            connection.commit();
         } else if (contPollType === "date") {
             addResult = await connection.query(addVoteSql, [pollId, userId, null, choice]);
+            connection.commit();
         } else {
             await connection.rollback();
         }
-        connection.commit();
     } catch (error) { 
         await connection.rollback();
         console.error('voteContinuousPoll(): Database Error');
