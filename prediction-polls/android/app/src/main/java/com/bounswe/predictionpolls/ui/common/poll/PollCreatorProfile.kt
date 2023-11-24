@@ -25,7 +25,7 @@ import com.bounswe.predictionpolls.ui.theme.MontserratFontFamily
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 
 @Composable
-fun PollCreatorProfile(imageUri: String, userName: String, modifier: Modifier = Modifier) {
+fun PollCreatorProfile(imageUri: String?, userName: String, modifier: Modifier = Modifier) {
     Row(modifier = modifier.wrapContentSize(), verticalAlignment = CenterVertically) {
         PollProfilePicture(imageUri = imageUri, modifier = Modifier.size(48.dp))
         Spacer(modifier = Modifier.width(16.dp))
@@ -54,7 +54,7 @@ fun PollCreatorProfilePreview() {
 }
 
 @Composable
-private fun PollProfilePicture(imageUri: String, modifier: Modifier = Modifier) {
+private fun PollProfilePicture(imageUri: String?, modifier: Modifier = Modifier) {
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
             .data(imageUri)

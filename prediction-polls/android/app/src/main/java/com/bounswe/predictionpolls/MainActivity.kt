@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.bounswe.predictionpolls.ui.feed.FEED_ROUTE
 import com.bounswe.predictionpolls.ui.feed.feedScreen
 import com.bounswe.predictionpolls.ui.leaderboard.leaderboardScreen
 import com.bounswe.predictionpolls.ui.login.loginScreen

@@ -2,38 +2,42 @@ package com.bounswe.predictionpolls.ui.feed
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.bounswe.predictionpolls.domain.poll.Poll
-import com.bounswe.predictionpolls.domain.poll.PollOption
-import com.bounswe.predictionpolls.ui.common.poll.ContinuousVoteOption
-import com.bounswe.predictionpolls.ui.common.poll.DiscreteVoteOption
-import com.bounswe.predictionpolls.ui.common.poll.PollComposable
+import androidx.compose.ui.unit.dp
 import com.bounswe.predictionpolls.ui.common.poll.Polls
-import kotlinx.collections.immutable.ImmutableList
 
 @Composable
 fun FeedScreen(feedUiState: FeedUiState, modifier: Modifier = Modifier) {
     var text by rememberSaveable { mutableStateOf("") } // this might be stored in VM. I am not sure how we will use this parameter so I will store it here for now..
-    Column(modifier = modifier) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
         FeedSearchBar(text = text, onTextChanged = { text = it })
+        Spacer(modifier = Modifier.height(16.dp))
         when (feedUiState) {
             is FeedUiState.Loading -> {
                 FeedLoading()
             }
 
             is FeedUiState.NoFeed -> {
-                NoFeedDisplay()
+                NoFeedDisplay(
+                    modifier = Modifier
+                        .fillMaxSize()
+                )
             }
 
             is FeedUiState.HasFeed -> {
@@ -60,7 +64,7 @@ private fun FeedError(errorMessage: String, modifier: Modifier = Modifier) {
 @Composable
 private fun NoFeedDisplay(modifier: Modifier = Modifier) {
     Box(modifier = modifier) {
-        Text(text = "No feed to show")
+        Text(text = "No feed to show", modifier = Modifier.align(Alignment.Center))
     }
 }
 
