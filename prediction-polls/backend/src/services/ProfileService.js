@@ -1,5 +1,57 @@
 const db = require("../repositories/ProfileDB.js");
 const authDb = require("../repositories/AuthorizationDB.js");
+const {S3Client,PutObjectCommand,GetObjectCommand} = require('aws-sdk');
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
+
+const generateFileName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
+
+const bucketName = process.env.AWS_BUCKET_NAME
+const region = process.env.AWS_BUCKET_REGION
+const accessKeyId = process.env.AWS_ACCESS_KEY
+const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
+
+const s3Client = new S3Client({
+    region,
+    credentials: {
+      accessKeyId,
+      secretAccessKey
+    }
+  })
+
+
+async function getImagefromS3(imageName){
+    const params = {
+        Bucket: bucketName,
+        Key: imageName
+      }
+    
+      const command = new GetObjectCommand(params);
+      const seconds = 60
+      const url = await getSignedUrl(s3Client, command, { expiresIn: seconds });
+    
+      return url
+}
+
+async function uploadImagetoS3(req,res){
+    const userId = req.user.id;
+    const file = req.file
+    const caption = req.body.caption
+    const imageName = generateFileName()
+
+    const fileBuffer = req.file.buffer
+    
+    const uploadParams = {
+        Bucket: bucketName,
+        Body: fileBuffer,
+        Key: imageName,
+        ContentType: req.file.mimetype
+    }
+      
+    await s3Client.send(new PutObjectCommand(uploadParams));
+
+    await db.updateProfile({userId,profile_picture:imageName});
+}
+
 
 
 async function getProfile(req,res){
@@ -13,6 +65,10 @@ async function getProfile(req,res){
         const {profile,error} = await db.getProfileWithUserId(result.id);
         if(error){
             throw error;
+        }
+
+        if(profile.profile_picture){
+            profile.profile_picture = await getImagefromS3(profile.profile_picture);
         }
 
         const {badges,error:badge_error} = await db.getBadges(result.id);
@@ -91,4 +147,4 @@ async function updateProfile(req,res){
     }
 }
 
-module.exports = {getProfile,getProfileWithProfileId,getMyProfile,updateProfile}
+module.exports = {getProfile,getProfileWithProfileId,getMyProfile,updateProfile,uploadImagetoS3}
