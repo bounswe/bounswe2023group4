@@ -56,6 +56,7 @@ CREATE TABLE discrete_polls_selections (
     poll_id INT,
     choice_id INT,
     user_id INT,
+    given_points INT,
     FOREIGN KEY (poll_id) REFERENCES polls(id),
     FOREIGN KEY (choice_id) REFERENCES discrete_poll_choices(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
@@ -67,6 +68,7 @@ CREATE TABLE continuous_poll_selections (
     user_id INT, 
     float_value FLOAT,
     date_value DATE,
+    given_points INT,
     FOREIGN KEY (poll_id) REFERENCES polls(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -76,6 +78,7 @@ CREATE TABLE profiles (
     userId INT NOT NULL,
     username VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
+    points INT NOT NULL,
     profile_picture MEDIUMBLOB,
     biography VARCHAR(5000),
     birthday DATETIME,
