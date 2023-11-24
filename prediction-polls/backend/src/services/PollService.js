@@ -40,7 +40,8 @@ function getPolls(req,res){
                 .then((rows) => {
                     return db.getContinuousPollVotes(properties.id)
                     .then((choices) => {
-                        return {...properties, "cont_poll_type": rows[0].cont_poll_type, "options": choices};
+                        const newChoices = choices.map(item => item.float_value ? item.float_value : item.date_value);
+                        return {...properties, "cont_poll_type": rows[0].cont_poll_type, "options": newChoices};
                     })
                 })
             }
@@ -104,7 +105,8 @@ function getPollWithId(req, res) {
                     } else {
                         db.getContinuousPollVotes(pollId)
                         .then((choices) => {
-                            res.json({...properties, "cont_poll_type": rows[0].cont_poll_type, "options": choices});
+                            const newChoices = choices.map(item => item.float_value ? item.float_value : item.date_value);
+                            res.json({...properties, "cont_poll_type": rows[0].cont_poll_type, "options": newChoices});
                         })
                     }
                 })
