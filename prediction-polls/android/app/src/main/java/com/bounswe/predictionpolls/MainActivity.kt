@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PredictionPollsTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = FEED_ROUTE) {
+                NavHost(navController = navController, startDestination = MAIN_ROUTE) {
                     mainScreen(navController)
                     loginScreen(navController)
                     signupScreen(navController)
