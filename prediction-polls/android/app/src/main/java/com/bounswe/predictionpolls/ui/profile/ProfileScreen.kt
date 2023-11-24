@@ -88,8 +88,8 @@ fun ProfileScreen(profileScreenUiState: ProfileScreenUiState, modifier: Modifier
                                     }
                                 }
                             },
-                            dueDate = it.dueDate,
-                            rejectionText = it.rejectionText,
+                            dueDate = it.dueDate ?: "",
+                            rejectionText = it.rejectionText ?: "",
                             commentCount = it.commentCount
                         )
                     }

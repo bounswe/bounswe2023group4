@@ -22,8 +22,10 @@ fun NavGraphBuilder.profileScreen(navController: NavController) {
             if (
                 profileViewModel.profileScreenUiState.value is ProfileScreenUiState.Loading ||
                 profileViewModel.profileScreenUiState.value is ProfileScreenUiState.Error
-            )
+            ) {
                 profileViewModel.fetchProfileInfo(username)
+                profileViewModel.fetchFeed(0)
+            }
         }
         val profileScreenUiState by profileViewModel.profileScreenUiState.collectAsStateWithLifecycle()
 

@@ -19,9 +19,8 @@ data class PollResponse(
     val creatorImage: String?,
     val pollType: String,
     val rejectVotes: String?,
-    val setDueDate: Int,
     val closingDate: String?,
-    val isOpen: Int,
+    val isOpen: Boolean,
     @SerializedName("cont_poll_type")
     val contPollType: String?,
     val options: List<Any> // This can be a mix of Option and Int, handled during deserialization
@@ -100,14 +99,32 @@ class PollResponseDeserializer : JsonDeserializer<PollResponse> {
             object : TypeToken<List<String>>() {}.type
         )
         val creatorName = jsonObject.get("creatorName").asString
-        val creatorUsername = jsonObject.get("creatorUsername").asString
-        val creatorImage = jsonObject.get("creatorImage")?.asString
+        val creatorUsername =
+            jsonObject.get("creatorUsername").asString
+
+
+        val creatorImage = try {
+            jsonObject.get("creatorImage").asString
+        } catch (e: Exception) {
+            null
+        }
         val pollType = jsonObject.get("pollType").asString
-        val rejectVotes = jsonObject.get("rejectVotes").asString
-        val setDueDate = jsonObject.get("setDueDate").asInt
-        val closingDate = jsonObject.get("closingDate")?.asString
-        val isOpen = jsonObject.get("isOpen").asInt
-        val contPollType = jsonObject.get("cont_poll_type")?.asString
+        val rejectVotes = try {
+            jsonObject.get("rejectVotes").asString
+        } catch (e: Exception) {
+            null
+        }
+        val closingDate = try {
+            jsonObject.get("closingDate").asString
+        } catch (e: Exception) {
+            null
+        }
+        val isOpen = jsonObject.get("isOpen").asBoolean
+        val contPollType = try {
+            jsonObject.get("cont_poll_type")?.asString
+        } catch (e: Exception) {
+            null
+        }
         val optionsJson = jsonObject.get("options").asJsonArray
         val options = mutableListOf<Any>()
         if (pollType == "continuous") {
@@ -135,7 +152,6 @@ class PollResponseDeserializer : JsonDeserializer<PollResponse> {
             creatorImage,
             pollType,
             rejectVotes,
-            setDueDate,
             closingDate,
             isOpen,
             contPollType,
