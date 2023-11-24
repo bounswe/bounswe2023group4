@@ -89,7 +89,7 @@ router.get('/', service.getProfile);
 
 /**
  * @swagger
- * /profiles:
+ * /profiles/myProfile:
  *   get:
  *     tags:
  *       - profiles
