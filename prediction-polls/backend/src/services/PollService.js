@@ -207,42 +207,34 @@ function validateAddContinuousPoll(body) {
     return true;
 }
 
-function voteDiscretePoll(req,res){
-    const pollId = req.params.pollId;
-    const userId = req.user.id;
-    const choiceId = req.body.choiceId;
-    const points = req.body.points;
-
-    if(points <= 0){
-        res.status(404).json({error: errorCodes.USER_MUST_GIVE_POINTS_ERROR});
-    }
-
-    db.getDiscretePollChoices(pollId)
-    .then((choices) => {
-        const choiceExists = choices.some(choice => choice.id === choiceId);
-        if (!choiceExists) {
-            res.status(404).json({error: errorCodes.CHOICE_DOES_NOT_EXIST_ERROR});
-        } else {
-            db.voteDiscretePoll(pollId, userId, choiceId, points ? points : 10)
-            .then(() => {
-                res.status(200).json({ message: "Vote Successful" });
-            })
-            .catch((error) => {
-                if (error) {
-                    res.status(400).json(error);
-                } else {
-                    res.status(500).json({error: errorCodes.DATABASE_ERROR});
-                }
-            })
+async function voteDiscretePoll(req,res){
+    try {
+        const pollId = req.params.pollId;
+        const userId = req.user.id;
+        const choiceId = req.body.choiceId;
+        const points = req.body.points;
+    
+        if (points <= 0) {
+            res.status(404).json({ error: errorCodes.USER_MUST_GIVE_POINTS_ERROR });
+            return;
         }
-    })
-    .catch((error) => {
+    
+        const choices = await db.getDiscretePollChoices(pollId);
+        const choiceExists = choices.some(choice => choice.id === choiceId);
+    
+        if (!choiceExists) {
+            res.status(404).json({ error: errorCodes.CHOICE_DOES_NOT_EXIST_ERROR });
+        } else {
+            await db.voteDiscretePoll(pollId, userId, choiceId, points ? points : 10);
+            res.status(200).json({ message: "Vote Successful" });
+        }
+    } catch (error) {
         if (error) {
             res.status(400).json(error);
         } else {
-            res.status(500).json({error: errorCodes.DATABASE_ERROR});
+            res.status(500).json({ error: errorCodes.DATABASE_ERROR });
         }
-    })
+    }
 }
 
 function voteContinuousPoll(req,res){
