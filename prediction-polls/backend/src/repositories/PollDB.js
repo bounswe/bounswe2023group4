@@ -235,9 +235,22 @@ async function getContinuousPollVotes(pollId) {
     }
 }
 
+async function getTagsOfPoll(pollId) {
+    const sql = "SELECT * FROM tags WHERE poll_id = ?";
+
+    try {
+        [rows] = await pool.query(sql, [pollId]);
+        return rows;
+    } catch (error) { 
+        console.error('getTagsOfPoll(): Database Error');
+        throw error;
+    }
+}
+
+
 
 
 module.exports = {getPolls, getPollWithId, getDiscretePollWithId, getContinuousPollWithId, 
     addDiscretePoll,addContinuousPoll, getDiscretePollChoices, getDiscreteVoteCount, voteDiscretePoll, voteContinuousPoll,
-    getContinuousPollVotes}
+    getContinuousPollVotes,getTagsOfPoll}
     

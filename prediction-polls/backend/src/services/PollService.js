@@ -7,46 +7,47 @@ function getPolls(req,res){
     db.getPolls()
     .then((rows) => {
         const pollObjects = rows.map((pollObject) => {
-            const properties =  {
-                "id": pollObject.id,
-                "question": pollObject.question,
-                "tags": [],
-                "creatorName": pollObject.username,
-                "creatorUsername": pollObject.username,
-                "creatorImage": null,
-                "pollType": pollObject.poll_type,
-                "closingDate": pollObject.closingDate,
-                "rejectVotes": `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}`,
-                "isOpen": true,
-                "comments": []
-            }
-            if (properties.pollType === 'discrete') {
-                return db.getDiscretePollChoices(properties.id)
-                .then((choices) => {
-                
-                    const choicesWithVoteCount = choices.map((choice) => {
-                        return db.getDiscreteVoteCount(choice.id)
-                        .then((voterCount) => {
-                            return { ...choice, voter_count: voterCount };
-                        })
-                    });
-
-                    return Promise.all(choicesWithVoteCount)
-                    .then((options) => {
-                        return {...properties, "options": options};
-                    })
-                })
-            } else if (properties.pollType === 'continuous') {
-                return db.getContinuousPollWithId(properties.id)
-                .then((rows) => {
-                    return db.getContinuousPollVotes(properties.id)
+            db.getTagsOfPoll(pollId).then((tag_rows) => {
+                const properties =  {
+                    "id": pollObject.id,
+                    "question": pollObject.question,
+                    "tags": tag_rows,
+                    "creatorName": pollObject.username,
+                    "creatorUsername": pollObject.username,
+                    "creatorImage": null,
+                    "pollType": pollObject.poll_type,
+                    "closingDate": pollObject.closingDate,
+                    "rejectVotes": `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}`,
+                    "isOpen": true,
+                    "comments": []
+                }
+                if (properties.pollType === 'discrete') {
+                    return db.getDiscretePollChoices(properties.id)
                     .then((choices) => {
-                        const newChoices = choices.map(item => item.float_value ? item.float_value : item.date_value);
-                        return {...properties, "cont_poll_type": rows[0].cont_poll_type, "options": newChoices};
-                    })
-                })
-            }
+                    
+                        const choicesWithVoteCount = choices.map((choice) => {
+                            return db.getDiscreteVoteCount(choice.id)
+                            .then((voterCount) => {
+                                return { ...choice, voter_count: voterCount };
+                            })
+                        });
 
+                        return Promise.all(choicesWithVoteCount)
+                        .then((options) => {
+                            return {...properties, "options": options};
+                        })
+                    })
+                } else if (properties.pollType === 'continuous') {
+                    return db.getContinuousPollWithId(properties.id)
+                    .then((rows) => {
+                        return db.getContinuousPollVotes(properties.id)
+                        .then((choices) => {
+                            const newChoices = choices.map(item => item.float_value ? item.float_value : item.date_value);
+                            return {...properties, "cont_poll_type": rows[0].cont_poll_type, "options": newChoices};
+                        })
+                    })
+                }
+            })
         });
         Promise.all(pollObjects)
         .then((result) => {
@@ -66,52 +67,56 @@ function getPollWithId(req, res) {
         if (rows.length === 0) {
             res.status(404).json({error: errorCodes.NO_SUCH_POLL_ERROR});
         } else {
-            const pollObject = rows[0];
-            const pollType = pollObject.poll_type;
-            const properties = {
-                "id": pollObject.id,
-                "question": pollObject.question,
-                "tags": [],
-                "creatorName": pollObject.username,
-                "creatorUsername": pollObject.username,
-                "creatorImage": null,
-                "pollType": pollObject.poll_type,
-                "closingDate": pollObject.closingDate,
-                "rejectVotes": `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}`,
-                "isOpen": true,
-                "comments": []
-            }
+            db.getTagsOfPoll(pollId).then((tag_rows) => {
+                const pollObject = rows[0];
+                const pollType = pollObject.poll_type;
+                const properties = {
+                    "id": pollObject.id,
+                    "question": pollObject.question,
+                    "tags": tag_rows,
+                    "creatorName": pollObject.username,
+                    "creatorUsername": pollObject.username,
+                    "creatorImage": null,
+                    "pollType": pollObject.poll_type,
+                    "closingDate": pollObject.closingDate,
+                    "rejectVotes": `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}`,
+                    "isOpen": true,
+                    "comments": []
+                }
 
-            if (pollType === 'discrete') {
-                db.getDiscretePollChoices(pollId)
-                .then((choices) => {
-                
-                    const choicesWithVoteCount = choices.map((choice) => {
-                        return db.getDiscreteVoteCount(choice.id)
-                        .then((voterCount) => {
-                            return { ...choice, voter_count: voterCount };
+                if (pollType === 'discrete') {
+                    db.getDiscretePollChoices(pollId)
+                    .then((choices) => {
+                    
+                        const choicesWithVoteCount = choices.map((choice) => {
+                            return db.getDiscreteVoteCount(choice.id)
+                            .then((voterCount) => {
+                                return { ...choice, voter_count: voterCount };
+                            })
+                        });
+
+                        Promise.all(choicesWithVoteCount)
+                        .then((options) => {
+                            res.json({...properties, "options": options});
                         })
-                    });
-
-                    Promise.all(choicesWithVoteCount)
-                    .then((options) => {
-                        res.json({...properties, "options": options});
                     })
-                })
-            } else if (pollType === 'continuous') {
-                db.getContinuousPollWithId(pollId)
-                .then((rows) => {
-                    if (rows.length === 0) {
-                        res.status(404).json({error: errorCodes.NO_SUCH_POLL_ERROR});
-                    } else {
-                        db.getContinuousPollVotes(pollId)
-                        .then((choices) => {
-                            const newChoices = choices.map(item => item.float_value ? item.float_value : item.date_value);
-                            res.json({...properties, "cont_poll_type": rows[0].cont_poll_type, "options": newChoices});
-                        })
-                    }
-                })
-            }
+                } else if (pollType === 'continuous') {
+                    db.getContinuousPollWithId(pollId)
+                    .then((rows) => {
+                        if (rows.length === 0) {
+                            res.status(404).json({error: errorCodes.NO_SUCH_POLL_ERROR});
+                        } else {
+                            db.getContinuousPollVotes(pollId)
+                            .then((choices) => {
+                                const newChoices = choices.map(item => item.float_value ? item.float_value : item.date_value);
+                                res.json({...properties, "cont_poll_type": rows[0].cont_poll_type, "options": newChoices});
+                            })
+                        }
+                    })
+                }
+            }).catch(() => {
+                
+            })
         }
     })
 }
