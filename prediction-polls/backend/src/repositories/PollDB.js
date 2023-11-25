@@ -21,7 +21,7 @@ async function getPolls(){
         return rows
     } catch (error) {
         console.error('getDiscretePolls(): Database Error');
-        throw error;
+        throw {error: errorCodes.DATABASE_ERROR};
     }
 }
 
@@ -33,7 +33,7 @@ async function getPollWithId(pollId){
         return rows;
     } catch (error) {
         console.error('getPollWithID(): Database Error');
-        throw error;
+        throw {error: errorCodes.DATABASE_ERROR};
     }
 }
 
@@ -76,7 +76,7 @@ async function addDiscretePoll(question, username, choices, openVisibility, setD
 
         if (!poll_id) {
             await connection.rollback();
-            return false;
+            throw {error: errorCodes.DATABASE_ERROR};
         }
 
         await connection.query(sql_discrete_poll, [poll_id]);
@@ -86,11 +86,11 @@ async function addDiscretePoll(question, username, choices, openVisibility, setD
         }))
 
         await connection.commit();
-        return true;
+        return poll_id;
     } catch (error) {
         console.error('addDiscretePoll(): Database Error');
         await connection.rollback();
-        throw error;
+        throw {error: errorCodes.DATABASE_ERROR};
     } finally {
         connection.release();
     }
@@ -108,13 +108,13 @@ async function addContinuousPoll(question, username, cont_poll_type, openVisibil
 
         if (!poll_id) {
             await connection.rollback();
-            return false;
+            throw {error: errorCodes.DATABASE_ERROR};
         }
 
         await connection.query(sql_continuous_poll, [poll_id, cont_poll_type]);
 
         await connection.commit();
-        return true;
+        return poll_id;
     } catch (error) {
         console.error('addContinuousPoll(): Database Error');
         await connection.rollback();
@@ -235,9 +235,22 @@ async function getContinuousPollVotes(pollId) {
     }
 }
 
+async function getTagsOfPoll(pollId) {
+    const sql = "SELECT * FROM tags WHERE poll_id = ?";
+
+    try {
+        [rows] = await pool.query(sql, [pollId]);
+        return rows;
+    } catch (error) { 
+        console.error('getTagsOfPoll(): Database Error');
+        throw error;
+    }
+}
+
+
 
 
 module.exports = {getPolls, getPollWithId, getDiscretePollWithId, getContinuousPollWithId, 
     addDiscretePoll,addContinuousPoll, getDiscretePollChoices, getDiscreteVoteCount, voteDiscretePoll, voteContinuousPoll,
-    getContinuousPollVotes}
+    getContinuousPollVotes,getTagsOfPoll}
     
