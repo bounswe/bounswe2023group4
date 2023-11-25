@@ -75,11 +75,11 @@ async function getProfile(req,res){
         }
 
         if(profile.profile_picture){
-            result = await getImagefromS3(profile.profile_picture);
-            if(result.error){
-                throw result.error;
+            const image_result = await getImagefromS3(profile.profile_picture);
+            if(image_result.error){
+                throw image_result.error;
             }
-            profile.profile_picture = result.signedUrl;
+            profile.profile_picture = image_result.signedUrl;
         }
 
         const {badges,error:badge_error} = await db.getBadges(result.id);
