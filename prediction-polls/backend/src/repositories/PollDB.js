@@ -96,14 +96,14 @@ async function addDiscretePoll(question, username, choices, openVisibility, setD
     }
 }
 
-async function addContinuousPoll(question, username, cont_poll_type, openVisibility, setDueDate, dueDatePoll, numericFieldValue, selectedTimeUnit){
+async function addContinuousPoll(question, username, cont_poll_type, setDueDate, dueDatePoll, numericFieldValue, selectedTimeUnit){
     const connection = await pool.getConnection();
 
     const sql_poll = 'INSERT INTO polls (question, username, poll_type, openVisibility, setDueDate, closingDate, numericFieldValue, selectedTimeUnit) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
     const sql_continuous_poll = 'INSERT INTO continuous_polls (id, cont_poll_type) VALUES (?, ?)' 
 
     try {
-        const [resultSetHeader] = await connection.query(sql_poll, [question, username, 'continuous', openVisibility, setDueDate, dueDatePoll, numericFieldValue, selectedTimeUnit]);
+        const [resultSetHeader] = await connection.query(sql_poll, [question, username, 'continuous', false, setDueDate, dueDatePoll, numericFieldValue, selectedTimeUnit]);
         poll_id = resultSetHeader.insertId;
 
         if (!poll_id) {

@@ -168,7 +168,6 @@ async function addContinuousPoll(req, res) {
 
         const question = req.body.question;
         const cont_poll_type = req.body.cont_poll_type;
-        const openVisibility = req.body.openVisibility;
         const setDueDate = req.body.setDueDate;
         const numericFieldValue = req.body.numericFieldValue;
         const dueDatePoll = setDueDate ? new Date(req.body.dueDatePoll).toISOString().split('T')[0] : null;
@@ -179,7 +178,6 @@ async function addContinuousPoll(req, res) {
             question,
             username,
             cont_poll_type,
-            openVisibility,
             setDueDate,
             dueDatePoll,
             numericFieldValue,
