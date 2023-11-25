@@ -4,6 +4,8 @@ import styles from './Create.module.css'
 import { useState } from 'react';
 import { Button, Input, DatePicker, Checkbox, Select } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import pointData from "../../MockData/PointList.json"
+import PointsButton from "../../Components/PointsButton"; 
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -13,16 +15,24 @@ function Create() {
   const [pollType, setPollType] = useState('');
   const [showMultipleChoiceInputs, setShowMultipleChoiceInputs] = useState(false);
   const [additionalChoices, setAdditionalChoices] = useState(['']);
-  const [customizedType, setCustomizedType] = useState('text');
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [customizedNumeric, setCustomizedNumeric] = useState('');
+  const [customizedType, setCustomizedType] = useState('');
   const [setDueDate, setSetDueDate] = useState(false);
   const [dueDatePoll, setDueDatePoll] = useState(null);
   const [numericFieldValue, setNumericFieldValue] = useState('');
   const [selectedTimeUnit, setSelectedTimeUnit] = useState('min');
-  const [openVisibility, setOpenVisibility] = useState(false);
+  const [openVisibility, setOpenVisibility] = useState(false); 
   const url = process.env.REACT_APP_BACKEND_LINK; 
   const navigate = useNavigate()
+
+
+  const choices = additionalChoices.filter(choice => choice.trim() !== '')
+  const isSubmitDisabled = question.trim() === '' || 
+                            pollType === '' || 
+                           (pollType === 'multipleChoice' && choices.length < 2) ||
+                           (setDueDate && numericFieldValue.trim() === '') ||
+                           (setDueDate && dueDatePoll === null) ||
+                           (setDueDate && numericFieldValue <= 0) ||
+                           (pollType === 'customized' && customizedType === '');             
 
   const handleOpenVisibilityChange = (e) => {
     setOpenVisibility(e.target.checked);
@@ -34,6 +44,8 @@ function Create() {
 
   const handleSetDueDateChange = (e) => {
     setSetDueDate(e.target.checked);
+    setDueDatePoll(null);
+    setNumericFieldValue(''); 
   };
 
   const handleQuestionChange = (e) => {
@@ -43,7 +55,6 @@ function Create() {
   const handlePollTypeChange = (type) => {
     setPollType(type);
     setShowMultipleChoiceInputs(type === 'multipleChoice');
-    setSelectedDate(null);
   };
 
   const handleAddChoice = () => {
@@ -65,11 +76,6 @@ function Create() {
   const handleCustomizedTypeChange = (type) => {
     setCustomizedType(type);
   };
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
 
   const handleSubmit = async () => {
 
@@ -141,7 +147,6 @@ function Create() {
 
       const customizedData = {
         question: question,
-        selectedDate: selectedDate ? selectedDate.format() : null, // Convert selectedDate to a string format if it exists
         setDueDate: setDueDate,
         dueDatePoll: dueDatePoll ? dueDatePoll.format() : null, // Convert dueDatePoll to a string format if it exists
         numericFieldValue: numericFieldValue,
@@ -173,7 +178,6 @@ function Create() {
 
       const customizedData = {
         question: question,
-        selectedDate: selectedDate ? selectedDate.format() : null, // Convert selectedDate to a string format if it exists
         setDueDate: setDueDate,
       };
 
@@ -202,7 +206,6 @@ function Create() {
 
       const customizedData = {
         question: question,
-        customizedNumeric: customizedNumeric,
         setDueDate: setDueDate,
         dueDatePoll: dueDatePoll ? dueDatePoll.format() : null, // Convert dueDatePoll to a string format if it exists
         numericFieldValue: numericFieldValue,
@@ -234,7 +237,6 @@ function Create() {
 
       const customizedData = {
         question: question,
-        customizedNumeric: customizedNumeric,
         setDueDate: setDueDate,
       };
 
@@ -347,21 +349,8 @@ function Create() {
             >
               Numeric
             </Button>
-            {customizedType === 'date' && (
-              <div className={styles.datePickerContainer}>
-                <DatePicker onChange={handleDateChange} />
-              </div>
-            )}
-            {customizedType === 'numeric' && (
-              <div className={styles.numericInputContainer} >
-                <Input
-                  style={{ width: '50%' }}
-                  type="number"
-                  placeholder="Enter numeric answer"
-                  onChange={(e) => setCustomizedNumeric(e.target.value)}
-                />
-              </div>
-            )}
+            
+            
           </div>
         )}
         <div className={styles.setDueDateContainer}>
@@ -397,10 +386,12 @@ function Create() {
         <div className={styles.submitContainer}>
           <Button
             className={styles.submitButton}
-            onClick={handleSubmit}>
+            onClick={handleSubmit}
+            disabled={isSubmitDisabled}>
             Create Poll
           </Button>
         </div>
+        <PointsButton points={pointData.points}/> 
       </div>
     </div>
   );
