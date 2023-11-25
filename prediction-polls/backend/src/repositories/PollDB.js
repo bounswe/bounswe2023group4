@@ -33,7 +33,7 @@ async function getPollWithId(pollId){
         return rows;
     } catch (error) {
         console.error('getPollWithID(): Database Error');
-        throw error;
+        throw {error: errorCodes.DATABASE_ERROR};
     }
 }
 
