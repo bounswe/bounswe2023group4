@@ -40,7 +40,8 @@ function getPolls(req,res){
                 .then((rows) => {
                     return db.getContinuousPollVotes(properties.id)
                     .then((choices) => {
-                        return {...properties, "cont_poll_type": rows[0].cont_poll_type, "options": choices};
+                        const newChoices = choices.map(item => item.float_value ? item.float_value : item.date_value);
+                        return {...properties, "cont_poll_type": rows[0].cont_poll_type, "options": newChoices};
                     })
                 })
             }
@@ -104,7 +105,8 @@ function getPollWithId(req, res) {
                     } else {
                         db.getContinuousPollVotes(pollId)
                         .then((choices) => {
-                            res.json({...properties, "cont_poll_type": rows[0].cont_poll_type, "options": choices});
+                            const newChoices = choices.map(item => item.float_value ? item.float_value : item.date_value);
+                            res.json({...properties, "cont_poll_type": rows[0].cont_poll_type, "options": newChoices});
                         })
                     }
                 })
@@ -222,17 +224,11 @@ function voteContinuousPoll(req,res){
 
     db.getContinuousPollWithId(pollId)
     .then((result) => {
-        const minValue = result[0].min_value;
-        const maxValue = result[0].max_value;
-        const choiceValid = minValue <= choice && choice <= maxValue;
-        if (!choiceValid) {
-            res.status(400).json({error: errorCodes.CHOICE_OUT_OF_BOUNDS_ERROR});
-        } else {
-            db.voteContinuousPoll(pollId, userId, choice)
-            .then(() => {
-                res.json({ message: "Vote Successful" });
-            })
-        }
+        const contPollType = result[0].cont_poll_type;
+        db.voteContinuousPoll(pollId, userId, choice, contPollType)
+        .then(() => {
+            res.json({ success: true });
+        })
     })
 }
 
