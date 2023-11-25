@@ -21,7 +21,7 @@ async function getPolls(){
         return rows
     } catch (error) {
         console.error('getDiscretePolls(): Database Error');
-        throw error;
+        throw {error: errorCodes.DATABASE_ERROR};
     }
 }
 
