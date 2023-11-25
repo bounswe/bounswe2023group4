@@ -94,3 +94,10 @@ CREATE TABLE badges (
     userId INT,
     FOREIGN KEY (userId) REFERENCES users(id) ON DELETE SET NULL
 );
+
+CREATE TABLE tags (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    topic VARCHAR(255) NOT NULL,
+    poll_id INT,
+    FOREIGN KEY (poll_id) REFERENCES polls(id) ON DELETE SET NULL
+);
