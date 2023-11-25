@@ -11,6 +11,7 @@ import com.bounswe.predictionpolls.ui.leaderboard.leaderboardScreen
 import com.bounswe.predictionpolls.ui.login.loginScreen
 import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
 import com.bounswe.predictionpolls.ui.main.mainScreen
+import com.bounswe.predictionpolls.ui.profile.profileScreen
 import com.bounswe.predictionpolls.ui.signup.signupScreen
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +30,7 @@ class MainActivity : ComponentActivity() {
                     feedScreen(navController)
                     leaderboardScreen(navController)
                     createPollScreen()
+                    profileScreen(navController)
                 }
             }
         }

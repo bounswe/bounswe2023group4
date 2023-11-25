@@ -46,9 +46,9 @@ import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 fun ProfileCard(
     username: String,
     userFullName: String,
-    coverPhotoUri: String,
-    profilePictureUri: String,
-    userDescription: String,
+    coverPhotoUri: String?,
+    profilePictureUri: String?,
+    userDescription: String?,
     badgeUris: List<String>,
     onProfileEditPressed: () -> Unit,
     onRequestsClicked: () -> Unit,
@@ -178,7 +178,7 @@ private fun ProfileEditButton(onProfileEditPressed: () -> Unit, modifier: Modifi
 }
 
 @Composable
-private fun CoverPhoto(imageUri: String, modifier: Modifier) {
+private fun CoverPhoto(imageUri: String?, modifier: Modifier) {
     AsyncImage(
         model = imageUri,
         contentDescription = "User Badge",
@@ -239,7 +239,7 @@ private fun Badges(badgeUris: List<String>, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun ProfilePicture(imageUri: String, modifier: Modifier = Modifier) {
+private fun ProfilePicture(imageUri: String?, modifier: Modifier = Modifier) {
     AsyncImage(
         model = imageUri,
         contentDescription = "User profile picture",
@@ -252,9 +252,9 @@ private fun ProfilePicture(imageUri: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun UserDescription(description: String, modifier: Modifier = Modifier) {
+private fun UserDescription(description: String?, modifier: Modifier = Modifier) {
     Text(
-        text = description, modifier = modifier,
+        text = description?:"", modifier = modifier,
         maxLines = 5,
         overflow = TextOverflow.Ellipsis,
         color = MaterialTheme.colorScheme.scrim,

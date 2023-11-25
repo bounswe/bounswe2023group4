@@ -77,6 +77,8 @@ android {
 dependencies {
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
+
     implementation("androidx.activity:activity-compose:1.8.0")
     implementation(platform("androidx.compose:compose-bom:2023.10.00"))
     implementation("androidx.compose.ui:ui")
@@ -134,4 +136,10 @@ dependencies {
 
     // Easy Google Login
     implementation("com.github.stevdza-san:OneTapCompose:1.0.9")
+
+    // Immutable Kotlin Collections
+    // Used for creating stable domain classes. Check stability meaning in terms of compose if you do not know what I mean.
+    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.6")
+
+
 }

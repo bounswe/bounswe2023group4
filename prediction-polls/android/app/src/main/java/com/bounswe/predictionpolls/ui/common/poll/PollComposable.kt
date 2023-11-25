@@ -33,18 +33,15 @@ import androidx.compose.ui.unit.sp
 import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.ui.theme.MontserratFontFamily
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 @Composable
 fun PollComposable(
-    pollCreatorProfilePictureUri: String,
+    pollCreatorProfilePictureUri: String?,
     pollCreatorName: String,
     tags: List<String>,
     pollQuestionTitle: String,
     optionsContent: @Composable () -> Unit,
-    dueDate: Date,
+    dueDate: String,
     rejectionText: String,
     commentCount: Int,
     modifier: Modifier = Modifier
@@ -141,7 +138,7 @@ private fun PollIcon(@DrawableRes id: Int, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun DueDateComposable(dueDate: Date, modifier: Modifier = Modifier) {
+private fun DueDateComposable(dueDate: String, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.wrapContentSize(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -156,7 +153,7 @@ private fun DueDateComposable(dueDate: Date, modifier: Modifier = Modifier) {
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = formatDate(dueDate),
+            text = dueDate,
             fontFamily = MontserratFontFamily,
             color = MaterialTheme.colorScheme.error,
             fontWeight = FontWeight.Bold,
@@ -223,7 +220,7 @@ private fun PollQuestionTitle(pollQuestionTitle: String, modifier: Modifier = Mo
 
 @Composable
 @Preview(showBackground = true, showSystemUi = true)
-fun PollComposablePreview() {
+private fun PollComposablePreview() {
     PredictionPollsTheme(dynamicColor = false) {
         PollComposable(
             "https://picsum.photos/id/237/600/800",
@@ -248,7 +245,7 @@ fun PollComposablePreview() {
                 }
 
             },
-            dueDate = Date(),
+            dueDate = "21 Nov 2023",
             rejectionText = "Last 5 Days",
             commentCount = 265,
             modifier = Modifier.padding(16.dp)
@@ -256,7 +253,3 @@ fun PollComposablePreview() {
     }
 }
 
-private fun formatDate(dueDate: Date): String {
-    val sdf = SimpleDateFormat("dd MMMM yyyy", Locale("tr", "TR"))
-    return sdf.format(dueDate)
-}

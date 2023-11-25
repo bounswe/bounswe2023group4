@@ -32,6 +32,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bounswe.predictionpolls.domain.poll.ContinuousVoteInputType
+import com.bounswe.predictionpolls.domain.poll.toKeyboardType
 import com.bounswe.predictionpolls.ui.theme.MontserratFontFamily
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 

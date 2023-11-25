@@ -2,6 +2,8 @@ package com.bounswe.predictionpolls.di
 
 import android.content.Context
 import com.bounswe.predictionpolls.BuildConfig
+import com.bounswe.predictionpolls.data.feed.model.PollResponse
+import com.bounswe.predictionpolls.data.feed.model.PollResponseDeserializer
 import com.bounswe.predictionpolls.data.remote.TokenManager
 import com.bounswe.predictionpolls.data.remote.interceptors.AuthInterceptor
 import com.bounswe.predictionpolls.data.remote.interceptors.ResponseInterceptor
@@ -26,6 +28,7 @@ object NetworkModule {
     @Singleton
     fun provideGson(): Gson {
         return GsonBuilder()
+            .registerTypeAdapter(PollResponse::class.java, PollResponseDeserializer())
             .serializeNulls()
             .create()
     }
