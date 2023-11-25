@@ -66,8 +66,9 @@ CREATE TABLE continuous_poll_selections (
     id INT PRIMARY KEY AUTO_INCREMENT,
     poll_id INT,
     user_id INT, 
-    selected_value FLOAT NOT NULL,
     given_points INT,
+    float_value FLOAT,
+    date_value DATE,
     FOREIGN KEY (poll_id) REFERENCES polls(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
