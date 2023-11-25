@@ -1,11 +1,13 @@
 package com.bounswe.predictionpolls.data.remote.services
 
+import com.bounswe.predictionpolls.data.feed.model.PollResponse
 import com.bounswe.predictionpolls.data.remote.model.request.CreateContinuousPollRequest
 import com.bounswe.predictionpolls.data.remote.model.request.CreateDiscretePollRequest
 import com.bounswe.predictionpolls.data.vote.ContinuousPollRequest
 import com.bounswe.predictionpolls.data.vote.DiscreteVotePollRequest
 import com.bounswe.predictionpolls.data.vote.VotePollResponse
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -32,4 +34,9 @@ interface PollService {
         @Body continuousPollRequest: ContinuousPollRequest
     ): VotePollResponse
 
+
+    @GET("/polls/{pollId}")
+    suspend fun getPoll(
+        @Path("pollId") pollId: String
+    ): PollResponse
 }

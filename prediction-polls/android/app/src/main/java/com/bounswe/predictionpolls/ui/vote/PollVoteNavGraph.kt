@@ -1,5 +1,6 @@
 package com.bounswe.predictionpolls.ui.vote
 
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -12,9 +13,12 @@ const val POLL_VOTE_ROUTE = "pollVote"
 fun NavGraphBuilder.pollVoteScreen(navController: NavController) {
     composable(POLL_VOTE_ROUTE) {
         val pollVoteViewModel: PollVoteViewModel = hiltViewModel()
-
+        val pollId: String = "" // TODO: Fetch this from navcontroller
         // Accessing state from ViewModel
         val state by pollVoteViewModel.state.collectAsStateWithLifecycle()
+        LaunchedEffect(key1 = Unit) {
+            pollVoteViewModel.fetchPoll(pollId)
+        }
 
         // PollVoteScreen Composable
         PollVoteScreen(

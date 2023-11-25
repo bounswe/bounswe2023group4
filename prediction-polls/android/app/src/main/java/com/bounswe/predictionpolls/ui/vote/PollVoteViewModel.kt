@@ -3,6 +3,8 @@ package com.bounswe.predictionpolls.ui.vote
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bounswe.predictionpolls.common.Result
+import com.bounswe.predictionpolls.domain.poll.Poll
+import com.bounswe.predictionpolls.domain.poll.VotePollRepository
 import com.bounswe.predictionpolls.domain.poll.VotePollUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,13 +16,44 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class PollVoteViewModel @Inject constructor(private val votePollUseCase: VotePollUseCase) :
+class PollVoteViewModel @Inject constructor(
+    private val votePollUseCase: VotePollUseCase, private val votePollRepository: VotePollRepository
+) :
     ViewModel() {
 
     private val _state = MutableStateFlow<PollVoteScreenUiState>(PollVoteScreenUiState.Loading)
 
     val state: StateFlow<PollVoteScreenUiState>
         get() = _state.asStateFlow()
+
+
+    fun fetchPoll(pollId: String) = viewModelScope.launch {
+        when (val result = votePollRepository.fetchPoll(pollId)) {
+            is Result.Success -> {
+                when (val poll = result.data) {
+                    is Poll.DiscretePoll -> {
+                        _state.update { PollVoteScreenUiState.DiscretePoll(poll, "", 0, null) }
+                    }
+
+                    is Poll.ContinuousPoll -> {
+                        _state.update { PollVoteScreenUiState.ContinuousPoll(poll, "", 0, null) }
+                    }
+
+                    else -> {
+                        // Handle other poll types if necessary
+                    }
+                }
+            }
+
+            is Result.Error -> {
+                _state.update {
+                    PollVoteScreenUiState.Error(
+                        result.exception.message ?: "Unknown error"
+                    )
+                }
+            }
+        }
+    }
 
     fun onPointsReservedChanged(points: Int) {
         // Update the state with the new points value
