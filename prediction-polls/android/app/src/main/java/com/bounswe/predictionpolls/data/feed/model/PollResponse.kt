@@ -46,6 +46,7 @@ data class PollResponse(
         when (pollType) {
             "continuous" -> {
                 Poll.ContinuousPoll(
+                    polId = id.toString(),
                     creatorProfilePictureUri = creatorImage,
                     dueDate = closingDate,
                     pollCreatorName = creatorName,
@@ -71,6 +72,7 @@ data class PollResponse(
                     )
                 }
                 Poll.DiscretePoll(
+                    polId = id.toString(),
                     creatorProfilePictureUri = creatorImage,
                     dueDate = closingDate,
                     pollCreatorName = creatorName,
