@@ -127,17 +127,22 @@ async function logIn(req,res){
     // Authorize User  
     const username = req.body.username;
     const password = req.body.password;
+    try {
+      let [userAuthenticated] = await db.checkCredentials(username,password);
+      if (!userAuthenticated) {
+        return res.status(401).json({ error: errorCodes.USER_NOT_FOUND });
+      }
 
-    let [userAuthenticated] = await db.checkCredentials(username,password);
-    if (!userAuthenticated) {
-      return res.status(401).json({ error: errorCodes.USER_NOT_FOUND });
+      const user = {name : username, id: userAuthenticated.id};
+      const accesToken = generateAccessToken(user);
+      const refreshToken = generateRefreshToken(user);
+      await db.addRefreshToken(refreshToken);
+      res.status(201).json({accessToken: accesToken, refreshToken: refreshToken})
+
+    } catch (error) {
+        return res.status(401).json({ error: errorCodes.USER_NOT_FOUND });
     }
 
-    const user = {name : username, id: userAuthenticated.id};
-    const accesToken = generateAccessToken(user);
-    const refreshToken = generateRefreshToken(user);
-    await db.addRefreshToken(refreshToken);
-    res.status(201).json({accessToken: accesToken, refreshToken: refreshToken})
 }
 
 async function logOut(req, res) {

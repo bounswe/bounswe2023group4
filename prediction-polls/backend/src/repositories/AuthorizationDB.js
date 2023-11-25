@@ -34,7 +34,7 @@ async function checkCredentials(username, password) {
         const [rows] = await pool.query(sql, values);
         return rows;
     } catch (error) {
-        return {error:errorCodes.WRONG_PASSWORD};
+        throw {error:errorCodes.WRONG_PASSWORD};
     }
 }
 
