@@ -33,7 +33,7 @@ function SignUp() {
         formattedValues.birthday = undefined;
       }
 
-      const res = await fetch(process.env.REACT_APP_BACKEND_LINK + "/signup", {
+      const res = await fetch(process.env.REACT_APP_BACKEND_LINK + "/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -152,7 +152,7 @@ function SignUp() {
                 message: "Password must be at least 8 characters!",
               },
               {
-                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/, 
                 message:
                   "Password must include uppercase, lowercase, and a number!",
               },
