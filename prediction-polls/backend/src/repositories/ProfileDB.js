@@ -49,8 +49,8 @@ async function addProfile(userId, username, email){
             throw {error:errorCodes.USER_ALREADY_HAS_PROFILE};
         }
 
-        const sql = 'INSERT INTO profiles (userId, username, email, profile_picture, biography, birthday, isHidden) VALUES (?, ?, ?, ?, ?, ?, ?)';
-        values = [userId,username,email,null,null,null,null]
+        const sql = 'INSERT INTO profiles (userId, username, email, points, profile_picture, biography, birthday, isHidden) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        values = [userId,username,email,10000,null,null,null,null]
         const [resultSetHeader] = await pool.query(sql, values);
         if(!resultSetHeader.insertId){
             throw {error:errorCodes.PROFILE_COULD_NOT_BE_CREATED};
@@ -123,6 +123,28 @@ async function getBadges(userId){
     }
 }
 
+async function updatePoints(userId,additional_points){
 
-module.exports = {getProfileWithProfileId,getProfileWithUserId,addProfile,updateProfile,getBadges}
+    const find_points_sql = 'SELECT * FROM profiles WHERE userId= ?';
+    const sql = 'UPDATE profiles SET points = ? WHERE userId = ?';
+
+    try {
+        const [rows] = await pool.query(find_points_sql, [userId]);
+        const current_points = rows[0].points
+
+        if(current_points + additional_points < 0){
+            return {error:errorCodes.INSUFFICIENT_POINTS_ERROR};
+        }
+
+        const [resultSetHeader] = await pool.query(sql, [current_points + additional_points, userId]);
+        
+        return {status:"success"};
+        
+    } catch (error) {
+        return {error:errorCodes.DATABASE_ERROR};
+    }
+}
+
+
+module.exports = {getProfileWithProfileId,getProfileWithUserId,addProfile,updateProfile,getBadges,updatePoints}
     

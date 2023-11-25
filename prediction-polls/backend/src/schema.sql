@@ -56,6 +56,7 @@ CREATE TABLE discrete_polls_selections (
     poll_id INT,
     choice_id INT,
     user_id INT,
+    given_points INT,
     FOREIGN KEY (poll_id) REFERENCES polls(id),
     FOREIGN KEY (choice_id) REFERENCES discrete_poll_choices(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
@@ -65,7 +66,9 @@ CREATE TABLE continuous_poll_selections (
     id INT PRIMARY KEY AUTO_INCREMENT,
     poll_id INT,
     user_id INT, 
-    selected_value FLOAT NOT NULL,
+    given_points INT,
+    float_value FLOAT,
+    date_value DATE,
     FOREIGN KEY (poll_id) REFERENCES polls(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -76,6 +79,7 @@ CREATE TABLE profiles (
     username VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     profile_picture VARCHAR(255),
+    points INT NOT NULL,
     biography VARCHAR(5000),
     birthday DATETIME,
     isHidden BOOLEAN DEFAULT False,
@@ -89,4 +93,11 @@ CREATE TABLE badges (
     topic VARCHAR(255) NOT NULL,
     userId INT,
     FOREIGN KEY (userId) REFERENCES users(id) ON DELETE SET NULL
+);
+
+CREATE TABLE tags (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    topic VARCHAR(255) NOT NULL,
+    poll_id INT,
+    FOREIGN KEY (poll_id) REFERENCES polls(id) ON DELETE SET NULL
 );

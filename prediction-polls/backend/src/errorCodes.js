@@ -131,13 +131,23 @@ const errorCodes = {
   },
 
   DATABASE_ERROR: {
-    code: 3000,
+    code: 3004,
     message: 'Error while accessing the database.',
   },
 
   NO_SUCH_POLL_ERROR: {
-    code: 3001,
+    code: 3005,
     message: 'No such poll found.'
+  },
+
+  INSUFFICIENT_POINTS_ERROR: {
+    code: 3006,
+    message: 'User does not have enough points'
+  },
+
+  USER_MUST_GIVE_POINTS_ERROR: {
+    code: 3007,
+    message: 'User has to put points to be able to vote polls'
   },
 
   BAD_DISCRETE_POLL_REQUEST_ERROR: {
