@@ -90,7 +90,7 @@ async function addDiscretePoll(question, username, choices, openVisibility, setD
     } catch (error) {
         console.error('addDiscretePoll(): Database Error');
         await connection.rollback();
-        throw error;
+        throw {error: errorCodes.DATABASE_ERROR};
     } finally {
         connection.release();
     }

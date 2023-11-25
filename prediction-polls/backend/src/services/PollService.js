@@ -102,28 +102,42 @@ async function getPollWithId(req, res) {
     }
 }
 
-function addDiscretePoll(req,res){
-    if (!validateAddDiscretePoll(req.body)) {
-        return res.status(400).json({error: errorCodes.BAD_DISCRETE_POLL_REQUEST_ERROR});
-    }
-    const question = req.body.question;
-    const choices = req.body.choices;
-    const openVisibility = req.body.openVisibility;
-    const setDueDate = req.body.setDueDate;
-    const numericFieldValue = req.body.numericFieldValue;
-    const dueDatePoll = setDueDate ? new Date(req.body.dueDatePoll).toISOString().split('T')[0] : null;
-    const selectedTimeUnit = req.body.selectedTimeUnit;
-    const username = req.user.name;
+async function addDiscretePoll(req, res) {
+    try {
+        if (!validateAddDiscretePoll(req.body)) {
+            return res.status(400).json({ error: errorCodes.BAD_DISCRETE_POLL_REQUEST_ERROR });
+        }
 
-    db.addDiscretePoll(question, username, choices, openVisibility, setDueDate, dueDatePoll, numericFieldValue, selectedTimeUnit)
-    .then((result) => {
-        res.end(result.toString());
-    })
-    .catch((error) => {
+        const question = req.body.question;
+        const choices = req.body.choices;
+        const openVisibility = req.body.openVisibility;
+        const setDueDate = req.body.setDueDate;
+        const numericFieldValue = req.body.numericFieldValue;
+        const dueDatePoll = setDueDate ? new Date(req.body.dueDatePoll).toISOString().split('T')[0] : null;
+        const selectedTimeUnit = req.body.selectedTimeUnit;
+        const username = req.user.name;
+
+        const result = await db.addDiscretePoll(
+            question,
+            username,
+            choices,
+            openVisibility,
+            setDueDate,
+            dueDatePoll,
+            numericFieldValue,
+            selectedTimeUnit
+        );
+        console.log(result);
+
+        res.json({
+            success: true
+        });
+    } catch (error) {
         console.error(error);
-        res.status(500).json({error: errorCodes.DATABASE_ERROR});
-    });
+        res.status(500).json(error);
+    }
 }
+
 
 function validateAddDiscretePoll(body) {
     if (
