@@ -32,10 +32,10 @@ async function getImagefromS3(imageName){
     try {
         const signedUrl = await s3Client.getSignedUrl('getObject', params);
 
-        return signedUrl;
+        return {signedUrl:signedUrl};
     } catch (error) {
         console.error("Error generating signed URL:", error);
-        throw {error:error}; 
+        return {error:error};
     }
 }
 
@@ -81,7 +81,11 @@ async function getProfile(req,res){
         }
 
         if(profile.profile_picture){
-            profile.profile_picture = await getImagefromS3(profile.profile_picture);
+            result = await getImagefromS3(profile.profile_picture);
+            if(result.error){
+                throw result.error;
+            }
+            profile.profile_picture = result.signedUrl;
         }
 
         const {badges,error:badge_error} = await db.getBadges(result.id);
