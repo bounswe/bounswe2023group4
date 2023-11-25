@@ -40,8 +40,6 @@ function Create() {
     return date.isAfter(currentDate);
   }
 
-  
-
   const handleOpenVisibilityChange = (e) => {
     setOpenVisibility(e.target.checked);
   };
@@ -159,6 +157,7 @@ function Create() {
         dueDatePoll: dueDatePoll ? dueDatePoll.format() : null, // Convert dueDatePoll to a string format if it exists
         numericFieldValue: numericFieldValue,
         selectedTimeUnit: selectedTimeUnit,
+        cont_poll_type: customizedType,
       };
 
       try {
@@ -187,6 +186,7 @@ function Create() {
       const customizedData = {
         question: question,
         setDueDate: setDueDate,
+        cont_poll_type: customizedType,
       };
 
       try {
@@ -218,6 +218,7 @@ function Create() {
         dueDatePoll: dueDatePoll ? dueDatePoll.format() : null, // Convert dueDatePoll to a string format if it exists
         numericFieldValue: numericFieldValue,
         selectedTimeUnit: selectedTimeUnit,
+        cont_poll_type: customizedType,
       };
 
       try {
@@ -246,6 +247,7 @@ function Create() {
       const customizedData = {
         question: question,
         setDueDate: setDueDate,
+        cont_poll_type: customizedType,
       };
 
       try {
