@@ -237,31 +237,30 @@ async function voteDiscretePoll(req,res){
     }
 }
 
-function voteContinuousPoll(req,res){
-    const pollId = req.params.pollId;
-    const userId = req.user.id;
-    const choice = req.body.choice;
-    const points = req.body.points;
+async function voteContinuousPoll(req, res) {
+    try {
+        const pollId = req.params.pollId;
+        const userId = req.user.id;
+        const choice = req.body.choice;
+        const points = req.body.points;
 
-    if(points <= 0){
-        res.status(404).json({error: errorCodes.USER_MUST_GIVE_POINTS_ERROR});
-    }
+        if (points <= 0) {
+            res.status(404).json({ error: errorCodes.USER_MUST_GIVE_POINTS_ERROR });
+            return;
+        }
 
-    db.getContinuousPollWithId(pollId)
-    .then((result) => {
+        const result = await db.getContinuousPollWithId(pollId);
         const contPollType = result[0].cont_poll_type;
-        db.voteContinuousPoll(pollId, userId, choice, contPollType, points ? points : 10)
-        .then(() => {
-            res.status(200).json({ message: "Vote Successful" });
-        })
-        .catch((error) => {
-            if (error) {
-                res.status(400).json(error);
-            } else {
-                res.status(500).json({error: errorCodes.DATABASE_ERROR});
-            }
-        })
-    })
+
+        await db.voteContinuousPoll(pollId, userId, choice, contPollType, points ? points : 10);
+        res.status(200).json({ message: "Vote Successful" });
+    } catch (error) {
+        if (error) {
+            res.status(400).json(error);
+        } else {
+            res.status(500).json({ error: errorCodes.DATABASE_ERROR });
+        }
+    }
 }
 
 module.exports = {getPolls, getPollWithId, addDiscretePoll, addContinuousPoll, voteDiscretePoll, voteContinuousPoll}
