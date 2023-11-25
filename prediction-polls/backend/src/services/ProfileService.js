@@ -1,5 +1,64 @@
 const db = require("../repositories/ProfileDB.js");
 const authDb = require("../repositories/AuthorizationDB.js");
+const crypto = require('crypto');
+const aws = require('aws-sdk');
+const { GetObjectCommand } = require('@aws-sdk/client-s3');
+
+const generateFileName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
+
+const bucketName = process.env.AWS_BUCKET_NAME
+const region = process.env.AWS_BUCKET_REGION
+const accessKeyId = process.env.AWS_ACCESS_KEY
+const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
+
+aws.config.update({
+    accessKeyId: accessKeyId,
+    secretAccessKey: secretAccessKey,
+    region: region, 
+});
+
+const s3Client = new aws.S3();
+
+
+async function getImagefromS3(imageName){
+    const params = {
+        Bucket: bucketName,
+        Key: imageName,
+        Expires: 60*5 // Time in seconds
+      };
+    
+    try {
+        const signedUrl = await s3Client.getSignedUrl('getObject', params);
+
+        return {signedUrl:signedUrl};
+    } catch (error) {
+        return {error:error};
+    }
+}
+
+async function uploadImagetoS3(req,res){
+    const userId = req.user.id;
+    const file = req.file
+    const imageName = generateFileName()
+
+    const fileBuffer = file.buffer
+    
+    const uploadParams = {
+        Bucket: bucketName,
+        Body: fileBuffer,
+        Key: imageName,
+        ContentType: req.file.mimetype
+    }
+      
+    try {
+        await s3Client.putObject(uploadParams).promise();
+        await db.updateProfile({ userId, profile_picture: imageName });
+        res.status(200).send({status:"Image uploaded successfully!"});
+    } catch (error) {
+        res.status(500).send({error:error});
+    }
+}
+
 
 
 async function getProfile(req,res){
@@ -13,6 +72,14 @@ async function getProfile(req,res){
         const {profile,error} = await db.getProfileWithUserId(result.id);
         if(error){
             throw error;
+        }
+
+        if(profile.profile_picture){
+            result = await getImagefromS3(profile.profile_picture);
+            if(result.error){
+                throw result.error;
+            }
+            profile.profile_picture = result.signedUrl;
         }
 
         const {badges,error:badge_error} = await db.getBadges(result.id);
@@ -91,4 +158,4 @@ async function updateProfile(req,res){
     }
 }
 
-module.exports = {getProfile,getProfileWithProfileId,getMyProfile,updateProfile}
+module.exports = {getProfile,getProfileWithProfileId,getMyProfile,updateProfile,uploadImagetoS3}
