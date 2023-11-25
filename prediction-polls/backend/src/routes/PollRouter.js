@@ -479,6 +479,9 @@ router.post('/continuous', authenticator.authorizeAccessToken, service.addContin
  *               choiceId:
  *                 type: integer
  *                 example: 2
+ *               points:
+ *                 type: integer
+ *                 example: 25
  *     responses:
  *       201:
  *         description: Vote submitted successfully
@@ -519,6 +522,9 @@ router.post('/discrete/:pollId/vote',authenticator.authorizeAccessToken, service
  *                     example: 9
  *                   - type: string
  *                     example: 2023-11-26
+ *                 points:
+ *                   type: integer
+ *                   example: 25
  *     responses:
  *       201:
  *         description: Vote submitted successfully
