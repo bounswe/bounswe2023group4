@@ -1,5 +1,7 @@
 const mysql = require('mysql2');
-const { addRefreshToken } = require('./AuthorizationDB');
+const { addRefreshToken, deleteRefreshToken } = require('./AuthorizationDB');
+const { updatePoints } = require('./ProfileDB');
+const errorCodes = require("../errorCodes.js");
 
 require('dotenv').config();
 
@@ -146,19 +148,32 @@ async function getDiscreteVoteCount(choiceid) {
     }
 }
 
-async function voteDiscretePoll(pollId, userId, choiceId){
+async function voteDiscretePoll(pollId, userId, choiceId, pointsSpent){
     const connection = await pool.getConnection();
 
     const deleteExistingSql = "DELETE FROM discrete_polls_selections WHERE poll_id = ? AND user_id = ?"
     const addVoteSql = "INSERT INTO discrete_polls_selections (poll_id, choice_id, user_id) VALUES (?, ?, ?)"
+    const findPointsSql = 'SELECT * FROM profiles WHERE userId= ?';
+    const updatePointSql = 'UPDATE profiles SET points = ? WHERE userId = ?';
 
     try {
         await connection.beginTransaction()
 
         deleteResult = await connection.query(deleteExistingSql, [pollId, userId]);
         addResult = await connection.query(addVoteSql, [pollId, choiceId, userId]);
+        const [rows] = await connection.query(findPointsSql, [userId]);
+        const current_points = rows[0].points;
 
+        if(current_points - pointsSpent < 0){
+            connection.rollback()
+            throw {error: errorCodes.INSUFFICIENT_POINTS_ERROR};
+        }
+
+        const [resultSetHeader] = await connection.query(updatePointSql, [current_points - pointsSpent, userId]);
+        
         connection.commit();
+        return {status:"success"};
+
     } catch (error) { 
         await connection.rollback();
         console.error('voteDiscretePoll(): Database Error');
@@ -169,11 +184,13 @@ async function voteDiscretePoll(pollId, userId, choiceId){
 
 }
 
-async function voteContinuousPoll(pollId, userId, choice, contPollType){
+async function voteContinuousPoll(pollId, userId, choice, contPollType, pointsSpent){
     const connection = await pool.getConnection();
 
     const deleteExistingSql = "DELETE FROM continuous_poll_selections WHERE poll_id = ? AND user_id = ?"
     const addVoteSql = "INSERT INTO continuous_poll_selections (poll_id, user_id, float_value, date_value) VALUES (?, ?, ?, ?)"
+    const findPointsSql = 'SELECT points FROM profiles WHERE userId= ?';
+    const updatePointSql = 'UPDATE profiles SET points = ? WHERE userId = ?';
 
     try {
         await connection.beginTransaction()
@@ -181,13 +198,21 @@ async function voteContinuousPoll(pollId, userId, choice, contPollType){
         deleteResult = await connection.query(deleteExistingSql, [pollId, userId]);
         if (contPollType === "numeric") {
             addResult = await connection.query(addVoteSql, [pollId, userId, choice, null]);
-            connection.commit();
         } else if (contPollType === "date") {
             addResult = await connection.query(addVoteSql, [pollId, userId, null, choice]);
-            connection.commit();
         } else {
             await connection.rollback();
         }
+        const [rows] = await connection.query(findPointsSql, [userId]);
+        const current_points = rows[0].points;
+
+        if(current_points - pointsSpent < 0){
+            connection.rollback()
+            throw {error: errorCodes.INSUFFICIENT_POINTS_ERROR};
+        }
+
+        const [resultSetHeader] = await connection.query(updatePointSql, [current_points - pointsSpent, userId]);
+        connection.commit();
     } catch (error) { 
         await connection.rollback();
         console.error('voteContinuousPoll(): Database Error');

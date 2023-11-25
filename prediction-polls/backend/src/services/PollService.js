@@ -201,10 +201,6 @@ function voteDiscretePoll(req,res){
     const choiceId = req.body.choiceId;
     const points = req.body.points;
 
-    if(!points){
-        points = 10;
-    }
-
     if(points <= 0){
         res.status(404).json({error: errorCodes.USER_MUST_GIVE_POINTS_ERROR});
     }
@@ -215,22 +211,25 @@ function voteDiscretePoll(req,res){
         if (!choiceExists) {
             res.status(404).json({error: errorCodes.CHOICE_DOES_NOT_EXIST_ERROR});
         } else {
-            db.voteDiscretePoll(pollId, userId, choiceId)
+            db.voteDiscretePoll(pollId, userId, choiceId, points ? points : 10)
             .then(() => {
-                updatePoints(userId,-1 * points).then((result) => { 
-                    if(result.error){
-                        res.status(400).json({ error: result.error });
-                    }
-                    else{
-                        res.status(200).json({ message: "Vote Successful" });
-                    }
-                })
+                res.status(200).json({ message: "Vote Successful" });
+            })
+            .catch((error) => {
+                if (error) {
+                    res.status(400).json(error);
+                } else {
+                    res.status(500).json({error: errorCodes.DATABASE_ERROR});
+                }
             })
         }
     })
     .catch((error) => {
-        console.error(error);
-        res.status(500).json({error: errorCodes.DATABASE_ERROR});
+        if (error) {
+            res.status(400).json(error);
+        } else {
+            res.status(500).json({error: errorCodes.DATABASE_ERROR});
+        }
     })
 }
 
@@ -240,10 +239,6 @@ function voteContinuousPoll(req,res){
     const choice = req.body.choice;
     const points = req.body.points;
 
-    if(!points){
-        points = 10;
-    }
-
     if(points <= 0){
         res.status(404).json({error: errorCodes.USER_MUST_GIVE_POINTS_ERROR});
     }
@@ -251,16 +246,16 @@ function voteContinuousPoll(req,res){
     db.getContinuousPollWithId(pollId)
     .then((result) => {
         const contPollType = result[0].cont_poll_type;
-        db.voteContinuousPoll(pollId, userId, choice, contPollType)
+        db.voteContinuousPoll(pollId, userId, choice, contPollType, points ? points : 10)
         .then(() => {
-            updatePoints(userId,-1 * points).then((result) => { 
-                if(result.error){
-                    res.status(400).json({ error: result.error });
-                }
-                else{
-                    res.status(200).json({ message: "Vote Successful" });
-                }
-            })
+            res.status(200).json({ message: "Vote Successful" });
+        })
+        .catch((error) => {
+            if (error) {
+                res.status(400).json(error);
+            } else {
+                res.status(500).json({error: errorCodes.DATABASE_ERROR});
+            }
         })
     })
 }
