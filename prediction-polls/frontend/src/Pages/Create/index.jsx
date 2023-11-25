@@ -31,8 +31,16 @@ function Create() {
                            (pollType === 'multipleChoice' && choices.length < 2) ||
                            (setDueDate && numericFieldValue.trim() === '') ||
                            (setDueDate && dueDatePoll === null) ||
-                           (setDueDate && numericFieldValue <= 0) ||
-                           (pollType === 'customized' && customizedType === '');             
+                           (setDueDate && isFutureDate(dueDatePoll) === false) ||
+                           (setDueDate && numericFieldValue < 0) ||
+                           (pollType === 'customized' && customizedType === '');  
+  
+  function isFutureDate(date) {
+    const currentDate = new Date();
+    return date.isAfter(currentDate);
+  }
+
+  
 
   const handleOpenVisibilityChange = (e) => {
     setOpenVisibility(e.target.checked);
