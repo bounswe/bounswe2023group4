@@ -80,7 +80,7 @@ async function getPollWithId(req, res) {
     
             const choicesWithVoteCount = await Promise.all(choices.map(async (choice) => {
                 const voterCount = await db.getDiscreteVoteCount(choice.id);
-                return { ...choice, voter_count: voterCount };
+                return { ...choice, voter_count: pollObject.openVisibility ? voterCount : null };
             }));
     
             res.json({ ...properties, "options": choicesWithVoteCount });
@@ -94,7 +94,7 @@ async function getPollWithId(req, res) {
     
             const choices = await db.getContinuousPollVotes(pollId);
             const newChoices = choices.map(item => item.float_value ? item.float_value : item.date_value);
-            res.json({ ...properties, "cont_poll_type": contPollRows[0].cont_poll_type, "options": newChoices });
+            res.json({ ...properties, "cont_poll_type": contPollRows[0].cont_poll_type/*, "options": newChoices */});
         }
     } catch (error) {
         console.error(error);
@@ -168,7 +168,6 @@ async function addContinuousPoll(req, res) {
 
         const question = req.body.question;
         const cont_poll_type = req.body.cont_poll_type;
-        const openVisibility = req.body.openVisibility;
         const setDueDate = req.body.setDueDate;
         const numericFieldValue = req.body.numericFieldValue;
         const dueDatePoll = setDueDate ? new Date(req.body.dueDatePoll).toISOString().split('T')[0] : null;
@@ -179,7 +178,6 @@ async function addContinuousPoll(req, res) {
             question,
             username,
             cont_poll_type,
-            openVisibility,
             setDueDate,
             dueDatePoll,
             numericFieldValue,
