@@ -42,10 +42,9 @@ async function getImagefromS3(imageName){
 async function uploadImagetoS3(req,res){
     const userId = req.user.id;
     const file = req.file
-    const caption = req.body.caption
     const imageName = generateFileName()
 
-    const fileBuffer = req.file.buffer
+    const fileBuffer = file.buffer
     
     const uploadParams = {
         Bucket: bucketName,
@@ -58,7 +57,7 @@ async function uploadImagetoS3(req,res){
         await s3Client.putObject(uploadParams).promise();
         console.log(imageName)
         await db.updateProfile({ userId, profile_picture: imageName });
-        res.status(200).send("Image uploaded successfully!");
+        res.status(200).send({status:"Image uploaded successfully!"});
     } catch (error) {
         console.error("Error uploading image to S3:", error);
         res.status(500).send({error:error});

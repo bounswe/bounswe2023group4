@@ -172,7 +172,42 @@ router.get('/myProfile',authenticator.authorizeAccessToken ,service.getMyProfile
  */
 router.get('/:profileId', service.getProfileWithProfileId);
 
-router.post("/photo",authenticator.authorizeAccessToken,upload.single('image'),service.uploadImagetoS3);
+
+/**
+ * @swagger
+ * /profiles/profilePhoto:
+ *   post:
+ *     tags:
+ *       - profiles
+ *     description: Upload profile photo.
+ *     requestBody:
+ *       description: Image content
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               image:
+ *                 type: binary
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *             examples:
+ *               value:
+ *                 status:
+ *                   Image uploaded successfully!
+ *       400:
+ *         description: Bad Request
+ */
+router.post("/profilePhoto",authenticator.authorizeAccessToken,upload.single('image'),service.uploadImagetoS3);
 
 /**
  * @swagger
