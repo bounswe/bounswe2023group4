@@ -278,9 +278,8 @@ function Create() {
 
   return (
     <div className={styles.page}>
-      <Menu mode="horizontal" defaultSelectedKeys={['create']}>
-        <Menu.Item key="create">Create</Menu.Item>
-      </Menu>
+      
+      <Menu currentPage="Create" /> 
       <div className={styles.createContainer}>
         <div className={styles.questionContainer}>
           <label htmlFor="question">Enter the question title</label>
