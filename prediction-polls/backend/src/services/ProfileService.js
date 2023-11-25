@@ -26,15 +26,12 @@ async function getImagefromS3(imageName){
         Key: imageName,
         Expires: 60*5 // Time in seconds
       };
-
-    const command = new GetObjectCommand(params);
     
     try {
         const signedUrl = await s3Client.getSignedUrl('getObject', params);
 
         return {signedUrl:signedUrl};
     } catch (error) {
-        console.error("Error generating signed URL:", error);
         return {error:error};
     }
 }
@@ -55,11 +52,9 @@ async function uploadImagetoS3(req,res){
       
     try {
         await s3Client.putObject(uploadParams).promise();
-        console.log(imageName)
         await db.updateProfile({ userId, profile_picture: imageName });
         res.status(200).send({status:"Image uploaded successfully!"});
     } catch (error) {
-        console.error("Error uploading image to S3:", error);
         res.status(500).send({error:error});
     }
 }
