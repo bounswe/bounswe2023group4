@@ -1,8 +1,8 @@
 const db = require("../repositories/ProfileDB.js");
 const authDb = require("../repositories/AuthorizationDB.js");
+const crypto = require('crypto');
 const aws = require('aws-sdk');
-const {PutObjectCommand,GetObjectCommand} = require('aws-sdk');
-const { getSignedUrl } = require('aws-sdk');
+const { GetObjectCommand } = require('@aws-sdk/client-s3');
 
 const generateFileName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
 
@@ -23,14 +23,20 @@ const s3Client = new aws.S3();
 async function getImagefromS3(imageName){
     const params = {
         Bucket: bucketName,
-        Key: imageName
-      }
+        Key: imageName,
+        Expires: 60*5 // Time in seconds
+      };
+
+    const command = new GetObjectCommand(params);
     
-      const command = new GetObjectCommand(params);
-      const seconds = 60
-      const url = await getSignedUrl(s3Client, command, { expiresIn: seconds });
-    
-      return url
+    try {
+        const signedUrl = await s3Client.getSignedUrl('getObject', params);
+
+        return signedUrl;
+    } catch (error) {
+        console.error("Error generating signed URL:", error);
+        throw {error:error}; 
+    }
 }
 
 async function uploadImagetoS3(req,res){
@@ -48,9 +54,15 @@ async function uploadImagetoS3(req,res){
         ContentType: req.file.mimetype
     }
       
-    await s3Client.send(new PutObjectCommand(uploadParams));
-
-    await db.updateProfile({userId,profile_picture:imageName});
+    try {
+        await s3Client.putObject(uploadParams).promise();
+        console.log(imageName)
+        await db.updateProfile({ userId, profile_picture: imageName });
+        res.status(200).send("Image uploaded successfully!");
+    } catch (error) {
+        console.error("Error uploading image to S3:", error);
+        res.status(500).send({error:error});
+    }
 }
 
 
