@@ -8,12 +8,14 @@ sealed interface PollVoteScreenUiState {
     data class DiscretePoll(
         val poll: Poll.DiscretePoll,
         val currentVoteId: String?,
-        val currentPointsReserved: Int
+        val currentPointsReserved: Int,
+        val toastMessage: String?
     ) : PollVoteScreenUiState
 
     data class ContinuousPoll(
         val poll: Poll.ContinuousPoll,
         val currentVoteInput: String?,
-        val currentPointsReserved: Int
+        val currentPointsReserved: Int,
+        val toastMessage: String?
     ) : PollVoteScreenUiState
 }

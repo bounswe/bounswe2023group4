@@ -1,0 +1,66 @@
+package com.bounswe.predictionpolls.ui.vote
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.bounswe.predictionpolls.common.Result
+import com.bounswe.predictionpolls.domain.poll.VotePollUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+
+@HiltViewModel
+class PollVoteViewModel @Inject constructor(private val votePollUseCase: VotePollUseCase) :
+    ViewModel() {
+
+    private val _state = MutableStateFlow<PollVoteScreenUiState>(PollVoteScreenUiState.Loading)
+
+    val state: StateFlow<PollVoteScreenUiState>
+        get() = _state.asStateFlow()
+
+    fun voteForDiscretePoll(pollId: String, points: Int, voteId: String) = viewModelScope.launch {
+        when (val result = votePollUseCase.voteForContinuousPoll(pollId, points, voteId)) {
+            is Result.Success -> {
+                _state.update { (it as PollVoteScreenUiState.DiscretePoll).copy(toastMessage = "Successfully voted") }
+            }
+
+            is Result.Error -> {
+                _state.update { (it as PollVoteScreenUiState.DiscretePoll).copy(toastMessage = "Error: ${result.exception.message}") }
+            }
+        }
+    }
+
+    fun voteForContinuousPoll(pollId: String, points: Int, voteInput: String) =
+        viewModelScope.launch {
+            when (val result = votePollUseCase.voteForContinuousPoll(pollId, points, voteInput)) {
+                is Result.Success -> {
+                    _state.update { (it as PollVoteScreenUiState.ContinuousPoll).copy(toastMessage = "Successfully voted") }
+                }
+
+                is Result.Error -> {
+                    _state.update { (it as PollVoteScreenUiState.ContinuousPoll).copy(toastMessage = "Error: ${result.exception.message}") }
+                }
+            }
+        }
+
+    fun consumeToastMessage() = viewModelScope.launch {
+        when (val state = _state.value) {
+            is PollVoteScreenUiState.DiscretePoll -> {
+                _state.update { state.copy(toastMessage = null) }
+            }
+
+            is PollVoteScreenUiState.ContinuousPoll -> {
+                _state.update { state.copy(toastMessage = null) }
+            }
+
+            else -> {
+                // do nothing
+            }
+        }
+    }
+
+}
