@@ -127,10 +127,10 @@ async function addDiscretePoll(req, res) {
             numericFieldValue,
             selectedTimeUnit
         );
-        console.log(result);
 
         res.json({
-            success: true
+            success: true,
+            newPollId: result
         });
     } catch (error) {
         console.error(error);
@@ -160,28 +160,40 @@ function validateAddDiscretePoll(body) {
     return true;
 }
 
-function addContinuousPoll(req,res){
-    if (!validateAddContinuousPoll(req.body)) {
-        return res.status(400).json({error: errorCodes.BAD_CONT_POLL_REQUEST_ERROR});
-    }
+async function addContinuousPoll(req, res) {
+    try {
+        if (!validateAddContinuousPoll(req.body)) {
+            return res.status(400).json({ error: errorCodes.BAD_CONT_POLL_REQUEST_ERROR });
+        }
 
-    const question = req.body.question;
-    const cont_poll_type = req.body.cont_poll_type;
-    const openVisibility = req.body.openVisibility;
-    const setDueDate = req.body.setDueDate;
-    const numericFieldValue = req.body.numericFieldValue;
-    const dueDatePoll = setDueDate ? new Date(req.body.dueDatePoll).toISOString().split('T')[0] : null;
-    const selectedTimeUnit = req.body.selectedTimeUnit;
-    const username = req.user.name;
+        const question = req.body.question;
+        const cont_poll_type = req.body.cont_poll_type;
+        const openVisibility = req.body.openVisibility;
+        const setDueDate = req.body.setDueDate;
+        const numericFieldValue = req.body.numericFieldValue;
+        const dueDatePoll = setDueDate ? new Date(req.body.dueDatePoll).toISOString().split('T')[0] : null;
+        const selectedTimeUnit = req.body.selectedTimeUnit;
+        const username = req.user.name;
 
-    db.addContinuousPoll(question, username, cont_poll_type, openVisibility, setDueDate, dueDatePoll, numericFieldValue, selectedTimeUnit)
-    .then((result) => {
-        res.end(result.toString());
-    })
-    .catch((error) => {
+        const result = await db.addContinuousPoll(
+            question,
+            username,
+            cont_poll_type,
+            openVisibility,
+            setDueDate,
+            dueDatePoll,
+            numericFieldValue,
+            selectedTimeUnit
+        );
+
+        res.json({
+            success: true,
+            newPollId: result
+        });
+    } catch (error) {
         console.error(error);
-        res.status(500).json({error: errorCodes.DATABASE_ERROR});
-    });
+        res.status(500).json(error);
+    }
 }
 
 function validateAddContinuousPoll(body) {

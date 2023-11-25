@@ -76,7 +76,7 @@ async function addDiscretePoll(question, username, choices, openVisibility, setD
 
         if (!poll_id) {
             await connection.rollback();
-            return false;
+            throw {error: errorCodes.DATABASE_ERROR};
         }
 
         await connection.query(sql_discrete_poll, [poll_id]);
@@ -86,7 +86,7 @@ async function addDiscretePoll(question, username, choices, openVisibility, setD
         }))
 
         await connection.commit();
-        return true;
+        return poll_id;
     } catch (error) {
         console.error('addDiscretePoll(): Database Error');
         await connection.rollback();
@@ -108,13 +108,13 @@ async function addContinuousPoll(question, username, cont_poll_type, openVisibil
 
         if (!poll_id) {
             await connection.rollback();
-            return false;
+            throw {error: errorCodes.DATABASE_ERROR};
         }
 
         await connection.query(sql_continuous_poll, [poll_id, cont_poll_type]);
 
         await connection.commit();
-        return true;
+        return poll_id;
     } catch (error) {
         console.error('addContinuousPoll(): Database Error');
         await connection.rollback();
