@@ -225,8 +225,6 @@ function voteDiscretePoll(req,res){
                         res.status(200).json({ message: "Vote Successful" });
                     }
                 })
-
-                res.json({ message: "Vote Successful" });
             })
         }
     })
@@ -240,13 +238,29 @@ function voteContinuousPoll(req,res){
     const pollId = req.params.pollId;
     const userId = req.user.id;
     const choice = req.body.choice;
+    const points = req.body.points;
+
+    if(!points){
+        points = 10;
+    }
+
+    if(points <= 0){
+        res.status(404).json({error: errorCodes.USER_MUST_GIVE_POINTS_ERROR});
+    }
 
     db.getContinuousPollWithId(pollId)
     .then((result) => {
         const contPollType = result[0].cont_poll_type;
         db.voteContinuousPoll(pollId, userId, choice, contPollType)
         .then(() => {
-            res.json({ success: true });
+            updatePoints(userId,-1 * points).then((result) => { 
+                if(result.error){
+                    res.status(400).json({ error: result.error });
+                }
+                else{
+                    res.status(200).json({ message: "Vote Successful" });
+                }
+            })
         })
     })
 }
