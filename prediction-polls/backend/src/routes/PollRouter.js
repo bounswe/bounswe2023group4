@@ -250,7 +250,7 @@ router.get('/', service.getPolls);
  *                     message: Error while accessing the database.
  *                     code: 3004
  */
-router.get('/:pollId', authenticator.authorizeAccessToken, service.getPollWithId);
+router.get('/:pollId', service.getPollWithId);
 
 /**
  * @swagger
