@@ -6,7 +6,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.compose.composable
 
-const val LEADERBOARD_ROUTE = "login"
+const val LEADERBOARD_ROUTE = "LEADERBOARD"
 
 fun NavGraphBuilder.leaderboardScreen(navController: NavController) {
     composable(LEADERBOARD_ROUTE) {
