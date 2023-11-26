@@ -5,12 +5,15 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Text
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.bounswe.predictionpolls.data.remote.TokenManager
@@ -53,7 +56,9 @@ class MainActivity : ComponentActivity() {
                     onButtonClick = {
                         if (it.requiresAuth && !isUserLoggedIn.value) {
                             Toast.makeText(context, loginRequiredText, Toast.LENGTH_SHORT).show()
-                            navController.navigateToMainScreen()
+                            navController.navigateToMainScreen(
+                                navOptions = NavOptions.Builder().setPopUpTo(MAIN_ROUTE, true).build()
+                            )
                         } else {
                             navController.navigate(it.route)
                         }
@@ -63,9 +68,13 @@ class MainActivity : ComponentActivity() {
                         if (isUserLoggedIn.value) {
                             tokenManager.clear()
                             Toast.makeText(context, logoutSuccessText, Toast.LENGTH_SHORT).show()
-                            navController.navigateToMainScreen()
+                            navController.navigateToMainScreen(
+                                navOptions = NavOptions.Builder().setPopUpTo(MAIN_ROUTE, true).build()
+                            )
                         } else {
-                            navController.navigateToMainScreen()
+                            navController.navigateToMainScreen(
+                                navOptions = NavOptions.Builder().setPopUpTo(MAIN_ROUTE, true).build()
+                            )
                         }
                     }
                 ) { toggleDrawerState ->
@@ -83,6 +92,12 @@ class MainActivity : ComponentActivity() {
                             leaderboardScreen(navController)
                             createPollScreen()
                             profileScreen(navController)
+
+                            // TODO: Remove placeholders
+                            composable("vote_poll"){ Text(text = "Vote Poll Page WIP") }
+                            composable("settings"){ Text(text = "Settings Page WIP") }
+                            composable("notifications"){ Text(text = "Notifications Page WIP") }
+                            composable("moderation"){ Text(text = "Moderation Page WIP") }
                         }
                     }
                 }

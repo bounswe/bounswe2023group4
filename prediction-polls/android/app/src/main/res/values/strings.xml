@@ -89,6 +89,7 @@
     <string name="poll_create_screen_choose_continuous_type">Choose customized input type</string>
     <string name="poll_create_screen_distribution_visibility">Open distribution visibility</string>
     <string name="poll_create_action">Create</string>
+    <string name="poll_create_successful">Poll created successfully</string>
 
     <string name="logged_out_notification">You have signed out successfully</string>
     <string name="login_required_notification">Please sign in to access this page.</string>

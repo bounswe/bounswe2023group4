@@ -20,7 +20,7 @@ class CreatePollViewModel @Inject constructor(
         screenState = screenState.reduce(event)
         when (event) {
             is CreatePollScreenEvent.OnCreatePollClicked -> {
-                onCreatePoll()
+                onCreatePoll(event.onSuccess)
             }
 
             is CreatePollScreenEvent.OnErrorDismissed -> {
@@ -48,7 +48,7 @@ class CreatePollViewModel @Inject constructor(
         return true
     }
 
-    private fun onCreatePoll() {
+    private fun onCreatePoll(onSuccess: () -> Unit) {
         if (isInputValid().not()) return
 
         val formattedDueDate = if (screenState.isDueDateEnabled) {
@@ -61,7 +61,10 @@ class CreatePollViewModel @Inject constructor(
 
         launchCatching(
             trackJobProgress = true,
-            maxRetryCount = 1
+            maxRetryCount = 1,
+            onSuccess = {
+                onSuccess()
+            }
         ) {
             when (screenState.pollType) {
                 CreatePollScreenState.PollType.DISCRETE -> {
@@ -71,7 +74,8 @@ class CreatePollViewModel @Inject constructor(
                         screenState.isDistributionVisible,
                         screenState.isDueDateEnabled,
                         formattedDueDate,
-                        screenState.lastAcceptValue.filter { it.isDigit() }.toInt(),
+                        screenState.lastAcceptValue.filter { it.isDigit() }
+                            .takeIf { it.isBlank().not() }?.toInt(),
                         screenState.acceptValueType.toDiscreteRequestType().value,
                     )
                 }
@@ -82,7 +86,8 @@ class CreatePollViewModel @Inject constructor(
                         screenState.isDistributionVisible,
                         screenState.isDueDateEnabled,
                         formattedDueDate,
-                        screenState.lastAcceptValue.filter { it.isDigit() }.toInt(),
+                        screenState.lastAcceptValue.filter { it.isDigit() }
+                            .takeIf { it.isBlank().not() }?.toInt(),
                         screenState.acceptValueType.toContinuousRequestType().value,
                         screenState.continuousInputType.toContinuousRequestType().value,
                     )
