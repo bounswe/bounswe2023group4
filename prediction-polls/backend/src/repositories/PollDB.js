@@ -103,6 +103,7 @@ async function addContinuousPoll(question, username, cont_poll_type, setDueDate,
     const sql_continuous_poll = 'INSERT INTO continuous_polls (id, cont_poll_type) VALUES (?, ?)' 
 
     try {
+        await connection.beginTransaction();
         const [resultSetHeader] = await connection.query(sql_poll, [question, username, 'continuous', false, setDueDate, dueDatePoll, numericFieldValue, selectedTimeUnit]);
         poll_id = resultSetHeader.insertId;
 
