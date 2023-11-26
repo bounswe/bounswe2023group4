@@ -18,7 +18,7 @@ async function getPolls(req,res){
                 "creatorImage": null,
                 "pollType": pollObject.poll_type,
                 "closingDate": pollObject.closingDate,
-                "rejectVotes": `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}`,
+                "rejectVotes": (pollObject.numericFieldValue && pollObject.selectedTimeUnit) ? `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}` : null,
                 "isOpen": true,
                 "comments": []
             };
@@ -70,7 +70,7 @@ async function getPollWithId(req, res) {
             "creatorImage": null,
             "pollType": pollObject.poll_type,
             "closingDate": pollObject.closingDate,
-            "rejectVotes": `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}`,
+            "rejectVotes": (pollObject.numericFieldValue && pollObject.selectedTimeUnit) ? `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}` : null,
             "isOpen": true,
             "comments": []
         };
