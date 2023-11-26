@@ -237,21 +237,54 @@ async function getContinuousPollVotes(pollId) {
 }
 
 async function getTagsOfPoll(pollId) {
-    const sql = "SELECT * FROM tags WHERE poll_id = ?";
+    const sql = "SELECT tags.topic FROM tags WHERE poll_id = ?";
 
     try {
         [rows] = await pool.query(sql, [pollId]);
-        return rows;
+        return rows.map(item => item.topic);
     } catch (error) { 
         console.error('getTagsOfPoll(): Database Error');
         throw error;
     }
 }
 
+async function getUntaggedPolls() {
+    const sql = 'SELECT polls.id, polls.question, polls.tagsScanned FROM polls'
 
+    try {
+        [rows] = await pool.query(sql, []);
+        return rows;
+    } catch (error) { 
+        console.error('getUntaggedPolls(): Database Error');
+        throw error;
+    }
+}
 
+async function updateTagsScanned(pollId, tagsScanned) {
+    const sql = 'UPDATE polls SET tagsScanned = ? WHERE id = ?'
+
+    try {
+        [rows] = await pool.query(sql, [tagsScanned, pollId]);
+        return rows;
+    } catch (error) { 
+        console.error('updateTagsScanned(): Database Error');
+        throw error;
+    }
+}
+
+async function addTopic(pollId, topic) {
+    const sql = 'INSERT into tags (topic, poll_id) VALUES (?, ?)'
+
+    try {
+        [rows] = await pool.query(sql, [topic, pollId]);
+        return rows;
+    } catch (error) { 
+        console.error('updateTopic(): Database Error');
+        throw error;
+    }
+}
 
 module.exports = {getPolls, getPollWithId, getDiscretePollWithId, getContinuousPollWithId, 
     addDiscretePoll,addContinuousPoll, getDiscretePollChoices, getDiscreteVoteCount, voteDiscretePoll, voteContinuousPoll,
-    getContinuousPollVotes,getTagsOfPoll}
+    getContinuousPollVotes,getTagsOfPoll, getUntaggedPolls, updateTagsScanned, addTopic}
     
