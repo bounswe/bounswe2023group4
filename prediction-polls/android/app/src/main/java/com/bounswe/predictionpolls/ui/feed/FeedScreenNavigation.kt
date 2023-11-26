@@ -9,6 +9,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.compose.composable
+import com.bounswe.predictionpolls.ui.vote.navigateToPollVoteScreen
 
 const val FEED_ROUTE = "feed"
 
@@ -21,7 +22,9 @@ fun NavGraphBuilder.feedScreen(navController: NavController) {
                 feedViewModel.fetchFeed(0)
         }
         val feedUiState by feedViewModel.feedUiState.collectAsStateWithLifecycle()
-        FeedScreen(feedUiState)
+        FeedScreen(feedUiState, onPollClicked = {
+            navController.navigateToPollVoteScreen(it)
+        })
     }
 }
 

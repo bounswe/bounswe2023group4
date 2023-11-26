@@ -6,15 +6,20 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 
-const val POLL_VOTE_ROUTE = "pollVote"
+const val POLL_VOTE_ROUTE = "pollVote/{pollId}"
 
 fun NavGraphBuilder.pollVoteScreen(navController: NavController) {
-    composable(POLL_VOTE_ROUTE) {
+    composable(
+        POLL_VOTE_ROUTE, arguments = listOf(navArgument("pollId") { type = NavType.StringType })
+    ) {
         val pollVoteViewModel: PollVoteViewModel = hiltViewModel()
-        val pollId = "1" // TODO: Fetch this from navcontroller
         // Accessing state from ViewModel
+        val pollId = it.arguments?.getString("pollId") ?: "" // Default value as fallback
+
         val state by pollVoteViewModel.state.collectAsStateWithLifecycle()
         LaunchedEffect(key1 = Unit) {
             pollVoteViewModel.fetchPoll(pollId)
@@ -62,4 +67,9 @@ fun NavGraphBuilder.pollVoteScreen(navController: NavController) {
             }
         )
     }
+}
+
+
+fun NavController.navigateToPollVoteScreen(pollId: String) {
+    this.navigate("pollVote/$pollId")
 }

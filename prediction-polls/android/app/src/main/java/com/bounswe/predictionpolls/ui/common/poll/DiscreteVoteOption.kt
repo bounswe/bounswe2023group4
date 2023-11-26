@@ -60,7 +60,7 @@ fun DiscreteVoteOption(
             .clip(DiscreteVoteOptionShape)
             .border(
                 2.dp,
-                MaterialTheme.colorScheme.secondary.copy(alpha = if (isSelected) 1f else 0.5f),
+                MaterialTheme.colorScheme.secondary.copy(alpha = if (isSelected) 1f else 0.1f),
                 DiscreteVoteOptionShape
             )
             .background(MaterialTheme.colorScheme.background)

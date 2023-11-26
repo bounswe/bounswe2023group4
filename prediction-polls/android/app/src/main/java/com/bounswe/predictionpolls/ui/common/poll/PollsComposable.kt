@@ -1,5 +1,6 @@
 package com.bounswe.predictionpolls.ui.common.poll
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -15,10 +16,17 @@ import kotlinx.collections.immutable.ImmutableList
  * Displays polls in a lazy list. This composable can be used in profile screen and feed screen where continuous flow of polls are expected.
  */
 @Composable
-fun Polls(polls: ImmutableList<Poll>, modifier: Modifier = Modifier) {
+fun Polls(
+    polls: ImmutableList<Poll>,
+    onPollClicked: (id: String) -> Unit = {},
+    modifier: Modifier = Modifier
+) {
     LazyColumn(modifier = modifier) {
         items(polls) {
             PollComposable(
+                modifier = Modifier.clickable {
+                    onPollClicked(it.polId)
+                },
                 pollCreatorProfilePictureUri = it.creatorProfilePictureUri,
                 pollCreatorName = it.pollCreatorName,
                 tags = it.tags,

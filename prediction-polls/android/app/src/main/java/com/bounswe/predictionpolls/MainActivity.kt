@@ -29,7 +29,6 @@ import com.bounswe.predictionpolls.ui.main.navigateToMainScreen
 import com.bounswe.predictionpolls.ui.profile.profileScreen
 import com.bounswe.predictionpolls.ui.signup.signupScreen
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
-import com.bounswe.predictionpolls.ui.vote.POLL_VOTE_ROUTE
 import com.bounswe.predictionpolls.ui.vote.pollVoteScreen
 import com.bounswe.predictionpolls.utils.NavItem
 import dagger.hilt.android.AndroidEntryPoint
@@ -97,9 +96,9 @@ class MainActivity : ComponentActivity() {
                             leaderboardScreen(navController)
                             createPollScreen()
                             profileScreen(navController)
+                            pollVoteScreen(navController)
 
                             // TODO: Remove placeholders
-                            composable("vote_poll") { Text(text = "Vote Poll Page WIP") }
                             composable("settings") { Text(text = "Settings Page WIP") }
                             composable("notifications") { Text(text = "Notifications Page WIP") }
                             composable("moderation") { Text(text = "Moderation Page WIP") }

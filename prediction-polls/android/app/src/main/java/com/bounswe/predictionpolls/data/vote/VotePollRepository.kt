@@ -35,7 +35,7 @@ class VotePollRepositoryImpl @Inject constructor(
                 val result = votePollApi.voteForDiscretePoll(
                     pollId,
                     DiscreteVotePollRequest(
-                        voteId,
+                        voteId.toInt(),
                         points.toString()
                     )
                 )
@@ -58,8 +58,8 @@ class VotePollRepositoryImpl @Inject constructor(
                 val result = votePollApi.voteForContinuousPoll(
                     pollId,
                     ContinuousPollRequest(
+                        voteInput,
                         points.toString(),
-                        voteInput
                     )
                 )
                 if (result.error != null) {

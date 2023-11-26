@@ -61,7 +61,6 @@ fun PollVoteScreen(
                                     voteCount = discreteOption.voteCount,
                                     fillPercentage = discreteOption.voteCount / sumOfTotalVotes.toFloat(),
                                     isSelected = discreteOption.id == state.currentVoteId,
-                                    optionPrefix = (10 + index).toChar().toString() + ") ",
                                     modifier = Modifier.clickable {
                                         onVoteInputChanged(discreteOption.id)
                                     }
@@ -83,23 +82,38 @@ fun PollVoteScreen(
 
         is PollVoteScreenUiState.ContinuousPoll -> {
             val poll = state.poll
-            PollComposable(
-                pollCreatorProfilePictureUri = poll.creatorProfilePictureUri,
-                pollCreatorName = poll.pollCreatorName,
-                tags = poll.tags,
-                pollQuestionTitle = poll.pollQuestionTitle,
-                optionsContent = {
-                    ContinuousVoteOption(
-                        title = "Enter your vote",
-                        vote = state.currentVoteInput ?: "",
-                        isVotingEnabled = true,
-                        voteType = poll.inputType,
-                        onVoteInputChanged = onVoteInputChanged
+            val context = LocalContext.current
+            LaunchedEffect(key1 = state.toastMessage) {
+                state.toastMessage?.let {
+                    Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                    onToastConsumed()
+                }
+            }
+            PollVote(
+                pollContent = {
+                    PollComposable(
+                        pollCreatorProfilePictureUri = poll.creatorProfilePictureUri,
+                        pollCreatorName = poll.pollCreatorName,
+                        tags = poll.tags,
+                        pollQuestionTitle = poll.pollQuestionTitle,
+                        optionsContent = {
+                            ContinuousVoteOption(
+                                title = "Enter your vote",
+                                vote = state.currentVoteInput ?: "",
+                                isVotingEnabled = true,
+                                voteType = poll.inputType,
+                                onVoteInputChanged = onVoteInputChanged
+                            )
+                        },
+                        dueDate = poll.dueDate ?: "",
+                        rejectionText = poll.rejectionText ?: "",
+                        commentCount = 0
                     )
                 },
-                dueDate = poll.dueDate ?: "",
-                rejectionText = poll.rejectionText ?: "",
-                commentCount = 0
+                currentPointsReserved = state.currentPointsReserved,
+                onPointsReservedChanged = onPointsReservedChanged,
+                onVotePressed = onVotePressed,
+                modifier = modifier
             )
 
         }

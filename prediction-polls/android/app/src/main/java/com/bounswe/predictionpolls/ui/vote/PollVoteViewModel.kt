@@ -97,7 +97,7 @@ class PollVoteViewModel @Inject constructor(
     }
 
     fun voteForDiscretePoll(pollId: String, points: Int, voteId: String) = viewModelScope.launch {
-        when (val result = votePollUseCase.voteForContinuousPoll(pollId, points, voteId)) {
+        when (val result = votePollUseCase.voteForDiscretePoll(pollId, points, voteId)) {
             is Result.Success -> {
                 _state.update { (it as PollVoteScreenUiState.DiscretePoll).copy(toastMessage = "Successfully voted") }
             }
