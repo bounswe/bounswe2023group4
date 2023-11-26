@@ -183,7 +183,7 @@ private fun CoverPhoto(imageUri: String?, modifier: Modifier) {
         model = imageUri,
         contentDescription = "User Badge",
         modifier = modifier,
-        contentScale = ContentScale.Crop,
+        contentScale = if (imageUri == null) ContentScale.Fit else ContentScale.Crop,
         alignment = Alignment.Center,
         error = painterResource(id = R.drawable.ic_warning),
     )
@@ -254,7 +254,7 @@ private fun ProfilePicture(imageUri: String?, modifier: Modifier = Modifier) {
 @Composable
 private fun UserDescription(description: String?, modifier: Modifier = Modifier) {
     Text(
-        text = description?:"", modifier = modifier,
+        text = description ?: "", modifier = modifier,
         maxLines = 5,
         overflow = TextOverflow.Ellipsis,
         color = MaterialTheme.colorScheme.scrim,
