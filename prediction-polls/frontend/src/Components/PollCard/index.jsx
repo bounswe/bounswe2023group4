@@ -132,11 +132,11 @@ function PollCard({ PollData ,setAnswer}) {
         </div>
         <div className={styles.textGroup}>
           <p className={styles.textDescription}>Closing In</p>
-          <p className={styles.textDetail}>{PollData.closingDate}</p>
+          <p className={styles.textDetail}>{PollData.closingDate == null? "Indefinite":PollData.closingDate}</p>
         </div>
         <div className={styles.textGroup}>
-          <p className={styles.textDescription}>Reject Votes In</p>
-          <p className={styles.textDetail}>Last {PollData.rejectVotes}</p>
+          <p className={styles.textDescription}>{PollData.closingDate == null?" ":"Reject Votes In"}</p>
+          <p className={styles.textDetail}>{PollData.closingDate == null?" ":"Last"} {PollData.rejectVotes}</p>
         </div>
       </div>
     </div>

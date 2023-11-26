@@ -32,7 +32,9 @@ function Vote() {
         else {
           data.isCustomPoll = true;
         }
-        data.closingDate = data.closingDate.slice(0, 10);
+        if (data.closingDate != null){
+          data.closingDate = data.closingDate.slice(0, 10);
+        }
         return data;
       }
       else {
