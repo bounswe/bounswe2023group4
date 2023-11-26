@@ -9,13 +9,68 @@ data class LeaderboardScreenState(
         val DUMMY_STATE = LeaderboardScreenState(
             tags = listOf("E-sport", "NBA", "Football", "Tennis"),
             selectedTag = "E-sport",
-            leaderboardList = (0..20).reversed().map {
+            leaderboardList = listOf(
                 LeaderboardItem(
-                    username = "user$it",
+                    username = "yigit",
+                    image = "yigit",
+                    score = 420
+                ),
+                LeaderboardItem(
+                    username = "ahmet",
                     image = "",
-                    score = it * 10
-                )
-            }
+                    score = 410
+                ),
+                LeaderboardItem(
+                    username = "ozan",
+                    image = "",
+                    score = 400
+                ),
+                LeaderboardItem(
+                    username = "batuhan",
+                    image = "",
+                    score = 390
+                ),
+                LeaderboardItem(
+                    username = "şefik",
+                    image = "",
+                    score = 380
+                ),
+                LeaderboardItem(
+                    username = "yusuf",
+                    image = "",
+                    score = 370
+                ),
+                LeaderboardItem(
+                    username = "merve",
+                    image = "",
+                    score = 360
+                ),
+                LeaderboardItem(
+                    username = "aslıhan",
+                    image = "",
+                    score = 350
+                ),
+                LeaderboardItem(
+                    username = "mehmet",
+                    image = "",
+                    score = 340
+                ),
+                LeaderboardItem(
+                    username = "ali",
+                    image = "",
+                    score = 330
+                ),
+                LeaderboardItem(
+                    username = "veli",
+                    image = "",
+                    score = 320
+                ),
+                LeaderboardItem(
+                    username = "ayşe",
+                    image = "",
+                    score = 310
+                ),
+            )
         )
     }
 

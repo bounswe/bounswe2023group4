@@ -2,6 +2,9 @@ package com.bounswe.predictionpolls.extensions
 
 import android.os.Build
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
@@ -41,4 +44,17 @@ fun String.isValidDate(): Boolean {
             false
         }
     }
+}
+
+fun String.toISO8601(): String? {
+    val currentTime = LocalDateTime.now().toLocalTime()
+    val localDate = LocalDateTime.of(
+        this.substring(4, 8).toInt(),
+        this.substring(2, 4).toInt(),
+        this.substring(0, 2).toInt(),
+        currentTime.hour,
+        currentTime.minute
+    )
+    val offsetDate = OffsetDateTime.of(localDate, ZoneOffset.UTC)
+    return offsetDate.format(DateTimeFormatter.ISO_DATE_TIME)
 }

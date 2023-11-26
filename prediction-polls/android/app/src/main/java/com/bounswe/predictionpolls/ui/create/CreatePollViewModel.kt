@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.core.BaseViewModel
 import com.bounswe.predictionpolls.data.remote.repositories.PollRepository
+import com.bounswe.predictionpolls.extensions.toISO8601
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -20,7 +21,7 @@ class CreatePollViewModel @Inject constructor(
         screenState = screenState.reduce(event)
         when (event) {
             is CreatePollScreenEvent.OnCreatePollClicked -> {
-                onCreatePoll()
+                onCreatePoll(event.onSuccess)
             }
 
             is CreatePollScreenEvent.OnErrorDismissed -> {
@@ -48,20 +49,21 @@ class CreatePollViewModel @Inject constructor(
         return true
     }
 
-    private fun onCreatePoll() {
+    private fun onCreatePoll(onSuccess: () -> Unit) {
         if (isInputValid().not()) return
 
         val formattedDueDate = if (screenState.isDueDateEnabled) {
-            screenState.dueDate.run {
-                "${substring(4, 8)}/${substring(2, 4)}/${substring(0, 2)}"
-            }
+            screenState.dueDate.toISO8601()
         } else {
             null
         }
 
         launchCatching(
             trackJobProgress = true,
-            maxRetryCount = 1
+            maxRetryCount = 1,
+            onSuccess = {
+                onSuccess()
+            }
         ) {
             when (screenState.pollType) {
                 CreatePollScreenState.PollType.DISCRETE -> {
@@ -71,7 +73,8 @@ class CreatePollViewModel @Inject constructor(
                         screenState.isDistributionVisible,
                         screenState.isDueDateEnabled,
                         formattedDueDate,
-                        screenState.lastAcceptValue.filter { it.isDigit() }.toInt(),
+                        screenState.lastAcceptValue.filter { it.isDigit() }
+                            .takeIf { it.isBlank().not() }?.toInt(),
                         screenState.acceptValueType.toDiscreteRequestType().value,
                     )
                 }
@@ -82,7 +85,8 @@ class CreatePollViewModel @Inject constructor(
                         screenState.isDistributionVisible,
                         screenState.isDueDateEnabled,
                         formattedDueDate,
-                        screenState.lastAcceptValue.filter { it.isDigit() }.toInt(),
+                        screenState.lastAcceptValue.filter { it.isDigit() }
+                            .takeIf { it.isBlank().not() }?.toInt(),
                         screenState.acceptValueType.toContinuousRequestType().value,
                         screenState.continuousInputType.toContinuousRequestType().value,
                     )

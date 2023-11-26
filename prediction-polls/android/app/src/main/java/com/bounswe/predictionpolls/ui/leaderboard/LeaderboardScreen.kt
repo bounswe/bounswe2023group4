@@ -132,8 +132,8 @@ private fun LeaderboardScreenTagSelection(
             ),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp)
                 .background(MaterialTheme.colorScheme.primaryContainer)
+                .padding(horizontal = 16.dp)
         ) {
             items.forEach { item ->
                 DropdownMenuItem(
@@ -187,7 +187,7 @@ private fun ColumnScope.Leaderboard(
 @Composable
 private fun LeaderboardRow(
     position: String,
-    image: String,
+    image: String, // TODO: use image
     username: String,
     point: String,
 ) {
