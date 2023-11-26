@@ -24,9 +24,7 @@ class NavigationDrawerTest {
 
         composeTestRule.setContent {
             titles = titleIds.map { stringResource(id = it) }
-            NavigationDrawer(
-                selectedNavItem = NavItem.FEED
-            ) {
+            NavigationDrawer() {
                 Button(
                     onClick = {
                         it()
@@ -56,7 +54,6 @@ class NavigationDrawerTest {
         composeTestRule.setContent {
             clickedTitle = stringResource(id = NavItem.PROFILE.titleId)
             NavigationDrawer(
-                selectedNavItem = selectedNavItem,
                 onButtonClick = {
                     selectedNavItem = it
                 }
