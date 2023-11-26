@@ -43,10 +43,14 @@ typealias ToggleDrawerState = () -> Unit
 @Composable
 fun NavigationDrawer(
     modifier: Modifier = Modifier,
-    selectedNavItem: NavItem,
+    selectedRoute: String? = null,
     onButtonClick: (NavItem) -> Unit = {},
     content: @Composable (ToggleDrawerState) -> Unit = {}
 ) {
+    val selectedNavItem = remember(selectedRoute) {
+        NavItem.values().firstOrNull { it.route == selectedRoute }
+    }
+
     val drawerState = remember {
         DrawerState(
             initialValue = DrawerValue.Closed
@@ -170,9 +174,7 @@ fun NavigationDrawerPreview() {
     PredictionPollsTheme(
         darkTheme = false
     ) {
-        NavigationDrawer(
-            selectedNavItem = NavItem.FEED
-        ) {
+        NavigationDrawer {
             Button(onClick = {
                 it()
             }) {
