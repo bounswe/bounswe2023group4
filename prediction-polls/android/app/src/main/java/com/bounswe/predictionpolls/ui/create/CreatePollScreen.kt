@@ -144,7 +144,7 @@ private fun CreatePollScreenUI(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 24.dp, start = 16.dp, end = 16.dp)
+            .padding(start = 16.dp, end = 16.dp)
             .verticalScroll(scrollState),
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
