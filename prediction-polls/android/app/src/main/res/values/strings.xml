@@ -9,6 +9,9 @@
     <string name="nav_drawer_moderation">Moderation</string>
     <string name="nav_drawer_leaderboard">Leaderboard</string>
     <string name="nav_drawer_notifications">Notifications</string>
+    <string name="nav_drawer_settings">Settings</string>
+    <string name="nav_drawer_signin">Sign in</string>
+    <string name="nav_drawer_signout">Sign out</string>
 
     <!-- Welcome Page -->
     <string name="welcome_page_title">Welcome To</string>
