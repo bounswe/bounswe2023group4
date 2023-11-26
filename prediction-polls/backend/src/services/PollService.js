@@ -19,7 +19,7 @@ async function getPolls(req,res){
                 "pollType": pollObject.poll_type,
                 "closingDate": pollObject.closingDate,
                 "rejectVotes": (pollObject.numericFieldValue && pollObject.selectedTimeUnit) ? `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}` : null,
-                "isOpen": true,
+                "isOpen": pollObject.isOpen ? true : false,
                 "comments": []
             };
 
@@ -71,7 +71,7 @@ async function getPollWithId(req, res) {
             "pollType": pollObject.poll_type,
             "closingDate": pollObject.closingDate,
             "rejectVotes": (pollObject.numericFieldValue && pollObject.selectedTimeUnit) ? `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}` : null,
-            "isOpen": true,
+            "isOpen": pollObject.isOpen ? true : false,
             "comments": []
         };
     
@@ -261,4 +261,64 @@ async function voteContinuousPoll(req, res) {
     }
 }
 
-module.exports = {getPolls, getPollWithId, addDiscretePoll, addContinuousPoll, voteDiscretePoll, voteContinuousPoll}
+async function closePoll(req, res) {
+    try {
+        const pollIdInput = req.params.pollId;
+        const choiceIdInput = req.body.choiceId;
+
+        if (!(/^\d+$/.test(pollIdInput))) {
+            throw {error: {code: 5100, message: "pollId not a number."}};
+        }
+
+        if (!(typeof choiceIdInput === 'number')) {
+            throw {error: {code: 5101, message: "choiceId not a number."}}
+        }
+
+        pollId = parseInt(pollIdInput);
+        choiceId = parseInt(choiceIdInput);
+
+        const rows = await db.getPollWithId(pollId);
+        if (rows.length === 0) {
+            throw errorCodes.NO_SUCH_POLL_ERROR;
+        }
+
+        const pollObject = rows[0];
+
+        if (pollObject.poll_type === 'continuous') {
+            throw {error: {code: 5102, message: "Closing unsupported."}};
+        }
+
+        if (!pollObject.isOpen) {
+            throw {error: {code: 5013, message: "Poll already closed"}};
+        }
+
+        const selections = await db.getDiscreteSelectionsWithPollId(pollId);
+        console.log("selections: ", selections);
+
+        const totalPointsBet = selections.reduce((sum, selection) => sum + selection.given_points, 0);
+        console.log("totalPointsBet: ", totalPointsBet);
+
+        const correctSelections = selections.filter(selection => selection.choice_id === choiceId);
+        console.log("correctSelections: ", correctSelections);
+
+        const totalCorrectBet = correctSelections.reduce((sum, selection) => sum + selection.given_points, 0);
+        console.log("totalCorrectBet: ", totalCorrectBet);
+
+        const rewardPoints = correctSelections.map((selection) => {
+            return {user_id: selection.user_id, reward: Math.floor(totalPointsBet * (selection.given_points / totalCorrectBet))}
+        })
+        console.log("rewardPoints: ", rewardPoints);
+
+        await db.closePoll(pollId, rewardPoints);
+
+        res.status(200).json({success: true});
+    } catch (error) {
+        if (error) {
+            res.status(400).json(error);
+        } else {
+            res.status(500).json({ error: errorCodes.DATABASE_ERROR });
+        }
+    }
+}
+
+module.exports = {getPolls, getPollWithId, addDiscretePoll, addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll}
