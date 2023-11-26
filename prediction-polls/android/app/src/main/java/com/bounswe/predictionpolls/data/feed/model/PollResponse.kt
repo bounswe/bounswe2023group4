@@ -139,16 +139,16 @@ class PollResponseDeserializer : JsonDeserializer<PollResponse> {
         } catch (e: Exception) {
             null
         }
-        val optionsJson = jsonObject.get("options").asJsonArray
         val options = mutableListOf<Any>()
         if (pollType == "continuous") {
-            options.addAll(
-                context.deserialize<List<String>>(
-                    optionsJson,
-                    object : TypeToken<List<Int>>() {}.type
-                )
-            )
+//            options.addAll(
+//                context.deserialize<List<String>>(
+//                    optionsJson,
+//                    object : TypeToken<List<Int>>() {}.type
+//                )
+//            )
         } else {
+            val optionsJson = jsonObject.get("options").asJsonArray
             options.addAll(
                 context.deserialize<List<PollResponse.Option>>(
                     optionsJson,

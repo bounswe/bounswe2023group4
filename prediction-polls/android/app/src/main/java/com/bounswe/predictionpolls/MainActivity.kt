@@ -105,16 +105,7 @@ class MainActivity : ComponentActivity() {
                             composable("moderation") { Text(text = "Moderation Page WIP") }
                         }
                     }
-                    NavHost(navController = navController, startDestination = POLL_VOTE_ROUTE) {
-                        mainScreen(navController)
-                        loginScreen(navController)
-                        signupScreen(navController)
-                        feedScreen(navController)
-                        leaderboardScreen(navController)
-                        createPollScreen()
-                        profileScreen(navController)
-                        pollVoteScreen(navController)
-                    }
+
                 }
             }
         }
