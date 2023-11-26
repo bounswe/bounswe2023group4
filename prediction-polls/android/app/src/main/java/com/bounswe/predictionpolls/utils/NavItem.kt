@@ -12,7 +12,7 @@ enum class NavItem(
     val route: String,
     @StringRes val titleId: Int,
     @DrawableRes val iconId: Int,
-    requiresAuth: Boolean = false,
+    val requiresAuth: Boolean = false,
 ) {
     PROFILE(
         route = PROFILE_SCREEN_ROUTE,

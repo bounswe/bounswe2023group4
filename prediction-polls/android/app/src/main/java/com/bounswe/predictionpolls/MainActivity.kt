@@ -1,14 +1,19 @@
 package com.bounswe.predictionpolls
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.bounswe.predictionpolls.data.remote.TokenManager
 import com.bounswe.predictionpolls.ui.common.CommonAppbar
 import com.bounswe.predictionpolls.ui.common.NavigationDrawer
 import com.bounswe.predictionpolls.ui.create.createPollScreen
@@ -17,14 +22,19 @@ import com.bounswe.predictionpolls.ui.leaderboard.leaderboardScreen
 import com.bounswe.predictionpolls.ui.login.loginScreen
 import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
 import com.bounswe.predictionpolls.ui.main.mainScreen
+import com.bounswe.predictionpolls.ui.main.navigateToMainScreen
 import com.bounswe.predictionpolls.ui.profile.profileScreen
 import com.bounswe.predictionpolls.ui.signup.signupScreen
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 import com.bounswe.predictionpolls.utils.NavItem
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @Inject
+    lateinit var tokenManager: TokenManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -33,11 +43,30 @@ class MainActivity : ComponentActivity() {
                 val routesWithDrawer = remember { NavItem.entries.map { it.route }.toSet() }
                 val currentBackStack = navController.currentBackStackEntryAsState()
                 val currentRoute = rememberUpdatedState(currentBackStack.value?.destination?.route)
+                val isUserLoggedIn = tokenManager.isLoggedIn.collectAsState(initial = false)
+                val context = LocalContext.current
+                val loginRequiredText = stringResource(R.string.login_required_notification)
+                val logoutSuccessText = stringResource(R.string.logged_out_notification)
 
                 NavigationDrawer(
                     selectedRoute = currentRoute.value,
                     onButtonClick = {
-                        navController.navigate(it.route)
+                        if (it.requiresAuth && !isUserLoggedIn.value) {
+                            Toast.makeText(context, loginRequiredText, Toast.LENGTH_SHORT).show()
+                            navController.navigateToMainScreen()
+                        } else {
+                            navController.navigate(it.route)
+                        }
+                    },
+                    isSignedIn = isUserLoggedIn.value,
+                    onAuthButtonClick = {
+                        if (isUserLoggedIn.value) {
+                            tokenManager.clear()
+                            Toast.makeText(context, logoutSuccessText, Toast.LENGTH_SHORT).show()
+                            navController.navigateToMainScreen()
+                        } else {
+                            navController.navigateToMainScreen()
+                        }
                     }
                 ) { toggleDrawerState ->
                     Column {

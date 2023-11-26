@@ -80,8 +80,7 @@ fun NavigationDrawer(
         drawerContent = {
             ModalDrawerSheet(
                 modifier = Modifier
-                    .width(IntrinsicSize.Max)
-                    .padding(bottom = 8.dp),
+                    .width(IntrinsicSize.Max),
                 drawerContainerColor = MaterialTheme.colorScheme.background,
                 drawerContentColor = MaterialTheme.colorScheme.onBackground,
             ) {
