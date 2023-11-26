@@ -48,49 +48,54 @@ fun PollComposable(
 ) {
     Box(
         modifier = modifier
-            .shadow(4.dp, RoundedCornerShape(12.dp))
+            .shadow(
+                6.dp,
+                RoundedCornerShape(12.dp),
+                ambientColor = MaterialTheme.colorScheme.primary,
+                spotColor = MaterialTheme.colorScheme.primary
+            )
             .background(Color.White, RoundedCornerShape(12.dp))
-            .padding(16.dp)
+            .padding(horizontal = 16.dp, vertical = 8.dp)
             .wrapContentSize()
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .wrapContentHeight()
+                .wrapContentHeight(),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             PollCreatorProfile(
                 imageUri = pollCreatorProfilePictureUri,
                 userName = pollCreatorName,
                 modifier = Modifier.align(Alignment.End)
             )
-            Spacer(modifier = Modifier.height(8.dp))
-            PollTagsContent(tags)
+            if (tags.isNotEmpty()) PollTagsContent(tags)
             PollQuestionTitle(pollQuestionTitle = pollQuestionTitle)
             optionsContent()
-            Box(
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
-                    .padding(top = 48.dp)
-                    .padding(horizontal = 48.dp)
+                    .padding(vertical = 8.dp),
+                horizontalArrangement = Arrangement.SpaceAround
             ) {
-                DueDateComposable(
-                    dueDate = dueDate,
-                    modifier = Modifier.align(Alignment.CenterStart)
-                )
-                RejectionDateComposable(
-                    rejectionText = rejectionText,
-                    modifier = Modifier.align(Alignment.CenterEnd)
-                )
+                if (dueDate.isNotEmpty()){
+                    DueDateComposable(
+                        dueDate = dueDate
+                    )
+                }
+                if (rejectionText.isNotEmpty()){
+                    RejectionDateComposable(
+                        rejectionText = rejectionText
+                    )
+                }
             }
             Row(
                 modifier = Modifier
-                    .padding(horizontal = 48.dp)
-
                     .fillMaxWidth()
                     .wrapContentHeight()
-                    .padding(top = 48.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
+                    .padding(vertical = 8.dp),
+                horizontalArrangement = Arrangement.SpaceAround
             ) {
                 Column {
                     PollIcon(
@@ -131,7 +136,7 @@ private fun PollIcon(@DrawableRes id: Int, modifier: Modifier = Modifier) {
         painter = painterResource(id = id),
         contentDescription = null,
         modifier = modifier
-            .padding(16.dp)
+            .padding(12.dp)
             .size(32.dp)
     )
 
@@ -170,7 +175,7 @@ private fun RejectionDateComposable(rejectionText: String, modifier: Modifier = 
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Closing in",
+            text = "Reject votes in",
             fontFamily = MontserratFontFamily,
             color = MaterialTheme.colorScheme.scrim,
             fontWeight = FontWeight.Bold,
@@ -210,7 +215,6 @@ private fun PollQuestionTitle(pollQuestionTitle: String, modifier: Modifier = Mo
         color = MaterialTheme.colorScheme.scrim,
         fontWeight = FontWeight.Bold,
         modifier = modifier
-            .padding(vertical = 32.dp)
             .fillMaxWidth()
             .wrapContentHeight(),
         textAlign = TextAlign.Start,
