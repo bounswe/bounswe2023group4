@@ -5,14 +5,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.core.BaseViewModel
-import com.bounswe.predictionpolls.data.remote.repositories.PollRepository
+import com.bounswe.predictionpolls.data.remote.repositories.PollRepositoryInterface
 import com.bounswe.predictionpolls.extensions.toISO8601
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class CreatePollViewModel @Inject constructor(
-    private val pollRepository: PollRepository
+    private val pollRepository: PollRepositoryInterface
 ) : BaseViewModel() {
     var screenState by mutableStateOf(CreatePollScreenState())
         private set
