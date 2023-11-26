@@ -58,3 +58,10 @@ fun String.toISO8601(): String? {
     val offsetDate = OffsetDateTime.of(localDate, ZoneOffset.UTC)
     return offsetDate.format(DateTimeFormatter.ISO_DATE_TIME)
 }
+
+fun String.fromISO8601(): String {
+    val offsetDate = OffsetDateTime.parse(this, DateTimeFormatter.ISO_DATE_TIME)
+    offsetDate.apply {
+        return "${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')} ${dayOfMonth}/${monthValue}/${year}"
+    }
+}

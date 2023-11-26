@@ -9,6 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.bounswe.predictionpolls.domain.poll.Poll
 import com.bounswe.predictionpolls.domain.poll.PollOption
+import com.bounswe.predictionpolls.extensions.fromISO8601
 import kotlinx.collections.immutable.ImmutableList
 
 
@@ -48,7 +49,7 @@ fun Polls(
                         }
                     }
                 },
-                dueDate = it.dueDate ?: "",
+                dueDate = it.dueDate?.fromISO8601() ?: "",
                 rejectionText = it.rejectionText ?: "",
                 commentCount = it.commentCount
             )
