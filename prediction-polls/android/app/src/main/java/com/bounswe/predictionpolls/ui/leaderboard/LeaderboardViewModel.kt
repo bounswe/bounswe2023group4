@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LeaderboardViewModel @Inject constructor() : BaseViewModel() {
-    var screenState by mutableStateOf(LeaderboardScreenState())
+    var screenState by mutableStateOf(LeaderboardScreenState.DUMMY_STATE)
         private set
 
     fun onEvent(event: LeaderboardScreenEvent){
