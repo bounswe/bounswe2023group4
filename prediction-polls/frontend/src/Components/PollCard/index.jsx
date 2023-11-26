@@ -17,7 +17,7 @@ function PollCard({ PollData ,setAnswer}) {
     JSON.parse(JSON.stringify(PollData))
   );
   var totalPoints = !PollData.isCustomPoll
-    ? PollData.options.reduce((acc, curr) => acc + curr.votes, 0)
+    ? PollData.options.reduce((acc, curr) => curr.votes == null? acc :acc + curr.votes, 0)
     : 0;
   const handleSelect = (newList) => {
     setSelectedArray(newList);
@@ -52,7 +52,10 @@ function PollCard({ PollData ,setAnswer}) {
         {!pollData.isCustomPoll ? (
           <div className={styles.optionList}>
             {pollData.options.map((option, index) => {
-              const widthPercentage = (option.votes / totalPoints) * 100;
+              let widthPercentage = 0;
+              if (totalPoints > 0){
+                widthPercentage = (option.votes / totalPoints) * 100;
+              }
               return (
                 <PollOption
                   widthPercentage={widthPercentage}
@@ -129,11 +132,11 @@ function PollCard({ PollData ,setAnswer}) {
         </div>
         <div className={styles.textGroup}>
           <p className={styles.textDescription}>Closing In</p>
-          <p className={styles.textDetail}>{PollData.closingDate}</p>
+          <p className={styles.textDetail}>{PollData.closingDate == null? "Indefinite":PollData.closingDate}</p>
         </div>
         <div className={styles.textGroup}>
-          <p className={styles.textDescription}>Reject Votes In</p>
-          <p className={styles.textDetail}>Last {PollData.rejectVotes}</p>
+          <p className={styles.textDescription}>{PollData.closingDate == null?" ":"Reject Votes In"}</p>
+          <p className={styles.textDetail}>{PollData.closingDate == null?" ":"Last"} {PollData.rejectVotes}</p>
         </div>
       </div>
     </div>

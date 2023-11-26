@@ -1,7 +1,6 @@
 import Menu from "../../Components/Menu";
 import PollCard from "../../Components/PollCard";
 import styles from "./Vote.module.css";
-import pollData from "../../MockData/PollData.json"
 import PointsButton from "../../Components/PointsButton";
 import pointData from "../../MockData/PointList.json"
 import { Button, Input } from 'antd';
@@ -33,7 +32,9 @@ function Vote() {
         else {
           data.isCustomPoll = true;
         }
-        data.closingDate = data.closingDate.slice(0, 10);
+        if (data.closingDate != null){
+          data.closingDate = data.closingDate.slice(0, 10);
+        }
         return data;
       }
       else {
@@ -74,7 +75,6 @@ function Vote() {
   const handleVoting = async () => {
     try {
       if (polldata.pollType == "discrete" && /^[0-9]*$/.test(betPoint) == true) {
-        console.log("Hello");
         const requestOptions = {
           method: 'POST',
           headers: {
@@ -89,8 +89,10 @@ function Vote() {
         let url = `${process.env.REACT_APP_BACKEND_LINK}/polls/discrete/${parsedID}/vote`
         const response = await fetch(url, requestOptions);
         if (response.status === 200) {
+          setMessage("Voted successfully!");
         }
         else {
+          setMessage("An unexpected has error occurred!");
         }
       }
       else if (polldata.pollType == "continuous" && /^[0-9]*$/.test(betPoint) == true) {
@@ -109,10 +111,10 @@ function Vote() {
           let url = `${process.env.REACT_APP_BACKEND_LINK}/polls/continuous/${parsedID}/vote`
           const response = await fetch(url, requestOptions);
           if (response.status === 200) {
-
+            setMessage("Voted successfully!");
           }
           else {
-
+            setMessage("An unexpected has error occurred!");
           }
         }
         else {
@@ -131,19 +133,19 @@ function Vote() {
             let url = `${process.env.REACT_APP_BACKEND_LINK}/polls/continuous/${parsedID}/vote`
             const response = await fetch(url, requestOptions);
             if (response.status === 200) {
-
+              setMessage("Voted successfully!");
             }
             else {
-
+              setMessage("An unexpected has error occurred!");
             }
           }
-          else{
-            
+          else {
+            setMessage("The response should be numeric!");
           }
         }
       }
       else {
-
+        setMessage("The bet points should be integer numbers!");
       }
     }
     catch (error) {
