@@ -115,7 +115,8 @@ async function addDiscretePoll(req, res) {
         const numericFieldValue = req.body.numericFieldValue;
         const dueDatePoll = setDueDate ? new Date(req.body.dueDatePoll).toISOString().split('T')[0] : null;
         const selectedTimeUnit = req.body.selectedTimeUnit;
-        const username = req.user.name;
+        const findUserResult = await findUser({userId: req.user.id});
+        const username = findUserResult.username;
 
         const result = await db.addDiscretePoll(
             question,
@@ -172,7 +173,8 @@ async function addContinuousPoll(req, res) {
         const numericFieldValue = req.body.numericFieldValue;
         const dueDatePoll = setDueDate ? new Date(req.body.dueDatePoll).toISOString().split('T')[0] : null;
         const selectedTimeUnit = req.body.selectedTimeUnit;
-        const username = req.user.name;
+        const findUserResult = await findUser({userId: req.user.id});
+        const username = findUserResult.username;
 
         const result = await db.addContinuousPoll(
             question,
