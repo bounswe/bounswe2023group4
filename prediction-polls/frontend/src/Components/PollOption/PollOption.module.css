@@ -40,6 +40,13 @@
   font-weight: normal;
   z-index: 2;
 }
+.optionPoints_hidden {
+  font-size: 14px;
+  font-weight: normal;
+  z-index: 2;
+  visibility: hidden;
+}
+
 .backgroundDiv {
   position: absolute;
   top: 0;
