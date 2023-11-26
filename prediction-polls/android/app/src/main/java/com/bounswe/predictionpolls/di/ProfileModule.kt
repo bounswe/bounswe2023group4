@@ -27,7 +27,7 @@ abstract class ProfileModule {
 
     companion object {
         @Provides
-        fun provideProfileApi(@UnauthenticatedRetrofit unauthenticatedRetrofit: Retrofit): ProfileApi =
+        fun provideProfileApi(@AuthenticatedRetrofit unauthenticatedRetrofit: Retrofit): ProfileApi =
             unauthenticatedRetrofit.create(ProfileApi::class.java)
 
     }

@@ -14,16 +14,14 @@ const val PROFILE_SCREEN_ROUTE = "profile"
 
 fun NavGraphBuilder.profileScreen(navController: NavController) {
     composable(PROFILE_SCREEN_ROUTE) {
-
-        val username = "ahmetknk" // TODO: fetch this from navController arguments
-
+        //TODO: I have replaced index navigation. It should be implemented
         val profileViewModel: ProfileScreenViewModel = hiltViewModel()
         LaunchedEffect(key1 = Unit) {
             if (
                 profileViewModel.profileScreenUiState.value is ProfileScreenUiState.Loading ||
                 profileViewModel.profileScreenUiState.value is ProfileScreenUiState.Error
             ) {
-                profileViewModel.fetchProfileInfo(username)
+                profileViewModel.fetchProfileInfo()
                 profileViewModel.fetchFeed(0)
             }
         }

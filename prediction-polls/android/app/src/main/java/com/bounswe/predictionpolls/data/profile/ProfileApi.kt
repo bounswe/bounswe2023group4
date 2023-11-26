@@ -8,4 +8,7 @@ interface ProfileApi {
 
     @GET("profiles")
     suspend fun fetchProfileInfo(@Query("username") username: String): ProfileInfoResponse
+
+    @GET("profiles/myProfile")
+    suspend fun fetchCurrentUserProfileInfo(): ProfileInfoResponse
 }

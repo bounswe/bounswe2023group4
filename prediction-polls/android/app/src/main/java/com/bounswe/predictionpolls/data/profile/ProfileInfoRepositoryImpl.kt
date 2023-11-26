@@ -31,4 +31,28 @@ class ProfileInfoRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override suspend fun getCurrentUserProfileInfo(): Result<ProfileInfo> {
+        profileInfoRemoteDataSource.fetchCurrentUserProfileInfo().let { result ->
+            return when (result) {
+                is Result.Success -> {
+                    val profileInfo = result.data.toProfileInfo()
+                    if (profileInfo != null) {
+                        Result.Success(profileInfo)
+                    } else {
+                        Result.Error(
+                            Exception(
+                                result.data.predictionPollsError?.message
+                                    ?: "ProfileInfoResponse is not valid"
+                            )
+                        )
+                    }
+                }
+
+                is Result.Error -> {
+                    Result.Error(result.exception)
+                }
+            }
+        }
+    }
 }
