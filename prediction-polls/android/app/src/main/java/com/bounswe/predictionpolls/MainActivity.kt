@@ -14,6 +14,8 @@ import com.bounswe.predictionpolls.ui.main.mainScreen
 import com.bounswe.predictionpolls.ui.profile.profileScreen
 import com.bounswe.predictionpolls.ui.signup.signupScreen
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
+import com.bounswe.predictionpolls.ui.vote.POLL_VOTE_ROUTE
+import com.bounswe.predictionpolls.ui.vote.pollVoteScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,7 +25,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PredictionPollsTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = MAIN_ROUTE) {
+                NavHost(navController = navController, startDestination = POLL_VOTE_ROUTE) {
                     mainScreen(navController)
                     loginScreen(navController)
                     signupScreen(navController)
@@ -31,6 +33,7 @@ class MainActivity : ComponentActivity() {
                     leaderboardScreen(navController)
                     createPollScreen()
                     profileScreen(navController)
+                    pollVoteScreen(navController)
                 }
             }
         }

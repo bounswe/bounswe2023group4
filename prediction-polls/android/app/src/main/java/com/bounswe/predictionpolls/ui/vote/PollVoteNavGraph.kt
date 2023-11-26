@@ -13,7 +13,7 @@ const val POLL_VOTE_ROUTE = "pollVote"
 fun NavGraphBuilder.pollVoteScreen(navController: NavController) {
     composable(POLL_VOTE_ROUTE) {
         val pollVoteViewModel: PollVoteViewModel = hiltViewModel()
-        val pollId: String = "" // TODO: Fetch this from navcontroller
+        val pollId = "1" // TODO: Fetch this from navcontroller
         // Accessing state from ViewModel
         val state by pollVoteViewModel.state.collectAsStateWithLifecycle()
         LaunchedEffect(key1 = Unit) {
@@ -57,6 +57,9 @@ fun NavGraphBuilder.pollVoteScreen(navController: NavController) {
             onVoteInputChanged = { voteInput ->
                 pollVoteViewModel.onVoteInputChanged(voteInput)
             },
+            onToastConsumed = {
+                pollVoteViewModel.consumeToastMessage()
+            }
         )
     }
 }
