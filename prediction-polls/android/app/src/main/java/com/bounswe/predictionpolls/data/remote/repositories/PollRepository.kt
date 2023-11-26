@@ -7,13 +7,13 @@ import com.bounswe.predictionpolls.data.remote.services.PollService
 
 class PollRepository(
     private val pollService: PollService
-): BaseRepository()  {
-    suspend fun createContinuousPoll(
+): BaseRepository(), PollRepositoryInterface  {
+    override suspend fun createContinuousPoll(
         question: String,
         openVisibility: Boolean,
         setDueDate: Boolean,
-        dueDatePoll: String? = null,
-        numericFieldValue: Int? = null,
+        dueDatePoll: String?,
+        numericFieldValue: Int?,
         selectedTimeUnit: String,
         pollType: String,
     ){
@@ -31,13 +31,13 @@ class PollRepository(
         }
     }
 
-    suspend fun createDiscretePoll(
+    override suspend fun createDiscretePoll(
         question: String,
         choices: List<String>,
         openVisibility: Boolean,
         setDueDate: Boolean,
-        dueDatePoll: String? = null,
-        numericFieldValue: Int? = null,
+        dueDatePoll: String?,
+        numericFieldValue: Int?,
         selectedTimeUnit: String
     ){
         val request = CreateDiscretePollRequest(
