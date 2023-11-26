@@ -6,8 +6,10 @@ import { ReactComponent as CommentIcon } from "../../Assets/icons/Comment.svg";
 import { ReactComponent as ShareIcon } from "../../Assets/icons/Share.svg";
 import { ReactComponent as ReportIcon } from "../../Assets/icons/Warning.svg";
 import PollOption from "../PollOption";
+import { Input,DatePicker } from 'antd';
 
-function PollCard({ PollData }) {
+
+function PollCard({ PollData ,setAnswer}) {
   const [selectedArray, setSelectedArray] = React.useState(
     !PollData.isCustomPoll ? Array(PollData["options"].length).fill(false) : []
   );
@@ -22,6 +24,7 @@ function PollCard({ PollData }) {
     var newPoll = JSON.parse(JSON.stringify(PollData));
     for (let i = 0; i < PollData["options"].length; i++) {
       if (newList[i] == true) {
+        setAnswer(PollData["options"][i].id);
         newPoll["options"][i]["votes"] = newPoll["options"][i]["votes"] + 1;
         break;
       }
@@ -64,18 +67,27 @@ function PollCard({ PollData }) {
               );
             })}
           </div>
-        ) : (
+        ) :pollData.cont_poll_type == "date"? (
           <div className={styles.customOptionWrapper}>
             <p className={styles.customOptionText}>
-              Enter a {PollData.optionType}
+              Enter a date
             </p>
-            <input
+            <DatePicker
               className={styles.customOption}
               type={PollData.optionType}
-              onClick={() => navigate("/vote")}
-            ></input>
+              onChange={(_, dateString) => setAnswer(dateString)}
+            ></DatePicker>
           </div>
-        )}
+        ):(<div className={styles.customOptionWrapper}>
+          <p className={styles.customOptionText}>
+            Enter a number
+          </p>
+          <Input
+            className={styles.customOption}
+            type={PollData.optionType}
+            onChange={(e) => setAnswer(e.target.value)}
+          ></Input>
+        </div>)}
         <div className={styles.actionButtons}>
           <div className={styles.buttonWrapper}>
             <button className={styles.commentButton}>
