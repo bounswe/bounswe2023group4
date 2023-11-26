@@ -92,7 +92,7 @@ class MainActivity : ComponentActivity() {
                             mainScreen(navController)
                             loginScreen(navController)
                             signupScreen(navController)
-                            feedScreen(navController)
+                            feedScreen(navController, isUserLoggedIn.value)
                             leaderboardScreen(navController)
                             createPollScreen()
                             profileScreen(navController)

@@ -2,9 +2,9 @@ package com.bounswe.predictionpolls.data.profile
 
 import com.bounswe.predictionpolls.common.Result
 import com.bounswe.predictionpolls.data.profile.model.ProfileInfoResponse
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 class ProfileInfoRemoteDataSourceImpl @Inject constructor(
     private val profileApi: ProfileApi
@@ -13,6 +13,16 @@ class ProfileInfoRemoteDataSourceImpl @Inject constructor(
         withContext(Dispatchers.IO) {
             try {
                 val response = profileApi.fetchProfileInfo(username)
+                Result.Success(response)
+            } catch (e: Exception) {
+                Result.Error(e)
+            }
+        }
+
+    override suspend fun fetchCurrentUserProfileInfo(): Result<ProfileInfoResponse> =
+        withContext(Dispatchers.IO) {
+            try {
+                val response = profileApi.fetchCurrentUserProfileInfo()
                 Result.Success(response)
             } catch (e: Exception) {
                 Result.Error(e)

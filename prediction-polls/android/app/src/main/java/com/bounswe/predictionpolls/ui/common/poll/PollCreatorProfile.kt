@@ -18,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.bounswe.predictionpolls.R
@@ -33,10 +34,10 @@ fun PollCreatorProfile(imageUri: String?, userName: String, modifier: Modifier =
             text = userName,
             fontFamily = MontserratFontFamily,
             color = MaterialTheme.colorScheme.scrim,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            fontSize = 12.sp,
         )
     }
-
 }
 
 

@@ -5,9 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.bounswe.predictionpolls.common.Result
 import com.bounswe.predictionpolls.domain.feed.GetFeedUseCase
 import com.bounswe.predictionpolls.domain.poll.Poll
-import com.bounswe.predictionpolls.domain.profile.GetProfileInfoUseCase
+import com.bounswe.predictionpolls.domain.profile.GetCurrentUserProfileUseCase
 import com.bounswe.predictionpolls.domain.profile.ProfileInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -16,7 +17,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 private data class ProfileScreenViewModelState(
     val profileInfo: ProfileInfo? = null,
@@ -44,7 +44,7 @@ private data class ProfileScreenViewModelState(
 
 @HiltViewModel
 class ProfileScreenViewModel @Inject constructor(
-    private val getProfileInfoUseCase: GetProfileInfoUseCase,
+    private val getProfileInfoUseCase: GetCurrentUserProfileUseCase,
     private val getFeedUseCase: GetFeedUseCase
 ) : ViewModel() {
 
@@ -57,9 +57,9 @@ class ProfileScreenViewModel @Inject constructor(
             .stateIn(viewModelScope, SharingStarted.Eagerly, ProfileScreenUiState.Loading)
 
 
-    fun fetchProfileInfo(username: String) = viewModelScope.launch {
+    fun fetchProfileInfo() = viewModelScope.launch {
         _profileScreenUiState.update { it.copy(isLoading = true) }
-        when (val result = getProfileInfoUseCase(username)) {
+        when (val result = getProfileInfoUseCase()) {
             is Result.Success -> {
                 _profileScreenUiState.update {
                     it.copy(

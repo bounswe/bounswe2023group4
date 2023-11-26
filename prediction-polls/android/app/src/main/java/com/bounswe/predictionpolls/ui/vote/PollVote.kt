@@ -2,13 +2,16 @@ package com.bounswe.predictionpolls.ui.vote
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -40,11 +43,17 @@ fun PollVote(
     onVotePressed: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
         pollContent()
         Text(
             text = stringResource(id = R.string.vote_screen_text),
-            fontSize = 20.sp,
+            fontSize = 16.sp,
             fontFamily = MontserratFontFamily,
             fontWeight = FontWeight.Medium,
             textAlign = TextAlign.Center,
@@ -115,7 +124,7 @@ private fun PollVotePreview() {
                 pollCreatorName = "Zehra Eser",
                 tags = listOf("Basketball", "Cleveland Cavaliers", "Lebron James"),
                 pollQuestionTitle = "Who is the best basketball player of all time?",
-                optionsContent = {  },
+                optionsContent = { },
                 dueDate = "",
                 rejectionText = "Last 5 days",
                 commentCount = 145

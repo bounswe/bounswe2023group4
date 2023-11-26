@@ -25,12 +25,6 @@ enum class NavItem(
         titleId = R.string.nav_drawer_feed,
         iconId = R.drawable.ic_feed
     ),
-    VOTE_POLL(
-        route = "vote_poll", // TODO: change this route with the actual route
-        titleId = R.string.nav_drawer_vote,
-        iconId = R.drawable.ic_vote,
-        requiresAuth = true
-    ),
     CREATE_POLL(
         route = CREATE_POLL_ROUTE,
         titleId = R.string.nav_drawer_create,
