@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bounswe.predictionpolls.domain.poll.Poll
 import com.bounswe.predictionpolls.ui.common.poll.ContinuousVoteOption
-import com.bounswe.predictionpolls.ui.common.poll.DiscretePollOptions
+import com.bounswe.predictionpolls.ui.common.poll.ReadOnlyDiscretePollOptions
 import com.bounswe.predictionpolls.ui.common.poll.DiscreteVoteOption
 import com.bounswe.predictionpolls.ui.common.poll.PollComposable
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
@@ -84,7 +84,7 @@ fun ProfileScreen(profileScreenUiState: ProfileScreenUiState, modifier: Modifier
                                     }
 
                                     is Poll.DiscretePoll -> {
-                                        DiscretePollOptions(it.options)
+                                        ReadOnlyDiscretePollOptions(it.options)
                                     }
                                 }
                             },

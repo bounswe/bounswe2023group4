@@ -19,7 +19,11 @@ import androidx.compose.ui.unit.dp
 import com.bounswe.predictionpolls.ui.common.poll.Polls
 
 @Composable
-fun FeedScreen(feedUiState: FeedUiState, modifier: Modifier = Modifier) {
+fun FeedScreen(
+    feedUiState: FeedUiState,
+    onPollClicked: (pollId: String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     var text by rememberSaveable { mutableStateOf("") } // this might be stored in VM. I am not sure how we will use this parameter so I will store it here for now..
     Column(
         modifier = modifier
@@ -41,7 +45,7 @@ fun FeedScreen(feedUiState: FeedUiState, modifier: Modifier = Modifier) {
             }
 
             is FeedUiState.HasFeed -> {
-                Polls(polls = feedUiState.feed)
+                Polls(polls = feedUiState.feed, onPollClicked = onPollClicked)
             }
 
             is FeedUiState.Error -> {

@@ -46,6 +46,7 @@ data class PollResponse(
         when (pollType) {
             "continuous" -> {
                 Poll.ContinuousPoll(
+                    polId = id.toString(),
                     creatorProfilePictureUri = creatorImage,
                     dueDate = closingDate,
                     pollCreatorName = creatorName,
@@ -71,6 +72,7 @@ data class PollResponse(
                     )
                 }
                 Poll.DiscretePoll(
+                    polId = id.toString(),
                     creatorProfilePictureUri = creatorImage,
                     dueDate = closingDate,
                     pollCreatorName = creatorName,
@@ -137,16 +139,16 @@ class PollResponseDeserializer : JsonDeserializer<PollResponse> {
         } catch (e: Exception) {
             null
         }
-        val optionsJson = jsonObject.get("options").asJsonArray
         val options = mutableListOf<Any>()
         if (pollType == "continuous") {
-            options.addAll(
-                context.deserialize<List<String>>(
-                    optionsJson,
-                    object : TypeToken<List<Int>>() {}.type
-                )
-            )
+//            options.addAll(
+//                context.deserialize<List<String>>(
+//                    optionsJson,
+//                    object : TypeToken<List<Int>>() {}.type
+//                )
+//            )
         } else {
+            val optionsJson = jsonObject.get("options").asJsonArray
             options.addAll(
                 context.deserialize<List<PollResponse.Option>>(
                     optionsJson,

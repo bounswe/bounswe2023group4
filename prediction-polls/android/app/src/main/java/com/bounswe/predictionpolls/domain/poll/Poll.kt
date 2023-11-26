@@ -5,6 +5,7 @@ import kotlinx.collections.immutable.ImmutableList
 
 @Immutable
 sealed interface Poll {
+    val polId: String
     val creatorProfilePictureUri: String?
     val pollCreatorName: String
     val pollQuestionTitle: String
@@ -14,6 +15,7 @@ sealed interface Poll {
     val tags: List<String>
 
     data class ContinuousPoll(
+        override val polId: String,
         override val creatorProfilePictureUri: String?,
         override val dueDate: String?,
         override val pollCreatorName: String,
@@ -25,6 +27,7 @@ sealed interface Poll {
     ) : Poll
 
     data class DiscretePoll(
+        override val polId: String,
         override val creatorProfilePictureUri: String?,
         override val dueDate: String?,
         override val pollCreatorName: String,
