@@ -545,5 +545,7 @@ router.post('/discrete/:pollId/vote',authenticator.authorizeAccessToken, service
  */
 router.post('/continuous/:pollId/vote',authenticator.authorizeAccessToken, service.voteContinuousPoll);
 
+router.post('/close/:pollId', authenticator.authorizeAccessToken, service.closePoll);
+
 module.exports = router;
 
