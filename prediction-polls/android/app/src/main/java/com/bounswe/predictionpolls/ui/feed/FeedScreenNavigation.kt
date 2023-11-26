@@ -9,11 +9,13 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.compose.composable
+import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
+import com.bounswe.predictionpolls.ui.main.navigateToMainScreen
 import com.bounswe.predictionpolls.ui.vote.navigateToPollVoteScreen
 
 const val FEED_ROUTE = "feed"
 
-fun NavGraphBuilder.feedScreen(navController: NavController) {
+fun NavGraphBuilder.feedScreen(navController: NavController, isUserLoggedIn: Boolean) {
     composable(FEED_ROUTE) {
         val feedViewModel: FeedViewModel = hiltViewModel()
         LaunchedEffect(Unit) {
@@ -23,7 +25,13 @@ fun NavGraphBuilder.feedScreen(navController: NavController) {
         }
         val feedUiState by feedViewModel.feedUiState.collectAsStateWithLifecycle()
         FeedScreen(feedUiState, onPollClicked = {
-            navController.navigateToPollVoteScreen(it)
+            if (isUserLoggedIn) {
+                navController.navigateToPollVoteScreen(it)
+            } else {
+                navController.navigateToMainScreen(
+                    navOptions = NavOptions.Builder().setPopUpTo(MAIN_ROUTE, true).build()
+                )
+            }
         })
     }
 }
