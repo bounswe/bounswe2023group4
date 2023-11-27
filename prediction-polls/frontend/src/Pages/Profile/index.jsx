@@ -3,7 +3,7 @@ import Menu from "../../Components/Menu";
 import styles from "./Profile.module.css";
 import Users from "../../MockData/Users.json";
 import EditIcon from "../../Assets/icons/EditIcon.jsx";
-import pollData from "../../MockData/PollData.json";
+
 import PollCard from "../../Components/PollCard";
 import { useNavigate } from "react-router-dom";
 import PointsButton from "../../Components/PointsButton";
@@ -16,7 +16,50 @@ import Badge from "../../Components/Badge/index.jsx";
 
 function Profile() {
   const { username } = useParams();
+  const [pollData, setPollData] = React.useState({ pollList: [] });
   const [userData, setUserData] = React.useState({});
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          process.env.REACT_APP_BACKEND_LINK + "/polls",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const contentType = response.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new TypeError("Received non-JSON response from server");
+        }
+
+        const data = await response.json();
+
+        // Modify each poll in the data array
+        const modifiedData = data.map((poll) => {
+          if (poll.pollType === "discrete") {
+            return { ...poll, isCustomPoll: false };
+          } else {
+            return { ...poll, isCustomPoll: true };
+          }
+        });
+        const reversedData = [...modifiedData].reverse();
+        setPollData({ pollList: reversedData });
+      } catch (error) {
+        console.error("Error fetching polls:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const userMeUsername = localStorage.getItem("username");
 
@@ -97,7 +140,11 @@ function Profile() {
           </div>
         </div>
         {pollData.pollList.map((poll, index) => (
-          <PollCard PollData={poll} key={index} />
+          <PollCard
+            className={styles.pollCard}
+            PollData={poll}
+            key={poll.id}
+          />
         ))}
       </div>
       <div className={styles.pointButton}>

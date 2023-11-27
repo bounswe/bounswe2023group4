@@ -63,9 +63,7 @@ function Feed() {
     fetchData();
   }, []);
 
-  const handlePollClick = async (pollId) => {
-    navigate("/vote/" + pollId);
-  };
+
 
   const handleSearch = (searchText) => {
     if (!searchText.trim()) {
@@ -104,7 +102,6 @@ function Feed() {
             className={styles.pollCard}
             PollData={poll}
             key={poll.id}
-            onClick={() => handlePollClick(poll.id)}
           />
         ))}
       </div>
