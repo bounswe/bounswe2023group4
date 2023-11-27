@@ -14,7 +14,8 @@ import getProfileMe from "../../api/requests/profileMe.jsx";
 function Vote() {
   let { id } = useParams();
   let parsedID = parseInt(id);
-  const [userData, setUserData] =  useState({})
+  const [userData, setUserData] =  useState({});
+
 
   React.useEffect( () => {
     const data = getProfileMe();
@@ -102,6 +103,9 @@ function Vote() {
           const response = await fetch(url, requestOptions);
           if (response.status === 200) {
             setMessage("Voted successfully!");
+            setTimeout(() => {
+              window.location.replace("/feed")
+            }, 700);
           }
           else {
             setMessage("An error has occurred!");
@@ -146,6 +150,9 @@ function Vote() {
               const response = await fetch(url, requestOptions);
               if (response.status === 200) {
                 setMessage("Voted successfully!");
+                setTimeout(() => {
+                  window.location.replace("/feed")
+                }, 700);
               }
               else {
                 setMessage("An error has occurred!");
