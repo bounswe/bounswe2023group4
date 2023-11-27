@@ -17,6 +17,7 @@ async function tagRoutine() {
   }
 
   const apiUrl = process.env.TAG_API_URL;
+  const apiToken = process.env.TAG_API_TOKEN;
 
   if (!apiUrl) {
     console.error('TAG_API_URL is not defined in the environment variables.');
@@ -47,6 +48,11 @@ async function tagRoutine() {
     parameters: {
       candidate_labels: candidateLabels,
       multi_label: true
+    }
+  }, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiToken}`
     }
   })
   .then(response => {
