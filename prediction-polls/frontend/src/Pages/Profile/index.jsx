@@ -83,7 +83,7 @@ function Profile() {
             </div>
             <div className={styles.aboutContainer}>
               <p className={styles.aboutTitle}>About</p>
-              <p className={styles.aboutText}>{userData.about}</p>
+              <p className={styles.aboutText}>{userData.biography}</p>
             </div>
             <div className={styles.badgesContainer}>
               <div className={styles.badge}>
@@ -105,7 +105,8 @@ function Profile() {
           <PollCard PollData={poll} key={index} />
         ))}
       </div>
-      <PointsButton points={pointData.points} />
+      <div className={styles.pointButton}>
+      <PointsButton points={pointData.points} /></div>
     </div>
   );
 }
