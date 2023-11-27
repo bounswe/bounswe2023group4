@@ -43,9 +43,9 @@ function Feed() {
           return { ...poll, isCustomPoll: true };
         }
       });
-
-      setPollData({ pollList: modifiedData });
-      setFilteredPolls(modifiedData);
+      const reversedData = [...modifiedData].reverse();
+      setPollData({ pollList: reversedData });
+      setFilteredPolls(reversedData);
 
     } catch (error) {
       console.error('Error fetching polls:', error);
