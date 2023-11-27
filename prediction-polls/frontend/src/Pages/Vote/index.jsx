@@ -171,7 +171,7 @@ function Vote() {
             <PollCard PollData={polldata} setAnswer={setAnswer} />
           </div>
           <div className={styles.choice_column}>
-          <PointsButton point={userData.points}/> 
+          <PointsButton point={userData?.points ?? 0}/> 
             <div className={styles.infoText}><div>{sentence}</div>
               <div id="statement" className={styles.chooseText}>How many points do you want to place?</div>
               <div><Input

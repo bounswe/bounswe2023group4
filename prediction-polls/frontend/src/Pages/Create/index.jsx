@@ -408,7 +408,7 @@ function Create() {
             Create Poll
           </Button>
         </div>
-        <PointsButton point={userData.points}/> 
+        <PointsButton point={userData?.points ?? 0} />
       </div>
     </div>
   );

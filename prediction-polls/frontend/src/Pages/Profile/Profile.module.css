@@ -129,8 +129,8 @@
 .name {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: start;
+  justify-content: flex-start;
+  align-items: flex-start;
   margin-left: 230px;
   padding-right: 10px;
   padding-top: 20px;
@@ -196,7 +196,7 @@
 .badgesContainer {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   gap: 10px;
   padding-left: 50px;

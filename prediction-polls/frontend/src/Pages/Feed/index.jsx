@@ -109,7 +109,7 @@ function Feed() {
         ))}
       </div>
       <div className={styles.pointsButton}>
-        <PointsButton point={userData.points} />
+        <PointsButton point={userData?.points ?? 0} />
       </div>
     </div>
   );

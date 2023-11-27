@@ -134,6 +134,16 @@ function Profile() {
               </div>
             </div>
             <div className={styles.aboutContainer}>
+              {userData.isHidden == false ? (
+                userData.birthday ? (
+                  <>
+                    {" "}
+                    <p className={styles.aboutTitle}>Birthday</p>
+                    <p className={styles.aboutText}>{userData.birthday}</p>
+                  </>
+                ) : null
+              ) : null}
+
               <p className={styles.aboutTitle}>About</p>
               <p className={styles.aboutText}>{userData.biography}</p>
             </div>
@@ -151,7 +161,7 @@ function Profile() {
         ))}
       </div>
       <div className={styles.pointButton}>
-        <PointsButton point={userData.points} />{" "}
+        <PointsButton point={userData?.points ?? 0} />{" "}
       </div>
     </div>
   );

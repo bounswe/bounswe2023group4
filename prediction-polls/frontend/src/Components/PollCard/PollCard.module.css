@@ -62,7 +62,7 @@
   justify-content: space-between;
   width: 100%;
   gap: 3%;
-  align-items: start;
+  align-items: flex-start;
 }
 .question {
   font-size: 20px;
@@ -130,7 +130,7 @@
   flex-direction: column;
   gap: 3px;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .commentCount {
