@@ -7,13 +7,41 @@ import pollData from "../../MockData/PollData.json";
 import PollCard from "../../Components/PollCard";
 import { useNavigate } from "react-router-dom";
 import PointsButton from "../../Components/PointsButton";
-import pointData from "../../MockData/PointList.json"
+import pointData from "../../MockData/PointList.json";
 import { useParams } from "react-router-dom";
+import getProfileMe from "../../api/requests/profileMe.jsx";
+import getProfile from "../../api/requests/profile.jsx";
+import ProfileIcon from "../../Assets/icons/ProfileIcon.jsx";
 
 function Profile() {
   const { username } = useParams();
+  const [userData, setUserData] = React.useState({});
 
-  const userData = Users.userList.filter((user) => user.username === username)[0];
+  const userMeUsername = localStorage.getItem("username");
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (username === userMeUsername) {
+          const response = await getProfileMe();
+          if (response) {
+            setUserData(response);
+          }
+        } else {
+          const response = await getProfile(username);
+          if (response) {
+            setUserData(response);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    };
+
+    fetchData();
+  }, [username, userMeUsername]);
+
+
   const navigate = useNavigate();
   return (
     <div className={styles.page}>
@@ -21,32 +49,35 @@ function Profile() {
       <div className={styles.profileInfo}>
         <div className={styles.card}>
           <div className={styles.thumbnailImage}>
-            <img
-              src={userData.thumbnailImage}
-              className={styles.thumbnail}
-              alt="thumbnail"
-            />
-            <img
+            {userData.profileImage == null ? 
+            <div 
+              className={styles.profileImagePlaceholder} > <ProfileIcon/></div> : 
+              <img
               src={userData.image}
               alt="profileImage"
               className={styles.profileImage}
             ></img>
+            }
+            
           </div>
           <div className={styles.info}>
             <div className={styles.nameAndButton}>
               <div className={styles.name}>
-                <p className={styles.nameUsernameText}>
-                  {userData.username}
-                </p>
-                <p className={styles.nameUsernameText}>
-                  {userData.name}
-                </p>
+                <p className={styles.nameUsernameText}>{userData.username}</p>
               </div>
               <div className={styles.buttonContainer}>
-                <button className={styles.button} onClick={() => navigate(`/editProfile/${userData.username}`)}>
-                  {userData.username === "can.gezer" ? <><EditIcon />
-                  <p className={styles.buttonText}>Edit Profile</p></> : <p className={styles.buttonText}>Follow</p>}
-                  
+                <button
+                  className={styles.button}
+                  onClick={() => navigate(`/editProfile/${userData.username}`)}
+                >
+                  {userData.username === userMeUsername ? (
+                    <>
+                      <EditIcon />
+                      <p className={styles.buttonText}>Edit Profile</p>
+                    </>
+                  ) : (
+                    <p className={styles.buttonText}>Follow</p>
+                  )}
                 </button>
               </div>
             </div>
@@ -74,7 +105,7 @@ function Profile() {
           <PollCard PollData={poll} key={index} />
         ))}
       </div>
-      <PointsButton points={pointData.points}/>
+      <PointsButton points={pointData.points} />
     </div>
   );
 }

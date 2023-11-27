@@ -13,8 +13,9 @@ import { useNavigate } from "react-router-dom";
 import  logout  from "../../api/requests/logout.jsx";
 
 
+const username = localStorage.getItem("username")
 const menuData = [
-  { key: "Profile", Icon: ProfileIcon, to:"profile/can.gezer" },
+  { key: "Profile", Icon: ProfileIcon, to:`profile/${username}` },
   { key: "Feed", Icon: FeedIcon, to:"feed" },
   { key: "Vote", Icon: VoteIcon, to:"vote" },
   { key: "Create", Icon: CreateIcon , to:"create"},

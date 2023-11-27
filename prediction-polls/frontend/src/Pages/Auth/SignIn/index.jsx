@@ -36,6 +36,7 @@ function SignIn() {
     if (response.status === 201 && data.accessToken && data.refreshToken) {
       localStorage.setItem('accessToken', data.accessToken); 
       localStorage.setItem('refreshToken', data.refreshToken);
+      localStorage.setItem('username', username);
       navigate("/feed");
     } 
 
