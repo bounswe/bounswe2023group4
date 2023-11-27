@@ -545,5 +545,42 @@ router.post('/discrete/:pollId/vote',authenticator.authorizeAccessToken, service
  */
 router.post('/continuous/:pollId/vote',authenticator.authorizeAccessToken, service.voteContinuousPoll);
 
+/**
+ * @swagger
+ * /polls/close/{pollId}:
+ *   post:
+ *     tags:
+ *       - polls
+ *     description: Close a discrete poll and redistribute its points
+ *     parameters:
+ *       - in: path
+ *         name: pollId
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The ID of the continuous poll to vote on.
+ *     requestBody:
+ *       description: Vote details
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               choiceId:
+ *                 type: integer
+ *                 example: 1 
+ *     responses:
+ *       200:
+ *         description: Poll closed successfully
+ *       400:
+ *         description: Bad request
+ *       404:
+ *         description: Poll not found
+ *       500:
+ *         description: Internal Server Error
+ */
+router.post('/close/:pollId', authenticator.authorizeAccessToken, service.closePoll);
+
 module.exports = router;
 

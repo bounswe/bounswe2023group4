@@ -152,32 +152,45 @@ async function getDiscreteVoteCount(choiceid) {
 async function voteDiscretePoll(pollId, userId, choiceId, pointsSpent){
     const connection = await pool.getConnection();
 
-    const deleteExistingSql = "DELETE FROM discrete_polls_selections WHERE poll_id = ? AND user_id = ?"
-    const addVoteSql = "INSERT INTO discrete_polls_selections (poll_id, choice_id, user_id) VALUES (?, ?, ?)"
+    const oldSelectionPointsSql = "SELECT * FROM discrete_polls_selections WHERE poll_id = ? AND user_id = ?";
+    const deleteExistingSql = "DELETE FROM discrete_polls_selections WHERE poll_id = ? AND user_id = ?";
+    const addVoteSql = "INSERT INTO discrete_polls_selections (poll_id, choice_id, user_id, given_points) VALUES (?, ?, ?, ?)";
     const findPointsSql = 'SELECT * FROM profiles WHERE userId= ?';
     const updatePointSql = 'UPDATE profiles SET points = ? WHERE userId = ?';
 
     try {
         await connection.beginTransaction()
 
-        deleteResult = await connection.query(deleteExistingSql, [pollId, userId]);
-        addResult = await connection.query(addVoteSql, [pollId, choiceId, userId]);
+        const pollObject = await getPollWithId(pollId);
+
+        if (pollObject[0].isOpen == 0) {
+            throw { error: errorCodes.DATABASE_ERROR };
+        }
+
         const [rows] = await connection.query(findPointsSql, [userId]);
         const current_points = rows[0].points;
 
-        if(current_points - pointsSpent < 0){
+        const [oldSelection] = await connection.query(oldSelectionPointsSql, [pollId, userId]);
+
+        const deleteResult = await connection.query(deleteExistingSql, [pollId, userId]);
+        const addResult = await connection.query(addVoteSql, [pollId, choiceId, userId, pointsSpent]);
+
+        const oldPoint = (oldSelection.length != 0 ? oldSelection[0].given_points : 0);
+
+        const newPoints = current_points - pointsSpent + oldPoint;
+        if(newPoints < 0){
             connection.rollback()
             throw {error: errorCodes.INSUFFICIENT_POINTS_ERROR};
         }
 
-        const [resultSetHeader] = await connection.query(updatePointSql, [current_points - pointsSpent, userId]);
+        const [resultSetHeader] = await connection.query(updatePointSql, [newPoints, userId]);
         
         connection.commit();
         return {status:"success"};
 
     } catch (error) { 
         await connection.rollback();
-        console.error('voteDiscretePoll(): Database Error');
+        console.error('voteDiscretePoll(): Database Error: ', error);
         throw error;
     } finally {
         connection.release();
@@ -188,31 +201,44 @@ async function voteDiscretePoll(pollId, userId, choiceId, pointsSpent){
 async function voteContinuousPoll(pollId, userId, choice, contPollType, pointsSpent){
     const connection = await pool.getConnection();
 
-    const deleteExistingSql = "DELETE FROM continuous_poll_selections WHERE poll_id = ? AND user_id = ?"
-    const addVoteSql = "INSERT INTO continuous_poll_selections (poll_id, user_id, float_value, date_value) VALUES (?, ?, ?, ?)"
+    const oldSelectionPointsSql = "SELECT * FROM continuous_poll_selections WHERE poll_id = ? AND user_id = ?";
+    const deleteExistingSql = "DELETE FROM continuous_poll_selections WHERE poll_id = ? AND user_id = ?";
+    const addVoteSql = "INSERT INTO continuous_poll_selections (poll_id, user_id, float_value, date_value, given_points) VALUES (?, ?, ?, ?, ?)";
     const findPointsSql = 'SELECT points FROM profiles WHERE userId= ?';
     const updatePointSql = 'UPDATE profiles SET points = ? WHERE userId = ?';
 
     try {
         await connection.beginTransaction()
 
-        deleteResult = await connection.query(deleteExistingSql, [pollId, userId]);
-        if (contPollType === "numeric") {
-            addResult = await connection.query(addVoteSql, [pollId, userId, choice, null]);
-        } else if (contPollType === "date") {
-            addResult = await connection.query(addVoteSql, [pollId, userId, null, choice]);
-        } else {
-            await connection.rollback();
+        const pollObject = await getPollWithId(pollId);
+
+        if (pollObject[0].isOpen == 0) {
+            throw { error: errorCodes.DATABASE_ERROR };
         }
+
         const [rows] = await connection.query(findPointsSql, [userId]);
         const current_points = rows[0].points;
 
-        if(current_points - pointsSpent < 0){
+        const [oldSelection] = await connection.query(oldSelectionPointsSql, [pollId, userId]);
+
+        deleteResult = await connection.query(deleteExistingSql, [pollId, userId]);
+        if (contPollType === "numeric") {
+            addResult = await connection.query(addVoteSql, [pollId, userId, choice, null, pointsSpent]);
+        } else if (contPollType === "date") {
+            addResult = await connection.query(addVoteSql, [pollId, userId, null, choice, pointsSpent]);
+        } else {
+            throw {error: errorCodes.NO_SUCH_POLL_ERROR};
+        }
+
+        const oldPoint = (oldSelection.length != 0 ? oldSelection[0].given_points : 0);
+        const newPoints = current_points - pointsSpent + oldPoint;
+
+        if(newPoints < 0){
             connection.rollback()
             throw {error: errorCodes.INSUFFICIENT_POINTS_ERROR};
         }
 
-        const [resultSetHeader] = await connection.query(updatePointSql, [current_points - pointsSpent, userId]);
+        const [resultSetHeader] = await connection.query(updatePointSql, [newPoints, userId]);
         connection.commit();
     } catch (error) { 
         await connection.rollback();
@@ -284,7 +310,45 @@ async function addTopic(pollId, topic) {
     }
 }
 
+async function getDiscreteSelectionsWithPollId(pollId) {
+    const sql = "SELECT * FROM discrete_polls_selections WHERE poll_id = ?";
+
+    try {
+        [result] = await pool.query(sql, [pollId]);
+        return result;
+    } catch (error) {
+        console.error('getDiscreteSelectionWithPollId(): Database Error');
+        throw error;
+    }
+}
+
+async function closePoll(pollId, rewards) {
+    const pointUpdateSql = 'UPDATE profiles SET points = points + ? WHERE userId = ?';
+    const closePollSql = 'UPDATE polls SET isOpen = false WHERE id = ?';
+
+    const connection = await pool.getConnection();
+
+    try {
+        await connection.beginTransaction();
+
+        rewards.map(reward => {
+            connection.query(pointUpdateSql, [reward.reward, reward.user_id]);
+        });
+
+        connection.query(closePollSql, [pollId]);
+
+        await connection.commit();
+        return true;
+    } catch (error) {
+        console.error('closePoll(): Database Error');
+        await connection.rollback();
+        throw {error: errorCodes.DATABASE_ERROR};
+    } finally {
+        connection.release();
+    }
+}
+
 module.exports = {getPolls, getPollWithId, getDiscretePollWithId, getContinuousPollWithId, 
     addDiscretePoll,addContinuousPoll, getDiscretePollChoices, getDiscreteVoteCount, voteDiscretePoll, voteContinuousPoll,
-    getContinuousPollVotes,getTagsOfPoll, getUntaggedPolls, updateTagsScanned, addTopic}
+    getContinuousPollVotes,getTagsOfPoll, getUntaggedPolls, updateTagsScanned, addTopic, getDiscreteSelectionsWithPollId, closePoll}
     
