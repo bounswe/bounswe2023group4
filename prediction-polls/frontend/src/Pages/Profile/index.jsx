@@ -49,11 +49,11 @@ function Profile() {
       <div className={styles.profileInfo}>
         <div className={styles.card}>
           <div className={styles.thumbnailImage}>
-            {userData.profileImage == null ? 
+            {userData.profile_picture == null ? 
             <div 
               className={styles.profileImagePlaceholder} > <ProfileIcon/></div> : 
               <img
-              src={userData.image}
+              src={userData.profile_picture}
               alt="profileImage"
               className={styles.profileImage}
             ></img>

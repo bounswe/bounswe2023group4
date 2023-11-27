@@ -3,7 +3,7 @@ const baseUrl = process.env.REACT_APP_BACKEND_LINK; // Replace with your actual 
 async function getProfileMe() {
     const accessToken = localStorage.getItem("accessToken");
   try {
-    const response = await fetch(`${baseUrl}/profiles/myProfile`, {
+    const response = await fetch(`${baseUrl}/profiles/me`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

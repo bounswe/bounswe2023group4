@@ -11,6 +11,7 @@ import getProfileMe from "../../api/requests/profileMe.jsx";
 import ProfileIcon from "../../Assets/icons/ProfileIcon.jsx";
 import uploadProfilePhoto from "../../api/requests/uploadProfilePhoto.jsx";
 import updateProfile from "../../api/requests/editProfile.jsx";
+import { useNavigate } from "react-router-dom";
 
 function EditProfile() {
   const { username } = useParams();
@@ -28,6 +29,7 @@ function EditProfile() {
   const [selectedFile, setSelectedFile] = React.useState(null);
 
   const [userData, setUserData] = React.useState({});
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -85,7 +87,7 @@ function EditProfile() {
         }
       }
       
-     // window.location.reload();
+     navigate(`/profile/${formUserData.username}`);
     } else {
       console.error("Error updating the profile.");
     }
@@ -122,9 +124,9 @@ function EditProfile() {
               className={styles.profileImageContainer}
               onClick={handlePlaceholderClick}
             >
-              {selectedFile || userData.profileImage ? (
+              {selectedFile || userData.profile_picture ? (
                 <img
-                  src={selectedFile || userData.profileImage}
+                  src={selectedFile || userData.profile_picture}
                   alt="Profile"
                   className={styles.profileImage}
                 />
@@ -140,6 +142,7 @@ function EditProfile() {
               style={{ display: "none" }} 
             />
           </Form.Item>
+          
           <Form.Item
             label={<label className={styles.formLabel}>USERNAME</label>}
             name="username"
@@ -149,6 +152,7 @@ function EditProfile() {
               type="text"
               className={styles.formInputStyle}
               placeholder="username"
+              disabled
             />
           </Form.Item>
           {/* <Form.Item label={<label className={styles.formLabel}>FULL NAME</label>} name="fullname" className={styles.formItem}>
