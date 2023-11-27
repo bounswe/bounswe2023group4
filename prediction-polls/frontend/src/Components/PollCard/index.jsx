@@ -8,6 +8,7 @@ import { ReactComponent as ReportIcon } from "../../Assets/icons/Warning.svg";
 import PollOption from "../PollOption";
 import { Input, DatePicker } from "antd";
 import { useLocation } from "react-router-dom";
+import ProfileIcon from "../../Assets/icons/ProfileIcon.jsx";
 
 function PollCard({ PollData, setAnswer, onClick }) {
   const [selectedArray, setSelectedArray] = React.useState(
@@ -135,11 +136,15 @@ function PollCard({ PollData, setAnswer, onClick }) {
       <div className={styles.info}>
         <div className={styles.creator}>
           <a href={`/profile/${PollData.creatorUsername}`}>
-            <img
-              src={PollData.creatorImage}
-              alt="user"
-              className={styles.creatorImage}
-            />
+            {PollData.creatorImage == null ? (
+              <div className={styles.creatorImagePlaceholder} ><ProfileIcon width={20} height={20}/></div>
+            ) : (
+              <img
+                src={PollData.creatorImage}
+                alt="user"
+                className={styles.creatorImage}
+              />
+            )}
           </a>
           <a href={`/profile/${PollData.creatorUsername}`}>
             <div className={styles.creatorName}>{PollData.creatorName}</div>

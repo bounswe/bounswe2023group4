@@ -10,7 +10,6 @@
   gap: 20px;
   background-color: var(--neutral-pollCard);
   margin-bottom: 20px;
-  cursor: pointer;
 }
 .question {
   display: flex;
@@ -31,6 +30,7 @@
   align-items: center;
   gap: 5px;
   cursor: pointer;
+  justify-content: flex-end;
 }
 .creatorImage {
   width: 35px;
@@ -38,6 +38,18 @@
   border-radius: 100px;
   cursor: pointer;
 }
+
+.creatorImagePlaceholder {
+  width: 35px;
+  height: 35px;
+  border-radius: 100px;
+  cursor: pointer;
+  background-color: var(--neutral-100);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
 .creatorName {
   font-size: 16px;
   font-weight: 700;
@@ -159,6 +171,8 @@
   font-size: 20px;
   background-color: var(--neutral-pollCard);
   color: var(--neutral-black);
+  cursor: pointer!important;
+
 
 }
 
