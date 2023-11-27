@@ -55,10 +55,9 @@ async function tagRoutine() {
     const filteredLabels = response.data.labels.filter((label, index) => response.data.scores[index] > scoreThreshold);
 
     updateTagsScanned(pollId, tagsScanned + additionalScans)
-    if (filteredLabels.length > 0) {
-      addTopic(pollId, filteredLabels[0])
-    }
-
+    filteredLabels.map((label) => {
+      addTopic(pollId, label)
+    });
   })
   .catch(error => {
 
