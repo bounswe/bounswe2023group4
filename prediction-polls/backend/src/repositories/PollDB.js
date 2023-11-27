@@ -161,6 +161,12 @@ async function voteDiscretePoll(pollId, userId, choiceId, pointsSpent){
     try {
         await connection.beginTransaction()
 
+        const pollObject = await getPollWithId(pollId);
+
+        if (pollObject[0].isOpen == 0) {
+            throw { error: errorCodes.DATABASE_ERROR };
+        }
+
         const [rows] = await connection.query(findPointsSql, [userId]);
         const current_points = rows[0].points;
 
@@ -203,6 +209,12 @@ async function voteContinuousPoll(pollId, userId, choice, contPollType, pointsSp
 
     try {
         await connection.beginTransaction()
+
+        const pollObject = await getPollWithId(pollId);
+
+        if (pollObject[0].isOpen == 0) {
+            throw { error: errorCodes.DATABASE_ERROR };
+        }
 
         const [rows] = await connection.query(findPointsSql, [userId]);
         const current_points = rows[0].points;
