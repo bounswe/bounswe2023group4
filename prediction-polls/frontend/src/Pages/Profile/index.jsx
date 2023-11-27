@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 import getProfileMe from "../../api/requests/profileMe.jsx";
 import getProfile from "../../api/requests/profile.jsx";
 import ProfileIcon from "../../Assets/icons/ProfileIcon.jsx";
+import Badge from "../../Components/Badge/index.jsx";
 
 function Profile() {
   const { username } = useParams();
@@ -86,18 +87,13 @@ function Profile() {
               <p className={styles.aboutText}>{userData.biography}</p>
             </div>
             <div className={styles.badgesContainer}>
-              <div className={styles.badge}>
-                <p className={styles.badgeText}>1</p>
-                <p className={styles.badgeText}>Basketball</p>
-              </div>
-              <div className={styles.badge}>
-                <p className={styles.badgeText}>1</p>
-                <p className={styles.badgeText}>Politics</p>
-              </div>
-              <div className={styles.badge}>
-                <p className={styles.badgeText}>1</p>
-                <p className={styles.badgeText}>Football</p>
-              </div>
+              {userData.badges && userData.badges.length > 0 && (
+                userData.badges.map((badge, index) => (
+
+                  <Badge number={badge.rank} text={badge.topic} key={index} />
+                ))
+              )}
+
             </div>
           </div>
         </div>

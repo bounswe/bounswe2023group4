@@ -12,6 +12,7 @@ import ProfileIcon from "../../Assets/icons/ProfileIcon.jsx";
 import uploadProfilePhoto from "../../api/requests/uploadProfilePhoto.jsx";
 import updateProfile from "../../api/requests/editProfile.jsx";
 import { useNavigate } from "react-router-dom";
+import Badge from "../../Components/Badge/index.jsx";
 
 function EditProfile() {
   const { username } = useParams();
@@ -42,7 +43,7 @@ function EditProfile() {
             // fullname: response.name,
             about: response.biography,
             birthday: response.birthday ? moment(response.birthday) : null,
-            isHidden: response.isHidden ,
+            isHidden: response.isHidden,
           };
           setInitialValues(newInitialValues);
           form.setFieldsValue(newInitialValues);
@@ -54,7 +55,6 @@ function EditProfile() {
 
     fetchData();
   }, [username]);
-
 
   const submitImage = async () => {
     const result = await uploadProfilePhoto(file, caption);
@@ -73,38 +73,36 @@ function EditProfile() {
       email: userData.email,
       profile_picture: userData.profileImage,
       biography: formUserData.about,
-      birthday: formUserData.birthday ? formUserData.birthday.format("YYYY-MM-DD") : null,
+      birthday: formUserData.birthday
+        ? formUserData.birthday.format("YYYY-MM-DD")
+        : null,
       isHidden: formUserData.isHidden,
     });
-  
+
     if (profileUpdateResult) {
-      
       if (file) {
         const imageUploadResult = await submitImage(file);
         if (!imageUploadResult) {
           console.error("Error uploading the profile image.");
-          
         }
       }
-      
-     navigate(`/profile/${formUserData.username}`);
+
+      navigate(`/profile/${formUserData.username}`);
     } else {
       console.error("Error updating the profile.");
     }
   };
 
- 
-
   const handleFileInputChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setSelectedFile(URL.createObjectURL(file)); 
-      setFile(file); 
+      setSelectedFile(URL.createObjectURL(file));
+      setFile(file);
     }
   };
 
   const handlePlaceholderClick = () => {
-    fileInputRef.current.click(); 
+    fileInputRef.current.click();
   };
 
   return (
@@ -130,8 +128,10 @@ function EditProfile() {
                   alt="Profile"
                   className={styles.profileImage}
                 />
-              ) : (<div className={styles.profileImagePlaceholder}>
-                <ProfileIcon /> </div>
+              ) : (
+                <div className={styles.profileImagePlaceholder}>
+                  <ProfileIcon />{" "}
+                </div>
               )}
             </div>
             <input
@@ -139,10 +139,10 @@ function EditProfile() {
               ref={fileInputRef}
               onChange={handleFileInputChange}
               accept="image/*"
-              style={{ display: "none" }} 
+              style={{ display: "none" }}
             />
           </Form.Item>
-          
+
           <Form.Item
             label={<label className={styles.formLabel}>USERNAME</label>}
             name="username"
@@ -216,27 +216,14 @@ function EditProfile() {
         <p className={styles.badgesText}>Badges</p>
         <p>(You can choose at most 3)</p>
         <div className={styles.badgesContainer}>
-          <div className={styles.badgeCheckbox}>
-            <Checkbox />
-            <div className={styles.badge}>
-              <p className={styles.badgeText}>1</p>
-              <p className={styles.badgeText}>Basketball</p>
-            </div>
-          </div>
-          <div className={styles.badgeCheckbox}>
-            <Checkbox />
-            <div className={styles.badge}>
-              <p className={styles.badgeText}>1</p>
-              <p className={styles.badgeText}>Politics</p>
-            </div>
-          </div>
-          <div className={styles.badgeCheckbox}>
-            <Checkbox />
-            <div className={styles.badge}>
-              <p className={styles.badgeText}>1</p>
-              <p className={styles.badgeText}>Football</p>
-            </div>
-          </div>
+          {userData.badges &&
+            userData.badges.length > 0 ?
+            userData.badges.map((badge, index) => (
+              <div className={styles.badgeCheckbox}>
+                <Checkbox />
+                <Badge number={badge.rank} text={badge.topic} key={index} />
+              </div>
+            )) : <p>No badges yet.</p>}
         </div>
       </div>
     </div>

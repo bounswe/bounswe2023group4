@@ -11,6 +11,7 @@ import { ReactComponent as Logo } from "../../Assets/Logo.svg";
 import styles from "./Sidebar.module.css";
 import { useNavigate } from "react-router-dom";
 import  logout  from "../../api/requests/logout.jsx";
+import { Link } from 'react-router-dom';
 
 
 const username = localStorage.getItem("username")
@@ -37,18 +38,18 @@ const SidebarMenuItem = ({
 
   const isSelected = currentPage === pageKey;
   return (
-    <div
+    <Link
       key={pageKey}
       className={`${styles.menuItem} ${
         isSelected ? styles.selectedMenuItem : ""
       }`}
-      onClick={() => navigate(to)}
+      to={to}
     >
       {Icon && (
         <Icon width={40} height={40} />
       )}
       <p className={styles.etxt}>{label || pageKey}</p>
-    </div>
+    </Link>
   );
 };
 

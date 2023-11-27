@@ -98,45 +98,6 @@ border-radius: 10px;
     padding-bottom: 10px;
 }
 
-.badge{
-    width: 85px;
-    height: 85px;
-    border-radius: 100%;
-    background-color: gold;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap:5px;
-    box-sizing: border-box;
-    overflow-wrap:anywhere;
-    padding: 4px;
-    text-align: center;
-    vertical-align: middle;
-    position: relative;
-
-}
-.badge::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 85px;
-    height: 85px;
-    background-color: var(--neutral-white);
-    opacity: 0.2; 
-    border-radius: 100%; 
-    pointer-events: none; 
-}
-.badgeText{
-    font-weight: 700;
-    color: var(--neutral-black);
-    line-height: 14px;
-    font-size: 14px;
-    margin: 0px 0px;
-    z-index: 1;
-    
-}
 .badgeCheckbox{
     display: flex;
     flex-direction: row;
