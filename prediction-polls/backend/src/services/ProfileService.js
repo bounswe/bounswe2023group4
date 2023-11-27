@@ -68,7 +68,7 @@ async function getProfile(req,res){
         if(result.error){
             throw result.error;
         }
-    
+        
         const {profile,error} = await db.getProfileWithUserId(result.id);
         if(error){
             throw error;
@@ -111,7 +111,9 @@ async function getProfileWithProfileId(req,res){
             profile.profile_picture = image_result.signedUrl;
         }
 
-        const {badges,error:badge_error} = await db.getBadges(result.id);
+
+        const {badges,error:badge_error} = await db.getBadges(profile.userId);
+
         if(badge_error){
             throw badge_error;
         }

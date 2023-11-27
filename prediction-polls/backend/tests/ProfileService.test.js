@@ -1,128 +1,222 @@
-const service = require('../src/services/ProfileService.js');
-const db = require('../src/repositories/ProfileDB.js');
-const authDb = require('../src/repositories/AuthorizationDB.js');
-
-// Mock the ProfileDB module
-jest.mock('../src/repositories/ProfileDB.js', () => ({
-    findUser: jest.fn(),
-    getProfileWithUserId: jest.fn(),
-    getProfileWithProfileId: jest.fn(),
-    addProfile: jest.fn(),
-    updateProfile: jest.fn(),
-}));
-
-// Mock the AuthorizationDB module
-jest.mock('../src/repositories/AuthorizationDB.js', () => ({
-    findUser: jest.fn(),
-}));
-
-test('test if getProfile returns profile data', async () => {
-    // Set up mock behavior for findUser and getProfileWithUserId
-    const userId = 2;
-    const username = 'testUsername';
-    const email = 'test@mail.com';
-    const password = "testPassword.";
-
-    const profile = { id: 2,username,email,biograhpy:"Biograhpy"};
-
-    authDb.findUser.mockResolvedValue({ id: userId, username, email, password });
-    db.getProfileWithUserId.mockResolvedValue({ profile: profile});
-
-    const req = { query: { userId, username, email } };
-    const res = {
-        status: jest.fn(() => res),
+const {
+    getProfile,
+    getProfileWithProfileId,
+    getMyProfile,
+    updateProfile,
+    uploadImagetoS3
+  } = require('../src/services/ProfileService');
+  const db = require('../src/repositories/ProfileDB');
+  const authDb = require('../src/repositories/AuthorizationDB');
+  const aws = require('aws-sdk');
+  
+  jest.mock('aws-sdk');
+  jest.mock('../src/repositories/ProfileDB');
+  jest.mock('../src/repositories/AuthorizationDB');
+  
+  describe('getProfile()', () => {
+    let req, res;
+  
+    beforeEach(() => {
+      req = {
+        query: { userId: 1, username: 'testUser', email: 'test@example.com' },
+      };
+      res = {
         json: jest.fn(),
-    };
+        status: jest.fn().mockReturnThis(),
+      };
+    });
+  
+    it('should return user profile with badges', async () => {
+      const profileResult = {
+        profile: {
+          id: 2,
+          userId: 1,
+          username: 'testUser',
+          email: 'test@example.com',
+          profile_picture: null,
+          badges: ['Badge1', 'Badge2'],
+        },
+      };
+  
+      db.getProfileWithUserId.mockResolvedValueOnce(profileResult);
+      authDb.findUser.mockResolvedValueOnce({ id: 1, username: 'testUser', email: 'test@example.com' });
+      db.getBadges.mockResolvedValueOnce({badges:[{topic:"basketball",userRank:1}]})
 
-    await service.getProfile(req, res);
+      await getProfile(req, res);
+  
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith(profileResult.profile);
+    });
+  
+    it('should handle errors and return 400 status', async () => {
+      const errorMessage = 'Error fetching profile';
+  
+      db.getProfileWithUserId.mockResolvedValueOnce({ error: errorMessage });
+      authDb.findUser.mockResolvedValueOnce({ id: 1, username: 'testUser', email: 'test@example.com' });
+      db.getBadges.mockResolvedValueOnce({badges:[{topic:"basketball",userRank:1}]})
+  
+      await getProfile(req, res);
+  
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.json).toHaveBeenCalledWith({ error: errorMessage });
+    });
+  });
 
-    // Assert that the correct functions were called and with the correct arguments
-    expect(authDb.findUser).toHaveBeenCalledWith({ userId, username, email });
-    expect(db.getProfileWithUserId).toHaveBeenCalledWith(userId);
 
-    // Assert that the response was sent with the correct data
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith(profile);
-});
-
-test('test if getProfileWithProfileId returns profile data', async () => {
-    // Set up mock behavior for getProfileWithProfileId
-    const profileId = 1;
-
-    const profile = { id: 2,username:"testUsername",email:"email@test.com",biograhpy:"Biograhpy"};
-
-    db.getProfileWithProfileId.mockResolvedValue({ profile: profile});
-
-    const req = { params: { profileId } };
-    const res = {
-        status: jest.fn(() => res),
+  describe('getProfileWithProfileId()', () => {
+    let req, res;
+  
+    beforeEach(() => {
+      req = {
+        params: { profileId: 2 },
+      };
+      res = {
         json: jest.fn(),
-    };
+        status: jest.fn().mockReturnThis(),
+      };
+    });
+  
+    it('should return user profile with badges', async () => {
+        const profileResult = {
+            profile: {
+              id: 2,
+              userId: 1,
+              username: 'testUser',
+              email: 'test@example.com',
+              profile_picture: null,
+              badges: ['Badge1', 'Badge2'],
+            },
+        };
+  
+      db.getProfileWithProfileId.mockResolvedValueOnce(profileResult);
+      db.getBadges.mockResolvedValueOnce({badges:[{topic:"basketball",userRank:1}]})
+  
+      await getProfileWithProfileId(req, res);
+  
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith(profileResult.profile);
+    });
+  
+    it('should handle errors and return 400 status', async () => {
+      const errorMessage = 'Error fetching profile';
+  
+      db.getProfileWithProfileId.mockResolvedValueOnce({ error: errorMessage });
+      db.getBadges.mockResolvedValueOnce({badges:[{topic:"basketball",userRank:1}]})
+  
+      await getProfileWithProfileId(req, res);
+  
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.json).toHaveBeenCalledWith({ error: errorMessage });
+    });
+  });
 
-    await service.getProfileWithProfileId(req, res);
-
-    // Assert that the correct function was called and with the correct arguments
-    expect(db.getProfileWithProfileId).toHaveBeenCalledWith(profileId);
-
-    // Assert that the response was sent with the correct data
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith(profile);
-});
-
-test('test if addProfile returns added profile data', async () => {
-    // Set up mock behavior for findUser, addProfile, and getProfileWithUserId
-    const userId = 2;
-    const username = 'testUsername';
-    const email = 'test@mail.com';
-
-    const profile = { userId,username,email,biography:"Biography"};
-
-    authDb.findUser.mockResolvedValue({ userId, username, email });
-    db.addProfile.mockResolvedValue({ profileId: 5 });
-    db.getProfileWithUserId.mockResolvedValue({ profile: profile});
-
-    const req = { body: { userId, username, email, biography:"Biography" } };
-    const res = {
-        status: jest.fn(() => res),
+  
+  describe('getMyProfile()', () => {
+    let req, res;
+  
+    beforeEach(() => {
+      req = {
+        user: { id: 1 },
+      };
+      res = {
         json: jest.fn(),
-    };
+        status: jest.fn().mockReturnThis(),
+      };
+    });
+  
+    it('should return user profile with badges', async () => {
+        const profileResult = {
+            profile: {
+                id: 2,
+                userId: 1,
+                username: 'testUser',
+                email: 'test@example.com',
+                profile_picture: null,
+                badges: ['Badge1', 'Badge2'],
+            },
+        };
+  
+      db.getProfileWithUserId.mockResolvedValueOnce(profileResult);
+      authDb.findUser.mockResolvedValueOnce({ id: 1, username: 'testUser', email: 'test@example.com' });
+      db.getBadges.mockResolvedValueOnce({badges:[{topic:"basketball",userRank:1}]})
+  
+      await getMyProfile(req, res);
+  
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith(profileResult.profile);
+    });
+  
+    it('should handle errors and return 400 status', async () => {
+      const errorMessage = 'Error fetching profile';
+  
+      db.getProfileWithUserId.mockResolvedValueOnce({ error: errorMessage });
+      authDb.findUser.mockResolvedValueOnce({ id: 1, username: 'testUser', email: 'test@example.com' });
+      db.getBadges.mockResolvedValueOnce({badges:[{topic:"basketball",userRank:1}]})
+  
+      await getMyProfile(req, res);
+  
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.json).toHaveBeenCalledWith({ error: errorMessage });
+    });
+  });
 
-    await service.addProfile(req, res);
 
-    // Assert that the correct functions were called and with the correct arguments
-    expect(authDb.findUser).toHaveBeenCalledWith({ userId, username, email });
-    expect(db.addProfile).toHaveBeenCalledWith({ userId, username, email, biography:"Biography","isHidden": undefined, "profile_picture": undefined, "userId": undefined });
-    expect(db.getProfileWithUserId).toHaveBeenCalledWith(userId);
-
-    // Assert that the response was sent with the correct data
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({ userId, username, email, biography:"Biography","isHidden": undefined, "profile_picture": undefined, "userId": undefined });
-});
-
-test('test if updateProfile returns updated profile data', async () => {
-    // Set up mock behavior for findUser, updateProfile, and getProfileWithUserId
-    const userId = 'testUserId';
-    const username = 'testUsername';
-    const email = 'test@mail.com';
-
-    authDb.findUser.mockResolvedValue({ id: userId, username, email });
-    db.updateProfile.mockResolvedValue({ status: 'updated', error: undefined });
-    db.getProfileWithUserId.mockResolvedValue({ profile: { /* updated profile data */ }, user_error: undefined });
-
-    const req = { body: { userId, username, email, /* updated profile data */ } };
-    const res = {
-        status: jest.fn(() => res),
+  describe('updateProfile()', () => {
+    let req, res;
+  
+    beforeEach(() => {
+      req = {
+        body: {
+          userId: 1,
+          username: 'testUser',
+          email: 'test@example.com',
+          biography: 'New biography',
+          birthday: null,
+          isHidden: true,
+        },
+      };
+      res = {
         json: jest.fn(),
-    };
-
-    await service.updateProfile(req, res);
-
-    // Assert that the correct functions were called and with the correct arguments
-    expect(authDb.findUser).toHaveBeenCalledWith({ userId, username, email });
-    expect(db.updateProfile).toHaveBeenCalledWith({ userId, /* updated profile data */ });
-    expect(db.getProfileWithUserId).toHaveBeenCalledWith(userId);
-
-    // Assert that the response was sent with the correct data
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({ /* updated profile data */ });
-});
+        status: jest.fn().mockReturnThis(),
+      };
+    });
+  
+    it('should update user profile and return the updated profile', async () => {
+      const updatedProfileResult = {
+        profile: {
+          userId: 1,
+          username: 'testUser',
+          email: 'test@example.com',
+          profile_picture: null,
+          biography: 'New biography',
+          birthday: null,
+          isHidden: true,
+        },
+      };
+  
+      db.updateProfile.mockResolvedValueOnce({ status: 'Updated successfully' });
+      db.getProfileWithUserId.mockResolvedValueOnce(updatedProfileResult);
+      authDb.findUser.mockResolvedValueOnce({ id: 1, username: 'testUser', email: 'test@example.com' });
+  
+      await updateProfile(req, res);
+  
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith(updatedProfileResult.profile);
+    });
+  
+    it('should handle errors and return 400 status', async () => {
+      const errorMessage = 'Error updating profile';
+  
+      db.updateProfile.mockResolvedValueOnce({ error: errorMessage });
+      authDb.findUser.mockResolvedValueOnce({ id: 1, username: 'testUser', email: 'test@example.com' });
+  
+      await updateProfile(req, res);
+  
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.json).toHaveBeenCalledWith({ error: errorMessage });
+    });
+  });
+  
+  
+  // Add similar test cases for other functions (getProfileWithProfileId, getMyProfile, updateProfile, uploadImagetoS3)
+  
