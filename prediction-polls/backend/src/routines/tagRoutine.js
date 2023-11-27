@@ -30,9 +30,7 @@ async function tagRoutine() {
     console.log("No polls to tag.");
     return;
   }
-  console.log(filteredPolls);
   const randomPoll = filteredPolls[Math.floor(Math.random() * filteredPolls.length)];
-  console.log(randomPoll);
   const pollId = randomPoll.id;
   const pollQuestion = randomPoll.question;
   const tagsScanned = randomPoll.tagsScanned;
