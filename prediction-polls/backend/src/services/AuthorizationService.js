@@ -20,7 +20,7 @@ async function signup(req, res) {
 
   // Birthday validation
   if (birthday && !isValidBirthday(birthday)) {
-      return res.status(400).send({error:errorCodes.INVALID_DATE});
+      return res.status(400).json({error:errorCodes.INVALID_DATE});
 
   }
 
@@ -32,33 +32,33 @@ async function signup(req, res) {
   }
 
   if (usernameInUse) {
-      return res.status(400).send({error:errorCodes.USERNAME_ALREADY_EXISTS});
+      return res.status(400).json({error:errorCodes.USERNAME_ALREADY_EXISTS});
   }
 
   if (emailInUse) {
-      return res.status(400).send({error:errorCodes.USERNAME_ALREADY_EXISTS});
+      return res.status(400).json({error:errorCodes.USERNAME_ALREADY_EXISTS});
   }
 
   // Validate password
   if (!isValidPassword(password)) {
-      return res.status(400).send({error:errorCodes.INVALID_PASSWORD});
+      return res.status(400).json({error:errorCodes.INVALID_PASSWORD});
   }
   // Attempt to add user
   const { userId, error: addUserError } = await db.addUser(username, password, email, birthday);
   if (error) {
-    return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
+    return res.status(400).json({error:errorCodes.REGISTRATION_FAILED});
   }
 
   const result = await profileDb.addProfile(userId,username,email);
   if(!result.profileId){
-    return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
+    return res.status(400).json({error:errorCodes.REGISTRATION_FAILED});
   }
 
   const verificationToken = generateVerificationToken();
   await db.saveEmailVerificationToken(userId, verificationToken);
   await sendVerificationEmail(email, verificationToken);
 
-  res.status(201).send({status:"success"});
+  res.status(201).json({status:"success"});
   
 }
 
@@ -76,7 +76,7 @@ async function sendVerificationEmail(email, token) {
   try {
       await transporter.sendMail(mailOptions);
   } catch (error) {
-      res.status(500).send({error:errorCodes.INTERNAL_SERVER_ERROR})
+      return {error:errorCodes.INTERNAL_SERVER_ERROR};
   }
 }
 const crypto = require('crypto');
@@ -137,7 +137,7 @@ async function logIn(req,res){
       const accesToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
       await db.addRefreshToken(refreshToken);
-      res.status(201).json({accessToken: accesToken, refreshToken: refreshToken})
+      return res.status(201).json({accessToken: accesToken, refreshToken: refreshToken})
 
     } catch (error) {
         return res.status(401).json({ error: errorCodes.USER_NOT_FOUND });
