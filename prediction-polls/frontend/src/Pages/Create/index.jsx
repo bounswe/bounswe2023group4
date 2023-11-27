@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Menu from '../../Components/Menu'
 import styles from './Create.module.css'
 import { useState } from 'react';
@@ -6,6 +6,7 @@ import { Button, Input, DatePicker, Checkbox, Select } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import pointData from "../../MockData/PointList.json"
 import PointsButton from "../../Components/PointsButton"; 
+import getProfileMe from '../../api/requests/profileMe';
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -21,9 +22,16 @@ function Create() {
   const [numericFieldValue, setNumericFieldValue] = useState('');
   const [selectedTimeUnit, setSelectedTimeUnit] = useState('min');
   const [openVisibility, setOpenVisibility] = useState(false); 
+  const [userData, setUserData] =  useState({})
   const url = process.env.REACT_APP_BACKEND_LINK; 
   const navigate = useNavigate()
 
+  useEffect( () => {
+     const data = getProfileMe();
+      data.then((result) => {
+        setUserData(result);
+      });
+  },[])
 
   const choices = additionalChoices.filter(choice => choice.trim() !== '')
   const isSubmitDisabled = question.trim() === '' || 
@@ -400,7 +408,7 @@ function Create() {
             Create Poll
           </Button>
         </div>
-        <PointsButton points={pointData.points}/> 
+        <PointsButton point={userData.points}/> 
       </div>
     </div>
   );

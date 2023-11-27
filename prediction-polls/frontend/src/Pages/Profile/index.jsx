@@ -42,7 +42,6 @@ function Profile() {
     fetchData();
   }, [username, userMeUsername]);
 
-
   const navigate = useNavigate();
   return (
     <div className={styles.page}>
@@ -50,16 +49,18 @@ function Profile() {
       <div className={styles.profileInfo}>
         <div className={styles.card}>
           <div className={styles.thumbnailImage}>
-            {userData.profile_picture == null ? 
-            <div 
-              className={styles.profileImagePlaceholder} > <ProfileIcon/></div> : 
+            {userData.profile_picture == null ? (
+              <div className={styles.profileImagePlaceholder}>
+                {" "}
+                <ProfileIcon />
+              </div>
+            ) : (
               <img
-              src={userData.profile_picture}
-              alt="profileImage"
-              className={styles.profileImage}
-            ></img>
-            }
-            
+                src={userData.profile_picture}
+                alt="profileImage"
+                className={styles.profileImage}
+              ></img>
+            )}
           </div>
           <div className={styles.info}>
             <div className={styles.nameAndButton}>
@@ -87,13 +88,11 @@ function Profile() {
               <p className={styles.aboutText}>{userData.biography}</p>
             </div>
             <div className={styles.badgesContainer}>
-              {userData.badges && userData.badges.length > 0 && (
+              {userData.badges &&
+                userData.badges.length > 0 &&
                 userData.badges.map((badge, index) => (
-
                   <Badge number={badge.rank} text={badge.topic} key={index} />
-                ))
-              )}
-
+                ))}
             </div>
           </div>
         </div>
@@ -102,7 +101,8 @@ function Profile() {
         ))}
       </div>
       <div className={styles.pointButton}>
-      <PointsButton points={pointData.points} /></div>
+        <PointsButton point={userData.points} />{" "}
+      </div>
     </div>
   );
 }

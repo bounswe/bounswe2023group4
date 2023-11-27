@@ -6,9 +6,18 @@ import PollCard from "../../Components/PollCard";
 import PointsButton from "../../Components/PointsButton";
 import pointData from "../../MockData/PointList.json";
 import SearchBar from "../../Components/SearchBar"
+import getProfileMe from "../../api/requests/profileMe.jsx";
 
 function Feed() {
   const [filteredPolls, setFilteredPolls] = useState(pollData.pollList);
+  const [userData, setUserData] =  useState({})
+
+  React.useEffect( () => {
+    const data = getProfileMe();
+     data.then((result) => {
+       setUserData(result);
+     });
+ },[])
 
   const handleSearch = (searchText) => {
     if (!searchText.trim()) {
@@ -38,7 +47,7 @@ function Feed() {
           <PollCard PollData={poll} key={poll.id} />
         ))}</div>
      <div className={styles.pointsButton}>
-      <PointsButton points={pointData.points}/></div> 
+     <PointsButton point={userData.points}/> </div> 
     </div>
   );
 }

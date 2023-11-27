@@ -212,7 +212,7 @@ function EditProfile() {
         </Form>
       </div>
       <div className={styles.pointCol}>
-        <PointsButton points={pointData.points} />
+      <PointsButton point={userData.points}/> 
         <p className={styles.badgesText}>Badges</p>
         <p>(You can choose at most 3)</p>
         <div className={styles.badgesContainer}>
