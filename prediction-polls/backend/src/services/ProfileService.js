@@ -111,7 +111,9 @@ async function getProfileWithProfileId(req,res){
             profile.profile_picture = image_result.signedUrl;
         }
 
+
         const {badges,error:badge_error} = await db.getBadges(profile.userId);
+
         if(badge_error){
             throw badge_error;
         }

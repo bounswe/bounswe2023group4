@@ -30,7 +30,9 @@ CREATE TABLE polls (
     setDueDate BOOLEAN NOT NULL,
     closingDate DATE,
     numericFieldValue INT,
-    selectedTimeUnit ENUM('min', 'h', 'day', 'mth')
+    selectedTimeUnit ENUM('min', 'h', 'day', 'mth'),
+    tagsScanned INT DEFAULT 0
+    isOpen BOOLEAN DEFAULT true
 );
 
 CREATE TABLE discrete_polls (
