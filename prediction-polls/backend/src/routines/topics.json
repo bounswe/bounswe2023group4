@@ -5,6 +5,23 @@
       "subtopics": []
     },
     {
+      "name": "Sports",
+      "subtopics": [
+        "Football",
+        "Basketball",
+        "Baseball",
+        "Tennis",
+        "Athletics",
+        "Esports",
+        "Extreme sports",
+        "Sports analytics",
+        "Sports psychology"
+      ]
+    },
+    {
+      "name": "Economy"
+    },
+    {
       "name": "Politics",
       "subtopics": [
         "International relations",
@@ -61,7 +78,7 @@
       ]
     },
     {
-      "name": "Nature",
+      "name": "Disaster",
       "subtopics": [
         "Zoology",
         "Animal",
@@ -126,20 +143,6 @@
         "Higher education trends",
         "Education policies",
         "Lifelong learning"
-      ]
-    },
-    {
-      "name": "Sports",
-      "subtopics": [
-        "Football",
-        "Basketball",
-        "Baseball",
-        "Tennis",
-        "Athletics",
-        "Esports",
-        "Extreme sports",
-        "Sports analytics",
-        "Sports psychology"
       ]
     },
     {
