@@ -34,7 +34,8 @@ function AppRouter() {
           <GoogleLogin />
         } />
         <Route path="/create" element={
-          <PrivateRoute><Create /></PrivateRoute>
+          <Create />
+          //<PrivateRoute><Create /></PrivateRoute>
         } />
         <Route path="/leaderboard" element={
           <PrivateRoute><Leaderboard /></PrivateRoute>
@@ -55,7 +56,7 @@ function AppRouter() {
           //<PrivateRoute><Vote /></PrivateRoute>
           <Vote/>
         } />
-        <Route path="/editProfile" element={
+        <Route path="/editProfile/:username" element={
           //<PrivateRoute><EditProfile/></PrivateRoute>
           <EditProfile/>
         } />

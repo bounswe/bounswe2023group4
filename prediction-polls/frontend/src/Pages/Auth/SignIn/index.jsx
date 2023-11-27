@@ -36,6 +36,7 @@ function SignIn() {
     if (response.status === 201 && data.accessToken && data.refreshToken) {
       localStorage.setItem('accessToken', data.accessToken); 
       localStorage.setItem('refreshToken', data.refreshToken);
+      localStorage.setItem('username', username);
       navigate("/feed");
     } 
 
@@ -54,8 +55,8 @@ function SignIn() {
         <Form className = {{...styles.formItemLayout,labelCol: { span: 24 }, wrapperCol: { span: 24 }}}>
           <Form.Item>
             <div>
-              <Button style={formButtonStyle} onClick={handleLogin}>
-                <GoogleLogo style={googleLogoStyle} />
+              <Button className={styles.formButtonStyle} onClick={handleLogin}>
+                <GoogleLogo className={styles.googleLogoStyle} />
                 <span>Sign In with Google</span>
               </Button>
             </div>

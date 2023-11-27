@@ -1,10 +1,127 @@
-.page{
-    display: flex;
-    background-color: var(--neutral-white);
-    width: 100%;
+.page {
+  display: flex;
+  background-color: var(--neutral-white);
+  width: 100%;
+  justify-content: space-between;
 }
 @media (max-width: 640px) {
-    .page{
-        flex-direction: column;
-    }
+  .page {
+    flex-direction: column;
+  }
+}
+.editProfileInfo {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  width: 60%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+.profileImage {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 100px;
+  justify-self: center;
+  box-shadow: 2px 4px 8px var(--neutral-shadow);
+  cursor:pointer;
+}
+.profileImagePlaceholder {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 100px;
+  background-color: var(--neutral-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor:pointer;
+}
+
+.formInputStyle {
+  padding: 5px 5px;
+  width: 100%;
+  background-color: var(--neutral-pollCard);
+  color: var(--neutral-black);
+}
+.formDatePickerStyle {
+  padding: 5px 5px;
+  width: 100%;
+  width: 100%;
+  background-color: var(--neutral-pollCard);
+  color: var(--neutral-black);
+}
+.formStyle {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.profileImageWrapperStyle {
+display: flex;
+justify-content: center;
+}
+
+.birthdayWrapperStyle {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap:20px;
+align-items: center;
+padding-bottom: 10px;
+}
+.thumbnailImage{
+height: 240px;
+width: 100%;
+object-fit: cover;
+border-radius: 10px;
+}
+.thumbnailImageWrapper {
+    height: fit-content;
+}
+
+.pointCol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 20%;
+    padding-top: 100px;
+
+}
+
+.badgesContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.badgeCheckbox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:10px;
+}
+.badgesText{
+    margin: 0px;
+    font-weight: 700;
+    color: var(--neutral-black);
+    font-size: 24px;
+}
+.formButtonStyle {
+    background-color: var(--primary-500);
+    color: var(--neutral-white);
+}
+.buttonContainer{
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    align-self:center;
+    padding-bottom: 10px;
+}
+
+.formLabel{
+    color: var(--neutral-black);
 }

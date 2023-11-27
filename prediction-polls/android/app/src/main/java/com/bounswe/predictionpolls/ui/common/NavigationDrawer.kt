@@ -5,15 +5,17 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -43,10 +45,16 @@ typealias ToggleDrawerState = () -> Unit
 @Composable
 fun NavigationDrawer(
     modifier: Modifier = Modifier,
-    selectedNavItem: NavItem,
+    selectedRoute: String? = null,
     onButtonClick: (NavItem) -> Unit = {},
+    isSignedIn: Boolean = true,
+    onAuthButtonClick: () -> Unit = {},
     content: @Composable (ToggleDrawerState) -> Unit = {}
 ) {
+    val selectedNavItem = remember(selectedRoute) {
+        NavItem.values().firstOrNull { it.route == selectedRoute }
+    }
+
     val drawerState = remember {
         DrawerState(
             initialValue = DrawerValue.Closed
@@ -71,7 +79,8 @@ fun NavigationDrawer(
         scrimColor = Color.Transparent,
         drawerContent = {
             ModalDrawerSheet(
-                modifier = Modifier.width(IntrinsicSize.Max),
+                modifier = Modifier
+                    .width(IntrinsicSize.Max),
                 drawerContainerColor = MaterialTheme.colorScheme.background,
                 drawerContentColor = MaterialTheme.colorScheme.onBackground,
             ) {
@@ -81,16 +90,18 @@ fun NavigationDrawer(
                         .fillMaxWidth(),
                 ) {
                     NavItem.values().forEach { navItem ->
-                        Column {
-                            Divider()
-                            NavDrawerItem(
-                                navItem = navItem,
-                                isSelected = selectedNavItem == navItem,
-                                onButtonClick = onButtonClick
-                            )
-                        }
+                        NavDrawerItem(
+                            navItem = navItem,
+                            isSelected = selectedNavItem == navItem,
+                            onButtonClick = onButtonClick
+                        )
                     }
                 }
+                Spacer(modifier = Modifier.weight(1f))
+                AuthButton(
+                    isSignedIn = isSignedIn,
+                    onAuthButtonClick = onAuthButtonClick
+                )
             }
         },
         content = {
@@ -112,6 +123,49 @@ private fun AppTitle() {
         painter = painterResource(id = R.drawable.ic_app_title),
         contentDescription = stringResource(R.string.cd_app_title)
     )
+}
+
+@Composable
+private fun AuthButton(
+    isSignedIn: Boolean,
+    onAuthButtonClick: () -> Unit = {}
+) {
+    val textId = if (isSignedIn) {
+        R.string.nav_drawer_signout
+    } else {
+        R.string.nav_drawer_signin
+    }
+
+    val color = if (isSignedIn) {
+        MaterialTheme.colorScheme.onError
+    } else {
+        MaterialTheme.colorScheme.onPrimary
+    }
+
+    val backgroundColor = if (isSignedIn) {
+        MaterialTheme.colorScheme.error
+    } else {
+        MaterialTheme.colorScheme.primary
+    }
+
+    Button(
+        onClick = {
+            onAuthButtonClick()
+        },
+        shape = RoundedCornerShape(8.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = backgroundColor,
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+    ) {
+        Text(
+            text = stringResource(id = textId),
+            color = color,
+            style = MaterialTheme.typography.bodyMedium,
+        )
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -138,9 +192,6 @@ private fun NavDrawerItem(
         onClick = {
             onButtonClick(navItem)
         },
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 1.dp
-        )
     ) {
         Row(
             modifier = Modifier
@@ -158,7 +209,8 @@ private fun NavDrawerItem(
                 ),
             )
             Text(
-                text = stringResource(id = navItem.titleId)
+                text = stringResource(id = navItem.titleId),
+                style = MaterialTheme.typography.bodyMedium,
             )
         }
     }
@@ -170,9 +222,7 @@ fun NavigationDrawerPreview() {
     PredictionPollsTheme(
         darkTheme = false
     ) {
-        NavigationDrawer(
-            selectedNavItem = NavItem.FEED
-        ) {
+        NavigationDrawer {
             Button(onClick = {
                 it()
             }) {

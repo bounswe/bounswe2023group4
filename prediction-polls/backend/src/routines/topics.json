@@ -1,0 +1,154 @@
+{
+  "topics": [
+    {
+      "name": "Weather",
+      "subtopics": []
+    },
+    {
+      "name": "Sports",
+      "subtopics": [
+        "Football",
+        "Basketball",
+        "Baseball",
+        "Tennis",
+        "Athletics",
+        "Esports",
+        "Extreme sports",
+        "Sports analytics",
+        "Sports psychology"
+      ]
+    },
+    {
+      "name": "Economy"
+    },
+    {
+      "name": "Politics",
+      "subtopics": [
+        "International relations",
+        "Political ideologies",
+        "Political philosophy",
+        "Political systems",
+        "Government policies",
+        "Political economy",
+        "Political history",
+        "Geopolitics",
+        "Political activism"
+      ]
+    },
+    {
+      "name": "Health",
+      "subtopics": [
+        "Nutrition and diet",
+        "Mental health",
+        "Physical fitness",
+        "Chronic diseases",
+        "Healthcare systems",
+        "Public health",
+        "Alternative medicine",
+        "Health education",
+        "Healthcare technology"
+      ]
+    },
+    {
+      "name": "Technology",
+      "subtopics": [
+        "Artificial intelligence",
+        "Blockchain technology",
+        "Virtual reality",
+        "Augmented reality",
+        "Cybersecurity",
+        "Internet of Things (IoT)",
+        "Machine learning",
+        "Robotics",
+        "Quantum computing"
+      ]
+    },
+    {
+      "name": "Science",
+      "subtopics": [
+        "Physics",
+        "Chemistry",
+        "Biology",
+        "Astronomy",
+        "Earth science",
+        "Environmental science",
+        "Psychology",
+        "Neuroscience",
+        "Scientific research methods"
+      ]
+    },
+    {
+      "name": "Disaster",
+      "subtopics": [
+        "Zoology",
+        "Animal",
+        "Endangered species",
+        "Wildlife conservation",
+        "Veterinary medicine",
+        "Animal welfare",
+        "Ethology",
+        "Pets and domestication"
+      ]
+    },
+    {
+      "name": "Lifestyle",
+      "subtopics": [
+        "Fashion and style",
+        "Travel and leisure",
+        "Home decor",
+        "Personal development",
+        "Beauty and skincare",
+        "Hobbies and crafts",
+        "Food and cooking",
+        "Relationships and dating",
+        "Parenting"
+      ]
+    },
+    {
+      "name": "Art",
+      "subtopics": [
+        "Visual arts",
+        "Performing arts",
+        "Literature and writing",
+        "Film and cinema",
+        "Photography",
+        "Art history",
+        "Digital art",
+        "Contemporary art"
+      ]
+    },
+    {
+      "name": "Environment",
+      "subtopics": [
+        "Climate change",
+        "Conservation efforts",
+        "Renewable energy",
+        "Biodiversity",
+        "Pollution control",
+        "Sustainable living",
+        "Environmental policies",
+        "Ecotourism",
+        "Environmental activism"
+      ]
+    },
+    {
+      "name": "Education",
+      "subtopics": [
+        "Online education platforms",
+        "Educational technology",
+        "Pedagogy",
+        "Learning strategies",
+        "Special education",
+        "Vocational training",
+        "Higher education trends",
+        "Education policies",
+        "Lifelong learning"
+      ]
+    },
+    {
+      "name": "Entertainment",
+      "subtopics": [
+      ]
+    }
+  ]
+}

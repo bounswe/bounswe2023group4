@@ -1,6 +1,7 @@
 package com.bounswe.predictionpolls.di
 
 import com.bounswe.predictionpolls.data.remote.services.AuthService
+import com.bounswe.predictionpolls.data.remote.services.PollService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,5 +18,13 @@ object ServiceModule {
         @UnauthenticatedRetrofit retrofit: Retrofit
     ): AuthService {
         return retrofit.create(AuthService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providePollService(
+        @AuthenticatedRetrofit retrofit: Retrofit
+    ): PollService {
+        return retrofit.create(PollService::class.java)
     }
 }

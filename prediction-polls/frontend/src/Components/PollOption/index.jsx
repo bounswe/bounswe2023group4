@@ -48,10 +48,13 @@ function PollOption({
         }
         style={{ width: `${widthPercentage}%` }}
       ></div>
-      <div className={styles.textDiv}>{option.title}</div>
-      <div className={styles.optionPoints}>
-        <p>{option.votes}</p>
-      </div>
+      <div className={styles.textDiv}>{option.choice_text}</div>
+      {option.voter_count == null ? <div className={styles.optionPoints_hidden}>
+        <p>{"1"}</p>
+      </div> : <div className={styles.optionPoints}>
+        <p>{option.voter_count}</p>
+      </div>}
+
     </div>
   );
 }

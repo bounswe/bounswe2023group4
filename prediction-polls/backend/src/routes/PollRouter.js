@@ -3,14 +3,88 @@ const service = require("../services/PollService.js");
 const express = require('express');
 const router = express.Router();
 
+/**
+ * @swagger
+ * components:
+ *   objects:
+ *     pollObject:
+ *       type: object
+ *       required: ["id", "question", "tags", "creatorName", "creatorUsername", "creatorImage", "pollType", "closingDate", "rejectVotes", "isOpen", "comments", "options"]
+ *       properties: 
+ *         id:
+ *           type: integer
+ *         question:
+ *           type: string
+ *         tags:
+ *           type: array
+ *           items: 
+ *             type: string
+ *         creatorName:
+ *           type: string
+ *         creatorUsername:
+ *           type: string
+ *         creatorImage:
+ *           type: string
+ *         pollType:
+ *           type: string
+ *         closingDate:
+ *           type: string
+ *         rejectVotes:
+ *           type: string
+ *         isOpen:
+ *           type: boolean
+ *         cont_poll_type:
+ *           type: string
+ *         comments:
+ *           type: array
+ *           items: 
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: integer
+ *               content:
+ *                 type: string
+ *         options:
+ *           oneOf:
+ *             - type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   choice_text:
+ *                     type: string
+ *                   poll_id:
+ *                     type: integer
+ *                   voter_count:
+ *                     type: integer
+ *             - type: array
+ *               items:
+ *                 oneOf:
+ *                   - type: integer
+ *                     example: 9
+ *                   - type: string
+ *                     example: 2023-11-26
+ *   schemas:
+ *     error:
+ *       type: object
+ *       properties:
+ *         error:
+ *           type: object
+ *           properties:
+ *            message:
+ *              type: string
+ *            code:
+ *              type: integer
+ */
 
 /**
  * @swagger
- * /polls/discrete:
+ * /polls:
  *   get:
  *     tags:
  *       - polls
- *     description: Get all discrete polls
+ *     description: Get all polls
  *     responses:
  *       200:
  *         description: Successful response
@@ -19,20 +93,63 @@ const router = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 type: object
- *                 properties: 
- *                   id:
- *                     type: integer
- *                     example: 1
- *                   question:
- *                     type: string
- *                     example: "Who will become POTUS?"
+ *                 $ref: '#/components/objects/pollObject'
+ *             examples:
+ *               genericExample:
+ *                 value:
+ *                   - id: 1
+ *                     question: "Who will become POTUS?"
+ *                     tags: ["tag1", "tag2"]
+ *                     creatorName: "user123"
+ *                     creatorUsername: "GhostDragon"
+ *                     creatorImage: null
+ *                     pollType: "discrete"
+ *                     rejectVotes: "5 min"
+ *                     closingDate: "2023-11-20T21:00:00.000Z"
+ *                     isOpen: 1 
+ *                     comments: []
+ *                     options:
+ *                       - id: 1
+ *                         choice_text: "Trumpo"
+ *                         poll_id: 1
+ *                         voter_count: 0
+ *                       - id: 2
+ *                         choice_text: "Biden"
+ *                         poll_id: 1
+ *                         voter_count: 1
+ *                   - id: 2
+ *                     question: "Test question?"
+ *                     tags: ["tag1", "tag2"]
+ *                     creatorName: "GhostDragon"
+ *                     creatorUsername: "GhostDragon"
+ *                     creatorImage: null
+ *                     pollType: "continuous"
+ *                     rejectVotes: "2 hr"
+ *                     closingDate: null
+ *                     isOpen: 1 
+ *                     cont_poll_type: "numeric"
+ *                     comments: []
+ *                     options:
+ *                       - 7
+ *                       - 8
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/error'
+ *             examples:
+ *               databaseError:
+ *                 value:
+ *                   error:
+ *                     message: Error while accessing the database.
+ *                     code: 3004
  */
-router.get('/discrete', service.getDiscretePolls);
+router.get('/', service.getPolls);
 
 /**
  * @swagger
- * /polls/discrete/{pollId}:
+ * /polls/{pollId}:
  *   get:
  *     tags:
  *       - polls
@@ -50,54 +167,94 @@ router.get('/discrete', service.getDiscretePolls);
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 poll:
- *                   type: object
- *                   properties:
- *                     id:
- *                       type: integer
- *                       example: 1
- *                     question:
- *                       type: string
- *                       example: "Who will become POTUS?"
- *                 choices:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       id:
- *                         type: integer
- *                         example: 1
- *                       choice_text:
- *                         type: string
- *                         example: "Trumpo"
- *                       poll_id:
- *                         type: integer
- *                         example: 1
- *                       voter_count:
- *                         type: integer
- *                         example: 0
- *               example:
- *                 poll:
+ *               $ref: '#/components/objects/pollObject'
+ *             examples:
+ *               discrete:
+ *                 value:
  *                   id: 1
  *                   question: "Who will become POTUS?"
- *                 choices:
- *                   - id: 1
- *                     choice_text: "Trumpo"
- *                     poll_id: 1
- *                     voter_count: 0
- *                   - id: 2
- *                     choice_text: "Biden"
- *                     poll_id: 1
- *                     voter_count: 1
- *
+ *                   tags: ["tag1", "tag2"]
+ *                   creatorName: "user123"
+ *                   creatorUsername: "GhostDragon"
+ *                   creatorImage: null
+ *                   pollType: "discrete"
+ *                   rejectVotes: "5 min"
+ *                   closingDate: "2023-11-20T21:00:00.000Z"
+ *                   isOpen: 1 
+ *                   comments: [] 
+ *                   options:
+ *                     - id: 1
+ *                       choice_text: "Trumpo"
+ *                       poll_id: 1
+ *                       voter_count: 0
+ *                     - id: 2
+ *                       choice_text: "Biden"
+ *                       poll_id: 1
+ *                       voter_count: 1
+ *               continuousNumeric:
+ *                 value:
+ *                   id: 2
+ *                   question: "Test question?"
+ *                   tags: ["tag1", "tag2"]
+ *                   creatorName: "GhostDragon"
+ *                   creatorUsername: "GhostDragon"
+ *                   creatorImage: null
+ *                   pollType: "continuous"
+ *                   rejectVotes: "2 hr"
+ *                   closingDate: null
+ *                   isOpen: 1 
+ *                   cont_poll_type: "numeric"
+ *                   comments: []
+ *                   options:
+ *                       - 7
+ *                       - 8
+ *               continuousDate:
+ *                 value:
+ *                   id: 2
+ *                   question: "Test question?"
+ *                   tags: ["tag1", "tag2"]
+ *                   creatorName: "GhostDragon"
+ *                   creatorUsername: "GhostDragon"
+ *                   creatorImage: null
+ *                   pollType: "continuous"
+ *                   rejectVotes: "2 hr"
+ *                   closingDate: null
+ *                   isOpen: 1 
+ *                   cont_poll_type: "date"
+ *                   comments: []
+ *                   options:
+ *                       - "2023-12-22T21:00:00.000Z"
+ *                       - "2023-12-24T21:00:00.000Z"
+ *       404:
+ *         description: Resource Not Found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/error'
+ *             examples:
+ *               NO_SUCH_POLL_ERROR:
+ *                 value:
+ *                   error:
+ *                     message: No such poll found.
+ *                     code: 3005
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/error'
+ *             examples:
+ *               databaseError:
+ *                 value:
+ *                   error:
+ *                     message: Error while accessing the database.
+ *                     code: 3004
  */
-router.get('/discrete/:pollId', authenticator.authorizeAccessToken, service.getDiscretePollWithId);
+router.get('/:pollId', service.getPollWithId);
 
 /**
  * @swagger
- * /polls/discrete/:
+ * /polls/discrete:
  *   post:
  *     tags:
  *       - polls
@@ -108,113 +265,91 @@ router.get('/discrete/:pollId', authenticator.authorizeAccessToken, service.getD
  *       content:
  *         application/json:
  *           schema:
+ *             required: ["question", "choices", "openVisibility", "setDueDate"]
  *             type: object
  *             properties:
  *               question:
  *                 type: string
- *                 example: "Who will become POTUS?"
  *               choices:
  *                 type: array
  *                 items:
  *                   type: string
- *                 example: ["Trumpino", "Biden"]
+ *               openVisibility:
+ *                 type: boolean
+ *               setDueDate:
+ *                 type: boolean
+ *               dueDatePoll:
+ *                 type: string
+ *               numericFieldValue:
+ *                 type: integer
+ *               selectedTimeUnit:
+ *                 type: string
+ *           examples:
+ *             setDueDateTrue:
+ *               value:
+ *                 question: Question 4
+ *                 choices:
+ *                   - choice 1
+ *                   - choice 2
+ *                 openVisibility: true
+ *                 setDueDate: true
+ *                 dueDatePoll: 2023-11-21T11:39:00+03:00
+ *                 numericFieldValue: 2
+ *                 selectedTimeUnit: min
+ *             setDueDateFalse:
+ *               value:
+ *                 question: Question 4
+ *                 choices:
+ *                   - choice 1
+ *                   - choice 2
+ *                 openVisibility: true
+ *                 setDueDate: false
  *     responses:
  *       201:
  *         description: true
  *       400:
- *         description: Bad request
+ *         description: Bad Request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/error'
+ *             examples:
+ *               badRequest:
+ *                 value:
+ *                   error:
+ *                     message: Bad request body for creating a discrete poll.
+ *                     code: 4000
+ *               ACCESS_TOKEN_INVALID_ERROR:
+ *                 value:
+ *                   error:
+ *                     message: The access token is invalid.
+ *                     code: 1002
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/error'
+ *             examples:
+ *               ACCESS_TOKEN_INVALID_ERROR:
+ *                 value:
+ *                   error:
+ *                     message: The access token is invalid.
+ *                     code: 1002
  *       500:
  *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/error'
+ *             examples:
+ *               databaseError:
+ *                 value:
+ *                   error:
+ *                     message: Error while accessing the database.
+ *                     code: 3004
  */
 router.post('/discrete', authenticator.authorizeAccessToken, service.addDiscretePoll);
-
-/**
- * @swagger
- * /polls/continuous:
- *   get:
- *     tags:
- *       - polls
- *     description: Get a list of continuous polls
- *     responses:
- *       200:
- *         description: Successful response
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   id:
- *                     type: integer
- *                     example: 1
- *                   question:
- *                     type: string
- *                     example: "Test3?"
- *                   min_value:
- *                     type: integer
- *                     example: 6
- *                   max_value:
- *                     type: integer
- *                     example: 10
- *       404:
- *         description: Polls not found
- *       500:
- *         description: Internal Server Error
- */
-router.get('/continuous', authenticator.authorizeAccessToken, service.getContinuousPolls);
-
-/**
- * @swagger
- * /polls/continuous/{pollId}:
- *   get:
- *     tags:
- *       - polls
- *     description: Get a specific continuous poll by ID
- *     parameters:
- *       - in: path
- *         name: pollId
- *         required: true
- *         schema:
- *           type: integer
- *         description: The ID of the continuous poll.
- *     responses:
- *       200:
- *         description: Successful response
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 poll:
- *                   type: object
- *                   properties:
- *                     id:
- *                       type: integer
- *                       example: 1
- *                     question:
- *                       type: string
- *                       example: "Test3?"
- *                     min_value:
- *                       type: integer
- *                       example: 6
- *                     max_value:
- *                       type: integer
- *                       example: 10
- *                 choices:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       selected_value:
- *                         type: integer
- *                         example: 7
- *       404:
- *         description: Poll not found
- *       500:
- *         description: Internal Server Error
- */
-router.get('/continuous/:pollId', authenticator.authorizeAccessToken, service.getContinuousPollWithId);
 
 /**
  * @swagger
@@ -229,24 +364,93 @@ router.get('/continuous/:pollId', authenticator.authorizeAccessToken, service.ge
  *       content:
  *         application/json:
  *           schema:
+ *             required: ["question", "openVisibility", "setDueDate", "cont_poll_type"]
  *             type: object
  *             properties:
  *               question:
  *                 type: string
- *                 example: "Test3?"
- *               min:
+ *               openVisibility:
+ *                 type: boolean
+ *               setDueDate:
+ *                 type: boolean
+ *               dueDatePoll:
+ *                 type: string
+ *               numericFieldValue:
  *                 type: integer
- *                 example: 6
- *               max:
- *                 type: integer
- *                 example: 10
+ *               selectedTimeUnit:
+ *                 type: string
+ *               cont_poll_type:
+ *                 type: string
+ *           examples:
+ *             setDueDateTrueNumeric:
+ *               value:
+ *                 question: Question 5
+ *                 openVisibility: true
+ *                 setDueDate: true
+ *                 dueDatePoll: 2023-11-21T11:39:00+03:00
+ *                 numericFieldValue: 2
+ *                 selectedTimeUnit: min
+ *                 cont_poll_type: numeric
+ *             setDueDateFalseNumeric:
+ *               value:
+ *                 question: Question 4
+ *                 openVisibility: true
+ *                 setDueDate: false
+ *                 cont_poll_type: numeric
+ *             setDueDateTrueDate:
+ *               value:
+ *                 question: Question 5
+ *                 openVisibility: true
+ *                 setDueDate: true
+ *                 dueDatePoll: 2023-11-21T11:39:00+03:00
+ *                 numericFieldValue: 2
+ *                 selectedTimeUnit: min
+ *                 cont_poll_type: date
+ *             setDueDateFalseDate:
+ *               value:
+ *                 question: Question 4
+ *                 openVisibility: true
+ *                 setDueDate: false
+ *                 cont_poll_type: date
  *     responses:
  *       201:
  *         description: true
  *       400:
- *         description: Bad request
+ *         description: Bad Request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/error'
+ *             examples:
+ *               badRequest:
+ *                 value:
+ *                   error:
+ *                     message: Bad request body for creating a continuous poll.
+ *                     code: 4001
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/error'
+ *             examples:
+ *               ACCESS_TOKEN_INVALID_ERROR:
+ *                 value:
+ *                   error:
+ *                     message: The access token is invalid.
+ *                     code: 1002
  *       500:
  *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/error'
+ *             examples:
+ *               databaseError:
+ *                 value:
+ *                   error:
+ *                     message: Error while accessing the database.
+ *                     code: 3004
  */
 router.post('/continuous', authenticator.authorizeAccessToken, service.addContinuousPoll);
 
@@ -275,6 +479,9 @@ router.post('/continuous', authenticator.authorizeAccessToken, service.addContin
  *               choiceId:
  *                 type: integer
  *                 example: 2
+ *               points:
+ *                 type: integer
+ *                 example: 25
  *     responses:
  *       201:
  *         description: Vote submitted successfully
@@ -310,8 +517,14 @@ router.post('/discrete/:pollId/vote',authenticator.authorizeAccessToken, service
  *             type: object
  *             properties:
  *               choice:
- *                 type: integer
- *                 example: 9
+ *                 oneOf:
+ *                   - type: integer
+ *                     example: 9
+ *                   - type: string
+ *                     example: 2023-11-26
+ *                 points:
+ *                   type: integer
+ *                   example: 25
  *     responses:
  *       201:
  *         description: Vote submitted successfully
@@ -331,6 +544,43 @@ router.post('/discrete/:pollId/vote',authenticator.authorizeAccessToken, service
  *         description: Internal Server Error
  */
 router.post('/continuous/:pollId/vote',authenticator.authorizeAccessToken, service.voteContinuousPoll);
+
+/**
+ * @swagger
+ * /polls/close/{pollId}:
+ *   post:
+ *     tags:
+ *       - polls
+ *     description: Close a discrete poll and redistribute its points
+ *     parameters:
+ *       - in: path
+ *         name: pollId
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The ID of the continuous poll to vote on.
+ *     requestBody:
+ *       description: Vote details
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               choiceId:
+ *                 type: integer
+ *                 example: 1 
+ *     responses:
+ *       200:
+ *         description: Poll closed successfully
+ *       400:
+ *         description: Bad request
+ *       404:
+ *         description: Poll not found
+ *       500:
+ *         description: Internal Server Error
+ */
+router.post('/close/:pollId', authenticator.authorizeAccessToken, service.closePoll);
 
 module.exports = router;
 

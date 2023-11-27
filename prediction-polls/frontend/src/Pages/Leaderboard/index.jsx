@@ -53,7 +53,7 @@ function Leaderboard() {
           },
         ]}
       />
-      <PointsButton points={pointData.points} />
+      {/*<PointsButton points={pointData.points} />*/}
       <div className={styles.listContainer}>
         <div className={styles.listHeader}>
           <div className={styles.rankHeader}>#</div>

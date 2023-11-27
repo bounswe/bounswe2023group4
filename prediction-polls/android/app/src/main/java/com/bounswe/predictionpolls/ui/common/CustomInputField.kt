@@ -56,10 +56,13 @@ fun CustomInputField(
     visualTransformation: VisualTransformation = VisualTransformation.None,
 ) {
     Column(
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         TextField(
-            modifier = modifier.border(1.dp, borderColor.copy(alpha = 0.2f), shape),
+            modifier = Modifier
+                .fillMaxWidth()
+                .border(1.dp, borderColor.copy(alpha = 0.2f), shape),
             value = text,
             onValueChange = onTextChanged,
             label = if (labelId != null) {
