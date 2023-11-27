@@ -9,7 +9,7 @@ import PollOption from "../PollOption";
 import { Input,DatePicker } from 'antd';
 
 
-function PollCard({ PollData ,setAnswer}) {
+function PollCard({ PollData ,setAnswer, onClick}) {
   const [selectedArray, setSelectedArray] = React.useState(
     !PollData.isCustomPoll ? Array(PollData["options"].length).fill(false) : []
   );
@@ -37,7 +37,7 @@ function PollCard({ PollData ,setAnswer}) {
   const navigate = useNavigate();
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={onClick}>
       <div className={styles.question}>
         <div className={styles.tags}>
           {pollData.tags.map((tag, index) => (
