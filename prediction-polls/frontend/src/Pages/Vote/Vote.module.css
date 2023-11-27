@@ -66,7 +66,7 @@
 .messageStyle{
     margin-top: 20px;
     justify-content: center;
-    color: var(--warning-600);
+    color: var(--primary-900);
     font-weight: 700;
     font-size: 16px;
 }
