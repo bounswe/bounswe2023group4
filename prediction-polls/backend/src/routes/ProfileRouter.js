@@ -22,6 +22,8 @@ const upload = multer({ storage: storage })
  *           type: string
  *         profile_picture:
  *           type: string
+ *         points:
+ *           type: integer
  *         biography:
  *           type: string
  *         birthday:

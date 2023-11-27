@@ -103,6 +103,14 @@ async function getProfileWithProfileId(req,res){
             throw error
         }
 
+        if(profile.profile_picture){
+            const image_result = await getImagefromS3(profile.profile_picture);
+            if(image_result.error){
+                throw image_result.error;
+            }
+            profile.profile_picture = image_result.signedUrl;
+        }
+
         const {badges,error:badge_error} = await db.getBadges(result.id);
         if(badge_error){
             throw badge_error;
@@ -127,6 +135,22 @@ async function getMyProfile(req,res){
         if(error){
             throw error;
         }
+
+        if(profile.profile_picture){
+            const image_result = await getImagefromS3(profile.profile_picture);
+            if(image_result.error){
+                throw image_result.error;
+            }
+            profile.profile_picture = image_result.signedUrl;
+        }
+
+        const {badges,error:badge_error} = await db.getBadges(result.id);
+        if(badge_error){
+            throw badge_error;
+        }
+        profile.badges = badges;
+
+
         return res.status(200).json(profile);
         
     }catch(error){
