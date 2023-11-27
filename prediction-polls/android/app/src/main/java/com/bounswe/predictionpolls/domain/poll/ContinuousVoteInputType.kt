@@ -1,4 +1,4 @@
-package com.bounswe.predictionpolls.ui.common.poll
+package com.bounswe.predictionpolls.domain.poll
 
 import androidx.compose.ui.text.input.KeyboardType
 

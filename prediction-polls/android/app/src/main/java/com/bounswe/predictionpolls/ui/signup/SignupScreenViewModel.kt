@@ -57,7 +57,7 @@ class SignupScreenViewModel @Inject constructor(
             maxRetryCount = 1
         ) {
             val givenBirthday = screenState.birthday
-            val formattedBirthday = "${givenBirthday.substring(0, 2)}/${givenBirthday.substring(2, 4)}/${givenBirthday.substring(4, 8)}"
+            val formattedBirthday = "${givenBirthday.substring(4, 8)}-${givenBirthday.substring(2, 4)}-${givenBirthday.substring(0, 2)}"
 
             authRepository.signup(
                 email = screenState.email,

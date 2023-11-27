@@ -33,67 +33,69 @@ import androidx.compose.ui.unit.sp
 import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.ui.theme.MontserratFontFamily
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 @Composable
 fun PollComposable(
-    pollCreatorProfilePictureUri: String,
+    pollCreatorProfilePictureUri: String?,
     pollCreatorName: String,
     tags: List<String>,
     pollQuestionTitle: String,
     optionsContent: @Composable () -> Unit,
-    dueDate: Date,
+    dueDate: String,
     rejectionText: String,
     commentCount: Int,
     modifier: Modifier = Modifier
 ) {
     Box(
         modifier = modifier
-            .shadow(4.dp, RoundedCornerShape(12.dp))
+            .shadow(
+                6.dp,
+                RoundedCornerShape(12.dp),
+                ambientColor = MaterialTheme.colorScheme.primary,
+                spotColor = MaterialTheme.colorScheme.primary
+            )
             .background(Color.White, RoundedCornerShape(12.dp))
-            .padding(16.dp)
+            .padding(horizontal = 16.dp, vertical = 8.dp)
             .wrapContentSize()
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .wrapContentHeight()
+                .wrapContentHeight(),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             PollCreatorProfile(
                 imageUri = pollCreatorProfilePictureUri,
                 userName = pollCreatorName,
                 modifier = Modifier.align(Alignment.End)
             )
-            Spacer(modifier = Modifier.height(8.dp))
-            PollTagsContent(tags)
+            if (tags.isNotEmpty()) PollTagsContent(tags)
             PollQuestionTitle(pollQuestionTitle = pollQuestionTitle)
             optionsContent()
-            Box(
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
-                    .padding(top = 48.dp)
-                    .padding(horizontal = 48.dp)
+                    .padding(vertical = 8.dp),
+                horizontalArrangement = Arrangement.SpaceAround
             ) {
-                DueDateComposable(
-                    dueDate = dueDate,
-                    modifier = Modifier.align(Alignment.CenterStart)
-                )
-                RejectionDateComposable(
-                    rejectionText = rejectionText,
-                    modifier = Modifier.align(Alignment.CenterEnd)
-                )
+                if (dueDate.isNotEmpty()){
+                    DueDateComposable(
+                        dueDate = dueDate
+                    )
+                }
+                if (rejectionText.isNotEmpty()){
+                    RejectionDateComposable(
+                        rejectionText = rejectionText
+                    )
+                }
             }
             Row(
                 modifier = Modifier
-                    .padding(horizontal = 48.dp)
-
                     .fillMaxWidth()
                     .wrapContentHeight()
-                    .padding(top = 48.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
+                    .padding(vertical = 8.dp),
+                horizontalArrangement = Arrangement.SpaceAround
             ) {
                 Column {
                     PollIcon(
@@ -134,14 +136,14 @@ private fun PollIcon(@DrawableRes id: Int, modifier: Modifier = Modifier) {
         painter = painterResource(id = id),
         contentDescription = null,
         modifier = modifier
-            .padding(16.dp)
+            .padding(12.dp)
             .size(32.dp)
     )
 
 }
 
 @Composable
-private fun DueDateComposable(dueDate: Date, modifier: Modifier = Modifier) {
+private fun DueDateComposable(dueDate: String, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.wrapContentSize(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -156,7 +158,7 @@ private fun DueDateComposable(dueDate: Date, modifier: Modifier = Modifier) {
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = formatDate(dueDate),
+            text = dueDate,
             fontFamily = MontserratFontFamily,
             color = MaterialTheme.colorScheme.error,
             fontWeight = FontWeight.Bold,
@@ -173,7 +175,7 @@ private fun RejectionDateComposable(rejectionText: String, modifier: Modifier = 
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Closing in",
+            text = "Reject votes in",
             fontFamily = MontserratFontFamily,
             color = MaterialTheme.colorScheme.scrim,
             fontWeight = FontWeight.Bold,
@@ -213,7 +215,6 @@ private fun PollQuestionTitle(pollQuestionTitle: String, modifier: Modifier = Mo
         color = MaterialTheme.colorScheme.scrim,
         fontWeight = FontWeight.Bold,
         modifier = modifier
-            .padding(vertical = 32.dp)
             .fillMaxWidth()
             .wrapContentHeight(),
         textAlign = TextAlign.Start,
@@ -223,7 +224,7 @@ private fun PollQuestionTitle(pollQuestionTitle: String, modifier: Modifier = Mo
 
 @Composable
 @Preview(showBackground = true, showSystemUi = true)
-fun PollComposablePreview() {
+private fun PollComposablePreview() {
     PredictionPollsTheme(dynamicColor = false) {
         PollComposable(
             "https://picsum.photos/id/237/600/800",
@@ -248,7 +249,7 @@ fun PollComposablePreview() {
                 }
 
             },
-            dueDate = Date(),
+            dueDate = "21 Nov 2023",
             rejectionText = "Last 5 Days",
             commentCount = 265,
             modifier = Modifier.padding(16.dp)
@@ -256,7 +257,3 @@ fun PollComposablePreview() {
     }
 }
 
-private fun formatDate(dueDate: Date): String {
-    val sdf = SimpleDateFormat("dd MMMM yyyy", Locale("tr", "TR"))
-    return sdf.format(dueDate)
-}

@@ -18,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.bounswe.predictionpolls.R
@@ -25,7 +26,7 @@ import com.bounswe.predictionpolls.ui.theme.MontserratFontFamily
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 
 @Composable
-fun PollCreatorProfile(imageUri: String, userName: String, modifier: Modifier = Modifier) {
+fun PollCreatorProfile(imageUri: String?, userName: String, modifier: Modifier = Modifier) {
     Row(modifier = modifier.wrapContentSize(), verticalAlignment = CenterVertically) {
         PollProfilePicture(imageUri = imageUri, modifier = Modifier.size(48.dp))
         Spacer(modifier = Modifier.width(16.dp))
@@ -33,10 +34,10 @@ fun PollCreatorProfile(imageUri: String, userName: String, modifier: Modifier = 
             text = userName,
             fontFamily = MontserratFontFamily,
             color = MaterialTheme.colorScheme.scrim,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            fontSize = 12.sp,
         )
     }
-
 }
 
 
@@ -54,7 +55,7 @@ fun PollCreatorProfilePreview() {
 }
 
 @Composable
-private fun PollProfilePicture(imageUri: String, modifier: Modifier = Modifier) {
+private fun PollProfilePicture(imageUri: String?, modifier: Modifier = Modifier) {
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
             .data(imageUri)
