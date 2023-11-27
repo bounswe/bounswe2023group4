@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./PollCard.module.css";
 import PollTag from "../PollTag";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import PollOption from "../PollOption";
 import { Input, DatePicker } from "antd";
 import { useLocation } from "react-router-dom";
 import ProfileIcon from "../../Assets/icons/ProfileIcon.jsx";
+import getProfile from "../../api/requests/profile.jsx";
 
 function PollCard({ PollData, setAnswer, onClick }) {
   const [selectedArray, setSelectedArray] = React.useState(
@@ -17,11 +18,21 @@ function PollCard({ PollData, setAnswer, onClick }) {
   const [pollData, setPollData] = React.useState(
     JSON.parse(JSON.stringify(PollData))
   );
+  const [userData, setUserData] = React.useState({});
   const navigate = useNavigate();
   const location = useLocation();
   const [isVotePath, setIsVotePath] = React.useState(
     /^\/vote\//.test(location.pathname)
   );
+
+  
+  useEffect(() => {
+    const data = getProfile(PollData.creatorUsername);
+    data.then((result) => {
+      setUserData(result);
+    });
+  }, []);
+
 
   React.useEffect(() => {
     setIsVotePath(/^\/vote\//.test(location.pathname));
@@ -136,11 +147,11 @@ function PollCard({ PollData, setAnswer, onClick }) {
       <div className={styles.info}>
         <div className={styles.creator}>
           <a href={`/profile/${PollData.creatorUsername}`}>
-            {PollData.creatorImage == null ? (
+            {userData?.profile_picture == null ? (
               <div className={styles.creatorImagePlaceholder} ><ProfileIcon width={20} height={20}/></div>
             ) : (
               <img
-                src={PollData.creatorImage}
+                src={userData.profile_picture}
                 alt="user"
                 className={styles.creatorImage}
               />
