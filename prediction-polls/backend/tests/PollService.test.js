@@ -28,7 +28,8 @@ jest.mock('../src/repositories/PollDB', () => ({
       setDueDate: 1,
       closingDate: '2023-12-29T21:00:00.000Z',
       numericFieldValue: 2,
-      selectedTimeUnit: 'min'
+      selectedTimeUnit: 'min',
+      isOpen: true
     },
     {
       id: 2,
@@ -39,7 +40,8 @@ jest.mock('../src/repositories/PollDB', () => ({
       setDueDate: 1,
       closingDate: '2023-11-20T21:00:00.000Z',
       numericFieldValue: 5,
-      selectedTimeUnit: 'min'
+      selectedTimeUnit: 'min',
+      isOpen: true
     }
   ]),
   getPollWithId: jest.fn().mockResolvedValue([
@@ -52,7 +54,8 @@ jest.mock('../src/repositories/PollDB', () => ({
       setDueDate: 1,
       closingDate: '2023-12-29T21:00:00.000Z',
       numericFieldValue: 2,
-      selectedTimeUnit: 'min'
+      selectedTimeUnit: 'min',
+      isOpen: true
     }
   ])
 }));
@@ -344,6 +347,7 @@ describe('getPolls()', () => {
             closingDate: "2023-11-20T21:00:00.000Z",
             rejectVotes: "5 min",
             isOpen: true,
+            options: [],
             comments: [],
             cont_poll_type: "numeric"
         }
@@ -407,7 +411,8 @@ describe('getPollWithId()', () => {
         setDueDate: 1,
         closingDate: '2023-11-20T21:00:00.000Z',
         numericFieldValue: 5,
-        selectedTimeUnit: 'min'
+        selectedTimeUnit: 'min',
+        isOpen: true
       }
     ])
     await getPollWithId(req, res);
