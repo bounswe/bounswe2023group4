@@ -293,21 +293,13 @@ async function closePoll(req, res) {
         }
 
         const selections = await db.getDiscreteSelectionsWithPollId(pollId);
-        console.log("selections: ", selections);
-
         const totalPointsBet = selections.reduce((sum, selection) => sum + selection.given_points, 0);
-        console.log("totalPointsBet: ", totalPointsBet);
-
         const correctSelections = selections.filter(selection => selection.choice_id === choiceId);
-        console.log("correctSelections: ", correctSelections);
-
         const totalCorrectBet = correctSelections.reduce((sum, selection) => sum + selection.given_points, 0);
-        console.log("totalCorrectBet: ", totalCorrectBet);
 
         const rewardPoints = correctSelections.map((selection) => {
             return {user_id: selection.user_id, reward: Math.floor(totalPointsBet * (selection.given_points / totalCorrectBet))}
         })
-        console.log("rewardPoints: ", rewardPoints);
 
         await db.closePoll(pollId, rewardPoints);
 
