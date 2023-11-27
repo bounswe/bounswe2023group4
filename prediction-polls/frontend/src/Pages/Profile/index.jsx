@@ -69,7 +69,7 @@ function Profile() {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        if (username === userMeUsername) {
+        if (username?.toLowerCase() === userMeUsername?.toLowerCase()) {
           const response = await getProfileMe();
           if (response) {
             setUserData(response);
@@ -114,7 +114,7 @@ function Profile() {
                 <p className={styles.nameUsernameText}>{userData.username}</p>
               </div>
               <div className={styles.buttonContainer}>
-                {userData.username === userMeUsername ? (
+                {userData.username?.toLowerCase() === userMeUsername?.toLowerCase() ? (
                   <>
                     <button
                       className={styles.button}
