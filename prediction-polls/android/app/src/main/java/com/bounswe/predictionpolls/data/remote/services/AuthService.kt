@@ -11,22 +11,22 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface AuthService {
-    @POST("/signup")
+    @POST("/auth/signup")
     suspend fun signup(
         @Body signupRequest: SignupRequest
     )
 
-    @POST("/login")
+    @POST("/auth/login")
     suspend fun login(
         @Body loginRequest: LoginRequest
     ): LoginResponse
 
-    @POST("/logout")
+    @POST("/auth/logout")
     suspend fun logout(
         @Body logoutRequest: LogoutRequest
     )
 
-    @POST("/access-token")
+    @POST("/auth/access-token")
     suspend fun refreshAccessToken(
         @Body refreshAccessTokenRequest: RefreshAccessTokenRequest
     ): RefreshAccessTokenResponse

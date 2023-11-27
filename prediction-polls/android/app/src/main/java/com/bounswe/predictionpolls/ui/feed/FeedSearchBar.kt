@@ -30,7 +30,6 @@ fun FeedSearchBar(
 }
 
 // create a preview for above composable
-
 @Preview
 @Composable
 fun FeedSearchBarPreview() {

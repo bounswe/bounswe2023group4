@@ -9,6 +9,9 @@
     <string name="nav_drawer_moderation">Moderation</string>
     <string name="nav_drawer_leaderboard">Leaderboard</string>
     <string name="nav_drawer_notifications">Notifications</string>
+    <string name="nav_drawer_settings">Settings</string>
+    <string name="nav_drawer_signin">Sign in</string>
+    <string name="nav_drawer_signout">Sign out</string>
 
     <!-- Welcome Page -->
     <string name="welcome_page_title">Welcome To</string>
@@ -57,13 +60,37 @@
     <!-- Content Descriptions -->
     <string name="cd_app_title">App Title</string>
     <string name="cd_back">Back Button</string>
+    <string name="cd_menu">Open menu</string>
+    <string name="cd_notification">Open notifications</string>
     <string name="cd_welcome_page_image">Welcome page image</string>
     <string name="cd_nav_item">Navigation drawer item: %1$s</string>
     <string name="cd_poll_profile_picture">Poll Profile Picture</string>
 
     <string name="date_picker_ok">Tamam</string>
     <string name="date_picker_cancel">İptal</string>
-    <string name="vote_screen_text">Choose one of the options you want to vote for</string>
+    <string name="vote_screen_text">Choose one of the options you want</string>
     <string name="vote_screen_vote_button_text">Vote</string>
     <string name="poll_vote_input_title">Vote points</string>
+
+    <string name="poll_create_screen_title">Create Poll</string>
+    <string name="poll_create_screen_question">Enter the question title</string>
+    <string name="poll_create_screen_question_error">Question cannot be empty</string>
+    <string name="poll_create_screen_type">Choose input type</string>
+    <string name="poll_create_screen_add_options">Add Option</string>
+    <string name="poll_create_screen_enter_options">Enter the options</string>
+    <string name="poll_create_screen_options_error">Every option must be filled</string>
+    <string name="poll_create_screen_option_count_error">At least 2 options must exist.</string>
+    <string name="poll_create_screen_poll_end">Don\'t accept any\nvotes in last</string>
+    <string name="poll_create_screen_poll_end_selection">Enter the options</string>
+    <string name="poll_create_screen_cd_delete">Delete the option</string>
+    <string name="poll_create_due_date">Set Due Date</string>
+    <string name="poll_create_due_date_error">Due date must be valid date</string>
+    <string name="poll_create_screen_create_button">Create</string>
+    <string name="poll_create_screen_choose_continuous_type">Choose customized input type</string>
+    <string name="poll_create_screen_distribution_visibility">Open distribution visibility</string>
+    <string name="poll_create_action">Create</string>
+    <string name="poll_create_successful">Poll created successfully</string>
+
+    <string name="logged_out_notification">You have signed out successfully</string>
+    <string name="login_required_notification">Please sign in to access this page.</string>
 </resources>

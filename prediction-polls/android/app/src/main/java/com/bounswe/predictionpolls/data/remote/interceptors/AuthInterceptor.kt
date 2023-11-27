@@ -21,6 +21,8 @@ class AuthInterceptor @Inject constructor(
 
         var response = chain.proceed(request)
         if (response.code == 401) {
+            response.close()
+
             refreshAccessToken()?.let { newAccessToken ->
                 tokenManager.accessToken = newAccessToken
                 request = addAuthHeader(request, newAccessToken)
