@@ -46,6 +46,9 @@ function Feed() {
 
         // Modify each poll in the data array
         const modifiedData = data.map((poll) => {
+          if (poll.closingDate != null) {
+            poll.closingDate = poll.closingDate.slice(0, 10);
+          }
           if (poll.pollType === "discrete") {
             return { ...poll, isCustomPoll: false };
           } else {

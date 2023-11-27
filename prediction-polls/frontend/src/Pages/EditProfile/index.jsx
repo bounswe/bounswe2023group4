@@ -74,7 +74,7 @@ function EditProfile() {
       profile_picture: userData.profileImage,
       biography: formUserData.about,
       birthday: formUserData.birthday
-        ? formUserData.birthday.format("YYYY-MM-DD")
+        ? formUserData.birthday
         : null,
       isHidden: formUserData.isHidden,
     });
