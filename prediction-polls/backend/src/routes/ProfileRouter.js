@@ -93,7 +93,7 @@ router.get('/', service.getProfile);
 
 /**
  * @swagger
- * /profiles/me:
+ * /profiles/myProfile:
  *   get:
  *     tags:
  *       - profiles
@@ -129,7 +129,7 @@ router.get('/', service.getProfile);
  *                     code: 3000,
  *                     message: Profile not found,
  */
-router.get('/me',authenticator.authorizeAccessToken ,service.getMyProfile);
+router.get('/myProfile',authenticator.authorizeAccessToken ,service.getMyProfile);
 
 /**
  * @swagger
