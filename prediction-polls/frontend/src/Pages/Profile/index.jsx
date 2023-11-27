@@ -114,19 +114,23 @@ function Profile() {
                 <p className={styles.nameUsernameText}>{userData.username}</p>
               </div>
               <div className={styles.buttonContainer}>
-                <button
-                  className={styles.button}
-                  onClick={() => navigate(`/editProfile/${userData.username}`)}
-                >
-                  {userData.username === userMeUsername ? (
-                    <>
+                {userData.username === userMeUsername ? (
+                  <>
+                    <button
+                      className={styles.button}
+                      onClick={() =>
+                        navigate(`/editProfile/${userData.username}`)
+                      }
+                    >
                       <EditIcon />
                       <p className={styles.buttonText}>Edit Profile</p>
-                    </>
-                  ) : (
+                    </button>
+                  </>
+                ) : (
+                  <button className={styles.button}>
                     <p className={styles.buttonText}>Follow</p>
-                  )}
-                </button>
+                  </button>
+                )}
               </div>
             </div>
             <div className={styles.aboutContainer}>
@@ -143,11 +147,7 @@ function Profile() {
           </div>
         </div>
         {pollData.pollList.map((poll, index) => (
-          <PollCard
-            className={styles.pollCard}
-            PollData={poll}
-            key={poll.id}
-          />
+          <PollCard className={styles.pollCard} PollData={poll} key={poll.id} />
         ))}
       </div>
       <div className={styles.pointButton}>
