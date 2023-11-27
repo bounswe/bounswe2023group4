@@ -152,32 +152,39 @@ async function getDiscreteVoteCount(choiceid) {
 async function voteDiscretePoll(pollId, userId, choiceId, pointsSpent){
     const connection = await pool.getConnection();
 
-    const deleteExistingSql = "DELETE FROM discrete_polls_selections WHERE poll_id = ? AND user_id = ?"
-    const addVoteSql = "INSERT INTO discrete_polls_selections (poll_id, choice_id, user_id, given_points) VALUES (?, ?, ?, ?)"
+    const oldSelectionPointsSql = "SELECT * FROM discrete_polls_selections WHERE poll_id = ? AND user_id = ?";
+    const deleteExistingSql = "DELETE FROM discrete_polls_selections WHERE poll_id = ? AND user_id = ?";
+    const addVoteSql = "INSERT INTO discrete_polls_selections (poll_id, choice_id, user_id, given_points) VALUES (?, ?, ?, ?)";
     const findPointsSql = 'SELECT * FROM profiles WHERE userId= ?';
     const updatePointSql = 'UPDATE profiles SET points = ? WHERE userId = ?';
 
     try {
         await connection.beginTransaction()
 
-        deleteResult = await connection.query(deleteExistingSql, [pollId, userId]);
-        addResult = await connection.query(addVoteSql, [pollId, choiceId, userId, pointsSpent]);
         const [rows] = await connection.query(findPointsSql, [userId]);
         const current_points = rows[0].points;
 
-        if(current_points - pointsSpent < 0){
+        const [oldSelection] = await connection.query(oldSelectionPointsSql, [pollId, userId]);
+
+        const deleteResult = await connection.query(deleteExistingSql, [pollId, userId]);
+        const addResult = await connection.query(addVoteSql, [pollId, choiceId, userId, pointsSpent]);
+
+        const oldPoint = (oldSelection.length != 0 ? oldSelection[0].given_points : 0);
+
+        const newPoints = current_points - pointsSpent + oldPoint;
+        if(newPoints < 0){
             connection.rollback()
             throw {error: errorCodes.INSUFFICIENT_POINTS_ERROR};
         }
 
-        const [resultSetHeader] = await connection.query(updatePointSql, [current_points - pointsSpent, userId]);
+        const [resultSetHeader] = await connection.query(updatePointSql, [newPoints, userId]);
         
         connection.commit();
         return {status:"success"};
 
     } catch (error) { 
         await connection.rollback();
-        console.error('voteDiscretePoll(): Database Error');
+        console.error('voteDiscretePoll(): Database Error: ', error);
         throw error;
     } finally {
         connection.release();
@@ -188,31 +195,38 @@ async function voteDiscretePoll(pollId, userId, choiceId, pointsSpent){
 async function voteContinuousPoll(pollId, userId, choice, contPollType, pointsSpent){
     const connection = await pool.getConnection();
 
-    const deleteExistingSql = "DELETE FROM continuous_poll_selections WHERE poll_id = ? AND user_id = ?"
-    const addVoteSql = "INSERT INTO continuous_poll_selections (poll_id, user_id, float_value, date_value) VALUES (?, ?, ?, ?)"
+    const oldSelectionPointsSql = "SELECT * FROM continuous_poll_selections WHERE poll_id = ? AND user_id = ?";
+    const deleteExistingSql = "DELETE FROM continuous_poll_selections WHERE poll_id = ? AND user_id = ?";
+    const addVoteSql = "INSERT INTO continuous_poll_selections (poll_id, user_id, float_value, date_value, given_points) VALUES (?, ?, ?, ?, ?)";
     const findPointsSql = 'SELECT points FROM profiles WHERE userId= ?';
     const updatePointSql = 'UPDATE profiles SET points = ? WHERE userId = ?';
 
     try {
         await connection.beginTransaction()
 
-        deleteResult = await connection.query(deleteExistingSql, [pollId, userId]);
-        if (contPollType === "numeric") {
-            addResult = await connection.query(addVoteSql, [pollId, userId, choice, null]);
-        } else if (contPollType === "date") {
-            addResult = await connection.query(addVoteSql, [pollId, userId, null, choice]);
-        } else {
-            await connection.rollback();
-        }
         const [rows] = await connection.query(findPointsSql, [userId]);
         const current_points = rows[0].points;
 
-        if(current_points - pointsSpent < 0){
+        const [oldSelection] = await connection.query(oldSelectionPointsSql, [pollId, userId]);
+
+        deleteResult = await connection.query(deleteExistingSql, [pollId, userId]);
+        if (contPollType === "numeric") {
+            addResult = await connection.query(addVoteSql, [pollId, userId, choice, null, pointsSpent]);
+        } else if (contPollType === "date") {
+            addResult = await connection.query(addVoteSql, [pollId, userId, null, choice, pointsSpent]);
+        } else {
+            throw {error: errorCodes.NO_SUCH_POLL_ERROR};
+        }
+
+        const oldPoint = (oldSelection.length != 0 ? oldSelection[0].given_points : 0);
+        const newPoints = current_points - pointsSpent + oldPoint;
+
+        if(newPoints < 0){
             connection.rollback()
             throw {error: errorCodes.INSUFFICIENT_POINTS_ERROR};
         }
 
-        const [resultSetHeader] = await connection.query(updatePointSql, [current_points - pointsSpent, userId]);
+        const [resultSetHeader] = await connection.query(updatePointSql, [newPoints, userId]);
         connection.commit();
     } catch (error) { 
         await connection.rollback();
