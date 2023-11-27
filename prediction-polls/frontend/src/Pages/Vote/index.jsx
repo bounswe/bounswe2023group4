@@ -74,29 +74,10 @@ function Vote() {
 
   const handleVoting = async () => {
     try {
-      if (polldata.pollType == "discrete" && /^[0-9]*$/.test(betPoint) == true) {
-        const requestOptions = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
-          },
-          body: JSON.stringify({
-            choiceId: answer,
-            points: parseInt(betPoint)
-          })
-        };
-        let url = `${process.env.REACT_APP_BACKEND_LINK}/polls/discrete/${parsedID}/vote`
-        const response = await fetch(url, requestOptions);
-        if (response.status === 200) {
-          setMessage("Voted successfully!");
-        }
-        else {
-          setMessage("An error has occurred!");
-        }
-      }
-      else if (polldata.pollType == "continuous" && /^[0-9]*$/.test(betPoint) == true) {
-        if (polldata.cont_poll_type == "date") {
+      console.log("isOpen");
+      console.log(polldata.isOpen);
+      if (polldata.isOpen == true) {
+        if (polldata.pollType == "discrete" && /^[0-9]*$/.test(betPoint) == true) {
           const requestOptions = {
             method: 'POST',
             headers: {
@@ -104,11 +85,11 @@ function Vote() {
               'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
             },
             body: JSON.stringify({
-              choice: answer,
+              choiceId: answer,
               points: parseInt(betPoint)
             })
           };
-          let url = `${process.env.REACT_APP_BACKEND_LINK}/polls/continuous/${parsedID}/vote`
+          let url = `${process.env.REACT_APP_BACKEND_LINK}/polls/discrete/${parsedID}/vote`
           const response = await fetch(url, requestOptions);
           if (response.status === 200) {
             setMessage("Voted successfully!");
@@ -117,8 +98,8 @@ function Vote() {
             setMessage("An error has occurred!");
           }
         }
-        else {
-          if (/^[0-9]*$/.test(answer) == true) {
+        else if (polldata.pollType == "continuous" && /^[0-9]*$/.test(betPoint) == true) {
+          if (polldata.cont_poll_type == "date") {
             const requestOptions = {
               method: 'POST',
               headers: {
@@ -140,12 +121,38 @@ function Vote() {
             }
           }
           else {
-            setMessage("The response should be numeric!");
+            if (/^[0-9]*$/.test(answer) == true) {
+              const requestOptions = {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+                },
+                body: JSON.stringify({
+                  choice: answer,
+                  points: parseInt(betPoint)
+                })
+              };
+              let url = `${process.env.REACT_APP_BACKEND_LINK}/polls/continuous/${parsedID}/vote`
+              const response = await fetch(url, requestOptions);
+              if (response.status === 200) {
+                setMessage("Voted successfully!");
+              }
+              else {
+                setMessage("An error has occurred!");
+              }
+            }
+            else {
+              setMessage("The response should be numeric!");
+            }
           }
+        }
+        else {
+          setMessage("The bet points should be integer numbers!");
         }
       }
       else {
-        setMessage("The bet points should be integer numbers!");
+        setMessage("The poll isn't open for voting!");
       }
     }
     catch (error) {
