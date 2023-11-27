@@ -41,7 +41,7 @@ function Vote() {
         else {
           data.isCustomPoll = true;
         }
-        if (data.closingDate != null){
+        if (data.closingDate != null) {
           data.closingDate = data.closingDate.slice(0, 10);
         }
         return data;
@@ -58,7 +58,7 @@ function Vote() {
     try {
       const result = await retrievePoll();
       setPolldata(result);
-      setSentence((result.isCustomPoll) ? "Please enter a suitable answer to the poll" : "Choose the option you want to vote for ");
+      setSentence((result.isCustomPoll) ? "Please enter a suitable answer to the poll" : "Choose the option you want to vote for");
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -101,7 +101,7 @@ function Vote() {
           setMessage("Voted successfully!");
         }
         else {
-          setMessage("An unexpected has error occurred!");
+          setMessage("An error has occurred!");
         }
       }
       else if (polldata.pollType == "continuous" && /^[0-9]*$/.test(betPoint) == true) {
@@ -123,7 +123,7 @@ function Vote() {
             setMessage("Voted successfully!");
           }
           else {
-            setMessage("An unexpected has error occurred!");
+            setMessage("An error has occurred!");
           }
         }
         else {
@@ -145,7 +145,7 @@ function Vote() {
               setMessage("Voted successfully!");
             }
             else {
-              setMessage("An unexpected has error occurred!");
+              setMessage("An error has occurred!");
             }
           }
           else {
@@ -173,7 +173,7 @@ function Vote() {
           <div className={styles.choice_column}>
           <PointsButton point={userData.points}/> 
             <div className={styles.infoText}><div>{sentence}</div>
-              <div className={styles.chooseText}>How many points do you want to place?</div>
+              <div id="statement" className={styles.chooseText}>How many points do you want to place?</div>
               <div><Input
                 id="bet"
                 className={styles.inputStyle}
@@ -181,6 +181,7 @@ function Vote() {
                 onChange={(e) => setBetPoint(e.target.value)}
               /></div>
               <div className={styles.buttonDivStyle}><Button
+                id="submitButton"
                 className={styles.bottonStyle}
                 onClick={handleVoting}
               >Vote</Button></div>
