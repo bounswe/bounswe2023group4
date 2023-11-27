@@ -2,6 +2,7 @@ const express = require('express');
 const authRouter = require('./routes/AuthorizationRouter.js'); 
 const pollRouter = require('./routes/PollRouter.js');
 const profileRouter = require('./routes/ProfileRouter.js');
+const tagRoutine = require('./routines/tagRoutine.js');
 
 const cors = require("cors");
 

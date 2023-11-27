@@ -267,7 +267,7 @@ async function getTagsOfPoll(pollId) {
 
     try {
         [rows] = await pool.query(sql, [pollId]);
-        return rows.map(item => item.topic);
+        return rows.map(item => item.topic.trim());
     } catch (error) { 
         console.error('getTagsOfPoll(): Database Error');
         throw error;
