@@ -25,6 +25,18 @@
   border-radius: 100px;
   justify-self: center;
   box-shadow: 2px 4px 8px var(--neutral-shadow);
+  cursor:pointer;
+}
+.profileImagePlaceholder {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 100px;
+  background-color: var(--neutral-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor:pointer;
 }
 
 .formInputStyle {
