@@ -7,12 +7,21 @@ import { Button, Input } from 'antd';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
+import getProfileMe from "../../api/requests/profileMe.jsx";
 
 
 
 function Vote() {
   let { id } = useParams();
   let parsedID = parseInt(id);
+  const [userData, setUserData] =  useState({})
+
+  React.useEffect( () => {
+    const data = getProfileMe();
+     data.then((result) => {
+       setUserData(result);
+     });
+ },[])
   const retrievePoll = async () => {
     try {
       const requestOptions = {
@@ -169,7 +178,7 @@ function Vote() {
             <PollCard PollData={polldata} setAnswer={setAnswer} />
           </div>
           <div className={styles.choice_column}>
-            <PointsButton points={pointData.points} />
+          <PointsButton point={userData?.points ?? 0}/> 
             <div className={styles.infoText}><div>{sentence}</div>
               <div id="statement" className={styles.chooseText}>How many points do you want to place?</div>
               <div><Input
