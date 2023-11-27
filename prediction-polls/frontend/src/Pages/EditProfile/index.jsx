@@ -136,6 +136,7 @@ function EditProfile() {
             </div>
             <input
               type="file"
+              data-testid="fileInput"
               ref={fileInputRef}
               onChange={handleFileInputChange}
               accept="image/*"
