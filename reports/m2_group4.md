@@ -181,3 +181,47 @@ Managing backend issue distribution. Setting up backend endpoints and their logi
 | Profile swagger and unit tests | [PR#477](https://github.com/bounswe/bounswe2023group4/pull/477) |
 | Authentication unit tests update | [PR#479](https://github.com/bounswe/bounswe2023group4/pull/479) |
 
+##  Member: Ali Nasra
+### Responsibilities:
+I was mainly tasked with developing the Poll Vote Page with all of its functionalities. Additionally, I was responsible for bookkeeping the team's plans.
+### Main contributions:
+I was responsible for updating the UI of the Poll Vote's page and other relevant components such as the poll card and integrating the Backend functionalities. Additionally, I was responsible for reviewing the front-end team's pull requests. Managerially, I was tasked with compiling each subteam's separate plan and combining them into a single, grand plan. I was expected to update the plan as per the requests of the team members.
+### Code-related significant issues:
+
+| Task  | Relevant Issue |
+| ------------- | ------------- |
+| The implementation of the voting page UI | [#304](https://github.com/bounswe/bounswe2023group4/issues/304) |
+| Integrating the Vote Page UI with the back-end server  | [#347](https://github.com/bounswe/bounswe2023group4/issues/347)  |
+| Improving the JSON response of the /polls/{pollId} endpoint  | [#428](https://github.com/bounswe/bounswe2023group4/issues/428)  |
+| Solving the Frontend choice padding problem  | [#452](https://github.com/bounswe/bounswe2023group4/issues/452)  |
+| Solving Unspecified closingDate Poll Render Problem  | [#454](https://github.com/bounswe/bounswe2023group4/issues/454)  |
+| Adapting the isOpen Parameter to the voting mechanism  | [#473](https://github.com/bounswe/bounswe2023group4/issues/473)  |
+| Writing Tests for the Voting page  | [#458](https://github.com/bounswe/bounswe2023group4/issues/458)  |
+
+
+### Management-related significant issues:
+
+| Task  | Relevant Issue |
+| ------------- | ------------- |
+| Merging all subteams' plans |  [#324](https://github.com/bounswe/bounswe2023group4/issues/324)   |
+| Updating Mobile Project Plan |  [#315](https://github.com/bounswe/bounswe2023group4/issues/315)   |
+| Writing the Test Plan for the 8th week report |  [#424](https://github.com/bounswe/bounswe2023group4/issues/424)   |
+| Preparing the General Test Plan |  [#485](https://github.com/bounswe/bounswe2023group4/issues/485)   |
+### Pull requests: 
+
+| Task   | Relevant Pull Request | Taken Action |
+| ------------- | ------------- | ------------- |
+| Creating Vote Page UI  | [#329](https://github.com/bounswe/bounswe2023group4/pull/329) | Creator  |
+| Migrating CSS Files  | [#330](https://github.com/bounswe/bounswe2023group4/pull/339) | Creator  |
+| Creating Poll Page UI  | [#332](https://github.com/bounswe/bounswe2023group4/pull/332) | Reviewer & Merger  |
+| Styling of create poll page plus API Requests added | [#374](https://github.com/bounswe/bounswe2023group4/pull/374) | Reviewer & Merger |
+| Adding creator name to poll objects | [#426](https://github.com/bounswe/bounswe2023group4/pull/426) | Reviewer & Merger  |
+| /polls/{pollId} GET return object improvement | [#429](https://github.com/bounswe/bounswe2023group4/pull/429)| Reviewer & Merger |
+| Backend Integration to the Voting Page | [#449](https://github.com/bounswe/bounswe2023group4/pull/449) | Creator & Merger |
+| Adding UI responses and improving visibility | [#455](https://github.com/bounswe/bounswe2023group4/pull/455) | Creator & Merger |
+| Writing tests for the Create Poll Page | [#457](https://github.com/bounswe/bounswe2023group4/pull/457) | Reviewer & Merger |
+| Writing tests for the poll page | [#470](https://github.com/bounswe/bounswe2023group4/pull/470) | Creator & Merger |
+| Implementing Poll Feed Page's Backend Connection | [#472](https://github.com/bounswe/bounswe2023group4/pull/472) | Reviewer & Merger |
+| Handling the voting of closed polls | [#474](https://github.com/bounswe/bounswe2023group4/pull/474) | Creator & Merger |
+| Profile Page implementation | [#476](https://github.com/bounswe/bounswe2023group4/pull/476) | Reviewer & Merger |
+| Merging the Frontend Development Branch to the main branch | [#481](https://github.com/bounswe/bounswe2023group4/pull/481) | Reviewer & Merger |
