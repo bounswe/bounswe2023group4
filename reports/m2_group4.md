@@ -64,4 +64,58 @@ Below we have included our detailed additions to the project by subteams.
 - Test coverage should be increased.
 
 
+## API documentation
+
+### API documentation link
+http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:8000/api-docs
+[Uploading Swagger UI.html…]()
+
+### API link
+http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:8000/
+
+#### Note
+API descriptions and examples are already included in documentation link above.
+
+## API Descriptions
+
+### Authorization
+#### GET /auth/
+Currently this endpoint is for testing token authentication.
+#### POST /auth/login
+This endpoint is used for user log in. 
+#### POST /auth/access-token
+This endpoint is for access token refreshments.
+#### POST /auth/logout
+This endpoint disables refresh token of a user.
+#### POST /auth/signup
+This endpoint creates a user if provided with the correct format of regitration data
+#### POST /auth/google
+This endpoint lets user to log in via google. User has to choose a google authentication data format and send data accordingly.
+
+### Polls
+#### GET /polls
+
+#### GET /polls/{pollId}
+
+#### POST /polls/discrete
+
+#### POST /polls/continuous
+
+#### POST /polls/discrete/{pollId}/vote
+
+#### POST /polls/continuous/{pollId}/vote
+
+#### POST /polls/close/{pollId}
+
+### Profiles
+#### GET /profiles
+This endpoint is used for profile data retrieval. This endpoint waits for one of userId,username,email to be able tell which user's profile to fetch. 
+#### PATCH /profiles
+This endpoint is used for profile update. It takes new profile data as body. 
+#### GET /profiles/myProfile
+This endpoint is used for retrieveing own profile. It requires access token. The profile of the the user which is given in access token is returned.
+#### GET /profiles/{profileId}
+This endpoint is used for profile data retrieval. This endpoint waits for profileId. 
+#### POST /profiles/profilePhoto
+This endpoint is for profile photo upload. The given image file should be in binary format. 
 
