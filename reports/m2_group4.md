@@ -64,16 +64,16 @@ Below we have included our detailed additions to the project by subteams.
 - Test coverage should be increased.
 
 
-## API documentation
+# API documentation
 
-### API documentation link
+## API documentation link
 http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:8000/api-docs
 [Uploading Swagger UI.html…]()
 
-### API link
+## API link
 http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:8000/
 
-#### Note
+### Note
 API descriptions and examples are already included in documentation link above.
 
 ## API Descriptions
@@ -118,6 +118,16 @@ This endpoint is used for retrieveing own profile. It requires access token. The
 This endpoint is used for profile data retrieval. This endpoint waits for profileId. 
 #### POST /profiles/profilePhoto
 This endpoint is for profile photo upload. The given image file should be in binary format. 
+
+# Unit test reports
+## Frontend
+## Backend
+### Authentication unit tests
+Authentication endpoints are tested with mock data. Since the logic is in AuthenticationService class the tests are written for it. Every endpoint is tested for success and failure cases.
+### Poll unit tests
+### Profile unit tests
+Profile endpoints are tested with mock data. Since the logic is in ProfileService class the tests are written for it. Every endpoint is tested for success and failure cases.
+## Mobile
 
 # Individual Contributions
 ## Member: Emre Batuhan Göç
