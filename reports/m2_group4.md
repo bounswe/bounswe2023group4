@@ -564,7 +564,7 @@ npm test EditProfile.test.js
     - Description: Ensures the component navigates to the profile page after a successful profile update.
     - Positive Scenario: mockNavigate is called with the correct URL after profile update.
     - Negative Scenario: Navigation does not occur or incorrect URL is used.
-- **Form Submission and API Update Call:*
+- **Form Submission and API Update Call:**
     - Description: Tests the form submission and the subsequent API call for profile updates.
     - Positive Scenario: The updateProfile API is called with the correct data upon form submission.
     - Negative Scenario: The API call is not made or is made with incorrect data.
