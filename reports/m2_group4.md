@@ -1024,6 +1024,6 @@ I have maintained our deployed project and I continuously redeployed our fronten
 |Task|Relevant Pull Requests|
 | --- | --- |
 | Authentication form validation | [PR#384](https://github.com/bounswe/bounswe2023group4/pull/384) |
-| Signup Birthday Requirement | [PR#384](https://github.com/bounswe/bounswe2023group4/pull/384) |
-| Implement email verification  | [PR#427](https://github.com/bounswe/bounswe2023group4/pull/427) |
+| Signup Birthday Requirement | [PR#427](https://github.com/bounswe/bounswe2023group4/pull/427) |
+| Implement email verification  | [PR#386](https://github.com/bounswe/bounswe2023group4/pull/386) |
 
