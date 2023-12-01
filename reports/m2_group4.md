@@ -782,4 +782,50 @@ Setting up backend system logic. Ensuring endpoints are working correctly. Imple
 | Adding creator name to poll objects | [PR#426](https://github.com/bounswe/bounswe2023group4/pull/426) |
 | /polls/{pollId} GET return object improvement | [PR#429](https://github.com/bounswe/bounswe2023group4/pull/429) |
 
+## Member: Yiğit Şekerci
+### Responsibilities: 
+Improving mobile flow and desing. Updating mobile plan with respect the unexpected changes. Implementing the half of the features in mobile.
+### Main Contributions:
+* In management aspect:
+  -  I have updated mobile plan and arranged the tasks in the mobile team.
+* In project aspect:
+  -  I have helped to overcome archicture issues in project.
+* In code aspect:
+  -  I have implemented leaderboard screen UI
+  -  I have implemented create poll screen UI
+  -  I have implemented create poll screen backend requests
+  -  I have implemented additional tests to increase code coverage.
+  -  I have implemented validation to auth pages.
+  -  I have refactored the mobile code the eliminate generic issues
+  -  I have improved mobile flow and design by aligning the mobile app with front end.
 
+### Code-related significant issues:
+|Task|Relevant significant issues| My duty |
+| --- | --- | --- |
+|Implement Leaderboard Screen UI| [#313](https://github.com/bounswe/bounswe2023group4/issues/313)| Resolver |
+|Implement Create Poll Screen UI| [#314](https://github.com/bounswe/bounswe2023group4/issues/314)| Resolver |
+|Update Mobile Project Plan| [#315](https://github.com/bounswe/bounswe2023group4/issues/315)| Resolver |
+|Increase Mobile App tests' code coverage| [#317](https://github.com/bounswe/bounswe2023group4/issues/317)| Resolver |
+|Add validation to auth pages| [#318](https://github.com/bounswe/bounswe2023group4/issues/318)| Resolver |
+|Implement create poll screen backend request| [#361](https://github.com/bounswe/bounswe2023group4/issues/361)| Resolver |
+|Mobile refactor| [#460](https://github.com/bounswe/bounswe2023group4/issues/460)| Resolver |
+|Improve Mobile Flow and design| [#466](https://github.com/bounswe/bounswe2023group4/issues/466)| Resolver |
+| Implement profile screen UI | [#311](https://github.com/bounswe/bounswe2023group4/issues/311) | Reviewer |
+| Implement Poll Detail Screen UI | [#312](https://github.com/bounswe/bounswe2023group4/issues/312) | Reviewer |
+| Implement feed screen backend requests | [#362](https://github.com/bounswe/bounswe2023group4/issues/362) | Reviewer |
+| Implement Profile Screen Backend Requests | [#416](https://github.com/bounswe/bounswe2023group4/issues/416) | Reviewer |
+| Implement Poll Detail Screen Backend Requests | [#417](https://github.com/bounswe/bounswe2023group4/issues/417) | Reviewer |
+| Implement feed screen UI | [#266](https://github.com/bounswe/bounswe2023group4/issues/266) | Reviewer |
+
+### Pull requests:
+|Task|Relevant Pull Requests|
+| --- | --- |
+| Auth page validation | [PR#331](https://github.com/bounswe/bounswe2023group4/pull/331) |
+| Leaderboard UI | [PR#340](https://github.com/bounswe/bounswe2023group4/pull/340) |
+| Create Poll page | [PR#435](https://github.com/bounswe/bounswe2023group4/pull/435) |
+| UI Fixes (Refactor task) | [PR#461](https://github.com/bounswe/bounswe2023group4/pull/461) |
+| Milestone 2 Prep for mobile (Align mobile and front) | [PR#467](https://github.com/bounswe/bounswe2023group4/pull/467) |
+| Add additional tests for create poll | [PR#468](https://github.com/bounswe/bounswe2023group4/pull/468) |
+
+### Additional Information:
+I have also taken the notes in the milestone 2 presentations.
