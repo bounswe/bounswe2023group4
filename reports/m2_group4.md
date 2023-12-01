@@ -1,6 +1,15 @@
 # Project Status
 
 # Customer Feedbacks and Reflections
+- The significance of choosing appropriate dates was highlighted in all sections of the platform that involve date selection.
+- There were inquiries about the functionality of the Google sign-in method during the presentation.
+- The customer requested a search for options in the multiple-choice poll.
+- The customer showed interest in our automatic poll tagging system and later requested a different semantic tagging system.
+- During the presentation, it was repeatedly emphasized that customers are interested in whether searching for similar or related keywords will yield relevant results. Although our current system does not support this, we plan to incorporate it due to customer interest.
+- The customer asked how to differentiate between closed and open polls.
+- After polls are closed, the customer requested a plan outlining how the results will be displayed (e.g., graphs, charts) before its implementation in the project.
+- The web design's color palette was deemed weak and hard to read. Customers have requested designs that are more legible for the web view.
+- The customers suggested modifying our numeric input range to accept real numbers instead of just integers.
 
 # Changes Since Milestone 1 and Future Plans
 
