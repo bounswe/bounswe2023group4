@@ -71,221 +71,220 @@ Below we have included our detailed additions to the project by subteams.
 
 # Progress According to Requirements
 
-Functional Requirements
+###Functional Requirements 
 
-1.1 User Requirements
+- 1.1 User Requirements 
+- 1.1.1 Guests 
 
-1.1.1 Guests
+- 1.1.1.1: In progress 
+- 1.1.1.2: Completed 
+- 1.1.1.3: Completed 
+- 1.1.1.4: In progress 
+- 1.1.1.5: Not Started 
+- 1.1.1.6: Completed 
+- 1.1.1.7: In Progress 
 
-1.1.1.1: In progress
-1.1.1.2: Completed
-1.1.1.3: Completed
-1.1.1.4: In progress
-1.1.1.5: Not Started
-1.1.1.6: Completed
-1.1.1.7: In Progress
+- 1.1.2 Authentication
 
-1.1.2 Authentication
+- 1.1.2.1 Sign up
 
-1.1.2.1 Sign up
+- 1.1.2.1.1: Completed
+- 1.1.2.1.2: Completed
+- 1.1.2.1.3: In Progress
+- 1.1.2.1.4: In Progress
+- 1.1.2.1.5: In Progress
 
-1.1.2.1.1: Completed
-1.1.2.1.2: Completed
-1.1.2.1.3: In Progress
-1.1.2.1.4: In Progress
-1.1.2.1.5: In Progress
+- 1.1.2.2 Sign in
 
-1.1.2.2 Sign in
+- 1.1.2.2.1: Completed
+- 1.1.2.2.2: In Progress
 
-1.1.2.2.1: Completed
-1.1.2.2.2: In Progress
+- 1.1.3 Profile
 
-1.1.3 Profile
+- 1.1.3.1: In Progress
+- 1.1.3.2: Completed
+- 1.1.3.2.1: In Progress
+- 1.1.3.2.2: Not Started
 
-1.1.3.1: In Progress
-1.1.3.2: Completed
-1.1.3.2.1: In Progress
-1.1.3.2.2: Not Started
+- 1.1.4 Members
 
-1.1.4 Members
+- 1.1.4.1: Not started
+- 1.1.4.2: Not Started
+- 1.1.4.3: Not Started
+- 1.1.4.4: Not Started
+- 1.1.4.5: Not Started
+- 1.1.4.6: Not Started
+- 1.1.4.7: In Progress
+- 1.1.4.7.1: Not Started
+- 1.1.4.7.2: Not Started
+- 1.1.4.7.3: Completed
+- 1.1.4.7.3.1: Completed
+- 1.1.4.7.3.2: Completed
+- 1.1.4.7.3.3: Completed
+- 1.1.4.8: Not Started
+- 1.1.4.9: Not Started
+- 1.1.4.10: Not Started
+- 1.1.4.11: Not Started
+- 1.1.4.12: Not Started
 
-1.1.4.1: Not started
-1.1.4.2: Not Started
-1.1.4.3: Not Started
-1.1.4.4: Not Started
-1.1.4.5: Not Started
-1.1.4.6: Not Started
-1.1.4.7: In Progress
-1.1.4.7.1: Not Started
-1.1.4.7.2: Not Started
-1.1.4.7.3: Completed
-1.1.4.7.3.1: Completed
-1.1.4.7.3.2: Completed
-1.1.4.7.3.3: Completed
-1.1.4.8: Not Started
-1.1.4.9: Not Started
-1.1.4.10: Not Started
-1.1.4.11: Not Started
-1.1.4.12: Not Started
+- 1.1.5 Polls
 
-1.1.5 Polls
+- 1.1.5.1 Poll Opening
 
-1.1.5.1 Poll Opening
+- 1.1.5.1.1: Completed
+- 1.1.5.1.2: Completed
+- 1.1.5.1.3: Not Started
+- 1.1.5.1.4: Completed
+- 1.1.5.1.5: Completed
+- 1.1.5.1.6: Not Started
+- 1.1.5.1.7: Completed
+- 1.1.5.1.8: Completed
+- 1.1.5.1.9: Completed
+- 1.1.5.1.10: Completed
 
-1.1.5.1.1: Completed
-1.1.5.1.2: Completed
-1.1.5.1.3: Not Started
-1.1.5.1.4: Completed
-1.1.5.1.5: Completed
-1.1.5.1.6: Not Started
-1.1.5.1.7: Completed
-1.1.5.1.8: Completed
-1.1.5.1.9: Completed
-1.1.5.1.10: Completed
+- 1.1.5.2 Poll Voting
 
-1.1.5.2 Poll Voting
+- 1.1.5.2.1: Completed
+- 1.1.5.2.2: In Progress
+- 1.1.5.2.3: Not Started
 
-1.1.5.2.1: Completed
-1.1.5.2.2: In Progress
-1.1.5.2.3: Not Started
+- 1.1.5.3 Poll Closing
 
-1.1.5.3 Poll Closing
+- 1.1.5.3.1: Not Started
+- 1.1.5.3.2: Not Started
 
-1.1.5.3.1: Not Started
-1.1.5.3.2: Not Started
+- 1.1.5.4 Annotation
 
-1.1.5.4 Annotation
+- 1.1.5.4.1: Not Started
 
-1.1.5.4.1: Not Started
+- 1.1.6 Moderator
 
-1.1.6 Moderator
+- 1.1.6.1: Not Started
+- 1.1.6.2: Not Started
+- 1.1.6.3: Not Started
+- 1.1.6.3.1: Not Started
+- 1.1.6.3.1.1: Not Started
+- 1.1.6.3.1.2: Not Started
+- 1.1.6.3.1.3: Not Started
+- 1.1.6.3.2: Not Started
+- 1.1.6.3.2.1: Not Started
+- 1.1.6.4: Not Started
 
-1.1.6.1: Not Started
-1.1.6.2: Not Started
-1.1.6.3: Not Started
-1.1.6.3.1: Not Started
-1.1.6.3.1.1: Not Started
-1.1.6.3.1.2: Not Started
-1.1.6.3.1.3: Not Started
-1.1.6.3.2: Not Started
-1.1.6.3.2.1: Not Started
-1.1.6.4: Not Started
+- 1.1.7 Point System
 
-1.1.7 Point System
+- 1.1.7.1 Domain Specific Point
 
-1.1.7.1 Domain Specific Point
+- 1.1.7.1.1: Not Started
+- 1.1.7.1.2: Not Started
+- 1.1.7.1.3: Not Started
 
-1.1.7.1.1: Not Started
-1.1.7.1.2: Not Started
-1.1.7.1.3: Not Started
+- 1.1.7.2 General Point
 
-1.1.7.2 General Point
+- 1.1.7.2.1: Not Started
+- 1.1.7.2.2: Not Started
+- 1.1.7.2.3: Not Started
+- 1.1.7.2.4: Not Started
+- 1.1.7.2.5: Not Started
+- 1.1.7.2.6: Not Started
 
-1.1.7.2.1: Not Started
-1.1.7.2.2: Not Started
-1.1.7.2.3: Not Started
-1.1.7.2.4: Not Started
-1.1.7.2.5: Not Started
-1.1.7.2.6: Not Started
+- 1.1.7.3 Leaderboard
 
-1.1.7.3 Leaderboard
+- 1.1.7.3.1: Not started 
+- 1.1.7.3.2: Not Started
 
-1.1.7.3.1: Not started 
-1.1.7.3.2: Not Started
+- 1.1.8 Notifications
 
-1.1.8 Notifications
+- 1.1.8.1: Not Started
+- 1.1.8.2: Not Started
 
-1.1.8.1: Not Started
-1.1.8.2: Not Started
+### 1.2 System Requirements
 
-1.2 System Requirements
+- 1.2.1 Polls
 
-1.2.1 Polls
-
-1.2.1.1 Poll Opening
+- 1.2.1.1 Poll Opening
 
 - 1.2.1.1.1: Completed
 
-1.2.1.2 Poll Continuity
+- 1.2.1.2 Poll Continuity
 
 - 1.2.1.2: Not Started
 
-1.2.1.3 Poll Vote Change
+- 1.2.1.3 Poll Vote Change
 
 - 1.2.1.3.1: Not Started
 - 1.2.1.3.2: Not Started
 
-1.2.1.4 Poll Closing
+- 1.2.1.4 Poll Closing
 
 - 1.2.1.4.1: Not Started
 
-1.2.2 Grading
+- 1.2.2 Grading
 
-1.2.2.1: Not Started
-1.2.2.2: Not Started
-1.2.2.3: Not Started
-1.2.2.4: Not Started
-1.2.2.5: Not Started
-1.2.2.6: Not Started
-1.2.2.7: Not Started
-1.2.2.8: Not Started
-1.2.2.9: Not Started
-1.2.2.10: Not Started
-1.2.2.11: Not Started
-1.2.2.12: Not Started
-1.2.2.13: Not Started
-1.2.2.14: Not Started
+- 1.2.2.1: Not Started 
+- 1.2.2.2: Not Started 
+- 1.2.2.3: Not Started 
+- 1.2.2.4: Not Started 
+- 1.2.2.5: Not Started 
+- 1.2.2.6: Not Started 
+- 1.2.2.7: Not Started 
+- 1.2.2.8: Not Started 
+- 1.2.2.9: Not Started 
+- 1.2.2.10: Not Started 
+- 1.2.2.11: Not Started 
+- 1.2.2.12: Not Started 
+- 1.2.2.13: Not Started 
+- 1.2.2.14: Not Started 
 
-1.2.3 Jury
+- 1.2.3 Jury
 
-1.2.3.1: Not Started
-1.2.3.2: Not Started
-1.2.3.3: Not Started
-1.2.3.4: Not Started
-1.2.3.5: Not Started
-1.2.3.6: Not Started
-1.2.3.7: Not Started
-1.2.3.8: Not Started
-1.2.3.9: Not Started
-1.2.3.10: Not Started
-1.2.3.11: Not Started
-1.2.3.12: Not Started
-1.2.3.13: Not Started
+- 1.2.3.1: Not Started
+- 1.2.3.2: Not Started
+- 1.2.3.3: Not Started
+- 1.2.3.4: Not Started
+- 1.2.3.5: Not Started
+- 1.2.3.6: Not Started
+- 1.2.3.7: Not Started
+- 1.2.3.8: Not Started
+- 1.2.3.9: Not Started
+- 1.2.3.10: Not Started
+- 1.2.3.11: Not Started
+- 1.2.3.12: Not Started
+- 1.2.3.13: Not Started
 
-Non-Functional Requirements
+### Non-Functional Requirements
 
-2.1 Portability and Compatibility Requirements
+- 2.1 Portability and Compatibility Requirements
 
-2.1.1: In Progress
-2.1.2: In Progress
+- 2.1.1: In Progress
+- 2.1.2: In Progress
 
-2.2 Performance and Scalability Requirements
+- 2.2 Performance and Scalability Requirements
 
-2.2.1 Web Application Performance
+- 2.2.1 Web Application Performance
 
-2.2.1.1: In Progress
-2.2.1.2: In Progress
-2.2.1.3: In Progress
+- 2.2.1.1: In Progress
+- 2.2.1.2: In Progress
+- 2.2.1.3: In Progress
 
-2.2.2 Mobile Application Performance
+- 2.2.2 Mobile Application Performance
 
-2.2.2.1: In Progress
-2.2.2.2: In Progress
-2.2.2.3: In Progress
+- 2.2.2.1: In Progress
+- 2.2.2.2: In Progress
+- 2.2.2.3: In Progress
 
-2.2.3 Scalability
+- 2.2.3 Scalability
 
-2.2.3.1: Not Started
+- 2.2.3.1: Not Started
 
-2.2.4 Data Transfer
+- 2.2.4 Data Transfer
 
-2.2.4.1: Not Started
+- 2.2.4.1: Not Started
 
-2.4 Security Requirements
-2.4.1: Not Started
-2.4.2: Completed
-2.4.3: Not Started
-2.4.4: In Progress
+- 2.4 Security Requirements
+- 2.4.1: Not Started
+- 2.4.2: Completed
+- 2.4.3: Not Started
+- 2.4.4: In Progress
 
 
 # API documentation
