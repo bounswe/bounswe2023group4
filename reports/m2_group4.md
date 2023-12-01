@@ -125,6 +125,7 @@ Below we have included our detailed additions to the project by subteams.
   <li> Plans for Annotation -> Provided on the Report </li>
   <li> General Test Plan -> Provided on the Report </li>
 </ul>
+
 # Progress According to Requirements
 
 ### Functional Requirements 
