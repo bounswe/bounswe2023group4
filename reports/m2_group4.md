@@ -828,4 +828,4 @@ Improving mobile flow and desing. Updating mobile plan with respect the unexpect
 | Add additional tests for create poll | [PR#468](https://github.com/bounswe/bounswe2023group4/pull/468) |
 
 ### Additional Information:
-I have also taken the notes in the milestone 2 presentations.
+I have also taken the notes in the milestone 2 presentation.
