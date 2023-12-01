@@ -911,3 +911,40 @@ Improving mobile flow and desing. Updating mobile plan with respect the unexpect
 
 ### Additional Information:
 I have also taken the notes in the milestone 2 presentation.
+
+## Member: Kutay Saran
+### Responsibilities: 
+Contributing to the development of front-end features and back-end integrations for front-end application.
+
+### Main Contributions:
+* **In management aspect:**
+  - Involved in developing user-facing features and integrating them with server-side processes for the application.
+* **In project aspect:**
+  - Ensured smooth integration of front-end and back-end components by working with the back-end team.
+  - Took part in meetings to match user needs and project objectives with the front end of the app.
+* **In code aspect:**
+  - Implemented the Leaderboard Page UI
+  - Implemented the integration of Google Sign-In feature, adding convenience to the user authentication process.
+  - Implemented Search Bar component, ensuring dynamic content delivery and interaction.
+  - Established the back-end connection for the Poll Feed Page, ensuring dynamic and interactive content delivery.
+
+
+### Code-related significant issues:
+| Task | Relevant significant issues |
+| --- | --- |
+| The implementation of the Leaderboard page UI | [#316](https://github.com/bounswe/bounswe2023group4/issues/316) |
+| Implement Sign In with Google | [#319](https://github.com/bounswe/bounswe2023group4/issues/319) |
+| Implement Search Bar Component | [#346](https://github.com/bounswe/bounswe2023group4/issues/346) |
+| Finalize Authentication pages' backend connections | [#401](https://github.com/bounswe/bounswe2023group4/issues/401) |
+| Implement Poll Feed Page's Backend Connection | [#408](https://github.com/bounswe/bounswe2023group4/issues/408) |
+
+### Pull requests:
+| Task | Relevant Pull Requests |
+| --- | --- |
+| Leaderboard page UI| [ #367](https://github.com/bounswe/bounswe2023group4/pull/367) |
+| Google Sign In | [ #341 ](https://github.com/bounswe/bounswe2023group4/pull/341) |
+| Search Bar Component | [ #383](https://github.com/bounswe/bounswe2023group4/pull/383) |
+| Poll backend connection | [#472 ](https://github.com/bounswe/bounswe2023group4/pull/472) |
+| Finalized authentication pages' backend connections| [ #446 ](https://github.com/bounswe/bounswe2023group4/pull/446) |
+
+
