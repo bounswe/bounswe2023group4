@@ -188,28 +188,29 @@ I was mainly tasked with developing the Poll Vote Page with all of its functiona
 I was responsible for updating the UI of the Poll Vote's page and other relevant components such as the poll card and integrating the Backend functionalities. Additionally, I was responsible for reviewing the front-end team's pull requests. Managerially, I was tasked with compiling each subteam's separate plan and combining them into a single, grand plan. I was expected to update the plan as per the requests of the team members.
 ### Code-related significant issues:
 
-| Task  | Relevant Issue |
-| ------------- | ------------- |
-| The implementation of the voting page UI | [#304](https://github.com/bounswe/bounswe2023group4/issues/304) |
-| Integrating the Vote Page UI with the back-end server  | [#347](https://github.com/bounswe/bounswe2023group4/issues/347)  |
-| Improving the JSON response of the /polls/{pollId} endpoint  | [#428](https://github.com/bounswe/bounswe2023group4/issues/428)  |
-| Solving the Frontend choice padding problem  | [#452](https://github.com/bounswe/bounswe2023group4/issues/452)  |
-| Solving Unspecified closingDate Poll Render Problem  | [#454](https://github.com/bounswe/bounswe2023group4/issues/454)  |
-| Adapting the isOpen Parameter to the voting mechanism  | [#473](https://github.com/bounswe/bounswe2023group4/issues/473)  |
-| Writing Tests for the Voting page  | [#458](https://github.com/bounswe/bounswe2023group4/issues/458)  |
+| Task  | Relevant Issue |  Duty |
+| ------------- | ------------- | ------------- |
+| The implementation of the voting page UI | [#304](https://github.com/bounswe/bounswe2023group4/issues/304) | Resolver |
+| Integrating the Vote Page UI with the back-end server  | [#347](https://github.com/bounswe/bounswe2023group4/issues/347)  | Resolver |
+| Improving the JSON response of the /polls/{pollId} endpoint  | [#428](https://github.com/bounswe/bounswe2023group4/issues/428)  | Resolver |
+| Solving the Frontend choice padding problem  | [#452](https://github.com/bounswe/bounswe2023group4/issues/452)  | Resolver |
+| Solving Unspecified closingDate Poll Render Problem  | [#454](https://github.com/bounswe/bounswe2023group4/issues/454)  | Resolver |
+| Adapting the isOpen Parameter to the voting mechanism  | [#473](https://github.com/bounswe/bounswe2023group4/issues/473)  | Resolver |
+| Writing Tests for the Voting page  | [#458](https://github.com/bounswe/bounswe2023group4/issues/458)  | Resolver |
 
 
 ### Management-related significant issues:
 
-| Task  | Relevant Issue |
-| ------------- | ------------- |
-| Merging all subteams' plans |  [#324](https://github.com/bounswe/bounswe2023group4/issues/324)   |
-| Updating Mobile Project Plan |  [#315](https://github.com/bounswe/bounswe2023group4/issues/315)   |
-| Writing the Test Plan for the 8th week report |  [#424](https://github.com/bounswe/bounswe2023group4/issues/424)   |
-| Preparing the General Test Plan |  [#485](https://github.com/bounswe/bounswe2023group4/issues/485)   |
+| Task  | Relevant Issue | Duty |
+| ------------- | ------------- | ------------- |
+| Merging all subteams' plans |  [#324](https://github.com/bounswe/bounswe2023group4/issues/324)   | Resolver |
+| Updating Mobile Project Plan |  [#315](https://github.com/bounswe/bounswe2023group4/issues/315)   | Resolver |
+| Writing the Test Plan for the 8th week report |  [#424](https://github.com/bounswe/bounswe2023group4/issues/424)   | Resolver |
+| Preparing the General Test Plan |  [#485](https://github.com/bounswe/bounswe2023group4/issues/485)   | Resolver |
+| Reporting the team's progress in terms of requirements |  [#489](https://github.com/bounswe/bounswe2023group4/issues/489)   | Reviewer |
 ### Pull requests: 
 
-| Task   | Relevant Pull Request | Taken Action |
+| Task   | Relevant Pull Request | Taken Action(s) |
 | ------------- | ------------- | ------------- |
 | Creating Vote Page UI  | [#329](https://github.com/bounswe/bounswe2023group4/pull/329) | Creator  |
 | Migrating CSS Files  | [#330](https://github.com/bounswe/bounswe2023group4/pull/339) | Creator  |
@@ -217,6 +218,7 @@ I was responsible for updating the UI of the Poll Vote's page and other relevant
 | Styling of create poll page plus API Requests added | [#374](https://github.com/bounswe/bounswe2023group4/pull/374) | Reviewer & Merger |
 | Adding creator name to poll objects | [#426](https://github.com/bounswe/bounswe2023group4/pull/426) | Reviewer & Merger  |
 | /polls/{pollId} GET return object improvement | [#429](https://github.com/bounswe/bounswe2023group4/pull/429)| Reviewer & Merger |
+| Test plan | [#443](https://github.com/bounswe/bounswe2023group4/pull/443) |Creator & Merger|
 | Backend Integration to the Voting Page | [#449](https://github.com/bounswe/bounswe2023group4/pull/449) | Creator & Merger |
 | Adding UI responses and improving visibility | [#455](https://github.com/bounswe/bounswe2023group4/pull/455) | Creator & Merger |
 | Writing tests for the Create Poll Page | [#457](https://github.com/bounswe/bounswe2023group4/pull/457) | Reviewer & Merger |
