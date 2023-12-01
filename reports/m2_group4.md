@@ -511,6 +511,26 @@ The PollService functions are tested for their success and failure cases. Only t
 Profile endpoints are tested with mock data. Since the logic is in ProfileService class the tests are written for it. Every endpoint is tested for success and failure cases.
 ## Mobile
 
+### UI Tests
+* Custom input field tests are written to ensure the input fields working properly across the whole app.
+* Error dialog test is written to ensure dialog's behavior when the error occurs.
+* Drawer tests are written to ensure robust navigation in app.
+* Login page, signup page and main screen designs are tested to have desired ui.
+
+### Unit Test
+Unit test prep:
+* All required data objects in viewmodels are initialized with mock data to intervene the dependency injection process.
+* Non testable classes are abstracted with interfaces to make them testable.
+
+Unit tests:
+* We have written tests for our extension functions. (for example String.isValidDate())
+* We have written tests for our date formatter that we are using across the app.
+* We have written the tests for feed, profile usecases to ensure them they fetch the data as expected.
+* We have written the tests for create poll, login and signup pages' viewmodels to ensure their events trigger correct state changes in the model.
+
+### Integration tests
+Integration tests are not implemented yet.
+
 # Test Plan & Strategy 
 ## Unit Testing:
 Test cases are prepared with the conclusion of every unit. For instance, test cases to validate every developed page or constituent component UI are prepared with React's test package and deployed with the source code. The same case is valid for the backend and mobile teams.
