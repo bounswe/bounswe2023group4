@@ -376,25 +376,25 @@ Mock data for testing
 npm test Vote.test.js
 - Test Descriptions:
 - Backend connection:
-Description: Tests if the UI can render the mock poll whose ID is 1 with no errors.
-Positive Scenario:  A response message writing "How many points do you want to place?" should appear, indicating the poll is rendered correctly. 
-Negative Scenario: The expected response doesn't appear.
+- Description: Tests if the UI can render the mock poll whose ID is 1 with no errors.
+- Positive Scenario:  A response message writing "How many points do you want to place?" should appear, indicating the poll is rendered correctly. 
+- Negative Scenario: The expected response doesn't appear.
 - Discrete poll rendering:
-Description: Tests if the UI can render the mock poll whose ID is 4 with no errors.
-Positive Scenario: A response message writing "Choose the option you want to vote for" should appear.
-Negative Scenario: The expected response doesn't appear.
+- Description: Tests if the UI can render the mock poll whose ID is 4 with no errors.
+- Positive Scenario: A response message writing "Choose the option you want to vote for" should appear.
+- Negative Scenario: The expected response doesn't appear.
 - Continuous poll rendering:
-Description: Tests if the UI can render the mock poll whose ID is 5 with no errors.
-Positive Scenario: A response message writing "Please enter a suitable answer to the poll" should appear.
-Negative Scenario: The expected response doesn't appear.
+- Description: Tests if the UI can render the mock poll whose ID is 5 with no errors.
+- Positive Scenario: A response message writing "Please enter a suitable answer to the poll" should appear.
+- Negative Scenario: The expected response doesn't appear.
 - Betting mechanism:
-Description: Tests if the non-numeric betting points are handled or not.
-Positive Scenario: A response message writing "The bet points should be integer numbers!" should appear.
-Negative Scenario: The expected response doesn't appear.
-- Empty vote:
-Description: Tests the response of the UI in case the user doesn't type or select any option. Note that since poll 5 is a continuous numeric poll, it accepts only numeric answers
-Positive Scenario: A response message writing "The response should be numeric!" should appear.
-Negative Scenario: The expected response doesn't appear.
+- Description: Tests if the non-numeric betting points are handled or not.
+- Positive Scenario: A response message writing "The bet points should be integer numbers!" should appear.
+- Negative Scenario: The expected response doesn't appear.
+- Empty vote or erroneous vote handling:
+- Description: Tests the response of the UI in case the user doesn't type or select any option. Note that since poll 5 is a continuous numeric poll, it accepts only numeric answers
+- Positive Scenario: A response message writing "The response should be numeric!" should appear.
+- Negative Scenario: The expected response doesn't appear.
 ## Backend
 ### Authentication unit tests
 Authentication endpoints are tested with mock data. Since the logic is in AuthenticationService class the tests are written for it. Every endpoint is tested for success and failure cases.
