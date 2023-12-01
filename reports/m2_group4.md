@@ -502,6 +502,76 @@ npm test Vote.test.js
     - Description: Tests the response of the UI in case the user doesn't type or select any option. Note that since poll 5 is a continuous numeric poll, it accepts only numeric answers
     - Positive Scenario: A response message writing "The response should be numeric!" should appear.
     - Negative Scenario: The expected response doesn't appear.
+  ### Profile Unit Test Report
+![Screenshot 2023-12-01 145439](https://github.com/bounswe/bounswe2023group4/assets/56879777/2235e432-ea8d-4f95-9423-7789848037d8)
+
+ - **Overview:**
+The Profile Component Test ensures the correct functionality and user interaction with the Profile component in a React application. It validates various scenarios, including profile rendering for logged-in and other users, navigation to the edit profile page, and profile picture display.
+- **Dependencies:**
+    -React Testing Library: For rendering components and interacting with the DOM.
+    -Jest: Used as the test runner and for mocking functions and modules.
+    -React Router DOM: For handling routing in tests.
+    -MemoryRouter: Provides routing context for testing.
+    -Mock Data: Simulates API responses.
+- **Running Tests:**
+npm test Profile.test.js
+- **Test Descriptions:**
+- **Rendering Profile for Logged-in User:**
+    - Description: Verifies the rendering of the profile for the logged-in user.
+    - Positive Scenario: Username and "Edit Profile" button should be displayed.
+    - Negative Scenario: Absence of the expected username or "Edit Profile" button.
+- **Rendering Profile for a Different User:**
+    - Description: Checks if another user's profile is correctly rendered.
+    - Positive Scenario: "Follow" button should be visible.
+    - Negative Scenario: "Follow" button not appearing.
+- **Navigating to Edit Profile Page:**
+    - Description: Ensures navigation to the edit profile page upon clicking the "Edit Profile" button.
+    - Positive Scenario: mockNavigate called with the correct URL.
+    - Negative Scenario: Incorrect or no call to mockNavigate.
+- **Rendering Profile Picture:**
+    - Description: Tests the rendering of the profile picture when available.
+    - Positive Scenario: Profile image with correct src attribute.
+    - Negative Scenario: Profile image not present or incorrect src.
+- **Additional Notes:**
+    - Mock functions and local storage are reset after each test for isolation.
+    - Uses waitFor and act from React Testing Library for asynchronous operations and user interactions.
+
+
+ ### Edit Profile Unit Test Report
+
+  ![Screenshot 2023-12-01 145514](https://github.com/bounswe/bounswe2023group4/assets/56879777/f0d21226-5513-4e17-a44f-ad9f053deb1b)
+- **Overview:**
+The EditProfile Component Test Suite is designed to ensure the correct functionality and user interactions within the EditProfile component of a React application. This suite tests the component's ability to render, handle image uploads, navigate after updates, and interact with API endpoints.
+
+- **Dependencies:**
+    - React Testing Library: For rendering components and interacting with the DOM in tests.
+    - Jest: Used as the test runner and for mocking functions and modules.
+    - React Router DOM and MemoryRouter: For handling routing functionalities in tests.
+    - Mock Data: For simulating API responses and user interactions.
+    - Jest Mock Functions: To mock global functions and API calls.
+- **Running Tests:**
+npm test EditProfile.test.js
+- **Test Descriptions:**
+- **Rendering and API Call Check:**
+    - Description: Verifies if the component renders correctly and makes an API call to fetch user data.
+    - Positive Scenario: The username field should display the fetched username.
+    - Negative Scenario: The username field does not display the fetched username or API call fails.
+- **Image Upload Handling:**
+    - Description: Tests the functionality of the image upload feature.
+    - Positive Scenario: The profile image source should update to reflect the uploaded image.
+    - Negative Scenario: The profile image source does not update after the image upload.
+- **Navigation After Update:**
+    - Description: Ensures the component navigates to the profile page after a successful profile update.
+    - Positive Scenario: mockNavigate is called with the correct URL after profile update.
+    - Negative Scenario: Navigation does not occur or incorrect URL is used.
+- **Form Submission and API Update Call:*
+    - Description: Tests the form submission and the subsequent API call for profile updates.
+    - Positive Scenario: The updateProfile API is called with the correct data upon form submission.
+    - Negative Scenario: The API call is not made or is made with incorrect data.
+- **Additional Notes:**
+    - Mock functions, local storage, and global functions like window.matchMedia are reset after each test to ensure test isolation.
+    - The test suite utilizes waitFor, fireEvent, and act from React Testing Library for handling asynchronous operations, user interactions, and DOM updates.
+
 ## Backend
 ### Authentication unit tests
 Authentication endpoints are tested with mock data. Since the logic is in AuthenticationService class the tests are written for it. Every endpoint is tested for success and failure cases.
