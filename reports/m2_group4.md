@@ -1,7 +1,7 @@
 # Project Status
 
 # Customer Feedbacks and Reflections
-- The significance of choosing appropriate dates was highlighted in all sections of the platform that involve date selection.
+The significance of choosing appropriate dates was highlighted in all sections of the platform that involve date selection.
 - There were inquiries about the functionality of the Google sign-in method during the presentation.
 - The customer requested a search for options in the multiple-choice poll.
 - The customer showed interest in our automatic poll tagging system and later requested a different semantic tagging system.
@@ -326,18 +326,25 @@ This endpoint lets user to log in via google. User has to choose a google authen
 
 ### Polls
 #### GET /polls
+This endpoint currently returns the polls in the system with the main concern of creating the main feed.
 
 #### GET /polls/{pollId}
+Get a specific poll, using its pollId.
 
 #### POST /polls/discrete
+The endpoint for creating a discrete poll. Requires user to be logged in.
 
 #### POST /polls/continuous
+The endpoint for creating a continuous poll. Requires user to be logged in.
 
 #### POST /polls/discrete/{pollId}/vote
+The endpoint for voting on a discrete poll. Requires user to be logged in.
 
 #### POST /polls/continuous/{pollId}/vote
+The endpoint for voting on a continuous poll. Requires user to be logged in.
 
 #### POST /polls/close/{pollId}
+The endpoint for closing a poll, given its pollId. Currently only works on discrete polls. The way the points are redistributed is such that the winner users share the total points invested into the poll among themselves with a proportion of their points invested into the poll.
 
 ### Profiles
 #### GET /profiles
@@ -354,83 +361,11 @@ This endpoint is for profile photo upload. The given image file should be in bin
 # Unit test reports
 
 ## Frontend
-
-### Create Component Unit Test Report
-
-![image](https://github.com/bounswe/bounswe2023group4/assets/110101098/6873f2e6-a033-426d-a2d2-f217818a0af7)
-
-- Overview:
-The Create component is a React component responsible for facilitating the creation of polls. This documentation outlines the unit tests written to ensure the robustness and correctness of the Create component.
-- Dependencies:
-React Testing Library
-Mock data for testing
-- Running Tests:
-npm test Create.test.js 
-- Test Descriptions:
-- Basic Rendering:
-Description: Tests if the Create component renders without crashing.
-Positive Scenario: The component renders successfully without any errors.
-Negative Scenario: The component fails to render, resulting in errors.
-- Input Handling:
-Description: Tests user input handling, specifically the ability to fill the question input.
-Positive Scenario: User successfully inputs a question, and the component updates accordingly.
-Negative Scenario: Input change does not reflect in the component state.
-- Poll Type Selection:
-Description: Tests the ability to select between multiple choice and customized poll types.
-Positive Scenario: User can successfully switch between multiple choice and customized poll types.
-Negative Scenario: Poll type selection does not update the component state as expected.
-- Customized Type Selection:
-Description: Tests the ability to select date or numeric when customized is chosen as the poll type.
-Positive Scenario: User can select date or numeric when customized poll type is chosen.
-Negative Scenario: Customized type selection does not update the component state correctly.
-- Due Date Handling:
-Description: Tests the functionality of setting a due date.
-Positive Scenario: User can successfully set a due date, and the component state is updated accordingly.
-Negative Scenario: Due date setting does not update the component state as expected.
-- Choice Management:
-Description: Tests the addition and deletion of choices when multiple choice is selected.
-Positive Scenario: User can add choices, and the component state reflects the changes.
-Negative Scenario: Adding choices does not update the component state correctly.
-- Visibility Options:
-Description: Tests the ability to open distribution visibility.
-Positive Scenario: User can successfully open distribution visibility, and the component state is updated.
-Negative Scenario: Visibility option does not update the component state correctly.
-- Submission:
-Description: Tests the submission of a poll.
-Positive Scenario: User can successfully submit a poll, and the component navigates to the feed page.
-Negative Scenario: Poll submission fails, and the component does not navigate as expected.
-
-### SignUp Component Unit Test Report
-
-![image](https://github.com/bounswe/bounswe2023group4/assets/110101098/be7d57aa-7aa4-4f0d-afce-ca15224307e3)
-
-- Overview:
-The SignUp component is a React component responsible for facilitating the user sign-up process. This documentation outlines the unit tests written to ensure the robustness and correctness of the SignUp component. 
-- Dependencies:
-React Testing Library 
-Ant Design components 
-Mock data for testing 
-- Running Tests: 
-npm test SignUp.test.js
-- Test Descriptions:
-- Basic Rendering:
-Description: Tests if the SignUp component renders without crashing and if essential UI elements are present.
-Positive Scenario: The component renders successfully without any errors, and essential UI elements are present.
-Negative Scenario: The component fails to render, or essential UI elements are missing.
-- Form Input Handling:
-Description: Tests user input handling for email, username, password, and birthday fields.
-Positive Scenario: User input changes are correctly reflected in the component state.
-Negative Scenario: Input changes do not reflect in the component state.
-- Form Submission:
-Description: Tests the submission of the sign-up form.
-Positive Scenario: User can successfully submit the sign-up form, and the component responds accordingly.
-Negative Scenario: Form submission fails, and the component does not respond as expected. 
-
-
 ## Backend
 ### Authentication unit tests
 Authentication endpoints are tested with mock data. Since the logic is in AuthenticationService class the tests are written for it. Every endpoint is tested for success and failure cases.
 ### Poll unit tests
+The PollService functions are tested for their success and failure cases. Only the pollClose function is not tested fully since it was implemented recently.
 ### Profile unit tests
 Profile endpoints are tested with mock data. Since the logic is in ProfileService class the tests are written for it. Every endpoint is tested for success and failure cases.
 ## Mobile
@@ -452,8 +387,10 @@ Friends and acquaintances shall be allowed to test the system with the help of t
 The mock data will cover both the general and edge cases so that the odds of encountering either heisenbugs or bohrbugs are minimalized. For instance, the case of betting with negative points before voting was tested during the integration phase between the front-end interface and the back-end server. 
 
 # Status of Annotation Features
+We have not started on annotation features as of this milestone.
 
 # Plans For Annotation
+We plan to implement the backend functionality of annotations before 2 weeks of the last milestone. We plan that annotations will be implemented for questions and choices. Annotations will be implemented with conformance to [W3C Web Annotation Data Model](https://www.w3.org/TR/annotation-model/).
 
 # Individual Contributions
 ## Member: Emre Batuhan Göç
@@ -594,49 +531,49 @@ Creating and managing the mobile application's user interface and backend connec
 | Poll Detail Screen Backend Requests | [Mobile/feature/vote poll #339](https://github.com/bounswe/bounswe2023group4/pull/339), [Mobile/feature/vote poll #462](https://github.com/bounswe/bounswe2023group4/pull/462) |
 | Feed Screen UI | [Mobile/feature/feed UI #300](https://github.com/bounswe/bounswe2023group4/pull/300) |
 
-## Member: Enes Furkan Arslan
+## Member: Şefik Palazoğlu
 ### Responsibilities: 
-My main responsibilites are implementing necessary components on frontend and make them functional by linking them with backend. Other than that I am responsible for updating the design of the project as necessarily. I am also responsible for preparing necessary deliverables for milestones and take part in the presentations according to the team's needs. Finally I am responsible for taking my part on the management of the project and reviewing the works done by other members of the team. 
-### Main contributions: 
-I have involved in significant processes between milestone 1 and milestone 2 from management to implementation aspects. Some of my management related contributions are updating the RAM after a group member leaved, organizing extra meetings with backend and frontend members for ongoing tasks and keep checking the progress of other tasks and reviewing them. About the implementation part I was responsible for every frontend aspects of creating a poll in the platform. This was one of the core functionalities of this milestone and the platform, therefore I gave my maximum effort and completed it succesfully as planned. I also took urgent tasks and get them completed, details are in the next section. 
+Setting up backend system logic. Ensuring endpoints are working correctly. Implementing polls endpoints. Implementing internal poll subject tagging.
+### Main Contributions:
+* In management aspect:
+  -  I have checked the compatibility of work between front teams and backend team regularly.
+* In project aspect:
+  -  I have tried to point out work we needed to do for requirements.
+* In code aspect:
+  -  I have implemented all poll endpoints
+  -  I have adapted polls endpoints to new error response format. 
+  -  I have implemented general point system in polls with Batuhan.
+  -  I have implemented get polls, get polls with id, post polls, and poll close endpoints.
+  -  I have implemented automatic poll tag generation.
+  -  I have written unit tests for poll endpoints.
 
 ### Code-related significant issues:
-|Task|Relevant significant issues|
-| --- | --- |
-|Implemented create poll page's main UI components according to the mock-up|[#320](https://github.com/bounswe/bounswe2023group4/issues/320)|
-|UI/UX of create poll page is improved and page made more user friendly|[#348](https://github.com/bounswe/bounswe2023group4/issues/348)|
-|API request for create poll page is implemented in accordance with backend and database|[#349](https://github.com/bounswe/bounswe2023group4/issues/349)|
-|Realized an error and fixed it immediately for back and front teams' progress|[#377](https://github.com/bounswe/bounswe2023group4/issues/377)|
-|Finalized authentication pages' backend connections|[#401](https://github.com/bounswe/bounswe2023group4/issues/401)|
-|Added point indicator component to create poll page|[#404](https://github.com/bounswe/bounswe2023group4/issues/404)|
-|Implemented a detailed input validation on create poll page and tested manually|[#406](https://github.com/bounswe/bounswe2023group4/issues/406)| 
-|Finalized create poll page's backend connection as changes occurred in swagger documentation|[#407](https://github.com/bounswe/bounswe2023group4/issues/407)|
-|Re-implemented a feature of creating poll after realizing an inconsistency between mock up and requirements|[#441](https://github.com/bounswe/bounswe2023group4/issues/441)| 
-|Implemented unit tests for create poll page to test its functionality|[#453](https://github.com/bounswe/bounswe2023group4/issues/453)| 
-
-### Management-related significant issues:
-|Task|Relevant significant issues|
-| --- | --- |
-| RAM is updated after a team member has leaved|[#350](https://github.com/bounswe/bounswe2023group4/issues/350)|
-| Updated the requirements according to feedbacks|[#486](https://github.com/bounswe/bounswe2023group4/issues/486)|
-| Overview section added to requirements and glossary updated|[#488](https://github.com/bounswe/bounswe2023group4/issues/488)|
-| Prepared progress based on each requirement for milestone 2 report|[#489](https://github.com/bounswe/bounswe2023group4/issues/489)|
-| I have reviewed this issue and provided feedback, check for details|[#487](https://github.com/bounswe/bounswe2023group4/issues/487)| 
+|Task|Relevant significant issues| My duty |
+| --- | --- | --- |
+|Username Attached to poll| [#463](https://github.com/bounswe/bounswe2023group4/issues/463)| Resolver |
+|Manual Poll Closing issue For Discrete Polls| [#456](https://github.com/bounswe/bounswe2023group4/issues/456)| Resolver |
+|Reject Votes null value| [#450](https://github.com/bounswe/bounswe2023group4/issues/450)| Resolver |
+|Authentication Requirement at Poll GET endpoint| [#447](https://github.com/bounswe/bounswe2023group4/issues/447)| Resolver |
+|Improving the JSON response of the /polls/{pollId} endpoint| [#428](https://github.com/bounswe/bounswe2023group4/issues/428)| Resolver |
+|Point System| [#405](https://github.com/bounswe/bounswe2023group4/issues/405)| Resolver |
+|Poll GET Poll Creator Name| [#403](https://github.com/bounswe/bounswe2023group4/issues/403)| Resolver |
+|Poll GET return format| [#402](https://github.com/bounswe/bounswe2023group4/issues/402)| Resolver |
+|Poll Voting| [#400](https://github.com/bounswe/bounswe2023group4/issues/400)| Resolver |
+|Unit Tests for Poll Endpoints| [#344](https://github.com/bounswe/bounswe2023group4/issues/344)| Resolver |
+|Poll Response Restructuring| [#343](https://github.com/bounswe/bounswe2023group4/issues/343)| Resolver |
 
 ### Pull requests:
 |Task|Relevant Pull Requests|
 | --- | --- |
-|Implemented create poll page's main UI components according to the mock-up|[#332](https://github.com/bounswe/bounswe2023group4/pull/332)|
-|UI/UX of create poll page is improved and page made more user friendly, API request for create poll page is implemented in accordance with backend and database|[#374](https://github.com/bounswe/bounswe2023group4/pull/374)|
-|Realized an error and fixed it immediately for back and front teams' progress|[#378](https://github.com/bounswe/bounswe2023group4/pull/378)|
-|Added point indicator component to create poll page, Implemented a detailed input validation on create poll page and tested manually, Finalized create poll page's backend connection as changes occurred in swagger documentation, Re-implemented a feature of creating poll after realizing an inconsistency between mock up and requirements|[#445](https://github.com/bounswe/bounswe2023group4/pull/445)|
-|Finalized authentication pages' backend connections|[#446](https://github.com/bounswe/bounswe2023group4/pull/446)|
-|Implemented unit tests for create poll page to test its functionality|[#457](https://github.com/bounswe/bounswe2023group4/pull/457)|
-|I have reviewed following PRs and there were no conflicts or any inconsistencies therefore thay have been merged succesfully|[#329](https://github.com/bounswe/bounswe2023group4/pull/329), [#341](https://github.com/bounswe/bounswe2023group4/pull/341),[#383](https://github.com/bounswe/bounswe2023group4/pull/383),[#398](https://github.com/bounswe/bounswe2023group4/pull/398),[#470](https://github.com/bounswe/bounswe2023group4/pull/470)|
-|In the following PR some of the previous features have been corrupted due to new changes, so I requested changes on the PR. conflicts resolved on the same branch and then merged.|[#330](https://github.com/bounswe/bounswe2023group4/pull/330)|
-|Added unit test reports for sign-up and create poll pages, Added progress based on requirements, Added self contribution|[#484](https://github.com/bounswe/bounswe2023group4/pull/484)| 
+| Add Automatic Tag Functionality | [PR#475](https://github.com/bounswe/bounswe2023group4/pull/475) |
+|Implement poll service unit tests| [PR#469](https://github.com/bounswe/bounswe2023group4/pull/469) |
+| Implement /polls/close endpoint | [PR#459](https://github.com/bounswe/bounswe2023group4/pull/459) |
+| Fix Username Email bug | [PR#465](https://github.com/bounswe/bounswe2023group4/pull/465) |
+| Remove Auth Requirement from /polls/{pollId} GET | [PR#448](https://github.com/bounswe/bounswe2023group4/pull/448) |
+| Create Poll Endpoint Corrections | [PR#444](https://github.com/bounswe/bounswe2023group4/pull/444) |
+| Making Poll Functions async | [PR#442](https://github.com/bounswe/bounswe2023group4/pull/442) |
+| Backend/feature/poll vote date | [PR#440](https://github.com/bounswe/bounswe2023group4/pull/440) |
+| Adding creator name to poll objects | [PR#426](https://github.com/bounswe/bounswe2023group4/pull/426) |
+| /polls/{pollId} GET return object improvement | [PR#429](https://github.com/bounswe/bounswe2023group4/pull/429) |
 
-
-### Additional information:
-I have tried to organize team progress by arranging extra meetings for tasks when necessary. I also reminded the deadlines for significant tasks so that team progress did not fail. I also took part in the presentation by setting up technical devices accordingly with our scenario and I have managed devices during the presentation as our presenter proceeded with the scenario. I answered to questions about the project coming from PO and audience when necessary. Finally I communicated with the PO and got feedbacks for milestone 1. Then I moderated a meeting to share tasks for milestone 2 report together with addressing feedbacks I got. I have updated the requierments page according to the feedbacks. 
 
