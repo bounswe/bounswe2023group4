@@ -113,7 +113,15 @@ Below we have included our detailed additions to the project by subteams.
 - Test coverage should be increased.
 
 # List and Status of Deliverables
-
+<ul>
+  <li> Summary of the Project Status -> Completed </li>
+  <li> Summary of the Customer Feedback and Reflections -> Completed </li>
+  <li> Changes Since Milestone 1 and Future Plans -> Completed </li>
+  <li> Progress According to Requirements -> Completed </li>
+  <li> API documentation and endpoints -> Completed and Link Provided on the Report</li>
+  <li> Unit test reports -> Completed </li>
+  <li> Individual Contributions -> Completed </li> 
+</ul>
 # Progress According to Requirements
 
 ### Functional Requirements 
