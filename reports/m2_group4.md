@@ -1,4 +1,8 @@
-## Changes Since Milestone 1 and Future Plans
+# Project Status
+
+# Customer Feedbacks and Reflections
+
+# Changes Since Milestone 1 and Future Plans
 
 ### Overview
 
@@ -63,6 +67,9 @@ Below we have included our detailed additions to the project by subteams.
 - Drawer and main app looks differrent we may adjust their colors.
 - Test coverage should be increased.
 
+# List and Status of Deliverables
+
+# Progress According to Requirements
 
 # API documentation
 
@@ -120,6 +127,7 @@ This endpoint is used for profile data retrieval. This endpoint waits for profil
 This endpoint is for profile photo upload. The given image file should be in binary format. 
 
 # Unit test reports
+
 ## Frontend
 ## Backend
 ### Authentication unit tests
@@ -128,6 +136,12 @@ Authentication endpoints are tested with mock data. Since the logic is in Authen
 ### Profile unit tests
 Profile endpoints are tested with mock data. Since the logic is in ProfileService class the tests are written for it. Every endpoint is tested for success and failure cases.
 ## Mobile
+
+# General Test Plan
+
+# Status of Annotation Features
+
+# Plans For Annotation
 
 # Individual Contributions
 ## Member: Emre Batuhan Göç
