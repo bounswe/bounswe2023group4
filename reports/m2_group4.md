@@ -1,5 +1,42 @@
 # Project Status
 
+## Backend Status
+In the backend segment of the project, significant strides have been made, marking notable progress in various areas. The team successfully finalized Google authentication, enhancing the system's security and user convenience. A robust framework for creating, viewing, and participating in both discrete and continuous polls has been implemented, further enriched with features like image upload and viewing capabilities. The introduction of mock badges adds a layer of user engagement and gamification.
+
+Additionally, a point system has been integrated, aligning with the implementation of poll closing functionalities. This development has been pivotal in advancing the project's dynamics around user interaction with polls. The maintenance, viewing, and updating of user profiles have been streamlined, ensuring a seamless user experience.
+
+The backend team has also made significant improvements in error management, which is crucial for maintaining the system's stability and reliability. The implementation of email verification and authentication validation processes has bolstered the system's security infrastructure. Moreover, the introduction of automatic poll tagging has enhanced the system's efficiency in organizing and categorizing poll data.
+
+To ensure the robustness of these implementations, a series of tests have been conducted, including poll service tests, profile service tests, and authorization service tests. However, it's noted that there is room for more exhaustive testing to further reinforce the system's reliability and performance. This aspect remains a focus for ongoing enhancement in the backend development process.
+
+The present state of the project is indeed encouraging; however, substantial tasks await completion. The forthcoming phase will see the introduction of significant features such as a leaderboard, annotation system, and a moderation mechanism. Concurrently, there will be a concerted effort to refine and enhance existing endpoints, ensuring that their core functionalities remain unaltered. This approach underscores our commitment to continuous improvement while maintaining the integrity and efficiency of the system.
+
+## Frontend Status
+In the frontend development of the project, there has been considerable advancement with the addition of numerous key features, enhancing the overall user interface and experience. The team successfully introduced a Vote Poll Page and a Create Poll Page, which significantly improve user engagement by allowing them to actively participate in polls. The Authentication Page has been refined with added validation, bolstering the security and user verification process.
+
+A notable achievement is the integration of the Leaderboard Page, which introduces a competitive element to the platform by displaying user rankings. This is complemented by the integration of a Point System with the backend, adding depth to user interactions on the platform.
+
+Further enhancements include the addition of a Profile Page and an Edit Profile Page, enabling users to view and modify their personal information seamlessly. The Feed Page has been integrated, providing a dynamic and interactive space for users to engage with the latest content. The implementation of a Search Bar UI significantly improves the platform's navigability, allowing users to efficiently find specific polls or content.
+
+Google Sign-In has been added as a feature, streamlining the login process and offering a convenient alternative to standard authentication methods. The team has also focused on improving the responsiveness of both Poll and Authentication pages, ensuring a smooth and user-friendly experience across different devices.
+
+However, it is noted that the implementation of the Moderation Page UI is still pending. This aspect remains a key area for future development, as it is crucial for maintaining the platform's content quality and user interactions. The team aims to address this in subsequent updates to enhance the platform's overall functionality and user experience.
+
+As we look towards future endeavors, our strategy aligns closely with the backend development objectives. However, a strategic shift will be implemented, directing our workforce's focus predominantly towards the enhancement of the user interface. This reallocation of resources is a tactical decision made while anticipating the completion of backend tasks. In parallel, it is noteworthy to mention that the progress in frontend development is proceeding in accordance with our projected timelines and expectations. 
+
+## Mobile status
+In the mobile development front of the project, significant advancements have been achieved, enhancing the app's interactivity and user experience. The introduction of a Profile Page allows users to view personal information, fostering greater user engagement. The Feed Page offers a dynamic and interactive stream of content, enriching the user experience with constantly updated material. With the Create Poll Page, users can now actively participate by creating polls, adding to the app's interactive capabilities.
+
+The preliminary implementation of the Leaderboard, albeit with mock data, introduces a competitive edge to the app, which is expected to evolve once integrated with the backend. The authentication process has been streamlined and secured with the addition of page validation and Google Sign-In, making the app more user-friendly and secure. The transition from mock data to real data marks a significant move towards an authentic user experience.
+
+The app's stability and functionality have been enhanced through bug fixes, addressing issues in authentication middleware and other operational crashes. The integration of an App Bar and Drawer improves navigation within the app, contributing to a better user interface. Furthermore, the support for DateTime in ISO8601 format ensures consistency and standardization in date and time representation across the app.
+
+However, several areas have been identified for improvement. The Poll UI requires enhancement for better user interaction and visual appeal. The Profile Page is yet to be completed with additional functionalities like profile editing and badge display. The Leaderboard UI is set for an upgrade post its backend integration. Aesthetic consistency between the drawer and main app is also a focus, aiming to unify the app's overall design. Additionally, an increase in test coverage is necessary to ensure the app's reliability and functionality.
+
+Overall, the mobile segment of the project has shown substantial progress in user engagement and app functionality, with a commitment to further improvements and feature expansions in subsequent updates.
+
+In the upcoming phase of our project, we are dedicated to implementing a series of key enhancements and functionalities to further strengthen our platform. Foremost among these is the integration of a leaderboard system within our backend architecture, aimed at elevating the interactive and competitive elements of our platform. Concurrently, there will be a significant emphasis on expanding our testing coverage, a crucial step to ensure the robustness and dependability of our system. Additionally, we are set to introduce important features such as moderation and annotation, designed to enrich user interaction and control. Alongside these advancements, we are also committed to the continuous refinement of our user interface, focusing on enhancing user engagement and the overall user experience. These initiatives collectively underscore our ongoing dedication to evolving and improving our platform to meet and exceed user expectations.
+
 # Customer Feedback and Reflections
 The significance of choosing appropriate dates was highlighted in all sections of the platform that involve date selection.
 - There were inquiries about the functionality of the Google sign-in method during the presentation.
@@ -70,7 +107,6 @@ Below we have included our detailed additions to the project by subteams.
 - DateTime (ISO8601) format support
 #### Flaws:
 - Poll UI should be improved
-- Poll buttons' actions should be implemented.
 - Profile page is not completed we don't support some features like edit profile or badges.
 - Leaderboard ui will be improved when we connect it to the backend.
 - Drawer and main app looks differrent we may adjust their colors.
