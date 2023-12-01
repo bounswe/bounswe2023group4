@@ -207,7 +207,9 @@ I was responsible for updating the UI of the Poll Vote's page and other relevant
 | Updating Mobile Project Plan |  [#315](https://github.com/bounswe/bounswe2023group4/issues/315)   | Resolver |
 | Writing the Test Plan for the 8th week report |  [#424](https://github.com/bounswe/bounswe2023group4/issues/424)   | Resolver |
 | Preparing the General Test Plan |  [#485](https://github.com/bounswe/bounswe2023group4/issues/485)   | Resolver |
+| Adding a feedback section to the requirement's wiki page |  [#488](https://github.com/bounswe/bounswe2023group4/issues/488)   | Reviewer |
 | Reporting the team's progress in terms of requirements |  [#489](https://github.com/bounswe/bounswe2023group4/issues/489)   | Reviewer |
+
 ### Pull requests: 
 
 | Task   | Relevant Pull Request | Taken Action(s) |
