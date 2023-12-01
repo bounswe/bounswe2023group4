@@ -997,5 +997,33 @@ Implementing web design and make improvements if necessary. Implementing feature
 | Implemented backend integration of Profile and Edit Profile pages, after pages finalized added unit tests for that pages and added backend integration of the points | [PR#476](https://github.com/bounswe/bounswe2023group4/pull/476) |
 
 
+## Member: Serhat Hebun Şimşek
+### Responsibilities: 
+I have maintained our deployed project and I continuously redeployed our frontend and backend. 
+### Main Contributions:
+* In management aspect:
+  -  I have checked in with the backend team regularly for tasks and deployment.
+* In project aspect:
+  -  I have overcome an issue that occured during deployment.
+* In code aspect:
+  -  I have implemented email verification.
+  -  I have implemented auth form validation in accordance to requirements.
+  -  I have deployed both the front and backend.
+    
+### Code-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+|Authentication form validation|[#308](https://github.com/bounswe/bounswe2023group4/issues/308) |
+|Signup Birthday Requirement |[#421](https://github.com/bounswe/bounswe2023group4/issues/421) | 
+|Image storage and usage |[#415](https://github.com/bounswe/bounswe2023group4/issues/415) | 
+|Implement email verification|[#345](https://github.com/bounswe/bounswe2023group4/issues/345)|
+|Dockerization and redeployment of our backend |[#336](https://github.com/bounswe/bounswe2023group4/issues/336),[#396](https://github.com/bounswe/bounswe2023group4/issues/396)|
+|Deployment of our frontend and backend for milestone|[#423](https://github.com/bounswe/bounswe2023group4/issues/423)|
 
+### Pull requests:
+|Task|Relevant Pull Requests|
+| --- | --- |
+| Authentication form validation | [PR#384](https://github.com/bounswe/bounswe2023group4/pull/384) |
+| Signup Birthday Requirement | [PR#384](https://github.com/bounswe/bounswe2023group4/pull/384) |
+| Implement email verification  | [PR#427](https://github.com/bounswe/bounswe2023group4/pull/427) |
 
