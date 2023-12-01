@@ -229,3 +229,42 @@ I was responsible for updating the UI of the Poll Vote's page and other relevant
 | Handling the voting of closed polls | [#474](https://github.com/bounswe/bounswe2023group4/pull/474) | Creator & Merger |
 | Profile Page implementation | [#476](https://github.com/bounswe/bounswe2023group4/pull/476) | Reviewer & Merger |
 | Merging the Frontend Development Branch to the main branch | [#481](https://github.com/bounswe/bounswe2023group4/pull/481) | Reviewer & Merger |
+
+## Member: Ahmet Emre Şafak
+### Responsibilities: 
+Creating and managing the mobile application's user interface and backend connections.
+
+### Main Contributions:
+* **In management aspect:**
+  - Regularly monitored and ensured the progress and integration of mobile features.
+* **In project aspect:**
+  - Actively engaged in discussions to align the mobile application with overall project requirements and user needs.
+  - Collaborated closely with the backend team to ensure seamless integration.
+* **In code aspect:**
+  - Implemented the Profile Screen UI, providing a user-friendly interface for profile management.
+  - Developed the Poll Detail Screen UI, enabling users to view and interact with poll details effectively.
+  - Integrated feed screen with backend requests, ensuring dynamic content delivery and interaction.
+  - Implemented backend requests for the Profile Screen, facilitating user data management and updates.
+  - Developed backend requests for the Poll Detail Screen, allowing for real-time poll interactions and data retrieval.
+  - Created the initial feed screen UI, setting the foundation for content display and user interaction.
+
+### Code-related significant issues:
+| Task | Relevant significant issues | My duty |
+| --- | --- | --- |
+| Implement profile screen UI | [#311](https://github.com/bounswe/bounswe2023group4/issues/311) | Resolver |
+| Implement Poll Detail Screen UI | [#312](https://github.com/bounswe/bounswe2023group4/issues/312) | Resolver |
+| Implement feed screen backend requests | [#362](https://github.com/bounswe/bounswe2023group4/issues/362) | Resolver |
+| Implement Profile Screen Backend Requests | [#416](https://github.com/bounswe/bounswe2023group4/issues/416) | Resolver |
+| Implement Poll Detail Screen Backend Requests | [#417](https://github.com/bounswe/bounswe2023group4/issues/417) | Resolver |
+| Implement feed screen UI | [#266](https://github.com/bounswe/bounswe2023group4/issues/266) | Resolver |
+
+### Pull requests:
+| Task | Relevant Pull Requests |
+| --- | --- |
+| Profile Screen UI | [Mobile/profile #373](https://github.com/bounswe/bounswe2023group4/pull/373) |
+| Poll Detail Screen UI | [created poll vote composable #337](https://github.com/bounswe/bounswe2023group4/pull/337) |
+| Feed Screen Backend Requests | [Mobile/feature/feed UI #300](https://github.com/bounswe/bounswe2023group4/pull/300) |
+| Profile Screen Backend Requests | [Profile and Feed Screens Finalized #438](https://github.com/bounswe/bounswe2023group4/pull/438) |
+| Poll Detail Screen Backend Requests | [Mobile/feature/vote poll #339](https://github.com/bounswe/bounswe2023group4/pull/339), [Mobile/feature/vote poll #462](https://github.com/bounswe/bounswe2023group4/pull/462) |
+| Feed Screen UI | [Mobile/feature/feed UI #300](https://github.com/bounswe/bounswe2023group4/pull/300) |
+
