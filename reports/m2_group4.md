@@ -426,7 +426,21 @@ Authentication endpoints are tested with mock data. Since the logic is in Authen
 Profile endpoints are tested with mock data. Since the logic is in ProfileService class the tests are written for it. Every endpoint is tested for success and failure cases.
 ## Mobile
 
-# General Test Plan
+# Test Plan & Strategy 
+## Unit Testing:
+Test cases are prepared with the conclusion of every unit. For instance, test cases to validate every developed page or constituent component UI are prepared with React's test package and deployed with the source code. The same case is valid for the backend and mobile teams.
+
+## Integration Testing:
+Relevant test cases are developed when intertwined components are developed concurrently. For instance, the mesh of the poll card component with the feed, vote, and profile pages is tested, or the connection between the Front-end interface and the Back-end server is verified.
+
+## System Testing:
+Each team member partakes in this testing phase by creating an account and testing all the features. fetching for bugs and observing the inter-subsystem interactions. This phase takes place following the conclusion of the development plan and before the final milestone. This phase might probably start on either the 11th or the 12th week.
+
+## Acceptance Testing:
+Friends and acquaintances shall be allowed to test the system with the help of the team members. The goal of this testing phase is to combine the perspectives of both the developers and the users. This testing phase shall take place following the System Testing phase and before the final milestone.
+
+## Mock Data:
+The mock data will cover both the general and edge cases so that the odds of encountering either heisenbugs or bohrbugs are minimalized. For instance, the case of betting with negative points before voting was tested during the integration phase between the front-end interface and the back-end server. 
 
 # Status of Annotation Features
 
