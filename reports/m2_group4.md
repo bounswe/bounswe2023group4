@@ -120,7 +120,10 @@ Below we have included our detailed additions to the project by subteams.
   <li> Progress According to Requirements -> Completed </li>
   <li> API documentation and endpoints -> Completed and Link Provided on the Report</li>
   <li> Unit test reports -> Completed </li>
-  <li> Individual Contributions -> Completed </li> 
+  <li> Individual Contributions -> Completed </li>
+  <li> Status of Annotation Features -> Provided on the Report </li>
+  <li> Plans for Annotation -> Provided on the Report </li>
+  <li> General Test Plan -> Provided on the Report </li>
 </ul>
 # Progress According to Requirements
 
