@@ -947,4 +947,55 @@ Contributing to the development of front-end features and back-end integrations 
 | Poll backend connection | [#472 ](https://github.com/bounswe/bounswe2023group4/pull/472) |
 | Finalized authentication pages' backend connections| [ #446 ](https://github.com/bounswe/bounswe2023group4/pull/446) |
 
+## Member: Selin Işık
+### Responsibilities: 
+Implementing web design and make improvements if necessary. Implementing features in Web Application of the Project.
+### Main Contributions:
+* In management aspect:
+  -  I actively participated in allocating tasks among team members. My approach primarily adhered to the project plan guidelines. However, in instances where urgent changes or critical features threatened to hinder release schedules, I made strategic adjustments to task priorities on a weekly basis.
+* In project aspect:
+  -  I tried to find solutions that occurs in development process. For example, I have presented my general vote page idea to be used a page for user to see all the polls s/he has voted.
+* In code aspect:
+  -  I have implemented profile screen UI
+  -  I have implemented edit profile screen UI
+  -  I have implemented profile screen backend requests
+  -  I have implemented edit profile screen backend requests
+  -  I have redesigned the point component to be used in Milestone2 presentation(A middle form UI not the final).
+  -  I have implemented point backend requests in all pages available.
+  -  I have supported backend in image upload task to implement a backend architecture compatible with the frontend.
+  -  I have implemented Unit tests for Profile and Edit Profile Pages.
+  -  I have refactored the frontend code the eliminate generic issues
+
+### Code-related significant issues:
+|Task|Relevant significant issues| My duty |
+| --- | --- | --- |
+| Implement Profile page UI | [#306](https://github.com/bounswe/bounswe2023group4/issues/306)| Resolver |
+| Make Sign-In page responsive | [#307](https://github.com/bounswe/bounswe2023group4/issues/307)| Resolver |
+| Make Sign-Up page responsive | [#309](https://github.com/bounswe/bounswe2023group4/issues/309)| Resolver |
+| Make Feed page responsive | [#310](https://github.com/bounswe/bounswe2023group4/issues/310)| Resolver |
+| Implement Edit Profile page UI | [#364](https://github.com/bounswe/bounswe2023group4/issues/364)| Resolver |
+| Make Profile page responsive| [#365](https://github.com/bounswe/bounswe2023group4/issues/365)| Resolver |
+| Profile page Backend Integration | [#419](https://github.com/bounswe/bounswe2023group4/issues/419)| Resolver |
+| Edit Profile page Backend Integration | [#420](https://github.com/bounswe/bounswe2023group4/issues/420)| Resolver |
+| Image storage and usage | [#415](https://github.com/bounswe/bounswe2023group4/issues/415)| Reviewer |
+### Management-related significant issues:
+|Task|Relevant significant issues| My duty |
+| --- | --- | --- |
+| Added Milestone2 Report Customer Feedback and Reflections | [#490](https://github.com/bounswe/bounswe2023group4/issues/490)| Resolver |
+| Merging all subteams' plans |  [#324](https://github.com/bounswe/bounswe2023group4/issues/324)   | Reviewer |
+
+
+### Pull requests:
+|Task|Relevant Pull Requests|
+| --- | --- |
+| Requested Changes for CSS error | [PR#330](https://github.com/bounswe/bounswe2023group4/pull/330) |
+| Profile Page UI | [PR#368](https://github.com/bounswe/bounswe2023group4/pull/368) |
+| Sign-Up, Sign-In, Feed Page Responsiveness | [PR#369](https://github.com/bounswe/bounswe2023group4/pull/369) |
+| Frontend Development to Development Merge for Internal Milestone 1 | [PR#370](https://github.com/bounswe/bounswe2023group4/pull/370) |
+| Edit Profile Page UI | [PR#398](https://github.com/bounswe/bounswe2023group4/pull/398) |
+| Review and checked Bugfix PR | [PR#474](https://github.com/bounswe/bounswe2023group4/pull/474) |
+| Implemented backend integration of Profile and Edit Profile pages, after pages finalized added unit tests for that pages and added backend integration of the points | [PR#476](https://github.com/bounswe/bounswe2023group4/pull/476) |
+
+
+
 
