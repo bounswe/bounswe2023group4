@@ -112,8 +112,7 @@
   <li>Project Plan, Communication Plan, Responsibility Assignment Matrix -> Completed and Link Provided on the Report</li>
   <li>Weekly reports and any additional meeting notes -> Completed and Link Provided on the Report</li>
   <li>Milestone Review -> Completed </li>
-  <li>Individual Contributions -> Completed </li>
-  <li>A pre-release version of your software -> Completed and Added To Repo as pre release</li> 
+  <li>Individual Contributions -> Completed </li> 
 </ul>
 
 ## Evaluation of the status of deliverables and its impact on your project plan (reflection).
