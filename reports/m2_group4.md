@@ -601,6 +601,51 @@ Creating and managing the mobile application's user interface and backend connec
 | Poll Detail Screen Backend Requests | [Mobile/feature/vote poll #339](https://github.com/bounswe/bounswe2023group4/pull/339), [Mobile/feature/vote poll #462](https://github.com/bounswe/bounswe2023group4/pull/462) |
 | Feed Screen UI | [Mobile/feature/feed UI #300](https://github.com/bounswe/bounswe2023group4/pull/300) |
 
+## Member: Enes Furkan Arslan
+### Responsibilities: 
+My main responsibilites are implementing necessary components on frontend and make them functional by linking them with backend. Other than that I am responsible for updating the design of the project as necessarily. I am also responsible for preparing necessary deliverables for milestones and take part in the presentations according to the team's needs. Finally I am responsible for taking my part on the management of the project and reviewing the works done by other members of the team. 
+### Main contributions: 
+I have involved in significant processes between milestone 1 and milestone 2 from management to implementation aspects. Some of my management related contributions are updating the RAM after a group member leaved, organizing extra meetings with backend and frontend members for ongoing tasks and keep checking the progress of other tasks and reviewing them. About the implementation part I was responsible for every frontend aspects of creating a poll in the platform. This was one of the core functionalities of this milestone and the platform, therefore I gave my maximum effort and completed it succesfully as planned. I also took urgent tasks and get them completed, details are in the next section. 
+
+### Code-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+|Implemented create poll page's main UI components according to the mock-up|[#320](https://github.com/bounswe/bounswe2023group4/issues/320)|
+|UI/UX of create poll page is improved and page made more user friendly|[#348](https://github.com/bounswe/bounswe2023group4/issues/348)|
+|API request for create poll page is implemented in accordance with backend and database|[#349](https://github.com/bounswe/bounswe2023group4/issues/349)|
+|Realized an error and fixed it immediately for back and front teams' progress|[#377](https://github.com/bounswe/bounswe2023group4/issues/377)|
+|Finalized authentication pages' backend connections|[#401](https://github.com/bounswe/bounswe2023group4/issues/401)|
+|Added point indicator component to create poll page|[#404](https://github.com/bounswe/bounswe2023group4/issues/404)|
+|Implemented a detailed input validation on create poll page and tested manually|[#406](https://github.com/bounswe/bounswe2023group4/issues/406)| 
+|Finalized create poll page's backend connection as changes occurred in swagger documentation|[#407](https://github.com/bounswe/bounswe2023group4/issues/407)|
+|Re-implemented a feature of creating poll after realizing an inconsistency between mock up and requirements|[#441](https://github.com/bounswe/bounswe2023group4/issues/441)| 
+|Implemented unit tests for create poll page to test its functionality|[#453](https://github.com/bounswe/bounswe2023group4/issues/453)| 
+
+### Management-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+| RAM is updated after a team member has leaved|[#350](https://github.com/bounswe/bounswe2023group4/issues/350)|
+| Updated the requirements according to feedbacks|[#486](https://github.com/bounswe/bounswe2023group4/issues/486)|
+| Overview section added to requirements and glossary updated|[#488](https://github.com/bounswe/bounswe2023group4/issues/488)|
+| Prepared progress based on each requirement for milestone 2 report|[#489](https://github.com/bounswe/bounswe2023group4/issues/489)|
+| I have reviewed this issue and provided feedback, check for details|[#487](https://github.com/bounswe/bounswe2023group4/issues/487)| 
+
+### Pull requests:
+|Task|Relevant Pull Requests|
+| --- | --- |
+|Implemented create poll page's main UI components according to the mock-up|[#332](https://github.com/bounswe/bounswe2023group4/pull/332)|
+|UI/UX of create poll page is improved and page made more user friendly, API request for create poll page is implemented in accordance with backend and database|[#374](https://github.com/bounswe/bounswe2023group4/pull/374)|
+|Realized an error and fixed it immediately for back and front teams' progress|[#378](https://github.com/bounswe/bounswe2023group4/pull/378)|
+|Added point indicator component to create poll page, Implemented a detailed input validation on create poll page and tested manually, Finalized create poll page's backend connection as changes occurred in swagger documentation, Re-implemented a feature of creating poll after realizing an inconsistency between mock up and requirements|[#445](https://github.com/bounswe/bounswe2023group4/pull/445)|
+|Finalized authentication pages' backend connections|[#446](https://github.com/bounswe/bounswe2023group4/pull/446)|
+|Implemented unit tests for create poll page to test its functionality|[#457](https://github.com/bounswe/bounswe2023group4/pull/457)|
+|I have reviewed following PRs and there were no conflicts or any inconsistencies therefore thay have been merged succesfully|[#329](https://github.com/bounswe/bounswe2023group4/pull/329), [#341](https://github.com/bounswe/bounswe2023group4/pull/341),[#383](https://github.com/bounswe/bounswe2023group4/pull/383),[#398](https://github.com/bounswe/bounswe2023group4/pull/398),[#470](https://github.com/bounswe/bounswe2023group4/pull/470)|
+|In the following PR some of the previous features have been corrupted due to new changes, so I requested changes on the PR. conflicts resolved on the same branch and then merged.|[#330](https://github.com/bounswe/bounswe2023group4/pull/330)|
+|Added unit test reports for sign-up and create poll pages, Added progress based on requirements, Added self contribution|[#484](https://github.com/bounswe/bounswe2023group4/pull/484)| 
+
+### Additional information:
+I have tried to organize team progress by arranging extra meetings for tasks when necessary. I also reminded the deadlines for significant tasks so that team progress did not fail. I also took part in the presentation by setting up technical devices accordingly with our scenario and I have managed devices during the presentation as our presenter proceeded with the scenario. I answered to questions about the project coming from PO and audience when necessary. Finally I communicated with the PO and got feedbacks for milestone 1. Then I moderated a meeting to share tasks for milestone 2 report together with addressing feedbacks I got. I have updated the requierments page according to the feedbacks. 
+
 ## Member: Şefik Palazoğlu
 ### Responsibilities: 
 Setting up backend system logic. Ensuring endpoints are working correctly. Implementing polls endpoints. Implementing internal poll subject tagging.
