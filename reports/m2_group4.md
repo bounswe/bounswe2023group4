@@ -71,7 +71,7 @@ Below we have included our detailed additions to the project by subteams.
 
 # Progress According to Requirements
 
-###Functional Requirements 
+### Functional Requirements 
 
 - 1.1 User Requirements 
 - 1.1.1 Guests 
