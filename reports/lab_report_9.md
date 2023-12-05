@@ -38,8 +38,8 @@
 | Create mock badges for profiles | [#412](https://github.com/bounswe/bounswe2023group4/issues/412) | Emre Batuhan Göç | 24.11.2023 | [#434](https://github.com/bounswe/bounswe2023group4/pull/434) | 1hr | 0.5hr |
 | Generate profile automatically on sign up | [#411](https://github.com/bounswe/bounswe2023group4/issues/411) | Emre Batuhan Göç | 24.11.2023 | [#432](https://github.com/bounswe/bounswe2023group4/pull/432) | 1hr | 1hr |
 | Profile implement get my profile endpoint | [#410](https://github.com/bounswe/bounswe2023group4/issues/410) | Emre Batuhan Göç | 24.11.2023 | [#433](https://github.com/bounswe/bounswe2023group4/pull/433) | 1hr | 1hr |
-| Profile Page Backend Integration | [#419](https://github.com/bounswe/bounswe2023group4/issues/420) | Selin Işık | 27.11.23 | [#476](https://github.com/bounswe/bounswe2023group4/pull/476) | 1.5h | |
-| Edit Profile Page Backend Integration | [#420](https://github.com/bounswe/bounswe2023group4/issues/419) | Selin Işık| 27.11.23 | [#476](https://github.com/bounswe/bounswe2023group4/pull/476) | 2hr | |
+| Profile Page Backend Integration | [#419](https://github.com/bounswe/bounswe2023group4/issues/420) | Selin Işık | 27.11.23 | [#476](https://github.com/bounswe/bounswe2023group4/pull/476) | 1.5h | 2hr |
+| Edit Profile Page Backend Integration | [#420](https://github.com/bounswe/bounswe2023group4/issues/419) | Selin Işık| 27.11.23 | [#476](https://github.com/bounswe/bounswe2023group4/pull/476) | 2hr | 1.5hr |
 | Implement create poll screen UI | [#314](https://github.com/bounswe/bounswe2023group4/issues/314) | Yiğit Şekerci | 23.11.23 | [PR#435](https://github.com/bounswe/bounswe2023group4/pull/435) | 1hr | 1.5hr |
 | Increase Mobile App tests' code coverage | [#317](https://github.com/bounswe/bounswe2023group4/issues/317) | Yiğit Şekerci | 27.11.23 | [PR#468](https://github.com/bounswe/bounswe2023group4/pull/468) | 1hr | 2hr |
 | Implement feed screen backend requests | [#362](https://github.com/bounswe/bounswe2023group4/issues/362) | Ahmet Emre Şafak | 27.11.23 | [PR#438](https://github.com/bounswe/bounswe2023group4/pull/438) | 2.5hr | 2.5hr |
