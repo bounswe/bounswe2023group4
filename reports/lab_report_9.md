@@ -19,8 +19,8 @@
 | Increase Mobile App tests' code coverage | [#317](https://github.com/bounswe/bounswe2023group4/issues/317) | Yiğit Şekerci | 21.11.23 | [Progress](https://github.com/bounswe/bounswe2023group4/issues/317#issuecomment-1821430058) | 5hr | Unfinished |
 | Implement feed screen backend requests | [#362](https://github.com/bounswe/bounswe2023group4/issues/362) | Ahmet Emre Şafak | 21.11.23 | - | 4hr | Unfinished |
 | Implement create poll screen backend requests| [#361](https://github.com/bounswe/bounswe2023group4/issues/361) | Yiğit Şekerci | 21.11.23 | [Progress](https://github.com/bounswe/bounswe2023group4/issues/361#issuecomment-1821418803) | 4hr | Unfinished |
-| Make Vote page responsive | [#366](https://github.com/bounswe/bounswe2023group4/issues/366) | Selin Işık | 21.11.23 | | 1hr | Unfinished |
-| Make Profile page responsive | [#365](https://github.com/bounswe/bounswe2023group4/issues/365) | Selin Işık | 21.11.23 | | 1hr | Unfinished |
+| Make Vote page responsive | [#366](https://github.com/bounswe/bounswe2023group4/issues/366) | Selin Işık | 21.11.23 | | 1hr | Cancelled |
+| Make Profile page responsive | [#365](https://github.com/bounswe/bounswe2023group4/issues/365) | Selin Işık | 21.11.23 | [#476](https://github.com/bounswe/bounswe2023group4/pull/476) | 1hr | Unfinished |
 | Unit Tests for Poll Endpoints | [#344](https://github.com/bounswe/bounswe2023group4/issues/344) | Şefik Palazoğlu | 26.11.2023 | [#469](https://github.com/bounswe/bounswe2023group4/pull/469) | 4hr | 3.5hr |
 | Signup Birthday Requirement |[#421](https://github.com/bounswe/bounswe2023group4/issues/421) | Hebun Şimşek | 22.11.2023 |[#427](https://github.com/bounswe/bounswe2023group4/pull/427) | 1hr | 1.5hr |
 | Authentication error management | [#413](https://github.com/bounswe/bounswe2023group4/issues/413) | Emre Batuhan Göç | 22.11.2023 | | 2hr | |
@@ -41,8 +41,8 @@
 | Create mock badges for profiles | [#412](https://github.com/bounswe/bounswe2023group4/issues/412) | Emre Batuhan Göç | 24.11.2023 | | 1hr |
 | Generate profile automatically on sign up | [#411](https://github.com/bounswe/bounswe2023group4/issues/411) | Emre Batuhan Göç | 24.11.2023 | | 1hr | |
 | Profile implement get my profile endpoint | [#410](https://github.com/bounswe/bounswe2023group4/issues/410) | Emre Batuhan Göç | 24.11.2023 | | 1hr | |
-| Profile Page Backend Integration | [#419](https://github.com/bounswe/bounswe2023group4/issues/420) | Selin Işık | 27.11.23 | | 1.5h | |
-| Edit Profile Page Backend Integration | [#420](https://github.com/bounswe/bounswe2023group4/issues/419) | Selin Işık| 27.11.23 | | 2hr | |
+| Profile Page Backend Integration | [#419](https://github.com/bounswe/bounswe2023group4/issues/420) | Selin Işık | 27.11.23 | [#476](https://github.com/bounswe/bounswe2023group4/pull/476) | 1.5h | |
+| Edit Profile Page Backend Integration | [#420](https://github.com/bounswe/bounswe2023group4/issues/419) | Selin Işık| 27.11.23 | [#476](https://github.com/bounswe/bounswe2023group4/pull/476) | 2hr | |
 | Implement create poll screen UI | [#314](https://github.com/bounswe/bounswe2023group4/issues/314) | Yiğit Şekerci | 23.11.23 | | 1hr | |
 | Increase Mobile App tests' code coverage | [#317](https://github.com/bounswe/bounswe2023group4/issues/317) | Yiğit Şekerci | 27.11.23 | | 1hr | |
 | Implement feed screen backend requests | [#362](https://github.com/bounswe/bounswe2023group4/issues/362) | Ahmet Emre Şafak | 27.11.23 | | 2.5hr | |
