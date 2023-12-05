@@ -102,6 +102,12 @@
 | Implement the UI of moderation-not moderator page from mock up | [#498](https://github.com/bounswe/bounswe2023group4/issues/498)| Enes Furkan Arslan | 12.12.2023 | 2h | 
 | Start implementation of general UI of moderation-not jury from mock up | [#499](https://github.com/bounswe/bounswe2023group4/issues/499) | Enes Furkan Arslan | 12.12.2023 | 3h |
 | Implement forgot password | [#500](https://github.com/bounswe/bounswe2023group4/issues/500) | Hebun Şimşek | 12.12.2023 | 4h |
+| Google Auth Fix | [#501](https://github.com/bounswe/bounswe2023group4/issues/501) | Kutay Saran,Emre Batuhan Göç | 11.12.2023 | 1h |
+| Final Milestone Plan for project | [#502](https://github.com/bounswe/bounswe2023group4/issues/502) | Emre Batuhan Göç | 11.12.2023 | 1.5h |
+| Implement selected badges in profile endpoints | [#503](https://github.com/bounswe/bounswe2023group4/issues/503) | Emre Batuhan Göç | 12.12.2023 | 2h |
+| Implement get poll endpoints for specific polls | [#504](https://github.com/bounswe/bounswe2023group4/issues/504) | Emre Batuhan Göç | 12.12.2023 | 3h |
+| Implement moderator endpoints | [#506](https://github.com/bounswe/bounswe2023group4/issues/506) | Emre Batuhan Göç | 12.12.2023 | 6h |
+
 ## Risks
 - We will try to implement annotations in the backend this week. We need an annotation server, getting another server might be a problem.
 
