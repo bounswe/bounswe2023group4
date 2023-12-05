@@ -89,6 +89,14 @@
 ## Risks
 - We will try to implement annotations in the backend this week. We need an annotation server, getting another server might be a problem.
 
+## Task Priority
+1. Annotation Implementation. PO has repeatedly asked for our progress for annotation, therefore we definitely need to complete annotation and it should be complete.
+1. Semantic Tagging. PO has asked for this feature in the 2nd milestone.
+2. Moderation. In accordance with the requirements, this needs to be done so we can reliably open polls.
+3. Jury. In accordance with the requirements, this needs to be done so that polls can be closed appropriately.
+4. Poll UI improvement. There is some aspects of our poll ui that needs to be improved. An example would be to make closed polls appear differently.
+5. Google Authentication Fix. Google authentication needs to work properly. It was mentioned briefly in the milestone.
+
 ## Participants
 - Ali Nasra
 - Ahmet Emre Şafak
