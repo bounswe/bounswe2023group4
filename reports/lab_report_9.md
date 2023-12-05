@@ -115,6 +115,10 @@
 | Update Web Project Color Palette   | [#509](https://github.com/bounswe/bounswe2023group4/issues/509) | Selin Işık | 12.12.2023 | 2h |
 | Add Time to Date Select Fields   | [#510](https://github.com/bounswe/bounswe2023group4/issues/510) | Selin Işık | 12.12.2023 | 1.5h |
 | Redesign the project name and logo | [#511](https://github.com/bounswe/bounswe2023group4/issues/511) | Selin Işık | 12.12.2023 | 1h |
+| Implement Moderation Screen UI| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 12.12.23 | 6hr |
+| Add edit logic to the profile page | [#512](https://github.com/bounswe/bounswe2023group4/issues/512) | Ahmet Emre Şafak | 12.12.23 | 3.5hr |
+| Fix profile image related issues in polls | [#513](https://github.com/bounswe/bounswe2023group4/issues/513) | Ahmet Emre Şafak | 12.12.23 | 1hr |
+| Implement navigation to other users profile | [#514](https://github.com/bounswe/bounswe2023group4/issues/514) | Ahmet Emre Şafak | 12.12.23 | 2hr |
 
 ## Risks
 - We will try to implement annotations in the backend this week. We need an annotation server, getting another server might be a problem.
