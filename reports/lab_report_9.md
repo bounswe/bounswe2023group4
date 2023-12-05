@@ -84,6 +84,8 @@
 | Implement Poll Comment | [#342](https://github.com/bounswe/bounswe2023group4/issues/342) | Şefik Palazoğlu | 12.12.2023 | 3hr |
 | Swagger Correction for Poll | [#399](https://github.com/bounswe/bounswe2023group4/issues/399) | Şefik Palazoğlu | 08.12.2023 | 1.5hr |
 | Researching and implementing the Annotation's UI| [#493](https://github.com/bounswe/bounswe2023group4/issues/493) | Ali Nasra | 20.12.2023 | 8hr |
+| Annotation Backend Requirement | [#494](https://github.com/bounswe/bounswe2023group4/issues/494) | Şefik Palazoğlu | 12.12.2023 | 6hr |
+
 ## Risks
 - We will try to implement annotations in the backend this week. We need an annotation server, getting another server might be a problem.
 
