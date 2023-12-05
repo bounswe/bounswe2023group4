@@ -19,7 +19,7 @@
 | Make Profile page responsive | [#365](https://github.com/bounswe/bounswe2023group4/issues/365) | Selin Işık | 21.11.23 | [#476](https://github.com/bounswe/bounswe2023group4/pull/476) | 1hr | 1hr |
 | Unit Tests for Poll Endpoints | [#344](https://github.com/bounswe/bounswe2023group4/issues/344) | Şefik Palazoğlu | 26.11.2023 | [#469](https://github.com/bounswe/bounswe2023group4/pull/469) | 4hr | 3.5hr |
 | Signup Birthday Requirement |[#421](https://github.com/bounswe/bounswe2023group4/issues/421) | Hebun Şimşek | 22.11.2023 |[#427](https://github.com/bounswe/bounswe2023group4/pull/427) | 1hr | 1.5hr |
-| Authentication error management | [#413](https://github.com/bounswe/bounswe2023group4/issues/413) | Emre Batuhan Göç | 22.11.2023 | | 2hr | |
+| Authentication error management | [#413](https://github.com/bounswe/bounswe2023group4/issues/413) | Emre Batuhan Göç | 22.11.2023 | [#430](https://github.com/bounswe/bounswe2023group4/pull/430) | 2hr | 1.5hr |
 | Email Verification Improvement | [#422](https://github.com/bounswe/bounswe2023group4/issues/422) | Hebun Şimşek | 24.11.2023 | | 1hr | Unfinished |
 | Swagger Correction for Poll | [#399](https://github.com/bounswe/bounswe2023group4/issues/399) | Şefik Palazoğlu | 24.11.2023 | [#436](https://github.com/bounswe/bounswe2023group4/pull/436), [Progress](https://github.com/bounswe/bounswe2023group4/tree/backend/improvement/pollSwagger) | 3hr | Unfinished |
 | Poll Voting | [#400](https://github.com/bounswe/bounswe2023group4/issues/400) | Şefik Palazoğlu | 23.11.2023 | [#440](https://github.com/bounswe/bounswe2023group4/pull/440) | 2hr | 2hr |
@@ -32,7 +32,7 @@
 | Finalize Create poll page's backend connections | [#407](https://github.com/bounswe/bounswe2023group4/issues/407) | Enes Furkan Arslan | 27.11.2023 | [#445](https://github.com/bounswe/bounswe2023group4/pull/445) | 4h | 5h |
 | Implement Authentication Token Management Middleware | [#409](https://github.com/bounswe/bounswe2023group4/issues/409) | Kutay Saran | 27.11.2023 | | 5hr | Unfinished |
 | Implement Poll Feed Page's Backend Connection | [#408](https://github.com/bounswe/bounswe2023group4/issues/408) | Kutay Saran | 27.11.2023 | | 2hr | 2hr |
-| Image storage and usage | [#415](https://github.com/bounswe/bounswe2023group4/issues/415) | Selin Işık, Emre Batuhan Göç, Hebun Şimşek | 24.11.2023 | | 4hr | |
+| Image storage and usage | [#415](https://github.com/bounswe/bounswe2023group4/issues/415) | Selin Işık, Emre Batuhan Göç, Hebun Şimşek | 24.11.2023 | [#437](https://github.com/bounswe/bounswe2023group4/pull/437) | 4hr | 4hr |
 | Update swagger and write unit tests for profile endpoints | [#414](https://github.com/bounswe/bounswe2023group4/issues/414) | Emre Batuhan Göç | 27.11.2023 | | 2.5hr | |
 | Create mock badges for profiles | [#412](https://github.com/bounswe/bounswe2023group4/issues/412) | Emre Batuhan Göç | 24.11.2023 | | 1hr |
 | Generate profile automatically on sign up | [#411](https://github.com/bounswe/bounswe2023group4/issues/411) | Emre Batuhan Göç | 24.11.2023 | | 1hr | |
