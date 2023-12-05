@@ -65,7 +65,9 @@
 | Reject Votes null value | [#450](https://github.com/bounswe/bounswe2023group4/issues/450) | Şefik Palazoğlu | 28.11.2023 | [#451](https://github.com/bounswe/bounswe2023group4/pull/451) |
 | Manual Poll Closing issue For Discrete Polls | [#456](https://github.com/bounswe/bounswe2023group4/issues/456) | Şefik Palazoğlu | 28.11.2023 | [#459](https://github.com/bounswe/bounswe2023group4/pull/459) |
 | Username Attached to poll | [#463](https://github.com/bounswe/bounswe2023group4/issues/463) | Şefik Palazoğlu | 28.11.2023 | [#465](https://github.com/bounswe/bounswe2023group4/pull/465) |
-
+| Writing Tests for the voting page | [#458](https://github.com/bounswe/bounswe2023group4/issues/458) | Ali Nasra | 28.11.2023 | [#470](https://github.com/bounswe/bounswe2023group4/pull/470) |
+| Solving Poll option padding problem | [#452](https://github.com/bounswe/bounswe2023group4/issues/452) | Ali Nasra | 28.11.2023 | [#455](https://github.com/bounswe/bounswe2023group4/pull/455) |
+| Adapting the isOpen Parameter to the voting mechanism | [#473](https://github.com/bounswe/bounswe2023group4/issues/473) | Ali Nasra | 28.11.2023 | [#474](https://github.com/bounswe/bounswe2023group4/pull/474) |
 
 
 
