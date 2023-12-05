@@ -51,7 +51,7 @@
 | Implement Poll Detail Screen Backend Requests| [#417](https://github.com/bounswe/bounswe2023group4/issues/417) | Ahmet Emre Şafak | 27.11.23 | | 2.5hr | |
 | Implement Moderation Screen UI| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 27.11.23 | | 3.5hr | |
 | Deployment of our frontend and backend for milestone | [#423](https://github.com/bounswe/bounswe2023group4/issues/423) | Hebun Şimşek | 28.11.2023 | | 2hr | |
-| Writing Scenario Test| [#424](https://github.com/bounswe/bounswe2023group4/issues/424) | Ali Nasra | 22.11.2023 | | 2hr | |
+| Writing Scenario Test| [#424](https://github.com/bounswe/bounswe2023group4/issues/424) | Ali Nasra | 22.11.2023 | [#443](https://github.com/bounswe/bounswe2023group4/pull/443)| 2hr | 1hr |
 
 
 ## Completed tasks that were not planned for the week
