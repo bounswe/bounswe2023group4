@@ -30,7 +30,7 @@
 | Poll GET return format | [#402](https://github.com/bounswe/bounswe2023group4/issues/402) | Şefik Palazoğlu | 23.11.2023 | [#431](https://github.com/bounswe/bounswe2023group4/pull/431) | 3hr | 3hr |
 | Poll GET Poll Creator Name | [#403](https://github.com/bounswe/bounswe2023group4/issues/403) | Şefik Palazoğlu | 22.11.2023 | [#426](https://github.com/bounswe/bounswe2023group4/pull/426) | 2hr | 2hr |
 | Point System | [#405](https://github.com/bounswe/bounswe2023group4/issues/405) | Şefik Palazoğlu, Emre Batuhan Göç | 24.11.2023 | [#439](https://github.com/bounswe/bounswe2023group4/pull/439) | 6hr | 5.5hr |
-| Finalize Authentication pages' backend connections | [#401](https://github.com/bounswe/bounswe2023group4/issues/401) | Kutay Saran, Enes Furkan Arslan | 27.11.2023 | | 3h | |
+| Finalize Authentication pages' backend connections | [#401](https://github.com/bounswe/bounswe2023group4/issues/401) | Kutay Saran, Enes Furkan Arslan | 27.11.2023 | [#446](https://github.com/bounswe/bounswe2023group4/pull/446) | 3h | 2h | 
 | Add point indicator component to create poll page | [#404](https://github.com/bounswe/bounswe2023group4/issues/404) | Enes Furkan Arslan | 27.11.2023 | [#445](https://github.com/bounswe/bounswe2023group4/pull/445) | 1h | 0.5h |
 | Validate user input on create poll page | [#406](https://github.com/bounswe/bounswe2023group4/issues/406) | Enes Furkan Arslan | 27.11.2023 | [#445](https://github.com/bounswe/bounswe2023group4/pull/445) | 4h | 4h |
 | Finalize Create poll page's backend connections | [#407](https://github.com/bounswe/bounswe2023group4/issues/407) | Enes Furkan Arslan | 27.11.2023 | [#445](https://github.com/bounswe/bounswe2023group4/pull/445) | 4h | 5h |
