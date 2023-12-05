@@ -77,7 +77,7 @@
 * [#403](https://github.com/bounswe/bounswe2023group4/issues/403) was closed 1 day late. PR was linked on time but reviewing the code took less than 1 day.
 * [#405](https://github.com/bounswe/bounswe2023group4/issues/405) was closed 2 days late. PR was linked on time, but reviewing how point system should work for the milestone took 2 days.
 * [#409](https://github.com/bounswe/bounswe2023group4/issues/409) [Kutay] [INCOMPLETE]
-* [#424](https://github.com/bounswe/bounswe2023group4/issues/424) was completed later than expected due to a misunderstanding pertinent to the deadline of the test plan.
+* [#424](https://github.com/bounswe/bounswe2023group4/issues/424) was completed later than expected due to a misunderstanding pertinent to the deadline of the test plan. A detailed clarification can be found in the comments.
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
 | --- | --- | --- | --- | --- |
