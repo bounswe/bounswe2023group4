@@ -86,7 +86,7 @@
 * [#405](https://github.com/bounswe/bounswe2023group4/issues/405) was closed 2 days late. PR was linked on time, but reviewing how point system should work for the milestone took 2 days.
 * [#409](https://github.com/bounswe/bounswe2023group4/issues/409) [Kutay] [INCOMPLETE]
 * [#424](https://github.com/bounswe/bounswe2023group4/issues/424) was completed later than expected due to a misunderstanding pertinent to the deadline of the test plan. A detailed clarification can be found in the comments.
-* [#422](https://github.com/bounswe/bounswe2023group4/issues/422) is unfinished because we couldn't organize a frontend backend coordination for the implementation. 
+* [#422](https://github.com/bounswe/bounswe2023group4/issues/422) is unfinished because we couldn't organize a frontend backend coordination for the implementation of email verification. 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
 | --- | --- | --- | --- | --- |
@@ -101,7 +101,7 @@
 | Integration of email verification | [#495](https://github.com/bounswe/bounswe2023group4/issues/495) | Kutay Saran, Hebun Şimşek | 12.12.2023 | 3hr |
 | Implement the UI of moderation-not moderator page from mock up | [#498](https://github.com/bounswe/bounswe2023group4/issues/498)| Enes Furkan Arslan | 12.12.2023 | 2h | 
 | Start implementation of general UI of moderation-not jury from mock up | [#499](https://github.com/bounswe/bounswe2023group4/issues/499) | Enes Furkan Arslan | 12.12.2023 | 3h |
-
+| Implement forgot password | [#500](https://github.com/bounswe/bounswe2023group4/issues/500) | Hebun Şimşek | 12.12.2023 | 4h |
 ## Risks
 - We will try to implement annotations in the backend this week. We need an annotation server, getting another server might be a problem.
 
