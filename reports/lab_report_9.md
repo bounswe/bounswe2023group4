@@ -22,9 +22,9 @@
 | Make Vote page responsive | [#366](https://github.com/bounswe/bounswe2023group4/issues/366) | Selin Işık | 21.11.23 | | 1hr | Unfinished |
 | Make Profile page responsive | [#365](https://github.com/bounswe/bounswe2023group4/issues/365) | Selin Işık | 21.11.23 | | 1hr | Unfinished |
 | Unit Tests for Poll Endpoints | [#344](https://github.com/bounswe/bounswe2023group4/issues/344) | Şefik Palazoğlu | 26.11.2023 | [#469](https://github.com/bounswe/bounswe2023group4/pull/469) | 4hr | 3.5hr |
-| Signup Birthday Requirement |[#421](https://github.com/bounswe/bounswe2023group4/issues/421) | Hebun Şimşek | 22.11.2023 | | 1hr | |
+| Signup Birthday Requirement |[#421](https://github.com/bounswe/bounswe2023group4/issues/421) | Hebun Şimşek | 22.11.2023 |[#427](https://github.com/bounswe/bounswe2023group4/pull/427) | 1hr | 1.5hr |
 | Authentication error management | [#413](https://github.com/bounswe/bounswe2023group4/issues/413) | Emre Batuhan Göç | 22.11.2023 | | 2hr | |
-| Email Verification Improvement | [#422](https://github.com/bounswe/bounswe2023group4/issues/422) | Hebun Şimşek | 24.11.2023 | | 1hr | |
+| Email Verification Improvement | [#422](https://github.com/bounswe/bounswe2023group4/issues/422) | Hebun Şimşek | 24.11.2023 | | 1hr | Unfinished |
 | Swagger Correction for Poll | [#399](https://github.com/bounswe/bounswe2023group4/issues/399) | Şefik Palazoğlu | 24.11.2023 | [#436](https://github.com/bounswe/bounswe2023group4/pull/436), [Progress](https://github.com/bounswe/bounswe2023group4/tree/backend/improvement/pollSwagger) | 3hr | Unfinished |
 | Poll Voting | [#400](https://github.com/bounswe/bounswe2023group4/issues/400) | Şefik Palazoğlu | 23.11.2023 | [#440](https://github.com/bounswe/bounswe2023group4/pull/440) | 2hr | 2hr |
 | Poll GET return format | [#402](https://github.com/bounswe/bounswe2023group4/issues/402) | Şefik Palazoğlu | 23.11.2023 | [#431](https://github.com/bounswe/bounswe2023group4/pull/431) | 3hr | 3hr |
@@ -86,6 +86,7 @@
 * [#405](https://github.com/bounswe/bounswe2023group4/issues/405) was closed 2 days late. PR was linked on time, but reviewing how point system should work for the milestone took 2 days.
 * [#409](https://github.com/bounswe/bounswe2023group4/issues/409) [Kutay] [INCOMPLETE]
 * [#424](https://github.com/bounswe/bounswe2023group4/issues/424) was completed later than expected due to a misunderstanding pertinent to the deadline of the test plan. A detailed clarification can be found in the comments.
+* [#422](https://github.com/bounswe/bounswe2023group4/issues/422) is unfinished because we couldn't organize a frontend backend coordination for the implementation. 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
 | --- | --- | --- | --- | --- |
