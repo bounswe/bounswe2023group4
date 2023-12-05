@@ -72,7 +72,7 @@
 | Solve the misunderstanding of create poll as a user | [#441](https://github.com/bounswe/bounswe2023group4/issues/441) | Enes Furkan Arslan | 28.11.2023 | [#445](https://github.com/bounswe/bounswe2023group4/pull/445)
 | Write create poll page tests | [#453](https://github.com/bounswe/bounswe2023group4/issues/453) | Enes Furkan Arslan | 28.11.2023 | [#457](https://github.com/bounswe/bounswe2023group4/pull/457)
 | Mobile refactor | [#460](https://github.com/bounswe/bounswe2023group4/issues/460) | Yiğit Şekerci | 28.11.2023 | [PR#461](https://github.com/bounswe/bounswe2023group4/pull/461)
-| Improve Mobile flow and design | [#466](https://github.com/bounswe/bounswe2023group4/issues/466) | Yiğit Şekerci | 28.11.2023 | [#467](https://github.com/bounswe/bounswe2023group4/pull/467)
+| Improve Mobile flow and design | [#466](https://github.com/bounswe/bounswe2023group4/issues/466) | Yiğit Şekerci | 28.11.2023 | [PR#467](https://github.com/bounswe/bounswe2023group4/pull/467)
 
 ## Planned vs. Actual
 * [#241](https://github.com/bounswe/bounswe2023group4/issues/241) is still not done because we did not decide how the flow with refresh token happens in the database. As soon as that is finished, this issue will be worked on.
