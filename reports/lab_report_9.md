@@ -34,8 +34,8 @@
 | Add point indicator component to create poll page | [#404](https://github.com/bounswe/bounswe2023group4/issues/404) | Enes Furkan Arslan | 27.11.2023 | | 1h | |
 | Validate user input on create poll page | [#406](https://github.com/bounswe/bounswe2023group4/issues/406) | Enes Furkan Arslan | 27.11.2023 | | 4h | |
 | Finalize Create poll page's backend connections | [#407](https://github.com/bounswe/bounswe2023group4/issues/407) | Enes Furkan Arslan | 27.11.2023 | | 4h | |
-| Implement Authentication Token Management Middleware | [#409](https://github.com/bounswe/bounswe2023group4/issues/409) | Kutay Saran | 27.11.2023 | | 5hr | |
-| Implement Poll Feed Page's Backend Connection | [#408](https://github.com/bounswe/bounswe2023group4/issues/408) | Kutay Saran | 27.11.2023 | | 2hr | |
+| Implement Authentication Token Management Middleware | [#409](https://github.com/bounswe/bounswe2023group4/issues/409) | Kutay Saran | 27.11.2023 | | 5hr | Unfinished |
+| Implement Poll Feed Page's Backend Connection | [#408](https://github.com/bounswe/bounswe2023group4/issues/408) | Kutay Saran | 27.11.2023 | | 2hr | 2hr |
 | Image storage and usage | [#415](https://github.com/bounswe/bounswe2023group4/issues/415) | Selin Işık, Emre Batuhan Göç, Hebun Şimşek | 24.11.2023 | | 4hr | |
 | Update swagger and write unit tests for profile endpoints | [#414](https://github.com/bounswe/bounswe2023group4/issues/414) | Emre Batuhan Göç | 27.11.2023 | | 2.5hr | |
 | Create mock badges for profiles | [#412](https://github.com/bounswe/bounswe2023group4/issues/412) | Emre Batuhan Göç | 24.11.2023 | | 1hr |
@@ -85,6 +85,10 @@
 | Swagger Correction for Poll | [#399](https://github.com/bounswe/bounswe2023group4/issues/399) | Şefik Palazoğlu | 08.12.2023 | 1.5hr |
 | Researching and implementing the Annotation's UI| [#493](https://github.com/bounswe/bounswe2023group4/issues/493) | Ali Nasra | 20.12.2023 | 8hr |
 | Annotation Backend Requirement | [#494](https://github.com/bounswe/bounswe2023group4/issues/494) | Şefik Palazoğlu | 12.12.2023 | 6hr |
+| Implement Authentication Token Management Middleware | [#409](https://github.com/bounswe/bounswe2023group4/issues/409) | Kutay Saran | 12.12.2023 | 4hr |
+| Implement Forgot Password Page UI | [#497](https://github.com/bounswe/bounswe2023group4/issues/497) | Kutay Saran | 12.12.2023 | 2hr |
+| Integration of forgot password functionality | [#496](https://github.com/bounswe/bounswe2023group4/issues/496) | Kutay Saran, Hebun Şimşek | 12.12.2023 | 2hr |
+| Integration of email verification | [#495](https://github.com/bounswe/bounswe2023group4/issues/495) | Kutay Saran, Hebun Şimşek | 12.12.2023 | 3hr |
 
 ## Risks
 - We will try to implement annotations in the backend this week. We need an annotation server, getting another server might be a problem.
