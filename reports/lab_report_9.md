@@ -54,6 +54,7 @@
 | Writing Scenario Test| [#424](https://github.com/bounswe/bounswe2023group4/issues/424) | Ali Nasra | 22.11.2023 | [#443](https://github.com/bounswe/bounswe2023group4/pull/443)| 2hr | 1hr |
 | Update requirements according to the feedbacks | [#486](https://github.com/bounswe/bounswe2023group4/issues/486) | Enes Furkan Arslan | 4.12.2023 | [#486](https://github.com/bounswe/bounswe2023group4/issues/486) | 1h | 1h | 
 | Add overview and update glossary for requirements according to the feedbacks | [#488](https://github.com/bounswe/bounswe2023group4/issues/488) | Enes Furkan Arslan | 4.12.2023 | [#488](https://github.com/bounswe/bounswe2023group4/issues/488) | 1h | 1h |
+| Add progress based on requirements to milestone report 2 | [#489](https://github.com/bounswe/bounswe2023group4/issues/489) | Enes Furkan Arslan | 1.12.2023 | [#484](https://github.com/bounswe/bounswe2023group4/issues/484) | 1h | 2h |
 
 
 ## Completed tasks that were not planned for the week
