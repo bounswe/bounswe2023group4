@@ -68,6 +68,7 @@
 | Writing Tests for the voting page | [#458](https://github.com/bounswe/bounswe2023group4/issues/458) | Ali Nasra | 28.11.2023 | [#470](https://github.com/bounswe/bounswe2023group4/pull/470) |
 | Solving Poll option padding problem | [#452](https://github.com/bounswe/bounswe2023group4/issues/452) | Ali Nasra | 28.11.2023 | [#455](https://github.com/bounswe/bounswe2023group4/pull/455) |
 | Adapting the isOpen Parameter to the voting mechanism | [#473](https://github.com/bounswe/bounswe2023group4/issues/473) | Ali Nasra | 28.11.2023 | [#474](https://github.com/bounswe/bounswe2023group4/pull/474) |
+| Integrating the Vote Page UI with the back-end server|[#347](https://github.com/bounswe/bounswe2023group4/issues/347) | Ali Nasra | 28.11.2023 | [#449](https://github.com/bounswe/bounswe2023group4/pull/449) |
 
 
 
