@@ -8,6 +8,7 @@
 * We implemented an automatic subject tagging system, added profile pictures to profile. Implemented voting page and feed page. We implemented the voting and point distribution for multiple choice polls.
 * Unit testing was done mostly but needs to be improved further.
 * We plan to work on semantic tagging, annotation, moderation system, and jury system until the final milestone.
+* In mobile instead of focusing on new feature (moderation), we worked on existing bugs and design flaws to wrap up the app until the milestone.
   
 ## What was planned for the week? How did it go?
 
