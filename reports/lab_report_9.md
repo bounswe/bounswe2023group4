@@ -71,8 +71,8 @@
 | Writing Tests for the voting page | [#458](https://github.com/bounswe/bounswe2023group4/issues/458) | Ali Nasra | 28.11.2023 | [#470](https://github.com/bounswe/bounswe2023group4/pull/470) |
 | Adapting the isOpen Parameter to the voting mechanism | [#473](https://github.com/bounswe/bounswe2023group4/issues/473) | Ali Nasra | 28.11.2023 | [#474](https://github.com/bounswe/bounswe2023group4/pull/474) |
 | Preparing the General Test Plan for the 2nd milestone's report| [#485](https://github.com/bounswe/bounswe2023group4/issues/485) | Ali Nasra | 4.12.2023 | [#484](https://github.com/bounswe/bounswe2023group4/pull/484) |
-| Solve the misunderstanding of create poll as a user | [#441](https://github.com/bounswe/bounswe2023group4/issues/441) | Enes Furkan Arslan | [#445](https://github.com/bounswe/bounswe2023group4/pull/445)
-| Write create poll page tests | [#453](https://github.com/bounswe/bounswe2023group4/issues/453) | Enes Furkan Arslan | [#457](https://github.com/bounswe/bounswe2023group4/pull/457)
+| Solve the misunderstanding of create poll as a user | [#441](https://github.com/bounswe/bounswe2023group4/issues/441) | Enes Furkan Arslan | 28.11.2023 | [#445](https://github.com/bounswe/bounswe2023group4/pull/445)
+| Write create poll page tests | [#453](https://github.com/bounswe/bounswe2023group4/issues/453) | Enes Furkan Arslan | 28.11.2023 | [#457](https://github.com/bounswe/bounswe2023group4/pull/457)
 
 ## Planned vs. Actual
 * [#241](https://github.com/bounswe/bounswe2023group4/issues/241) is still not done because we did not decide how the flow with refresh token happens in the database. As soon as that is finished, this issue will be worked on.
