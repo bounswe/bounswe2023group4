@@ -96,7 +96,7 @@
 | Implement Forgot Password Page UI | [#497](https://github.com/bounswe/bounswe2023group4/issues/497) | Kutay Saran | 12.12.2023 | 2hr |
 | Integration of forgot password functionality | [#496](https://github.com/bounswe/bounswe2023group4/issues/496) | Kutay Saran, Hebun Şimşek | 12.12.2023 | 2hr |
 | Integration of email verification | [#495](https://github.com/bounswe/bounswe2023group4/issues/495) | Kutay Saran, Hebun Şimşek | 12.12.2023 | 3hr |
-| Implement the UI of moderation-not moderator page from mock up | | Enes Furkan Arslan | 12.12.2023 | 2h | 
+| Implement the UI of moderation-not moderator page from mock up | [#498](https://github.com/bounswe/bounswe2023group4/issues/498)| Enes Furkan Arslan | 12.12.2023 | 2h | 
 | Start implementation of general UI of moderation-not jury from mock up | | Enes Furkan Arslan | 12.12.2023 | 3h |
 
 ## Risks
