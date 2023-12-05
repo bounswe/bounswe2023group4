@@ -33,10 +33,10 @@
 | Implement Authentication Token Management Middleware | [#409](https://github.com/bounswe/bounswe2023group4/issues/409) | Kutay Saran | 27.11.2023 | | 5hr | Unfinished |
 | Implement Poll Feed Page's Backend Connection | [#408](https://github.com/bounswe/bounswe2023group4/issues/408) | Kutay Saran | 27.11.2023 | | 2hr | 2hr |
 | Image storage and usage | [#415](https://github.com/bounswe/bounswe2023group4/issues/415) | Selin Işık, Emre Batuhan Göç, Hebun Şimşek | 24.11.2023 | [#437](https://github.com/bounswe/bounswe2023group4/pull/437) | 4hr | 4hr |
-| Update swagger and write unit tests for profile endpoints | [#414](https://github.com/bounswe/bounswe2023group4/issues/414) | Emre Batuhan Göç | 27.11.2023 | | 2.5hr | |
-| Create mock badges for profiles | [#412](https://github.com/bounswe/bounswe2023group4/issues/412) | Emre Batuhan Göç | 24.11.2023 | | 1hr |
-| Generate profile automatically on sign up | [#411](https://github.com/bounswe/bounswe2023group4/issues/411) | Emre Batuhan Göç | 24.11.2023 | | 1hr | |
-| Profile implement get my profile endpoint | [#410](https://github.com/bounswe/bounswe2023group4/issues/410) | Emre Batuhan Göç | 24.11.2023 | | 1hr | |
+| Update swagger and write unit tests for profile endpoints | [#414](https://github.com/bounswe/bounswe2023group4/issues/414) | Emre Batuhan Göç | 27.11.2023 | [#477](https://github.com/bounswe/bounswe2023group4/pull/477), [#433](https://github.com/bounswe/bounswe2023group4/pull/433) | 2.5hr | 2.5hr |
+| Create mock badges for profiles | [#412](https://github.com/bounswe/bounswe2023group4/issues/412) | Emre Batuhan Göç | 24.11.2023 | [#434](https://github.com/bounswe/bounswe2023group4/pull/434) | 1hr | 0.5hr |
+| Generate profile automatically on sign up | [#411](https://github.com/bounswe/bounswe2023group4/issues/411) | Emre Batuhan Göç | 24.11.2023 | [#432](https://github.com/bounswe/bounswe2023group4/pull/432) | 1hr | 1hr |
+| Profile implement get my profile endpoint | [#410](https://github.com/bounswe/bounswe2023group4/issues/410) | Emre Batuhan Göç | 24.11.2023 | [#433](https://github.com/bounswe/bounswe2023group4/pull/433) | 1hr | 1hr |
 | Profile Page Backend Integration | [#419](https://github.com/bounswe/bounswe2023group4/issues/420) | Selin Işık | 27.11.23 | [#476](https://github.com/bounswe/bounswe2023group4/pull/476) | 1.5h | |
 | Edit Profile Page Backend Integration | [#420](https://github.com/bounswe/bounswe2023group4/issues/419) | Selin Işık| 27.11.23 | [#476](https://github.com/bounswe/bounswe2023group4/pull/476) | 2hr | |
 | Implement create poll screen UI | [#314](https://github.com/bounswe/bounswe2023group4/issues/314) | Yiğit Şekerci | 23.11.23 | [PR#435](https://github.com/bounswe/bounswe2023group4/pull/435) | 1hr | 1.5hr |
