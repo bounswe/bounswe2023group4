@@ -66,12 +66,10 @@
 | Manual Poll Closing issue For Discrete Polls | [#456](https://github.com/bounswe/bounswe2023group4/issues/456) | Şefik Palazoğlu | 28.11.2023 | [#459](https://github.com/bounswe/bounswe2023group4/pull/459) |
 | Username Attached to poll | [#463](https://github.com/bounswe/bounswe2023group4/issues/463) | Şefik Palazoğlu | 28.11.2023 | [#465](https://github.com/bounswe/bounswe2023group4/pull/465) |
 | Finishing the integration of the Vote Page UI with the back-end server|[#347](https://github.com/bounswe/bounswe2023group4/issues/347) | Ali Nasra | 28.11.2023 | [#449](https://github.com/bounswe/bounswe2023group4/pull/449) |
-| Writing Tests for the voting page | [#458](https://github.com/bounswe/bounswe2023group4/issues/458) | Ali Nasra | 28.11.2023 | [#470](https://github.com/bounswe/bounswe2023group4/pull/470) |
 | Solving Poll option padding problem | [#452](https://github.com/bounswe/bounswe2023group4/issues/452) | Ali Nasra | 28.11.2023 | [#455](https://github.com/bounswe/bounswe2023group4/pull/455) |
-| Adapting the isOpen Parameter to the voting mechanism | [#473](https://github.com/bounswe/bounswe2023group4/issues/473) | Ali Nasra | 28.11.2023 | [#474](https://github.com/bounswe/bounswe2023group4/pull/474) |
 | Unspecified closingDate Poll Render Problem|[#454](https://github.com/bounswe/bounswe2023group4/issues/454) | Ali Nasra | 28.11.2023 | [#455](https://github.com/bounswe/bounswe2023group4/pull/455) |
-
-
+| Writing Tests for the voting page | [#458](https://github.com/bounswe/bounswe2023group4/issues/458) | Ali Nasra | 28.11.2023 | [#470](https://github.com/bounswe/bounswe2023group4/pull/470) |
+| Adapting the isOpen Parameter to the voting mechanism | [#473](https://github.com/bounswe/bounswe2023group4/issues/473) | Ali Nasra | 28.11.2023 | [#474](https://github.com/bounswe/bounswe2023group4/pull/474) |
 
 ## Planned vs. Actual
 * [#241](https://github.com/bounswe/bounswe2023group4/issues/241) is still not done because we did not decide how the flow with refresh token happens in the database. As soon as that is finished, this issue will be worked on.
