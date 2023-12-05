@@ -46,7 +46,7 @@
 | Implement create poll screen backend requests| [#361](https://github.com/bounswe/bounswe2023group4/issues/361) | Yiğit Şekerci | 23.11.23 | [PR#435](https://github.com/bounswe/bounswe2023group4/pull/435) | 0.5hr | 1hr |
 | Implement Profile Screen Backend Requests| [#416](https://github.com/bounswe/bounswe2023group4/issues/416) | Ahmet Emre Şafak | 27.11.23 | [PR#438](https://github.com/bounswe/bounswe2023group4/pull/438) | 3hr | 2hr |
 | Implement Poll Detail Screen Backend Requests| [#417](https://github.com/bounswe/bounswe2023group4/issues/417) | Ahmet Emre Şafak | 27.11.23 | [PR#462](https://github.com/bounswe/bounswe2023group4/pull/462) | 2.5hr | 1.5hr |
-| Implement Moderation Screen UI| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 27.11.23 | - | 3.5hr | Unfinished |
+| Implement Moderation Screen UI| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 27.11.23 | - | 3.5hr | On hold |
 | Deployment of our frontend and backend for milestone | [#423](https://github.com/bounswe/bounswe2023group4/issues/423) | Hebun Şimşek | 28.11.2023 | [link](https://github.com/bounswe/bounswe2023group4/issues/423#issuecomment-1828411786) | 2hr | 2hr |
 | Writing Scenario Test| [#424](https://github.com/bounswe/bounswe2023group4/issues/424) | Ali Nasra | 22.11.2023 | [#443](https://github.com/bounswe/bounswe2023group4/pull/443)| 2hr | 1hr |
 | Update requirements according to the feedbacks | [#486](https://github.com/bounswe/bounswe2023group4/issues/486) | Enes Furkan Arslan | 4.12.2023 | [#486](https://github.com/bounswe/bounswe2023group4/issues/486) | 1h | 1h | 
