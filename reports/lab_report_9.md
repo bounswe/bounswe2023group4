@@ -88,6 +88,7 @@
 * [#422](https://github.com/bounswe/bounswe2023group4/issues/422) is unfinished because we couldn't organize a frontend backend coordination for the implementation of email verification.
 * [#366](https://github.com/bounswe/bounswe2023group4/issues/366) is cancelled since we decided not to prioritize responsiveness tasks. It may reopen after crucial project features are completed.
 * [#418](https://github.com/bounswe/bounswe2023group4/issues/418) was on hold to focus on the parts that we will show in the milestone. This week we will focus on this issue and its description will be extended.
+* [#415](https://github.com/bounswe/bounswe2023group4/issues/415) was completed later than expected due to forgetting that this task was a multipart task. So the task time was managed efficiently but given deadline did not take into account that different sections would be finished at different times.
   
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
