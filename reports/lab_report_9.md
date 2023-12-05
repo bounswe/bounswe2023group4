@@ -87,6 +87,7 @@
 * [#409](https://github.com/bounswe/bounswe2023group4/issues/409) [Kutay] [INCOMPLETE]
 * [#424](https://github.com/bounswe/bounswe2023group4/issues/424) was completed later than expected due to a misunderstanding pertinent to the deadline of the test plan. A detailed clarification can be found in the comments.
 * [#422](https://github.com/bounswe/bounswe2023group4/issues/422) is unfinished because we couldn't organize a frontend backend coordination for the implementation of email verification.
+* [#366](https://github.com/bounswe/bounswe2023group4/issues/366) is cancelled since we decided not to prioritize responsiveness tasks. It may reopen after crucial project features are completed.
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
 | --- | --- | --- | --- | --- |
