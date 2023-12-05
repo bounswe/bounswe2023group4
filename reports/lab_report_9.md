@@ -86,7 +86,7 @@
 * [#405](https://github.com/bounswe/bounswe2023group4/issues/405) was closed 2 days late. PR was linked on time, but reviewing how point system should work for the milestone took 2 days.
 * [#409](https://github.com/bounswe/bounswe2023group4/issues/409) [Kutay] [INCOMPLETE]
 * [#424](https://github.com/bounswe/bounswe2023group4/issues/424) was completed later than expected due to a misunderstanding pertinent to the deadline of the test plan. A detailed clarification can be found in the comments.
-* [#422](https://github.com/bounswe/bounswe2023group4/issues/422) is unfinished because we couldn't organize a frontend backend coordination for the implementation of email verification. 
+* [#422](https://github.com/bounswe/bounswe2023group4/issues/422) is unfinished because we couldn't organize a frontend backend coordination for the implementation of email verification.
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
 | --- | --- | --- | --- | --- |
@@ -107,6 +107,11 @@
 | Implement selected badges in profile endpoints | [#503](https://github.com/bounswe/bounswe2023group4/issues/503) | Emre Batuhan Göç | 12.12.2023 | 2h |
 | Implement get poll endpoints for specific polls | [#504](https://github.com/bounswe/bounswe2023group4/issues/504) | Emre Batuhan Göç | 12.12.2023 | 3h |
 | Implement moderator endpoints | [#506](https://github.com/bounswe/bounswe2023group4/issues/506) | Emre Batuhan Göç | 12.12.2023 | 6h |
+| Fix profile id - user id mismatch bug  | [#507](https://github.com/bounswe/bounswe2023group4/issues/507) | Selin Işık, Emre Batuhan Göç | 12.12.2023 | 1h |
+| Update Poll Card UI  | [#508](https://github.com/bounswe/bounswe2023group4/issues/508) | Selin Işık | 12.12.2023 | 2h |
+| Update Web Project Color Palette   | [#509](https://github.com/bounswe/bounswe2023group4/issues/509) | Selin Işık | 12.12.2023 | 2h |
+| Add Time to Date Select Fields   | [#510](https://github.com/bounswe/bounswe2023group4/issues/510) | Selin Işık | 12.12.2023 | 1.5h |
+| Redesign the project name and logo | [#511](https://github.com/bounswe/bounswe2023group4/issues/511) | Selin Işık | 12.12.2023 | 1h |
 
 ## Risks
 - We will try to implement annotations in the backend this week. We need an annotation server, getting another server might be a problem.
