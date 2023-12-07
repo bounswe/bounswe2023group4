@@ -38,13 +38,17 @@ async function googleLogInWithCode(code,res){
         return res.status(403).json({error:errorCodes.GOOGLE_LOGIN_NONVERIFIED_GOOGLE_ACCOUNT});
       }
 
-      const generatedPassword = generateRandomPassword(12);
-      const { error, userId} = await db.addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+      const email_exists = await db.findUser({email:googleUser.email})
 
       let user = {};
 
-      if(!error){
-        console.log("Fourth")
+      if (email_exists.error){
+        //This means that the given email is not in use so we will create a new user
+        const generatedPassword = generateRandomPassword(12);
+        const {error, userId} = await db.addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+        if(error){
+          return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
+        }
 
         const result = await profileDb.addProfile(userId,googleUser.given_name,googleUser.email);
         if(!result.profileId){
@@ -54,12 +58,9 @@ async function googleLogInWithCode(code,res){
         user = {name : googleUser.given_name, id: userId};
       }
       else{
-        const new_user = await db.findUser({email:googleUser.email})
-        console.log("Fifth",new_user)
-
-        user = {name : new_user.username, id: new_user.id};
+        // The given email was found so we will use that user
+        user = {name : email_exists.username, id: email_exists.id};
       }
-
 
       const accesToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
@@ -80,15 +81,31 @@ async function googleLogInWithCode(code,res){
         return res.status(403).json({error:errorCodes.GOOGLE_LOGIN_NONVERIFIED_GOOGLE_ACCOUNT});
       }
 
-      const generatedPassword = generateRandomPassword(12);
-      const {error, userId} = await db.addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
 
-      const result = await profileDb.addProfile(userId,googleUser.given_name,googleUser.email);
-      if(!result.profileId){
-        return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
+      const email_exists = await db.findUser({email:googleUser.email})
+
+      let user = {};
+
+      if (email_exists.error){
+        //This means that the given email is not in use so we will create a new user
+        const generatedPassword = generateRandomPassword(12);
+        const {error, userId} = await db.addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+        if(error){
+          return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
+        }
+        // Implement rollback when fail
+        const result = await profileDb.addProfile(userId,googleUser.given_name,googleUser.email);
+        if(!result.profileId){
+          return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
+        }
+
+        user = {name : googleUser.given_name, id: userId};
       }
-
-      const user = {name : googleUser.given_name, id: userId};
+      else{
+        // The given email was found so we will use that user
+        user = {name : email_exists.username, id: email_exists.id};
+      }
+      
       const accesToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
 
