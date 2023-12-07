@@ -251,6 +251,52 @@ router.post("/profilePhoto",authenticator.authorizeAccessToken,upload.single('im
  */
 router.patch('/', service.updateProfile);
 
+/**
+ * @swagger
+ * /profiles/badges:
+ *   patch:
+ *     tags:
+ *       - profiles
+ *     description: Update a badge selection mode. Authorization is required.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               badgeId:
+ *                 type: integer
+ *               isSelected:
+ *                 type: boolean
+ *     responses:
+ *       200:
+ *         description: Badge updated successfully
+ *         content:
+ *           application/json:
+ *             type: object
+ *             properties:
+ *               status: string
+ *       400:
+ *         description: Bad Request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 code:
+ *                   type: integer
+ *             examples:
+ *               INSUFFICIENT_DATA:
+ *                 value:
+ *                   error:
+ *                     code: 1007,
+ *                     message: Given data is not sufficient. Please follow guidelines.
+ */
+router.patch('/badges',authenticator.authorizeAccessToken,service.updateBadge)
+
 
 
 module.exports = router;
