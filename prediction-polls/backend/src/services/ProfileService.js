@@ -3,6 +3,7 @@ const authDb = require("../repositories/AuthorizationDB.js");
 const crypto = require('crypto');
 const aws = require('aws-sdk');
 const { GetObjectCommand } = require('@aws-sdk/client-s3');
+const errorCodes = require("../errorCodes.js");
 
 const generateFileName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex');
 
@@ -184,4 +185,32 @@ async function updateProfile(req,res){
     }
 }
 
-module.exports = {getProfile,getProfileWithProfileId,getMyProfile,updateProfile,uploadImagetoS3}
+async function updateBadge(req,res){
+    const userId = req.user.id;
+    const {badgeId,isSelected} = req.body;
+
+    if(badgeId == undefined || isSelected == undefined){
+        return res.status(400).json({error:errorCodes.INSUFFICIENT_DATA});
+    }
+
+    try{
+        const {badges,error} = await db.getBadges(userId);
+        if(error){
+            throw error;
+        }
+        for (let i = 0; i < badges.length; i++) {
+            if(badgeId == badges[i].id){
+                const badge_result = await db.updateBadge(badgeId,isSelected);
+                if(badge_result.error){
+                    throw errorCodes.DATABASE_ERROR;
+                }
+                return res.status(200).json({status:"success"});
+            }
+        }
+        throw errorCodes.USER_DOES_NOT_HAVE_GIVEN_BADGE;
+    }catch(error){
+        return res.status(400).json({error:error});
+    }
+}
+
+module.exports = {getProfile,getProfileWithProfileId,getMyProfile,updateProfile,uploadImagetoS3,updateBadge}
