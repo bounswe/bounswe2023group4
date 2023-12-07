@@ -65,7 +65,7 @@ async function googleLogInWithCode(code,res){
       const accesToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
       db.addRefreshToken(refreshToken);
-      res.json({accessToken: accesToken, refreshToken: refreshToken})
+      res.json({accessToken: accesToken, refreshToken: refreshToken, username:user.name})
   
     } catch (error) {
       return res.status(500).json({error:errorCodes.GOOGLE_LOGIN_FAILED});
@@ -105,12 +105,12 @@ async function googleLogInWithCode(code,res){
         // The given email was found so we will use that user
         user = {name : email_exists.username, id: email_exists.id};
       }
-      
+
       const accesToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
 
       db.addRefreshToken(refreshToken);
-      res.json({accessToken: accesToken, refreshToken: refreshToken})
+      res.json({accessToken: accesToken, refreshToken: refreshToken, username:user.name})
 
     } catch (error) {
       return res.status(500).json({error:errorCodes.GOOGLE_LOGIN_FAILED});
