@@ -7,19 +7,26 @@ function GoogleLogin() {
   const location = useLocation();
 
   useEffect(() => {
-    const code = new URLSearchParams(location.search).get('code');
-      if (code) {
-        googleLogin(code).then(success => {
-          if (success) {
-            // Redirect to profile if login was successful
-            navigate('/profile');
-          } else {
-            // Redirect to a login error page or back to login
-            navigate('/auth/sign-in');
-          }
-        });
+  const code = new URLSearchParams(location.search).get('code');
+
+  const handleLogin = async () => {
+    if (code) {
+      try {
+        const result = await googleLogin(code);
+        if (result.success) {
+          navigate(`/profile/${result.username}`);
+        } else {
+          navigate('/auth/sign-in');
+        }
+      } catch (error) {
+        navigate('/auth/sign-in');
+      }
     }
-  }, [location.search, navigate]);
+  };
+
+  handleLogin();
+}, [location.search, navigate]);
+
 
   return (
     <div>
