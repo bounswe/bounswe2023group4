@@ -22,7 +22,7 @@ const errorCodes = {
 
   ACCESS_TOKEN_NEEDED_ERROR: {
     code: 1004,
-    message: 'A access token is needed',
+    message: 'An access token is needed',
   },
 
   REFRESH_TOKEN_NEEDED_ERROR: {
@@ -33,6 +33,11 @@ const errorCodes = {
   REGISTRATION_FAILED: {
     code: 1006,
     message: 'Registration failed'
+  },
+
+  INSUFFICIENT_DATA: {
+    code: 1007,
+    message: 'Given data is not sufficient. Please follow guidelines.'
   },
 
   USER_NOT_FOUND: {
@@ -148,6 +153,11 @@ const errorCodes = {
   USER_MUST_GIVE_POINTS_ERROR: {
     code: 3007,
     message: 'User has to put points to be able to vote polls'
+  },
+
+  USER_DOES_NOT_HAVE_GIVEN_BADGE: {
+    code: 3008,
+    message: 'User does not have a badge with the given badge Id'
   },
 
   BAD_DISCRETE_POLL_REQUEST_ERROR: {
