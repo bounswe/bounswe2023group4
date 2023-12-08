@@ -19,7 +19,7 @@ function AddModal({ open, setOpen, expressions, setShowSuccessModal }) {
         }
         );
         if (found == false) {
-            setMessage("Please check your input!")
+            setMessage("The input should be included in the poll")
             setAnnotatedBody("");
             setAnnotation("");
             setShowMessage(true);
@@ -57,7 +57,7 @@ function AddModal({ open, setOpen, expressions, setShowSuccessModal }) {
         >
             <Form>
                 <Form.Item>
-                    <Text className={styles.labelStyle}>Type the expression you want to annotate:</Text>
+                    <Text className={styles.labelStyle}>Type an excerpt from the poll to annotate:</Text>
                     <Input
                         value={annotatedBody}
                         size="large"
