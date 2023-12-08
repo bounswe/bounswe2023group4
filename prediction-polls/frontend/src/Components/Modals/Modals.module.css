@@ -1,0 +1,40 @@
+.labelStyle {
+  color: var(--primary-900);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.messageStyle {
+  color: var(--warning-600)
+}
+
+.successStyle {
+  text-align: center;
+  color: var(--primary-900);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.annotationBoxStyle {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2%;
+  border: 2px;
+  border-color: var(--secondary-400);
+  border-style: solid;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary-800);
+  margin-bottom: 5px;
+}
+
+.firstLineStyle {
+  display: flex;
+  flex-direction: row;
+  color: var(--primary-800);
+}
+.annotationTargetStyle{
+  color: var(--warning-600);
+  font-weight: 900;
+}

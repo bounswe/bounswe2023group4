@@ -11,20 +11,24 @@
   background-color: var(--neutral-pollCard);
   margin-bottom: 20px;
 }
+
 .question {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
+
 .info {
   display: flex;
   flex-direction: column;
 }
+
 .tags {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 }
+
 .creator {
   display: flex;
   align-items: center;
@@ -32,6 +36,7 @@
   cursor: pointer;
   justify-content: flex-end;
 }
+
 .creatorImage {
   width: 35px;
   height: 35px;
@@ -55,6 +60,7 @@
   font-weight: 700;
   color: var(--neutral-black);
 }
+
 .questionPoints {
   display: flex;
   flex-direction: row;
@@ -64,12 +70,14 @@
   gap: 3%;
   align-items: flex-start;
 }
+
 .question {
   font-size: 20px;
   font-weight: 700;
   width: 75%;
   color: var(--neutral-black);
 }
+
 .pointsPlaced {
   font-size: 14px;
   padding-top: 10px;
@@ -77,22 +85,26 @@
   width: 22%;
   text-align: center;
   color: var(--neutral-black);
-  
+
 }
+
 .textDescription {
   font-size: 14px;
   text-align: right;
   color: var(--neutral-black);
 }
+
 .textDetail {
   font-size: 16px;
   font-weight: 700;
   color: var(--warning-500);
   text-align: right;
 }
+
 .textGroup {
   padding-top: 10px;
 }
+
 .optionList {
   display: flex;
   flex-direction: column;
@@ -123,8 +135,9 @@
 }
 
 .commentButton {
-  background-color: var(--primary-400); 
+  background-color: var(--primary-400);
 }
+
 .buttonWrapper {
   display: flex;
   flex-direction: column;
@@ -153,16 +166,18 @@
   opacity: 0.7;
 }
 
-.customOptionWrapper{
+.customOptionWrapper {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
-.customOptionText{
+
+.customOptionText {
   font-size: 16px;
   font-weight: 500;
 }
-.customOption{
+
+.customOption {
   width: 50%;
   padding: 10px;
   box-sizing: border-box;
@@ -171,33 +186,39 @@
   font-size: 20px;
   background-color: var(--neutral-pollCard);
   color: var(--neutral-black);
-  cursor: pointer!important;
-
-
+  cursor: pointer !important;
 }
 
-a{
+.contextMenuOption {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary-900);
+}
+
+a {
   text-decoration: none;
 }
 
-.buttonText{
+.buttonText {
   margin: 0px;
 }
 
-@media (max-width:769px){
-  .buttonText{
+@media (max-width:769px) {
+  .buttonText {
     display: none;
   }
+
   .commentButton,
-.shareButton,
-.reportButton {
-  padding: 12px;
+  .shareButton,
+  .reportButton {
+    padding: 12px;
+  }
 }
-}
-@media (max-width:1025px){
-  .card{
-    padding: 25px 15px ;
-    
+
+@media (max-width:1025px) {
+  .card {
+    padding: 25px 15px;
+
   }
 
 }
