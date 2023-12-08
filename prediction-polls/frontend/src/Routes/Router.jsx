@@ -28,14 +28,15 @@ function AppRouter() {
         <Route path="/auth/sign-up" element={<SignUp />} />
         <Route path="/auth/sign-in" element={<SignIn />} />
         <Route path="/feed" element={
-          <Feed />
+          <PrivateRoute>
+            <Feed />
+          </PrivateRoute>
         } />
         <Route path="/googleAuth" element={
           <GoogleLogin />
         } />
         <Route path="/create" element={
-          <Create />
-          //<PrivateRoute><Create /></PrivateRoute>
+          <PrivateRoute><Create /></PrivateRoute>
         } />
         <Route path="/leaderboard" element={
           <PrivateRoute><Leaderboard /></PrivateRoute>
@@ -47,18 +48,18 @@ function AppRouter() {
           <PrivateRoute><Notifications /></PrivateRoute>
         } />
         <Route path="/profile/:username" element={
-         <Profile />
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
         } />
         <Route path="/settings" element={
           <PrivateRoute><Settings /></PrivateRoute>
         } />
         <Route path="/vote/:id" element={
-          //<PrivateRoute><Vote /></PrivateRoute>
-          <Vote/>
+          <PrivateRoute><Vote /></PrivateRoute>
         } />
         <Route path="/editProfile/:username" element={
-          //<PrivateRoute><EditProfile/></PrivateRoute>
-          <EditProfile/>
+          <PrivateRoute><EditProfile/></PrivateRoute>
         } />
       </Routes>
     </BrowserRouter>
