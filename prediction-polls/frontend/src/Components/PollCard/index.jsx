@@ -88,7 +88,7 @@ function PollCard({ PollData, setAnswer, onClick }) {
     >
       <div className={styles.card}>
         <AddModal open={openAddAnnotate} setOpen={setOpenAddAnnotate} expressions={(PollData.isCustomPoll ? [PollData.question.slice(0, -1)] : [...(PollData.options.map(option => { return option.choice_text; })), PollData.question.slice(0, -1)])} setShowSuccessModal={setOpenSuccess} />
-        <ViewModal open={openViewAnnotate} setOpen={setOpenViewAnnotate} />
+        <ViewModal open={openViewAnnotate} setOpen={setOpenViewAnnotate} pollData = {PollData} />
         <SuccessModal open={openSuccess} setOpen={setOpenSuccess} />
         <div className={styles.question}>
           <div className={styles.tags}>

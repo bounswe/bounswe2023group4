@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import { Input, DatePicker, Dropdown, Modal, Button, Typography, Menu } from "antd";
+import { Modal, Typography } from "antd";
+import PollCard from "../../Components/PollCard";
 import styles from "./Modals.module.css";
 const { Text } = Typography;
 
 
 
 
-function ViewModal({ open, setOpen }) {
+function ViewModal({ open, setOpen, pollData }) {
     let annotationList = [{ annotation_typer: "Berk", annotation_target: "Bjk", annotation_body: "Beşiktaş Club" }, { annotation_typer: "Berke", annotation_target: "Fb", annotation_body: "Fenerbahçe" }];
     const handleViewAnnotateOk = () => {
         setOpen(false)
@@ -22,6 +23,10 @@ function ViewModal({ open, setOpen }) {
                 </>
             )}
         >
+            <pollData
+            className={styles.pollCard}
+            PollData={pollData}
+            />
             {annotationList.length == 0 ? <p>No Annotations are available</p> : (annotationList.map(
                 (annotation) => {
                     return <div className={styles.annotationBoxStyle}>
