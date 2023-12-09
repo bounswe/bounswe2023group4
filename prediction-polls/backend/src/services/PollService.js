@@ -3,17 +3,6 @@ const {updatePoints} = require("../repositories/ProfileDB.js");
 const { findUser } = require('../repositories/AuthorizationDB.js');
 const errorCodes = require("../errorCodes.js")
 
-async function getPolls(req,res){
-    try {
-        const rows = await db.getPolls();
-        const pollObjects = await createPollsJson(rows);
-        res.json(pollObjects);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json(error);
-    }
-}
-
 async function getFamousPolls(req,res){
     try {
         const rows = await db.getFamousPolls();
@@ -354,4 +343,4 @@ async function closePoll(req, res) {
     }
 }
 
-module.exports = {getPolls, getFamousPolls,getOpenedPollsOfUser,getVotedPollsOfUser, getPollWithId, addDiscretePoll, addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll}
+module.exports = { getFamousPolls,getOpenedPollsOfUser,getVotedPollsOfUser, getPollWithId, addDiscretePoll, addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll}
