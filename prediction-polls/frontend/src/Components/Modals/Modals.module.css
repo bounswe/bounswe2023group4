@@ -16,6 +16,7 @@
 }
 
 .annotationBoxStyle {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   padding-left: 2%;
@@ -34,7 +35,26 @@
   flex-direction: row;
   color: var(--primary-800);
 }
-.annotationTargetStyle{
+
+.annotationTargetStyle {
   color: var(--warning-600);
   font-weight: 900;
+}
+
+.columnStyle {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2%;
+  width: 40%;
+}
+
+.modalStyle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+.pollStyle{
+  width: 70%;
+  pointer-events: none;
 }
