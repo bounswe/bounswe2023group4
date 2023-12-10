@@ -203,6 +203,11 @@ const errorCodes = {
   MOD_REQUEST_SHOWS_INVALID_POLL:{
     code: 8004,
     message: 'Given moderator request does not show a valid poll'
+  },
+
+  REQUEST_HAS_INVALID_TYPE:{
+    code: 8005,
+    message: 'Given request is corrupted and server could not handle it'
   }
 
   // Add more error codes as needed
