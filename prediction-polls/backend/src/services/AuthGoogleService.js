@@ -1,6 +1,7 @@
 const qs = require("querystring");
 const axios = require("axios");
 const db = require("../repositories/AuthorizationDB.js");
+const profileDb = require("../repositories/ProfileDB.js");
 const crypto = require('crypto');
 const errorCodes = require("../errorCodes.js");
 
