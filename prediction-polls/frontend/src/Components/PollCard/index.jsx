@@ -80,7 +80,7 @@ function PollCard({ PollData, setAnswer, onClick }) {
     return { label: <div className={styles.contextMenuOption} onClick={item.value}>{item.key}</div>, key: item.key }
   });
   React.useEffect(() => {
-    setcontentHTML(document.getElementById("poll_content").innerHTML);
+    setcontentHTML(document.getElementById(`poll_content${PollData.id}`).innerHTML);
   }, []);
 
   return (
@@ -91,7 +91,7 @@ function PollCard({ PollData, setAnswer, onClick }) {
       trigger={['contextMenu']}
     >
       <div>
-        <div id="poll_content">
+        <div id={`poll_content${PollData.id}`}>
           <div className={styles.card}
           >
             <div className={styles.question}>
