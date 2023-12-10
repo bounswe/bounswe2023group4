@@ -11,9 +11,29 @@ function ViewModal({ open, setOpen, pollContent, pollID }) {
     const [contentHTML, setPollContent] = React.useState(pollContent);
     let annotationList = [{ annotation_typer: "Berk", annotation_target: "Bjk", annotation_body: "Beşiktaş Club" }, { annotation_typer: "Berke", annotation_target: "Fb", annotation_body: "Fenerbahçe" }];
     const handleViewAnnotateOk = () => {
-        setOpen(false)
+        setPollContent(pollContent);
+        setOpen(false);
     };
 
+    function letterCasePermutation(input) {
+        const result = [];
+
+        function generatePermutations(current, index) {
+            if (index === input.length) {
+                result.push(current);
+                return;
+            }
+
+            // Handle lowercase
+            generatePermutations(current + input[index].toLowerCase(), index + 1);
+
+            // Handle uppercase
+            generatePermutations(current + input[index].toUpperCase(), index + 1);
+        }
+
+        generatePermutations('', 0);
+        return result;
+    }
 
 
     return (
@@ -33,7 +53,7 @@ function ViewModal({ open, setOpen, pollContent, pollID }) {
                 <div
                     className={styles.pollStyle}
                 >
-                    <div dangerouslySetInnerHTML={{ __html: (contentHTML == null? pollContent:contentHTML) }}>
+                    <div dangerouslySetInnerHTML={{ __html: (contentHTML == null ? pollContent : contentHTML) }}>
                     </div>
                 </div>
                 <div className={styles.columnStyle}>
@@ -41,8 +61,19 @@ function ViewModal({ open, setOpen, pollContent, pollID }) {
                         (annotation) => {
                             return <div className={styles.annotationBoxStyle} onClick={
                                 () => {
+                                    let text = annotation.annotation_target
                                     var temp = pollContent;
-                                    temp = temp.replaceAll(annotation.annotation_target, "<mark>" + annotation.annotation_target + "</mark>");
+                                    let annotatableTexts = document.getElementsByName(`annotatable_Text${pollID}`);
+                                    for (let counter = 0; counter < annotatableTexts.length; counter = counter + 1) {
+                                        let original = annotatableTexts[counter].innerHTML;
+                                        let formatted = original;
+                                        let allCases = letterCasePermutation(text);
+                                        allCases.map((val) => {
+                                            formatted = formatted.replaceAll(val, "<mark>" + val + "</mark>");
+                                            temp = temp.replaceAll(original, formatted);
+                                        });
+
+                                    }
                                     setPollContent(temp);
                                 }}>
                                 <div className={styles.firstLineStyle}>

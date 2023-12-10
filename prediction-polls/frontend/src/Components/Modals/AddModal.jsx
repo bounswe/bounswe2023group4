@@ -25,6 +25,7 @@ function AddModal({ open, setOpen, expressions, setShowSuccessModal, pollContent
             setShowMessage(true);
         }
         else {
+            setPollContent(pollContent);
             setMessage("");
             setShowMessage(false);
             setAnnotatedBody("");
@@ -41,7 +42,28 @@ function AddModal({ open, setOpen, expressions, setShowSuccessModal, pollContent
         setAnnotation("");
         setOpen(false);
         setOpen(false);
+        setPollContent(pollContent);
     };
+
+    function letterCasePermutation(input) {
+        const result = [];
+
+        function generatePermutations(current, index) {
+            if (index === input.length) {
+                result.push(current);
+                return;
+            }
+
+            // Handle lowercase
+            generatePermutations(current + input[index].toLowerCase(), index + 1);
+
+            // Handle uppercase
+            generatePermutations(current + input[index].toUpperCase(), index + 1);
+        }
+
+        generatePermutations('', 0);
+        return result;
+    }
     return (
         <Modal
             centered
@@ -72,21 +94,23 @@ function AddModal({ open, setOpen, expressions, setShowSuccessModal, pollContent
                             size="large"
                             placeholder="Taylor Swift"
                             onChange={(e) => {
-
-                                let text = e.target.value;
-                                let val = e.target.value.length;
+                                let textOriginal = e.target.value;
+                                let text = e.target.value.replaceAll(/^\s+|\s+$/g, '');
                                 var temp = pollContent;
                                 let annotatableTexts = document.getElementsByName(`annotatable_Text${pollID}`);
-                                console.log(annotatableTexts);
                                 if (text != "") {
                                     for (let counter = 0; counter < annotatableTexts.length; counter = counter + 1) {
                                         let original = annotatableTexts[counter].innerHTML;
                                         let formatted = original;
-                                        formatted = formatted.replaceAll(text, "<mark>" + text + "</mark>");
-                                        temp = temp.replaceAll(original, formatted);
+                                        let allCases = letterCasePermutation(text);
+                                        allCases.map((val) => {
+                                            formatted = formatted.replaceAll(val, "<mark>" + val + "</mark>");
+                                            temp = temp.replaceAll(original, formatted);
+                                        });
+
                                     }
                                 }
-                                setAnnotatedBody(text)
+                                setAnnotatedBody(textOriginal);
                                 setPollContent(temp);
                             }
                             }
