@@ -91,10 +91,13 @@ function PollCard({ PollData, setAnswer, onClick }) {
       trigger={['contextMenu']}
     >
       <div>
-        <div id={`poll_content${PollData.id}`}>
-          <div className={styles.card}
+        <div>
+          <div
+            className={styles.card}
           >
-            <div className={styles.question}>
+            <div
+              id={`poll_content${PollData.id}`}
+              className={styles.question}>
               <div className={styles.tags}>
                 {pollData.tags.map((tag, index) => (
                   <PollTag TagName={tag} key={index} />
@@ -205,7 +208,7 @@ function PollCard({ PollData, setAnswer, onClick }) {
             </div>
           </div>
         </div>
-        <AddModal open={openAddAnnotate} setOpen={setOpenAddAnnotate} expressions={(PollData.isCustomPoll ? [PollData.question.slice(0, -1)] : [...(PollData.options.map(option => { return option.choice_text; })), PollData.question.slice(0, -1)])} setShowSuccessModal={setOpenSuccess} />
+        <AddModal open={openAddAnnotate} setOpen={setOpenAddAnnotate} expressions={(PollData.isCustomPoll ? [PollData.question.slice(0, -1)] : [...(PollData.options.map(option => { return option.choice_text; })), PollData.question.slice(0, -1)])} setShowSuccessModal={setOpenSuccess} pollContent={contentHTML} />
         <ViewModal open={openViewAnnotate} setOpen={setOpenViewAnnotate} pollContent={contentHTML} />
         <SuccessModal open={openSuccess} setOpen={setOpenSuccess} />
       </div>
