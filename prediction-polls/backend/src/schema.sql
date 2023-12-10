@@ -109,8 +109,8 @@ CREATE TABLE mod_tags (
     id INT AUTO_INCREMENT PRIMARY KEY,
     topic VARCHAR(255) NOT NULL,
     userId INT NOT NULL,
-    UNIQUE(userId,topic),
-)
+    UNIQUE(userId,topic)
+);
 
 CREATE TABLE mod_requests (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -118,26 +118,27 @@ CREATE TABLE mod_requests (
     poll_id INT NOT NULL,
     request_type ENUM('report','discrete', 'continuous' ) NOT NULL,
     FOREIGN KEY (poll_id) REFERENCES polls(id),
-    FOREIGN KEY (userId) REFERENCES users(id),
-)
+    FOREIGN KEY (userId) REFERENCES users(id)
+);
 
 CREATE TABLE mod_request_report (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     request_id INT,
     ban_poll BOOLEAN,
     FOREIGN KEY (request_id) REFERENCES mod_requests(id) ON DELETE CASCADE
-)
+);
 
 CREATE TABLE mod_request_discrete (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     request_id INT,
     choice_id INT,
-    question VARCHAR(255) NOT NULL,
     FOREIGN KEY (request_id) REFERENCES mod_requests(id) ON DELETE CASCADE
-)
+);
 
 CREATE TABLE mod_request_continuous (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     request_id INT,
     float_value FLOAT,
     date_value DATE,
-    question VARCHAR(255) NOT NULL,
     FOREIGN KEY (request_id) REFERENCES mod_requests(id) ON DELETE CASCADE
-)
+);

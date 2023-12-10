@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.use('/polls',pollRouter);
 app.use('/auth', authRouter);
 app.use('/profiles', profileRouter);
-app.use('/moderators', profileRouter);
+app.use('/moderators', moderatorRouter);
 
 const swaggerSpec = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

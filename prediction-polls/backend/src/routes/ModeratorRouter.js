@@ -12,3 +12,5 @@ router.post('/my-tags',authenticator.authorizeAccessToken,service.controlModRole
 router.get('/my-requests',authenticator.authorizeAccessToken,service.controlModRole,service.getModRequests);
 
 router.post('/my-requests',authenticator.authorizeAccessToken,service.controlModRole,service.answerRequest);
+
+module.exports = router;

@@ -2,7 +2,7 @@ const db = require("../repositories/ModeratorDB.js");
 const pollDb = require("../repositories/PollDB.js");
 const { findUser } = require('../repositories/AuthorizationDB.js');
 const errorCodes = require("../errorCodes.js")
-const topics = require('./topics.json');
+const topics = require('../routines/topics.json');
 
 
 async function controlModRole(req,res,next){
@@ -30,7 +30,7 @@ async function makeMod(req,res){
         if(appointing.error){
             throw errorCodes.USER_NOT_FOUND
         }
-        return res.status(200).json({error:error});
+        return res.status(200).json({status:"success"});
     }
     catch(error){
         return res.status(400).json({error:error});
@@ -40,15 +40,15 @@ async function makeMod(req,res){
 async function getModTags(req,res){
     const userId = req.user.id;
     try{
-        const [mod_tags] = await db.getModTags(userId);
+        const mod_tags = await db.getModTags(userId);
         const all_tags_json = topics.topics.map((main_topic) => {
             // Check whether the tag is stored in db
-            const isSelected = mod_tags.some(mod_tag => mod_tag.topic === main_topic)
+            const isSelected = mod_tags.some(mod_tag => mod_tag.topic === main_topic.name)
             if(isSelected) {
-                return {topic:main_topic,isSelected:1};
+                return {topic:main_topic.name,isSelected:1};
             }
             else{
-                return {topic:main_topic,isSelected:0};
+                return {topic:main_topic.name,isSelected:0};
             }
         })
         return res.status(200).json(all_tags_json);
@@ -64,7 +64,7 @@ async function updateTags(req,res){
     const isSelected = req.body.isSelected;
 
     if(isSelected == undefined || mod_tag_topic == undefined){
-        return res.res.status(400).json({error:errorCodes.INSUFFICIENT_DATA});
+        return res.status(400).json({error:errorCodes.INSUFFICIENT_DATA});
     }
     try{
         if(!isSelected){
@@ -73,7 +73,7 @@ async function updateTags(req,res){
         else{
             const add_result = await db.addModTag(userId,mod_tag_topic);
         }
-        return res.status(200).json(all_tags_json);
+        return res.status(200).json({status:"success"});
     }
     catch(error){
         return res.status(400).json({error:error});
@@ -100,12 +100,12 @@ async function answerRequest(req,res){
     const requestId = req.body.requestId;
 
     try{
-        const user_has_request = await db.checkRequestOfUser(requestId,userId);
+        const [user_has_request] = await db.checkRequestOfUser(requestId,userId);
         if(user_has_request.error){
             throw errorCodes.USER_DOES_NOT_HAVE_REQUEST_ID;
         }
 
-        if(user_has_request.type == "report"){
+        if(user_has_request.request_type == "report"){
             const ban_poll = req.body.banPoll;
             if(ban_poll == undefined){
                 throw errorCodes.REPORT_REQUEST_INVALID_BODY
@@ -116,7 +116,7 @@ async function answerRequest(req,res){
             }
             return res.status(200).json({status:"success"});
         }
-        if(user_has_request.type == "discrete"){
+        if(user_has_request.request_type == "discrete"){
             const discrete_choice = req.body.choice;
             if(discrete_choice == undefined){
                 throw errorCodes.DISCRETE_POLL_REQUEST_INVALID_BODY
@@ -127,13 +127,13 @@ async function answerRequest(req,res){
             }
             return res.status(200).json({status:"success"});
         }
-        if(user_has_request.type == "continuous"){
+        if(user_has_request.request_type == "continuous"){
             const continuous_choice = req.body.choice;
             if(continuous_choice == undefined){
                 throw errorCodes.CONTINUOUS_POLL_REQUEST_INVALID_BODY;
             }
 
-            const request_poll = pollDb.getContinuousPollWithId(user_has_request.poll_id)
+            const [request_poll] = await pollDb.getContinuousPollWithId(user_has_request.poll_id)
             if(request_poll.error){
                 throw errorCodes.MOD_REQUEST_SHOWS_INVALID_POLL
             }
@@ -145,6 +145,7 @@ async function answerRequest(req,res){
             }
             return res.status(200).json({status:"success"});
         }
+        return res.status(500).json({error:errorCodes.REQUEST_HAS_INVALID_TYPE})
     
     }
     catch(error){
