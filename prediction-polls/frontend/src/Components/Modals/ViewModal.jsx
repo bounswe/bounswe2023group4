@@ -9,7 +9,7 @@ const { Text } = Typography;
 
 function ViewModal({ open, setOpen, pollContent, pollID }) {
     const [contentHTML, setPollContent] = React.useState(pollContent);
-    let annotationList = [{ annotation_typer: "Berk", annotation_target: "Bjk", annotation_body: "Beşiktaş Club" }, { annotation_typer: "Berke", annotation_target: "Fb", annotation_body: "Fenerbahçe" }];
+    let annotationList = [{ annotation_typer: "Berk", annotation_target: "Bjk", annotation_body: "Beşiktaş Club", annotation_date: "12/10/2021" }, { annotation_typer: "Berke", annotation_target: "Fb", annotation_body: "Fenerbahçe", annotation_date: "11/12/2022" }];
     const handleViewAnnotateOk = () => {
         setPollContent(pollContent);
         setOpen(false);
@@ -83,6 +83,9 @@ function ViewModal({ open, setOpen, pollContent, pollID }) {
                                 </div>
                                 <div>
                                     {annotation.annotation_body}
+                                </div>
+                                <div>
+                                    {`Annotation Time: ${annotation.annotation_date}`}
                                 </div>
                             </div>;
                         }
