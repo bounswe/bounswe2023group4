@@ -4,7 +4,7 @@ import styles from "./Modals.module.css";
 const { Text } = Typography;
 
 
-function AddModal({ open, setOpen, expressions, setShowSuccessModal, pollContent }) {
+function AddModal({ open, setOpen, expressions, setShowSuccessModal, pollContent, pollID }) {
     const [contentHTML, setPollContent] = React.useState(pollContent);
     const [annotatedBody, setAnnotatedBody] = React.useState("");
     const [annotation, setAnnotation] = React.useState("");
@@ -15,7 +15,6 @@ function AddModal({ open, setOpen, expressions, setShowSuccessModal, pollContent
         expressions.map((expression) => {
             if (expression.includes(annotatedBody) == true && annotatedBody.replace(" ", "") != "" && annotation.replace(" ", "") != "") {
                 found = true;
-                console.log("Found");
             }
         }
         );
@@ -73,12 +72,19 @@ function AddModal({ open, setOpen, expressions, setShowSuccessModal, pollContent
                             size="large"
                             placeholder="Taylor Swift"
                             onChange={(e) => {
+
                                 let text = e.target.value;
                                 let val = e.target.value.length;
                                 var temp = pollContent;
+                                let annotatableTexts = document.getElementsByName(`annotatable_Text${pollID}`);
+                                console.log(annotatableTexts);
                                 if (text != "") {
-                                    temp = temp.replaceAll(text, "<mark>" + text + "</mark>");
-
+                                    for (let counter = 0; counter < annotatableTexts.length; counter = counter + 1) {
+                                        let original = annotatableTexts[counter].innerHTML;
+                                        let formatted = original;
+                                        formatted = formatted.replaceAll(text, "<mark>" + text + "</mark>");
+                                        temp = temp.replaceAll(original, formatted);
+                                    }
                                 }
                                 setAnnotatedBody(text)
                                 setPollContent(temp);

@@ -7,7 +7,7 @@ const { Text } = Typography;
 
 
 
-function ViewModal({ open, setOpen, pollContent }) {
+function ViewModal({ open, setOpen, pollContent, pollID }) {
     const [contentHTML, setPollContent] = React.useState(pollContent);
     let annotationList = [{ annotation_typer: "Berk", annotation_target: "Bjk", annotation_body: "Beşiktaş Club" }, { annotation_typer: "Berke", annotation_target: "Fb", annotation_body: "Fenerbahçe" }];
     const handleViewAnnotateOk = () => {

@@ -104,8 +104,9 @@ function PollCard({ PollData, setAnswer, onClick }) {
                 ))}
               </div>
               <div className={styles.questionPoints}>
-                <div className={styles.question}>
-                  <p>{pollData.question}</p>
+                <div
+                  className={styles.question}>
+                  <p name={`annotatable_Text${PollData.id}`}>{pollData.question}</p>
                 </div>
               </div>
               {!pollData.isCustomPoll ? (
@@ -125,6 +126,7 @@ function PollCard({ PollData, setAnswer, onClick }) {
                         arrayLength={PollData["options"]?.length || 0}
                         key={index}
                         selectOption={handleSelect}
+                        pollID={PollData.id}
                       />
                     );
                   })}
@@ -208,8 +210,8 @@ function PollCard({ PollData, setAnswer, onClick }) {
             </div>
           </div>
         </div>
-        <AddModal open={openAddAnnotate} setOpen={setOpenAddAnnotate} expressions={(PollData.isCustomPoll ? [PollData.question.slice(0, -1)] : [...(PollData.options.map(option => { return option.choice_text; })), PollData.question.slice(0, -1)])} setShowSuccessModal={setOpenSuccess} pollContent={contentHTML} />
-        <ViewModal open={openViewAnnotate} setOpen={setOpenViewAnnotate} pollContent={contentHTML} />
+        <AddModal open={openAddAnnotate} setOpen={setOpenAddAnnotate} expressions={(PollData.isCustomPoll ? [PollData.question.slice(0, -1)] : [...(PollData.options.map(option => { return option.choice_text; })), PollData.question.slice(0, -1)])} setShowSuccessModal={setOpenSuccess} pollContent={contentHTML} pollID={PollData.id} />
+        <ViewModal open={openViewAnnotate} setOpen={setOpenViewAnnotate} pollContent={contentHTML} pollID={PollData.id} />
         <SuccessModal open={openSuccess} setOpen={setOpenSuccess} />
       </div>
     </Dropdown>
