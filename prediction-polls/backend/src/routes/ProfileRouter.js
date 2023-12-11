@@ -253,7 +253,7 @@ router.patch('/', service.updateProfile);
 
 /**
  * @swagger
- * /profiles/badges:
+ * /profiles/badges/me:
  *   patch:
  *     tags:
  *       - profiles
@@ -295,7 +295,7 @@ router.patch('/', service.updateProfile);
  *                     code: 1007,
  *                     message: Given data is not sufficient. Please follow guidelines.
  */
-router.patch('/badges',authenticator.authorizeAccessToken,service.updateBadge)
+router.patch('/badges/me',authenticator.authorizeAccessToken,service.updateBadge)
 
 
 

@@ -149,7 +149,7 @@ router.get('/', service.getFamousPolls);
 
 /**
  * @swagger
- * /polls/my-opened:
+ * /polls/opened/me:
  *   get:
  *     tags:
  *       - polls
@@ -214,11 +214,11 @@ router.get('/', service.getFamousPolls);
  *                     message: Error while accessing the database.
  *                     code: 3004
  */
-router.get('/my-opened',authenticator.authorizeAccessToken,service.getOpenedPollsOfUser);
+router.get('/opened/me',authenticator.authorizeAccessToken,service.getOpenedPollsOfUser);
 
 /**
  * @swagger
- * /polls/my-voted:
+ * /polls/voted/me:
  *   get:
  *     tags:
  *       - polls
@@ -283,7 +283,7 @@ router.get('/my-opened',authenticator.authorizeAccessToken,service.getOpenedPoll
  *                     message: Error while accessing the database.
  *                     code: 3004
  */
-router.get('/my-voted',authenticator.authorizeAccessToken,service.getVotedPollsOfUser);
+router.get('/voted/me',authenticator.authorizeAccessToken,service.getVotedPollsOfUser);
 
 /**
  * @swagger
