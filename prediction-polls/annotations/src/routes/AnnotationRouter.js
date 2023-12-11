@@ -120,11 +120,15 @@ const contextService = require("../services/addContextService.js");
  *         target:
  *           $ref: "#/components/schemas/Target"
  *           required: true
+ *           description: The relationship between an Annotation and its Target
  *         body:
  *           $ref: "#/components/schemas/Body"
+ *           description: The relationship between an Annotation and its Body
  *         creator:
  *           type: string
  *           minLength: 1
+ *           description: The agent responsible for creating the resource
+ * 
  *     Annotation:
  *       type: object
  *       required:
@@ -145,66 +149,11 @@ const contextService = require("../services/addContextService.js");
  *           type: string
  *           description: The type of the Annotation
  *         target:
- *           oneOf:
- *             - type: string
- *             - type: object
- *               properties:
- *                 source: 
- *                   type: string
- *                   description: Source IRI of the resource
- *                 selector:
- *                   oneOf:
- *                     - type: object
- *                       properties:
- *                         "type": 
- *                            type: string
- *                            description: The class of the Selector
- *                         value:
- *                            type: string
- *                            description: The CSS selection path to the Segment OR The xpath to the selected segment
- *                     - type: object
- *                       properties:
- *                         "type": 
- *                            type: string
- *                            description: The class of the Selector
- *                         exact: 
- *                            type: string
- *                            description: A copy of the text which is being selected, after normalization
- *                         prefix: 
- *                            type: string
- *                            description: A snippet of text that occurs immediately before the text which is being selected
- *                         suffix: 
- *                            type: string
- *                            description: The snippet of text that occurs immediately after the text which is being selected.
- *                     - type: object
- *                       properties:
- *                         "type": 
- *                            type: string
- *                            description: The class of the Selector
- *                         start: 
- *                            type: integer
- *                            description: The starting position of the segment of text. The first character in the full text is character position 0, and the character is included within the segment
- *                         end: 
- *                            type: integer
- *                            description: The end position of the segment of text. The character is not included within the segment
- *                     
- *                   description: The relationship between a Specific Resource and a Selector.
- *                 
+ *           $ref: "#/components/schemas/Target"
+ *           required: true
  *           description: The relationship between an Annotation and its Target
  *         body:
- *           oneOf:
- *             - type: string
- *             - type: object
- *               properties:
- *                 "type":
- *                   type: string
- *                   description: The type of the Textual Body resource. The Body should have the TextualBody class
- *                 value:
- *                   type: string  
- *                   description: The character sequence of the content of the Textual Body  
- *                 format:
- *                   type: string  
- *                   description: The format of the Web Resource's content
+ *           $ref: "#/components/schemas/Body"
  *           description: The relationship between an Annotation and its Body
  *         creator:
  *           type: string
