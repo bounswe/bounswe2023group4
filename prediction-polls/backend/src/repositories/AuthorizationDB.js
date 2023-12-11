@@ -155,7 +155,7 @@ async function saveEmailVerificationToken(userId, token) {
     return await pool.query(sql, values);
 }
 
-async function verifyEmail(token) {
+async function verifyEmailToken(token) {
     const sql = 'UPDATE users SET email_verified = TRUE WHERE email_verification_token = ?';
     const values = [token];
 
@@ -175,4 +175,4 @@ function createTransporter() {
     });
 }
 
-module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken,isUsernameOrEmailInUse,checkCredentials,addUser,findUser,saveEmailVerificationToken,verifyEmail,createTransporter}
+module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken,isUsernameOrEmailInUse,checkCredentials,addUser,findUser,saveEmailVerificationToken,verifyEmailToken,createTransporter}

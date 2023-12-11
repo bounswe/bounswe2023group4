@@ -176,5 +176,23 @@ function generateRefreshToken(user) {
   return jwt.sign(user,process.env.REFRESH_TOKEN_SECRET);
 }
 
+async function verifyEmail(req, res){
+  const token = req.query.token;
+
+  try {
+      // Verify the token and update the user's email_verified status in the database
+      const verificationSuccessful = await db.verifyEmailToken(token);
+
+      if (verificationSuccessful) {
+          res.send('Email successfully verified');
+      } else {
+          res.status(400).send('Invalid or expired verification token');
+      }
+  } catch (error) {
+      console.error("Error during email verification:", error);
+      res.status(500).send('Internal server error');
+  }
+}
+
 module.exports = {homePage, signup, createAccessTokenFromRefreshToken, logIn, 
-  logOut, authorizeAccessToken, generateAccessToken, generateRefreshToken}
+  logOut, authorizeAccessToken, generateAccessToken, generateRefreshToken,verifyEmail}
