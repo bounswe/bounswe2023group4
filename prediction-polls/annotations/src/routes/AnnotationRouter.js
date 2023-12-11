@@ -8,6 +8,123 @@ const contextService = require("../services/addContextService.js");
  * @swagger
  * components:
  *   schemas:
+ *     TextPositionSelector:
+ *       type: object
+ *       properties:
+ *         type:
+ *           type: string
+ *           enum: [TextPositionSelector]
+ *           required: true
+ *         start:
+ *           type: number
+ *           required: true
+ *         end:
+ *           type: number
+ *           required: true
+ *
+ *     TextQuoteSelector:
+ *       type: object
+ *       properties:
+ *         type:
+ *           type: string
+ *           enum: [TextQuoteSelector]
+ *           required: true
+ *         exact:
+ *           type: string
+ *           required: true
+ *         prefix:
+ *           type: string
+ *           required: true
+ *         suffix:
+ *           type: string
+ *           required: true
+ *
+ *     XPathSelector:
+ *       type: object
+ *       properties:
+ *         type:
+ *           type: string
+ *           enum: [XPathSelector]
+ *           required: true
+ *         value:
+ *           type: string
+ *           required: true
+ *
+ *     CssSelector:
+ *       type: object
+ *       properties:
+ *         type:
+ *           type: string
+ *           enum: [CssSelector]
+ *           required: true
+ *         value:
+ *           type: string
+ *           required: true
+ *
+ *     Selector:
+ *       oneOf:
+ *         - $ref: "#/components/schemas/TextPositionSelector"
+ *         - $ref: "#/components/schemas/TextQuoteSelector"
+ *         - $ref: "#/components/schemas/XPathSelector"
+ *         - $ref: "#/components/schemas/CssSelector"
+ *
+ *     TargetUri:
+ *       type: string
+ *       format: uri
+ *       required: true
+ *
+ *     TargetObject:
+ *       type: object
+ *       properties:
+ *         source:
+ *           type: string
+ *           format: uri
+ *           required: true
+ *         selector:
+ *           $ref: "#/components/schemas/Selector"
+ *           required: true
+ *
+ *     Target:
+ *       oneOf:
+ *         - $ref: "#/components/schemas/TargetUri"
+ *         - $ref: "#/components/schemas/TargetObject"
+ *
+ *     BodyUri:
+ *       type: string
+ *       format: uri
+ *       required: true
+ *
+ *     BodyObject:
+ *       type: object
+ *       properties:
+ *         type:
+ *           type: string
+ *           enum: [TextualBody]
+ *           required: true
+ *         value:
+ *           type: string
+ *           required: true
+ *         format:
+ *           type: string
+ *           enum: [text/plain]
+ *           required: true
+ *
+ *     Body:
+ *       oneOf:
+ *         - $ref: "#/components/schemas/BodyUri"
+ *         - $ref: "#/components/schemas/BodyObject"
+ *
+ *     AnnotationPost:
+ *       type: object
+ *       properties:
+ *         target:
+ *           $ref: "#/components/schemas/Target"
+ *           required: true
+ *         body:
+ *           $ref: "#/components/schemas/Body"
+ *         creator:
+ *           type: string
+ *           minLength: 1
  *     Annotation:
  *       type: object
  *       required:
@@ -98,6 +215,7 @@ const contextService = require("../services/addContextService.js");
  *         modified:
  *           type: string
  *           description: The time at which the resource was modified, after creation. Often the same with "created". The datetime must be a xsd:dateTime with the UTC timezone expressed as "Z".
+ *
  *   examples:
  *     Basic:
  *       value:
@@ -235,6 +353,23 @@ const contextService = require("../services/addContextService.js");
  */
 router.get('/', service.getAllAnnotations);
 
+/**
+ * @swagger
+ * /annotations:
+ *   post:
+ *     summary: Create a new annotation
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: "#/components/schemas/AnnotationPost"
+ *     responses:
+ *       '200':
+ *         description: Successfully created annotation
+ *       '400':
+ *         description: Bad Request - Invalid input data
+ */
 router.post('/', validation.validate, contextService.attachContext, timeService.attachTimestamp, service.createAnnotation);
+
 
 module.exports = router;
