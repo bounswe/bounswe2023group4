@@ -183,6 +183,36 @@ const errorCodes = {
   CHOICE_OUT_OF_BOUNDS_ERROR: {
     code: 5001,
     message: 'Choice for the poll is out of given bounds.'
+  },
+
+  USER_IS_NOT_MODERATOR: {
+    code: 8000,
+    message: 'User is not authorized to execute this moderator activity'
+  },
+
+  REPORT_REQUEST_INVALID_BODY: {
+    code: 8001,
+    message: 'Report type moderator request should contain requestId and banPoll in body'
+  },
+
+  DISCRETE_POLL_REQUEST_INVALID_BODY:{
+    code: 8002,
+    message: 'Discrete poll type moderator request should contain requestId and choice in body'
+  },
+
+  CONTINUOUS_POLL_REQUEST_INVALID_BODY:{
+    code: 8003,
+    message: 'Continuous poll type moderator request should contain requestId and choice in body'
+  },
+
+  MOD_REQUEST_SHOWS_INVALID_POLL:{
+    code: 8004,
+    message: 'Given moderator request does not show a valid poll'
+  },
+
+  REQUEST_HAS_INVALID_TYPE:{
+    code: 8005,
+    message: 'Given request is corrupted and server could not handle it'
   }
 
   // Add more error codes as needed
