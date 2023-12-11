@@ -174,5 +174,52 @@ function createTransporter() {
         }
     });
 }
+async function storePasswordResetToken(userId, token, expiresIn) {
+    const expirationTime = new Date(new Date().getTime() + expiresIn * 60000); // expiresIn in minutes
 
-module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken,isUsernameOrEmailInUse,checkCredentials,addUser,findUser,saveEmailVerificationToken,verifyEmailToken,createTransporter}
+    // SQL query to update the user's reset token and expiration
+    const query = `
+        UPDATE users
+        SET reset_token = ?, reset_token_expires = ?
+        WHERE id = ?;
+    `;
+
+    try {
+        const result = await pool.query(query, [token, expirationTime, userId]);
+        return result;
+    } catch (error) {
+        console.error('Error storing password reset token:', error);
+        throw error;
+    }
+}
+async function getUserByResetToken(resetToken) {
+    try {
+        const query = 'SELECT * FROM users WHERE reset_token = ? AND reset_token_expires > NOW()';
+        const [rows] = await pool.query(query, [resetToken]);
+        return rows.length ? rows[0] : null;
+    } catch (error) {
+        console.error('Error fetching user by reset token:', error);
+        throw error;
+    }
+}
+async function updateUserPassword(userId, hashedPassword) {
+    try {
+        const query = 'UPDATE users SET password = ? WHERE id = ?';
+        const [result] = await pool.query(query, [hashedPassword, userId]);
+        return result;
+    } catch (error) {
+        console.error('Error updating user password:', error);
+        throw error;
+    }
+}
+async function clearResetToken(userId) {
+    try {
+        const query = 'UPDATE users SET reset_token = NULL, reset_token_expires = NULL WHERE id = ?';
+        const [result] = await pool.query(query, [userId]);
+        return result;
+    } catch (error) {
+        console.error('Error clearing reset token:', error);
+        throw error;
+    }
+}
+module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken,isUsernameOrEmailInUse,checkCredentials,addUser,findUser,saveEmailVerificationToken,verifyEmailToken,createTransporter,storePasswordResetToken,getUserByResetToken,updateUserPassword,clearResetToken}

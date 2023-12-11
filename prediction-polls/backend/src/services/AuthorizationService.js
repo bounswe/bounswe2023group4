@@ -194,5 +194,90 @@ async function verifyEmail(req, res){
   }
 }
 
+function generatePasswordResetToken() {
+  return new Promise((resolve, reject) => {
+      crypto.randomBytes(20, (err, buffer) => {
+          if (err) {
+              reject(err);
+          } else {
+              resolve(buffer.toString('hex'));
+          }
+      });
+  });
+}
+// Function to send password reset email
+async function sendPasswordResetEmail(email, token) {
+  const transporter = db.createTransporter();
+  const resetUrl  = `http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/reset-password?token=${token}`;
+
+  try {
+    await transporter.sendMail({
+        from: '"Your App Name" <your_email@example.com>', // Update this
+        to: email,
+        subject: 'Password Reset Request',
+        html: `
+            <p>You requested a password reset for your account.</p>
+            <p>Click the link below to reset your password:</p>
+            <a href="${resetUrl}">${resetUrl}</a>
+            <p>If you did not request a password reset, please ignore this email.</p>
+        `
+    });
+
+    console.log('Password reset email sent successfully.');
+} catch (error) {
+    console.error('Error sending password reset email:', error);
+    throw error;
+}
+}
+
+
+const SALT_ROUNDS = 10; // For bcrypt
+
+async function resetPassword(token, newPassword) {
+    try {
+        // Validate the token and get user details
+        const user = await db.getUserByResetToken(token);
+        if (!user) {
+            throw new Error('Invalid or expired password reset token.');
+        }
+
+        // Check if the token is expired
+        if (new Date() > new Date(user.reset_token_expires)) {
+            throw new Error('Password reset token has expired.');
+        }
+
+        // Hash the new password
+        const hashedPassword = await bcrypt.hash(newPassword, SALT_ROUNDS);
+
+        // Update the user's password in the database
+        await db.updateUserPassword(user.id, hashedPassword);
+
+        // Clear the reset token from the database
+        await db.clearResetToken(user.id);
+
+        console.log('Password reset successfully.');
+    } catch (error) {
+        console.error('Error resetting password:', error);
+        throw error;
+    }
+}
+async function requestResetPassword (req, res){
+  try {
+      const { email } = req.body;
+      const user = await db.findUser(email);
+
+      if (user) {
+          const token = await generatePasswordResetToken();
+          // Store the token in the database (functionality not shown here)
+          await sendPasswordResetEmail(email, token);
+      }
+
+      // Respond with a generic message either way to avoid enumeration attacks
+      res.send('If your email is in our system, you will receive a password reset link.');
+  } catch (error) {
+      console.error('Password reset request error:', error);
+      res.status(500).send('Error processing password reset request.');
+  }
+};
 module.exports = {homePage, signup, createAccessTokenFromRefreshToken, logIn, 
-  logOut, authorizeAccessToken, generateAccessToken, generateRefreshToken,verifyEmail}
+  logOut, authorizeAccessToken, generateAccessToken, generateRefreshToken, verifyEmail, sendPasswordResetEmail, resetPassword, requestResetPassword}
