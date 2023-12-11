@@ -3,49 +3,77 @@ const {updatePoints} = require("../repositories/ProfileDB.js");
 const { findUser } = require('../repositories/AuthorizationDB.js');
 const errorCodes = require("../errorCodes.js")
 
-async function getPolls(req,res){
+async function getFamousPolls(req,res){
     try {
-        const rows = await db.getPolls();
-        const pollObjects = await Promise.all(rows.map(async (pollObject) => {
-            const tag_rows = await db.getTagsOfPoll(pollObject.id);
-
-            const properties = {
-                "id": pollObject.id,
-                "question": pollObject.question,
-                "tags": tag_rows,
-                "creatorName": pollObject.username,
-                "creatorUsername": pollObject.username,
-                "creatorImage": null,
-                "pollType": pollObject.poll_type,
-                "closingDate": pollObject.closingDate,
-                "rejectVotes": (pollObject.numericFieldValue && pollObject.selectedTimeUnit) ? `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}` : null,
-                "isOpen": pollObject.isOpen ? true : false,
-                "comments": []
-            };
-
-            if (properties.pollType === 'discrete') {
-                const choices = await db.getDiscretePollChoices(properties.id);
-
-                const choicesWithVoteCount = await Promise.all(choices.map(async (choice) => {
-                    const voterCount = await db.getDiscreteVoteCount(choice.id);
-                    return { ...choice, voter_count: voterCount };
-                }));
-
-                return { ...properties, "options": choicesWithVoteCount };
-            } else if (properties.pollType === 'continuous') {
-                const contPollRows = await db.getContinuousPollWithId(properties.id);
-                const choices = await db.getContinuousPollVotes(properties.id);
-
-                const newChoices = choices.map(item => item.float_value ? item.float_value : item.date_value);
-
-                return { ...properties, "cont_poll_type": contPollRows[0].cont_poll_type, "options": newChoices };
-            }
-        }))
+        const rows = await db.getFamousPolls();
+        const pollObjects = await createPollsJson(rows);
         res.json(pollObjects);
     } catch (error) {
         console.error(error);
         res.status(500).json(error);
     }
+}
+
+async function getOpenedPollsOfUser(req,res){
+    const userId = req.user.id; 
+    try {
+        const rows = await db.getOpenedPollsOfUser(userId);
+        const pollObjects = await createPollsJson(rows);
+        res.json(pollObjects);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(error);
+    }
+}
+
+async function getVotedPollsOfUser(req,res){
+    const userId = req.user.id; 
+    try {
+        const rows = await db.getVotedPollsOfUser(userId);
+        const pollObjects = await createPollsJson(rows);
+        res.json(pollObjects);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(error);
+    }
+}
+
+async function createPollsJson(poll_rows){
+    return await Promise.all(poll_rows.map(async (pollObject) => {
+        const tag_rows = await db.getTagsOfPoll(pollObject.id);
+
+        const properties = {
+            "id": pollObject.id,
+            "question": pollObject.question,
+            "tags": tag_rows,
+            "creatorName": pollObject.username,
+            "creatorUsername": pollObject.username,
+            "creatorImage": null,
+            "pollType": pollObject.poll_type,
+            "closingDate": pollObject.closingDate,
+            "rejectVotes": (pollObject.numericFieldValue && pollObject.selectedTimeUnit) ? `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}` : null,
+            "isOpen": pollObject.isOpen ? true : false,
+            "comments": []
+        };
+
+        if (properties.pollType === 'discrete') {
+            const choices = await db.getDiscretePollChoices(properties.id);
+
+            const choicesWithVoteCount = await Promise.all(choices.map(async (choice) => {
+                const voterCount = await db.getDiscreteVoteCount(choice.id);
+                return { ...choice, voter_count: voterCount };
+            }));
+
+            return { ...properties, "options": choicesWithVoteCount };
+        } else if (properties.pollType === 'continuous') {
+            const contPollRows = await db.getContinuousPollWithId(properties.id);
+            const choices = await db.getContinuousPollVotes(properties.id);
+
+            const newChoices = choices.map(item => item.float_value ? item.float_value : item.date_value);
+
+            return { ...properties, "cont_poll_type": contPollRows[0].cont_poll_type, "options": newChoices };
+        }
+    }))
 }
 
 async function getPollWithId(req, res) {
@@ -315,4 +343,4 @@ async function closePoll(req, res) {
     }
 }
 
-module.exports = {getPolls, getPollWithId, addDiscretePoll, addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll}
+module.exports = { getFamousPolls,getOpenedPollsOfUser,getVotedPollsOfUser, getPollWithId, addDiscretePoll, addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll}
