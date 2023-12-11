@@ -30,10 +30,10 @@ const selectorSchema = Joi.alternatives().try(
   cssSelectorSchema
 );
 
-const targetUriSchema = Joi.string().uri().required();
+const targetUriSchema = Joi.string().uri({relativeOnly: true}).required();
 
 const targetObjectSchema = Joi.object({
-  source: Joi.string().uri().required(),
+  source: Joi.string().uri({relativeOnly: true}).required(),
   selector: selectorSchema.required(),
 });
 
