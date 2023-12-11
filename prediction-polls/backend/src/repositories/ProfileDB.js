@@ -115,9 +115,22 @@ async function getBadges(userId){
 
     try {
         const [rows] = await pool.query(sql, [userId]);
-        const badges = rows.map(badge => {return {topic:badge.topic,rank:badge.userRank}})
+        const badges = rows.map(badge => {return {id:badge.id,topic:badge.topic,rank:badge.userRank,isSelected:badge.isSelected}})
         
         return {badges:badges};
+    } catch (error) {
+        return {error:errorCodes.DATABASE_ERROR};
+    }
+}
+
+async function updateBadge(badgeId,IsSelected){
+    const sql = 'UPDATE badges SET isSelected = ? WHERE id = ?';
+
+    try {
+        const [resultSetHeader] = await pool.query(sql, [IsSelected, badgeId]);
+        
+        return {status:"success"};
+        
     } catch (error) {
         return {error:errorCodes.DATABASE_ERROR};
     }
@@ -146,5 +159,5 @@ async function updatePoints(userId,additional_points){
 }
 
 
-module.exports = {getProfileWithProfileId,getProfileWithUserId,addProfile,updateProfile,getBadges,updatePoints}
+module.exports = {getProfileWithProfileId,getProfileWithUserId,addProfile,updateProfile,getBadges,updateBadge,updatePoints}
     
