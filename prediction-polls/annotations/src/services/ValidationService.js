@@ -56,7 +56,7 @@ const annotationPostSchema = Joi.object({
 });
 
 async function validate(req, res, next) {
-  const {error, value} = annotationPostSchema.validate(req.body, {abortEarly: false});
+  const {error, value} = annotationPostSchema.validate(req.body);
 
   if (error) {
     console.log(error.details);
