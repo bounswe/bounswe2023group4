@@ -381,6 +381,63 @@ router.get('/', service.getAnnotations);
 
 /**
  * @swagger
+ * /annotations/{id}:
+ *   get:
+ *     summary: Get an annotation by ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: The ID of the annotation
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: The list of the books retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items: 
+ *                 $ref: "#/components/schemas/Annotation"
+ *             examples:
+ *               Basic:
+ *                 $ref: "#/components/examples/Basic" 
+ *               WithBodyAndCreator:
+ *                 $ref: "#/components/examples/WithBodyAndCreator" 
+ *               EmbeddedTextBody:
+ *                 $ref: "#/components/examples/EmbeddedTextBody" 
+ *               CSSSelector:
+ *                 $ref: "#/components/examples/CSSSelector" 
+ *               XPathSelector:
+ *                 $ref: "#/components/examples/XPathSelector" 
+ *               TextQuoteSelector:
+ *                 $ref: "#/components/examples/TextQuoteSelector" 
+ *               TextPositionSelector:
+ *                 $ref: "#/components/examples/TextPositionSelector" 
+ *       404:
+ *         description: Annotation not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
+router.get('/:id', service.getAnnotationWithId);
+
+/**
+ * @swagger
  * /annotations:
  *   post:
  *     summary: Create a new annotation
