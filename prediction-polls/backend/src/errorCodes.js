@@ -22,7 +22,7 @@ const errorCodes = {
 
   ACCESS_TOKEN_NEEDED_ERROR: {
     code: 1004,
-    message: 'A access token is needed',
+    message: 'An access token is needed',
   },
 
   REFRESH_TOKEN_NEEDED_ERROR: {
@@ -153,6 +153,11 @@ const errorCodes = {
   USER_MUST_GIVE_POINTS_ERROR: {
     code: 3007,
     message: 'User has to put points to be able to vote polls'
+  },
+
+  USER_DOES_NOT_HAVE_GIVEN_BADGE: {
+    code: 3008,
+    message: 'User does not have a badge with the given badge Id'
   },
 
   BAD_DISCRETE_POLL_REQUEST_ERROR: {

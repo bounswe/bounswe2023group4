@@ -95,6 +95,7 @@ CREATE TABLE badges (
     userRank INT NOT NULL,
     topic VARCHAR(255) NOT NULL,
     userId INT NOT NULL,
+    isSelected BOOLEAN DEFAULT False,
     FOREIGN KEY (userId) REFERENCES users(id) ON DELETE SET NULL
 );
 

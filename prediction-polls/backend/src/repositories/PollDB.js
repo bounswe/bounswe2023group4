@@ -1,5 +1,5 @@
 const mysql = require('mysql2');
-const { addRefreshToken, deleteRefreshToken } = require('./AuthorizationDB');
+const { addRefreshToken, deleteRefreshToken, findUser } = require('./AuthorizationDB');
 const { updatePoints } = require('./ProfileDB');
 const errorCodes = require("../errorCodes.js");
 
@@ -22,6 +22,67 @@ async function getPolls(){
     } catch (error) {
         console.error('getDiscretePolls(): Database Error');
         throw {error: errorCodes.DATABASE_ERROR};
+    }
+}
+
+async function getFamousPolls(){
+
+    const sql = "SELECT polls.*, famous_polls.total_points_spent " +
+        "FROM polls,(SELECT poll_id, SUM(given_points) AS total_points_spent " +
+        "FROM discrete_polls_selections " +
+        "GROUP BY poll_id " +
+        "UNION " +
+        "SELECT poll_id, SUM(given_points) AS total_points_spent " +
+        "FROM continuous_poll_selections " +
+        "GROUP BY poll_id) AS famous_polls " +
+        "WHERE polls.id = famous_polls.poll_id " +
+        "ORDER BY famous_polls.total_points_spent DESC"
+
+    try {
+        const [rows] = await pool.query(sql);
+        console.log(rows)
+        return rows;
+    } catch (error) {
+        throw {error: error};
+    }
+}
+
+async function getOpenedPollsOfUser(userId){
+    const sql = 'SELECT * FROM polls WHERE username = ?';
+
+    try {
+        const user_result = await findUser({userId});
+        if(user_result.error){
+            throw user_result.error
+        }
+        const [rows, fields] = await pool.query(sql,[user_result.username]);
+        return rows
+    } catch (error) {
+        throw {error: error};
+    }
+}
+
+async function getVotedPollsOfUser(userId){
+
+    const sql = "SELECT polls.* FROM polls,( " + 
+    "SELECT poll_id FROM discrete_polls_selections WHERE user_id = ? UNION " +
+    "SELECT poll_id FROM continuous_poll_selections WHERE user_id = ? ) AS voted_polls " +
+    "WHERE polls.id = voted_polls.poll_id";
+
+    const discrete_votes_sql = 'SELECT * FROM discrete_polls_selections WHERE user_id = ?';
+    const continuous_votes_sql = 'SELECT * FROM continuous_poll_selections WHERE user_id = ?';
+
+    try {
+        const user_result = await findUser({userId});
+        if(user_result.error){
+            throw user_result.error
+        }
+        const [rows] = await pool.query(sql,[userId,userId]);
+        
+        console.log(rows)
+        return rows;
+    } catch (error) {
+        throw {error: error};
     }
 }
 
@@ -348,7 +409,7 @@ async function closePoll(pollId, rewards) {
     }
 }
 
-module.exports = {getPolls, getPollWithId, getDiscretePollWithId, getContinuousPollWithId, 
+module.exports = {getPolls,getFamousPolls,getOpenedPollsOfUser,getVotedPollsOfUser, getPollWithId, getDiscretePollWithId, getContinuousPollWithId, 
     addDiscretePoll,addContinuousPoll, getDiscretePollChoices, getDiscreteVoteCount, voteDiscretePoll, voteContinuousPoll,
     getContinuousPollVotes,getTagsOfPoll, getUntaggedPolls, updateTagsScanned, addTopic, getDiscreteSelectionsWithPollId, closePoll}
     
