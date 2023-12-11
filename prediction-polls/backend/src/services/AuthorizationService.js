@@ -64,7 +64,7 @@ async function signup(req, res) {
 
 async function sendVerificationEmail(email, token) {
   const transporter = db.createTransporter();
-  const verificationUrl = `http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/verify-email?token=${token}`;
+  const verificationUrl = `http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/auth/verify-email?token=${token}`;
 
   const mailOptions = {
       from: '"Prediction Polls" <predictionpolls@zohomail.eu>',
@@ -208,11 +208,11 @@ function generatePasswordResetToken() {
 // Function to send password reset email
 async function sendPasswordResetEmail(email, token) {
   const transporter = db.createTransporter();
-  const resetUrl  = `http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/reset-password?token=${token}`;
+  const resetUrl  = `http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/auth/reset-password?token=${token}`;
 
   try {
     await transporter.sendMail({
-        from: '"Your App Name" <your_email@example.com>', // Update this
+        from: '"Prediction Polls" <predictionpolls@zohomail.eu>', // Update this
         to: email,
         subject: 'Password Reset Request',
         html: `
