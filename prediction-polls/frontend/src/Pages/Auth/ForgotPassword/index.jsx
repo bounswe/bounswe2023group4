@@ -13,8 +13,33 @@ import "../../../index.css";
 function ForgotPassword() {
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  const [email, setEmail  ] = React.useState("");
+  const [message, setMessage] = React.useState("");
   const handleSubmit = async (values) => {
+    
     navigate("/auth/sign-in");
+  };
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+    try {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+        })
+      };
+      const response = await fetch(process.env.REACT_APP_BACKEND_LINK+'/auth/request-password-reset', requestOptions);
+      const data = await response.json();
+      console.log(data);
+    if (response.status === 201 && data.accessToken && data.refreshToken) {
+      navigate("/feed");
+    } 
+
+    }
+    catch (error) {
+      setMessage("An unexpected error has occurred. Please try again!")
+    }
   };
 
   return (
@@ -27,7 +52,7 @@ function ForgotPassword() {
           labelCol={{ span: 24 }}
           wrapperCol={{ span: 24 }}
           form={form}
-          onFinish={handleSubmit}
+          onFinish={handleForgotPassword}
           validateTrigger="onSubmit"
         >
             <div className={styles.headerContainerStyle}>
@@ -50,6 +75,7 @@ function ForgotPassword() {
           >
             <Input
               required
+              onChange={(e) => setEmail(e.target.value)}
               type="text"
               className={styles.formInputStyle}
               placeholder="example@outlook.com"
@@ -61,7 +87,7 @@ function ForgotPassword() {
                 type="primary"
                 htmlType="submit"
                 className={styles.formButtonStyle}
-                onClick={handleSubmit}
+                onClick={handleForgotPassword}
               >
                 Continue
               </Button>
