@@ -164,7 +164,11 @@ const contextService = require("../services/addContextService.js");
  *         modified:
  *           type: string
  *           description: The time at which the resource was modified, after creation. Often the same with "created". The datetime must be a xsd:dateTime with the UTC timezone expressed as "Z".
- *
+*/
+
+/**
+ * @swagger
+ * components:
  *   examples:
  *     Basic:
  *       value:
@@ -272,9 +276,82 @@ const contextService = require("../services/addContextService.js");
 
 /**
  * @swagger
+ * components:
+ *   examples:
+ *     PostBasic:
+ *       value:
+ *         target: /page1
+ *     PostWithBodyAndCreator:
+ *       value:
+ *         target: /page1
+ *         body: http://example.org/post1
+ *         creator: user1
+ *     PostEmbeddedTextBody:
+ *       value:
+ *         target: /page1
+ *         body: 
+ *           "type": TextualBody 
+ *           value: Example annotation content 
+ *           format: text/plain 
+ *         creator: user1
+ *     PostCSSSelector:
+ *       value:
+ *         target: 
+ *           source: "/page1.html"
+ *           selector: 
+ *             type: "CssSelector"
+ *             value: "#elemid > .elemclass + p"
+ *         body: 
+ *           "type": TextualBody 
+ *           value: Example annotation content 
+ *           format: text/plain 
+ *         creator: user1
+ *     PostXPathSelector:
+ *       value:
+ *         target: 
+ *           source: "/page1.html"
+ *           selector: 
+ *             type: "XPathSelector"
+ *             value: "/html/body/p[2]/table/tr[2]/td[3]/span"
+ *         body: 
+ *           "type": TextualBody 
+ *           value: Example annotation content 
+ *           format: text/plain 
+ *         creator: user1
+ *     PostTextQuoteSelector:
+ *       value:
+ *         target: 
+ *           source: "/page1"
+ *           selector: 
+ *             type: "TextQuoteSelector"
+ *             exact: "anotation"
+ *             prefix: "this is an "
+ *             suffix: " that has some"
+ *         body: 
+ *           "type": TextualBody 
+ *           value: "This seems to be a typo."
+ *           format: text/plain 
+ *         creator: user1
+ *     PostTextPositionSelector:
+ *       value:
+ *         target: 
+ *           source: "/page1"
+ *           selector: 
+ *             type: "TextPositionSelector"
+ *             start: 412
+ *             end: 795
+ *         body: 
+ *           "type": TextualBody 
+ *           value: "Example annotation content."
+ *           format: text/plain 
+ *         creator: user1
+ */
+
+/**
+ * @swagger
  * /annotations:
  *   get:
- *     summary: Returns the list of all Annotations
+ *     summary: Returns the list of Annotations according to query parameters
  *     responses:
  *       200:
  *         description: The list of the books retrieved successfully
@@ -312,6 +389,21 @@ router.get('/', service.getAnnotations);
  *         application/json:
  *           schema:
  *             $ref: "#/components/schemas/AnnotationPost"
+ *           examples:
+ *             Basic:
+ *               $ref: "#/components/examples/PostBasic" 
+ *             WithBodyAndCreator:
+ *               $ref: "#/components/examples/PostWithBodyAndCreator" 
+ *             EmbeddedTextBody:
+ *               $ref: "#/components/examples/PostEmbeddedTextBody" 
+ *             CSSSelector:
+ *               $ref: "#/components/examples/PostCSSSelector" 
+ *             XPathSelector:
+ *               $ref: "#/components/examples/PostXPathSelector" 
+ *             TextQuoteSelector:
+ *               $ref: "#/components/examples/PostTextQuoteSelector" 
+ *             TextPositionSelector:
+ *               $ref: "#/components/examples/PostTextPositionSelector" 
  *     responses:
  *       '200':
  *         description: Successfully created annotation
