@@ -352,6 +352,17 @@ const contextService = require("../services/addContextService.js");
  * /annotations:
  *   get:
  *     summary: Returns the list of Annotations according to query parameters
+ *     parameters:
+ *       - in: query
+ *         name: creator
+ *         schema:
+ *           type: string
+ *         description: The creator of the Annotation
+ *       - in: query
+ *         name: source
+ *         schema:
+ *           type: string
+ *         description: The source of the Target of the Annotations
  *     responses:
  *       200:
  *         description: The list of the books retrieved successfully
