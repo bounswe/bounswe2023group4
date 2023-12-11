@@ -1,4 +1,5 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const {parse, resolve, format} = require('url');
 require('dotenv').config();
 
 const client = new MongoClient(process.env.MONGO_URI, {
@@ -45,6 +46,14 @@ async function createAnnotation(req, res) {
     const collection = database.collection(process.env.MONGO_COLLECTION);
 
     const result = await collection.insertOne(req.body);
+
+    const uniqueIdentifier = result.insertedId instanceof ObjectId ? result.insertedId.toString(): null;
+
+    const newIRI = resolve(process.env.ANNOTATION_URI, "/annotations") + '/' + uniqueIdentifier;
+    await collection.updateOne(
+      { _id: result.insertedId },
+      { $set: { id: newIRI } }
+    );
 
     res.status(200).json({success: true});
   } catch (error) {
