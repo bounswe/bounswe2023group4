@@ -86,9 +86,9 @@ function SignIn() {
                 }}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Button type="link" className={styles.forgotPasswordStyle}>
+              <Link to="/auth/forgot-password" className={styles.forgotPasswordStyle}>
                 Forgot Password?
-              </Button>
+              </Link>
             </div>
           </Form.Item>
           <Form.Item>
