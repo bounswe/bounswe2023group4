@@ -2,8 +2,8 @@ const Joi = require("joi");
 
 const textPositionSelectorSchema = Joi.object({
   type: Joi.string().valid('TextPositionSelector').required(),
-  start: Joi.number().required(),
-  end: Joi.number().required(),
+  start: Joi.number().integer().positive().required(),
+  end: Joi.number().integer().positive().min(Joi.ref('start')).required(),
 });
 
 const textQuoteSelectorSchema = Joi.object({
