@@ -65,4 +65,14 @@ async function validate(req, res, next) {
   next();
 }
 
-module.exports = { validate };
+async function validatePatchBody(req, res, next) {
+  const {error, value} = bodySchema.validate(req.body);
+
+  if (error) {
+    console.log(error.details);
+    return res.status(400).json(error.details);
+  }
+  next();
+}
+
+module.exports = { validate, validatePatchBody };

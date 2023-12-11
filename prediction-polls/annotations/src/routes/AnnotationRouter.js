@@ -349,6 +349,17 @@ const contextService = require("../services/addContextService.js");
 
 /**
  * @swagger
+ * components:
+ *   examples:
+ *     UpdatedBodyExample:
+ *       value: 
+ *         "type": TextualBody 
+ *         value: "Updated Annotation Body"
+ *         format: text/plain 
+ */
+
+/**
+ * @swagger
  * /annotations:
  *   get:
  *     summary: Returns the list of Annotations according to query parameters
@@ -479,6 +490,113 @@ router.get('/:id', service.getAnnotationWithId);
  *         description: Bad Request - Invalid input data
  */
 router.post('/', validation.validate, contextService.attachContext, timeService.attachTimestamp, service.createAnnotation);
+
+/**
+ * @swagger
+ * /annotations/{id}:
+ *   delete:
+ *     summary: Delete an annotation by ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: The ID of the annotation to be deleted
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Annotation deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       404:
+ *         description: Annotation not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
+router.delete('/:id', service.deleteAnnotationWithId);
+
+/**
+ * @swagger
+ * /annotations/{id}:
+ *   patch:
+ *     summary: Update the body of an annotation by ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: The ID of the annotation to be updated
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       description: Updated body of the annotation
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: "#/components/schemas/Body"
+ *           examples:
+ *             BodyUpdateExample:
+ *               $ref: "#/components/examples/UpdatedBodyExample"
+ *     responses:
+ *       200:
+ *         description: Annotation updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       400:
+ *         description: Bad Request - Invalid request body format
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   message:
+ *                     type: string
+ *       404:
+ *         description: Annotation not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
+router.patch('/:id', validation.validatePatchBody, service.patchAnnotationWithId);
 
 
 module.exports = router;

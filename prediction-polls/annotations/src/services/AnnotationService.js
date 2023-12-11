@@ -86,4 +86,57 @@ async function createAnnotation(req, res) {
   }
 }
 
-module.exports = { getAnnotations, createAnnotation, getAnnotationWithId };
+async function deleteAnnotationWithId(req, res) {
+  const annotationId = req.params.id;
+
+  try {
+    await client.connect();
+
+    const database = client.db(process.env.MONGO_DB);
+    const collection = database.collection(process.env.MONGO_COLLECTION);
+
+    const result = await collection.deleteOne({ id: new RegExp(`.*${annotationId}$`) });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ error: 'Annotation not found' });
+    }
+
+    client.close();
+
+    res.json({ message: 'Annotation deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting annotation:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+async function patchAnnotationWithId(req, res) {
+  const annotationId = req.params.id;
+  const updatedBody = req.body;
+
+  try {
+    await client.connect();
+
+    const database = client.db(process.env.MONGO_DB);
+    const collection = database.collection(process.env.MONGO_COLLECTION);
+
+    const result = await collection.updateOne(
+      { id: new RegExp(`.*${annotationId}$`) },
+      { $set: { body: updatedBody } }
+    );
+
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ error: 'Annotation not found' });
+    }
+
+    client.close();
+
+    res.json({ message: 'Annotation updated successfully' });
+  } catch (error) {
+    console.error('Error updating annotation:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+
+module.exports = { getAnnotations, createAnnotation, getAnnotationWithId, deleteAnnotationWithId, patchAnnotationWithId };
