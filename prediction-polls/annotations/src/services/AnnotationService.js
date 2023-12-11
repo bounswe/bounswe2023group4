@@ -39,6 +39,30 @@ async function getAnnotations(req, res) {
   }
 }
 
+async function getAnnotationWithId(req, res) {
+  const annotationId = req.params.id;
+
+  try {
+    await client.connect();
+
+    const database = client.db(process.env.MONGO_DB);
+    const collection = database.collection(process.env.MONGO_COLLECTION);
+
+    const annotation = await collection.findOne({ id: new RegExp(`.*${annotationId}$`) }, {projection: {"_id": 0}});
+
+    if (!annotation) {
+      return res.status(404).json({ error: 'Annotation not found' });
+    }
+
+    client.close();
+
+    res.json(annotation);
+  } catch (error) {
+    console.error('Error fetching annotations:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
 async function createAnnotation(req, res) {
   try {
     await client.connect();
@@ -62,4 +86,4 @@ async function createAnnotation(req, res) {
   }
 }
 
-module.exports = { getAnnotations, createAnnotation };
+module.exports = { getAnnotations, createAnnotation, getAnnotationWithId };
