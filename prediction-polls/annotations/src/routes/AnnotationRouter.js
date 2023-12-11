@@ -300,7 +300,7 @@ const contextService = require("../services/addContextService.js");
  *               TextPositionSelector:
  *                 $ref: "#/components/examples/TextPositionSelector" 
  */
-router.get('/', service.getAllAnnotations);
+router.get('/', service.getAnnotations);
 
 /**
  * @swagger

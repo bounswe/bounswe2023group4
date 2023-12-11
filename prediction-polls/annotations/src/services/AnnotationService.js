@@ -9,14 +9,25 @@ const client = new MongoClient(process.env.MONGO_URI, {
   }
 });
 
-async function getAllAnnotations(req, res) {
+async function getAnnotations(req, res) {
+  const { creator, source } = req.query;
+  let filter = {};
+
+  if (creator) {
+    filter.creator = creator;
+  }
+
+  if (source) {
+    filter['target.source'] = source;
+  }
+
   try {
     await client.connect();
 
     const database = client.db(process.env.MONGO_DB);
     const collection = database.collection(process.env.MONGO_COLLECTION);
 
-    const annotations = await collection.find({}, { projection: { _id: 0 } }).toArray();
+    const annotations = await collection.find(filter, { projection: { _id: 0 } }).toArray();
 
     client.close();
 
@@ -42,4 +53,4 @@ async function createAnnotation(req, res) {
   }
 }
 
-module.exports = { getAllAnnotations, createAnnotation };
+module.exports = { getAnnotations, createAnnotation };
