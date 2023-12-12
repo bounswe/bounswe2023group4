@@ -71,7 +71,7 @@
 | Annotation Server Conformance | [#545](https://github.com/bounswe/bounswe2023group4/issues/545) | Şefik Palazoğlu | 19.12.2023 | 4hr |
 | Incorporating Recognito into the Annotation UI | [#531](https://github.com/bounswe/bounswe2023group4/issues/531) | Ali Nasra | 19.12.2023 | 5hr |
 | Connect the backend-server to the annotation UI | [#532](https://github.com/bounswe/bounswe2023group4/issues/532) | Ali Nasra | 19.12.2023 | 3hr |
-| Implementing the "Add Friend" functionality in the Backend | [#541](https://github.com/bounswe/bounswe2023group4/issues/541) | Ali Nasra | 19.12.2023 | 4hr |
+| Implementing the "Follow User" functionality in the Backend | [#541](https://github.com/bounswe/bounswe2023group4/issues/541) | Ali Nasra | 19.12.2023 | 4hr |
 | Adding the annotation research results to the wiki  | [#542](https://github.com/bounswe/bounswe2023group4/issues/542) | Ali Nasra | 19.12.2023 | 2hr |
 | Fixing the annotation approach  | [#543](https://github.com/bounswe/bounswe2023group4/issues/543) | Ali Nasra | 19.12.2023 | 1hr |
 | Implement Moderation Screen UI| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 19.12.23 | 2hr |
