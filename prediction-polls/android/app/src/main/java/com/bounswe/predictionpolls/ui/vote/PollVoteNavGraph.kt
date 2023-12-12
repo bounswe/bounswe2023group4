@@ -9,6 +9,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.bounswe.predictionpolls.ui.profile.navigateToProfileScreen
 
 const val POLL_VOTE_ROUTE = "pollVote/{pollId}"
 
@@ -30,6 +31,9 @@ fun NavGraphBuilder.pollVoteScreen(navController: NavController) {
             state = state,
             onPointsReservedChanged = { points ->
                 pollVoteViewModel.onPointsReservedChanged(points)
+            },
+            onProfileCardClicked = {
+                navController.navigateToProfileScreen(username = it)
             },
             onVotePressed = {
                 // Assuming you have pollId, points, and voteInput available

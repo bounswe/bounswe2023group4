@@ -23,6 +23,7 @@ fun PollVoteScreen(
     onVotePressed: () -> Unit,
     onVoteInputChanged: (String) -> Unit, // either the vote input or the selected option id is passed as a string
     onToastConsumed: () -> Unit,
+    onProfileCardClicked: (userName: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     when (state) {
@@ -69,7 +70,10 @@ fun PollVoteScreen(
                         },
                         dueDate = poll.dueDate ?: "",
                         rejectionText = poll.rejectionText ?: "",
-                        commentCount = 0
+                        commentCount = 0,
+                        onProfileCardClicked = {
+                            Log.d("TAG", "Polls: ${poll.pollCreatorUsername}")
+                        }
                     )
                 },
                 currentPointsReserved = state.currentPointsReserved,
@@ -107,7 +111,10 @@ fun PollVoteScreen(
                         },
                         dueDate = poll.dueDate ?: "",
                         rejectionText = poll.rejectionText ?: "",
-                        commentCount = 0
+                        commentCount = 0,
+                        onProfileCardClicked = {
+                            Log.d("TAG", "Polls: ${poll.pollCreatorUsername}")
+                        }
                     )
                 },
                 currentPointsReserved = state.currentPointsReserved,

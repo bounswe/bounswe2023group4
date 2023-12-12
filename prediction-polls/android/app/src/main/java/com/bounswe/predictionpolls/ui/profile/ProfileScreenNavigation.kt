@@ -9,32 +9,40 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 
-const val PROFILE_SCREEN_ROUTE = "profile"
+const val PROFILE_SCREEN_ROUTE = "profile/{username}"
 
 fun NavGraphBuilder.profileScreen(navController: NavController) {
-    composable(PROFILE_SCREEN_ROUTE) {
-        //TODO: I have replaced index navigation. It should be implemented
+    composable(
+        route = PROFILE_SCREEN_ROUTE,
+        arguments = listOf(navArgument("username") { nullable = false })
+    ) { backStackEntry ->
         val profileViewModel: ProfileScreenViewModel = hiltViewModel()
-        LaunchedEffect(key1 = Unit) {
+        val username = backStackEntry.arguments?.getString("username") ?: return@composable
+
+        LaunchedEffect(key1 = username) {
             if (
                 profileViewModel.profileScreenUiState.value is ProfileScreenUiState.Loading ||
                 profileViewModel.profileScreenUiState.value is ProfileScreenUiState.Error
             ) {
-                profileViewModel.fetchProfileInfo()
-                profileViewModel.fetchFeed(0)
+                profileViewModel.fetchProfileInfo(username)
+                profileViewModel.fetchFeed(0) // Updated to pass the username
             }
         }
+
         val profileScreenUiState by profileViewModel.profileScreenUiState.collectAsStateWithLifecycle()
 
-        ProfileScreen(profileScreenUiState)
-
+        ProfileScreen(profileScreenUiState, onProfileClicked = {
+            navController.navigateToProfileScreen(it)
+        })
     }
 }
 
-fun NavController.navigateToFeedScreen(
+fun NavController.navigateToProfileScreen(
+    username: String,
     navOptions: NavOptions? = null,
     block: Navigator.Extras? = null
 ) {
-    navigate(PROFILE_SCREEN_ROUTE, navOptions, block)
+    navigate("profile/$username", navOptions, block)
 }

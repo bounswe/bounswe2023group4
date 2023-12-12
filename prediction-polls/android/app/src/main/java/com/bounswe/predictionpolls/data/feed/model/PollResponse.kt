@@ -54,6 +54,7 @@ data class PollResponse(
                     rejectionText = rejectVotes,
                     commentCount = 0,
                     tags = tags,
+                    pollCreatorUsername = creatorUsername,
                     inputType = when (contPollType) {
                         "numeric" -> ContinuousVoteInputType.Decimal
                         "date" -> ContinuousVoteInputType.Date
@@ -78,6 +79,7 @@ data class PollResponse(
                     pollCreatorName = creatorName,
                     pollQuestionTitle = question,
                     rejectionText = rejectVotes,
+                    pollCreatorUsername = creatorUsername,
                     commentCount = 0,
                     tags = tags,
                     options = options.toImmutableList()

@@ -3,6 +3,7 @@ package com.bounswe.predictionpolls.ui.common.poll
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -44,6 +45,7 @@ fun PollComposable(
     dueDate: String,
     rejectionText: String,
     commentCount: Int,
+    onProfileCardClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -67,7 +69,9 @@ fun PollComposable(
             PollCreatorProfile(
                 imageUri = pollCreatorProfilePictureUri,
                 userName = pollCreatorName,
-                modifier = Modifier.align(Alignment.End)
+                modifier = Modifier
+                    .clickable(onClick = onProfileCardClicked)
+                    .align(Alignment.End)
             )
             if (tags.isNotEmpty()) PollTagsContent(tags)
             PollQuestionTitle(pollQuestionTitle = pollQuestionTitle)
@@ -79,12 +83,12 @@ fun PollComposable(
                     .padding(vertical = 8.dp),
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
-                if (dueDate.isNotEmpty()){
+                if (dueDate.isNotEmpty()) {
                     DueDateComposable(
                         dueDate = dueDate
                     )
                 }
-                if (rejectionText.isNotEmpty()){
+                if (rejectionText.isNotEmpty()) {
                     RejectionDateComposable(
                         rejectionText = rejectionText
                     )
@@ -252,6 +256,7 @@ private fun PollComposablePreview() {
             dueDate = "21 Nov 2023",
             rejectionText = "Last 5 Days",
             commentCount = 265,
+            onProfileCardClicked = {},
             modifier = Modifier.padding(16.dp)
         )
     }
