@@ -21,14 +21,14 @@
 | Swagger Correction for Poll | [#399](https://github.com/bounswe/bounswe2023group4/issues/399) | Şefik Palazoğlu | 08.12.2023 | Unfinished | 1.5hr |
 | Researching and implementing the Annotation's UI| [#493](https://github.com/bounswe/bounswe2023group4/issues/493) | Ali Nasra | 20.12.2023 | [#527](https://github.com/bounswe/bounswe2023group4/pull/527)  | 8hr | Ongoing "12h"
 | Annotation Backend Requirement | [#494](https://github.com/bounswe/bounswe2023group4/issues/494) | Şefik Palazoğlu | 12.12.2023 | [#534](https://github.com/bounswe/bounswe2023group4/pull/534) | 6hr | 7hr |
-| Implement Authentication Token Management Middleware | [#409](https://github.com/bounswe/bounswe2023group4/issues/409) | Kutay Saran | 12.12.2023 | | 4hr |
-| Implement Forgot Password Page UI | [#497](https://github.com/bounswe/bounswe2023group4/issues/497) | Kutay Saran | 12.12.2023 | | 2hr |
-| Integration of forgot password functionality | [#496](https://github.com/bounswe/bounswe2023group4/issues/496) | Kutay Saran, Hebun Şimşek | 12.12.2023 | | 2hr |
-| Integration of email verification | [#495](https://github.com/bounswe/bounswe2023group4/issues/495) | Kutay Saran, Hebun Şimşek | 12.12.2023 | | 3hr |
+| Implement Authentication Token Management Middleware | [#409](https://github.com/bounswe/bounswe2023group4/issues/409) | Kutay Saran | 12.12.2023 | [#524](https://github.com/bounswe/bounswe2023group4/pull/524) | 4hr | 2hr |
+| Implement Forgot Password Page UI | [#497](https://github.com/bounswe/bounswe2023group4/issues/497) | Kutay Saran | 12.12.2023 | [#525](https://github.com/bounswe/bounswe2023group4/pull/525) | 2hr | 1hr |
+| Integration of forgot password functionality | [#496](https://github.com/bounswe/bounswe2023group4/issues/496) | Kutay Saran, Hebun Şimşek | 12.12.2023 | [#544](https://github.com/bounswe/bounswe2023group4/pull/544) , [#537](https://github.com/bounswe/bounswe2023group4/pull/537)  | 2hr | 3hr |
+| Integration of email verification | [#495](https://github.com/bounswe/bounswe2023group4/issues/495) | Kutay Saran, Hebun Şimşek | 12.12.2023 | [#546](https://github.com/bounswe/bounswe2023group4/pull/546) | 3hr | 2hr |
 | Implement the UI of moderation-not moderator page from mock up | [#498](https://github.com/bounswe/bounswe2023group4/issues/498)| Enes Furkan Arslan | 12.12.2023 | [#551](https://github.com/bounswe/bounswe2023group4/pull/551) | 2h | 2h |  
 | Start implementation of general UI of moderation-not jury from mock up | [#499](https://github.com/bounswe/bounswe2023group4/issues/499) | Enes Furkan Arslan | 12.12.2023 | [#551](https://github.com/bounswe/bounswe2023group4/pull/551) | 3h | 3h |
 | Implement forgot password | [#500](https://github.com/bounswe/bounswe2023group4/issues/500) | Hebun Şimşek | 12.12.2023 | | 4h | |
-| Google Auth Fix | [#501](https://github.com/bounswe/bounswe2023group4/issues/501) | Kutay Saran,Emre Batuhan Göç | 11.12.2023 | | 1h |
+| Google Auth Fix | [#501](https://github.com/bounswe/bounswe2023group4/issues/501) | Kutay Saran,Emre Batuhan Göç | 11.12.2023 | [#521](https://github.com/bounswe/bounswe2023group4/pull/521), [#522](https://github.com/bounswe/bounswe2023group4/pull/522) | 1h | 1h |
 | Final Milestone Plan for project | [#502](https://github.com/bounswe/bounswe2023group4/issues/502) | Emre Batuhan Göç | 11.12.2023 | | 1.5h |
 | Implement selected badges in profile endpoints | [#503](https://github.com/bounswe/bounswe2023group4/issues/503) | Emre Batuhan Göç | 12.12.2023 | | 2h |
 | Implement get poll endpoints for specific polls | [#504](https://github.com/bounswe/bounswe2023group4/issues/504) | Emre Batuhan Göç | 12.12.2023 | | 3h |
@@ -80,6 +80,8 @@
 | Add edit logic to the profile page | [#512](https://github.com/bounswe/bounswe2023group4/issues/512) | Ahmet Emre Şafak | 19.12.23 | 3.5hr |
 | Fix profile image related issues in polls | [#513](https://github.com/bounswe/bounswe2023group4/issues/513) | Ahmet Emre Şafak | 19.12.23 | 1hr |
 | Add Forgot Password feature to auth flow in mobile | [#549](https://github.com/bounswe/bounswe2023group4/issues/549) | Ahmet Emre Şafak | 19.12.23 | 4hr |
+| Implement Follow User Functionality in Profile Page in Frontend | [#552](https://github.com/bounswe/bounswe2023group4/issues/552) | Kutay Saran | 19.12.23 | 3hr |
+| Implement User Profile Hiding Feature in Backend | [#550](https://github.com/bounswe/bounswe2023group4/issues/550) | Kutay Saran | 19.12.23 | 2hr |
 
 ## Risks
 - We might not be able to finish aimed requirements due to time constraints.
