@@ -18,7 +18,7 @@
 | Linking Refresh Token and Users in Database | [#241](https://github.com/bounswe/bounswe2023group4/issues/241) | Şefik Palazoğlu | 12.12.2023 | Unfinished | 2hr |
 | Implement Poll Comment | [#342](https://github.com/bounswe/bounswe2023group4/issues/342) | Şefik Palazoğlu | 12.12.2023 | Unfinished | 3hr |
 | Swagger Correction for Poll | [#399](https://github.com/bounswe/bounswe2023group4/issues/399) | Şefik Palazoğlu | 08.12.2023 | Unfinished | 1.5hr |
-| Researching and implementing the Annotation's UI| [#493](https://github.com/bounswe/bounswe2023group4/issues/493) | Ali Nasra | 20.12.2023 | | 8hr |
+| Researching and implementing the Annotation's UI| [#493](https://github.com/bounswe/bounswe2023group4/issues/493) | Ali Nasra | 20.12.2023 | [#527](https://github.com/bounswe/bounswe2023group4/pull/527)  | 8hr | Ongoing
 | Annotation Backend Requirement | [#494](https://github.com/bounswe/bounswe2023group4/issues/494) | Şefik Palazoğlu | 12.12.2023 | [#534](https://github.com/bounswe/bounswe2023group4/pull/534) | 6hr | 7hr |
 | Implement Authentication Token Management Middleware | [#409](https://github.com/bounswe/bounswe2023group4/issues/409) | Kutay Saran | 12.12.2023 | | 4hr |
 | Implement Forgot Password Page UI | [#497](https://github.com/bounswe/bounswe2023group4/issues/497) | Kutay Saran | 12.12.2023 | | 2hr |
@@ -46,6 +46,13 @@
 
 | Description  | Issue | Assignee | Due | PR |
 | -------- | ----- | -------- | --- | --- |
+| Investigating the potential of highlighting annotated strings | [#517](https://github.com/bounswe/bounswe2023group4/issues/517) | Ali Nasra | 12/12/2023 | - |
+| Researching context menus | [#518](https://github.com/bounswe/bounswe2023group4/issues/518) | Ali Nasra | 12/12/2023 | - |
+| Researching pop-ups | [#519](https://github.com/bounswe/bounswe2023group4/issues/519) | Ali Nasra | 12/12/2023 | - |
+| Updating the the View Annotation Modal | [#528](https://github.com/bounswe/bounswe2023group4/issues/528) | Ali Nasra | 12/12/2023 | - |
+| Updating the the Add Annotation Modal | [#529](https://github.com/bounswe/bounswe2023group4/issues/529) | Ali Nasra | 12/12/2023 | - |
+
+
 
 
 ## Planned vs. Actual
