@@ -52,6 +52,7 @@
 | Researching pop-ups | [#519](https://github.com/bounswe/bounswe2023group4/issues/519) | Ali Nasra | 12/12/2023 | - |
 | Updating the the View Annotation Modal | [#528](https://github.com/bounswe/bounswe2023group4/issues/528) | Ali Nasra | 12/12/2023 | [#493](https://github.com/bounswe/bounswe2023group4/issues/493) |
 | Updating the the Add Annotation Modal | [#529](https://github.com/bounswe/bounswe2023group4/issues/529) | Ali Nasra | 12/12/2023 | [#493](https://github.com/bounswe/bounswe2023group4/issues/493) |
+| Implement selected badges feature in edit profile page  | [#505](https://github.com/bounswe/bounswe2023group4/issues/505) | Selin Işık | 12.12.2023 | [#560](https://github.com/bounswe/bounswe2023group4/pull/560) 
 
 
 ## Planned vs. Actual
