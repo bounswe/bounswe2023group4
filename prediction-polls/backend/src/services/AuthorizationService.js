@@ -264,10 +264,12 @@ async function resetPassword(token, newPassword) {
 async function requestResetPassword (req, res){
   try {
       const { email } = req.body;
-      const user = await db.findUser(email);
+      const user = await db.findUser({email});
 
       if (user) {
           const token = await generatePasswordResetToken();
+          const expiresIn = 360;
+          await db.storePasswordResetToken(user.id, token, expiresIn);
           // Store the token in the database (functionality not shown here)
           await sendPasswordResetEmail(email, token);
       }
