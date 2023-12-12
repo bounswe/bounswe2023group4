@@ -74,7 +74,12 @@
 | Implementing the "Add Friend" functionality in the Backend | [#541](https://github.com/bounswe/bounswe2023group4/issues/541) | Ali Nasra | 19.12.2023 | 4hr |
 | Adding the annotation research results to the wiki  | [#542](https://github.com/bounswe/bounswe2023group4/issues/542) | Ali Nasra | 19.12.2023 | 2hr |
 | Fixing the annotation approach  | [#543](https://github.com/bounswe/bounswe2023group4/issues/543) | Ali Nasra | 19.12.2023 | 1hr |
-
+| Implement Moderation Screen UI| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 19.12.23 | 2hr |
+| Research how to implement annotations for mobile| [#547](https://github.com/bounswe/bounswe2023group4/issues/547) | Yiğit Şekerci | 19.12.23 | 2.5hr |
+| Implement annotations in mobile| [#548](https://github.com/bounswe/bounswe2023group4/issues/548) | Yiğit Şekerci | 19.12.23 | 7.5hr |
+| Add edit logic to the profile page | [#512](https://github.com/bounswe/bounswe2023group4/issues/512) | Ahmet Emre Şafak | 19.12.23 | 3.5hr |
+| Fix profile image related issues in polls | [#513](https://github.com/bounswe/bounswe2023group4/issues/513) | Ahmet Emre Şafak | 19.12.23 | 1hr |
+| Add Forgot Password feature to auth flow in mobile | [#549](https://github.com/bounswe/bounswe2023group4/issues/549) | Ahmet Emre Şafak | 19.12.23 | 4hr |
 
 ## Risks
 - We might not be able to finish aimed requirements due to time constraints.
