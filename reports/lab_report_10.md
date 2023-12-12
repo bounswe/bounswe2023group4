@@ -82,9 +82,12 @@
 | Add Forgot Password feature to auth flow in mobile | [#549](https://github.com/bounswe/bounswe2023group4/issues/549) | Ahmet Emre Şafak | 19.12.23 | 4hr |
 | Implement Follow User Functionality in Profile Page in Frontend | [#552](https://github.com/bounswe/bounswe2023group4/issues/552) | Kutay Saran | 19.12.23 | 3hr |
 | Implement User Profile Hiding Feature in Backend | [#550](https://github.com/bounswe/bounswe2023group4/issues/550) | Kutay Saran | 19.12.23 | 2hr |
+| Implement not jury page backend connection for becoming jury post | [#562](https://github.com/bounswe/bounswe2023group4/issues/562) | Enes Furkan Arslan | 19.12.2023 | 4h |
+| Complete the implementation of moderator not jury UI | [#559](https://github.com/bounswe/bounswe2023group4/issues/559) | Enes Furkan Arslan | 19.12.2023 | 2h |
 
 ## Risks
 - We might not be able to finish aimed requirements due to time constraints.
+- Several meeting may be needed during the week, necessary people may not be available at the same time.
 
 ## Participants
 - Ali Nasra
