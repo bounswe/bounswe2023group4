@@ -29,10 +29,16 @@
   }
 
   .optButton {
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 45px;
+    padding-right: 45px;
+    font-size: large;
+    text-align: center;
     border:none;
     color: var(--neutral-white);
+    border-radius: 10px;
+    background-color: var(--primary-500);
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .optButton:hover {
@@ -48,16 +54,21 @@
   }
 
   .submitButton {
-    background-color: var(--secondary-500);
+    background-color: var(--primary-500);
     color: #fff;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 45px;
+    padding-right: 45px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border:none;
+    border-radius: 10px;
   }
 
   .submitButton:hover {
-    background-color: var(--secondary-300);
+    background-color: var(--primary-300);
     color:#fff !important ;
+    
+
   }
 
   .multipleChoiceInputs {

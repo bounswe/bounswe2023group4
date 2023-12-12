@@ -65,7 +65,7 @@ function PollCard({ PollData, setAnswer, onClick }) {
   };
 
   return (
-    <div className={styles.card} onClick={onClick}>
+    <div className={`${styles.card} ${pollData.isOpen ? styles.pollCardOpen : styles.pollCardClosed}`} onClick={onClick} >
       <div className={styles.question}>
         <div className={styles.tags}>
           {pollData.tags.map((tag, index) => (
@@ -161,6 +161,12 @@ function PollCard({ PollData, setAnswer, onClick }) {
             <div className={styles.creatorName}>{PollData.creatorName}</div>
           </a>
         </div>
+        {!PollData.isOpen  && <div className={styles.textGroup}>
+          <p className={styles.pollClosed}>POLL CLOSED</p>
+
+        </div>}
+        {PollData.isOpen  &&
+        <>
         <div className={styles.textGroup}>
           <p className={styles.textDescription}>Closing In</p>
           <p className={styles.textDetail}>
@@ -174,7 +180,7 @@ function PollCard({ PollData, setAnswer, onClick }) {
           <p className={styles.textDetail}>
             {PollData.closingDate == null ? " " : "Last"} {PollData.rejectVotes}
           </p>
-        </div>
+        </div> </> }
       </div>
     </div>
   );
