@@ -14,7 +14,8 @@ import Vote from '../Pages/Vote';
 import PrivateRoute from '../Components/PrivateRoute';
 import GoogleLogin from '../Pages/Auth/Google'
 import EditProfile from '../Pages/EditProfile';
-import ForgotPassword from '../Pages/Auth/ForgotPassword';
+import ForgotPassword from '../Pages/Auth/ForgotPassword/ForgotPassword';
+import VerifyEmailPage from '../Pages/Auth/VerifyEmail';
 import ResetPassword from '../Pages/Auth/ResetPassword';
 import VoteList from '../Pages/Vote/voteList';
 
@@ -32,6 +33,7 @@ function AppRouter() {
         <Route path="/auth/sign-up" element={<SignUp />} />
         <Route path="/auth/sign-in" element={<SignIn />} />
         <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+        <Route path="/auth/verify-email" element={<VerifyEmailPage />} />
         <Route path="/auth/reset-password" element={<ResetPassword />} />
         <Route path="/feed" element={
           <PrivateRoute>
