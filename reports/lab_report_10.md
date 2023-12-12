@@ -91,7 +91,9 @@
 | Moderator endpoint swagger | [#555](https://github.com/bounswe/bounswe2023group4/issues/555) | Emre Batuhan Göç | 17.12.2023 | 1.5hr |
 | Implement Get another user's opened polls endpoint | [#554](https://github.com/bounswe/bounswe2023group4/issues/554) | Emre Batuhan Göç | 19.12.2023 | 1hr |
 | Poll Grading and Closing System | [#553](https://github.com/bounswe/bounswe2023group4/issues/553) | Emre Batuhan Göç | 19.12.2023 | 6hr |
-
+| Implement Guest Mechanics in Web App | [#566](https://github.com/bounswe/bounswe2023group4/issues/566) | Selin Işık | 19.12.2023| 2hr | 
+|Poll Report, Comment, Share Buttons | [#564](https://github.com/bounswe/bounswe2023group4/issues/564) | Selin Işık | 19.12.2023| 4hr | 
+| Implement final page of moderation pages(Jury request) | [#563](https://github.com/bounswe/bounswe2023group4/issues/563) | Selin Işık | 19.12.2023| 3.5hr | 
 ## Risks
 - We might not be able to finish aimed requirements due to time constraints.
 - Several meeting may be needed during the week, necessary people may not be available at the same time.
