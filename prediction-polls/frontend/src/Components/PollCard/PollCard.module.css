@@ -11,6 +11,14 @@
   background-color: var(--neutral-pollCard);
   margin-bottom: 20px;
 }
+
+.pollCardOpen {
+  background-color: var(--neutral-pollCard);
+}
+.pollCardClosed {
+  background-color: var(--neutral-closedPoll);
+  
+}
 .question {
   display: flex;
   flex-direction: column;
@@ -167,7 +175,7 @@
   width: 50%;
   padding: 10px;
   box-sizing: border-box;
-  border: 2px solid var(--secondary-200);
+  border: 2px solid var(--primary-200);
   border-radius: 10px;
   font-size: 20px;
   background-color: var(--neutral-pollCard);
@@ -201,4 +209,10 @@ a{
     
   }
 
+}
+.pollClosed{
+  font-size: large;
+  font-weight: 700;
+  color: var(--warning-500);
+  text-align: right;
 }

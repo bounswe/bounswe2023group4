@@ -311,34 +311,22 @@ function Create() {
         </div>
         <div className={styles.pollTypeContainer}>
           <p>Choose input type</p>
-          <Button
+          <button
             className={styles.optButton}
-            type={pollType === "multipleChoice" ? "primary" : "default"}
-            onClick={() => handlePollTypeChange("multipleChoice")}
-            style={{
-              marginRight: "8px",
-              backgroundColor:
-                pollType === "multipleChoice"
-                  ? "var(--secondary-500)"
-                  : "var(--secondary-300)",
-            }}
+            type={pollType === 'multipleChoice' ? 'primary' : 'default'}
+            onClick={() => handlePollTypeChange('multipleChoice')}
+            style={{ marginRight: '8px', backgroundColor: pollType === 'multipleChoice' ? 'var(--primary-500)' : 'var(--primary-300)' }}
           >
             Multiple Choice
-          </Button>
-          <Button
+          </button>
+          <button
             className={styles.optButton}
-            type={pollType === "customized" ? "primary" : "default"}
-            onClick={() => handlePollTypeChange("customized")}
-            style={{
-              marginRight: "8px",
-              backgroundColor:
-                pollType === "customized"
-                  ? "var(--secondary-500)"
-                  : "var(--secondary-300)",
-            }}
+            type={pollType === 'customized' ? 'primary' : 'default'}
+            onClick={() => handlePollTypeChange('customized')}
+            style={{ marginRight: '8px', backgroundColor: pollType === 'customized' ? 'var(--primary-500)' : 'var(--primary-300)' }}
           >
             Customized
-          </Button>
+          </button>
         </div>
         {showMultipleChoiceInputs && (
           <>
@@ -352,51 +340,41 @@ function Create() {
                     value={choice}
                     onChange={(e) => handleChoiceChange(index, e.target.value)}
                   />
-                  <Button
-                    className={styles.submitButton}
-                    onClick={() => handleDeleteChoice(index)}
-                  >
+                  <button className={styles.submitButton} onClick={() => handleDeleteChoice(index)}>
                     Delete
-                  </Button>
+                  </button>
                 </div>
               ))}
-              <Button className={styles.submitButton} onClick={handleAddChoice}>
-                + Add
-              </Button>
+              <button className={styles.submitButton} onClick={handleAddChoice}>+ Add</button>
+            </div>
+            <div className={styles.openVisibilityContainer}>
+              <Checkbox className={styles.openVisibility} onChange={handleOpenVisibilityChange}>
+                Open Distribution Visibility
+              </Checkbox>
             </div>
   
           </>
         )}
         {pollType === "customized" && (
           <div className={styles.customizedOptions}>
-            <Button
+            <button
               className={styles.optButton}
-              type={customizedType === "date" ? "primary" : "default"}
-              onClick={() => handleCustomizedTypeChange("date")}
-              style={{
-                marginRight: "8px",
-                backgroundColor:
-                  customizedType === "date"
-                    ? "var(--secondary-500)"
-                    : "var(--secondary-300)",
-              }}
+              type={customizedType === 'date' ? 'primary' : 'default'}
+              onClick={() => handleCustomizedTypeChange('date')}
+              style={{ marginRight: '8px', backgroundColor: customizedType === 'date' ? 'var(--primary-500)' : 'var(--primary-300)' }}
             >
               Date
-            </Button>
-            <Button
+            </button>
+            <button
               className={styles.optButton}
-              type={customizedType === "numeric" ? "primary" : "default"}
-              onClick={() => handleCustomizedTypeChange("numeric")}
-              style={{
-                marginRight: "8px",
-                backgroundColor:
-                  customizedType === "numeric"
-                    ? "var(--secondary-500)"
-                    : "var(--secondary-300)",
-              }}
+              type={customizedType === 'numeric' ? 'primary' : 'default'}
+              onClick={() => handleCustomizedTypeChange('numeric')}
+              style={{ marginRight: '8px', backgroundColor: customizedType === 'numeric' ? 'var(--primary-500)' : 'var(--primary-300)' }}
             >
               Numeric
-            </Button>
+            </button>
+            
+            
           </div>
         )}
         <div className={styles.setDueDateContainer}>
@@ -443,13 +421,13 @@ function Create() {
               </Checkbox>
             </div>}
         <div className={styles.submitContainer}>
-          <Button
+          <button
             className={styles.submitButton}
             onClick={handleSubmit}
             disabled={isSubmitDisabled}
           >
             Create Poll
-          </Button>
+          </button>
         </div>
         <PointsButton point={userData?.points ?? 0} />
       </div>

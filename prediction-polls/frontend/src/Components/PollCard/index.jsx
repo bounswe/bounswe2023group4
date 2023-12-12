@@ -45,10 +45,12 @@ function PollCard({ PollData, setAnswer, onClick }) {
 
   var totalPoints = !PollData.isCustomPoll
     ? PollData.options.reduce(
-        (acc, curr) => (curr.votes == null ? acc : acc + curr.votes),
+        (acc, curr) =>
+          curr.voter_count == null ? acc : acc + curr.voter_count,
         0
       )
     : 0;
+
   const handleSelect = (newList) => {
     setSelectedArray(newList);
     var newPoll = JSON.parse(JSON.stringify(PollData));
@@ -86,7 +88,12 @@ function PollCard({ PollData, setAnswer, onClick }) {
   };
 
   return (
-    <div className={styles.card} onClick={onClick}>
+    <div
+      className={`${styles.card} ${
+        pollData.isOpen ? styles.pollCardOpen : styles.pollCardClosed
+      }`}
+      onClick={onClick}
+    >
       <div className={styles.question}>
         <div className={styles.tags}>
           {pollData.tags.map((tag, index) => (
@@ -103,7 +110,7 @@ function PollCard({ PollData, setAnswer, onClick }) {
             {pollData.options.map((option, index) => {
               let widthPercentage = 0;
               if (totalPoints > 0) {
-                widthPercentage = (option.votes / totalPoints) * 100;
+                widthPercentage = (option.voter_count / totalPoints) * 100;
               }
               return (
                 <PollOption
@@ -191,22 +198,32 @@ function PollCard({ PollData, setAnswer, onClick }) {
             <div className={styles.creatorName}>{PollData.creatorName}</div>
           </a>
         </div>
-        <div className={styles.textGroup}>
-          <p className={styles.textDescription}>Closing In</p>
-          <p className={styles.textDetail}>
-            {PollData.closingDate == null ? "Indefinite" : moment(PollData.closingDate).format("DD MMM YYYY")}
+        {!PollData.isOpen && (
+          <div className={styles.textGroup}>
+            <p className={styles.pollClosed}>POLL CLOSED</p>
+          </div>
+        )}
+        {PollData.isOpen && (
+          <>
+            <div className={styles.textGroup}>
+              <p className={styles.textDescription}>Closing In</p>
+              <p className={styles.textDetail}>
+              {PollData.closingDate == null ? "Indefinite" : moment(PollData.closingDate).format("DD MMM YYYY")}
             {" "}
             {PollData.closingDate == null ? "" : moment(PollData.closingDate).format('HH:mm')}
-          </p>
-        </div>
-        <div className={styles.textGroup}>
-          <p className={styles.textDescription}>
-            {PollData.closingDate == null ? " " : "Reject Votes In"}
-          </p>
-          <p className={styles.textDetail}>
-            {PollData.closingDate == null ? " " : "Last"} {PollData.rejectVotes}
-          </p>
-        </div>
+              </p>
+            </div>
+            <div className={styles.textGroup}>
+              <p className={styles.textDescription}>
+                {PollData.closingDate == null ? " " : "Reject Votes In"}
+              </p>
+              <p className={styles.textDetail}>
+                {PollData.closingDate == null ? " " : "Last"}{" "}
+                {PollData.rejectVotes}
+              </p>
+            </div>{" "}
+          </>
+        )}
       </div>
     </div>
   );
