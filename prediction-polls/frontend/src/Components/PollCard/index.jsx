@@ -10,6 +10,7 @@ import { Input, DatePicker, TimePicker } from "antd";
 import { useLocation } from "react-router-dom";
 import ProfileIcon from "../../Assets/icons/ProfileIcon.jsx";
 import getProfile from "../../api/requests/profile.jsx";
+import moment from "moment";
 
 function PollCard({ PollData, setAnswer, onClick }) {
   const [selectedArray, setSelectedArray] = React.useState(
@@ -193,7 +194,9 @@ function PollCard({ PollData, setAnswer, onClick }) {
         <div className={styles.textGroup}>
           <p className={styles.textDescription}>Closing In</p>
           <p className={styles.textDetail}>
-            {PollData.closingDate == null ? "Indefinite" : PollData.closingDate}
+            {PollData.closingDate == null ? "Indefinite" : moment(PollData.closingDate).format("DD MMM YYYY")}
+            {" "}
+            {PollData.closingDate == null ? "" : moment(PollData.closingDate).format('HH:mm')}
           </p>
         </div>
         <div className={styles.textGroup}>
