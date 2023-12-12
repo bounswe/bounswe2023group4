@@ -7,7 +7,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid var(--primary-200);
+  border: 2px solid var(--primary-300);
   border-radius: 10px;
   font-size: 16px;
   font-weight: 500;
@@ -52,7 +52,7 @@
   top: 0;
   left: 0;
   height: 100%;
-  background-color: var(--primary-50);
+  background-color: var(--primary-100);
   border-radius: 8px;
   z-index: 1;
 }

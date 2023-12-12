@@ -25,14 +25,12 @@ function PollCard({ PollData, setAnswer, onClick }) {
     /^\/vote\//.test(location.pathname)
   );
 
-  
   useEffect(() => {
     const data = getProfile(PollData.creatorUsername);
     data.then((result) => {
       setUserData(result);
     });
   }, []);
-
 
   React.useEffect(() => {
     setIsVotePath(/^\/vote\//.test(location.pathname));
@@ -44,10 +42,12 @@ function PollCard({ PollData, setAnswer, onClick }) {
 
   var totalPoints = !PollData.isCustomPoll
     ? PollData.options.reduce(
-        (acc, curr) => (curr.votes == null ? acc : acc + curr.votes),
+        (acc, curr) =>
+          curr.voter_count == null ? acc : acc + curr.voter_count,
         0
       )
     : 0;
+
   const handleSelect = (newList) => {
     setSelectedArray(newList);
     var newPoll = JSON.parse(JSON.stringify(PollData));
@@ -65,7 +65,12 @@ function PollCard({ PollData, setAnswer, onClick }) {
   };
 
   return (
-    <div className={`${styles.card} ${pollData.isOpen ? styles.pollCardOpen : styles.pollCardClosed}`} onClick={onClick} >
+    <div
+      className={`${styles.card} ${
+        pollData.isOpen ? styles.pollCardOpen : styles.pollCardClosed
+      }`}
+      onClick={onClick}
+    >
       <div className={styles.question}>
         <div className={styles.tags}>
           {pollData.tags.map((tag, index) => (
@@ -82,7 +87,7 @@ function PollCard({ PollData, setAnswer, onClick }) {
             {pollData.options.map((option, index) => {
               let widthPercentage = 0;
               if (totalPoints > 0) {
-                widthPercentage = (option.votes / totalPoints) * 100;
+                widthPercentage = (option.voter_count / totalPoints) * 100;
               }
               return (
                 <PollOption
@@ -148,7 +153,9 @@ function PollCard({ PollData, setAnswer, onClick }) {
         <div className={styles.creator}>
           <a href={`/profile/${PollData.creatorUsername}`}>
             {userData?.profile_picture == null ? (
-              <div className={styles.creatorImagePlaceholder} ><ProfileIcon width={20} height={20}/></div>
+              <div className={styles.creatorImagePlaceholder}>
+                <ProfileIcon width={20} height={20} />
+              </div>
             ) : (
               <img
                 src={userData.profile_picture}
@@ -161,26 +168,32 @@ function PollCard({ PollData, setAnswer, onClick }) {
             <div className={styles.creatorName}>{PollData.creatorName}</div>
           </a>
         </div>
-        {!PollData.isOpen  && <div className={styles.textGroup}>
-          <p className={styles.pollClosed}>POLL CLOSED</p>
-
-        </div>}
-        {PollData.isOpen  &&
-        <>
-        <div className={styles.textGroup}>
-          <p className={styles.textDescription}>Closing In</p>
-          <p className={styles.textDetail}>
-            {PollData.closingDate == null ? "Indefinite" : PollData.closingDate}
-          </p>
-        </div>
-        <div className={styles.textGroup}>
-          <p className={styles.textDescription}>
-            {PollData.closingDate == null ? " " : "Reject Votes In"}
-          </p>
-          <p className={styles.textDetail}>
-            {PollData.closingDate == null ? " " : "Last"} {PollData.rejectVotes}
-          </p>
-        </div> </> }
+        {!PollData.isOpen && (
+          <div className={styles.textGroup}>
+            <p className={styles.pollClosed}>POLL CLOSED</p>
+          </div>
+        )}
+        {PollData.isOpen && (
+          <>
+            <div className={styles.textGroup}>
+              <p className={styles.textDescription}>Closing In</p>
+              <p className={styles.textDetail}>
+                {PollData.closingDate == null
+                  ? "Indefinite"
+                  : PollData.closingDate}
+              </p>
+            </div>
+            <div className={styles.textGroup}>
+              <p className={styles.textDescription}>
+                {PollData.closingDate == null ? " " : "Reject Votes In"}
+              </p>
+              <p className={styles.textDetail}>
+                {PollData.closingDate == null ? " " : "Last"}{" "}
+                {PollData.rejectVotes}
+              </p>
+            </div>{" "}
+          </>
+        )}
       </div>
     </div>
   );
