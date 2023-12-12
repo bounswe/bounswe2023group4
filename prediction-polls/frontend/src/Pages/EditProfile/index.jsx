@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Menu from "../../Components/Menu";
 import styles from "./EditProfile.module.css";
 import { useParams } from "react-router-dom";
@@ -13,13 +13,14 @@ import uploadProfilePhoto from "../../api/requests/uploadProfilePhoto.jsx";
 import updateProfile from "../../api/requests/editProfile.jsx";
 import { useNavigate } from "react-router-dom";
 import Badge from "../../Components/Badge/index.jsx";
+import badgeSelect from "../../api/requests/badgeSelect.jsx";
 
 function EditProfile() {
   const { username } = useParams();
   const [form] = Form.useForm();
   const [initialValues, setInitialValues] = React.useState({
     username: "",
-    // fullname: userData.name,
+    // fullname: profileData.name,
     about: "",
     birthday: "",
     isHidden: null,
@@ -28,9 +29,11 @@ function EditProfile() {
   const [caption, setCaption] = React.useState("");
   const fileInputRef = React.useRef(null);
   const [selectedFile, setSelectedFile] = React.useState(null);
+  const [tempBadgeSelections, setTempBadgeSelections] = React.useState({});
 
-  const [userData, setUserData] = React.useState({});
+  const [profileData, setUserData] = React.useState({});
   const navigate = useNavigate();
+  console.log("tempBadgeSelections", tempBadgeSelections);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -42,8 +45,10 @@ function EditProfile() {
             username: response.username,
             // fullname: response.name,
             about: response.biography,
-            birthday: response.birthday ? moment(response.birthday) : null,
-            isHidden: response.isHidden,
+            birthday: response.birthday
+              ? moment(response.birthday, "YYYY-MM-DD")
+              : null,
+            isHidden: response.isHidden !== null ? !response.isHidden : true,
           };
           setInitialValues(newInitialValues);
           form.setFieldsValue(newInitialValues);
@@ -55,6 +60,21 @@ function EditProfile() {
 
     fetchData();
   }, [username]);
+
+  React.useEffect(() => {
+    
+    if (profileData.badges) {
+      const initialSelections = profileData.badges.reduce((acc, badge) => {
+        acc[badge.id] = badge.isSelected === 1; 
+        return acc;
+      }, {});
+      setTempBadgeSelections(initialSelections);
+    }
+  }, [profileData.badges]);
+
+  const handleBadgeChange = (badgeId, isSelected) => {
+    setTempBadgeSelections((prev) => ({ ...prev, [badgeId]: isSelected }));
+  };
 
   const submitImage = async () => {
     const result = await uploadProfilePhoto(file, caption);
@@ -68,15 +88,13 @@ function EditProfile() {
   const handleEditProfile = async () => {
     const formUserData = form.getFieldsValue();
     const profileUpdateResult = await updateProfile({
-      userId: userData.id,
+      userId: profileData.userId,
       username: formUserData.username,
-      email: userData.email,
-      profile_picture: userData.profileImage,
+      email: profileData.email,
+      profile_picture: profileData.profileImage,
       biography: formUserData.about,
-      birthday: formUserData.birthday
-        ? formUserData.birthday
-        : null,
-      isHidden: formUserData.isHidden,
+      birthday: formUserData.birthday ? formUserData.birthday.format("YYYY-MM-DD") : null,
+      isHidden: formUserData.isHidden ? 0 : 1,
     });
 
     if (profileUpdateResult) {
@@ -84,6 +102,15 @@ function EditProfile() {
         const imageUploadResult = await submitImage(file);
         if (!imageUploadResult) {
           console.error("Error uploading the profile image.");
+        }
+      }
+      for (const [badgeId, isSelected] of Object.entries(tempBadgeSelections)) {
+        if (
+          isSelected !==
+          profileData.badges.find((badge) => badge.id === badgeId)?.isSelected
+        ) {
+          console.log("Updating badge selection", badgeId, isSelected);
+          await badgeSelect({ badgeId, isSelected });
         }
       }
 
@@ -122,9 +149,9 @@ function EditProfile() {
               className={styles.profileImageContainer}
               onClick={handlePlaceholderClick}
             >
-              {selectedFile || userData.profile_picture ? (
+              {selectedFile || profileData.profile_picture ? (
                 <img
-                  src={selectedFile || userData.profile_picture}
+                  src={selectedFile || profileData.profile_picture}
                   alt="Profile"
                   className={styles.profileImage}
                 />
@@ -177,27 +204,30 @@ function EditProfile() {
           {/*<Form.Item>
             <p>COVER IMAGE</p>
             <img
-              src={userData.thumbnailImage}
+              src={profileData.thumbnailImage}
               alt="thumbnailImage"
               className={styles.thumbnailImage}
             ></img>
           </Form.Item> */}
-          <Form.Item
-            label={<label className={styles.formLabel}>BIRTHDAY</label>}
-            name="birthday"
-            htmlFor="birthday"
-            className={styles.formItem}
-          >
-            <div className={styles.birthdayWrapperStyle}>
+          <div className={styles.birthdayWrapperStyle}>
+            <Form.Item
+              label={<label className={styles.formLabel}>BIRTHDAY</label>}
+              name="birthday"
+              htmlFor="birthday"
+              className={styles.formItem}
+            >
               <DatePicker
                 id="birthday"
                 className={styles.formDatePickerStyle}
                 placeholder="01.01.2000"
                 format="YYYY-MM-DD"
               />
-              <Checkbox id="isHidden">Show in profile</Checkbox>
-            </div>
-          </Form.Item>
+            </Form.Item>
+            <Form.Item name="isHidden" valuePropName="checked" noStyle>
+              <Checkbox>Show in profile</Checkbox>
+            </Form.Item>
+          </div>
+
           <Form.Item className={styles.buttonContainer}>
             <div className={styles.buttonWrapper}>
               <Button
@@ -213,18 +243,26 @@ function EditProfile() {
         </Form>
       </div>
       <div className={styles.pointCol}>
-      <PointsButton point={userData?.points ?? 0}/> 
+      <PointsButton point={profileData?.points ?? 0}/> 
         <p className={styles.badgesText}>Badges</p>
         <p>(You can choose at most 3)</p>
         <div className={styles.badgesContainer}>
-          {userData.badges &&
-            userData.badges.length > 0 ?
-            userData.badges.map((badge, index) => (
+          {profileData.badges &&
+            profileData.badges.length > 0 ?
+            profileData.badges.map((badge, index) => (
               <div className={styles.badgeCheckbox}>
-                <Checkbox />
+                <Checkbox
+                  checked={tempBadgeSelections[badge.id]}
+                  onChange={(e) =>
+                    handleBadgeChange(badge.id, e.target.checked)
+                  }
+                />
                 <Badge number={badge.rank} text={badge.topic} key={index} />
               </div>
-            )) : <p>No badges yet.</p>}
+            ))
+           : (
+            <p>No badges yet.</p>
+          )}
         </div>
       </div>
     </div>

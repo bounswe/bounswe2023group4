@@ -6,10 +6,11 @@ import { ReactComponent as CommentIcon } from "../../Assets/icons/Comment.svg";
 import { ReactComponent as ShareIcon } from "../../Assets/icons/Share.svg";
 import { ReactComponent as ReportIcon } from "../../Assets/icons/Warning.svg";
 import PollOption from "../PollOption";
-import { Input, DatePicker } from "antd";
+import { Input, DatePicker, TimePicker } from "antd";
 import { useLocation } from "react-router-dom";
 import ProfileIcon from "../../Assets/icons/ProfileIcon.jsx";
 import getProfile from "../../api/requests/profile.jsx";
+import moment from "moment";
 
 function PollCard({ PollData, setAnswer, onClick }) {
   const [selectedArray, setSelectedArray] = React.useState(
@@ -19,20 +20,20 @@ function PollCard({ PollData, setAnswer, onClick }) {
     JSON.parse(JSON.stringify(PollData))
   );
   const [userData, setUserData] = React.useState({});
+  const [selectedDate, setSelectedDate] = React.useState(null);
+  const [selectedTime, setSelectedTime] = React.useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   const [isVotePath, setIsVotePath] = React.useState(
     /^\/vote\//.test(location.pathname)
   );
 
-  
   useEffect(() => {
     const data = getProfile(PollData.creatorUsername);
     data.then((result) => {
       setUserData(result);
     });
   }, []);
-
 
   React.useEffect(() => {
     setIsVotePath(/^\/vote\//.test(location.pathname));
@@ -44,10 +45,12 @@ function PollCard({ PollData, setAnswer, onClick }) {
 
   var totalPoints = !PollData.isCustomPoll
     ? PollData.options.reduce(
-        (acc, curr) => (curr.votes == null ? acc : acc + curr.votes),
+        (acc, curr) =>
+          curr.voter_count == null ? acc : acc + curr.voter_count,
         0
       )
     : 0;
+
   const handleSelect = (newList) => {
     setSelectedArray(newList);
     var newPoll = JSON.parse(JSON.stringify(PollData));
@@ -64,8 +67,33 @@ function PollCard({ PollData, setAnswer, onClick }) {
       : 0;
   };
 
+  const handleDateChange = (_, dateString) => {
+    setSelectedDate(dateString);
+    combineDateTime(dateString, selectedTime);
+  };
+
+  const handleTimeChange = (_, timeString) => {
+    setSelectedTime(timeString);
+    combineDateTime(selectedDate, timeString);
+  };
+
+  const combineDateTime = (date, time) => {
+    if (date && time) {
+      setAnswer(`${date}T${time}`);
+    } else if (date) {
+      setAnswer(`${date}T00:00:00`); 
+    } else if (time) {
+      setAnswer(`0000-00-00T${time}`);
+    }
+  };
+
   return (
-    <div className={styles.card} onClick={onClick}>
+    <div
+      className={`${styles.card} ${
+        pollData.isOpen ? styles.pollCardOpen : styles.pollCardClosed
+      }`}
+      onClick={onClick}
+    >
       <div className={styles.question}>
         <div className={styles.tags}>
           {pollData.tags.map((tag, index) => (
@@ -82,7 +110,7 @@ function PollCard({ PollData, setAnswer, onClick }) {
             {pollData.options.map((option, index) => {
               let widthPercentage = 0;
               if (totalPoints > 0) {
-                widthPercentage = (option.votes / totalPoints) * 100;
+                widthPercentage = (option.voter_count / totalPoints) * 100;
               }
               return (
                 <PollOption
@@ -102,11 +130,18 @@ function PollCard({ PollData, setAnswer, onClick }) {
           <div className={styles.customOptionWrapper}>
             <p className={styles.customOptionText}>Enter a date</p>
             <DatePicker
+              required
               className={styles.customOption}
               type={PollData.optionType}
-              onChange={(_, dateString) => setAnswer(dateString)}
+              onChange={handleDateChange}
               onClick={() => !isVotePath && clickHandle()}
             ></DatePicker>
+            <TimePicker
+              className={styles.customOption}
+              format="HH:mm:ss"
+              onChange={handleTimeChange}
+              onClick={() => !isVotePath && clickHandle()}
+            />
           </div>
         ) : (
           <div className={styles.customOptionWrapper}>
@@ -148,7 +183,9 @@ function PollCard({ PollData, setAnswer, onClick }) {
         <div className={styles.creator}>
           <a href={`/profile/${PollData.creatorUsername}`}>
             {userData?.profile_picture == null ? (
-              <div className={styles.creatorImagePlaceholder} ><ProfileIcon width={20} height={20}/></div>
+              <div className={styles.creatorImagePlaceholder}>
+                <ProfileIcon width={20} height={20} />
+              </div>
             ) : (
               <img
                 src={userData.profile_picture}
@@ -161,20 +198,32 @@ function PollCard({ PollData, setAnswer, onClick }) {
             <div className={styles.creatorName}>{PollData.creatorName}</div>
           </a>
         </div>
-        <div className={styles.textGroup}>
-          <p className={styles.textDescription}>Closing In</p>
-          <p className={styles.textDetail}>
-            {PollData.closingDate == null ? "Indefinite" : PollData.closingDate}
-          </p>
-        </div>
-        <div className={styles.textGroup}>
-          <p className={styles.textDescription}>
-            {PollData.closingDate == null ? " " : "Reject Votes In"}
-          </p>
-          <p className={styles.textDetail}>
-            {PollData.closingDate == null ? " " : "Last"} {PollData.rejectVotes}
-          </p>
-        </div>
+        {!PollData.isOpen && (
+          <div className={styles.textGroup}>
+            <p className={styles.pollClosed}>POLL CLOSED</p>
+          </div>
+        )}
+        {PollData.isOpen && (
+          <>
+            <div className={styles.textGroup}>
+              <p className={styles.textDescription}>Closing In</p>
+              <p className={styles.textDetail}>
+              {PollData.closingDate == null ? "Indefinite" : moment(PollData.closingDate).format("DD MMM YYYY")}
+            {" "}
+            {PollData.closingDate == null ? "" : moment(PollData.closingDate).format('HH:mm')}
+              </p>
+            </div>
+            <div className={styles.textGroup}>
+              <p className={styles.textDescription}>
+                {PollData.closingDate == null ? " " : "Reject Votes In"}
+              </p>
+              <p className={styles.textDetail}>
+                {PollData.closingDate == null ? " " : "Last"}{" "}
+                {PollData.rejectVotes}
+              </p>
+            </div>{" "}
+          </>
+        )}
       </div>
     </div>
   );
