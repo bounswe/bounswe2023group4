@@ -6,6 +6,7 @@ import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.ui.create.CREATE_POLL_ROUTE
 import com.bounswe.predictionpolls.ui.feed.FEED_ROUTE
 import com.bounswe.predictionpolls.ui.leaderboard.LEADERBOARD_ROUTE
+import com.bounswe.predictionpolls.ui.profile.MY_PROFILE_SCREEN_ROUTE
 import com.bounswe.predictionpolls.ui.profile.PROFILE_SCREEN_ROUTE
 
 enum class NavItem(
@@ -15,7 +16,7 @@ enum class NavItem(
     val requiresAuth: Boolean = false,
 ) {
     PROFILE(
-        route = PROFILE_SCREEN_ROUTE,
+        route = MY_PROFILE_SCREEN_ROUTE,
         titleId = R.string.nav_drawer_profile,
         iconId = R.drawable.ic_profile,
         requiresAuth = true
