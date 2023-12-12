@@ -86,6 +86,12 @@
 | Complete the implementation of moderator not jury UI | [#559](https://github.com/bounswe/bounswe2023group4/issues/559) | Enes Furkan Arslan | 19.12.2023 | 2h |
 | Implement report functionality to polls | [#565](https://github.com/bounswe/bounswe2023group4/issues/565) | Hebun Şimşek | 19.12.2023 | 2h |
 | Implement comment functionality to polls | [#567](https://github.com/bounswe/bounswe2023group4/issues/567) | Hebun Şimşek | 19.12.2023 | 2h |
+| Moderator selection mechanism in system | [#557](https://github.com/bounswe/bounswe2023group4/issues/557) | Emre Batuhan Göç | 19.12.2023 | 3hr |
+| Moderator request additionally return poll tags and poll question | [#556](https://github.com/bounswe/bounswe2023group4/issues/556) | Emre Batuhan Göç | 17.12.2023 | 1hr |
+| Moderator endpoint swagger | [#555](https://github.com/bounswe/bounswe2023group4/issues/555) | Emre Batuhan Göç | 17.12.2023 | 1.5hr |
+| Implement Get another user's opened polls endpoint | [#554](https://github.com/bounswe/bounswe2023group4/issues/554) | Emre Batuhan Göç | 19.12.2023 | 1hr |
+| Poll Grading and Closing System | [#553](https://github.com/bounswe/bounswe2023group4/issues/553) | Emre Batuhan Göç | 19.12.2023 | 6hr |
+
 ## Risks
 - We might not be able to finish aimed requirements due to time constraints.
 - Several meeting may be needed during the week, necessary people may not be available at the same time.
