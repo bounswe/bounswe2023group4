@@ -231,7 +231,6 @@ async function sendPasswordResetEmail(email, token) {
 }
 
 
-const SALT_ROUNDS = 10; // For bcrypt
 
 async function resetPassword(token, newPassword) {
     try {
@@ -245,12 +244,8 @@ async function resetPassword(token, newPassword) {
         if (new Date() > new Date(user.reset_token_expires)) {
             throw new Error('Password reset token has expired.');
         }
-
-        // Hash the new password
-        const hashedPassword = await bcrypt.hash(newPassword, SALT_ROUNDS);
-
         // Update the user's password in the database
-        await db.updateUserPassword(user.id, hashedPassword);
+        await db.updateUserPassword(user.id, newPassword);
 
         // Clear the reset token from the database
         await db.clearResetToken(user.id);
