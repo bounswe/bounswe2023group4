@@ -18,7 +18,7 @@
 | Linking Refresh Token and Users in Database | [#241](https://github.com/bounswe/bounswe2023group4/issues/241) | Şefik Palazoğlu | 12.12.2023 | Unfinished | 2hr |
 | Implement Poll Comment | [#342](https://github.com/bounswe/bounswe2023group4/issues/342) | Şefik Palazoğlu | 12.12.2023 | Unfinished | 3hr |
 | Swagger Correction for Poll | [#399](https://github.com/bounswe/bounswe2023group4/issues/399) | Şefik Palazoğlu | 08.12.2023 | Unfinished | 1.5hr |
-| Researching and implementing the Annotation's UI| [#493](https://github.com/bounswe/bounswe2023group4/issues/493) | Ali Nasra | 20.12.2023 | [#527](https://github.com/bounswe/bounswe2023group4/pull/527)  | 8hr | Ongoing
+| Researching and implementing the Annotation's UI| [#493](https://github.com/bounswe/bounswe2023group4/issues/493) | Ali Nasra | 20.12.2023 | [#527](https://github.com/bounswe/bounswe2023group4/pull/527)  | 8hr | Ongoing "12h"
 | Annotation Backend Requirement | [#494](https://github.com/bounswe/bounswe2023group4/issues/494) | Şefik Palazoğlu | 12.12.2023 | [#534](https://github.com/bounswe/bounswe2023group4/pull/534) | 6hr | 7hr |
 | Implement Authentication Token Management Middleware | [#409](https://github.com/bounswe/bounswe2023group4/issues/409) | Kutay Saran | 12.12.2023 | | 4hr |
 | Implement Forgot Password Page UI | [#497](https://github.com/bounswe/bounswe2023group4/issues/497) | Kutay Saran | 12.12.2023 | | 2hr |
@@ -66,6 +66,12 @@
 | Swagger Correction for Poll | [#399](https://github.com/bounswe/bounswe2023group4/issues/399) | Şefik Palazoğlu | 19.12.2023 | 1.5hr |
 | Semantic Search Research | [#539](https://github.com/bounswe/bounswe2023group4/issues/539) | Şefik Palazoğlu | 19.12.2023 | 4hr |
 | DateTime Management in createPoll | [#540](https://github.com/bounswe/bounswe2023group4/issues/540) | Şefik Palazoğlu | 19.12.2023 | 4hr |
+| Incorporating Recognito into the Annotation UI | [#531](https://github.com/bounswe/bounswe2023group4/issues/531) | Ali Nasra | 19.12.2023 | 5hr |
+| Connect the backend-server to the annotation UI | [#532](https://github.com/bounswe/bounswe2023group4/issues/532) | Ali Nasra | 19.12.2023 | 3hr |
+| Implementing the "Add Friend" functionality in the Backend | [#541](https://github.com/bounswe/bounswe2023group4/issues/541) | Ali Nasra | 19.12.2023 | 4hr |
+| Adding the annotation research results to the wiki  | [#542](https://github.com/bounswe/bounswe2023group4/issues/542) | Ali Nasra | 19.12.2023 | 2hr |
+| Fixing the annotation approach  | [#543](https://github.com/bounswe/bounswe2023group4/issues/543) | Ali Nasra | 19.12.2023 | 1hr |
+
 
 ## Risks
 - We might not be able to finish aimed requirements due to time constraints.
