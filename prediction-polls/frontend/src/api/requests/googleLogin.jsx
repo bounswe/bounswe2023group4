@@ -10,7 +10,8 @@ async function googleLogin(code) {
     if (response.status === 200 && data.accessToken && data.refreshToken) {
       localStorage.setItem('accessToken', data.accessToken); 
       localStorage.setItem('refreshToken', data.refreshToken);
-      return { success: true };
+      localStorage.setItem('username', data.username);
+      return { success: true, username: data.username };
     } else {
       return { success: false };
     }

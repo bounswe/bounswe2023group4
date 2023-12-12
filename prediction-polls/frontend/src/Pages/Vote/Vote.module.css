@@ -28,14 +28,14 @@
     font-family: sans-serif ;
     font-size: 18px;
     font-weight: 700;
-    color: var(--neutral-100);
+    color: var(--neutral-900);
 }
 .chooseText{
     font-family: sans-serif ;
     margin-top: 80px;
     font-size: 18px;
     font-weight: 700;
-    color: var(--neutral-100);
+    color: var(--neutral-900);
 }
 .buttonDivStyle{
     margin-top: 40px;
@@ -47,26 +47,37 @@
     width: 60%;
     font-size: 28px;
     font-weight: 700;
-    color: var(--neutral-100);
-    border-color: var(--secondary-500);
+    color: var(--neutral-900);
+    border-color: var(--primary-500);
     border-width: 3px;
     padding-left: 10px;
-
+}
+.inputStyle:hover{
+    border-color: var(--primary-600);
+}
+.inputStyle:focus{
+    border-color: var(--primary-600);
+}
+.bottonStyle:hover{
+    background-color: var(--primary-600);
+    color: var(--neutral-white) !important;
+    border: none
 }
 .bottonStyle{
     width: 50%;
     height: 100%;
     margin-top: 40px;
     justify-content: center;
-    background-color: var(--secondary-500);
+    background-color: var(--primary-500);
     color: var(--neutral-white);
     font-size: 32px;
     font-weight: 700;
+    border:none;
 }
 .messageStyle{
     margin-top: 20px;
     justify-content: center;
-    color: var(--primary-900);
+    color: var(--neutral-700);
     font-weight: 700;
     font-size: 16px;
 }

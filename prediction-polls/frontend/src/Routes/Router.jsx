@@ -16,6 +16,8 @@ import GoogleLogin from '../Pages/Auth/Google'
 import EditProfile from '../Pages/EditProfile';
 import ForgotPassword from '../Pages/Auth/ForgotPassword';
 import ResetPassword from '../Pages/Auth/ResetPassword';
+import VoteList from '../Pages/Vote/voteList';
+
 
 function AppRouter() {
   return (
@@ -32,14 +34,15 @@ function AppRouter() {
         <Route path="/auth/forgot-password" element={<ForgotPassword />} />
         <Route path="/auth/reset-password" element={<ResetPassword />} />
         <Route path="/feed" element={
-          <Feed />
+          <PrivateRoute>
+            <Feed />
+          </PrivateRoute>
         } />
         <Route path="/googleAuth" element={
           <GoogleLogin />
         } />
         <Route path="/create" element={
-          <Create />
-          //<PrivateRoute><Create /></PrivateRoute>
+          <PrivateRoute><Create /></PrivateRoute>
         } />
         <Route path="/leaderboard" element={
           <PrivateRoute><Leaderboard /></PrivateRoute>
@@ -51,18 +54,21 @@ function AppRouter() {
           <PrivateRoute><Notifications /></PrivateRoute>
         } />
         <Route path="/profile/:username" element={
-         <Profile />
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
         } />
         <Route path="/settings" element={
           <PrivateRoute><Settings /></PrivateRoute>
         } />
         <Route path="/vote/:id" element={
-          //<PrivateRoute><Vote /></PrivateRoute>
-          <Vote/>
+          <PrivateRoute><Vote /></PrivateRoute>
+        } />
+        <Route path="/vote" element={
+          <PrivateRoute><VoteList /></PrivateRoute>
         } />
         <Route path="/editProfile/:username" element={
-          //<PrivateRoute><EditProfile/></PrivateRoute>
-          <EditProfile/>
+          <PrivateRoute><EditProfile/></PrivateRoute>
         } />
       </Routes>
     </BrowserRouter>

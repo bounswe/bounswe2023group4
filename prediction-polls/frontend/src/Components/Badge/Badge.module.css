@@ -13,6 +13,7 @@
     text-align: center;
     vertical-align: middle;
     position: relative;
+    box-shadow: 2px 4px 8px var(--neutral-shadow);
   }
   .badge::after {
     content: "";
@@ -40,7 +41,7 @@
   }
   
   .bronze {
-    background-color: #cd7f32; /* Bronze color */
+    background-color: #cd7f32; 
   }
 
   .gold {

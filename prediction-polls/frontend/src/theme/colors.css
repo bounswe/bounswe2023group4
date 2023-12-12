@@ -12,16 +12,16 @@
     --primary-900: #13395c;
   
     /* Secondary Colors */
-    --secondary-50: #fef7ec;
-    --secondary-100: #fae7c4;
-    --secondary-200: #f8dba8;
-    --secondary-300: #f5ca80;
-    --secondary-400: #f3c067;
-    --secondary-500: #f0b041;
-    --secondary-600: #daa03b;
-    --secondary-700: #aa7d2e;
-    --secondary-800: #846124;
-    --secondary-900: #654a1b;
+    --secondary-50: #f4ebfc;
+    --secondary-100: #ddc1f5;
+    --secondary-200: #cca3f1;
+    --secondary-300: #b578ea;
+    --secondary-400: #a75ee6;
+    --secondary-500: #9136e0;
+    --secondary-600: #8431cc;
+    --secondary-700: #67269f;
+    --secondary-800: #501e7b;
+    --secondary-900: #3d175e;
   
     /* Neutral Colors */
     --neutral-white: #FFFFFF;
@@ -38,6 +38,7 @@
     --neutral-black: #000000;
     --neutral-pollCard:#FFFFFF;
     --neutral-shadow: rgba(0, 0, 0, 0.25);
+    --neutral-closedPoll:#f6f6f6;
   
     /* Warning Colors */
     --warning-50: #fcebeb;
@@ -66,16 +67,16 @@
     --primary-900: #eaf3fb;
   
     /* Dark Theme - Secondary Colors */
-    --secondary-50: #654a1b;
-    --secondary-100: #846124;
-    --secondary-200: #aa7d2e;
-    --secondary-300: #daa03b;
-    --secondary-400: #f0b041;
-    --secondary-500: #f3c067;
-    --secondary-600: #f5ca80;
-    --secondary-700: #f8dba8;
-    --secondary-800: #fae7c4;
-    --secondary-900: #fef7ec;
+    --secondary-50: #3d175e;
+    --secondary-100: #501e7b;
+    --secondary-200: #67269f;
+    --secondary-300: #8431cc;
+    --secondary-400: #9136e0;
+    --secondary-500: #a75ee6;
+    --secondary-600: #b578ea;
+    --secondary-700: #cca3f1;
+    --secondary-800: #ddc1f5;
+    --secondary-900: #f4ebfc;
   
     /* Dark Theme - Neutral Colors */
     --neutral-white: #000000;
@@ -92,6 +93,7 @@
     --neutral-black: #FFFFFF;
     --neutral-pollCard:#292c2f;
     --neutral-shadow: rgba(255, 255, 255, 0.25);
+    --neutral-closedPoll:#36393d;
     
   
     /* Dark Theme - Warning Colors */
@@ -121,16 +123,16 @@
     --primary-900: #13395c;
   
     /* Light Theme - Secondary Colors */
-    --secondary-50: #fef7ec;
-    --secondary-100: #fae7c4;
-    --secondary-200: #f8dba8;
-    --secondary-300: #f5ca80;
-    --secondary-400: #f3c067;
-    --secondary-500: #f0b041;
-    --secondary-600: #daa03b;
-    --secondary-700: #aa7d2e;
-    --secondary-800: #846124;
-    --secondary-900: #654a1b;
+    --secondary-50: #f4ebfc;
+    --secondary-100: #ddc1f5;
+    --secondary-200: #cca3f1;
+    --secondary-300: #b578ea;
+    --secondary-400: #a75ee6;
+    --secondary-500: #9136e0;
+    --secondary-600: #8431cc;
+    --secondary-700: #67269f;
+    --secondary-800: #501e7b;
+    --secondary-900: #3d175e;
   
     /* Light Theme - Neutral Colors */
     --neutral-white: #FFFFFF;
@@ -147,6 +149,7 @@
     --neutral-black: #000000;
     --neutral-pollCard:#FFFFFF;
     --neutral-shadow: rgba(0, 0, 0, 0.25);
+    --neutral-closedPoll:#f6f6f6;
   
     /* Light Theme - Warning Colors */
     --warning-50: #fcebeb;
