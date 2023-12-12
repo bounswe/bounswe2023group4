@@ -96,7 +96,7 @@ function Profile() {
       <div className={styles.profileInfo}>
         <div className={styles.card}>
           <div className={styles.thumbnailImage}>
-            {userData.profile_picture == null ? (
+            {userData.profile_picture == null ||  userData.isHidden ? (
               <div className={styles.profileImagePlaceholder}>
                 {" "}
                 <ProfileIcon />
@@ -115,7 +115,8 @@ function Profile() {
                 <p className={styles.nameUsernameText}>{userData.username}</p>
               </div>
               <div className={styles.buttonContainer}>
-                {userData.username?.toLowerCase() === userMeUsername?.toLowerCase() ? (
+                {userData.username?.toLowerCase() ===
+                userMeUsername?.toLowerCase() ? (
                   <>
                     <button
                       className={styles.button}
@@ -135,27 +136,37 @@ function Profile() {
               </div>
             </div>
             <div className={styles.aboutContainer}>
-              {userData.isHidden == false ? (
+              {userData.isHidden == 0 ? (
                 userData.birthday ? (
                   <>
-                    {" "}
+                    
                     <p className={styles.aboutTitle}>Birthday</p>
                     <p className={styles.aboutText}>{userData.birthday}</p>
                   </>
                 ) : null
               ) : null}
-
-              <p className={styles.aboutTitle}>About</p>
-              <p className={styles.aboutText}>{userData.biography}</p>
-              {(userData.isHidden == 0 && userData.birthday!= null)&& <p>{moment(userData.birthday, "YYYY-MM-DD").format("MMMM Do, YYYY")}</p>}
+              {userData.isHidden == 0   && (
+                <>
+                  <p className={styles.aboutTitle}>About</p>
+                  <p className={styles.aboutText}>{userData.biography}</p>
+                </>
+              )}
+              {userData.isHidden == 0 && userData.birthday != null && (
+                <p>
+                  {moment(userData.birthday, "YYYY-MM-DD").format(
+                    "MMMM Do, YYYY"
+                  )}
+                </p>
+              )}
             </div>
             <div className={styles.badgesContainer}>
+              {userData.isHidden == 0   && (<>
               {userData.badges &&
                 userData.badges
-                .filter(badge => badge.isSelected !== 0) 
-                .map((badge, index) => (
-                  <Badge number={badge.rank} text={badge.topic} key={index} />
-                ))}
+                  .filter((badge) => badge.isSelected !== 0)
+                  .map((badge, index) => (
+                    <Badge number={badge.rank} text={badge.topic} key={index} />
+                  ))}</> )}
             </div>
           </div>
         </div>
