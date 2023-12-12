@@ -3,6 +3,7 @@ import {
   Button,
   Input,
   Form,
+  message
 } from "antd";
 import styles from "./ForgotPassword.module.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,11 +15,25 @@ function ForgotPassword() {
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const [email, setEmail  ] = React.useState("");
-  const [message, setMessage] = React.useState("");
-  const handleSubmit = async (values) => {
+  const [statusMessage, setStatusMessage] = React.useState("");
+  const [isFormValid, setIsFormValid] = React.useState(false);
+
+  const onFormChange = (_, allFields) => {
+    // Define a regular expression for validating email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Find the email field from allFields
+    const emailField = allFields.find(field => field.name[0] === 'email');
     
-    navigate("/auth/sign-in");
+    // Check if the email is valid and if there are no errors in other fields
+    const isEmailValid = emailField && emailRegex.test(emailField.value);
+    const isOtherFieldsValid = allFields.every(field => field.name[0] !== 'email' ? field.errors.length === 0 : true);
+
+    // Set form validity
+    setIsFormValid(isEmailValid && isOtherFieldsValid);
   };
+
+
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     try {
@@ -30,15 +45,16 @@ function ForgotPassword() {
         })
       };
       const response = await fetch(process.env.REACT_APP_BACKEND_LINK+'/auth/request-password-reset', requestOptions);
-      const data = await response.json();
-      console.log(data);
-    if (response.status === 201 && data.accessToken && data.refreshToken) {
-      navigate("/feed");
-    } 
-
+      if (response.status === 200) {
+        message.config({
+            duration: 3,
+            maxCount: 1,
+          });
+          message.success('Check your email! We have sent instructions to reset your password.', 2);
+      } 
     }
     catch (error) {
-      setMessage("An unexpected error has occurred. Please try again!")
+      setStatusMessage("An unexpected error has occurred. Please try again!")
     }
   };
 
@@ -54,6 +70,7 @@ function ForgotPassword() {
           form={form}
           onFinish={handleForgotPassword}
           validateTrigger="onSubmit"
+          onFieldsChange={onFormChange}
         >
             <div className={styles.headerContainerStyle}>
                 <h2> Reset your password </h2> 
@@ -65,11 +82,11 @@ function ForgotPassword() {
             rules={[
               {
                 required: true,
-                message: "Please enter your email address!",
+                statusMessage: "Please enter your email address!",
               },
               {
                 type: "email",
-                message: "The input is not a valid email address!",
+                statusMessage: "The input is not a valid email address!",
               },
             ]}
           >
@@ -88,6 +105,7 @@ function ForgotPassword() {
                 htmlType="submit"
                 className={styles.formButtonStyle}
                 onClick={handleForgotPassword}
+                disabled={!isFormValid}
               >
                 Continue
               </Button>

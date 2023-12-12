@@ -3,6 +3,7 @@ import {
   Button,
   Input,
   Form,
+  message
 } from "antd";
 import styles from "./ResetPassword.module.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -13,9 +14,24 @@ import "../../../index.css";
 function ResetPassword() {
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const [message, setMessage] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
   const location = useLocation();
+
+  const handleNewPasswordChange = (e) => {
+    const newPass = e.target.value;
+    setNewPassword(newPass);
+    setPasswordsMatch(newPass === confirmPassword);
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    const confirmPass = e.target.value;
+    setConfirmPassword(confirmPass);
+    setPasswordsMatch(newPassword === confirmPass); // Use the state variable newPassword
+  };
+
   
   const handleResetPassword = async (e) => {
     e.preventDefault();
@@ -30,15 +46,17 @@ function ResetPassword() {
         })
       };
       const response = await fetch(process.env.REACT_APP_BACKEND_LINK+'/auth/reset-password', requestOptions);
-      const data = await response.json();
-      console.log(data);
-    // if (response.status === 201 && data.accessToken && data.refreshToken) {
-    //   navigate("/feed");
-    // } 
-
+      if (response.status === 200) {
+        message.config({
+          duration: 3,
+          maxCount: 1,
+        });
+        message.success('Your password has been successfully reset', 2);
+        setTimeout(() => navigate('/auth/sign-in'), 1500);
+        }
     }
     catch (error) {
-      setMessage("An unexpected error has occurred. Please try again!")
+      setStatusMessage("An unexpected error has occurred. Please try again!")
     }
   };
 
@@ -65,15 +83,15 @@ function ResetPassword() {
             rules={[
               {
                 required: true,
-                message: "Please enter your new password!",
+                statusMessage: "Please enter your new password!",
               },
               {
                 min: 8,
-                message: "Password must be at least 8 characters!",
+                statusMessage: "Password must be at least 8 characters!",
               },
               {
                 pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/, 
-                message:
+                statusMessage:
                   "Password must include uppercase, lowercase, and a number!",
               },
             
@@ -81,7 +99,7 @@ function ResetPassword() {
           >
             <Input
               required
-              onChange={(e) => setNewPassword(e.target.value)}
+              onChange={handleNewPasswordChange}
               type="text"
               className={styles.formInputStyle}
               placeholder="New Password"
@@ -109,18 +127,22 @@ function ResetPassword() {
           >
             <Input
               required
-              onChange={(e) => setNewPassword(e.target.value)}
+              onChange={handleConfirmPasswordChange}
               type="text"
               className={styles.formInputStyle}
               placeholder="Confirm Password"
             />
           </Form.Item>
+          {!passwordsMatch && (
+          <p style={{ color: "red" }}>Passwords do not match!</p>
+        )}
           <Form.Item>
             <div>
               <Button
                 type="primary"
                 htmlType="submit"
                 className={styles.formButtonStyle}
+                disabled={!passwordsMatch}
                 onClick={handleResetPassword}
               >
                 Continue
