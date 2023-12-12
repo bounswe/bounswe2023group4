@@ -15,6 +15,7 @@ import PrivateRoute from '../Components/PrivateRoute';
 import GoogleLogin from '../Pages/Auth/Google'
 import EditProfile from '../Pages/EditProfile';
 import ForgotPassword from '../Pages/Auth/ForgotPassword/ForgotPassword';
+import VoteList from '../Pages/Vote/voteList';
 
 function AppRouter() {
   return (
@@ -59,6 +60,9 @@ function AppRouter() {
         } />
         <Route path="/vote/:id" element={
           <PrivateRoute><Vote /></PrivateRoute>
+        } />
+        <Route path="/vote" element={
+          <PrivateRoute><VoteList /></PrivateRoute>
         } />
         <Route path="/editProfile/:username" element={
           <PrivateRoute><EditProfile/></PrivateRoute>
