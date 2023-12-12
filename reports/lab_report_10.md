@@ -34,10 +34,10 @@
 | Implement get poll endpoints for specific polls | [#504](https://github.com/bounswe/bounswe2023group4/issues/504) | Emre Batuhan Göç | 12.12.2023 | [#526](https://github.com/bounswe/bounswe2023group4/pull/526) | 3h | 3h |
 | Implement moderator endpoints | [#506](https://github.com/bounswe/bounswe2023group4/issues/506) | Emre Batuhan Göç | 12.12.2023 | [#530](https://github.com/bounswe/bounswe2023group4/pull/530) | 6h | 7h |
 | Fix profile id - user id mismatch bug  | [#507](https://github.com/bounswe/bounswe2023group4/issues/507) | Selin Işık, Emre Batuhan Göç | 12.12.2023 | [#533](https://github.com/bounswe/bounswe2023group4/pull/533) | 1h | 0.5h |
-| Update Poll Card UI  | [#508](https://github.com/bounswe/bounswe2023group4/issues/508) | Selin Işık | 12.12.2023 | | 2h |
-| Update Web Project Color Palette   | [#509](https://github.com/bounswe/bounswe2023group4/issues/509) | Selin Işık | 12.12.2023 | | 2h |
-| Add Time to Date Select Fields   | [#510](https://github.com/bounswe/bounswe2023group4/issues/510) | Selin Işık | 12.12.2023 | | 1.5h |
-| Redesign the project name and logo | [#511](https://github.com/bounswe/bounswe2023group4/issues/511) | Selin Işık | 12.12.2023 | | 1h |
+| Update Poll Card UI  | [#508](https://github.com/bounswe/bounswe2023group4/issues/508) | Selin Işık | 12.12.2023 | [#558](https://github.com/bounswe/bounswe2023group4/pull/558) | 2h | 1.5h |
+| Update Web Project Color Palette   | [#509](https://github.com/bounswe/bounswe2023group4/issues/509) | Selin Işık | 12.12.2023 | [#558](https://github.com/bounswe/bounswe2023group4/pull/558) | 2h |
+| Add Time to Date Select Fields   | [#510](https://github.com/bounswe/bounswe2023group4/issues/510) | Selin Işık | 12.12.2023 | [#561](https://github.com/bounswe/bounswe2023group4/pull/561) | 1.5h | 2.5h | 
+| Redesign the project name and logo | [#511](https://github.com/bounswe/bounswe2023group4/issues/511) | Selin Işık | 12.12.2023 |  | 1h | 1.5h | 
 | Implement Moderation Screen UI| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 12.12.23 | [Progress](https://github.com/bounswe/bounswe2023group4/issues/418#issuecomment-1851981918) | 6hr | In Progress (4hr) |
 | Add edit logic to the profile page | [#512](https://github.com/bounswe/bounswe2023group4/issues/512) | Ahmet Emre Şafak | 12.12.23 | - | 3.5hr | Unfinished |
 | Fix profile image related issues in polls | [#513](https://github.com/bounswe/bounswe2023group4/issues/513) | Ahmet Emre Şafak | 12.12.23 | [Reason](https://github.com/bounswe/bounswe2023group4/issues/513#issuecomment-1851949297) | 1hr | On Hold |
