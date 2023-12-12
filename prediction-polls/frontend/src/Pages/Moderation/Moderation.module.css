@@ -3,8 +3,65 @@
     background-color: var(--neutral-white);
     width: 100%;
 }
-@media (max-width: 640px) {
+@media (max-width: 768px) {
     .page{
         flex-direction: column;
     }
+    .pointsButton{
+        display:none;
+    }
+    .pollList{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 20px;
+        justify-content: center;
+        align-items: center;
+    }
 }
+.btn { 
+    display: block; 
+    margin: auto; 
+  } 
+  .questionCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 95%;
+    box-shadow: 2px 4px 8px var(--neutral-shadow);
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    gap: 20px;
+    background-color: var(--neutral-pollCard);
+    margin-bottom: 20px; 
+    margin-top: 50px;  
+    margin-left:  50px;  
+    max-width: 800px; 
+    max-height: 200px;
+    text-align: center;
+  }
+  
+.text {
+    font-size: 20px;
+    font-weight: 700;
+    width: 75%;
+    color: var(--neutral-black);
+    text-align: center; 
+    margin:auto; 
+}
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+
+    .pollList{
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+        width: 60%;
+        padding-top: 100px;
+    }
+    

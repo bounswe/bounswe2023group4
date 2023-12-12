@@ -14,6 +14,7 @@ import getProfileMe from "../../api/requests/profileMe.jsx";
 import getProfile from "../../api/requests/profile.jsx";
 import ProfileIcon from "../../Assets/icons/ProfileIcon.jsx";
 import Badge from "../../Components/Badge/index.jsx";
+import getPollsOpenedMe from "../../api/requests/getPollsOpenedMe.jsx";
 
 function Profile() {
   const { username } = useParams();
@@ -22,38 +23,16 @@ function Profile() {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          process.env.REACT_APP_BACKEND_LINK + "/polls",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const contentType = response.headers.get("content-type");
-        if (!contentType || !contentType.includes("application/json")) {
-          throw new TypeError("Received non-JSON response from server");
-        }
-
-        const data = await response.json();
-
-        // Modify each poll in the data array
+        const response = await getPollsOpenedMe();
+        const data = response;
+  
         const modifiedData = data.map((poll) => {
           if (poll.closingDate != null) {
             poll.closingDate = poll.closingDate.slice(0, 10);
           }
-          if (poll.pollType === "discrete") {
-            return { ...poll, isCustomPoll: false };
-          } else {
-            return { ...poll, isCustomPoll: true };
-          }
+          return poll.pollType === "discrete"
+            ? { ...poll, isCustomPoll: false }
+            : { ...poll, isCustomPoll: true };
         });
         const reversedData = [...modifiedData].reverse();
         setPollData({ pollList: reversedData });
@@ -61,7 +40,7 @@ function Profile() {
         console.error("Error fetching polls:", error);
       }
     };
-
+  
     fetchData();
   }, []);
 

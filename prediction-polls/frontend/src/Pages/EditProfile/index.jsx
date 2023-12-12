@@ -20,7 +20,7 @@ function EditProfile() {
   const [form] = Form.useForm();
   const [initialValues, setInitialValues] = React.useState({
     username: "",
-    // fullname: userData.name,
+    // fullname: profileData.name,
     about: "",
     birthday: "",
     isHidden: null,
@@ -31,7 +31,7 @@ function EditProfile() {
   const [selectedFile, setSelectedFile] = React.useState(null);
   const [tempBadgeSelections, setTempBadgeSelections] = React.useState({});
 
-  const [userData, setUserData] = React.useState({});
+  const [profileData, setUserData] = React.useState({});
   const navigate = useNavigate();
   console.log("tempBadgeSelections", tempBadgeSelections);
 
@@ -63,14 +63,14 @@ function EditProfile() {
 
   React.useEffect(() => {
     
-    if (userData.badges) {
-      const initialSelections = userData.badges.reduce((acc, badge) => {
+    if (profileData.badges) {
+      const initialSelections = profileData.badges.reduce((acc, badge) => {
         acc[badge.id] = badge.isSelected === 1; 
         return acc;
       }, {});
       setTempBadgeSelections(initialSelections);
     }
-  }, [userData.badges]);
+  }, [profileData.badges]);
 
   const handleBadgeChange = (badgeId, isSelected) => {
     setTempBadgeSelections((prev) => ({ ...prev, [badgeId]: isSelected }));
@@ -88,10 +88,10 @@ function EditProfile() {
   const handleEditProfile = async () => {
     const formUserData = form.getFieldsValue();
     const profileUpdateResult = await updateProfile({
-      userId: userData.id,
+      userId: profileData.userId,
       username: formUserData.username,
-      email: userData.email,
-      profile_picture: userData.profileImage,
+      email: profileData.email,
+      profile_picture: profileData.profileImage,
       biography: formUserData.about,
       birthday: formUserData.birthday ? formUserData.birthday.format("YYYY-MM-DD") : null,
       isHidden: formUserData.isHidden ? 0 : 1,
@@ -107,7 +107,7 @@ function EditProfile() {
       for (const [badgeId, isSelected] of Object.entries(tempBadgeSelections)) {
         if (
           isSelected !==
-          userData.badges.find((badge) => badge.id === badgeId)?.isSelected
+          profileData.badges.find((badge) => badge.id === badgeId)?.isSelected
         ) {
           console.log("Updating badge selection", badgeId, isSelected);
           await badgeSelect({ badgeId, isSelected });
@@ -149,9 +149,9 @@ function EditProfile() {
               className={styles.profileImageContainer}
               onClick={handlePlaceholderClick}
             >
-              {selectedFile || userData.profile_picture ? (
+              {selectedFile || profileData.profile_picture ? (
                 <img
-                  src={selectedFile || userData.profile_picture}
+                  src={selectedFile || profileData.profile_picture}
                   alt="Profile"
                   className={styles.profileImage}
                 />
@@ -204,7 +204,7 @@ function EditProfile() {
           {/*<Form.Item>
             <p>COVER IMAGE</p>
             <img
-              src={userData.thumbnailImage}
+              src={profileData.thumbnailImage}
               alt="thumbnailImage"
               className={styles.thumbnailImage}
             ></img>
@@ -243,12 +243,13 @@ function EditProfile() {
         </Form>
       </div>
       <div className={styles.pointCol}>
-        <PointsButton point={userData?.points ?? 0} />
+      <PointsButton point={profileData?.points ?? 0}/> 
         <p className={styles.badgesText}>Badges</p>
         <p>(You can choose at most 3)</p>
         <div className={styles.badgesContainer}>
-          {userData.badges && userData.badges.length > 0 ? (
-            userData.badges.map((badge, index) => (
+          {profileData.badges &&
+            profileData.badges.length > 0 ?
+            profileData.badges.map((badge, index) => (
               <div className={styles.badgeCheckbox}>
                 <Checkbox
                   checked={tempBadgeSelections[badge.id]}
@@ -259,7 +260,7 @@ function EditProfile() {
                 <Badge number={badge.rank} text={badge.topic} key={index} />
               </div>
             ))
-          ) : (
+           : (
             <p>No badges yet.</p>
           )}
         </div>
