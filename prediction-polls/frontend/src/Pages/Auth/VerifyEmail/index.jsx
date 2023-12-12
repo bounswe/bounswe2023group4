@@ -20,7 +20,6 @@ function VerifyEmailPage() {
         },
         });
        
-        console.log("response",response);
         if (response.status === 200) {
           // Display success message
           message.config({
