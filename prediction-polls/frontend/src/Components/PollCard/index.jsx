@@ -6,10 +6,11 @@ import { ReactComponent as CommentIcon } from "../../Assets/icons/Comment.svg";
 import { ReactComponent as ShareIcon } from "../../Assets/icons/Share.svg";
 import { ReactComponent as ReportIcon } from "../../Assets/icons/Warning.svg";
 import PollOption from "../PollOption";
-import { Input, DatePicker } from "antd";
+import { Input, DatePicker, TimePicker } from "antd";
 import { useLocation } from "react-router-dom";
 import ProfileIcon from "../../Assets/icons/ProfileIcon.jsx";
 import getProfile from "../../api/requests/profile.jsx";
+import moment from "moment";
 
 function PollCard({ PollData, setAnswer, onClick }) {
   const [selectedArray, setSelectedArray] = React.useState(
@@ -19,6 +20,8 @@ function PollCard({ PollData, setAnswer, onClick }) {
     JSON.parse(JSON.stringify(PollData))
   );
   const [userData, setUserData] = React.useState({});
+  const [selectedDate, setSelectedDate] = React.useState(null);
+  const [selectedTime, setSelectedTime] = React.useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   const [isVotePath, setIsVotePath] = React.useState(
@@ -64,6 +67,26 @@ function PollCard({ PollData, setAnswer, onClick }) {
       : 0;
   };
 
+  const handleDateChange = (_, dateString) => {
+    setSelectedDate(dateString);
+    combineDateTime(dateString, selectedTime);
+  };
+
+  const handleTimeChange = (_, timeString) => {
+    setSelectedTime(timeString);
+    combineDateTime(selectedDate, timeString);
+  };
+
+  const combineDateTime = (date, time) => {
+    if (date && time) {
+      setAnswer(`${date}T${time}`);
+    } else if (date) {
+      setAnswer(`${date}T00:00:00`); 
+    } else if (time) {
+      setAnswer(`0000-00-00T${time}`);
+    }
+  };
+
   return (
     <div
       className={`${styles.card} ${
@@ -107,11 +130,18 @@ function PollCard({ PollData, setAnswer, onClick }) {
           <div className={styles.customOptionWrapper}>
             <p className={styles.customOptionText}>Enter a date</p>
             <DatePicker
+              required
               className={styles.customOption}
               type={PollData.optionType}
-              onChange={(_, dateString) => setAnswer(dateString)}
+              onChange={handleDateChange}
               onClick={() => !isVotePath && clickHandle()}
             ></DatePicker>
+            <TimePicker
+              className={styles.customOption}
+              format="HH:mm:ss"
+              onChange={handleTimeChange}
+              onClick={() => !isVotePath && clickHandle()}
+            />
           </div>
         ) : (
           <div className={styles.customOptionWrapper}>
@@ -178,9 +208,9 @@ function PollCard({ PollData, setAnswer, onClick }) {
             <div className={styles.textGroup}>
               <p className={styles.textDescription}>Closing In</p>
               <p className={styles.textDetail}>
-                {PollData.closingDate == null
-                  ? "Indefinite"
-                  : PollData.closingDate}
+              {PollData.closingDate == null ? "Indefinite" : moment(PollData.closingDate).format("DD MMM YYYY")}
+            {" "}
+            {PollData.closingDate == null ? "" : moment(PollData.closingDate).format('HH:mm')}
               </p>
             </div>
             <div className={styles.textGroup}>
