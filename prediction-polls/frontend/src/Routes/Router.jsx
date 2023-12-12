@@ -15,6 +15,7 @@ import PrivateRoute from '../Components/PrivateRoute';
 import GoogleLogin from '../Pages/Auth/Google'
 import EditProfile from '../Pages/EditProfile';
 import ForgotPassword from '../Pages/Auth/ForgotPassword/ForgotPassword';
+import VerifyEmailPage from '../Pages/Auth/VerifyEmail';
 
 function AppRouter() {
   return (
@@ -29,6 +30,7 @@ function AppRouter() {
         <Route path="/auth/sign-up" element={<SignUp />} />
         <Route path="/auth/sign-in" element={<SignIn />} />
         <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+        <Route path="/auth/verify-email" element={<VerifyEmailPage />} />
         <Route path="/feed" element={
           <PrivateRoute>
             <Feed />
