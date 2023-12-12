@@ -58,7 +58,7 @@
 | Implement Poll Comment | [#342](https://github.com/bounswe/bounswe2023group4/issues/342) | Şefik Palazoğlu | 19.12.2023 | 3hr |
 | Swagger Correction for Poll | [#399](https://github.com/bounswe/bounswe2023group4/issues/399) | Şefik Palazoğlu | 19.12.2023 | 1.5hr |
 | Semantic Search Research | [#539](https://github.com/bounswe/bounswe2023group4/issues/539) | Şefik Palazoğlu | 19.12.2023 | 4hr |
-
+| DateTime Management in createPoll | [#540](https://github.com/bounswe/bounswe2023group4/issues/540) | Şefik Palazoğlu | 19.12.2023 | 4hr |
 
 ## Risks
 - We might not be able to finish aimed requirements due to time constraints.
