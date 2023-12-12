@@ -10,6 +10,7 @@
 * Moderation backend is implemented.
 * Specific methods for Poll retrieval has been implemented.
 * Poll closing and point distribution issued will be looked at this week.
+* Moderation list page and navigation to other users profile implemented in mobile.
   
 ## What was planned for the week? How did it go?
 
@@ -37,10 +38,10 @@
 | Update Web Project Color Palette   | [#509](https://github.com/bounswe/bounswe2023group4/issues/509) | Selin Işık | 12.12.2023 | | 2h |
 | Add Time to Date Select Fields   | [#510](https://github.com/bounswe/bounswe2023group4/issues/510) | Selin Işık | 12.12.2023 | | 1.5h |
 | Redesign the project name and logo | [#511](https://github.com/bounswe/bounswe2023group4/issues/511) | Selin Işık | 12.12.2023 | | 1h |
-| Implement Moderation Screen UI| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 12.12.23 | | 6hr |
-| Add edit logic to the profile page | [#512](https://github.com/bounswe/bounswe2023group4/issues/512) | Ahmet Emre Şafak | 12.12.23 | | 3.5hr |
-| Fix profile image related issues in polls | [#513](https://github.com/bounswe/bounswe2023group4/issues/513) | Ahmet Emre Şafak | 12.12.23 | | 1hr |
-| Implement navigation to other users profile | [#514](https://github.com/bounswe/bounswe2023group4/issues/514) | Ahmet Emre Şafak | 12.12.23 | | 2hr |
+| Implement Moderation Screen UI| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 12.12.23 | [Progress](https://github.com/bounswe/bounswe2023group4/issues/418#issuecomment-1851981918) | 6hr | In Progress (4hr) |
+| Add edit logic to the profile page | [#512](https://github.com/bounswe/bounswe2023group4/issues/512) | Ahmet Emre Şafak | 12.12.23 | [PR](https://github.com/bounswe/bounswe2023group4/pull/536) | 3.5hr | 3hr |
+| Fix profile image related issues in polls | [#513](https://github.com/bounswe/bounswe2023group4/issues/513) | Ahmet Emre Şafak | 12.12.23 | [Reason](https://github.com/bounswe/bounswe2023group4/issues/513#issuecomment-1851949297) | 1hr | On Hold |
+| Implement navigation to other users profile | [#514](https://github.com/bounswe/bounswe2023group4/issues/514) | Ahmet Emre Şafak | 12.12.23 | - | 2hr | Unfinished | 
 
 ## Completed tasks that were not planned for the week
 
