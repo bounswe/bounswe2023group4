@@ -39,9 +39,9 @@
 | Add Time to Date Select Fields   | [#510](https://github.com/bounswe/bounswe2023group4/issues/510) | Selin Işık | 12.12.2023 | | 1.5h |
 | Redesign the project name and logo | [#511](https://github.com/bounswe/bounswe2023group4/issues/511) | Selin Işık | 12.12.2023 | | 1h |
 | Implement Moderation Screen UI| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 12.12.23 | [Progress](https://github.com/bounswe/bounswe2023group4/issues/418#issuecomment-1851981918) | 6hr | In Progress (4hr) |
-| Add edit logic to the profile page | [#512](https://github.com/bounswe/bounswe2023group4/issues/512) | Ahmet Emre Şafak | 12.12.23 | [PR](https://github.com/bounswe/bounswe2023group4/pull/536) | 3.5hr | 3hr |
+| Add edit logic to the profile page | [#512](https://github.com/bounswe/bounswe2023group4/issues/512) | Ahmet Emre Şafak | 12.12.23 | - | 3.5hr | Unfinished |
 | Fix profile image related issues in polls | [#513](https://github.com/bounswe/bounswe2023group4/issues/513) | Ahmet Emre Şafak | 12.12.23 | [Reason](https://github.com/bounswe/bounswe2023group4/issues/513#issuecomment-1851949297) | 1hr | On Hold |
-| Implement navigation to other users profile | [#514](https://github.com/bounswe/bounswe2023group4/issues/514) | Ahmet Emre Şafak | 12.12.23 | - | 2hr | Unfinished | 
+| Implement navigation to other users profile | [#514](https://github.com/bounswe/bounswe2023group4/issues/514) | Ahmet Emre Şafak | 12.12.23 | [PR](https://github.com/bounswe/bounswe2023group4/pull/536) | 2hr | 2hr | 
 
 ## Completed tasks that were not planned for the week
 
@@ -54,10 +54,11 @@
 | Updating the the Add Annotation Modal | [#529](https://github.com/bounswe/bounswe2023group4/issues/529) | Ali Nasra | 12/12/2023 | [#493](https://github.com/bounswe/bounswe2023group4/issues/493) |
 
 
-
-
 ## Planned vs. Actual
 * [#241](https://github.com/bounswe/bounswe2023group4/issues/241), [#342](https://github.com/bounswe/bounswe2023group4/issues/342), [#399](https://github.com/bounswe/bounswe2023group4/issues/399) is not finished because Şefik was focusing on annotations this week.
+* [#418](https://github.com/bounswe/bounswe2023group4/issues/418) Yigit couldn't finish this task because he had to finish other projects. He will try to catch up this week.
+* [#513](https://github.com/bounswe/bounswe2023group4/issues/513) Ahmet couldn't finish this task because he needs to wait the backend to fix the end point. That's why the task is on hold.
+* [#514](https://github.com/bounswe/bounswe2023group4/issues/512) Ahmet couldn't find a time to finalize his work in this task. He will wrap up the task in next week.
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
