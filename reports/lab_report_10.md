@@ -27,7 +27,7 @@
 | Integration of email verification | [#495](https://github.com/bounswe/bounswe2023group4/issues/495) | Kutay Saran, Hebun Şimşek | 12.12.2023 | [#546](https://github.com/bounswe/bounswe2023group4/pull/546) | 3hr | 2hr |
 | Implement the UI of moderation-not moderator page from mock up | [#498](https://github.com/bounswe/bounswe2023group4/issues/498)| Enes Furkan Arslan | 12.12.2023 | [#551](https://github.com/bounswe/bounswe2023group4/pull/551) | 2h | 2h |  
 | Start implementation of general UI of moderation-not jury from mock up | [#499](https://github.com/bounswe/bounswe2023group4/issues/499) | Enes Furkan Arslan | 12.12.2023 | [#551](https://github.com/bounswe/bounswe2023group4/pull/551) | 3h | 3h |
-| Implement forgot password | [#500](https://github.com/bounswe/bounswe2023group4/issues/500) | Hebun Şimşek | 12.12.2023 | | 4h | |
+| Implement forgot password | [#500](https://github.com/bounswe/bounswe2023group4/issues/500) | Hebun Şimşek | 12.12.2023 | [#547](https://github.com/bounswe/bounswe2023group4/pull/547) | 4h | 3hr |
 | Google Auth Fix | [#501](https://github.com/bounswe/bounswe2023group4/issues/501) | Kutay Saran,Emre Batuhan Göç | 11.12.2023 | [#521](https://github.com/bounswe/bounswe2023group4/pull/521), [#522](https://github.com/bounswe/bounswe2023group4/pull/522) | 1h | 1h |
 | Final Milestone Plan for project | [#502](https://github.com/bounswe/bounswe2023group4/issues/502) | Emre Batuhan Göç | 11.12.2023 | | 1.5h |
 | Implement selected badges in profile endpoints | [#503](https://github.com/bounswe/bounswe2023group4/issues/503) | Emre Batuhan Göç | 12.12.2023 | | 2h |
