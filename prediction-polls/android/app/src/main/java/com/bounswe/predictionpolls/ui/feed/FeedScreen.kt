@@ -22,6 +22,7 @@ import com.bounswe.predictionpolls.ui.common.poll.Polls
 @Composable
 fun FeedScreen(
     feedUiState: FeedUiState,
+    onProfileClicked: (userName: String) -> Unit,
     onPollClicked: (pollId: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -50,7 +51,7 @@ fun FeedScreen(
             }
 
             is FeedUiState.HasFeed -> {
-                Polls(polls = feedUiState.feed, onPollClicked = onPollClicked)
+                Polls(polls = feedUiState.feed, onPollClicked = onPollClicked, onProfileClicked = onProfileClicked)
             }
 
             is FeedUiState.Error -> {

@@ -21,8 +21,9 @@ import kotlinx.collections.immutable.ImmutableList
 @Composable
 fun Polls(
     polls: ImmutableList<Poll>,
+    onProfileClicked: (userName: String) -> Unit,
+    modifier: Modifier = Modifier,
     onPollClicked: (id: String) -> Unit = {},
-    modifier: Modifier = Modifier
 ) {
     LazyColumn(
         modifier = modifier,
@@ -48,7 +49,10 @@ fun Polls(
                 },
                 dueDate = it.dueDate?.fromISO8601() ?: "",
                 rejectionText = it.rejectionText ?: "",
-                commentCount = it.commentCount
+                commentCount = it.commentCount,
+                onProfileCardClicked = {
+                    onProfileClicked(it.pollCreatorUsername)
+                }
             )
         }
     }

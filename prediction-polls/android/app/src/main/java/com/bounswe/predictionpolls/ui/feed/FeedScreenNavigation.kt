@@ -11,6 +11,7 @@ import androidx.navigation.Navigator
 import androidx.navigation.compose.composable
 import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
 import com.bounswe.predictionpolls.ui.main.navigateToMainScreen
+import com.bounswe.predictionpolls.ui.profile.navigateToProfileScreen
 import com.bounswe.predictionpolls.ui.vote.navigateToPollVoteScreen
 
 const val FEED_ROUTE = "feed"
@@ -32,6 +33,8 @@ fun NavGraphBuilder.feedScreen(navController: NavController, isUserLoggedIn: Boo
                     navOptions = NavOptions.Builder().setPopUpTo(MAIN_ROUTE, true).build()
                 )
             }
+        }, onProfileClicked = {
+            navController.navigateToProfileScreen(username = it)
         })
     }
 }
