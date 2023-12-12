@@ -64,7 +64,7 @@ async function signup(req, res) {
 
 async function sendVerificationEmail(email, token) {
   const transporter = db.createTransporter();
-  const verificationUrl = `http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/verify-email?token=${token}`;
+  const verificationUrl = `http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/auth/verify-email?token=${token}`;
 
   const mailOptions = {
       from: '"Prediction Polls" <predictionpolls@zohomail.eu>',
@@ -176,5 +176,105 @@ function generateRefreshToken(user) {
   return jwt.sign(user,process.env.REFRESH_TOKEN_SECRET);
 }
 
+async function verifyEmail(req, res){
+  const token = req.query.token;
+
+  try {
+      // Verify the token and update the user's email_verified status in the database
+      const verificationSuccessful = await db.verifyEmailToken(token);
+
+      if (verificationSuccessful) {
+          res.send('Email successfully verified');
+      } else {
+          res.status(400).send('Invalid or expired verification token');
+      }
+  } catch (error) {
+      console.error("Error during email verification:", error);
+      res.status(500).send('Internal server error');
+  }
+}
+
+function generatePasswordResetToken() {
+  return new Promise((resolve, reject) => {
+      crypto.randomBytes(20, (err, buffer) => {
+          if (err) {
+              reject(err);
+          } else {
+              resolve(buffer.toString('hex'));
+          }
+      });
+  });
+}
+// Function to send password reset email
+async function sendPasswordResetEmail(email, token) {
+  const transporter = db.createTransporter();
+  const resetUrl  = `http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/auth/reset-password?token=${token}`;
+
+  try {
+    await transporter.sendMail({
+        from: '"Prediction Polls" <predictionpolls@zohomail.eu>', // Update this
+        to: email,
+        subject: 'Password Reset Request',
+        html: `
+            <p>You requested a password reset for your account.</p>
+            <p>Click the link below to reset your password:</p>
+            <a href="${resetUrl}">${resetUrl}</a>
+            <p>If you did not request a password reset, please ignore this email.</p>
+        `
+    });
+
+    console.log('Password reset email sent successfully.');
+} catch (error) {
+    console.error('Error sending password reset email:', error);
+    throw error;
+}
+}
+
+
+
+async function resetPassword(token, newPassword) {
+    try {
+        // Validate the token and get user details
+        const user = await db.getUserByResetToken(token);
+        if (!user) {
+            throw new Error('Invalid or expired password reset token.');
+        }
+
+        // Check if the token is expired
+        if (new Date() > new Date(user.reset_token_expires)) {
+            throw new Error('Password reset token has expired.');
+        }
+        // Update the user's password in the database
+        await db.updateUserPassword(user.id, newPassword);
+
+        // Clear the reset token from the database
+        await db.clearResetToken(user.id);
+
+        console.log('Password reset successfully.');
+    } catch (error) {
+        console.error('Error resetting password:', error);
+        throw error;
+    }
+}
+async function requestResetPassword (req, res){
+  try {
+      const { email } = req.body;
+      const user = await db.findUser({email});
+
+      if (user) {
+          const token = await generatePasswordResetToken();
+          const expiresIn = 360;
+          await db.storePasswordResetToken(user.id, token, expiresIn);
+          // Store the token in the database (functionality not shown here)
+          await sendPasswordResetEmail(email, token);
+      }
+
+      // Respond with a generic message either way to avoid enumeration attacks
+      res.send('If your email is in our system, you will receive a password reset link.');
+  } catch (error) {
+      console.error('Password reset request error:', error);
+      res.status(500).send('Error processing password reset request.');
+  }
+};
 module.exports = {homePage, signup, createAccessTokenFromRefreshToken, logIn, 
-  logOut, authorizeAccessToken, generateAccessToken, generateRefreshToken}
+  logOut, authorizeAccessToken, generateAccessToken, generateRefreshToken, verifyEmail, sendPasswordResetEmail, resetPassword, requestResetPassword}
