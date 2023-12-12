@@ -27,16 +27,18 @@ async function getPolls(){
 
 async function getFamousPolls(){
 
-    const sql = "SELECT polls.*, famous_polls.total_points_spent " +
-        "FROM polls,(SELECT poll_id, SUM(given_points) AS total_points_spent " +
+    const sql = "SELECT polls.*, COALESCE(famous_polls.total_points_spent, 0) AS total_points_spent " +
+    "FROM polls " +
+    "LEFT JOIN ( " +
+        "SELECT poll_id, SUM(given_points) AS total_points_spent " +
         "FROM discrete_polls_selections " +
         "GROUP BY poll_id " +
         "UNION " +
         "SELECT poll_id, SUM(given_points) AS total_points_spent " +
         "FROM continuous_poll_selections " +
-        "GROUP BY poll_id) AS famous_polls " +
-        "WHERE polls.id = famous_polls.poll_id " +
-        "ORDER BY famous_polls.total_points_spent DESC"
+        "GROUP BY poll_id " +
+    ") AS famous_polls ON polls.id = famous_polls.poll_id " +
+    "ORDER BY COALESCE(famous_polls.total_points_spent, 0) DESC;"
 
     try {
         const [rows] = await pool.query(sql);
