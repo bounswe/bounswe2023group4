@@ -29,11 +29,11 @@
 | Start implementation of general UI of moderation-not jury from mock up | [#499](https://github.com/bounswe/bounswe2023group4/issues/499) | Enes Furkan Arslan | 12.12.2023 | [#551](https://github.com/bounswe/bounswe2023group4/pull/551) | 3h | 3h |
 | Implement forgot password | [#500](https://github.com/bounswe/bounswe2023group4/issues/500) | Hebun Şimşek | 12.12.2023 | [#537](https://github.com/bounswe/bounswe2023group4/pull/537) | 4h | 3hr |
 | Google Auth Fix | [#501](https://github.com/bounswe/bounswe2023group4/issues/501) | Kutay Saran,Emre Batuhan Göç | 11.12.2023 | [#521](https://github.com/bounswe/bounswe2023group4/pull/521), [#522](https://github.com/bounswe/bounswe2023group4/pull/522) | 1h | 1h |
-| Final Milestone Plan for project | [#502](https://github.com/bounswe/bounswe2023group4/issues/502) | Emre Batuhan Göç | 11.12.2023 | | 1.5h |
-| Implement selected badges in profile endpoints | [#503](https://github.com/bounswe/bounswe2023group4/issues/503) | Emre Batuhan Göç | 12.12.2023 | | 2h |
-| Implement get poll endpoints for specific polls | [#504](https://github.com/bounswe/bounswe2023group4/issues/504) | Emre Batuhan Göç | 12.12.2023 | | 3h |
-| Implement moderator endpoints | [#506](https://github.com/bounswe/bounswe2023group4/issues/506) | Emre Batuhan Göç | 12.12.2023 | | 6h |
-| Fix profile id - user id mismatch bug  | [#507](https://github.com/bounswe/bounswe2023group4/issues/507) | Selin Işık, Emre Batuhan Göç | 12.12.2023 | | 1h |
+| Final Milestone Plan for project | [#502](https://github.com/bounswe/bounswe2023group4/issues/502) | Emre Batuhan Göç | 11.12.2023 | [Final Plan](https://github.com/bounswe/bounswe2023group4/wiki/Final-Plan) | 1.5h | 1h |
+| Implement selected badges in profile endpoints | [#503](https://github.com/bounswe/bounswe2023group4/issues/503) | Emre Batuhan Göç | 12.12.2023 | [#523](https://github.com/bounswe/bounswe2023group4/pull/523) | 2h | 1.5h |
+| Implement get poll endpoints for specific polls | [#504](https://github.com/bounswe/bounswe2023group4/issues/504) | Emre Batuhan Göç | 12.12.2023 | [#526](https://github.com/bounswe/bounswe2023group4/pull/526) | 3h | 3h |
+| Implement moderator endpoints | [#506](https://github.com/bounswe/bounswe2023group4/issues/506) | Emre Batuhan Göç | 12.12.2023 | [#530](https://github.com/bounswe/bounswe2023group4/pull/530) | 6h | 7h |
+| Fix profile id - user id mismatch bug  | [#507](https://github.com/bounswe/bounswe2023group4/issues/507) | Selin Işık, Emre Batuhan Göç | 12.12.2023 | [#533](https://github.com/bounswe/bounswe2023group4/pull/533) | 1h | 0.5h |
 | Update Poll Card UI  | [#508](https://github.com/bounswe/bounswe2023group4/issues/508) | Selin Işık | 12.12.2023 | | 2h |
 | Update Web Project Color Palette   | [#509](https://github.com/bounswe/bounswe2023group4/issues/509) | Selin Işık | 12.12.2023 | | 2h |
 | Add Time to Date Select Fields   | [#510](https://github.com/bounswe/bounswe2023group4/issues/510) | Selin Işık | 12.12.2023 | | 1.5h |
