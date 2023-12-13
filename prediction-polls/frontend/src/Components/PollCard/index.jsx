@@ -6,13 +6,11 @@ import { ReactComponent as CommentIcon } from "../../Assets/icons/Comment.svg";
 import { ReactComponent as ShareIcon } from "../../Assets/icons/Share.svg";
 import { ReactComponent as ReportIcon } from "../../Assets/icons/Warning.svg";
 import PollOption from "../PollOption";
-import { Input, DatePicker, Dropdown } from "antd";
+import { Input, DatePicker } from "antd";
 import { useLocation } from "react-router-dom";
 import ProfileIcon from "../../Assets/icons/ProfileIcon.jsx";
 import getProfile from "../../api/requests/profile.jsx";
-import AddModal from "../Modals/AddModal.jsx";
-import ViewModal from "../Modals/ViewModal.jsx";
-import SuccessModal from "../Modals/SuccessModal.jsx";
+
 
 function PollCard({ PollData, setAnswer, onClick }) {
   const [selectedArray, setSelectedArray] = React.useState(
@@ -27,16 +25,7 @@ function PollCard({ PollData, setAnswer, onClick }) {
   const [isVotePath, setIsVotePath] = React.useState(
     /^\/vote\//.test(location.pathname)
   );
-  const [openAddAnnotate, setOpenAddAnnotate] = React.useState(false);
-  const [openViewAnnotate, setOpenViewAnnotate] = React.useState(false);
-  const [openSuccess, setOpenSuccess] = React.useState(false);
-  const [contentHTML, setcontentHTML] = React.useState(null);
-  const showAddAnnotateModal = () => {
-    setOpenAddAnnotate(true);
-  };
-  const showViewAnnotateModal = () => {
-    setOpenViewAnnotate(true);
-  };
+  
 
   useEffect(() => {
     const data = getProfile(PollData.creatorUsername);
@@ -75,21 +64,10 @@ function PollCard({ PollData, setAnswer, onClick }) {
       ? PollData.options.reduce((acc, curr) => acc + curr.votes, 0)
       : 0;
   };
-  const itemList = [{ key: "View Annotations", value: showViewAnnotateModal }, { key: "Add Annotation", value: showAddAnnotateModal }]
-  const items = itemList.map((item) => {
-    return { label: <div className={styles.contextMenuOption} onClick={item.value}>{item.key}</div>, key: item.key }
-  });
-  React.useEffect(() => {
-    setcontentHTML(document.getElementById(`poll_content${PollData.id}`).innerHTML);
-  }, []);
+  
+  
 
   return (
-    <Dropdown
-      menu={{
-        items,
-      }}
-      trigger={['contextMenu']}
-    >
       <div>
         <div>
           <div
@@ -210,11 +188,8 @@ function PollCard({ PollData, setAnswer, onClick }) {
             </div>
           </div>
         </div>
-        <AddModal open={openAddAnnotate} setOpen={setOpenAddAnnotate} expressions={(PollData.isCustomPoll ? [PollData.question.slice(0, -1)] : [...(PollData.options.map(option => { return option.choice_text; })), PollData.question.slice(0, -1)])} setShowSuccessModal={setOpenSuccess} pollContent={contentHTML} pollID={PollData.id} />
-        <ViewModal open={openViewAnnotate} setOpen={setOpenViewAnnotate} pollContent={contentHTML} pollID={PollData.id} />
-        <SuccessModal open={openSuccess} setOpen={setOpenSuccess} />
+        
       </div>
-    </Dropdown>
   );
 }
 

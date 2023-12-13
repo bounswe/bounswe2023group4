@@ -3,26 +3,39 @@ import PollCard from "../../Components/PollCard";
 import styles from "./Vote.module.css";
 import PointsButton from "../../Components/PointsButton";
 import pointData from "../../MockData/PointList.json"
-import { Button, Input } from 'antd';
+import { Button, Input, Dropdown } from 'antd';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import getProfileMe from "../../api/requests/profileMe.jsx";
+import AddModal from "../../Components/Modals/AddModal.jsx";
+import ViewModal from "../../Components/Modals/ViewModal.jsx";
+import SuccessModal from "../../Components/Modals/SuccessModal.jsx";
 
 
 
 function Vote() {
   let { id } = useParams();
   let parsedID = parseInt(id);
-  const [userData, setUserData] =  useState({});
+  const [userData, setUserData] = useState({});
+  const [openAddAnnotate, setOpenAddAnnotate] = React.useState(false);
+  const [openViewAnnotate, setOpenViewAnnotate] = React.useState(false);
+  const [openSuccess, setOpenSuccess] = React.useState(false);
+  const [contentHTML, setcontentHTML] = React.useState(null);
+  const showAddAnnotateModal = () => {
+    setOpenAddAnnotate(true);
+  };
+  const showViewAnnotateModal = () => {
+    setOpenViewAnnotate(true);
+  };
 
-
-  React.useEffect( () => {
+  React.useEffect(() => {
     const data = getProfileMe();
-     data.then((result) => {
-       setUserData(result);
-     });
- },[])
+    data.then((result) => {
+      setUserData(result);
+    });
+  }, [])
+
   const retrievePoll = async () => {
     try {
       const requestOptions = {
@@ -73,13 +86,23 @@ function Vote() {
   const [sentence, setSentence] = React.useState(null);
   const [betPoint, setBetPoint] = React.useState(0);
   const [message, setMessage] = React.useState("");
-  const [selectedOption, setSelectedOption] = React.useState();
   const [isLoaded, setLoaded] = React.useState(false);
   const [answer, setAnswer] = React.useState(null);
 
   useEffect(() => {
     fetchData();
   }, []);
+  /**
+          <AddModal open={openAddAnnotate} setOpen={setOpenAddAnnotate} expressions={(polldata.isCustomPoll ? [polldata.question.slice(0, -1)] : [...(polldata.options.map(option => { return option.choice_text; })), polldata.question.slice(0, -1)])} setShowSuccessModal={setOpenSuccess} pollContent={contentHTML} pollID={polldata.id} />
+          <ViewModal open={openViewAnnotate} setOpen={setOpenViewAnnotate} pollContent={contentHTML} pollID={polldata.id} />
+          <SuccessModal open={openSuccess} setOpen={setOpenSuccess} />
+          
+  useEffect(()=>{
+    setcontentHTML(document.getElementById(`poll_content${polldata.id}`).innerHTML);
+  },[]);
+  */
+
+
 
 
   const handleVoting = async () => {
@@ -176,33 +199,47 @@ function Vote() {
     }
   };
 
+  const itemList = [{ key: "View Annotations", value: showViewAnnotateModal }, { key: "Add Annotation", value: showAddAnnotateModal }]
+  const items = itemList.map((item) => {
+    return { label: <div className={styles.contextMenuOption} onClick={item.value}>{item.key}</div>, key: item.key }
+  });
   if (isLoaded == true) {
     return (
-      <div className={styles.page}>
-        <Menu currentPage="Vote" />
-        <div className={styles.page_row}>
-          <div className={styles.poll}>
-            <PollCard PollData={polldata} setAnswer={setAnswer} />
+      <Dropdown
+        menu={{
+          items,
+        }}
+        trigger={['contextMenu']}
+      >
+        <div className={styles.page}>
+          <Menu currentPage="Vote" />
+          <div className={styles.page_row}>
+            <div
+              className={styles.poll}>
+              <PollCard PollData={polldata} setAnswer={setAnswer} />
+            </div>
+            <div className={styles.choice_column}>
+              <PointsButton point={userData?.points ?? 0} />
+              <div className={styles.infoText}><div>{sentence}</div>
+                <div id="statement" className={styles.chooseText}>How many points do you want to place?</div>
+                <div><Input
+                  id="bet"
+                  className={styles.inputStyle}
+                  placeholder=""
+                  onChange={(e) => setBetPoint(e.target.value)}
+                /></div>
+                <div className={styles.buttonDivStyle}><Button
+                  id="submitButton"
+                  className={styles.bottonStyle}
+                  onClick={handleVoting}
+                >Vote</Button></div>
+                <div className={styles.messageStyle}>{message}</div>
+              </div></div>
           </div>
-          <div className={styles.choice_column}>
-          <PointsButton point={userData?.points ?? 0}/> 
-            <div className={styles.infoText}><div>{sentence}</div>
-              <div id="statement" className={styles.chooseText}>How many points do you want to place?</div>
-              <div><Input
-                id="bet"
-                className={styles.inputStyle}
-                placeholder=""
-                onChange={(e) => setBetPoint(e.target.value)}
-              /></div>
-              <div className={styles.buttonDivStyle}><Button
-                id="submitButton"
-                className={styles.bottonStyle}
-                onClick={handleVoting}
-              >Vote</Button></div>
-              <div className={styles.messageStyle}>{message}</div>
-            </div></div>
+          
+          
         </div>
-      </div>
+      </Dropdown>
     );
   }
 }
