@@ -343,4 +343,4 @@ async function closePoll(req, res) {
     }
 }
 
-module.exports = { getFamousPolls,getOpenedPollsOfUser,getVotedPollsOfUser, getPollWithId, addDiscretePoll, addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll}
+module.exports = { getFamousPolls, getOpenedPollsOfUser, getVotedPollsOfUser, createPollsJson, getPollWithId, addDiscretePoll, addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll}
