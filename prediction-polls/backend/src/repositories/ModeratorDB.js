@@ -11,6 +11,21 @@ const pool = mysql.createPool({
     database: process.env.MYSQL_DATABASE
 }).promise()
 
+async function addPromotionRequest(userId){
+    const sql = 'INSERT INTO mod_promotion_requests (userId) VALUES (?)';
+
+    try {
+        const [rows] = await pool.query(sql,[userId]);
+        return rows
+    } catch (error) {
+        if(error.code === 'ER_DUP_ENTRY'){
+            return {status:"already exists"} // This means that user already requested promotion
+        }
+        console.error('makeMod(): Database Error');
+        throw {error: errorCodes.DATABASE_ERROR};
+    }
+}
+
 async function makeMod(userId){
     const sql = 'UPDATE users SET isMod = 1 WHERE id = ?';
 
@@ -132,6 +147,6 @@ async function setDecisionOnContinuousRequest(requestId,continuous_choice,contPo
     }
 }
 
-module.exports = { makeMod, getModTags, deleteModTag, addModTag, getModRequests, checkRequestOfUser,
+module.exports = { addPromotionRequest, makeMod, getModTags, deleteModTag, addModTag, getModRequests, checkRequestOfUser,
      setDecisionOnReportRequest, setDecisionOnDiscreteRequest, setDecisionOnContinuousRequest
 }

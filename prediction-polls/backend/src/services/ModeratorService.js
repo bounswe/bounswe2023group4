@@ -24,6 +24,20 @@ async function controlModRole(req,res,next){
     }
 }
 
+async function requestModRole(req,res){
+    const userId = req.user.id;
+    try{
+        const promotion_request = await db.addPromotionRequest(userId);
+        if(promotion_request.error){
+            throw errorCodes.USER_NOT_FOUND
+        }
+        return res.status(200).json({status:"success"});
+    }
+    catch(error){
+        return res.status(400).json({error:error});
+    }
+}
+
 async function makeMod(req,res){
     const userId = req.body.userId;
     try{
@@ -168,4 +182,4 @@ async function answerRequest(req,res){
 }
 
 
-module.exports = {controlModRole, makeMod, getModTags, updateTags, getModRequests, answerRequest}
+module.exports = {controlModRole, requestModRole, makeMod, getModTags, updateTags, getModRequests, answerRequest}

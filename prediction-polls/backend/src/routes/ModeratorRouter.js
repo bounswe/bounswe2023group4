@@ -43,6 +43,38 @@ const router = express.Router();
  */
 router.post('/appoint',authenticator.authorizeAccessToken,service.controlModRole, service.makeMod);
 
+/**
+ * @swagger
+ * /moderators/request-promotion:
+ *   post:
+ *     tags:
+ *       - moderators
+ *     description: Users sends a request to become a moderator. User must be authorized 
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *              type: object
+ *              properties:
+ *                status:
+ *                  type: string
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/error'
+ *             examples:
+ *               databaseError:
+ *                 value:
+ *                   error:
+ *                     message: Error while accessing the database.
+ *                     code: 3004
+ */
+router.post('/request-promotion',authenticator.authorizeAccessToken, service.requestModRole);
+
 
 /**
  * @swagger

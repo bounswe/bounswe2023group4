@@ -122,6 +122,13 @@ CREATE TABLE mod_requests (
     FOREIGN KEY (userId) REFERENCES users(id)
 );
 
+CREATE TABLE mod_promotion_requests (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT NOT NULL,
+    UNIQUE(userId),
+    FOREIGN KEY (userId) REFERENCES users(id)
+);
+
 CREATE TABLE mod_request_report (
     id INT AUTO_INCREMENT PRIMARY KEY,
     request_id INT,
