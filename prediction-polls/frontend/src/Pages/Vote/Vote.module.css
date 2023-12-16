@@ -106,6 +106,12 @@
     overflow: scroll;
 }
 
+.annotationPopOverStyle {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-900);
+}
+
 .annotationBoxStyle {
     cursor: pointer;
     display: flex;
