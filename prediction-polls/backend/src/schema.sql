@@ -143,3 +143,12 @@ CREATE TABLE mod_request_continuous (
     date_value DATE,
     FOREIGN KEY (request_id) REFERENCES mod_requests(id) ON DELETE CASCADE
 );
+
+CREATE TABLE user_follow (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    follower VARCHAR(255) NOT NULL,
+    followed VARCHAR(255) NOT NULL,
+    status BOOLEAN,
+    FOREIGN KEY (follower) REFERENCES profiles(username) ON DELETE CASCADE
+    FOREIGN KEY (followed) REFERENCES profiles(username) ON DELETE CASCADE
+);
