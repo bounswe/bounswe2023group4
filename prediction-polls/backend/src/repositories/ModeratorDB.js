@@ -11,6 +11,18 @@ const pool = mysql.createPool({
     database: process.env.MYSQL_DATABASE
 }).promise()
 
+async function getPromotionRequests(){
+    const sql = 'SELECT * FROM mod_promotion_requests ';
+
+    try {
+        const [rows] = await pool.query(sql);
+        return rows
+    } catch (error) {
+        console.error('getPromotionRequests(): Database Error');
+        throw {error: errorCodes.DATABASE_ERROR};
+    }
+}
+
 async function addPromotionRequest(userId){
     const sql = 'INSERT INTO mod_promotion_requests (userId) VALUES (?)';
 
@@ -21,7 +33,7 @@ async function addPromotionRequest(userId){
         if(error.code === 'ER_DUP_ENTRY'){
             return {status:"already exists"} // This means that user already requested promotion
         }
-        console.error('makeMod(): Database Error');
+        console.error('addPromotionRequest(): Database Error');
         throw {error: errorCodes.DATABASE_ERROR};
     }
 }
@@ -96,7 +108,7 @@ async function checkRequestOfUser(requestId,userId){
         const [rows] = await pool.query(sql,[requestId,userId]);
         return rows
     } catch (error) {
-        console.error('getModRequests(): Database Error');
+        console.error('checkRequestOfUser(): Database Error');
         throw {error: errorCodes.DATABASE_ERROR};
     }
 }
@@ -147,6 +159,18 @@ async function setDecisionOnContinuousRequest(requestId,continuous_choice,contPo
     }
 }
 
-module.exports = { addPromotionRequest, makeMod, getModTags, deleteModTag, addModTag, getModRequests, checkRequestOfUser,
-     setDecisionOnReportRequest, setDecisionOnDiscreteRequest, setDecisionOnContinuousRequest
+async function getModCount(){
+    const mod_count_sql = "SELECT COUNT(*) AS mod_count FROM users WHERE isMod = 1"
+    try {
+        const [rows] = await pool.query(mod_count_sql);
+        return rows[0]
+    } catch (error) {
+        console.error('getModCount(): Database Error');
+        throw {error: errorCodes.DATABASE_ERROR};
+    }
+
+}
+
+module.exports = { getPromotionRequests,addPromotionRequest, makeMod, getModTags, deleteModTag, addModTag, getModRequests, 
+    checkRequestOfUser, setDecisionOnReportRequest, setDecisionOnDiscreteRequest, setDecisionOnContinuousRequest, getModCount
 }
