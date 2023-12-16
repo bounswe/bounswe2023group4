@@ -52,7 +52,7 @@ async function verifyFollow(follower_id, followed_id, check_status) {
             }
         }
         else {
-            if (rows.length == 0) {
+            if (rows.length != 0) {
                 throw { error: errorCodes.FOLLOWERSHIP_ALREADY_EXISTS }
             }
         }
