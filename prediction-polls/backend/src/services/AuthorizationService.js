@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const db = require("../repositories/AuthorizationDB.js");
 const profileDb = require("../repositories/ProfileDB.js");
 const errorCodes = require("../errorCodes.js")
+const moment = require('moment');
 
 const bcrypt = require('bcrypt')
 
@@ -137,6 +138,9 @@ async function logIn(req,res){
       const accesToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
       await db.addRefreshToken(refreshToken);
+      
+      const currentDate = moment().format('YYYY-MM-DD HH:mm:ss');
+      await db.updateUserLastLogin(userAuthenticated.id,currentDate);
       return res.status(201).json({accessToken: accesToken, refreshToken: refreshToken})
 
     } catch (error) {
