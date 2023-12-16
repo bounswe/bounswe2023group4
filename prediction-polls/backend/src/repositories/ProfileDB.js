@@ -41,28 +41,41 @@ async function getProfileWithUserId(userId) {
     }
 }
 
-async function verifyFollow(follower_id, followed_id, check_status) {
-    const sql = 'SELECT * FROM user_follow WHERE follower_id= ? AND followed_id = ? AND follow_status = ?';
-
+async function verifyFollow(follower_id, followed_id) {
+    const sql = 'SELECT * FROM user_follow WHERE follower_id= ? AND followed_id = ?';
     try {
-        const [rows] = await pool.query(sql, [follower_id, followed_id, true]);
-        if (check_status == true) {
-            if (rows.length == 0) {
-                throw { error: errorCodes.NO_FOLLOWERSHIP_FOUND }
+        const [rows] = await pool.query(sql, [follower_id, followed_id]);
+        if (rows.length > 0) {
+            if (rows[0].follow_status == false) {
+                return { updateDecision: true };
+            }
+            else {
+                return { error: errorCodes.FOLLOWERSHIP_ALREADY_EXISTS };
             }
         }
         else {
-            if (rows.length != 0) {
-                throw { error: errorCodes.FOLLOWERSHIP_ALREADY_EXISTS }
-            }
+            return { updateDecision: false };
         }
-
-        return { followership: rows[0] };
     } catch (error) {
         return error;
     }
 }
 
+async function verifyUnFollow(follower_id, followed_id) {
+    const sql = 'SELECT * FROM user_follow WHERE follower_id= ? AND followed_id = ? AND follow_status = ?';
+
+    try {
+        const [rows] = await pool.query(sql, [follower_id, followed_id, false]);
+        if (rows.length != 0) {
+            return { error: errorCodes.NO_FOLLOWERSHIP_FOUND };
+        }
+        else {
+            return { formerRelationStatus: true };
+        }
+    } catch (error) {
+        return error;
+    }
+}
 async function addProfile(userId, username, email) {
 
     try {
@@ -184,14 +197,14 @@ async function followProfile(follower_id, followed_id) {
     try {
         const { error: error_follower } = await getProfileWithUserId(follower_id);
         const { error: error_followed } = await getProfileWithUserId(followed_id);
-        const { followership, error: error_follow } = await verifyFollow(follower_id, followed_id, false);
+        const { updateDecision, error: validityError } = await verifyFollow(follower_id, followed_id);
         if (error_follower || error_followed) {
             throw { error: errorCodes.PROFILE_NOT_FOUND };
         }
-        if (error_follow) {
+        if (validityError) {
             throw { error: errorCodes.FOLLOWERSHIP_ALREADY_EXISTS };
         }
-        if (followership) {
+        if (updateDecision == true) {
             const query_follow = "UPDATE user_follow SET follow_status = ? WHERE follower_id = ? AND followed_id = ?)";
             const values = [true, follower_id, followed_id];
             const [resultSetHeader] = await pool.query(query_follow, values);
@@ -217,14 +230,13 @@ async function unfollowProfile(follower_id, followed_id) {
     try {
         const { error: error_follower } = await getProfileWithUserId(follower_id);
         const { error: error_followed } = await getProfileWithUserId(followed_id);
-        const { error: error_follow } = await verifyFollow(follower_id, followed_id, true);
+        const { error: error_follow } = await verifyUnFollow(follower_id, followed_id);
         if (error_follower || error_followed) {
             throw { error: errorCodes.PROFILE_NOT_FOUND };
         }
         if (error_follow) {
             throw { error: errorCodes.NO_FOLLOWERSHIP_FOUND };
         }
-
         const values = [false, follower_id, followed_id]
         const [resultSetHeader] = await pool.query(query_follow, values);
         return { status: "success" };
