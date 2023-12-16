@@ -14,12 +14,17 @@ import Vote from '../Pages/Vote';
 import PrivateRoute from '../Components/PrivateRoute';
 import GoogleLogin from '../Pages/Auth/Google'
 import EditProfile from '../Pages/EditProfile';
-import ForgotPassword from '../Pages/Auth/ForgotPassword/ForgotPassword';
+import ForgotPassword from '../Pages/Auth/ForgotPassword';
 import VerifyEmailPage from '../Pages/Auth/VerifyEmail';
 import ResetPassword from '../Pages/Auth/ResetPassword';
-import VoteList from '../Pages/Vote/voteList';
+//import VoteList from '../Pages/Vote/voteList';
 
+/** 
+<Route path="/vote" element={
+          <PrivateRoute><VoteList /></PrivateRoute>
+        } />
 
+        */
 function AppRouter() {
   return (
     <BrowserRouter>
@@ -66,11 +71,10 @@ function AppRouter() {
         <Route path="/vote/:id" element={
           <PrivateRoute><Vote /></PrivateRoute>
         } />
-        <Route path="/vote" element={
-          <PrivateRoute><VoteList /></PrivateRoute>
-        } />
+
+
         <Route path="/editProfile/:username" element={
-          <PrivateRoute><EditProfile/></PrivateRoute>
+          <PrivateRoute><EditProfile /></PrivateRoute>
         } />
       </Routes>
     </BrowserRouter>
