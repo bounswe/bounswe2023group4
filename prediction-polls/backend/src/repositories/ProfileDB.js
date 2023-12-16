@@ -225,7 +225,7 @@ async function unfollowProfile(follower_id, followed_id) {
             throw { error: errorCodes.NO_FOLLOWERSHIP_FOUND };
         }
 
-        values = [false, follower_id, followed_id]
+        const values = [false, follower_id, followed_id]
         const [resultSetHeader] = await pool.query(query_follow, values);
         return { status: "success" };
 
@@ -234,5 +234,41 @@ async function unfollowProfile(follower_id, followed_id) {
         return { error: errorCodes.DATABASE_ERROR };
     }
 }
+async function followedProfiles(userId) {
+    const { error } = await getProfileWithUserId(follower_id);
+    if (error) {
+        throw { error: errorCodes.PROFILE_NOT_FOUND };
+    }
+    try {
+        const follow_query = "SELECT followed_id FROM user_follow WHERE follower_id = ? AND follow_status = ? "
+        const values = [userId, true];
+        const [rows] = await pool.query(follow_query, values);
+        const followed = rows.map(
+            (followership) => { return followership.followed_id }
+        );
+        return { followed_list: followed };
+    } catch (error) {
+        return { error: errorCodes.DATABASE_ERROR };
+    }
+}
 
-module.exports = { getProfileWithProfileId, getProfileWithUserId, addProfile, updateProfile, getBadges, updateBadge, updatePoints, followProfile, unfollowProfile }
+async function followerProfiles(userId) {
+    const { error } = await getProfileWithUserId(follower_id);
+    if (error) {
+        throw { error: errorCodes.PROFILE_NOT_FOUND };
+    }
+    try {
+        const follow_query = "SELECT follower_id FROM user_follow WHERE followed_id = ? AND follow_status = ? "
+        const values = [userId, true];
+        const [rows] = await pool.query(follow_query, values);
+        const follower = rows.map(
+            (followership) => { return followership.follower_id }
+        );
+        return { follower_list: follower };
+    }
+    catch (error) {
+        return { error: errorCodes.DATABASE_ERROR };
+    }
+}
+
+module.exports = { getProfileWithProfileId, getProfileWithUserId, addProfile, updateProfile, getBadges, updateBadge, updatePoints, followProfile, unfollowProfile, followerProfiles, followedProfiles }

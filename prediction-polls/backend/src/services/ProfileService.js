@@ -185,6 +185,7 @@ async function updateProfile(req, res) {
     }
 }
 
+
 async function updateBadge(req, res) {
     const userId = req.user.id;
     const { badgeId, isSelected } = req.body;
@@ -245,5 +246,38 @@ async function unfollowProfiles(req, res) {
         return res.status(400).json({ error: error });
     }
 }
+async function getFollowerProfiles(req, res) {
+    const { userId } = req.body;
 
-module.exports = { getProfile, getProfileWithProfileId, getMyProfile, updateProfile, uploadImagetoS3, updateBadge, followProfiles, unfollowProfiles }
+    if (userId == undefined) {
+        return res.status(400).json({ error: errorCodes.INSUFFICIENT_DATA });
+    }
+    try {
+        const { follower_list, error } = await db.followerProfiles(userId);
+        if (error) {
+            throw error;
+        }
+        return res.status(200).json({ followerList: follower_list });
+    } catch (error) {
+        return res.status(400).json({ error: error });
+    }
+}
+async function getFollowedProfiles(req, res) {
+    const { userId } = req.body;
+
+    if (userId == undefined) {
+        return res.status(400).json({ error: errorCodes.INSUFFICIENT_DATA });
+    }
+    try {
+        const { followed_list, error } = await db.followedProfiles(userId);
+        if (error) {
+            throw error;
+        }
+        return res.status(200).json({ followedList: followed_list });
+    } catch (error) {
+        return res.status(400).json({ error: error });
+    }
+}
+
+
+module.exports = { getProfile, getProfileWithProfileId, getMyProfile, updateProfile, uploadImagetoS3, updateBadge, followProfiles, unfollowProfiles,getFollowerProfiles, getFollowedProfiles }

@@ -215,19 +215,19 @@ const errorCodes = {
     message: 'Given request is corrupted and server could not handle it'
   },
 
-  // Add more error codes as needed
   NO_FOLLOWERSHIP_FOUND:{
-    code: 8006,
+    code: 4006,
     message: 'Those two users do not follow each other!'
   },
   FOLLOWERSHIP_NOT_ADDED:{
-    code: 8007,
+    code: 4007,
     message: 'Those two users could not follow each other!'
   },
   FOLLOWERSHIP_ALREADY_EXISTS:{
-    code: 8008,
+    code: 4008,
     message: 'Those two users already follow each other'
   },
+  // Add more error codes as needed
 };
 
 module.exports = errorCodes;
