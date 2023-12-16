@@ -297,6 +297,184 @@ router.patch('/', service.updateProfile);
  */
 router.patch('/badges/me',authenticator.authorizeAccessToken,service.updateBadge)
 
+/**
+ * @swagger
+ * /profiles/follow:
+ *   post:
+ *     tags:
+ *       - profiles
+ *     description: Allows users to follow each others. Authorization is required.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               follower_id:
+ *                 type: integer
+ *               followed_id:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Followership established successfully
+ *         content:
+ *           application/json:
+ *             type: object
+ *             properties:
+ *               status: string
+ *       400:
+ *         description: Bad Request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 code:
+ *                   type: integer
+ *             examples:
+ *               INSUFFICIENT_DATA:
+ *                 value:
+ *                   error:
+ *                     code: 1007,
+ *                     message: Given data is not sufficient. Please follow guidelines.
+ */
+router.post('/follow',authenticator.authorizeAccessToken,service.followProfiles)
 
+/**
+ * @swagger
+ * /profiles/unfollow:
+ *   post:
+ *     tags:
+ *       - profiles
+ *     description: Allows users to unfollow each others. Authorization is required.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               follower_id:
+ *                 type: integer
+ *               followed_id:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Followership terminated successfully
+ *         content:
+ *           application/json:
+ *             type: object
+ *             properties:
+ *               status: string
+ *       400:
+ *         description: Bad Request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 code:
+ *                   type: integer
+ *             examples:
+ *               INSUFFICIENT_DATA:
+ *                 value:
+ *                   error:
+ *                     code: 1007,
+ *                     message: Given data is not sufficient. Please follow guidelines.
+ */
+router.post('/unfollow',authenticator.authorizeAccessToken,service.unfollowProfiles)
+
+/**
+ * @swagger
+ * /profiles/followed:
+ *   post:
+ *     tags:
+ *       - profiles
+ *     description: Allows users to view followed profiles' list. Authorization is required.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userId:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Followed profiles list retrieved successfully
+ *         content:
+ *           application/json:
+ *             type: object
+ *             properties:
+ *               followedList: array
+ *       400:
+ *         description: Bad Request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 code:
+ *                   type: integer
+ *             examples:
+ *               INSUFFICIENT_DATA:
+ *                 value:
+ *                   error:
+ *                     code: 1007,
+ *                     message: Given data is not sufficient. Please follow guidelines.
+ */
+router.post('/followed',authenticator.authorizeAccessToken,service.getFollowedProfiles)
+
+/**
+ * @swagger
+ * /profiles/follower:
+ *   post:
+ *     tags:
+ *       - profiles
+ *     description: Allows users to view follower profiles' list. Authorization is required.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userId:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Follower profiles list retrieved successfully
+ *         content:
+ *           application/json:
+ *             type: object
+ *             properties:
+ *               followerList: array
+ *       400:
+ *         description: Bad Request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 code:
+ *                   type: integer
+ *             examples:
+ *               INSUFFICIENT_DATA:
+ *                 value:
+ *                   error:
+ *                     code: 1007,
+ *                     message: Given data is not sufficient. Please follow guidelines.
+ */
+router.post('/follower',authenticator.authorizeAccessToken,service.getFollowerProfiles)
 
 module.exports = router;

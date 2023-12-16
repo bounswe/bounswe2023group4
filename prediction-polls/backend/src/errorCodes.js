@@ -213,8 +213,20 @@ const errorCodes = {
   REQUEST_HAS_INVALID_TYPE:{
     code: 8005,
     message: 'Given request is corrupted and server could not handle it'
-  }
+  },
 
+  NO_FOLLOWERSHIP_FOUND:{
+    code: 4006,
+    message: 'Those two users do not follow each other!'
+  },
+  FOLLOWERSHIP_NOT_ADDED:{
+    code: 4007,
+    message: 'Those two users could not follow each other!'
+  },
+  FOLLOWERSHIP_ALREADY_EXISTS:{
+    code: 4008,
+    message: 'Those two users already follow each other'
+  },
   // Add more error codes as needed
 };
 
