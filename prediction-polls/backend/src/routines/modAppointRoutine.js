@@ -3,6 +3,7 @@ const pollDB = require('../repositories/PollDB');
 const authDB = require('../repositories/AuthorizationDB');
 const modDB = require('../repositories/ModeratorDB');
 const moment = require('moment');
+require('dotenv').config();
 
 
 const mod_poll_ratio = 15;
@@ -12,6 +13,13 @@ const participation_quota = 10;
 
 
 async function appointMod(){
+
+    const doModAppointing = process.env.DO_MOD_APPOINTING === 'true';
+    if (!doModAppointing) {
+        console.log('Mod Appoint Routine : DO_MOD_APPOINTING is set to false. Mod Appoint Routine will do nothing.');
+        return;
+    }
+
     const current_ratio = await getPollToModRatio();
 
     if(current_ratio < mod_poll_ratio){
