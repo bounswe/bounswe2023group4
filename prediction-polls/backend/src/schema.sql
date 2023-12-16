@@ -10,6 +10,8 @@ CREATE TABLE users (
     email_verified BOOLEAN DEFAULT FALSE,
     email_verification_token VARCHAR(255),
     isMod BOOLEAN NOT NULL DEFAULT 0,
+    last_login DATETIME,
+    participated_polls INT DEFAULT 0,
     UNIQUE (username),
     UNIQUE (email)
 );
