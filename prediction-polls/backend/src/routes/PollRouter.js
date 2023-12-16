@@ -218,7 +218,7 @@ router.get('/opened/me',authenticator.authorizeAccessToken,service.getOpenedPoll
 
 /**
  * @swagger
- * /polls/opened/{userId}:
+ * /polls/opened:
  *   get:
  *     tags:
  *       - polls
@@ -226,10 +226,22 @@ router.get('/opened/me',authenticator.authorizeAccessToken,service.getOpenedPoll
  *     parameters:
  *       - in: path
  *         name: userId
- *         required: true
+ *         required: false
  *         schema:
  *           type: integer
- *         description: The ID of the user.
+ *         description: The ID of the requested polls' user.
+ *       - in: path
+ *         name: username
+ *         required: false
+ *         schema:
+ *           type: string
+ *         description: The username of the requested polls' user.
+ *       - in: path
+ *         name: email
+ *         required: false
+ *         schema:
+ *           type: string
+ *         description: The email of the requested polls' user.
  *     responses:
  *       200:
  *         description: Successful response
@@ -290,7 +302,7 @@ router.get('/opened/me',authenticator.authorizeAccessToken,service.getOpenedPoll
  *                     message: Error while accessing the database.
  *                     code: 3004
  */
-router.get('/opened/:userId',service.getOpenedPollsOfGivenUser);
+router.get('/opened',service.getOpenedPollsOfGivenUser);
 
 /**
  * @swagger

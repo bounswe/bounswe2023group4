@@ -27,9 +27,15 @@ async function getOpenedPollsOfUser(req,res){
 }
 
 async function getOpenedPollsOfGivenUser(req,res){
-    const userId = req.params.userId;
+    const {userId, username, email} = req.query;
+    console.log(userId, username, email);
     try {
-        const rows = await db.getOpenedPollsOfUser(userId);
+        const result = await findUser({userId,username,email})
+        if(result.error){
+            throw result.error;
+        }
+
+        const rows = await db.getOpenedPollsOfUser(result.id);
         const pollObjects = await createPollsJson(rows);
         res.json(pollObjects);
     } catch (error) {
