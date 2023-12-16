@@ -4,6 +4,7 @@ const pollRouter = require('./routes/PollRouter.js');
 const profileRouter = require('./routes/ProfileRouter.js');
 const moderatorRouter = require('./routes/ModeratorRouter.js');
 const tagRoutine = require('./routines/tagRoutine.js');
+const modAppointRoutine = require('./routines/modAppointRoutine.js');
 
 const cors = require("cors");
 

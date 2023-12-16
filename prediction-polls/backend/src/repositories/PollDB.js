@@ -411,7 +411,19 @@ async function closePoll(pollId, rewards) {
     }
 }
 
+async function getPollCount(){
+    const poll_count_sql = "SELECT COUNT(*) AS poll_count FROM polls";
+
+    try {
+        const [result] = await pool.query(poll_count_sql);
+        return result[0];
+    } catch (error) {
+        console.error('getPollCount(): Database Error');
+        throw error;
+    }
+}
+
 module.exports = {getPolls,getFamousPolls,getOpenedPollsOfUser,getVotedPollsOfUser, getPollWithId, getDiscretePollWithId, getContinuousPollWithId, 
     addDiscretePoll,addContinuousPoll, getDiscretePollChoices, getDiscreteVoteCount, voteDiscretePoll, voteContinuousPoll,
-    getContinuousPollVotes,getTagsOfPoll, getUntaggedPolls, updateTagsScanned, addTopic, getDiscreteSelectionsWithPollId, closePoll}
+    getContinuousPollVotes,getTagsOfPoll, getUntaggedPolls, updateTagsScanned, addTopic, getDiscreteSelectionsWithPollId, closePoll, getPollCount}
     

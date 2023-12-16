@@ -222,4 +222,37 @@ async function clearResetToken(userId) {
         throw error;
     }
 }
-module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken,isUsernameOrEmailInUse,checkCredentials,addUser,findUser,saveEmailVerificationToken,verifyEmailToken,createTransporter,storePasswordResetToken,getUserByResetToken,updateUserPassword,clearResetToken}
+async function updateUserLastLogin(userId,currentDate){
+    try {
+        const query = 'UPDATE users SET last_login = ? WHERE id = ?';
+        const [result] = await pool.query(query, [currentDate,userId]);
+        return result;
+    } catch (error) {
+        console.error('Error updating last login time:', error);
+        throw error;
+    }
+}
+async function incrementUserParticipate(userId){
+    try {
+        const query = 'UPDATE users SET participated_polls = participated_polls + 1 WHERE id = ?';
+        const [result] = await pool.query(query, [userId]);
+        return result;
+    } catch (error) {
+        console.error('Error updating poll participation:', error);
+        throw error;
+    }
+}
+async function decrementUserParticipate(userId){
+    try {
+        const query = 'UPDATE users SET participated_polls = participated_polls - 1 WHERE id = ?';
+        const [result] = await pool.query(query, [userId]);
+        return result;
+    } catch (error) {
+        console.error('Error updating poll participation:', error);
+        throw error;
+    }
+}
+module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken,isUsernameOrEmailInUse,checkCredentials,addUser,findUser,
+    saveEmailVerificationToken,verifyEmailToken,createTransporter,storePasswordResetToken,getUserByResetToken,updateUserPassword,
+    clearResetToken,updateUserLastLogin,incrementUserParticipate,decrementUserParticipate
+}

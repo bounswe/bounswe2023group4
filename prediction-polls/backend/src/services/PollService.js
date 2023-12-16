@@ -1,6 +1,6 @@
 const db = require("../repositories/PollDB.js");
 const {updatePoints} = require("../repositories/ProfileDB.js");
-const { findUser } = require('../repositories/AuthorizationDB.js');
+const { findUser,incrementUserParticipate,decrementUserParticipate } = require('../repositories/AuthorizationDB.js');
 const errorCodes = require("../errorCodes.js")
 
 async function getFamousPolls(req,res){
@@ -157,6 +157,8 @@ async function addDiscretePoll(req, res) {
             selectedTimeUnit
         );
 
+        await incrementUserParticipate(req.user.id);
+
         res.json({
             success: true,
             newPollId: result
@@ -214,6 +216,8 @@ async function addContinuousPoll(req, res) {
             selectedTimeUnit
         );
 
+        await incrementUserParticipate(req.user.id);
+
         res.json({
             success: true,
             newPollId: result
@@ -254,6 +258,7 @@ async function voteDiscretePoll(req,res){
             res.status(404).json({ error: errorCodes.CHOICE_DOES_NOT_EXIST_ERROR });
         } else {
             await db.voteDiscretePoll(pollId, userId, choiceId, points ? points : 10);
+            await incrementUserParticipate(userId);
             res.status(200).json({ message: "Vote Successful" });
         }
     } catch (error) {
@@ -281,6 +286,7 @@ async function voteContinuousPoll(req, res) {
         const contPollType = result[0].cont_poll_type;
 
         await db.voteContinuousPoll(pollId, userId, choice, contPollType, points ? points : 10);
+        await incrementUserParticipate(userId);
         res.status(200).json({ message: "Vote Successful" });
     } catch (error) {
         if (error) {

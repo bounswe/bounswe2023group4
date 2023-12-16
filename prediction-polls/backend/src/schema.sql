@@ -10,6 +10,8 @@ CREATE TABLE users (
     email_verified BOOLEAN DEFAULT FALSE,
     email_verification_token VARCHAR(255),
     isMod BOOLEAN NOT NULL DEFAULT 0,
+    last_login DATETIME,
+    participated_polls INT DEFAULT 0,
     UNIQUE (username),
     UNIQUE (email)
 );
@@ -119,6 +121,13 @@ CREATE TABLE mod_requests (
     poll_id INT NOT NULL,
     request_type ENUM('report','discrete', 'continuous' ) NOT NULL,
     FOREIGN KEY (poll_id) REFERENCES polls(id),
+    FOREIGN KEY (userId) REFERENCES users(id)
+);
+
+CREATE TABLE mod_promotion_requests (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT NOT NULL,
+    UNIQUE(userId),
     FOREIGN KEY (userId) REFERENCES users(id)
 );
 
