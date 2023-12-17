@@ -87,7 +87,6 @@ function Vote() {
   const [answer, setAnswer] = React.useState(null);
   const [viewAnnotation, setOpenViewAnnotate] = React.useState(false);
   const [annotationList, setAnnotationList] = React.useState([]);
-  const [myannotationList, setMyAnnotationList] = React.useState([]);
   const [selectedText, setSelectedText] = React.useState("");
   const [annotationBody, setAnnotationBody] = React.useState("");
   const [showPopOver, setPopOver] = React.useState(false);
@@ -103,11 +102,22 @@ function Vote() {
     setOpenViewAnnotate(true);
 
   };
+  const showMyViewAnnotateModal = async () => {
+    await fetchAnnotations();
+    let myannotationList = annotationList.filter((annotation) => {
+      return annotation.creator.includes(localStorage.getItem("username"));
+    })
+    setAnnotationList(myannotationList);
+    setSelectedAnnotationList(Array(annotationList.length).fill(false));
+    setShowAnnotation(true);
+    setOpenViewAnnotate(true);
+  }
   const hideViewAnnotateModal = () => {
     setOpenViewAnnotate(false);
     setShowAnnotation(false);
     setPolldata(JSON.parse(JSON.stringify(polldataOriginal)));
   }
+
 
   useEffect(() => {
     fetchData();
@@ -208,7 +218,7 @@ function Vote() {
       navigate("/feed");
     }
   };
-  const itemList = [{ key: "View Annotations", value: showViewAnnotateModal }, { key: "Hide Annotations", value: hideViewAnnotateModal }]
+  const itemList = [{ key: "Display All Annotations", value: showViewAnnotateModal }, { key: "Display My Annotations", value: showMyViewAnnotateModal }, { key: "Hide Annotations", value: hideViewAnnotateModal }]
   const items = itemList.map((item) => {
     return { label: <div className={styles.contextMenuOption} onClick={item.value}>{item.key}</div>, key: item.key }
   });
@@ -241,36 +251,40 @@ function Vote() {
     return dateString
   }
   const handleAnnotation = async () => {
-    const url = `${process.env.REACT_APP_Annotation_LINK}/annotations`;
-    const requestBody = {
-      "@context": "http://www.w3.org/ns/anno.jsonld",
-      "type": "Annotation",
-      "target": {
-        "source": `${window.location.href}`,
-        "selector": {
-          "type": "TextQuoteSelector",
-          "exact": `${selectedText}`,
-          "prefix": `${prefix}`,
-          "suffix": `${suffix}`
-        }
-      },
-      "body": {
-        "type": "TextualBody",
-        "value": `${annotationBody}`,
-        "format": "text/plain"
-      },
-      "creator": `${process.env.REACT_APP_FRONTEND_LINK}/profile/${localStorage.getItem("username")}`
-    };
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
-      },
-      body: JSON.stringify({ ...requestBody })
-    };
+    if (selectedText.length > 0) {
 
-    const response = await fetch(url, requestOptions);
+
+      const url = `${process.env.REACT_APP_Annotation_LINK}/annotations`;
+      const requestBody = {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "type": "Annotation",
+        "target": {
+          "source": `${window.location.href}`,
+          "selector": {
+            "type": "TextQuoteSelector",
+            "exact": `${selectedText}`,
+            "prefix": `${prefix}`,
+            "suffix": `${suffix}`
+          }
+        },
+        "body": {
+          "type": "TextualBody",
+          "value": `${annotationBody}`,
+          "format": "text/plain"
+        },
+        "creator": `${process.env.REACT_APP_FRONTEND_LINK}/profile/${localStorage.getItem("username")}`
+      };
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+        },
+        body: JSON.stringify({ ...requestBody })
+      };
+
+      const response = await fetch(url, requestOptions);
+    }
     setSelectedText("");
     setPrefix("");
     setSuffix("");
@@ -434,7 +448,7 @@ function Vote() {
           <div className={styles.AnnotationList}>
             {showAnnotation ? <div className={styles.columnStyle}>
               {annotationList.length == 0 ? <p>No Annotations are available</p> : (annotationList.map(
-                (annotation,index) => {
+                (annotation, index) => {
                   return <div onClick={() => {
                     const output = handleAnnotationClick(annotation);
                     setPolldata(output);
@@ -452,7 +466,7 @@ function Vote() {
                     setSelectedAnnotationList(newList);
                   }
                   }
-                   className={selectedAnnotationList[index]? styles.selectedAnnotationBoxStyle : styles.annotationBoxStyle}
+                    className={selectedAnnotationList[index] ? styles.selectedAnnotationBoxStyle : styles.annotationBoxStyle}
                   >
                     <div className={styles.annotationRow}>
                       <span>{formatCreator(annotation.creator)}</span>
