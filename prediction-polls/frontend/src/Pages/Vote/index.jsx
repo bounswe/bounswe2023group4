@@ -277,7 +277,7 @@ function Vote() {
       const requestOptions = {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/ld+json',
           'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
         },
         body: JSON.stringify({ ...requestBody })
