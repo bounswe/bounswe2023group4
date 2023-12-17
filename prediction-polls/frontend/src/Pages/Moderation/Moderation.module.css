@@ -37,8 +37,8 @@
     margin-bottom: 20px; 
     margin-top: 50px;  
     margin-left:  50px;  
-    max-width: 800px; 
-    max-height: 200px;
+    max-width: 900px; 
+    max-height: 400px;
     text-align: center;
   }
   
@@ -64,4 +64,8 @@
         width: 60%;
         padding-top: 100px;
     }
-    
+
+    .buttonContainer {
+        display: flex;
+        gap: 10px; /* Adjust the gap as needed */
+      }
