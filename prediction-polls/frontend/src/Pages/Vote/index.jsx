@@ -93,18 +93,25 @@ function Vote() {
   const [showPopOver, setPopOver] = React.useState(false);
   const [prefix, setPrefix] = React.useState("");
   const [suffix, setSuffix] = React.useState("");
+  const [showAnnotation, setShowAnnotation] = React.useState(false);
+  const [selectedAnnotationList, setSelectedAnnotationList] = React.useState([]);
 
-  const showViewAnnotateModal = () => {
+  const showViewAnnotateModal = async () => {
+    await fetchAnnotations();
+    setSelectedAnnotationList(Array(annotationList.length).fill(false));
+    setShowAnnotation(true);
     setOpenViewAnnotate(true);
+
   };
   const hideViewAnnotateModal = () => {
     setOpenViewAnnotate(false);
+    setShowAnnotation(false);
     setPolldata(JSON.parse(JSON.stringify(polldataOriginal)));
   }
 
   useEffect(() => {
     fetchData();
-    fetchAnnotations();
+
   }, []);
 
 
@@ -236,6 +243,8 @@ function Vote() {
   const handleAnnotation = async () => {
     const url = `${process.env.REACT_APP_Annotation_LINK}/annotations`;
     const requestBody = {
+      "@context": "http://www.w3.org/ns/anno.jsonld",
+      "type": "Annotation",
       "target": {
         "source": `${window.location.href}`,
         "selector": {
@@ -312,14 +321,14 @@ function Vote() {
 
   };
 
-  const formatCreator = (url)=>{
-    const userName = "";
-    for (let i = url.len - 1; i>0;i = i - 1){
-      if (url[i] == '\\'){
+  const formatCreator = (url) => {
+    let userName = "";
+    for (let i = url.length - 1; i > -1; i = i - 1) {
+      if (url[i] == '\/') {
         break;
       }
-      else{
-        username = url[i] + username;
+      else {
+        userName = url[i] + userName;
       }
     }
     return userName;
@@ -423,14 +432,28 @@ function Vote() {
 
         {viewAnnotation == true ?
           <div className={styles.AnnotationList}>
-            <div className={styles.columnStyle}>
+            {showAnnotation ? <div className={styles.columnStyle}>
               {annotationList.length == 0 ? <p>No Annotations are available</p> : (annotationList.map(
-                (annotation) => {
-                  return <div className={styles.annotationBoxStyle} onClick={() => {
+                (annotation,index) => {
+                  return <div onClick={() => {
                     const output = handleAnnotationClick(annotation);
                     setPolldata(output);
+                    setSelectedAnnotationList(Array(annotationList.length).fill(false));
+                    var index = annotationList.indexOf(annotation);
+                    var newList = [];
+                    for (let i = 0; i < annotationList.length; i++) {
+                      if (i == index) {
+                        newList = [...newList, true];
+                      }
+                      else {
+                        newList = [...newList, false];
+                      }
+                    }
+                    setSelectedAnnotationList(newList);
                   }
-                  }>
+                  }
+                   className={selectedAnnotationList[index]? styles.selectedAnnotationBoxStyle : styles.annotationBoxStyle}
+                  >
                     <div className={styles.annotationRow}>
                       <span>{formatCreator(annotation.creator)}</span>
                       <span>{formatDate(annotation.created)}</span>
@@ -444,7 +467,8 @@ function Vote() {
                   </div>;
                 }
               ))}
-            </div> </div> : <div></div>
+            </div> : <div></div>}
+          </div> : <div></div>
         }
       </div>
 

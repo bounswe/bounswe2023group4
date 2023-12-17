@@ -112,7 +112,7 @@
     color: var(--primary-900);
 }
 
-.contextMenuOption{
+.contextMenuOption {
     font-size: 14px;
     font-weight: 700;
     color: var(--primary-900);
@@ -135,6 +135,24 @@
     user-select: none;
     box-shadow: 1px 1px;
 
+}
+
+.selectedAnnotationBoxStyle {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    border: 6px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: var(--warning-900);
+    margin-bottom: 10px;
+    overflow: auto;
+    user-select: none;
 }
 
 .annotationRow {
