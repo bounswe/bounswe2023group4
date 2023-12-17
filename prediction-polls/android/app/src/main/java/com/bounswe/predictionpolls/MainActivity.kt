@@ -26,6 +26,7 @@ import com.bounswe.predictionpolls.ui.login.loginScreen
 import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
 import com.bounswe.predictionpolls.ui.main.mainScreen
 import com.bounswe.predictionpolls.ui.main.navigateToMainScreen
+import com.bounswe.predictionpolls.ui.profile.myProfileScreen
 import com.bounswe.predictionpolls.ui.profile.profileScreen
 import com.bounswe.predictionpolls.ui.signup.signupScreen
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
@@ -88,6 +89,7 @@ class MainActivity : ComponentActivity() {
                             onMenuClick = { toggleDrawerState() },
                             onNotificationClick = { /*TODO implement notification */ }
                         )
+
                         NavHost(navController = navController, startDestination = MAIN_ROUTE) {
                             mainScreen(navController)
                             loginScreen(navController)
@@ -97,6 +99,7 @@ class MainActivity : ComponentActivity() {
                             createPollScreen()
                             profileScreen(navController)
                             pollVoteScreen(navController)
+                            myProfileScreen(navController)
 
                             // TODO: Remove placeholders
                             composable("settings") { Text(text = "Settings Page WIP") }

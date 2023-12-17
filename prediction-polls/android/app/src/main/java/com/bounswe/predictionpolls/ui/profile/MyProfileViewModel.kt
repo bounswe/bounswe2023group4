@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.bounswe.predictionpolls.common.Result
 import com.bounswe.predictionpolls.domain.feed.GetFeedUseCase
 import com.bounswe.predictionpolls.domain.poll.Poll
-import com.bounswe.predictionpolls.domain.profile.GetProfileInfoUseCase
+import com.bounswe.predictionpolls.domain.profile.GetCurrentUserProfileUseCase
 import com.bounswe.predictionpolls.domain.profile.ProfileInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.ImmutableList
@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-private data class ProfileScreenViewModelState(
+private data class MyProfileViewModelState(
     val profileInfo: ProfileInfo? = null,
     val feed: ImmutableList<Poll>? = null,
     val isLoading: Boolean = true,
@@ -43,13 +43,13 @@ private data class ProfileScreenViewModelState(
 
 
 @HiltViewModel
-class ProfileScreenViewModel @Inject constructor(
-    private val getProfileInfoUseCase: GetProfileInfoUseCase,
+class MyProfileViewModel @Inject constructor(
+    private val getProfileInfoUseCase: GetCurrentUserProfileUseCase,
     private val getFeedUseCase: GetFeedUseCase
 ) : ViewModel() {
 
-    private val _profileScreenUiState: MutableStateFlow<ProfileScreenViewModelState> =
-        MutableStateFlow(ProfileScreenViewModelState())
+    private val _profileScreenUiState: MutableStateFlow<MyProfileViewModelState> =
+        MutableStateFlow(MyProfileViewModelState())
 
     val profileScreenUiState: StateFlow<ProfileScreenUiState>
         get() = _profileScreenUiState
@@ -57,9 +57,9 @@ class ProfileScreenViewModel @Inject constructor(
             .stateIn(viewModelScope, SharingStarted.Eagerly, ProfileScreenUiState.Loading)
 
 
-    fun fetchProfileInfo(userName: String) = viewModelScope.launch {
+    fun fetchProfileInfo() = viewModelScope.launch {
         _profileScreenUiState.update { it.copy(isLoading = true) }
-        when (val result = getProfileInfoUseCase(userName)) {
+        when (val result = getProfileInfoUseCase()) {
             is Result.Success -> {
                 _profileScreenUiState.update {
                     it.copy(

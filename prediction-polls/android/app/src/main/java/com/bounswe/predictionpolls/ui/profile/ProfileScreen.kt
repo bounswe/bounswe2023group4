@@ -23,7 +23,11 @@ import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 
 
 @Composable
-fun ProfileScreen(profileScreenUiState: ProfileScreenUiState, modifier: Modifier = Modifier) {
+fun ProfileScreen(
+    profileScreenUiState: ProfileScreenUiState,
+    onProfileClicked: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     InternalProfileScreen(
         modifier = modifier,
         profileInformation = {
@@ -83,7 +87,10 @@ fun ProfileScreen(profileScreenUiState: ProfileScreenUiState, modifier: Modifier
                             },
                             dueDate = it.dueDate?.fromISO8601() ?: "",
                             rejectionText = it.rejectionText ?: "",
-                            commentCount = it.commentCount
+                            commentCount = it.commentCount,
+                            onProfileCardClicked = {
+                                onProfileClicked(it.pollCreatorUsername)
+                            }
                         )
                     }
                 }
@@ -174,7 +181,8 @@ private fun ProfileScreenPreview() {
                         modifier = Modifier.padding(16.dp),
                         dueDate = "",
                         rejectionText = "Last 5 days",
-                        commentCount = 530
+                        commentCount = 530,
+                        onProfileCardClicked = {}
                     )
                 }
             }
