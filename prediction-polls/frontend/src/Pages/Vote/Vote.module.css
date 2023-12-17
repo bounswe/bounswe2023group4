@@ -112,6 +112,12 @@
     color: var(--primary-900);
 }
 
+.contextMenuOption{
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary-900);
+}
+
 .annotationBoxStyle {
     cursor: pointer;
     display: flex;

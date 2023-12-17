@@ -68,7 +68,17 @@ function Vote() {
       setLoaded(true);
     }
   };
+  const fetchAnnotations = async () => {
+    const url = `${process.env.REACT_APP_Annotation_LINK}/annotations?source=${window.location.href}`;
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
 
+    const result = await response.json();
+    setAnnotationList(result);
+
+  }
 
   const navigate = useNavigate();
   const [polldata, setPolldata] = React.useState(null);
@@ -79,7 +89,10 @@ function Vote() {
   const [isLoaded, setLoaded] = React.useState(false);
   const [answer, setAnswer] = React.useState(null);
   const [viewAnnotation, setOpenViewAnnotate] = React.useState(false);
+  const [annotationList, setAnnotationList] = React.useState([]);
+  const [myannotationList, setMyAnnotationList] = React.useState([]);
   const [selectedText, setSelectedText] = React.useState("");
+  const [annotationBody, setAnnotationBody] = React.useState("");
   const [showPopOver, setPopOver] = React.useState(false);
   const [prefix, setPrefix] = React.useState("");
   const [suffix, setSuffix] = React.useState("");
@@ -94,6 +107,7 @@ function Vote() {
 
   useEffect(() => {
     fetchData();
+    fetchAnnotations();
   }, []);
 
 
@@ -194,7 +208,7 @@ function Vote() {
   const items = itemList.map((item) => {
     return { label: <div className={styles.contextMenuOption} onClick={item.value}>{item.key}</div>, key: item.key }
   });
-  let annotationList = [{ annotation_typer: "Berk", annotation_target: "finals", annotation_body: "Final Match", prefix: "in the ", suffix: " in the next", annotation_date: "12/10/2021" }, { annotation_typer: "Berke", annotation_target: "Maverics", annotation_body: "A basketball team", prefix: "", suffix: "", annotation_date: "14/10/2021" }];
+  //let annotationList = [{ annotation_typer: "Berk", annotation_target: "finals", annotation_body: "Final Match", prefix: "in the ", suffix: " in the next", annotation_date: "12/10/2021" }, { annotation_typer: "Berke", annotation_target: "Maverics", annotation_body: "A basketball team", prefix: "", suffix: "", annotation_date: "14/10/2021" }];
   const handleOpenChange = (newOpen) => {
     setPopOver(newOpen);
 
@@ -202,7 +216,59 @@ function Vote() {
   const hide = () => {
     setPopOver(false);
   };
-  const handleAnnotation = () => {
+
+  const formatDate = (date) => {
+    const parts = date.split("/");
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // Months in JavaScript are zero-based
+    const year = parseInt(parts[2], 10);
+
+    // Create a Date object
+    const dateObject = new Date(year, month, day);
+
+    // Get the short form of the month name
+    const monthNamesShort = [
+      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+    const shortMonthName = monthNamesShort[dateObject.getMonth()];
+    const dateString = `${shortMonthName} ${day}, ${year}`;
+
+    return dateString
+  }
+  const handleAnnotation = async () => {
+    const url = `${process.env.REACT_APP_Annotation_LINK}`;
+    const requestBody = {
+      "target": {
+        "source": `${window.location.href}`,
+        "selector": {
+          "type": "TextQuoteSelector",
+          "exact": { selectedText },
+          "prefix": { prefix },
+          "suffix": { suffix }
+        }
+      },
+      "body": {
+        "type": "TextualBody",
+        "value": { annotationBody },
+        "format": "text/plain"
+      },
+      "creator": `${localStorage.getItem("username")}`
+    };
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+      },
+      body: JSON.stringify({ ...requestBody })
+    };
+
+    const response = await fetch(url, requestOptions);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
 
   };
 
@@ -246,25 +312,7 @@ function Vote() {
     setPopOver(true);
 
   };
-  const formatDate = (date) => {
-    const parts = date.split("/");
-    const day = parseInt(parts[0], 10);
-    const month = parseInt(parts[1], 10) - 1; // Months in JavaScript are zero-based
-    const year = parseInt(parts[2], 10);
 
-    // Create a Date object
-    const dateObject = new Date(year, month, day);
-
-    // Get the short form of the month name
-    const monthNamesShort = [
-      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-    ];
-    const shortMonthName = monthNamesShort[dateObject.getMonth()];
-    const dateString = `${shortMonthName} ${day}, ${year}`;
-
-    return dateString
-  }
   const handleAnnotationClick = (annotation) => {
     const searchWords = `${annotation.prefix}${annotation.annotation_target}${annotation.suffix}`;
     let pollContent = JSON.parse(JSON.stringify(polldataOriginal));
@@ -319,6 +367,7 @@ function Vote() {
                       className={styles.annotationTextBox}
                       id="AnnotationInput"
                       placeholder="Annotation"
+                      onChange={(e) => setAnnotationBody(e.target.value)}
                     />
                     <div>
                       <Button
