@@ -71,9 +71,6 @@ function Vote() {
   const fetchAnnotations = async () => {
     const url = `${process.env.REACT_APP_Annotation_LINK}/annotations?source=${window.location.href}`;
     const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
 
     const result = await response.json();
     setAnnotationList(result);
@@ -214,24 +211,24 @@ function Vote() {
 
   };
   const hide = () => {
+    setSelectedText("");
+    setPrefix("");
+    setSuffix("");
+    setAnnotationBody("");
     setPopOver(false);
   };
 
   const formatDate = (date) => {
-    const parts = date.split("/");
-    const day = parseInt(parts[0], 10);
-    const month = parseInt(parts[1], 10) - 1; // Months in JavaScript are zero-based
-    const year = parseInt(parts[2], 10);
+    const dateObject = new Date(date);
 
-    // Create a Date object
-    const dateObject = new Date(year, month, day);
-
-    // Get the short form of the month name
+    const year = dateObject.getFullYear(); // Get the year (e.g., 2023)
+    const month = dateObject.getMonth(); // Get the month (0-indexed, so add 1 to get the actual month)
+    const day = dateObject.getDate();
     const monthNamesShort = [
       "Jan", "Feb", "Mar", "Apr", "May", "Jun",
       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     ];
-    const shortMonthName = monthNamesShort[dateObject.getMonth()];
+    const shortMonthName = monthNamesShort[month];
     const dateString = `${shortMonthName} ${day}, ${year}`;
 
     return dateString
@@ -243,17 +240,17 @@ function Vote() {
         "source": `${window.location.href}`,
         "selector": {
           "type": "TextQuoteSelector",
-          "exact": { selectedText },
-          "prefix": { prefix },
-          "suffix": { suffix }
+          "exact": `${selectedText}`,
+          "prefix": `${prefix}`,
+          "suffix": `${suffix}`
         }
       },
       "body": {
         "type": "TextualBody",
-        "value": { annotationBody },
+        "value": `${annotationBody}`,
         "format": "text/plain"
       },
-      "creator": `${localStorage.getItem("username")}`
+      "creator": `${process.env.REACT_APP_FRONTEND_LINK}/profile/${localStorage.getItem("username")}`
     };
     const requestOptions = {
       method: 'POST',
@@ -265,10 +262,11 @@ function Vote() {
     };
 
     const response = await fetch(url, requestOptions);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
+    setSelectedText("");
+    setPrefix("");
+    setSuffix("");
+    setAnnotationBody("");
+    setPopOver(false);
 
   };
 
@@ -276,6 +274,7 @@ function Vote() {
     setSelectedText("");
     setPrefix("");
     setSuffix("");
+    setAnnotationBody("");
     const selection = window.getSelection();
     if (selection.rangeCount > 0) {
       const range = selection.getRangeAt(0);
@@ -313,16 +312,29 @@ function Vote() {
 
   };
 
+  const formatCreator = (url)=>{
+    const userName = "";
+    for (let i = url.len - 1; i>0;i = i - 1){
+      if (url[i] == '\\'){
+        break;
+      }
+      else{
+        username = url[i] + username;
+      }
+    }
+    return userName;
+
+  }
   const handleAnnotationClick = (annotation) => {
-    const searchWords = `${annotation.prefix}${annotation.annotation_target}${annotation.suffix}`;
+    const searchWords = `${annotation.target.selector.prefix}${annotation.target.selector.exact}${annotation.target.selector.suffix}`;
     let pollContent = JSON.parse(JSON.stringify(polldataOriginal));
     if (pollContent.question.includes(searchWords)) {
-      const index = pollContent.question.indexOf(annotation.annotation_target);
+      const index = pollContent.question.indexOf(annotation.target.selector.exact);
       const start = 0
       const end = pollContent.question.length;
-      const body = `<mark>${annotation.annotation_target}</mark>`;
+      const body = `<mark>${annotation.target.selector.exact}</mark>`;
       const prefix = pollContent.question.substring(start, index);
-      const suffix = pollContent.question.substring(index + annotation.annotation_target.length, end);
+      const suffix = pollContent.question.substring(index + annotation.target.selector.exact.length, end);
       const newString = `${prefix}${body}${suffix}`;
       pollContent.question = newString;
     }
@@ -330,12 +342,12 @@ function Vote() {
       if (pollContent.pollType == "discrete") {
         pollContent.options.map((option) => {
           if (option.choice_text.includes(searchWords)) {
-            const index = option.choice_text.indexOf(annotation.annotation_target);
+            const index = option.choice_text.indexOf(annotation.target.selector.exact);
             const start = 0;
             const end = option.choice_text.length;
-            const body = `<mark>${annotation.annotation_target}</mark>`;
+            const body = `<mark>${annotation.target.selector.exact}</mark>`;
             const prefix = option.choice_text.substring(start, index);
-            const suffix = option.choice_text.substring(index + annotation.annotation_target.length, end);
+            const suffix = option.choice_text.substring(index + annotation.target.selector.exact.length, end);
             const newString = `${prefix}${body}${suffix}`;
             pollContent.options[pollContent.options.indexOf(option)].choice_text = newString;
           }
@@ -366,6 +378,7 @@ function Vote() {
                     <Input
                       className={styles.annotationTextBox}
                       id="AnnotationInput"
+                      value={annotationBody}
                       placeholder="Annotation"
                       onChange={(e) => setAnnotationBody(e.target.value)}
                     />
@@ -419,14 +432,14 @@ function Vote() {
                   }
                   }>
                     <div className={styles.annotationRow}>
-                      <span>{annotation.annotation_typer}</span>
-                      <span>{formatDate(annotation.annotation_date)}</span>
+                      <span>{formatCreator(annotation.creator)}</span>
+                      <span>{formatDate(annotation.created)}</span>
                     </div>
                     <span className={styles.annotationTarget}>
-                      {annotation.annotation_target}
+                      {annotation.target.selector.exact}
                     </span>
                     <span className={styles.annotationBody}>
-                      {`${annotation.annotation_body}`}
+                      {`${annotation.body.value}`}
                     </span>
                   </div>;
                 }
