@@ -12,13 +12,40 @@ import { useState } from "react";
 
 function Moderation() {
   const isModerator = true;
+  const url = process.env.REACT_APP_BACKEND_LINK; 
   const [userData, setUserData] = useState({}); 
+  const [moderatorPosts, setModeratorPosts] = useState([]);
 
   useEffect(() => {
     const data = getProfileMe();
     data.then((result) => {
       setUserData(result);
     });
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url + "/moderators/my-requests" , {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            'Content-Type': 'application/json',
+          },
+          // You can add more options like credentials, mode, etc.
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const result = await response.json();
+        setModeratorPosts(result);
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+      }
+    };
+
+    // Call the function to fetch data
+    fetchData();
   }, []);
 
   const handleBecomeModerator = () => {
@@ -34,78 +61,9 @@ function Moderation() {
   }
 
   const handleReject = () => {
-    // Implement your logic for rejecting the poll
+    console.log('User wants to reject the poll');
   };
-
-  const mockPosts = [
-    {
-      "request_id": 0,
-      "request_type": "discrete",
-      "poll": {
-        "id": 0,
-        "question": "Which country will win Eurovision this year?",
-        "tags": [
-          "eurovision", "music"
-        ],
-        "creatorName": "string",
-        "creatorUsername": "string",
-        "creatorImage": "string",
-        "pollType": "string",
-        "closingDate": "string",
-        "rejectVotes": "string",
-        "isOpen": true,
-        "cont_poll_type": "string",
-        "comments": [
-          {
-            "id": 0,
-            "content": "string"
-          }
-        ],
-        "options": [
-          {
-            "id": 0,
-            "choice_text": "string",
-            "poll_id": 0,
-            "voter_count": 0
-          }
-        ]
-      }
-    }
-    ,
-    {
-      "request_id": 0,
-      "request_type": "report",
-      "poll": {
-        "id": 0,
-        "question": "When will the protests in France end?",
-        "tags": [
-          "France", "Politics"
-        ],
-        "creatorName": "string",
-        "creatorUsername": "string",
-        "creatorImage": "string",
-        "pollType": "string",
-        "closingDate": "string",
-        "rejectVotes": "string",
-        "isOpen": true,
-        "cont_poll_type": "string",
-        "comments": [
-          {
-            "id": 0,
-            "content": "string"
-          }
-        ],
-        "options": [
-          {
-            "id": 0,
-            "choice_text": "string",
-            "poll_id": 0,
-            "voter_count": 0
-          }
-        ]
-      }
-    }
-  ];
+  
   return (
     <div className={styles.page}>
       <Menu currentPage="Moderation" />
@@ -114,7 +72,7 @@ function Moderation() {
           <div className={styles.pollList}>
             <SearchBar onSearch={handleSearch} />
 
-            {mockPosts.map((mockPost) => (
+            {moderatorPosts.map((mockPost) => (
 
               <div className={styles.questionCard}>
 
@@ -123,8 +81,6 @@ function Moderation() {
                     ? 'Would you like to be on the jury to resolve a report about the following poll?'
                     : 'Would you like to be on the jury to end the following poll?'}
                 </p>
-
-
                 <div className={styles.tags}>
                   {mockPost?.poll.tags.map((tag, index) => (<PollTag TagName={tag} key={index} />
                   ))}
@@ -148,12 +104,13 @@ function Moderation() {
         </>
       ) : (
         <>
-          <div className={styles.questionCard}>
+          <div className={styles.questionCard2}>
             <p className={styles.text}>Would you like to apply to become a moderator?</p>
             <Button className={styles.btn} type="primary" onClick={handleBecomeModerator}>
               Apply
             </Button>
           </div>
+          <PointsButton point={userData?.points ?? 0} /> 
 
         </>
 
