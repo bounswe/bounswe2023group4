@@ -237,7 +237,7 @@ function Vote() {
     return dateString
   }
   const handleAnnotation = async () => {
-    const url = `${process.env.REACT_APP_Annotation_LINK}`;
+    const url = `${process.env.REACT_APP_Annotation_LINK}/annotations`;
     const requestBody = {
       "target": {
         "source": `${window.location.href}`,
