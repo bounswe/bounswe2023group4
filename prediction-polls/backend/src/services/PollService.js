@@ -310,8 +310,8 @@ async function closePoll(req, res) {
             throw {error: {code: 5101, message: "choiceId not a number."}}
         }
 
-        pollId = parseInt(pollIdInput);
-        choiceId = parseInt(choiceIdInput);
+        const pollId = parseInt(pollIdInput);
+        const choiceId = parseInt(choiceIdInput);
 
         const rows = await db.getPollWithId(pollId);
         if (rows.length === 0) {
@@ -320,13 +320,31 @@ async function closePoll(req, res) {
 
         const pollObject = rows[0];
 
+        if (!pollObject.isOpen) {
+            throw {error: {code: 5013, message: "Poll already closed"}};
+        }
+
+        if (pollObject.poll_type === 'discrete') {
+            const result = await awardWinnersDiscretePoll(pollObject,choiceId);
+            res.status(200).json({status: "success"});
+        }
+
         if (pollObject.poll_type === 'continuous') {
             throw {error: {code: 5102, message: "Closing unsupported."}};
         }
 
-        if (!pollObject.isOpen) {
-            throw {error: {code: 5013, message: "Poll already closed"}};
+    } catch (error) {
+        if (error) {
+            res.status(400).json(error);
+        } else {
+            res.status(500).json({ error: errorCodes.DATABASE_ERROR });
         }
+    }
+}
+
+async function awardWinnersDiscretePoll(pollObject,choiceId){
+    try{
+        const pollId = pollObject.id
 
         const selections = await db.getDiscreteSelectionsWithPollId(pollId);
         const totalPointsBet = selections.reduce((sum, selection) => sum + selection.given_points, 0);
@@ -337,16 +355,19 @@ async function closePoll(req, res) {
             return {user_id: selection.user_id, reward: Math.floor(totalPointsBet * (selection.given_points / totalCorrectBet))}
         })
 
-        await db.closePoll(pollId, rewardPoints);
+        console.log("R",rewardPoints)
 
-        res.status(200).json({success: true});
+        await db.distributePollRewards(rewardPoints)
+
+        return {status: "success"};
     } catch (error) {
         if (error) {
-            res.status(400).json(error);
+            throw error;
         } else {
-            res.status(500).json({ error: errorCodes.DATABASE_ERROR });
+            throw { error: errorCodes.DATABASE_ERROR };
         }
     }
 }
 
-module.exports = { getFamousPolls, getOpenedPollsOfUser, getVotedPollsOfUser, createPollsJson, getPollWithId, addDiscretePoll, addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll}
+module.exports = { getFamousPolls, getOpenedPollsOfUser, getVotedPollsOfUser, createPollsJson, getPollWithId, addDiscretePoll, 
+    addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll, closeDiscretePoll}

@@ -1,6 +1,7 @@
 const mysql = require('mysql2');
 const { addRefreshToken, deleteRefreshToken, findUser } = require('./AuthorizationDB');
 const { updatePoints } = require('./ProfileDB');
+const moment = require('moment');
 const errorCodes = require("../errorCodes.js");
 
 require('dotenv').config();
@@ -385,9 +386,8 @@ async function getDiscreteSelectionsWithPollId(pollId) {
     }
 }
 
-async function closePoll(pollId, rewards) {
+async function distributePollRewards(rewards) {
     const pointUpdateSql = 'UPDATE profiles SET points = points + ? WHERE userId = ?';
-    const closePollSql = 'UPDATE polls SET isOpen = false WHERE id = ?';
 
     const connection = await pool.getConnection();
 
@@ -397,6 +397,25 @@ async function closePoll(pollId, rewards) {
         rewards.map(reward => {
             connection.query(pointUpdateSql, [reward.reward, reward.user_id]);
         });
+
+        await connection.commit();
+        return true;
+    } catch (error) {
+        console.error('distributePollRewards(): Database Error');
+        await connection.rollback();
+        throw {error: errorCodes.DATABASE_ERROR};
+    } finally {
+        connection.release();
+    }
+}
+
+async function closePoll(pollId) {
+    const closePollSql = 'UPDATE polls SET isOpen = false WHERE id = ?';
+
+    const connection = await pool.getConnection();
+
+    try {
+        await connection.beginTransaction();
 
         connection.query(closePollSql, [pollId]);
 
@@ -423,7 +442,35 @@ async function getPollCount(){
     }
 }
 
+async function getLastGatheringTime(poll_id){
+    const time_check_sql = 'SELECT lastJuryGathering FROM polls WHERE id = ?';
+
+    try {
+        const [result] = await pool.query(time_check_sql,[poll_id]);
+        console.log(result)
+        return result;
+    } catch (error) {
+        console.error('getLastGatheringTime(): Database Error');
+        throw error;
+    }
+}
+
+async function updateLastJuryGathering(poll_id){
+    const time_update_sql = 'UPDATE polls SET lastJuryGathering = ? WHERE id = ?';
+
+    try {
+        const current_time = moment().format('YYYY-MM-DD HH:mm:ss');
+        const [result] = await pool.query(time_update_sql,[current_time,poll_id]);
+        return {status:"success"};
+    } catch (error) {
+        console.error(error)
+        console.error('updateLastJuryGathering(): Database Error');
+        throw error;
+    }
+}
+
 module.exports = {getPolls,getFamousPolls,getOpenedPollsOfUser,getVotedPollsOfUser, getPollWithId, getDiscretePollWithId, getContinuousPollWithId, 
     addDiscretePoll,addContinuousPoll, getDiscretePollChoices, getDiscreteVoteCount, voteDiscretePoll, voteContinuousPoll,
-    getContinuousPollVotes,getTagsOfPoll, getUntaggedPolls, updateTagsScanned, addTopic, getDiscreteSelectionsWithPollId, closePoll, getPollCount}
+    getContinuousPollVotes,getTagsOfPoll, getUntaggedPolls, updateTagsScanned, addTopic, getDiscreteSelectionsWithPollId, 
+    distributePollRewards, closePoll, getPollCount, getLastGatheringTime, updateLastJuryGathering}
     
