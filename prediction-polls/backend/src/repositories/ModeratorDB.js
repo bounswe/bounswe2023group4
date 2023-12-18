@@ -113,6 +113,92 @@ async function checkRequestOfUser(requestId,userId){
     }
 }
 
+async function createDiscreteRequest(userId,poll_id){
+    const request_sql = 'INSERT INTO mod_requests (userId, poll_id, request_type) VALUES (?, ?, "discrete")'
+    const discrete_request_sql = 'INSERT INTO mod_request_discrete (requeat_id) VALUES (?)'
+
+    try {
+        const [request_insert_result] = await pool.query(request_sql,[userId,poll_id]);
+        const [discrete_insert_result] = await pool.query(discrete_request_sql,[request_insert_result.insertId]);
+        return {status:"success"}
+    } catch (error) {
+        console.error('createDiscreteRequest(): Database Error');
+        throw {error: errorCodes.DATABASE_ERROR};
+    }
+}
+
+async function createContinuousRequest(userId,poll_id){
+    const request_sql = 'INSERT INTO mod_requests (userId, poll_id, request_type) VALUES (?, ?, "continuous")'
+    const continuous_request_sql = 'INSERT INTO mod_request_continuous (requeat_id) VALUES (?)'
+
+    try {
+        const [request_insert_result] = await pool.query(request_sql,[userId,poll_id]);
+        const [continuous_insert_result] = await pool.query(continuous_request_sql,[request_insert_result.insertId]);
+        return {status:"success"}
+    } catch (error) {
+        console.error('createContinuousRequest(): Database Error');
+        throw {error: errorCodes.DATABASE_ERROR};
+    }
+}
+
+async function createReportRequest(userId,poll_id){
+    const request_sql = 'INSERT INTO mod_requests (userId, poll_id, request_type) VALUES (?, ?, "report")'
+    const report_request_sql = 'INSERT INTO mod_request_report (requeat_id) VALUES (?)'
+
+    try {
+        const [request_insert_result] = await pool.query(request_sql,[userId,poll_id]);
+        const [report_insert_result] = await pool.query(report_request_sql,[request_insert_result.insertId]);
+        return {status:"success"}
+    } catch (error) {
+        console.error('createReportRequest(): Database Error');
+        throw {error: errorCodes.DATABASE_ERROR};
+    }
+}
+
+async function getAnsweredDiscreteRequestsOfPoll(pollId){
+    const answered_requests_sql = "SELECT mod_requests.*, mod_request_discrete.choice_id FROM mod_requests " + 
+    "JOIN mod_request_discrete ON mod_requests.id = mod_request_discrete.request_id " +
+    "WHERE mod_request_discrete.choice_id IS NOT NULL AND mod_requests.poll_id = 4"
+
+    try {
+        const [rows] = await pool.query(answered_requests_sql,[pollId]);
+        return rows
+    } catch (error) {
+        console.error(error)
+        console.error('getAnsweredDiscreteRequestsOfPoll(): Database Error');
+        throw {error: errorCodes.DATABASE_ERROR};
+    }
+}
+
+async function getAnsweredContinuousRequestsOfPoll(pollId){
+    const answered_requests_sql = "SELECT mod_requests.*, mod_request_continuous.float_value, mod_request_continuous.date_value FROM mod_requests " + 
+    "JOIN mod_request_continuous ON mod_requests.id = mod_request_continuous.request_id " +
+    "WHERE mod_requests.poll_id = ? AND (mod_request_continuous.float_value IS NOT NULL " +
+    "OR mod_request_continuous.date_value IS NOT NULL);"
+
+    try {
+        const [rows] = await pool.query(answered_requests_sql,[pollId]);
+        return rows
+    } catch (error) {
+        console.error('getAnsweredDiscreteRequestsOfPoll(): Database Error');
+        throw {error: errorCodes.DATABASE_ERROR};
+    }
+}
+
+async function getAnsweredReportRequestsOfPoll(pollId){
+    const answered_requests_sql = "SELECT mod_requests.* FROM mod_requests WHERE mod_requests.poll_id = ? " + 
+    "JOIN mod_request_report ON mod_requests.id = mod_request_report.request_id " +
+    "WHERE mod_request_report.float_value IS NOT NULL OR mod_request_report.date_value IS NOT NULL;"
+
+    try {
+        const [rows] = await pool.query(answered_requests_sql,[pollId]);
+        return rows
+    } catch (error) {
+        console.error('getAnsweredReportRequestsOfPoll(): Database Error');
+        throw {error: errorCodes.DATABASE_ERROR};
+    }
+}
+
 async function setDecisionOnReportRequest(requestId,ban_poll){
     const sql = 'UPDATE mod_request_report SET ban_poll = ? WHERE request_id = ?'
 
@@ -159,18 +245,20 @@ async function setDecisionOnContinuousRequest(requestId,continuous_choice,contPo
     }
 }
 
-async function getModCount(){
-    const mod_count_sql = "SELECT COUNT(*) AS mod_count FROM users WHERE isMod = 1"
+async function getAllMods(){
+    const mod_count_sql = "SELECT * FROM users WHERE isMod = 1"
     try {
         const [rows] = await pool.query(mod_count_sql);
-        return rows[0]
+        return rows
     } catch (error) {
-        console.error('getModCount(): Database Error');
+        console.error('getAllMods(): Database Error');
         throw {error: errorCodes.DATABASE_ERROR};
     }
 
 }
 
 module.exports = { getPromotionRequests,addPromotionRequest, makeMod, getModTags, deleteModTag, addModTag, getModRequests, 
-    checkRequestOfUser, setDecisionOnReportRequest, setDecisionOnDiscreteRequest, setDecisionOnContinuousRequest, getModCount
+    checkRequestOfUser, createDiscreteRequest, createDiscreteRequest, createContinuousRequest, createReportRequest,
+    getAnsweredDiscreteRequestsOfPoll, getAnsweredContinuousRequestsOfPoll, getAnsweredReportRequestsOfPoll, setDecisionOnReportRequest, 
+    setDecisionOnDiscreteRequest, setDecisionOnContinuousRequest, getAllMods
 }
