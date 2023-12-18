@@ -105,7 +105,7 @@ function Vote() {
   const showMyViewAnnotateModal = async () => {
     await fetchAnnotations();
     let myannotationList = annotationList.filter((annotation) => {
-      return annotation.creator.includes(localStorage.getItem("username"));
+      return annotation.creator.toLowerCase().includes(localStorage.getItem("username").toLowerCase());
     })
     setAnnotationList(myannotationList);
     setSelectedAnnotationList(Array(annotationList.length).fill(false));
