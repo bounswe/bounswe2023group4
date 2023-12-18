@@ -5,6 +5,7 @@ const profileRouter = require('./routes/ProfileRouter.js');
 const moderatorRouter = require('./routes/ModeratorRouter.js');
 const tagRoutine = require('./routines/tagRoutine.js');
 const modAppointRoutine = require('./routines/modAppointRoutine.js');
+const pollCloseRoutine = require('./routines/pollCloseRoutine.js');
 
 const cors = require("cors");
 
