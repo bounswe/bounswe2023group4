@@ -14,7 +14,7 @@ import Vote from '../Pages/Vote';
 import PrivateRoute from '../Components/PrivateRoute';
 import GoogleLogin from '../Pages/Auth/Google'
 import EditProfile from '../Pages/EditProfile';
-import ForgotPassword from '../Pages/Auth/ForgotPassword/ForgotPassword';
+import ForgotPassword from '../Pages/Auth/ForgotPassword';
 import VerifyEmailPage from '../Pages/Auth/VerifyEmail';
 import ResetPassword from '../Pages/Auth/ResetPassword';
 import VoteList from '../Pages/Vote/voteList';
