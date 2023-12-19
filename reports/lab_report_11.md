@@ -60,6 +60,7 @@
 * [#545](https://github.com/bounswe/bounswe2023group4/issues/540) is an ongoing work. Şefik couldn't merge his work in time because of small mismanagement of branches. The work of annotation servers will be merged ASAP. Currently it is dockerized and deployed.
 * [#418](https://github.com/bounswe/bounswe2023group4/issues/418) Since the backend progress in Moderation very well we have extended the issue and we will not only finish the UI but also the functionality. Yigit made this adjustment because Yigit believed that he can finish it on time. However, he still need some to finalize the integration and for tests.
 * [#548](https://github.com/bounswe/bounswe2023group4/issues/548) Yigit couldn't find spare time to start annotations in mobile.
+* [#549](https://github.com/bounswe/bounswe2023group4/issues/549) Ahmet Emre could not finish this task in this week. He will finalize it in the upcoming week.
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
@@ -77,6 +78,8 @@
 | Write unit tests for moderation-not-jury page | [#585](https://github.com/bounswe/bounswe2023group4/issues/585) | Enes Furkan Arslan | 25.12.2023 | 3h | 
 | Implement Moderation Screen| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 25.12.23 | 2hr |
 | Implement annotations in mobile| [#548](https://github.com/bounswe/bounswe2023group4/issues/548) | Yiğit Şekerci | 25.12.23 | 7.5hr |
+| Implement share url functionality | [#589](https://github.com/bounswe/bounswe2023group4/issues/589) | Ahmet Emre Safak | 25.12.23 | 6 hours |
+| Finalize forgot password scneario | [#549](https://github.com/bounswe/bounswe2023group4/issues/549) | Ahmet Emre Safak | 25.12.23 | 3 hours |
 
 ## Risks
 - We might not be able to finish all aimed requirements due to time constraints.
