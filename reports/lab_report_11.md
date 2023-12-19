@@ -11,7 +11,8 @@
 * Specific methods for Poll retrieval has been implemented.
 * Poll closing and point distribution issued will be looked at this week.
 * In mobile, edit profile and Moderation UI is implemented. Moderation integration to backend has started but we couldn't finish it on time.
-* [NEEDS UPDATE]
+* Moderation frontend is in progress.
+* Until milestone moderation and jury will be finalized.
   
 ## What was planned for the week? How did it go?
 
