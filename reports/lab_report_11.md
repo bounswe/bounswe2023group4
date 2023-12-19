@@ -10,7 +10,7 @@
 * Moderation backend is implemented.
 * Specific methods for Poll retrieval has been implemented.
 * Poll closing and point distribution issued will be looked at this week.
-* In mobile edit profile and Moderation UI is implemented. Moderation integration to backend has started but we couldn't finish it on time.
+* In mobile, edit profile and Moderation UI is implemented. Moderation integration to backend has started but we couldn't finish it on time.
 * [NEEDS UPDATE]
   
 ## What was planned for the week? How did it go?
@@ -58,6 +58,8 @@
 ## Planned vs. Actual
 * [#241](https://github.com/bounswe/bounswe2023group4/issues/241), [#342](https://github.com/bounswe/bounswe2023group4/issues/342), [#399](https://github.com/bounswe/bounswe2023group4/issues/399),[#539](https://github.com/bounswe/bounswe2023group4/issues/539), [#540](https://github.com/bounswe/bounswe2023group4/issues/540) are not finished because Şefik was focusing on annotations this week and burdened with unexpected work unrelated to the course and will make up for it in the last week.
 * [#545](https://github.com/bounswe/bounswe2023group4/issues/540) is an ongoing work. Şefik couldn't merge his work in time because of small mismanagement of branches. The work of annotation servers will be merged ASAP. Currently it is dockerized and deployed.
+* [#418](https://github.com/bounswe/bounswe2023group4/issues/418) Since the backend progress in Moderation very well we have extended the issue and we will not only finish the UI but also the functionality. I have made this adjustment because I believed that I can finish it on time. However, I still need some to finalize the integration and for tests.
+* [#548](https://github.com/bounswe/bounswe2023group4/issues/548) Yigit couldn't find spare time to start annotations in mobile.
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
@@ -73,7 +75,7 @@
 | Implement connection of backend to show the moderator page to member/moderator | [#583](https://github.com/bounswe/bounswe2023group4/issues/583) | Enes Furkan Arslan | 25.12.2023 | 1h |
 | Write the unit tests for moderation-not-moderator page | [#584](https://github.com/bounswe/bounswe2023group4/issues/584) | Enes Furkan Arslan | 25.12.2023 | 2h |
 | Write unit tests for moderation-not-jury page | [#585](https://github.com/bounswe/bounswe2023group4/issues/585) | Enes Furkan Arslan | 25.12.2023 | 3h | 
-| Implement Moderation Screen| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 19.12.23 | 2.5hr |
+| Implement Moderation Screen| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 19.12.23 | 2hr |
 | Implement annotations in mobile| [#548](https://github.com/bounswe/bounswe2023group4/issues/548) | Yiğit Şekerci | 25.12.23 | 7.5hr |
 
 ## Risks
