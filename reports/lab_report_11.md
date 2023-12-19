@@ -88,6 +88,10 @@
 | Implementing the Point system in the backend |  [#590](https://github.com/bounswe/bounswe2023group4/issues/590) |Emre Batuhan Göç, Ali Nasra| 25.12.23 | 4 hours|
 | Implementing the Annotation UI for images |  [#592](https://github.com/bounswe/bounswe2023group4/issues/592) | Ali Nasra | 01.01.24 | 5 hours|
 | Implement the become moderator request | [#595](https://github.com/bounswe/bounswe2023group4/issues/595) | Enes Furkan Arslan | 25.12.2023 | 2h | 
+| Jury Requests Cleanup |  [#594](https://github.com/bounswe/bounswe2023group4/issues/594) | Emre Batuhan Göç | 25.12.23 | 0.5h |
+| Update Jury Requests |  [#593](https://github.com/bounswe/bounswe2023group4/issues/593) | Emre Batuhan Göç | 25.12.23 | 1h |
+| Grading Continuous Polls |  [#591](https://github.com/bounswe/bounswe2023group4/issues/591) | Emre Batuhan Göç | 25.12.23 | 2h |
+
 
 ## Risks
 - We might not be able to finish all aimed requirements due to time constraints.
