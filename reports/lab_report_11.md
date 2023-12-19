@@ -23,11 +23,11 @@
 | Semantic Search Research | [#539](https://github.com/bounswe/bounswe2023group4/issues/539) | Şefik Palazoğlu | 19.12.2023 | Unfinished | 4hr | - |
 | DateTime Management in createPoll | [#540](https://github.com/bounswe/bounswe2023group4/issues/540) | Şefik Palazoğlu | 19.12.2023 | Unfinished | 2hr | - |
 | Annotation Server Conformance | [#545](https://github.com/bounswe/bounswe2023group4/issues/545) | Şefik Palazoğlu | 19.12.2023 | Ongoing [branch](https://github.com/bounswe/bounswe2023group4/tree/backend/feature/annoConformance) | 4hr | 4hr |
-| Incorporating Recognito into the Annotation UI | [#531](https://github.com/bounswe/bounswe2023group4/issues/531) | Ali Nasra | 19.12.2023 | | 5hr | |
-| Connect the backend-server to the annotation UI | [#532](https://github.com/bounswe/bounswe2023group4/issues/532) | Ali Nasra | 19.12.2023 | | 3hr | |
-| Implementing the "Follow User" functionality in the Backend | [#541](https://github.com/bounswe/bounswe2023group4/issues/541) | Ali Nasra | 19.12.2023 | | 4hr | |
-| Adding the annotation research results to the wiki  | [#542](https://github.com/bounswe/bounswe2023group4/issues/542) | Ali Nasra | 19.12.2023 | | 2hr | |
-| Fixing the annotation approach  | [#543](https://github.com/bounswe/bounswe2023group4/issues/543) | Ali Nasra | 19.12.2023 | | 1hr | |
+| Incorporating Recognito into the Annotation UI | [#531](https://github.com/bounswe/bounswe2023group4/issues/531) | Ali Nasra | 19.12.2023 | cancelled | 5hr | 1hr |
+| Connect the backend-server to the annotation UI | [#532](https://github.com/bounswe/bounswe2023group4/issues/532) | Ali Nasra | 19.12.2023 | [#572](https://github.com/bounswe/bounswe2023group4/pull/572) | 3hr | 2hr|
+| Implementing the "Follow User" functionality in the Backend | [#541](https://github.com/bounswe/bounswe2023group4/issues/541) | Ali Nasra | 19.12.2023 |  [#575](https://github.com/bounswe/bounswe2023group4/pull/575) | 4hr | 4hr |
+| Adding the annotation research results to the wiki  | [#542](https://github.com/bounswe/bounswe2023group4/issues/542) | Ali Nasra | 19.12.2023 | - | 2hr | 1hr |
+| Fixing the annotation approach  | [#543](https://github.com/bounswe/bounswe2023group4/issues/543) | Ali Nasra | 19.12.2023 | [#572](https://github.com/bounswe/bounswe2023group4/pull/572) | 1hr | 6hr |
 | Implement Moderation Screen| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 19.12.23 | [Progress](https://github.com/bounswe/bounswe2023group4/issues/418#issuecomment-1862682619) | 2hr | 2.5hr |
 | Research how to implement annotations for mobile| [#547](https://github.com/bounswe/bounswe2023group4/issues/547) | Yiğit Şekerci | 19.12.23 | [Comment](https://github.com/bounswe/bounswe2023group4/issues/547#issuecomment-1862680018) | 2.5hr | 1.5hr |
 | Implement annotations in mobile| [#548](https://github.com/bounswe/bounswe2023group4/issues/548) | Yiğit Şekerci | 19.12.23 | Unfinished | 7.5hr | - |
