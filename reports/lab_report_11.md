@@ -82,6 +82,7 @@
 | Finalize forgot password scenario | [#549](https://github.com/bounswe/bounswe2023group4/issues/549) | Ahmet Emre Safak | 25.12.23 | 3 hours |
 | Implementing the Point system in the backend |  [#590](https://github.com/bounswe/bounswe2023group4/issues/590) |Emre Batuhan Göç, Ali Nasra| 25.12.23 | 8 hours|
 | Implementing the Annotation UI for images |  [#592](https://github.com/bounswe/bounswe2023group4/issues/592) | Ali Nasra | 01.01.24 | 5 hours|
+| Implement the become moderator request | [#595](https://github.com/bounswe/bounswe2023group4/issues/595) | Enes Furkan Arslan | 25.12.2023 | 2h | 
 
 ## Risks
 - We might not be able to finish all aimed requirements due to time constraints.
