@@ -36,8 +36,8 @@
 | Add Forgot Password feature to auth flow in mobile | [#549](https://github.com/bounswe/bounswe2023group4/issues/549) | Ahmet Emre Şafak | 19.12.23 | | 4hr | |
 | Implement Follow User Functionality in Profile Page in Frontend | [#552](https://github.com/bounswe/bounswe2023group4/issues/552) | Kutay Saran | 19.12.23 | | 3hr | |
 | Implement User Profile Hiding Feature in Backend | [#550](https://github.com/bounswe/bounswe2023group4/issues/550) | Kutay Saran | 19.12.23 | | 2hr | |
-| Implement not jury page backend connection for becoming jury post | [#562](https://github.com/bounswe/bounswe2023group4/issues/562) | Enes Furkan Arslan | 19.12.2023 | | 4h | |
-| Complete the implementation of moderator not jury UI | [#559](https://github.com/bounswe/bounswe2023group4/issues/559) | Enes Furkan Arslan | 19.12.2023 | | 2h | |
+| Implement not jury page backend connection for becoming jury post | [#562](https://github.com/bounswe/bounswe2023group4/issues/562) | Enes Furkan Arslan | 19.12.2023 | [#577](https://github.com/bounswe/bounswe2023group4/pull/577) | 4h | 4h |
+| Complete the implementation of moderator not jury UI | [#559](https://github.com/bounswe/bounswe2023group4/issues/559) | Enes Furkan Arslan | 19.12.2023 | [#577](https://github.com/bounswe/bounswe2023group4/pull/577) | 2h | 2h |
 | Implement report functionality to polls | [#565](https://github.com/bounswe/bounswe2023group4/issues/565) | Hebun Şimşek | 19.12.2023 | | 2h | |
 | Implement comment functionality to polls | [#567](https://github.com/bounswe/bounswe2023group4/issues/567) | Hebun Şimşek | 19.12.2023 | | 2h | |
 | Moderator selection mechanism in system | [#557](https://github.com/bounswe/bounswe2023group4/issues/557) | Emre Batuhan Göç | 19.12.2023 | | 3hr | |
