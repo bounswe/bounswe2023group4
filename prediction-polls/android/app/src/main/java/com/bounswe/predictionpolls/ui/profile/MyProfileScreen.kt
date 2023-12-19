@@ -10,6 +10,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.compose.composable
+import com.bounswe.predictionpolls.ui.editProfile.navigateToEditProfileScreen
 
 const val MY_PROFILE_SCREEN_ROUTE = "MY_PROFILE_SCREEN_ROUTE"
 
@@ -20,20 +21,18 @@ fun NavGraphBuilder.myProfileScreen(navController: NavController) {
         val profileViewModel: MyProfileViewModel = hiltViewModel()
 
         LaunchedEffect(Unit) {
-            if (
-                profileViewModel.profileScreenUiState.value is ProfileScreenUiState.Loading ||
-                profileViewModel.profileScreenUiState.value is ProfileScreenUiState.Error
-            ) {
-                profileViewModel.fetchProfileInfo()
-                profileViewModel.fetchFeed(0) // Updated to pass the username
-            }
+            profileViewModel.fetchProfileInfo()
+            profileViewModel.fetchFeed(0) // Updated to pass the username
         }
 
         val profileScreenUiState by profileViewModel.profileScreenUiState.collectAsStateWithLifecycle()
 
         ProfileScreen(profileScreenUiState, onProfileClicked = {
             navController.navigateToProfileScreen(it)
-        })
+        },
+            onEditProfileClicked = {
+                navController.navigateToEditProfileScreen()
+            })
     }
 }
 

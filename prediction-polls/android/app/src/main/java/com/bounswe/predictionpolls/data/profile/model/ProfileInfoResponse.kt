@@ -5,7 +5,12 @@ import com.bounswe.predictionpolls.domain.profile.ProfileInfo
 import com.google.gson.annotations.SerializedName
 import kotlinx.collections.immutable.persistentListOf
 
-
+/*
+  "points": 0,
+  "biography": "string",
+  "birthday": "string",
+  "isHidden": 0
+ */
 data class ProfileInfoResponse(
     @SerializedName("error")
     val predictionPollsError: PredictionPollsError?,
@@ -17,11 +22,22 @@ data class ProfileInfoResponse(
     val coverPicture: String?,
     val biography: String?,
     val isHidden: Int?,
+    val points: Int?,
+    val birthday: String?,
 ) {
 
     fun toProfileInfo(): ProfileInfo? {
-        return if (predictionPollsError == null &&  username != null) {
-            ProfileInfo(username, "", coverPicture, profilePicture, biography, persistentListOf())
+        return if (predictionPollsError == null && username != null) {
+            ProfileInfo(
+                username,
+                "",
+                coverPicture,
+                profilePicture,
+                biography,
+                persistentListOf(),
+                birthday,
+                isHidden == 1
+            )
         } else {
             null
         }

@@ -26,6 +26,7 @@ import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 fun ProfileScreen(
     profileScreenUiState: ProfileScreenUiState,
     onProfileClicked: (String) -> Unit,
+    onEditProfileClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     InternalProfileScreen(
@@ -49,7 +50,7 @@ fun ProfileScreen(
                         profilePictureUri = profileInfo.profilePictureUri,
                         userDescription = profileInfo.userDescription,
                         badgeUris = profileInfo.badgeUris,
-                        onProfileEditPressed = { /*TODO*/ },
+                        onProfileEditPressed = onEditProfileClicked,
                         onRequestsClicked = { /*TODO*/ })
                 }
 
@@ -62,7 +63,7 @@ fun ProfileScreen(
                         profilePictureUri = profileInfo.profilePictureUri,
                         userDescription = profileInfo.userDescription,
                         badgeUris = profileInfo.badgeUris,
-                        onProfileEditPressed = { /*TODO*/ },
+                        onProfileEditPressed = onEditProfileClicked,
                         onRequestsClicked = { /*TODO*/ })
                 }
             }

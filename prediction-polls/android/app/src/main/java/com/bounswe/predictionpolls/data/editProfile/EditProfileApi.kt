@@ -29,7 +29,7 @@ data class EditProfileRequest(
     val points: Int?,
     val biography: String?,
     val birthday: String?,
-    val isHidden: Int?
+    val isHidden: Boolean?
 )
 
 fun prepareFilePart(file: File): RequestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
