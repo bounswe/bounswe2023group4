@@ -1,0 +1,16 @@
+
+.shareModal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: center; 
+    padding: 20px; 
+}
+
+.shareModalOptionButton {
+    border-radius: 100%; 
+    margin-right: 10px;
+    box-shadow: 2px 4px 8px var(--neutral-shadow); 
+}
+
