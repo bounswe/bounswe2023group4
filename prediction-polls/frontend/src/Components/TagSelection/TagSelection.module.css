@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: 20px;
+    gap:10px;
   }
   
   .tagTitle {
@@ -14,6 +14,7 @@
   .tagList {
     display: flex;
     flex-direction: column;
+    gap:10px;
   }
   
   .tagLabel {
@@ -22,7 +23,7 @@
     margin-bottom: 8px;
   }
   
-  .tagLabel input {
+  .tagCheckbox {
     margin-right: 5px;
   }
 

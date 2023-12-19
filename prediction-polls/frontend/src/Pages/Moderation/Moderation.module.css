@@ -2,6 +2,8 @@
     display: flex;
     background-color: var(--neutral-white);
     width: 100%;
+
+    
 }
 @media (max-width: 768px) {
     .page{
@@ -62,7 +64,7 @@
         flex-direction: column;
         padding-left: 20px;
         width: 60%;
-        padding-top: 100px;
+        padding-top: 20px;
     }
 
     .buttonContainer {
@@ -88,3 +90,22 @@
         max-height: 200px;
         text-align: center;
       }
+
+.selectedTags{
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  margin-top: 100px;
+  padding: 20px 40px;
+  border-radius: 12px;
+  box-shadow: 2px 4px 8px var(--neutral-shadow);
+  height: min-content;
+color:var(--neutral-black);
+  background-color: var(--primary-100);
+
+}
+.tagContainer{
+  display: flex;
+width: 25%;
+justify-content: center;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from './TagSelection.module.css';
+import { Checkbox } from "antd";
 
 const mockTags = ["sport", "NBA", "education"];
 
@@ -14,12 +15,12 @@ const TagSelection = ({ selectedTags, onTagChange }) => {
 
   return (
     <div className={styles.tagSelection}>
-      <p className={styles.tagTitle}>Select Tags:</p>
+      <p className={styles.tagTitle}>Select Tags</p>
       <div className={styles.tagList}>
         {mockTags.map((tag) => (
           <label key={tag} className={styles.tagLabel}>
-            <input
-              type="checkbox"
+            <Checkbox
+              className={styles.tagCheckbox}
               checked={selectedTags.includes(tag)}
               onChange={() => handleTagChange(tag)}
             />
