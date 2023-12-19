@@ -60,7 +60,11 @@ private fun RequestedPoll(
 ) {
     Column(
         modifier = Modifier
-            .border(1.dp, Color.Black, RoundedCornerShape(8.dp))
+            .border(
+                width = 1.dp,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.25f),
+                shape = MaterialTheme.shapes.medium
+            )
             .padding(vertical = 16.dp, horizontal = 12.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(12.dp)

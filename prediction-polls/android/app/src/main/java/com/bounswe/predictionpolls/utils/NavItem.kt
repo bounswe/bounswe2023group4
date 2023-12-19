@@ -33,7 +33,7 @@ enum class NavItem(
         requiresAuth = true
     ),
     MODERATION(
-        route = "moderation", // TODO: change this route with the actual route
+        route = "moderation_apply",
         titleId = R.string.nav_drawer_moderation,
         iconId = R.drawable.ic_moderation,
         requiresAuth = true

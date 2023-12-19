@@ -30,6 +30,7 @@ import com.bounswe.predictionpolls.ui.main.mainScreen
 import com.bounswe.predictionpolls.ui.main.navigateToMainScreen
 import com.bounswe.predictionpolls.ui.profile.myProfileScreen
 import com.bounswe.predictionpolls.ui.moderation.moderationScreen
+import com.bounswe.predictionpolls.ui.moderation.apply.moderationApplyScreen
 import com.bounswe.predictionpolls.ui.moderation.list.moderationScreen
 import com.bounswe.predictionpolls.ui.profile.profileScreen
 import com.bounswe.predictionpolls.ui.signup.signupScreen
@@ -106,6 +107,7 @@ class MainActivity : ComponentActivity() {
                             myProfileScreen(navController)
                             editProfileScreen(navController)
                             forgotPasswordScreen(navController)
+                            moderationApplyScreen(navController)
                             moderationScreen(navController)
 
                             // TODO: Remove placeholders
