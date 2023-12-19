@@ -10,7 +10,7 @@
 * Moderation backend is implemented.
 * Specific methods for Poll retrieval has been implemented.
 * Poll closing and point distribution issued will be looked at this week.
-* Moderation list page and navigation to other users profile implemented in mobile.
+* In mobile edit profile and Moderation UI is implemented. Moderation integration to backend has started but we couldn't finish it on time.
 * [NEEDS UPDATE]
   
 ## What was planned for the week? How did it go?
@@ -28,9 +28,9 @@
 | Implementing the "Follow User" functionality in the Backend | [#541](https://github.com/bounswe/bounswe2023group4/issues/541) | Ali Nasra | 19.12.2023 | | 4hr | |
 | Adding the annotation research results to the wiki  | [#542](https://github.com/bounswe/bounswe2023group4/issues/542) | Ali Nasra | 19.12.2023 | | 2hr | |
 | Fixing the annotation approach  | [#543](https://github.com/bounswe/bounswe2023group4/issues/543) | Ali Nasra | 19.12.2023 | | 1hr | |
-| Implement Moderation Screen UI| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 19.12.23 | | 2hr | |
-| Research how to implement annotations for mobile| [#547](https://github.com/bounswe/bounswe2023group4/issues/547) | Yiğit Şekerci | 19.12.23 | | 2.5hr | |
-| Implement annotations in mobile| [#548](https://github.com/bounswe/bounswe2023group4/issues/548) | Yiğit Şekerci | 19.12.23 | | 7.5hr | |
+| Implement Moderation Screen| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 19.12.23 | Unfinished | 2hr | - |
+| Research how to implement annotations for mobile| [#547](https://github.com/bounswe/bounswe2023group4/issues/547) | Yiğit Şekerci | 19.12.23 | [Comment](https://github.com/bounswe/bounswe2023group4/issues/547#issuecomment-1862680018) | 2.5hr | 1.5hr |
+| Implement annotations in mobile| [#548](https://github.com/bounswe/bounswe2023group4/issues/548) | Yiğit Şekerci | 19.12.23 | Unfinished | 7.5hr | - |
 | Add edit logic to the profile page | [#512](https://github.com/bounswe/bounswe2023group4/issues/512) | Ahmet Emre Şafak | 19.12.23 | | 3.5hr | |
 | Fix profile image related issues in polls | [#513](https://github.com/bounswe/bounswe2023group4/issues/513) | Ahmet Emre Şafak | 19.12.23 | | 1hr | |
 | Add Forgot Password feature to auth flow in mobile | [#549](https://github.com/bounswe/bounswe2023group4/issues/549) | Ahmet Emre Şafak | 19.12.23 | | 4hr | |
@@ -73,6 +73,8 @@
 | Implement connection of backend to show the moderator page to member/moderator | [#583](https://github.com/bounswe/bounswe2023group4/issues/583) | Enes Furkan Arslan | 25.12.2023 | 1h |
 | Write the unit tests for moderation-not-moderator page | [#584](https://github.com/bounswe/bounswe2023group4/issues/584) | Enes Furkan Arslan | 25.12.2023 | 2h |
 | Write unit tests for moderation-not-jury page | [#585](https://github.com/bounswe/bounswe2023group4/issues/585) | Enes Furkan Arslan | 25.12.2023 | 3h | 
+| Implement Moderation Screen| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 19.12.23 | 2.5hr |
+| Implement annotations in mobile| [#548](https://github.com/bounswe/bounswe2023group4/issues/548) | Yiğit Şekerci | 25.12.23 | 7.5hr |
 
 ## Risks
 - We might not be able to finish all aimed requirements due to time constraints.
