@@ -10,9 +10,11 @@ import { Input, DatePicker, TimePicker } from "antd";
 import { useLocation } from "react-router-dom";
 import ProfileIcon from "../../Assets/icons/ProfileIcon.jsx";
 import getProfile from "../../api/requests/profile.jsx";
+import Highlighter from "react-highlight-words";
+import { TokenAnnotator, TextAnnotator } from 'react-text-annotate';
 import moment from "moment";
 
-function PollCard({ PollData, setAnswer, onClick }) {
+function PollCard({ PollData, setAnswer, onClick, clickTextFunction }) {
   const [selectedArray, setSelectedArray] = React.useState(
     !PollData.isCustomPoll ? Array(PollData["options"].length).fill(false) : []
   );
@@ -27,6 +29,7 @@ function PollCard({ PollData, setAnswer, onClick }) {
   const [isVotePath, setIsVotePath] = React.useState(
     /^\/vote\//.test(location.pathname)
   );
+
 
   useEffect(() => {
     const data = getProfile(PollData.creatorUsername);
@@ -45,10 +48,10 @@ function PollCard({ PollData, setAnswer, onClick }) {
 
   var totalPoints = !PollData.isCustomPoll
     ? PollData.options.reduce(
-        (acc, curr) =>
-          curr.voter_count == null ? acc : acc + curr.voter_count,
-        0
-      )
+      (acc, curr) =>
+        curr.voter_count == null ? acc : acc + curr.voter_count,
+      0
+    )
     : 0;
 
   const handleSelect = (newList) => {
@@ -81,17 +84,16 @@ function PollCard({ PollData, setAnswer, onClick }) {
     if (date && time) {
       setAnswer(`${date}T${time}`);
     } else if (date) {
-      setAnswer(`${date}T00:00:00`); 
+      setAnswer(`${date}T00:00:00`);
     } else if (time) {
       setAnswer(`0000-00-00T${time}`);
     }
   };
-
+  const questionHTML = `<p>${PollData.question}</p>`;
   return (
     <div
-      className={`${styles.card} ${
-        pollData.isOpen ? styles.pollCardOpen : styles.pollCardClosed
-      }`}
+      className={`${styles.card} ${pollData.isOpen ? styles.pollCardOpen : styles.pollCardClosed
+        }`}
       onClick={onClick}
     >
       <div className={styles.question}>
@@ -102,12 +104,16 @@ function PollCard({ PollData, setAnswer, onClick }) {
         </div>
         <div className={styles.questionPoints}>
           <div className={styles.question}>
-            <p>{pollData.question}</p>
+            <div
+              onClick={clickTextFunction}
+              onDoubleClick={clickTextFunction}
+              dangerouslySetInnerHTML={{ __html: questionHTML }}
+            ></div>
           </div>
         </div>
         {!pollData.isCustomPoll ? (
           <div className={styles.optionList}>
-            {pollData.options.map((option, index) => {
+            {PollData.options.map((option, index) => {
               let widthPercentage = 0;
               if (totalPoints > 0) {
                 widthPercentage = (option.voter_count / totalPoints) * 100;
@@ -122,6 +128,7 @@ function PollCard({ PollData, setAnswer, onClick }) {
                   arrayLength={PollData["options"]?.length || 0}
                   key={index}
                   selectOption={handleSelect}
+                  clickTextFunction={clickTextFunction}
                 />
               );
             })}
@@ -160,9 +167,8 @@ function PollCard({ PollData, setAnswer, onClick }) {
               <CommentIcon /> <p className={styles.buttonText}>Comments</p>
             </button>
             <span className={styles.commentCount}>
-              {`${PollData.comments.length} comment${
-                PollData.comments.length > 1 ? "s" : ""
-              }`}
+              {`${PollData.comments.length} comment${PollData.comments.length > 1 ? "s" : ""
+                }`}
             </span>
           </div>
 
@@ -208,9 +214,9 @@ function PollCard({ PollData, setAnswer, onClick }) {
             <div className={styles.textGroup}>
               <p className={styles.textDescription}>Closing In</p>
               <p className={styles.textDetail}>
-              {PollData.closingDate == null ? "Indefinite" : moment(PollData.closingDate).format("DD MMM YYYY")}
-            {" "}
-            {PollData.closingDate == null ? "" : moment(PollData.closingDate).format('HH:mm')}
+                {PollData.closingDate == null ? "Indefinite" : moment(PollData.closingDate).format("DD MMM YYYY")}
+                {" "}
+                {PollData.closingDate == null ? "" : moment(PollData.closingDate).format('HH:mm')}
               </p>
             </div>
             <div className={styles.textGroup}>
@@ -225,7 +231,7 @@ function PollCard({ PollData, setAnswer, onClick }) {
           </>
         )}
       </div>
-    </div>
+    </div >
   );
 }
 
