@@ -1,4 +1,4 @@
-package com.bounswe.predictionpolls.ui.moderation
+package com.bounswe.predictionpolls.ui.moderation.list
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

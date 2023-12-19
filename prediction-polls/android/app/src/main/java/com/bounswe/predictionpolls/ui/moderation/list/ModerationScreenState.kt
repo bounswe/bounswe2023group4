@@ -1,4 +1,4 @@
-package com.bounswe.predictionpolls.ui.moderation
+package com.bounswe.predictionpolls.ui.moderation.list
 
 data class ModerationScreenState(
     val tags: List<String> = emptyList(),
