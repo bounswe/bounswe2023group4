@@ -73,7 +73,7 @@ function Vote() {
     const response = await fetch(url);
 
     const result = await response.json();
-    setAnnotationList(result);
+    setAnnotationList(result.annotations);
 
   }
 
