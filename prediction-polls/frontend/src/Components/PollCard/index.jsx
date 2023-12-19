@@ -25,11 +25,20 @@ function PollCard({ PollData, setAnswer, onClick }) {
   const [userData, setUserData] = React.useState({});
   const [selectedDate, setSelectedDate] = React.useState(null);
   const [selectedTime, setSelectedTime] = React.useState(null);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const [isVotePath, setIsVotePath] = React.useState(
     /^\/vote\//.test(location.pathname)
   );
+
+  useEffect(() => {
+    const username = localStorage.getItem("username");
+    if (username) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
 
   useEffect(() => {
     const data = getProfile(PollData.creatorUsername);
@@ -91,13 +100,15 @@ function PollCard({ PollData, setAnswer, onClick }) {
   };
 
   const handleShare = () => {
-    openModal(ModalNames.ShareModal, PollData); 
+    isLoggedIn ? openModal(ModalNames.ShareModal, PollData) : navigate("/auth/sign-in");
+
+    
   };
   const handleComment = () => {
-    openModal(ModalNames.CommentModal); 
+    isLoggedIn ?  openModal(ModalNames.CommentModal) : navigate("/auth/sign-in");
   };
   const handleReport = () => {
-    openModal(ModalNames.ReportModal); 
+    isLoggedIn ? openModal(ModalNames.ReportModal) : navigate("/auth/sign-in"); 
   }
 
 
