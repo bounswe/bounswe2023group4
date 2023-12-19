@@ -54,6 +54,7 @@
 
 | Description  | Issue | Assignee | Due | PR |
 | -------- | ----- | -------- | --- | --- |
+| Bug fix - Get Famous Polls endpoint non-voted polls not appearing | [#569](https://github.com/bounswe/bounswe2023group4/issues/556) | Emre Batuhan Göç | 19.12.2023 | [#568](https://github.com/bounswe/bounswe2023group4/pull/568) |
 
 
 ## Planned vs. Actual
