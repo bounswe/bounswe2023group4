@@ -79,7 +79,6 @@
 - Emre Batuhan Göç
 - Enes Furkan Arslan
 - Hebun Şimşek
-- Kutay Saran
 - Selin Işık
 - Şefik Palazoğlu
 - Yiğit Şekerci
