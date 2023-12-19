@@ -1,22 +1,25 @@
-.page{
+.page {
     display: flex;
     background-color: var(--neutral-white);
     width: 100%;
 }
-.poll{
+
+.poll {
     display: flex;
     flex-direction: column;
     padding-left: 20px;
     width: 100%;
     margin-top: 100px;
 }
-.page_row{
+
+.page_row {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 100%;
 }
-.choice_column{
+
+.choice_column {
     display: flex;
     flex-direction: column;
     margin-top: 150px;
@@ -24,24 +27,28 @@
     height: 100%;
     text-align: center;
 }
-.infoText{
-    font-family: sans-serif ;
+
+.infoText {
+    font-family: sans-serif;
     font-size: 18px;
     font-weight: 700;
     color: var(--neutral-900);
 }
-.chooseText{
-    font-family: sans-serif ;
+
+.chooseText {
+    font-family: sans-serif;
     margin-top: 80px;
     font-size: 18px;
     font-weight: 700;
     color: var(--neutral-900);
 }
-.buttonDivStyle{
+
+.buttonDivStyle {
     margin-top: 40px;
     justify-content: center;
 }
-.inputStyle{
+
+.inputStyle {
     margin-top: 40px;
     justify-content: center;
     width: 60%;
@@ -52,18 +59,22 @@
     border-width: 3px;
     padding-left: 10px;
 }
-.inputStyle:hover{
+
+.inputStyle:hover {
     border-color: var(--primary-600);
 }
-.inputStyle:focus{
+
+.inputStyle:focus {
     border-color: var(--primary-600);
 }
-.bottonStyle:hover{
+
+.bottonStyle:hover {
     background-color: var(--primary-600);
     color: var(--neutral-white) !important;
     border: none
 }
-.bottonStyle{
+
+.bottonStyle {
     width: 50%;
     height: 100%;
     margin-top: 40px;
@@ -72,17 +83,121 @@
     color: var(--neutral-white);
     font-size: 32px;
     font-weight: 700;
-    border:none;
+    border: none;
 }
-.messageStyle{
+
+.messageStyle {
     margin-top: 20px;
     justify-content: center;
     color: var(--neutral-700);
     font-weight: 700;
     font-size: 16px;
 }
+
+.AnnotationList {
+    margin-top: 80px;
+    margin-left: 10px;
+    width: 400px;
+    justify-content: center;
+    color: var(--neutral-700);
+    font-weight: 700;
+    font-size: 16px;
+    background-color: var(--secondary-50);
+    overflow: scroll;
+}
+
+.annotationPopOverStyle {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-900);
+}
+
+.contextMenuOption {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary-900);
+}
+
+.annotationBoxStyle {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    border: 2.5px;
+    border-radius: 5px;
+    border-style: solid;
+    margin-bottom: 10px;
+    overflow: auto;
+    user-select: none;
+    box-shadow: 1px 1px;
+
+}
+
+.selectedAnnotationBoxStyle {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    border: 6px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: var(--warning-900);
+    margin-bottom: 10px;
+    overflow: auto;
+    user-select: none;
+}
+
+.annotationRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: var(--neutral-black);
+}
+
+.annotationTarget {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 14px;
+    font-style: italic;
+}
+
+.annotationBody {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-900);
+    margin-bottom: 2px;
+
+}
+
+.annotationTextBox {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.annotationButton {
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
 @media (max-width: 640px) {
-    .page{
+    .page {
         flex-direction: column;
     }
 }

@@ -12,6 +12,7 @@ function PollOption({
   arrayLength,
   selectOption,
   page,
+  clickTextFunction
 }) {
   const updatePollColor = () => {
     selectOption(
@@ -33,6 +34,7 @@ function PollOption({
     navigate("/vote/" + id);
   };
 
+  const optionHTML = `<p>${option.choice_text}</p>`;
   return (
     <div
       className={
@@ -48,7 +50,10 @@ function PollOption({
         }
         style={{ width: `${widthPercentage}%` }}
       ></div>
-      <div className={styles.textDiv}>{option.choice_text}</div>
+      <div
+        dangerouslySetInnerHTML={{ __html: optionHTML }}
+        className={styles.textDiv}
+        onClick={clickTextFunction}></div>
       {option.voter_count == null ? <div className={styles.optionPoints_hidden}>
         <p>{"1"}</p>
       </div> : <div className={styles.optionPoints}>
