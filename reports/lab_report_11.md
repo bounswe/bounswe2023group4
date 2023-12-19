@@ -39,8 +39,8 @@
 | Implement User Profile Hiding Feature in Backend | [#550](https://github.com/bounswe/bounswe2023group4/issues/550) | Kutay Saran | 19.12.23 | | 2hr | |
 | Implement not jury page backend connection for becoming jury post | [#562](https://github.com/bounswe/bounswe2023group4/issues/562) | Enes Furkan Arslan | 19.12.2023 | [#577](https://github.com/bounswe/bounswe2023group4/pull/577) | 4h | 4h |
 | Complete the implementation of moderator not jury UI | [#559](https://github.com/bounswe/bounswe2023group4/issues/559) | Enes Furkan Arslan | 19.12.2023 | [#577](https://github.com/bounswe/bounswe2023group4/pull/577) | 2h | 2h |
-| Implement report functionality to polls | [#565](https://github.com/bounswe/bounswe2023group4/issues/565) | Hebun Şimşek | 19.12.2023 | | 2h | |
-| Implement comment functionality to polls | [#567](https://github.com/bounswe/bounswe2023group4/issues/567) | Hebun Şimşek | 19.12.2023 | | 2h | |
+| Implement report functionality to polls | [#565](https://github.com/bounswe/bounswe2023group4/issues/565) | Hebun Şimşek | 19.12.2023 | Unfinished | 2h | 2hr(ongoing) |
+| Implement comment functionality to polls | [#567](https://github.com/bounswe/bounswe2023group4/issues/567) | Hebun Şimşek | 19.12.2023 | Unfinished | 2h | 2hr(ongoing) |
 | Moderator selection mechanism in system | [#557](https://github.com/bounswe/bounswe2023group4/issues/557) | Emre Batuhan Göç | 19.12.2023 | [#574](https://github.com/bounswe/bounswe2023group4/pull/574) | 3hr | 3hr |
 | Moderator request additionally return poll tags and poll question | [#556](https://github.com/bounswe/bounswe2023group4/issues/556) | Emre Batuhan Göç | 17.12.2023 | [#571](https://github.com/bounswe/bounswe2023group4/pull/571) | 1hr | 1hr |
 | Moderator endpoint swagger | [#555](https://github.com/bounswe/bounswe2023group4/issues/555) | Emre Batuhan Göç | 17.12.2023 | [#570](https://github.com/bounswe/bounswe2023group4/pull/570) | 1.5hr | 1hr |
@@ -67,7 +67,7 @@
 * [#543](https://github.com/bounswe/bounswe2023group4/issues/543) Ali spent more time than expected on this task since the use of modals was ruled out as incongruous with the annotation requirements. A new alternative implementation had to be realized from scratch.
 * [#553](https://github.com/bounswe/bounswe2023group4/issues/553) Batuhan could not finalize poll grading and closing because of not correctly anticipating the total work load. He will be continuing the poll grading work.
 * [#563](https://github.com/bounswe/bounswe2023group4/issues/563) Selin couldn't finish final moderation page. She will complete it this week.
-
+* [#565](https://github.com/bounswe/bounswe2023group4/issues/565),[#567](https://github.com/bounswe/bounswe2023group4/issues/567) Hebun couldn't finish the report and comment functionality since the tasks required more work than expected, it will be done this week instead. 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
 | --- | --- | --- | --- | --- |
