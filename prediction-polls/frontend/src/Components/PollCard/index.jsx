@@ -103,14 +103,14 @@ function PollCard({ PollData, setAnswer, onClick, clickTextFunction }) {
   const handleShare = () => {
     isLoggedIn ? openModal(ModalNames.ShareModal, PollData) : navigate("/auth/sign-in");
 
-    
   };
   const handleComment = () => {
     isLoggedIn ?  openModal(ModalNames.CommentModal) : navigate("/auth/sign-in");
   };
   const handleReport = () => {
     isLoggedIn ? openModal(ModalNames.ReportModal) : navigate("/auth/sign-in"); 
-  }
+
+  };
 
 
   const questionHTML = `<p>${PollData.question}</p>`;
