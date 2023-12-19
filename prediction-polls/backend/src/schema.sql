@@ -161,3 +161,26 @@ CREATE TABLE user_follow (
     FOREIGN KEY (follower_id) REFERENCES profiles(userId) ON DELETE CASCADE
     FOREIGN KEY (followed_id) REFERENCES profiles(userId) ON DELETE CASCADE
 );
+
+CREATE TABLE reports (
+    report_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    UNIQUE(user_id),
+    poll_id INT NOT NULL,
+    UNIQUE(poll_id),
+    reported_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (poll_id) REFERENCES polls(id)
+);
+
+CREATE TABLE comments (
+    comment_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    UNIQUE(user_id),
+    poll_id INT NOT NULL,
+    UNIQUE(poll_id),
+    comment_text TEXT NOT NULL,
+    commented_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (poll_id) REFERENCES polls(id)
+);

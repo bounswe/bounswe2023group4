@@ -808,5 +808,11 @@ router.post('/continuous/:pollId/vote',authenticator.authorizeAccessToken, servi
  */
 router.post('/close/:pollId', authenticator.authorizeAccessToken, service.closePoll);
 
+router.post('/report/:pollId', authenticator.authorizeAccessToken, service.reportPoll);
+
+router.post('/:pollId/comment', authenticator.authorizeAccessToken, service.addComment);
+
+router.get('/:pollId/comments', service.getComments);
+
 module.exports = router;
 

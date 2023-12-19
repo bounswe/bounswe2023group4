@@ -423,7 +423,51 @@ async function getPollCount(){
     }
 }
 
+async function addReport(userId, pollId) {
+    const sql = 'INSERT INTO reports (user_id, poll_id) VALUES (?, ?)';
+    try {
+        const [result] = await pool.query(sql, [userId, pollId]);
+        return result;
+    } catch (error) {
+        console.error('addReport(): Database Error', error);
+        throw error;
+    }
+}
+async function getReports() {
+    const sql = 'SELECT * FROM reports';
+    try {
+        const [rows] = await pool.query(sql);
+        return rows;
+    } catch (error) {
+        console.error('getReports(): Database Error', error);
+        throw error;
+    }
+}
+
+async function addComment(userId, pollId, commentText) {
+    const sql = 'INSERT INTO comments (user_id, poll_id, comment_text) VALUES (?, ?, ?)';
+    try {
+        await pool.query(sql, [userId, pollId, commentText]);
+    } catch (error) {
+        console.error('addComment(): Database Error', error);
+        throw error;
+    }
+}
+
+async function getComments(pollId) {
+    const sql = 'SELECT * FROM comments WHERE poll_id = ?';
+    try {
+        const [comments] = await pool.query(sql, [pollId]);
+        return comments;
+    } catch (error) {
+        console.error('getComments(): Database Error', error);
+        throw error;
+    }
+}
+
+
+
 module.exports = {getPolls,getFamousPolls,getOpenedPollsOfUser,getVotedPollsOfUser, getPollWithId, getDiscretePollWithId, getContinuousPollWithId, 
     addDiscretePoll,addContinuousPoll, getDiscretePollChoices, getDiscreteVoteCount, voteDiscretePoll, voteContinuousPoll,
-    getContinuousPollVotes,getTagsOfPoll, getUntaggedPolls, updateTagsScanned, addTopic, getDiscreteSelectionsWithPollId, closePoll, getPollCount}
+    getContinuousPollVotes,getTagsOfPoll, getUntaggedPolls, updateTagsScanned, addTopic, getDiscreteSelectionsWithPollId, closePoll, getPollCount, addReport, getReports, addComment, getComments}
     
