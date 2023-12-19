@@ -1,0 +1,92 @@
+.modalContainer {
+  padding: 20px;
+}
+
+
+.commentsSection {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  background-color: var(--neutral-pollCard);
+
+
+}
+
+.comment {
+  background-color: var(--neutral-pollCard);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color:var(--neutral-black)
+}
+
+.userImage {
+  width: 30px; 
+  height: 30px; 
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 2px 4px 8px var(--neutral-shadow);
+}
+
+.newCommentSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--neutral-pollCard);
+
+}
+
+.modalTitle {
+  color: var(--neutral-700);
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.commentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+}
+
+.commentInput {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  resize: none; 
+}
+
+.footerButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+.commentInput{
+  background-color: var(--neutral-pollCard);
+  color: var(--neutral-black);
+  
+}
+
+
+.shareButton {
+  background-color: var(--primary-500); 
+  color: var(--neutral-white);
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.shareButton:hover {
+  background-color:var(--primary-700) 
+}

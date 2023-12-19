@@ -11,6 +11,8 @@ import { useLocation } from "react-router-dom";
 import ProfileIcon from "../../Assets/icons/ProfileIcon.jsx";
 import getProfile from "../../api/requests/profile.jsx";
 import moment from "moment";
+import useModal from "../../contexts/ModalContext/useModal";
+import { ModalNames } from "../../contexts/ModalContext/ModalNames.js";
 
 function PollCard({ PollData, setAnswer, onClick }) {
   const [selectedArray, setSelectedArray] = React.useState(
@@ -19,6 +21,7 @@ function PollCard({ PollData, setAnswer, onClick }) {
   const [pollData, setPollData] = React.useState(
     JSON.parse(JSON.stringify(PollData))
   );
+  const { openModal} = useModal();
   const [userData, setUserData] = React.useState({});
   const [selectedDate, setSelectedDate] = React.useState(null);
   const [selectedTime, setSelectedTime] = React.useState(null);
@@ -86,6 +89,17 @@ function PollCard({ PollData, setAnswer, onClick }) {
       setAnswer(`0000-00-00T${time}`);
     }
   };
+
+  const handleShare = () => {
+    openModal(ModalNames.ShareModal, PollData); 
+  };
+  const handleComment = () => {
+    openModal(ModalNames.CommentModal); 
+  };
+  const handleReport = () => {
+    openModal(ModalNames.ReportModal); 
+  }
+
 
   return (
     <div
@@ -157,7 +171,7 @@ function PollCard({ PollData, setAnswer, onClick }) {
         <div className={styles.actionButtons}>
           <div className={styles.buttonWrapper}>
             <button className={styles.commentButton}>
-              <CommentIcon /> <p className={styles.buttonText}>Comments</p>
+              <CommentIcon /> <p className={styles.buttonText} onClick={handleComment}>Comments</p>
             </button>
             <span className={styles.commentCount}>
               {`${PollData.comments.length} comment${
@@ -167,12 +181,12 @@ function PollCard({ PollData, setAnswer, onClick }) {
           </div>
 
           <div className={styles.buttonWrapper}>
-            <button className={styles.shareButton}>
+            <button className={styles.shareButton} onClick={handleShare}>
               <ShareIcon /> <p className={styles.buttonText}>Share</p>
             </button>
           </div>
           <div className={styles.buttonWrapper}>
-            <button className={styles.reportButton}>
+            <button className={styles.reportButton} onClick={handleReport}>
               <ReportIcon />
               <p className={styles.buttonText}>Report</p>
             </button>
