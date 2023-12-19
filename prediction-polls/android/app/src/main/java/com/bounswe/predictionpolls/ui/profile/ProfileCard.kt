@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
@@ -19,7 +18,6 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -62,17 +60,11 @@ fun ProfileCard(
             .wrapContentHeight()
             .fillMaxWidth()
     ) {
-        CoverPhoto(
-            imageUri = coverPhotoUri,
+        Box(
             modifier = Modifier
-                .clip(
-                    MaterialTheme.shapes.medium.copy(
-                        bottomEnd = CornerSize(0.dp),
-                        bottomStart = CornerSize(0.dp)
-                    )
-                )
-                .aspectRatio(2.5f)
                 .fillMaxWidth()
+                .height(50.dp)
+                .background(MaterialTheme.colorScheme.primary)
         )
         Row(
             modifier = Modifier
@@ -185,7 +177,6 @@ private fun CoverPhoto(imageUri: String?, modifier: Modifier) {
         modifier = modifier,
         contentScale = if (imageUri == null) ContentScale.Fit else ContentScale.Crop,
         alignment = Alignment.Center,
-        error = painterResource(id = R.drawable.ic_warning),
     )
 }
 

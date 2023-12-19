@@ -20,6 +20,7 @@ import com.bounswe.predictionpolls.data.remote.TokenManager
 import com.bounswe.predictionpolls.ui.common.CommonAppbar
 import com.bounswe.predictionpolls.ui.common.NavigationDrawer
 import com.bounswe.predictionpolls.ui.create.createPollScreen
+import com.bounswe.predictionpolls.ui.editProfile.editProfileScreen
 import com.bounswe.predictionpolls.ui.feed.feedScreen
 import com.bounswe.predictionpolls.ui.leaderboard.leaderboardScreen
 import com.bounswe.predictionpolls.ui.login.loginScreen
@@ -100,6 +101,7 @@ class MainActivity : ComponentActivity() {
                             profileScreen(navController)
                             pollVoteScreen(navController)
                             myProfileScreen(navController)
+                            editProfileScreen(navController)
 
                             // TODO: Remove placeholders
                             composable("settings") { Text(text = "Settings Page WIP") }

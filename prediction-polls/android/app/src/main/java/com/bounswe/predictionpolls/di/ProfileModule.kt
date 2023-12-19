@@ -1,5 +1,6 @@
 package com.bounswe.predictionpolls.di
 
+import com.bounswe.predictionpolls.data.editProfile.EditProfileApi
 import com.bounswe.predictionpolls.data.profile.ProfileApi
 import com.bounswe.predictionpolls.data.profile.ProfileInfoRemoteDataSource
 import com.bounswe.predictionpolls.data.profile.ProfileInfoRemoteDataSourceImpl
@@ -29,6 +30,9 @@ abstract class ProfileModule {
         @Provides
         fun provideProfileApi(@AuthenticatedRetrofit unauthenticatedRetrofit: Retrofit): ProfileApi =
             unauthenticatedRetrofit.create(ProfileApi::class.java)
+        @Provides
+        fun provideProfileEditApi(@AuthenticatedRetrofit unauthenticatedRetrofit: Retrofit): EditProfileApi =
+            unauthenticatedRetrofit.create(EditProfileApi::class.java)
 
     }
 }

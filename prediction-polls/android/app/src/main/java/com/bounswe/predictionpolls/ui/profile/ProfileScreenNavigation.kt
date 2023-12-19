@@ -35,7 +35,7 @@ fun NavGraphBuilder.profileScreen(navController: NavController) {
 
         ProfileScreen(profileScreenUiState, onProfileClicked = {
             navController.navigateToProfileScreen(it)
-        })
+        }, { })
     }
 }
 
