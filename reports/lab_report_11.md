@@ -27,7 +27,7 @@
 | Incorporating Recognito into the Annotation UI | [#531](https://github.com/bounswe/bounswe2023group4/issues/531) | Ali Nasra | 19.12.2023 | cancelled | 5hr | 1hr |
 | Connect the backend-server to the annotation UI | [#532](https://github.com/bounswe/bounswe2023group4/issues/532) | Ali Nasra | 19.12.2023 | [#572](https://github.com/bounswe/bounswe2023group4/pull/572) | 3hr | 2hr|
 | Implementing the "Follow User" functionality in the Backend | [#541](https://github.com/bounswe/bounswe2023group4/issues/541) | Ali Nasra | 19.12.2023 |  [#575](https://github.com/bounswe/bounswe2023group4/pull/575) | 4hr | 4hr |
-| Adding the annotation research results to the wiki  | [#542](https://github.com/bounswe/bounswe2023group4/issues/542) | Ali Nasra | 19.12.2023 | - | 2hr | 1hr |
+| Adding the annotation research results to the wiki  | [#542](https://github.com/bounswe/bounswe2023group4/issues/542) | Ali Nasra | 19.12.2023 | [Wiki Page](https://github.com/bounswe/bounswe2023group4/wiki/Annotation-UI:-Research) | 2hr | 1hr |
 | Fixing the annotation approach  | [#543](https://github.com/bounswe/bounswe2023group4/issues/543) | Ali Nasra | 19.12.2023 | [#572](https://github.com/bounswe/bounswe2023group4/pull/572) | 1hr | 6hr |
 | Implement Moderation Screen| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 19.12.23 | [Progress](https://github.com/bounswe/bounswe2023group4/issues/418#issuecomment-1862682619) | 2hr | 2.5hr |
 | Research how to implement annotations for mobile| [#547](https://github.com/bounswe/bounswe2023group4/issues/547) | Yiğit Şekerci | 19.12.23 | [Comment](https://github.com/bounswe/bounswe2023group4/issues/547#issuecomment-1862680018) | 2.5hr | 1.5hr |
