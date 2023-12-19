@@ -7,15 +7,20 @@ import SearchBar from "../../Components/SearchBar";
 import { useNavigate } from "react-router-dom";
 import PollTag from "../../Components/PollTag";
 import PointsButton from "../../Components/PointsButton";
+import TagSelection from "../../Components/TagSelection";
 import getProfileMe from "../../api/requests/profileMe";
 import { useState } from "react";
 
 function Moderation() {
-  const isModerator = true;
   const url = process.env.REACT_APP_BACKEND_LINK; 
   const [userData, setUserData] = useState({}); 
   const [moderatorPosts, setModeratorPosts] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
 
+  const handleTagChange = (tags) => {
+    setSelectedTags(tags);
+  };
+  
   useEffect(() => {
     const data = getProfileMe();
     data.then((result) => {
@@ -30,7 +35,6 @@ function Moderation() {
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             'Content-Type': 'application/json',
           },
-          // You can add more options like credentials, mode, etc.
         });
 
         if (!response.ok) {
@@ -48,20 +52,14 @@ function Moderation() {
     fetchData();
   }, []);
 
+  const isModerator = true; 
+
   const handleBecomeModerator = () => {
     console.log('User wants to become a moderator');
   };
 
   const handleBecomeJury = () => {
     console.log('User wants to become a jury');
-  };
-
-  const handleSearch = (searchTerm) => {
-    console.log('User wants to search for', searchTerm);
-  }
-
-  const handleReject = () => {
-    console.log('User wants to reject the poll');
   };
   
   return (
@@ -70,8 +68,8 @@ function Moderation() {
       {isModerator ? (
         <>
           <div className={styles.pollList}>
-            <SearchBar onSearch={handleSearch} />
-
+            
+          
             {moderatorPosts.map((mockPost) => (
 
               <div className={styles.questionCard}>
@@ -92,14 +90,15 @@ function Moderation() {
                     <Button className={styles.btn} type="primary" onClick={handleBecomeJury}>
                       Accept
                     </Button>
-                    <Button className={styles.btn} type="danger" style={{ backgroundColor: 'red', color: 'white' }} onClick={handleReject}>
-                      Reject
-                    </Button>
                   </div>
               </div>
 
             ))}
           </div>
+
+          <div className={styles.selectedTags}>
+              <TagSelection selectedTags={selectedTags} onTagChange={handleTagChange} />
+            </div>
           <PointsButton point={userData?.points ?? 0} /> 
         </>
       ) : (
