@@ -17,26 +17,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
-/*
-EditProfileScreen(
-            username = "YourUsername", // Replace with actual data or ViewModel logic
-            onUsernameChanged = {},
-            fullName = "YourFullName",
-            onFullNameChanged = {},
-            about = "YourAboutText",
-            onAboutChanged = {},
-            birthday = "YourBirthday",
-            onBirthdayChanged = {},
-            isShowInProfileSelected = true, // Or false, based on your logic
-            onShowInProfileClicked = {},
-            coverUri = "YourCoverUri",
-            onCoverChanged = {},
-            imageUri = "YourImageUri",
-            onImageChanged = {},
-            onSaveChangesClicked = {}
-        )
- */
 data class EditProfileScreenState(
     val userName: String,
     val fullName: String,
@@ -45,7 +25,8 @@ data class EditProfileScreenState(
     val isShowInProfileSelected: Boolean,
     val coverUri: String,
     val imageUri: String,
-    val error: String? = null
+    val error: String? = null,
+    val isSuccess: Boolean = false
 )
 
 private val initialState = EditProfileScreenState(
@@ -164,6 +145,9 @@ class EditProfileViewModel @Inject constructor(
                 birthday = state.birthday
             )
             repository.updateProfile(editRequest)
+            _uiState.update {
+                it.copy(isSuccess = true)
+            }
         }
     }
 }

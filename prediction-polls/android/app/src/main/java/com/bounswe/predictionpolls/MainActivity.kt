@@ -101,7 +101,7 @@ class MainActivity : ComponentActivity() {
                             profileScreen(navController)
                             pollVoteScreen(navController)
                             myProfileScreen(navController)
-                            editProfileScreen()
+                            editProfileScreen(navController)
 
                             // TODO: Remove placeholders
                             composable("settings") { Text(text = "Settings Page WIP") }
