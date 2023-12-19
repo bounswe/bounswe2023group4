@@ -70,9 +70,9 @@
 | Annotation Server Conformance | [#545](https://github.com/bounswe/bounswe2023group4/issues/545) | Şefik Palazoğlu | 21.12.2023 | 1hr |
 | Implement moderator page tag selection UI | [#581](https://github.com/bounswe/bounswe2023group4/issues/581) | Enes Furkan Arslan | 25.12.2023 | 2h |
 | Implement connection of tag selection on moderator-not-jury page | [#582](https://github.com/bounswe/bounswe2023group4/issues/582) | Enes Furkan Arslan | 25.12.2023 | 4h |
-| Implement connection of backend to show the moderator page to member/moderator | [#583](https://github.com/bounswe/bounswe2023group4/issues/583) | Enes Furkan Arslan | 25.12.2023 |
-| Write the unit tests for moderation-not-moderator page | [#584](https://github.com/bounswe/bounswe2023group4/issues/584) | Enes Furkan Arslan | 25.12.2023 | 
-| Write unit tests for moderation-not-jury page | [#585](https://github.com/bounswe/bounswe2023group4/issues/585) | Enes Furkan Arslan | 25.12.2023 | 
+| Implement connection of backend to show the moderator page to member/moderator | [#583](https://github.com/bounswe/bounswe2023group4/issues/583) | Enes Furkan Arslan | 25.12.2023 | 1h |
+| Write the unit tests for moderation-not-moderator page | [#584](https://github.com/bounswe/bounswe2023group4/issues/584) | Enes Furkan Arslan | 25.12.2023 | 2h |
+| Write unit tests for moderation-not-jury page | [#585](https://github.com/bounswe/bounswe2023group4/issues/585) | Enes Furkan Arslan | 25.12.2023 | 3h | 
 
 ## Risks
 - We might not be able to finish all aimed requirements due to time constraints.
