@@ -61,6 +61,8 @@
 * [#418](https://github.com/bounswe/bounswe2023group4/issues/418) Since the backend progress in Moderation very well we have extended the issue and we will not only finish the UI but also the functionality. Yigit made this adjustment because Yigit believed that he can finish it on time. However, he still need some to finalize the integration and for tests.
 * [#548](https://github.com/bounswe/bounswe2023group4/issues/548) Yigit couldn't find spare time to start annotations in mobile.
 * [#549](https://github.com/bounswe/bounswe2023group4/issues/549) Ahmet Emre could not finish this task in this week. He will finalize it in the upcoming week.
+* [#531](https://github.com/bounswe/bounswe2023group4/issues/531) Ali canceled this task after finding out that the Recognito library is incompatible with React.
+* [#543](https://github.com/bounswe/bounswe2023group4/issues/543) Ali spent more time than expected on this task since the use of modals was ruled out as incongruous with the annotation requirements.
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
