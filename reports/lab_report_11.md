@@ -46,9 +46,9 @@
 | Moderator endpoint swagger | [#555](https://github.com/bounswe/bounswe2023group4/issues/555) | Emre Batuhan Göç | 17.12.2023 | [#570](https://github.com/bounswe/bounswe2023group4/pull/570) | 1.5hr | 1hr |
 | Implement Get another user's opened polls endpoint | [#554](https://github.com/bounswe/bounswe2023group4/issues/554) | Emre Batuhan Göç | 19.12.2023 | [#576](https://github.com/bounswe/bounswe2023group4/pull/576) | 1hr | 0.5hr |
 | Poll Grading and Closing System | [#553](https://github.com/bounswe/bounswe2023group4/issues/553) | Emre Batuhan Göç | 19.12.2023 | [related branch](https://github.com/bounswe/bounswe2023group4/tree/backend/feature/poll-closing-%26-grading) | 6hr | 6hr (ONGOING) |
-| Implement Guest Mechanics in Web App | [#566](https://github.com/bounswe/bounswe2023group4/issues/566) | Selin Işık | 19.12.2023 | | 2hr | |
-|Poll Report, Comment, Share Buttons | [#564](https://github.com/bounswe/bounswe2023group4/issues/564) | Selin Işık | 19.12.2023 | | 4hr | |
-| Implement final page of moderation pages(Jury request) | [#563](https://github.com/bounswe/bounswe2023group4/issues/563) | Selin Işık | 19.12.2023 | | 3.5hr | |
+| Implement Guest Mechanics in Web App | [#566](https://github.com/bounswe/bounswe2023group4/issues/566) | Selin Işık | 19.12.2023 | [#587](https://github.com/bounswe/bounswe2023group4/pull/587) | 2hr | 1.5h |
+|Poll Report, Comment, Share Buttons | [#564](https://github.com/bounswe/bounswe2023group4/issues/564) | Selin Işık | 19.12.2023 |[#586](https://github.com/bounswe/bounswe2023group4/pull/586) | 4hr | 4hr |
+| Implement final page of moderation pages(Jury request) | [#563](https://github.com/bounswe/bounswe2023group4/issues/563) | Selin Işık | 19.12.2023 | Unfinished | 3.5hr |  |
 
 ## Completed tasks that were not planned for the week
 
@@ -66,6 +66,7 @@
 * [#531](https://github.com/bounswe/bounswe2023group4/issues/531) Ali canceled this task after finding out that the Recognito library is incompatible with React.
 * [#543](https://github.com/bounswe/bounswe2023group4/issues/543) Ali spent more time than expected on this task since the use of modals was ruled out as incongruous with the annotation requirements. A new alternative implementation had to be realized from scratch.
 * [#553](https://github.com/bounswe/bounswe2023group4/issues/553) Batuhan could not finalize poll grading and closing because of not correctly anticipating the total work load. He will be continuing the poll grading work.
+* [#563](https://github.com/bounswe/bounswe2023group4/issues/563) Selin couldn't finish final moderation page. She will complete it this week.
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
@@ -91,6 +92,10 @@
 | Jury Requests Cleanup |  [#594](https://github.com/bounswe/bounswe2023group4/issues/594) | Emre Batuhan Göç | 25.12.23 | 0.5h |
 | Update Jury Requests |  [#593](https://github.com/bounswe/bounswe2023group4/issues/593) | Emre Batuhan Göç | 25.12.23 | 1h |
 | Grading Continuous Polls |  [#591](https://github.com/bounswe/bounswe2023group4/issues/591) | Emre Batuhan Göç | 25.12.23 | 2h |
+| Implement final page of moderation pages(Jury request) | [#563](https://github.com/bounswe/bounswe2023group4/issues/563) | Selin Işık | 25.12.2023 | 3.5hr |
+| Semantic Search Frontend Integration | [#597](https://github.com/bounswe/bounswe2023group4/issues/597) | Selin Işık | 25.12.23 | 3hr |
+| Comment and Report pop-up backend integration | [#596](https://github.com/bounswe/bounswe2023group4/issues/596) | Selin Işık | 25.12.23 | 2.5hr | 
+
 
 
 ## Risks
