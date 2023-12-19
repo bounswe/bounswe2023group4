@@ -65,6 +65,7 @@
 * [#549](https://github.com/bounswe/bounswe2023group4/issues/549) Ahmet Emre could not finish this task in this week. He will finalize it in the upcoming week.
 * [#531](https://github.com/bounswe/bounswe2023group4/issues/531) Ali canceled this task after finding out that the Recognito library is incompatible with React.
 * [#543](https://github.com/bounswe/bounswe2023group4/issues/543) Ali spent more time than expected on this task since the use of modals was ruled out as incongruous with the annotation requirements. A new alternative implementation had to be realized from scratch.
+* [#553](https://github.com/bounswe/bounswe2023group4/issues/553) Batuhan could not finalize poll grading and closing because of not correctly anticipating the total work load. He will be continuing the poll grading work.
 
 ## Your plans for the next week
 | Description | Issue | Assignee | Due | Estimated Duration |
