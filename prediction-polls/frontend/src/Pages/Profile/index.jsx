@@ -75,7 +75,7 @@ function Profile() {
       <div className={styles.profileInfo}>
         <div className={styles.card}>
           <div className={styles.thumbnailImage}>
-            {userData.profile_picture == null ||  userData.isHidden ? (
+            {userData.profile_picture == null  ? (
               <div className={styles.profileImagePlaceholder}>
                 {" "}
                 <ProfileIcon />
