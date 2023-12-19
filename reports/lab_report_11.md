@@ -55,7 +55,7 @@
 | Description  | Issue | Assignee | Due | PR |
 | -------- | ----- | -------- | --- | --- |
 | Bug fix - Get Famous Polls endpoint non-voted polls not appearing | [#569](https://github.com/bounswe/bounswe2023group4/issues/556) | Emre Batuhan Göç | 19.12.2023 | [#568](https://github.com/bounswe/bounswe2023group4/pull/568) |
-| Annotation UI: Research Popover Component | [#573](https://github.com/bounswe/bounswe2023group4/issues/573) | Emre Batuhan Göç | 19.12.2023 |  [Wiki Page](https://github.com/bounswe/bounswe2023group4/wiki/Annotation-UI:-Research) |
+| Annotation UI: Research Popover Component | [#573](https://github.com/bounswe/bounswe2023group4/issues/573) | Ali Nasra | 19.12.2023 |  [Wiki Page](https://github.com/bounswe/bounswe2023group4/wiki/Annotation-UI:-Research) |
 
 ## Planned vs. Actual
 * [#241](https://github.com/bounswe/bounswe2023group4/issues/241), [#342](https://github.com/bounswe/bounswe2023group4/issues/342), [#399](https://github.com/bounswe/bounswe2023group4/issues/399),[#539](https://github.com/bounswe/bounswe2023group4/issues/539), [#540](https://github.com/bounswe/bounswe2023group4/issues/540) are not finished because Şefik was focusing on annotations this week and burdened with unexpected work unrelated to the course and will make up for it in the last week.
