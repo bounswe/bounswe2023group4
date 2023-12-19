@@ -95,7 +95,7 @@
 | Implement final page of moderation pages(Jury request) | [#563](https://github.com/bounswe/bounswe2023group4/issues/563) | Selin Işık | 25.12.2023 | 3.5hr |
 | Semantic Search Frontend Integration | [#597](https://github.com/bounswe/bounswe2023group4/issues/597) | Selin Işık | 25.12.23 | 3hr |
 | Comment and Report pop-up backend integration | [#596](https://github.com/bounswe/bounswe2023group4/issues/596) | Selin Işık | 25.12.23 | 2.5hr | 
-
+| Fix isHidden bug  | [#598](https://github.com/bounswe/bounswe2023group4/issues/598) | Hebun Şimşek | 25.12.23 | 2hr | 
 
 
 ## Risks
