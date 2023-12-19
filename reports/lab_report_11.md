@@ -68,6 +68,11 @@
 | Semantic Search Research | [#539](https://github.com/bounswe/bounswe2023group4/issues/539) | Şefik Palazoğlu | 24.12.2023 |  4hr |
 | DateTime Management in createPoll | [#540](https://github.com/bounswe/bounswe2023group4/issues/540) | Şefik Palazoğlu | 24.12.2023 | 2hr |
 | Annotation Server Conformance | [#545](https://github.com/bounswe/bounswe2023group4/issues/545) | Şefik Palazoğlu | 21.12.2023 | 1hr |
+| Implement moderator page tag selection UI | [#581](https://github.com/bounswe/bounswe2023group4/issues/581) | Enes Furkan Arslan | 25.12.2023 | 2h |
+| Implement connection of tag selection on moderator-not-jury page | [#582](https://github.com/bounswe/bounswe2023group4/issues/582) | Enes Furkan Arslan | 25.12.2023 | 4h |
+| Implement connection of backend to show the moderator page to member/moderator | [#583](https://github.com/bounswe/bounswe2023group4/issues/583) | Enes Furkan Arslan | 25.12.2023 |
+| Write the unit tests for moderation-not-moderator page | [#584](https://github.com/bounswe/bounswe2023group4/issues/584) | Enes Furkan Arslan | 25.12.2023 | 
+| Write unit tests for moderation-not-jury page | [#584](https://github.com/bounswe/bounswe2023group4/issues/584) | Enes Furkan Arslan | 25.12.2023 | 
 
 ## Risks
 - We might not be able to finish all aimed requirements due to time constraints.
