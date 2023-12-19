@@ -78,8 +78,9 @@
 | Write unit tests for moderation-not-jury page | [#585](https://github.com/bounswe/bounswe2023group4/issues/585) | Enes Furkan Arslan | 25.12.2023 | 3h | 
 | Implement Moderation Screen| [#418](https://github.com/bounswe/bounswe2023group4/issues/418) | Yiğit Şekerci | 25.12.23 | 2hr |
 | Implement annotations in mobile| [#548](https://github.com/bounswe/bounswe2023group4/issues/548) | Yiğit Şekerci | 25.12.23 | 7.5hr |
-| Implement share url functionality | [#589](https://github.com/bounswe/bounswe2023group4/issues/589) | Ahmet Emre Safak | 25.12.23 | 6 hours |
-| Finalize forgot password scneario | [#549](https://github.com/bounswe/bounswe2023group4/issues/549) | Ahmet Emre Safak | 25.12.23 | 3 hours |
+| Implement share URL functionality | [#589](https://github.com/bounswe/bounswe2023group4/issues/589) | Ahmet Emre Safak | 25.12.23 | 6 hours |
+| Finalize forgot password scenario | [#549](https://github.com/bounswe/bounswe2023group4/issues/549) | Ahmet Emre Safak | 25.12.23 | 3 hours |
+|Implementing the Point system in the backend|  [#590](https://github.com/bounswe/bounswe2023group4/issues/590) |Emre Batuhan Göç, Ali Nasra| 25.12.23 | 8 hours|
 
 ## Risks
 - We might not be able to finish all aimed requirements due to time constraints.
