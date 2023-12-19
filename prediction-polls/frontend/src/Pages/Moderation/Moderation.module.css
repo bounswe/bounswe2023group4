@@ -37,8 +37,8 @@
     margin-bottom: 20px; 
     margin-top: 50px;  
     margin-left:  50px;  
-    max-width: 800px; 
-    max-height: 200px;
+    max-width: 900px; 
+    max-height: 400px;
     text-align: center;
   }
   
@@ -64,4 +64,27 @@
         width: 60%;
         padding-top: 100px;
     }
-    
+
+    .buttonContainer {
+        display: flex;
+        gap: 10px; /* Adjust the gap as needed */
+      }
+
+      .questionCard2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 95%;
+        box-shadow: 2px 4px 8px var(--neutral-shadow);
+        padding: 30px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        gap: 20px;
+        background-color: var(--neutral-pollCard);
+        margin-bottom: 20px; 
+        margin-top: 50px;  
+        margin-left:  50px;  
+        max-width: 800px; 
+        max-height: 200px;
+        text-align: center;
+      }
