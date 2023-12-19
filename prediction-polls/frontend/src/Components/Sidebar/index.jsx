@@ -41,14 +41,20 @@ const Sidebar = ({ currentPage, handlePageChange }) => {
   const [username, setUsername] = React.useState(
     localStorage.getItem("username")
   );
+  const [profileLink, setProfileLink] = React.useState("auth/sign-in");
 
   useEffect(() => {
     const username = localStorage.getItem("username");
     setUsername(username);
   }, []);
 
+  useEffect(() => {
+    const link = username == null ? "auth/sign-in" : `profile/${username}`;
+    setProfileLink(link);
+  }, [username]);
+
   const menuData = [
-    { key: "Profile", Icon: ProfileIcon, to: `profile/${username}` },
+    { key: "Profile", Icon: ProfileIcon, to: profileLink },
     { key: "Feed", Icon: FeedIcon, to: "feed" },
     { key: "Vote", Icon: VoteIcon, to: "vote" },
     { key: "Create", Icon: CreateIcon, to: "create" },
@@ -66,6 +72,12 @@ const Sidebar = ({ currentPage, handlePageChange }) => {
     }
   };
 
+  const handleLogin = () => {
+    navigate("/auth/sign-in");
+  };
+
+
+
   return (
     <div className={styles.sidebar}>
       <Logo className={styles.logo} />
@@ -79,9 +91,14 @@ const Sidebar = ({ currentPage, handlePageChange }) => {
           to={`/${item.to}`}
         />
       ))}
+      {username == null ? 
+      <button className={styles.loginButton} onClick={handleLogin}>
+      LOGIN
+    </button> : 
       <button className={styles.logoutButton} onClick={handleLogout}>
-        LOGOUT{" "}
-      </button>
+      LOGOUT{" "}
+    </button>
+      }
     </div>
   );
 };
