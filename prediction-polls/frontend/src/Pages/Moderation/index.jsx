@@ -17,6 +17,7 @@ function Moderation() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [message, setMessage] = useState(null);
   const [tags, setTags] = useState([]);
+  const [prevTags, setPrevTags] = useState(null);
 
   const showMessage = (text) => {
     setMessage(text);
@@ -41,6 +42,7 @@ function Moderation() {
 
         const result = await response.json();
         setTags(result);
+        setPrevTags(result);
       } catch (error) {
         console.error('Error fetching tags:', error.message);
       }
@@ -65,28 +67,46 @@ function Moderation() {
       isSelected: tag.isSelected ? 1 : 0,
     }));
 
-     const postUpdatedTags = async () => {
-       try {
-         const response = await fetch(url + '/moderators/my-tags', {
-           method: 'POST',
-           headers: {
-             'Content-Type': 'application/json',
-             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-           },
-           body: JSON.stringify(updatedTagsWithNumbers),
-         });
+    let lastUpdatedTag;
+    if (prevTags) {
+      lastUpdatedTag = updatedTags.find((tag) => {
+        const prevTag = prevTags.find((prev) => prev.topic === tag.topic);
+        return prevTag && prevTag.isSelected !== tag.isSelected;
+      });
+    }
 
-         if (!response.ok) {
-           throw new Error('Network response was not ok');
-         }
 
-         // Handle success
-       } catch (error) {
-         console.error('Error updating tags:', error.message);
-       }
-     };
+    const postUpdatedTags = async () => {
+      try {
+        const response = await fetch(url + '/moderators/my-tags', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          body: JSON.stringify({
+            topic: lastUpdatedTag.topic,
+            isSelected: lastUpdatedTag.isSelected ? 1 : 0,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        // Handle success
+      } catch (error) {
+        console.error('Error updating tags:', error.message);
+      }
+    };
 
     postUpdatedTags();
+    handlePostUpdate(); 
+
+
+
+    // Update the previous state with the current state
+    setPrevTags(updatedTags);
   };
 
   useEffect(() => {
@@ -119,6 +139,56 @@ function Moderation() {
     // Call the function to fetch data
     fetchData();
   }, []);
+
+  const handlePostUpdate = () => {
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url + "/moderators/my-requests", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const result = await response.json();
+        setModeratorPosts(result);
+      } catch (error) {
+        console.error("Error fetching data:", error.message);
+      }
+    };
+
+    // Call the function to fetch data
+    fetchData();
+
+  }
+
+  const handleGetTagUpdate = () => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url + "/moderators/my-tags", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        const result = await response.json();
+        setTags(result);
+        setPrevTags(result);
+      } catch (error) {
+        console.error('Error fetching tags:', error.message);
+      }
+    };
+
+    fetchData();
+  }
 
   const isModerator = userData?.isMod;
 
