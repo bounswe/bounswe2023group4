@@ -16,6 +16,7 @@ function Moderation() {
   const [userData, setUserData] = useState({});
   const [moderatorPosts, setModeratorPosts] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
+  const navigate = useNavigate();
 
   const handleTagChange = (tags) => {
     setSelectedTags(tags);
@@ -58,7 +59,8 @@ function Moderation() {
     console.log("User wants to become a moderator");
   };
 
-  const handleBecomeJury = () => {
+  const handleBecomeJury = (requestId) => {
+    navigate(`/moderation/jury/${requestId}`)
     console.log("User wants to become a jury");
   };
 
@@ -87,7 +89,7 @@ function Moderation() {
                   <Button
                     className={styles.btn}
                     type="primary"
-                    onClick={handleBecomeJury}
+                    onClick={() => handleBecomeJury(mockPost.request_id)}
                   >
                     Accept
                   </Button>
