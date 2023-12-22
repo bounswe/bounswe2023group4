@@ -198,5 +198,18 @@ async function awardJuryDiscretePoll(pollObject,correctChoiceId){
     }
 }
 
+async function awardJuryContinuousPoll(pollObject,correctAnswer,cont_type){
+    try{
+        const answers = await db.getAnsweredContinuousRequestsOfPoll(pollObject.id);
+        const rewards = answers.map((answer) => {
+                return {user_id:answer.userId, reward:answer.reward};
+        })
 
-module.exports = {controlModRole, requestModRole, makeMod, getModTags, updateTags, getModRequests, answerRequest,awardJuryDiscretePoll}
+        await pollDb.distributeRewards(rewards)
+    }catch(error){
+        return res.status(400).json({error:error});
+    }
+}
+
+
+module.exports = {controlModRole, requestModRole, makeMod, getModTags, updateTags, getModRequests, answerRequest, awardJuryDiscretePoll, awardJuryContinuousPoll}

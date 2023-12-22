@@ -412,6 +412,19 @@ async function getDiscreteSelectionsWithPollId(pollId) {
     }
 }
 
+async function getContinuousSelectionsWithPollId(pollId) {
+    const sql = "SELECT * FROM continuous_polls_selections WHERE poll_id = ?";
+
+    try {
+        [result] = await pool.query(sql, [pollId]);
+        return result;
+    } catch (error) {
+        console.error('getContinuousSelectionsWithPollId(): Database Error');
+        throw error;
+    }
+
+}
+
 async function distributeRewards(rewards) {
     const pointUpdateSql = 'UPDATE profiles SET points = points + ? WHERE userId = ?';
 
@@ -537,6 +550,6 @@ async function finalizePoll(poll_id){
 
 module.exports = {getPolls,getFamousPolls,getOpenedPollsOfUser,getVotedPollsOfUser, getPollWithId, getDiscretePollWithId, getContinuousPollWithId, 
     getPollTotalSpentPoint, addDiscretePoll,addContinuousPoll, getDiscretePollChoices, getDiscreteVoteCount, voteDiscretePoll, voteContinuousPoll,
-    getContinuousPollVotes,getTagsOfPoll, getUntaggedPolls, updateTagsScanned, addTopic, getDiscreteSelectionsWithPollId, distributeRewards, closePoll, 
-    getPollCount, getLastGatheringTime, updateLastJuryGathering, getJuryReward, updateJuryReward, finalizePoll}
+    getContinuousPollVotes,getTagsOfPoll, getUntaggedPolls, updateTagsScanned, addTopic, getDiscreteSelectionsWithPollId, getContinuousSelectionsWithPollId,
+    distributeRewards, closePoll, getPollCount, getLastGatheringTime, updateLastJuryGathering, getJuryReward, updateJuryReward, finalizePoll}
     

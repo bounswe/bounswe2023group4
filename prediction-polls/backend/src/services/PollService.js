@@ -3,6 +3,8 @@ const {updatePoints} = require("../repositories/ProfileDB.js");
 const { findUser,incrementUserParticipate,decrementUserParticipate } = require('../repositories/AuthorizationDB.js');
 const errorCodes = require("../errorCodes.js")
 
+const reward_return_rate = 0.9 //Users will only get 90% of total point back when poll rewards are distributed
+
 async function getFamousPolls(req,res){
     try {
         const rows = await db.getFamousPolls();
@@ -352,7 +354,7 @@ async function awardWinnersDiscretePoll(pollObject,choiceId){
         const totalCorrectBet = correctSelections.reduce((sum, selection) => sum + selection.given_points, 0);
 
         const rewardPoints = correctSelections.map((selection) => {
-            return {user_id: selection.user_id, reward: Math.floor(totalPointsBet * (selection.given_points / totalCorrectBet))}
+            return {user_id: selection.user_id, reward: Math.floor(totalPointsBet * reward_return_rate * (selection.given_points / totalCorrectBet))}
         })
 
         console.log("R",rewardPoints)
@@ -362,12 +364,135 @@ async function awardWinnersDiscretePoll(pollObject,choiceId){
         return {status: "success"};
     } catch (error) {
         if (error) {
-            throw error;
+            res.status(400).json(error);
         } else {
-            throw { error: errorCodes.DATABASE_ERROR };
+            res.status(500).json({ error: errorCodes.DATABASE_ERROR });
+        }
+    }
+}
+
+async function awardWinnersContinuousPoll(pollObject,correctAnswer,cont_type){
+    try{
+        const total_point_spent = db.getPollTotalSpentPoint(pollObject.id);
+        const return_points = reward_return_rate * total_point_spent;
+
+        const selections = await db.getContinuousSelectionsWithPollId(pollId);
+        if(cont_type == "float"){
+            const answerDiffs = selections.map((selection) => {
+                return {
+                    "difference" : Math.abs(selection.float_value - correctAnswer ),
+                    "user_id":selection.user_id
+                }
+            })
+
+            // Sort answerDiffs array based on the "difference" property in ascending order
+            answerDiffs.sort((a, b) => a.difference - b.difference);
+
+            const section_length = Math.ceil(totalUsers / 8);
+
+            const categorySizes = {
+                best: section_length,
+                second: section_length * 2,
+                third: section_length * 3,
+                fourth: section_length * 4,
+                remaining: answerDiffs.length
+            };
+
+            // Categorize users based on their position in the sorted array
+            const allRewardPoints = answerDiffs.map((userGuess, index) => {
+                if (index < categorySizes.best) {
+                    return {user_id: userGuess.user_id, 
+                        reward: Math.floor((return_points * 0.45) / section_length)}
+                } else if (index < categorySizes.second) {
+                    return {user_id: userGuess.user_id, 
+                        reward: Math.floor((return_points * 0.25) / section_length)}
+                } else if (index < categorySizes.third) {
+                    return {user_id: userGuess.user_id, 
+                        reward: Math.floor((return_points * 0.15) / section_length)}
+                } else if (index < categorySizes.fourth) {
+                    return {user_id: userGuess.user_id, 
+                        reward: Math.floor((return_points * 0.05) / section_length)}
+                } else {
+                    return null
+                }
+            });
+
+            const rewardPoints = allRewardPoints.filter(rewarding => rewarding != null)
+
+            console.log("R",rewardPoints)
+
+            await db.distributeRewards(rewardPoints)
+
+            return {status: "success"};
+        }
+        if(cont_type == "date"){
+
+            const answerDiffsDate = selections.map((selection) => {
+            const diffInSeconds = Math.abs(new Date(selection.date_value) - new Date(correctDate)) / 1000;
+            return {
+                "difference": diffInSeconds,
+                "user_id": selection.user_id
+                };
+            });
+
+            // Sort answerDiffsDate array based on the "difference" property in ascending order
+            answerDiffsDate.sort((a, b) => a.difference - b.difference);
+
+            const section_length_date = Math.ceil(totalUsers / 8);
+
+            const categorySizesDate = {
+                best: section_length_date,
+                second: section_length_date * 2,
+                third: section_length_date * 3,
+                fourth: section_length_date * 4,
+                remaining: answerDiffsDate.length
+            };
+
+            // Categorize users based on their position in the sorted array
+            const allRewardPointsDate = answerDiffsDate.map((userGuess, index) => {
+                if (index < categorySizesDate.best) {
+                    return {
+                        user_id: userGuess.user_id,
+                        reward: Math.floor((return_points * 0.45) / section_length_date)
+                    };
+                } else if (index < categorySizesDate.second) {
+                    return {
+                        user_id: userGuess.user_id,
+                        reward: Math.floor((return_points * 0.25) / section_length_date)
+                    };
+                } else if (index < categorySizesDate.third) {
+                    return {
+                        user_id: userGuess.user_id,
+                        reward: Math.floor((return_points * 0.15) / section_length_date)
+                    };
+                } else if (index < categorySizesDate.fourth) {
+                    return {
+                        user_id: userGuess.user_id,
+                        reward: Math.floor((return_points * 0.05) / section_length_date)
+                    };
+                } else {
+                    return null;
+                }
+            });
+
+            const rewardPointsDate = allRewardPointsDate.filter(rewarding => rewarding != null);
+
+            console.log("R Date", rewardPointsDate);
+
+            await db.distributeRewards(rewardPointsDate);
+
+            return { status: "success" };
+            }
+            // If given cont_type is not recognized
+            throw errorCodes.INSUFFICIENT_DATA;
+    } catch(error){
+        if (error) {
+            res.status(400).json(error);
+        } else {
+            res.status(500).json({ error: errorCodes.DATABASE_ERROR });
         }
     }
 }
 
 module.exports = { getFamousPolls, getOpenedPollsOfUser, getVotedPollsOfUser, createPollsJson, getPollWithId, addDiscretePoll, 
-    addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll, awardWinnersDiscretePoll}
+    addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll, awardWinnersDiscretePoll, awardWinnersContinuousPoll}
