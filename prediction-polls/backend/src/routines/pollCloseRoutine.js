@@ -3,11 +3,14 @@ const pollDB = require('../repositories/PollDB');
 const pollService = require('../services/PollService');
 const authDB = require('../repositories/AuthorizationDB');
 const modDB = require('../repositories/ModeratorDB');
+const modService = require('../services/ModeratorService');
 const moment = require('moment');
 require('dotenv').config();
 
 const jury_size = 9;
 const jury_reward_incerase_time_hours = 6;
+const jury_reward_percantage = 0.02;
+const jury_reward_increase_constant = 2;
 
 async function closeFinishedPolls(){
 
@@ -108,20 +111,24 @@ async function gatherJuryForPoll(pollObject){
         const poll_tags = await pollDB.getTagsOfPoll(pollObject.id);
         const pollHasTags = poll_tags.length > 0
 
+        const total_points = await getPollTotalSpentPoint(pollObject.id);
+        const jury_reward = Math.round(total_points * jury_reward_percantage);
+
+        await pollDB.updateJuryReward(pollObject.id,jury_reward)
 
         await Promise.all(all_mods.map(async (mod) => {
 
             const mod_tags = await modDB.getModTags(mod.id)
             
             if(!pollHasTags){
-                await sendPollCloseModRequest(pollObject,mod.id)
+                await sendPollCloseModRequest(pollObject,mod.id,jury_reward)
                 return
             }
 
             const modHasMatchingTag = mod_tags.some(tag => poll_tags.includes(tag.topic))
 
             if(modHasMatchingTag){
-                await sendPollCloseModRequest(pollObject,mod.id)
+                await sendPollCloseModRequest(pollObject,mod.id,jury_reward)
             }
         }))
 
@@ -179,18 +186,25 @@ async function gradePoll(pollObject,mod_requests){
 
             const correctChoiceId = mostChosenChoiceId
 
+            
+
             await pollService.awardWinnersDiscretePoll(pollObject,correctChoiceId)
-            // TODO 
-            // await removeModRequestsOfPoll(pollObject)
-            // await removePoll(pollObject)
+
+            await modService.awardJuryDiscretePoll(pollObject,correctChoiceId)
+            
+            await modDB.deleteModRequestsforPollClose(pollObject.id)
+            await pollDB.finalizePoll(pollObject.id)
         }
         else if(pollObject.poll_type === "continuous"){
 
             // TODO 
             // decide correct answer
             // award winners
-            // await removeModRequestsOfPoll(pollObject)
-            // await removePoll(pollObject)
+
+            // award Jury
+
+            // await modDB.deleteModRequestsforPollClose(pollObject.id)
+            // await pollDB.finalizePoll(pollObject.id)
 
         }
         return {resolved:false,requests:mod_requests}
@@ -210,20 +224,24 @@ async function checkLastGatheringTime(pollObject){
 }
 
 async function updateJuryForPoll(pollObject){
+    
+    const new_jury_reward = pollObject.juryReward * jury_reward_increase_constant;
+
+    await pollDB.updateJuryReward(pollObject.id,new_jury_reward)
+    await modDB.updateJuryRewardforRequests(pollObject.id,new_jury_reward)
+
     //TODO
-    //add rewards to mod requests
     //Find new mods if possible
-    //ıncrease overall reward for requests
 
 }
 
-async function sendPollCloseModRequest(pollObject,userId){/*
+async function sendPollCloseModRequest(pollObject,userId,reward){/*
     try{
         if(pollObject.poll_type === "discrete"){
-            await modDB.createDiscreteRequest(userId,pollObject.id)
+            await modDB.createDiscreteRequest(userId,pollObject.id,reward)
         }
         else if(pollObject.poll_type === "continuous"){
-            await modDB.createContinuousRequest(userId,pollObject.id)
+            await modDB.createContinuousRequest(userId,pollObject.id,reward)
         }
     }catch (error) {
         console.error('Close Poll Routine: Database Error');
@@ -234,8 +252,7 @@ async function sendPollCloseModRequest(pollObject,userId){/*
 }
 //TODO
 function handleNoDueDatePoll(){
-     
-    console.log("Found poll with no due date")
+     // 
 }
 
 cron.schedule('*/60 * * * * *', closeFinishedPolls);
