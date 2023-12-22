@@ -116,13 +116,19 @@ const contextService = require("../services/AddContextService.js");
  *
  *     AnnotationPost:
  *       type: object
+ *       required: 
+ *         - "@context"
+ *         - "type"
+ *         - "target"
  *       properties:
- *         id:
+ *         "@context":
  *           type: string
- *           description: The identity of the Annotation, an IRI
+ *           description: The context of the Annotation
+ *           enum: [http://www.w3.org/ns/anno.jsonld]
  *         type:
  *           type: string
  *           description: The type of the Annotation
+ *           enum: [Annotation]
  *         target:
  *           $ref: "#/components/schemas/Target"
  *           required: true
@@ -148,9 +154,11 @@ const contextService = require("../services/AddContextService.js");
  *         "@context":
  *           type: string
  *           description: The Annotation jsonld
+ *           enum: [http://www.w3.org/ns/anno.jsonld]
  *         id:
  *           type: string
  *           description: The identity of the Annotation, an IRI
+ *           enum: [Annotation]
  *         type:
  *           type: string
  *           description: The type of the Annotation
@@ -178,96 +186,108 @@ const contextService = require("../services/AddContextService.js");
  *   examples:
  *     Basic:
  *       value:
- *         "@context": http://www.w3.org/ns/anno.jsonld
- *         id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
- *         type: Annotation
- *         target: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43
- *         created: 2023-12-10T20:06:46.123Z
- *         modified: 2023-12-10T20:06:46.123Z
+ *         annotations:
+ *           - 
+ *             "@context": http://www.w3.org/ns/anno.jsonld
+ *             id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
+ *             type: Annotation
+ *             target: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43
+ *             created: 2023-12-10T20:06:46.123Z
+ *             modified: 2023-12-10T20:06:46.123Z
  *     EmbeddedTextBody:
  *       value:
- *         "@context": http://www.w3.org/ns/anno.jsonld
- *         id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
- *         type: Annotation
- *         target: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43
- *         body: 
- *           "type": TextualBody 
- *           value: Example annotation content 
- *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
- *         created: 2023-12-10T20:06:46.123Z
- *         modified: 2023-12-10T20:06:46.123Z
+ *         annotations:
+ *           -
+ *             "@context": http://www.w3.org/ns/anno.jsonld
+ *             id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
+ *             type: Annotation
+ *             target: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43
+ *             body: 
+ *               "type": TextualBody 
+ *               value: I like this content!
+ *               format: text/plain 
+ *             creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
+ *             created: 2023-12-10T20:06:46.123Z
+ *             modified: 2023-12-10T20:06:46.123Z
  *     CSSSelector:
  *       value:
- *         "@context": http://www.w3.org/ns/anno.jsonld
- *         id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
- *         type: Annotation
- *         target: 
- *           source: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
- *           selector: 
- *             type: "CssSelector"
- *             value: "#elemid > .elemclass + p"
- *         body: 
- *           "type": TextualBody 
- *           value: Example annotation content 
- *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
- *         created: 2023-12-10T20:06:46.123Z
- *         modified: 2023-12-10T20:06:46.123Z
+ *         annotations:
+ *           -
+ *             "@context": http://www.w3.org/ns/anno.jsonld
+ *             id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
+ *             type: Annotation
+ *             target: 
+ *               source: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
+ *               selector: 
+ *                 type: "CssSelector"
+ *                 value: "#elemid > .elemclass + p"
+ *             body: 
+ *               "type": TextualBody 
+ *               value: I like this content!
+ *               format: text/plain 
+ *             creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
+ *             created: 2023-12-10T20:06:46.123Z
+ *             modified: 2023-12-10T20:06:46.123Z
  *     XPathSelector:
  *       value:
- *         "@context": http://www.w3.org/ns/anno.jsonld
- *         id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
- *         type: Annotation
- *         target: 
- *           source: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
- *           selector: 
- *             type: "XPathSelector"
- *             value: "/html/body/p[2]/table/tr[2]/td[3]/span"
- *         body: 
- *           "type": TextualBody 
- *           value: Example annotation content 
- *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
- *         created: 2023-12-10T20:06:46.123Z
- *         modified: 2023-12-10T20:06:46.123Z
+ *         annotations:
+ *           - 
+ *             "@context": http://www.w3.org/ns/anno.jsonld
+ *             id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
+ *             type: Annotation
+ *             target: 
+ *               source: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
+ *               selector: 
+ *                 type: "XPathSelector"
+ *                 value: "/html/body/p[2]/table/tr[2]/td[3]/span"
+ *             body: 
+ *               "type": TextualBody 
+ *               value: I like this content
+ *               format: text/plain 
+ *             creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
+ *             created: 2023-12-10T20:06:46.123Z
+ *             modified: 2023-12-10T20:06:46.123Z
  *     TextQuoteSelector:
  *       value:
- *         "@context": http://www.w3.org/ns/anno.jsonld
- *         id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
- *         type: Annotation
- *         target: 
- *           source: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
- *           selector: 
- *             type: "TextQuoteSelector"
- *             exact: "anotation"
- *             prefix: "this is an "
- *             suffix: " that has some"
- *         body: 
- *           "type": TextualBody 
- *           value: "This seems to be a typo."
- *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
- *         created: 2023-12-10T20:06:46.123Z
- *         modified: 2023-12-10T20:06:46.123Z
+ *         annotations:
+ *           - 
+ *             "@context": http://www.w3.org/ns/anno.jsonld
+ *             id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
+ *             type: Annotation
+ *             target: 
+ *               source: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
+ *               selector: 
+ *                 type: "TextQuoteSelector"
+ *                 exact: "anotation"
+ *                 prefix: "this is an "
+ *                 suffix: " that has some"
+ *             body: 
+ *               "type": TextualBody 
+ *               value: "This seems to be a typo."
+ *               format: text/plain 
+ *             creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
+ *             created: 2023-12-10T20:06:46.123Z
+ *             modified: 2023-12-10T20:06:46.123Z
  *     TextPositionSelector:
  *       value:
- *         "@context": http://www.w3.org/ns/anno.jsonld
- *         id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
- *         type: Annotation
- *         target: 
- *           source: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
- *           selector: 
- *             type: "TextPositionSelector"
- *             start: 412
- *             end: 795
- *         body: 
- *           "type": TextualBody 
- *           value: "Example annotation content."
- *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
- *         created: 2023-12-10T20:06:46.123Z
- *         modified: 2023-12-10T20:06:46.123Z
+ *         annotations:
+ *           - 
+ *             "@context": http://www.w3.org/ns/anno.jsonld
+ *             id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
+ *             type: Annotation
+ *             target: 
+ *               source: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
+ *               selector: 
+ *                 type: "TextPositionSelector"
+ *                 start: 412
+ *                 end: 795
+ *             body: 
+ *               "type": TextualBody 
+ *               value: "I like this content!"
+ *               format: text/plain 
+ *             creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
+ *             created: 2023-12-10T20:06:46.123Z
+ *             modified: 2023-12-10T20:06:46.123Z
  */
 
 /**
@@ -286,9 +306,9 @@ const contextService = require("../services/AddContextService.js");
  *         target: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
  *         body: 
  *           "type": TextualBody 
- *           value: Example annotation content 
+ *           value: I like this content!
  *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
  *     PostCSSSelector:
  *       value:
  *         "@context": http://www.w3.org/ns/anno.jsonld
@@ -300,9 +320,9 @@ const contextService = require("../services/AddContextService.js");
  *             value: "#elemid > .elemclass + p"
  *         body: 
  *           "type": TextualBody 
- *           value: Example annotation content 
+ *           value: I like this content!
  *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
  *     PostXPathSelector:
  *       value:
  *         "@context": http://www.w3.org/ns/anno.jsonld
@@ -314,9 +334,9 @@ const contextService = require("../services/AddContextService.js");
  *             value: "/html/body/p[2]/table/tr[2]/td[3]/span"
  *         body: 
  *           "type": TextualBody 
- *           value: Example annotation content 
+ *           value: I like this content!
  *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
  *     PostTextQuoteSelector:
  *       value:
  *         "@context": http://www.w3.org/ns/anno.jsonld
@@ -332,7 +352,7 @@ const contextService = require("../services/AddContextService.js");
  *           "type": TextualBody 
  *           value: "This seems to be a typo."
  *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
  *     PostTextPositionSelector:
  *       value:
  *         "@context": http://www.w3.org/ns/anno.jsonld
@@ -345,9 +365,9 @@ const contextService = require("../services/AddContextService.js");
  *             end: 795
  *         body: 
  *           "type": TextualBody 
- *           value: "Example annotation content."
+ *           value: "I like this content!"
  *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
  */
 
 /**
@@ -372,11 +392,13 @@ const contextService = require("../services/AddContextService.js");
  *         schema:
  *           type: string
  *         description: The creator of the Annotation
+ *         default: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
  *       - in: query
  *         name: source
  *         schema:
  *           type: string
  *         description: The source of the Target of the Annotations
+ *         default: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43
  *     responses:
  *       200:
  *         description: The list of Annotations retrieved successfully
@@ -412,6 +434,7 @@ router.get('/', service.getAnnotations);
  *         name: id
  *         required: true
  *         description: The ID of the annotation
+ *         default: 6585ea616b03ab2c6b8c535f
  *         schema:
  *           type: string
  *     responses:

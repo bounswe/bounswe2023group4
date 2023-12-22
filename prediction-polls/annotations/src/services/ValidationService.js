@@ -63,8 +63,6 @@ async function validate(req, res, next) {
     return res.status(400).send('Invalid Content-Type. It must be application/ld+json.');
   }
 
-  console.log(req.body)
-
   const {error, value} = annotationPostSchema.validate(req.body);
 
   if (error) {
