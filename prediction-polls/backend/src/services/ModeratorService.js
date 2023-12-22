@@ -181,5 +181,22 @@ async function answerRequest(req,res){
 
 }
 
+async function awardJuryDiscretePoll(pollObject,correctChoiceId){
+    try{
+        const answers = await db.getAnsweredDiscreteRequestsOfPoll(pollObject.id);
+        const rewards = await Promise.all(answers.map(async (answer) => {
+            if(answer.choice_id == correctChoiceId){
+                return {user_id:answer.userId, reward:answer.reward};
+            }else{
+                return {user_id:answer.userId, reward:0};
+            }
+        }))
 
-module.exports = {controlModRole, requestModRole, makeMod, getModTags, updateTags, getModRequests, answerRequest}
+        await pollDb.distributeRewards(rewards)
+    }catch(error){
+        return res.status(400).json({error:error});
+    }
+}
+
+
+module.exports = {controlModRole, requestModRole, makeMod, getModTags, updateTags, getModRequests, answerRequest,awardJuryDiscretePoll}
