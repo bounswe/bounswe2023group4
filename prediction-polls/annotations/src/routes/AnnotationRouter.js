@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const service = require("../services/annotationService.js");
+const service = require("../services/AnnotationService.js");
 const validation = require("../services/ValidationService.js");
 const timeService = require("../services/AddTimeService.js");
-const contextService = require("../services/addContextService.js");
+const contextService = require("../services/AddContextService.js");
 
 /**
  * @swagger
@@ -117,6 +117,12 @@ const contextService = require("../services/addContextService.js");
  *     AnnotationPost:
  *       type: object
  *       properties:
+ *         id:
+ *           type: string
+ *           description: The identity of the Annotation, an IRI
+ *         type:
+ *           type: string
+ *           description: The type of the Annotation
  *         target:
  *           $ref: "#/components/schemas/Target"
  *           required: true
@@ -173,41 +179,31 @@ const contextService = require("../services/addContextService.js");
  *     Basic:
  *       value:
  *         "@context": http://www.w3.org/ns/anno.jsonld
- *         id: http://example.org/anno1
+ *         id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
  *         type: Annotation
- *         target: http://example.com/page1
- *         created: 2023-12-10T20:06:46.123Z
- *         modified: 2023-12-10T20:06:46.123Z
- *     WithBodyAndCreator:
- *       value:
- *         "@context": http://www.w3.org/ns/anno.jsonld
- *         id: http://example.org/anno1
- *         type: Annotation
- *         target: http://example.com/page1
- *         body: http://example.org/post1
- *         creator: user1
+ *         target: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43
  *         created: 2023-12-10T20:06:46.123Z
  *         modified: 2023-12-10T20:06:46.123Z
  *     EmbeddedTextBody:
  *       value:
  *         "@context": http://www.w3.org/ns/anno.jsonld
- *         id: http://example.org/anno1
+ *         id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
  *         type: Annotation
- *         target: http://example.com/page1
+ *         target: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43
  *         body: 
  *           "type": TextualBody 
  *           value: Example annotation content 
  *           format: text/plain 
- *         creator: user1
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
  *         created: 2023-12-10T20:06:46.123Z
  *         modified: 2023-12-10T20:06:46.123Z
  *     CSSSelector:
  *       value:
  *         "@context": http://www.w3.org/ns/anno.jsonld
- *         id: http://example.org/anno1
+ *         id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
  *         type: Annotation
  *         target: 
- *           source: "http://example.org/page1.html"
+ *           source: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
  *           selector: 
  *             type: "CssSelector"
  *             value: "#elemid > .elemclass + p"
@@ -215,16 +211,16 @@ const contextService = require("../services/addContextService.js");
  *           "type": TextualBody 
  *           value: Example annotation content 
  *           format: text/plain 
- *         creator: user1
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
  *         created: 2023-12-10T20:06:46.123Z
  *         modified: 2023-12-10T20:06:46.123Z
  *     XPathSelector:
  *       value:
  *         "@context": http://www.w3.org/ns/anno.jsonld
- *         id: http://example.org/anno1
+ *         id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
  *         type: Annotation
  *         target: 
- *           source: "http://example.org/page1.html"
+ *           source: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
  *           selector: 
  *             type: "XPathSelector"
  *             value: "/html/body/p[2]/table/tr[2]/td[3]/span"
@@ -232,16 +228,16 @@ const contextService = require("../services/addContextService.js");
  *           "type": TextualBody 
  *           value: Example annotation content 
  *           format: text/plain 
- *         creator: user1
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
  *         created: 2023-12-10T20:06:46.123Z
  *         modified: 2023-12-10T20:06:46.123Z
  *     TextQuoteSelector:
  *       value:
  *         "@context": http://www.w3.org/ns/anno.jsonld
- *         id: http://example.org/anno1
+ *         id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
  *         type: Annotation
  *         target: 
- *           source: "http://example.org/page1"
+ *           source: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
  *           selector: 
  *             type: "TextQuoteSelector"
  *             exact: "anotation"
@@ -251,16 +247,16 @@ const contextService = require("../services/addContextService.js");
  *           "type": TextualBody 
  *           value: "This seems to be a typo."
  *           format: text/plain 
- *         creator: user1
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
  *         created: 2023-12-10T20:06:46.123Z
  *         modified: 2023-12-10T20:06:46.123Z
  *     TextPositionSelector:
  *       value:
  *         "@context": http://www.w3.org/ns/anno.jsonld
- *         id: http://example.org/anno1
+ *         id: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:4999/annotations/65818812584a642cfc7ef46f
  *         type: Annotation
  *         target: 
- *           source: "http://example.org/page1"
+ *           source: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
  *           selector: 
  *             type: "TextPositionSelector"
  *             start: 412
@@ -269,7 +265,7 @@ const contextService = require("../services/addContextService.js");
  *           "type": TextualBody 
  *           value: "Example annotation content."
  *           format: text/plain 
- *         creator: user1
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
  *         created: 2023-12-10T20:06:46.123Z
  *         modified: 2023-12-10T20:06:46.123Z
  */
@@ -280,24 +276,25 @@ const contextService = require("../services/addContextService.js");
  *   examples:
  *     PostBasic:
  *       value:
- *         target: /page1
- *     PostWithBodyAndCreator:
- *       value:
- *         target: /page1
- *         body: http://example.org/post1
- *         creator: user1
+ *         "@context": http://www.w3.org/ns/anno.jsonld
+ *         type: Annotation
+ *         target: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
  *     PostEmbeddedTextBody:
  *       value:
- *         target: /page1
+ *         "@context": http://www.w3.org/ns/anno.jsonld
+ *         type: Annotation
+ *         target: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
  *         body: 
  *           "type": TextualBody 
  *           value: Example annotation content 
  *           format: text/plain 
- *         creator: user1
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
  *     PostCSSSelector:
  *       value:
+ *         "@context": http://www.w3.org/ns/anno.jsonld
+ *         type: Annotation
  *         target: 
- *           source: "/page1.html"
+ *           source: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
  *           selector: 
  *             type: "CssSelector"
  *             value: "#elemid > .elemclass + p"
@@ -305,11 +302,13 @@ const contextService = require("../services/addContextService.js");
  *           "type": TextualBody 
  *           value: Example annotation content 
  *           format: text/plain 
- *         creator: user1
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
  *     PostXPathSelector:
  *       value:
+ *         "@context": http://www.w3.org/ns/anno.jsonld
+ *         type: Annotation
  *         target: 
- *           source: "/page1.html"
+ *           source: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
  *           selector: 
  *             type: "XPathSelector"
  *             value: "/html/body/p[2]/table/tr[2]/td[3]/span"
@@ -317,11 +316,13 @@ const contextService = require("../services/addContextService.js");
  *           "type": TextualBody 
  *           value: Example annotation content 
  *           format: text/plain 
- *         creator: user1
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
  *     PostTextQuoteSelector:
  *       value:
+ *         "@context": http://www.w3.org/ns/anno.jsonld
+ *         type: Annotation
  *         target: 
- *           source: "/page1"
+ *           source: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
  *           selector: 
  *             type: "TextQuoteSelector"
  *             exact: "anotation"
@@ -331,11 +332,13 @@ const contextService = require("../services/addContextService.js");
  *           "type": TextualBody 
  *           value: "This seems to be a typo."
  *           format: text/plain 
- *         creator: user1
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
  *     PostTextPositionSelector:
  *       value:
+ *         "@context": http://www.w3.org/ns/anno.jsonld
+ *         type: Annotation
  *         target: 
- *           source: "/page1"
+ *           source: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
  *           selector: 
  *             type: "TextPositionSelector"
  *             start: 412
@@ -344,7 +347,7 @@ const contextService = require("../services/addContextService.js");
  *           "type": TextualBody 
  *           value: "Example annotation content."
  *           format: text/plain 
- *         creator: user1
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
  */
 
 /**
@@ -376,9 +379,9 @@ const contextService = require("../services/addContextService.js");
  *         description: The source of the Target of the Annotations
  *     responses:
  *       200:
- *         description: The list of the books retrieved successfully
+ *         description: The list of Annotations retrieved successfully
  *         content:
- *           application/json:
+ *           application/ld+json:
  *             schema:
  *               type: array
  *               items: 
@@ -386,8 +389,6 @@ const contextService = require("../services/addContextService.js");
  *             examples:
  *               Basic:
  *                 $ref: "#/components/examples/Basic" 
- *               WithBodyAndCreator:
- *                 $ref: "#/components/examples/WithBodyAndCreator" 
  *               EmbeddedTextBody:
  *                 $ref: "#/components/examples/EmbeddedTextBody" 
  *               CSSSelector:
@@ -415,9 +416,9 @@ router.get('/', service.getAnnotations);
  *           type: string
  *     responses:
  *       200:
- *         description: The list of the books retrieved successfully
+ *         description: The list of the Annotations retrieved successfully
  *         content:
- *           application/json:
+ *           application/ld+json:
  *             schema:
  *               type: array
  *               items: 
@@ -425,8 +426,6 @@ router.get('/', service.getAnnotations);
  *             examples:
  *               Basic:
  *                 $ref: "#/components/examples/Basic" 
- *               WithBodyAndCreator:
- *                 $ref: "#/components/examples/WithBodyAndCreator" 
  *               EmbeddedTextBody:
  *                 $ref: "#/components/examples/EmbeddedTextBody" 
  *               CSSSelector:
@@ -463,16 +462,22 @@ router.get('/:id', service.getAnnotationWithId);
  * /annotations:
  *   post:
  *     summary: Create a new annotation
+ *     parameters:
+ *       - in: header
+ *         name: Content-Type
+ *         schema:
+ *           type: string
+ *           enum:
+ *             - application/ld+json
+ *         default: application/ld+json
  *     requestBody:
  *       content:
- *         application/json:
+ *         application/ld+json:
  *           schema:
  *             $ref: "#/components/schemas/AnnotationPost"
  *           examples:
  *             Basic:
  *               $ref: "#/components/examples/PostBasic" 
- *             WithBodyAndCreator:
- *               $ref: "#/components/examples/PostWithBodyAndCreator" 
  *             EmbeddedTextBody:
  *               $ref: "#/components/examples/PostEmbeddedTextBody" 
  *             CSSSelector:
@@ -507,7 +512,7 @@ router.post('/', validation.validate, contextService.attachContext, timeService.
  *       200:
  *         description: Annotation deleted successfully
  *         content:
- *           application/json:
+ *           application/ld+json:
  *             schema:
  *               type: object
  *               properties:
@@ -533,70 +538,5 @@ router.post('/', validation.validate, contextService.attachContext, timeService.
  *                   type: string
  */
 router.delete('/:id', service.deleteAnnotationWithId);
-
-/**
- * @swagger
- * /annotations/{id}:
- *   patch:
- *     summary: Update the body of an annotation by ID
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         description: The ID of the annotation to be updated
- *         schema:
- *           type: string
- *     requestBody:
- *       description: Updated body of the annotation
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: "#/components/schemas/Body"
- *           examples:
- *             BodyUpdateExample:
- *               $ref: "#/components/examples/UpdatedBodyExample"
- *     responses:
- *       200:
- *         description: Annotation updated successfully
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *       400:
- *         description: Bad Request - Invalid request body format
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   message:
- *                     type: string
- *       404:
- *         description: Annotation not found
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 error:
- *                   type: string
- *       500:
- *         description: Internal Server Error
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 error:
- *                   type: string
- */
-router.patch('/:id', validation.validatePatchBody, service.patchAnnotationWithId);
-
 
 module.exports = router;
