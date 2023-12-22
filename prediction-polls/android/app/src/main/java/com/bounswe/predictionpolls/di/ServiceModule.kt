@@ -1,6 +1,7 @@
 package com.bounswe.predictionpolls.di
 
 import com.bounswe.predictionpolls.data.remote.services.AuthService
+import com.bounswe.predictionpolls.data.remote.services.ModerationService
 import com.bounswe.predictionpolls.data.remote.services.PollService
 import dagger.Module
 import dagger.Provides
@@ -26,5 +27,13 @@ object ServiceModule {
         @AuthenticatedRetrofit retrofit: Retrofit
     ): PollService {
         return retrofit.create(PollService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideModerationService(
+        @AuthenticatedRetrofit retrofit: Retrofit
+    ): ModerationService {
+        return retrofit.create(ModerationService::class.java)
     }
 }

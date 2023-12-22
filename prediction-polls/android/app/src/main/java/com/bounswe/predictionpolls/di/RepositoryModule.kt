@@ -2,9 +2,12 @@ package com.bounswe.predictionpolls.di
 
 import com.bounswe.predictionpolls.data.remote.TokenManager
 import com.bounswe.predictionpolls.data.remote.repositories.AuthRepository
+import com.bounswe.predictionpolls.data.remote.repositories.ModerationRepository
+import com.bounswe.predictionpolls.data.remote.repositories.ModerationRepositoryInterface
 import com.bounswe.predictionpolls.data.remote.repositories.PollRepository
 import com.bounswe.predictionpolls.data.remote.repositories.PollRepositoryInterface
 import com.bounswe.predictionpolls.data.remote.services.AuthService
+import com.bounswe.predictionpolls.data.remote.services.ModerationService
 import com.bounswe.predictionpolls.data.remote.services.PollService
 import dagger.Module
 import dagger.Provides
@@ -30,5 +33,13 @@ object RepositoryModule {
         pollService: PollService,
     ): PollRepositoryInterface {
         return PollRepository(pollService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideModerationRepository(
+        moderationService: ModerationService
+    ): ModerationRepositoryInterface {
+        return ModerationRepository(moderationService)
     }
 }
