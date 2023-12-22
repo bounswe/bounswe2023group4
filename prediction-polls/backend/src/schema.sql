@@ -36,7 +36,8 @@ CREATE TABLE polls (
     selectedTimeUnit ENUM('min', 'h', 'day', 'mth'),
     tagsScanned INT DEFAULT 0,
     isOpen BOOLEAN DEFAULT true,
-    lastJuryGathering DATETIME 
+    lastJuryGathering DATETIME,
+    reward INT DEFAULT 0,
 );
 
 CREATE TABLE discrete_polls (
@@ -129,6 +130,7 @@ CREATE TABLE mod_requests (
 CREATE TABLE mod_promotion_requests (
     id INT AUTO_INCREMENT PRIMARY KEY,
     userId INT NOT NULL,
+    reward INT NOT NULL DEFAULT 0,
     UNIQUE(userId),
     FOREIGN KEY (userId) REFERENCES users(id)
 );

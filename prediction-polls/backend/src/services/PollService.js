@@ -357,7 +357,7 @@ async function awardWinnersDiscretePoll(pollObject,choiceId){
 
         console.log("R",rewardPoints)
 
-        await db.distributePollRewards(rewardPoints)
+        await db.distributeRewards(rewardPoints)
 
         return {status: "success"};
     } catch (error) {
@@ -370,4 +370,4 @@ async function awardWinnersDiscretePoll(pollObject,choiceId){
 }
 
 module.exports = { getFamousPolls, getOpenedPollsOfUser, getVotedPollsOfUser, createPollsJson, getPollWithId, addDiscretePoll, 
-    addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll, closeDiscretePoll}
+    addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll, awardWinnersDiscretePoll}
