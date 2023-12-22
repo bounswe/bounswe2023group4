@@ -32,7 +32,8 @@ async function getAnnotations(req, res) {
 
     client.close();
 
-    res.json(annotations);
+    res.set('content-type', 'application/ld+json');
+    res.send(JSON.stringify({"annotations": annotations}));
   } catch (error) {
     console.error('Error fetching annotations:', error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -55,8 +56,8 @@ async function getAnnotationWithId(req, res) {
     }
 
     client.close();
-
-    res.json(annotation);
+    res.set('content-type', 'application/ld+json');
+    res.send(JSON.stringify(annotation));
   } catch (error) {
     console.error('Error fetching annotations:', error);
     res.status(500).json({ error: 'Internal Server Error' });
