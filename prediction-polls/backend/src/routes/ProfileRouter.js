@@ -477,4 +477,49 @@ router.post('/followed',authenticator.authorizeAccessToken,service.getFollowedPr
  */
 router.post('/follower',authenticator.authorizeAccessToken,service.getFollowerProfiles)
 
+/**
+ * @swagger
+ * /leaderboard/{topic}:
+ *   get:
+ *     tags:
+ *       - profiles
+ *     description: Get the top scoring users given a topic.
+ *     parameters:
+ *       - in: path
+ *         name: topic
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The name of a topic.
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 userList:
+ *                   type: array
+ *       400:
+ *         description: Bad Request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 code:
+ *                   type: integer
+ *             examples:
+ *               INSUFFICIENT_DATA:
+ *                 value:
+ *                   error:
+ *                     code: 1007,
+ *                     message: Given data is not sufficient. Please follow guidelines.
+ */
+
+router.post('/leaderboard/{topic}',service.getLeaderBoardRanking)
+
 module.exports = router;

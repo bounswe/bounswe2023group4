@@ -161,3 +161,11 @@ CREATE TABLE user_follow (
     FOREIGN KEY (follower_id) REFERENCES profiles(userId) ON DELETE CASCADE
     FOREIGN KEY (followed_id) REFERENCES profiles(userId) ON DELETE CASCADE
 );
+
+CREATE TABLE has_domain_point (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    topic VARCHAR(255) NOT NULL,
+    userId INT NOT NULL,
+    amount INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (userId) REFERENCES users(id) ON DELETE SET NULL
+);
