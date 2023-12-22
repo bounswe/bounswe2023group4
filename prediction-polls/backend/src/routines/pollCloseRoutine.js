@@ -186,8 +186,6 @@ async function gradePoll(pollObject,mod_requests){
 
             const correctChoiceId = mostChosenChoiceId
 
-            
-
             await pollService.awardWinnersDiscretePoll(pollObject,correctChoiceId)
 
             await modService.awardJuryDiscretePoll(pollObject,correctChoiceId)
@@ -196,18 +194,42 @@ async function gradePoll(pollObject,mod_requests){
             await pollDB.finalizePoll(pollObject.id)
         }
         else if(pollObject.poll_type === "continuous"){
+            if(mod_requests.float_value != undefined){
+                const float_answers = mod_requests.map(mod_request => (mod_request.float_value));
+                
+                console.log(float_answers)
 
-            // TODO 
-            // decide correct answer
-            // award winners
+                // Sort float_answers array in ascending order
+                float_answers.sort((a, b) => a - b);
 
-            // award Jury
+                console.log(float_answers)
 
-            // await modDB.deleteModRequestsforPollClose(pollObject.id)
-            // await pollDB.finalizePoll(pollObject.id)
+                const correctAnswer = findMedian(float_answers)
 
+                await pollService.awardWinnersContinuousPoll(pollObject,correctAnswer,"float")
+
+                await modService.awardJuryContinuousPoll(pollObject,correctAnswer,"float")
+            }
+            else{
+                const date_answers = mod_requests.map(mod_request => (mod_request.date_value));
+                
+                console.log(date_answers)
+
+                // Sort float_answers array in ascending order
+                date_answers.sort((a, b) => a - b);
+
+                console.log(date_answers)
+
+                const correctAnswer = findMedianDate(date_answers)
+
+                await pollService.awardWinnersContinuousPoll(pollObject,correctAnswer,"date")
+
+                await modService.awardJuryContinuousPoll(pollObject,correctAnswer,"date")
+            }
+            await modDB.deleteModRequestsforPollClose(pollObject.id)
+            await pollDB.finalizePoll(pollObject.id)
         }
-        return {resolved:false,requests:mod_requests}
+        return {status:"success"}
     }catch (error) {
         console.error('Close Poll Routine: Database Error');
         throw {error: errorCodes.DATABASE_ERROR};
@@ -221,6 +243,35 @@ async function checkLastGatheringTime(pollObject){
 
     // If overTime is bigger than reward hours, do another gathering
     return overTime >= jury_reward_incerase_time_hours;
+}
+
+function findMedian(arr) {
+    const length = arr.length;
+
+    if (length % 2 === 0) {
+        // If the array has an even number of elements, average the middle two
+        const middle1 = arr[length / 2 - 1];
+        const middle2 = arr[length / 2];
+        return (middle1 + middle2) / 2;
+    } else {
+        // If the array has an odd number of elements, return the middle one
+        return arr[Math.floor(length / 2)];
+    }
+}
+
+function findMedianDate(arr) {
+    const length = arr.length;
+
+    if (length % 2 === 0) {
+        // If the array has an even number of elements, average the middle two
+        const middle1 = arr[length / 2 - 1];
+        const middle2 = arr[length / 2];
+        const averageMilliseconds = (middle1.getTime() + middle2.getTime()) / 2;
+        return new Date(averageMilliseconds);
+    } else {
+        // If the array has an odd number of elements, return the middle one
+        return arr[Math.floor(length / 2)];
+    }
 }
 
 async function updateJuryForPoll(pollObject){
