@@ -32,6 +32,7 @@ import com.bounswe.predictionpolls.ui.profile.myProfileScreen
 import com.bounswe.predictionpolls.ui.moderation.moderationScreen
 import com.bounswe.predictionpolls.ui.moderation.apply.moderationApplyScreen
 import com.bounswe.predictionpolls.ui.moderation.list.moderationScreen
+import com.bounswe.predictionpolls.ui.moderation.vote.moderationVoteScreen
 import com.bounswe.predictionpolls.ui.profile.profileScreen
 import com.bounswe.predictionpolls.ui.signup.signupScreen
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
@@ -109,6 +110,7 @@ class MainActivity : ComponentActivity() {
                             forgotPasswordScreen(navController)
                             moderationApplyScreen(navController)
                             moderationScreen(navController)
+                            moderationVoteScreen(navController)
 
                             // TODO: Remove placeholders
                             composable("settings") { Text(text = "Settings Page WIP") }
