@@ -116,13 +116,19 @@ const contextService = require("../services/AddContextService.js");
  *
  *     AnnotationPost:
  *       type: object
+ *       required: 
+ *         - "@context"
+ *         - "type"
+ *         - "target"
  *       properties:
- *         id:
+ *         "@context":
  *           type: string
- *           description: The identity of the Annotation, an IRI
+ *           description: The context of the Annotation
+ *           enum: [http://www.w3.org/ns/anno.jsonld]
  *         type:
  *           type: string
  *           description: The type of the Annotation
+ *           enum: [Annotation]
  *         target:
  *           $ref: "#/components/schemas/Target"
  *           required: true
@@ -148,9 +154,11 @@ const contextService = require("../services/AddContextService.js");
  *         "@context":
  *           type: string
  *           description: The Annotation jsonld
+ *           enum: [http://www.w3.org/ns/anno.jsonld]
  *         id:
  *           type: string
  *           description: The identity of the Annotation, an IRI
+ *           enum: [Annotation]
  *         type:
  *           type: string
  *           description: The type of the Annotation
