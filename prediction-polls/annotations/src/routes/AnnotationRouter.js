@@ -192,9 +192,9 @@ const contextService = require("../services/AddContextService.js");
  *         target: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43
  *         body: 
  *           "type": TextualBody 
- *           value: Example annotation content 
+ *           value: I like this content!
  *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
  *         created: 2023-12-10T20:06:46.123Z
  *         modified: 2023-12-10T20:06:46.123Z
  *     CSSSelector:
@@ -209,9 +209,9 @@ const contextService = require("../services/AddContextService.js");
  *             value: "#elemid > .elemclass + p"
  *         body: 
  *           "type": TextualBody 
- *           value: Example annotation content 
+ *           value: I like this content!
  *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
  *         created: 2023-12-10T20:06:46.123Z
  *         modified: 2023-12-10T20:06:46.123Z
  *     XPathSelector:
@@ -226,9 +226,9 @@ const contextService = require("../services/AddContextService.js");
  *             value: "/html/body/p[2]/table/tr[2]/td[3]/span"
  *         body: 
  *           "type": TextualBody 
- *           value: Example annotation content 
+ *           value: I like this content
  *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
  *         created: 2023-12-10T20:06:46.123Z
  *         modified: 2023-12-10T20:06:46.123Z
  *     TextQuoteSelector:
@@ -247,7 +247,7 @@ const contextService = require("../services/AddContextService.js");
  *           "type": TextualBody 
  *           value: "This seems to be a typo."
  *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
  *         created: 2023-12-10T20:06:46.123Z
  *         modified: 2023-12-10T20:06:46.123Z
  *     TextPositionSelector:
@@ -263,9 +263,9 @@ const contextService = require("../services/AddContextService.js");
  *             end: 795
  *         body: 
  *           "type": TextualBody 
- *           value: "Example annotation content."
+ *           value: "I like this content!"
  *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
  *         created: 2023-12-10T20:06:46.123Z
  *         modified: 2023-12-10T20:06:46.123Z
  */
@@ -286,9 +286,9 @@ const contextService = require("../services/AddContextService.js");
  *         target: "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43"
  *         body: 
  *           "type": TextualBody 
- *           value: Example annotation content 
+ *           value: I like this content!
  *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
  *     PostCSSSelector:
  *       value:
  *         "@context": http://www.w3.org/ns/anno.jsonld
@@ -300,9 +300,9 @@ const contextService = require("../services/AddContextService.js");
  *             value: "#elemid > .elemclass + p"
  *         body: 
  *           "type": TextualBody 
- *           value: Example annotation content 
+ *           value: I like this content!
  *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
  *     PostXPathSelector:
  *       value:
  *         "@context": http://www.w3.org/ns/anno.jsonld
@@ -314,9 +314,9 @@ const contextService = require("../services/AddContextService.js");
  *             value: "/html/body/p[2]/table/tr[2]/td[3]/span"
  *         body: 
  *           "type": TextualBody 
- *           value: Example annotation content 
+ *           value: I like this content!
  *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
  *     PostTextQuoteSelector:
  *       value:
  *         "@context": http://www.w3.org/ns/anno.jsonld
@@ -332,7 +332,7 @@ const contextService = require("../services/AddContextService.js");
  *           "type": TextualBody 
  *           value: "This seems to be a typo."
  *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
  *     PostTextPositionSelector:
  *       value:
  *         "@context": http://www.w3.org/ns/anno.jsonld
@@ -345,9 +345,9 @@ const contextService = require("../services/AddContextService.js");
  *             end: 795
  *         body: 
  *           "type": TextualBody 
- *           value: "Example annotation content."
+ *           value: "I like this content!"
  *           format: text/plain 
- *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
+ *         creator: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
  */
 
 /**
