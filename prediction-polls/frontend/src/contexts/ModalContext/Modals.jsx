@@ -5,6 +5,7 @@ import ShareModal from '../../Components/Modals/ShareModal';
 import CommentModal from '../../Components/Modals/CommentModal';
 import ReportModal from '../../Components/Modals/ReportModal';
 import  getProfileMe  from '../../api/requests/profileMe';
+import JuryModal from '../../Components/Modals/JuryModal';
 
 const Modals = () => {
     const { modals, currentPollData } = useContext(ModalContext);
@@ -36,6 +37,7 @@ const Modals = () => {
       {modals[ModalNames.ShareModal] && <ShareModal pollData={currentPollData}/>}
       {modals[ModalNames.CommentModal] && <CommentModal previousComments={sampleComments} userImage={userData.profile_picture} usename={userData.username}/> }
       {modals[ModalNames.ReportModal] && <ReportModal />} 
+      {modals[ModalNames.JuryTermsModal] && <JuryModal />}
     </>
   );
 };
