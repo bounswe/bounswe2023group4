@@ -38,6 +38,7 @@ CREATE TABLE polls (
     isOpen BOOLEAN DEFAULT true,
     lastJuryGathering DATETIME,
     reward INT DEFAULT 0,
+    finalized BOOLEAN DEFAULT false
 );
 
 CREATE TABLE discrete_polls (
