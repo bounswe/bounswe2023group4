@@ -392,7 +392,7 @@ const contextService = require("../services/AddContextService.js");
  *         schema:
  *           type: string
  *         description: The creator of the Annotation
- *         default: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/exampleUser
+ *         default: http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon
  *       - in: query
  *         name: source
  *         schema:
@@ -434,7 +434,7 @@ router.get('/', service.getAnnotations);
  *         name: id
  *         required: true
  *         description: The ID of the annotation
- *         default: 6585afefc70b86f8bbbd0a3c
+ *         default: 6585ea616b03ab2c6b8c535f
  *         schema:
  *           type: string
  *     responses:
