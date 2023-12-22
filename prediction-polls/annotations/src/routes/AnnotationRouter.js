@@ -434,6 +434,7 @@ router.get('/', service.getAnnotations);
  *         name: id
  *         required: true
  *         description: The ID of the annotation
+ *         default: 6585afefc70b86f8bbbd0a3c
  *         schema:
  *           type: string
  *     responses:
