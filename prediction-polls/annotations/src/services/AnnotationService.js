@@ -55,12 +55,13 @@ async function getAnnotationWithId(req, res) {
       return res.status(404).json({ error: 'Annotation not found' });
     }
 
-    client.close();
     res.set('content-type', 'application/ld+json');
     res.send(JSON.stringify(annotation));
   } catch (error) {
     console.error('Error fetching annotations:', error);
     res.status(500).json({ error: 'Internal Server Error' });
+  } finally {
+    client.close();
   }
 }
 
