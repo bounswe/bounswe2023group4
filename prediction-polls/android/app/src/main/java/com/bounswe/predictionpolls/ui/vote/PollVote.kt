@@ -128,7 +128,8 @@ private fun PollVotePreview() {
                 dueDate = "",
                 rejectionText = "Last 5 days",
                 commentCount = 145,
-                onProfileCardClicked = {}
+                onProfileCardClicked = {},
+                onShareClicked = {}
             )
         }, currentPointsReserved = 125, onPointsReservedChanged = {}, onVotePressed = {})
     }

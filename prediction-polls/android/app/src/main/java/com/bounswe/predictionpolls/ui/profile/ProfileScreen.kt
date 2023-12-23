@@ -12,14 +12,18 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.domain.poll.Poll
 import com.bounswe.predictionpolls.extensions.fromISO8601
 import com.bounswe.predictionpolls.ui.common.poll.DiscreteVoteOption
 import com.bounswe.predictionpolls.ui.common.poll.PollComposable
 import com.bounswe.predictionpolls.ui.common.poll.ReadOnlyDiscretePollOptions
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
+import com.bounswe.predictionpolls.utils.shareLink
 
 
 @Composable
@@ -72,6 +76,8 @@ fun ProfileScreen(
             when (profileScreenUiState) {
                 is ProfileScreenUiState.ProfileAndFeedFetched -> {
                     items(profileScreenUiState.feed) {
+                        val context = LocalContext.current
+                        val frontEndUrl = stringResource(id = R.string.front_end_url)
                         PollComposable(
                             pollCreatorProfilePictureUri = it.creatorProfilePictureUri,
                             pollCreatorName = it.pollCreatorName,
@@ -91,6 +97,9 @@ fun ProfileScreen(
                             commentCount = it.commentCount,
                             onProfileCardClicked = {
                                 onProfileClicked(it.pollCreatorUsername)
+                            },
+                            onShareClicked = {
+                                context.shareLink(frontEndUrl+ "/vote/" + it.polId)
                             }
                         )
                     }
@@ -183,7 +192,8 @@ private fun ProfileScreenPreview() {
                         dueDate = "",
                         rejectionText = "Last 5 days",
                         commentCount = 530,
-                        onProfileCardClicked = {}
+                        onProfileCardClicked = {},
+                        onShareClicked = {}
                     )
                 }
             }
