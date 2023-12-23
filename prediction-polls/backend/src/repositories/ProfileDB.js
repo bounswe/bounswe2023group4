@@ -226,8 +226,9 @@ async function followProfile(follower_id, followed_id) {
 
 }
 async function unfollowProfile(follower_id, followed_id) {
-    const query_follow = "UPDATE user_follow SET follow_status = ? WHERE VALUES follower_id = ? AND followed_id = ?";
+    const query_follow = "UPDATE user_follow SET follow_status = ? WHERE follower_id = ? AND followed_id = ?";
     try {
+        
         const { error: error_follower } = await getProfileWithUserId(follower_id);
         const { error: error_followed } = await getProfileWithUserId(followed_id);
         const { error: error_follow } = await verifyUnFollow(follower_id, followed_id);
@@ -237,6 +238,7 @@ async function unfollowProfile(follower_id, followed_id) {
         if (error_follow) {
             throw { error: errorCodes.NO_FOLLOWERSHIP_FOUND };
         }
+        console.log("Hello",error_follower,error_followed,error_follow);
         const values = [false, follower_id, followed_id]
         const [resultSetHeader] = await pool.query(query_follow, values);
         return { status: "success" };
