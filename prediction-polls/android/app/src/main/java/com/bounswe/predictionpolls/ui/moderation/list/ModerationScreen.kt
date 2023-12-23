@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -40,6 +39,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.bounswe.predictionpolls.R
@@ -82,6 +82,16 @@ private fun ModerationScreenUI(
             .padding(horizontal = 12.dp, vertical = 16.dp),
     ) {
         item {
+            Text(
+                text = "Moderation",
+                color = MaterialTheme.colorScheme.primary,
+                style = MaterialTheme.typography.titleLarge,
+                fontSize = 20.sp,
+                lineHeight = 24.sp,
+                fontWeight = FontWeight.SemiBold,
+            )
+        }
+        item {
             FlowRow(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -98,6 +108,18 @@ private fun ModerationScreenUI(
                     }
                 }
             }
+        }
+        item {
+            Text(
+                text = "Choose a poll to resolve",
+                color = MaterialTheme.colorScheme.primary,
+                style = MaterialTheme.typography.titleLarge,
+                fontSize = 20.sp,
+                lineHeight = 24.sp,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Medium,
+                modifier = Modifier.fillMaxWidth().padding(top = 4.dp)
+            )
         }
         items(
             requestedPolls
@@ -313,30 +335,16 @@ private fun RequestedPoll(
         )
 
         if (isExpanded) {
-            Spacer(modifier = Modifier.height(8.dp))
-
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                when (requestedPoll.requestType) {
-                    ModeratorPoll.RequestType.REPORT -> Text(
-                        text = "Would you like to be on the jury to resolve a report the poll?",
-                        textAlign = TextAlign.Justify,
-                        modifier = Modifier.weight(1f)
-                    )
-
-                    else -> Text(
-                        text = "Would you like to be on the jury to end the poll?",
-                        textAlign = TextAlign.Justify,
-                        modifier = Modifier.weight(1f)
-                    )
-                }
+                Spacer(modifier = Modifier.weight(1f))
                 Button(
                     onClick = {
                     }
                 ) {
-                    Text(text = "Accept")
+                    Text(text = "Resolve")
                 }
             }
         }
