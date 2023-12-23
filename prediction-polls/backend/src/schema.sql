@@ -37,7 +37,7 @@ CREATE TABLE polls (
     tagsScanned INT DEFAULT 0,
     isOpen BOOLEAN DEFAULT true,
     lastJuryGathering DATETIME,
-    reward INT DEFAULT 0,
+    juryReward INT DEFAULT 0,
     finalized BOOLEAN DEFAULT false
 );
 
@@ -122,6 +122,7 @@ CREATE TABLE mod_requests (
     id INT AUTO_INCREMENT PRIMARY KEY,
     userId INT NOT NULL,
     poll_id INT NOT NULL,
+    reward INT DEFAULT 0,
     request_type ENUM('report','discrete', 'continuous') NOT NULL,
     UNIQUE(userId,poll_id,request_type),
     FOREIGN KEY (poll_id) REFERENCES polls(id),
