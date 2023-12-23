@@ -46,6 +46,7 @@ fun PollComposable(
     rejectionText: String,
     commentCount: Int,
     onProfileCardClicked: () -> Unit,
+    onShareClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -120,7 +121,7 @@ fun PollComposable(
                 }
                 PollIcon(
                     id = R.drawable.ic_share,
-                    modifier = Modifier.background(MaterialTheme.colorScheme.primary, PollIconShape)
+                    modifier = Modifier.background(MaterialTheme.colorScheme.primary, PollIconShape).clickable(onClick = onShareClicked)
                 )
                 PollIcon(
                     id = R.drawable.ic_warning,
@@ -257,6 +258,7 @@ private fun PollComposablePreview() {
             rejectionText = "Last 5 Days",
             commentCount = 265,
             onProfileCardClicked = {},
+            onShareClicked = {},
             modifier = Modifier.padding(16.dp)
         )
     }

@@ -3,6 +3,7 @@ package com.bounswe.predictionpolls.data.remote.services
 import com.bounswe.predictionpolls.data.remote.model.request.LoginRequest
 import com.bounswe.predictionpolls.data.remote.model.request.LogoutRequest
 import com.bounswe.predictionpolls.data.remote.model.request.RefreshAccessTokenRequest
+import com.bounswe.predictionpolls.data.remote.model.request.RequestPasswordResetRequest
 import com.bounswe.predictionpolls.data.remote.model.request.SignInWithGoogleRequest
 import com.bounswe.predictionpolls.data.remote.model.request.SignupRequest
 import com.bounswe.predictionpolls.data.remote.model.response.LoginResponse
@@ -35,4 +36,9 @@ interface AuthService {
     suspend fun loginWithGoogle(
         @Body loginWithGoogleRequest: SignInWithGoogleRequest
     ): LoginResponse
+
+    @POST("/auth/request-password-reset")
+    suspend fun requestPasswordReset(
+        @Body request: RequestPasswordResetRequest
+    )
 }

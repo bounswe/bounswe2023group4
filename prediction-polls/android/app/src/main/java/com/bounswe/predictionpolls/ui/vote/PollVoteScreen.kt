@@ -1,6 +1,5 @@
 package com.bounswe.predictionpolls.ui.vote
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -12,9 +11,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.ui.common.poll.ContinuousVoteOption
 import com.bounswe.predictionpolls.ui.common.poll.DiscreteVoteOption
 import com.bounswe.predictionpolls.ui.common.poll.PollComposable
+import com.bounswe.predictionpolls.utils.shareLink
 
 @Composable
 fun PollVoteScreen(
@@ -46,6 +47,7 @@ fun PollVoteScreen(
             PollVote(
                 pollContent = {
                     val poll = state.poll
+                    val frontEndUrl = remember { context.getString(R.string.front_end_url) }
                     PollComposable(
                         pollCreatorProfilePictureUri = poll.creatorProfilePictureUri,
                         pollCreatorName = poll.pollCreatorName,
@@ -72,7 +74,10 @@ fun PollVoteScreen(
                         rejectionText = poll.rejectionText ?: "",
                         commentCount = 0,
                         onProfileCardClicked = {
-                            Log.d("TAG", "Polls: ${poll.pollCreatorUsername}")
+                            onProfileCardClicked(poll.pollCreatorUsername)
+                        },
+                        onShareClicked = {
+                            context.shareLink(frontEndUrl + "/vote/" + poll.polId)
                         }
                     )
                 },
@@ -113,7 +118,10 @@ fun PollVoteScreen(
                         rejectionText = poll.rejectionText ?: "",
                         commentCount = 0,
                         onProfileCardClicked = {
-                            Log.d("TAG", "Polls: ${poll.pollCreatorUsername}")
+                            onProfileCardClicked(poll.pollCreatorUsername)
+                        },
+                        onShareClicked = {
+                            context.shareLink(context.getString(R.string.front_end_url) + "/vote/" + poll.polId)
                         }
                     )
                 },

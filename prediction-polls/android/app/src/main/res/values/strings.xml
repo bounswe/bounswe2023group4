@@ -93,4 +93,5 @@
 
     <string name="logged_out_notification">You have signed out successfully</string>
     <string name="login_required_notification">Please sign in to access this page.</string>
+    <string name="front_end_url">http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000</string>
 </resources>
