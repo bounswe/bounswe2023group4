@@ -87,6 +87,7 @@ async function getProfile(req, res) {
         if (badge_error) {
             throw badge_error;
         }
+        profile.isMod = result.isMod
         profile.badges = badges;
         profile.isMod = result.isMod;
 
@@ -152,9 +153,9 @@ async function getMyProfile(req, res) {
         if (badge_error) {
             throw badge_error;
         }
+        profile.isMod = result.isMod
         profile.badges = badges;
         profile.isMod = result.isMod;
-
 
         return res.status(200).json(profile);
 

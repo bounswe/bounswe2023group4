@@ -28,6 +28,24 @@ async function getOpenedPollsOfUser(req,res){
     }
 }
 
+async function getOpenedPollsOfGivenUser(req,res){
+    const {userId, username, email} = req.query;
+    console.log(userId, username, email);
+    try {
+        const result = await findUser({userId,username,email})
+        if(result.error){
+            throw result.error;
+        }
+
+        const rows = await db.getOpenedPollsOfUser(result.id);
+        const pollObjects = await createPollsJson(rows);
+        res.json(pollObjects);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(error);
+    }
+}
+
 async function getVotedPollsOfUser(req,res){
     const userId = req.user.id; 
     try {
@@ -497,5 +515,7 @@ async function awardWinnersContinuousPoll(pollObject,correctAnswer,cont_type){
     }
 }
 
-module.exports = { getFamousPolls, getOpenedPollsOfUser, getVotedPollsOfUser, createPollsJson, getPollWithId, addDiscretePoll, 
-    addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll, awardWinnersDiscretePoll, awardWinnersContinuousPoll}
+module.exports = { getFamousPolls, getOpenedPollsOfUser, getVotedPollsOfUser, getVotedPollsOfUser, createPollsJson, getPollWithId,
+    addDiscretePoll, addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll, awardWinnersDiscretePoll, awardWinnersContinuousPoll}
+
+
