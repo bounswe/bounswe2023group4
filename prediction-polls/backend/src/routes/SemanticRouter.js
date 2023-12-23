@@ -82,6 +82,8 @@ const router = express.Router();
  * paths:
  *  /semantic/tagsearch:
  *    get:
+ *      tags:
+ *        - semantic
  *      summary: Get semantic tags for a keyword
  *      description: Retrieve semantic tags related to a specified keyword.
  *      parameters:
@@ -144,6 +146,8 @@ router.get('/tagsearch', service.getTagsForKeyword);
  * paths:
  *   /semantic/pollsearch:
  *     get:
+ *       tags:
+ *         - semantic
  *       description: Get all polls related to given keyword
  *       parameters:
  *         - in: query
@@ -220,6 +224,8 @@ router.get('/pollsearch', service.getPollsForKeyword);
  * paths:
  *   /semantic/insert:
  *     post:
+ *       tags:
+ *         - semantic
  *       summary: Insert a semantic tag for a poll
  *       description: Add a semantic tag to a specified poll using the provided data.
  *       requestBody:
