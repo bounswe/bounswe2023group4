@@ -520,6 +520,6 @@ router.post('/follower',authenticator.authorizeAccessToken,service.getFollowerPr
  *                     message: Given data is not sufficient. Please follow guidelines.
  */
 
-router.post('/leaderboard/{topic}',service.getLeaderBoardRanking)
+router.get('/leaderboard/{topic}',service.getLeaderBoardRanking)
 
 module.exports = router;
