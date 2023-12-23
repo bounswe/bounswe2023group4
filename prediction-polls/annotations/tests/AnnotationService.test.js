@@ -1,5 +1,5 @@
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
-const { getAnnotations, getAnnotationWithId, createAnnotation } = require('../src/services/AnnotationService.js'); // Adjust the path accordingly
+const { getAnnotations, getAnnotationWithId, createAnnotation, deleteAnnotationWithId } = require('../src/services/AnnotationService.js'); // Adjust the path accordingly
 
 // Mocking MongoClient and its methods
 jest.mock('mongodb');
@@ -194,5 +194,39 @@ describe('getAnnotations', () => {
     // Assertions
     expect(MongoClient.prototype.connect).toHaveBeenCalledTimes(1);
     expect(res.status).toHaveBeenCalledWith(500);
+  });
+
+
+  test('should delete annotation successfully', async () => {
+    const req = {
+      params: {
+        id: 'validId',
+      },
+    };
+    const res = {
+      json: jest.fn(),
+      status: jest.fn(),
+    };
+
+    // Mock MongoClient methods as needed
+    MongoClient.prototype.connect.mockResolvedValue();
+    const deleteOneMock = jest.fn().mockResolvedValue({
+      deletedCount: 1,
+    });
+    MongoClient.prototype.db.mockReturnValueOnce({
+      collection: jest.fn(() => ({
+        deleteOne: deleteOneMock,
+      })),
+    });
+
+    await deleteAnnotationWithId(req, res);
+
+    // Assertions
+    expect(MongoClient.prototype.connect).toHaveBeenCalledTimes(1);
+    expect(MongoClient.prototype.db).toHaveBeenCalledWith(process.env.MONGO_DB);
+    expect(deleteOneMock).toHaveBeenCalledWith({ id: new RegExp(`.*validId$`) });
+    expect(res.status).not.toHaveBeenCalled(); // We don't expect a status to be set in this case
+    expect(res.json).toHaveBeenCalledWith({ message: 'Annotation deleted successfully' });
+    expect(MongoClient.prototype.close).toHaveBeenCalledTimes(1);
   });
 });
