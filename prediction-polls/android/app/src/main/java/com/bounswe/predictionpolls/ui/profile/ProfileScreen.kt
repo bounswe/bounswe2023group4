@@ -55,7 +55,9 @@ fun ProfileScreen(
                         userDescription = profileInfo.userDescription,
                         badgeUris = profileInfo.badgeUris,
                         onProfileEditPressed = onEditProfileClicked,
-                        onRequestsClicked = { /*TODO*/ })
+                        followerCount = 0, // TODO: Get follower count from backend
+                        followingCount = 0, // TODO: Get following count from backend
+                    )
                 }
 
                 is ProfileScreenUiState.ProfileAndFeedFetched -> {
@@ -68,7 +70,9 @@ fun ProfileScreen(
                         userDescription = profileInfo.userDescription,
                         badgeUris = profileInfo.badgeUris,
                         onProfileEditPressed = onEditProfileClicked,
-                        onRequestsClicked = { /*TODO*/ })
+                        followerCount = 0, // TODO: Get follower count from backend
+                        followingCount = 0
+                    ) // TODO: Get following count from backend
                 }
             }
         },
@@ -99,7 +103,7 @@ fun ProfileScreen(
                                 onProfileClicked(it.pollCreatorUsername)
                             },
                             onShareClicked = {
-                                context.shareLink(frontEndUrl+ "/vote/" + it.polId)
+                                context.shareLink(frontEndUrl + "/vote/" + it.polId)
                             }
                         )
                     }
@@ -159,7 +163,8 @@ private fun ProfileScreenPreview() {
                         "https://picsum.photos/id/233/200/300"
                     ),
                     onProfileEditPressed = { },
-                    onRequestsClicked = { },
+                    followerCount = 100,
+                    followingCount = 200,
                     modifier = Modifier.padding(16.dp)
                 )
 

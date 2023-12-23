@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -49,7 +48,8 @@ fun ProfileCard(
     userDescription: String?,
     badgeUris: List<String>,
     onProfileEditPressed: () -> Unit,
-    onRequestsClicked: () -> Unit,
+    followerCount: Int,
+    followingCount: Int,
     modifier: Modifier = Modifier
 ) {
     val paddingAroundContent: Dp = 16.dp
@@ -75,7 +75,7 @@ fun ProfileCard(
         ) {
             val profilePictureSize: Dp = 100.dp
             Column(
-                modifier = Modifier.offset(y = profilePictureSize / -2f - (paddingAroundContent)),
+                modifier = Modifier,
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -87,11 +87,12 @@ fun ProfileCard(
                 UserInfoText(username = userFullName)
             }
             ProfileCardButtons(
-                onRequestsClicked = onRequestsClicked,
                 onProfileEditPressed = onProfileEditPressed,
+                followerCount = followerCount,
+                followingCount = followingCount,
                 modifier = Modifier
                     .weight(1f)
-                    .padding(paddingAroundContent)
+                    .padding(horizontal = 32.dp)
             )
 
         }
@@ -109,12 +110,13 @@ fun ProfileCard(
 
 @Composable
 private fun ProfileCardButtons(
-    onRequestsClicked: () -> Unit,
     onProfileEditPressed: () -> Unit,
+    followerCount: Int ,
+    followingCount: Int,
     modifier: Modifier = Modifier
 ) {
     Column(
-        verticalArrangement = Arrangement.SpaceBetween,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ) {
@@ -125,16 +127,20 @@ private fun ProfileCardButtons(
                 .fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(16.dp))
-        RequestsButton(
-            onRequestsClicked = onRequestsClicked,
-            modifier = Modifier
-                .border(
-                    1.dp,
-                    MaterialTheme.colorScheme.primary,
-                    MaterialTheme.shapes.medium
-                )
-                .clip(MaterialTheme.shapes.medium)
-                .fillMaxWidth()
+        Text(
+            text = "Followers: $followerCount",
+            color = MaterialTheme.colorScheme.scrim,
+            fontFamily = MontserratFontFamily,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.SemiBold
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(
+            text = "Following: $followingCount",
+            color = MaterialTheme.colorScheme.scrim,
+            fontFamily = MontserratFontFamily,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.SemiBold
         )
     }
 }
@@ -313,8 +319,9 @@ private fun ProfileCardPreview() {
                 "https://picsum.photos/400/400", "https://picsum.photos/400/400"
             ),
             {},
-            {},
-            modifier = Modifier
+            modifier = Modifier,
+            followerCount = 10,
+            followingCount = 20
         )
     }
 
