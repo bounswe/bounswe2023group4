@@ -17,9 +17,9 @@ class ModerationRepository @Inject constructor(
         }
     }
 
-    override suspend fun getMyTags(): List<ModeratorTag> {
+    override suspend fun getTags(): List<ModeratorTag> {
         return execute {
-            moderationService.getMyTags().map { it.toModeratorTag() }
+            moderationService.getTags().map { it.toModeratorTag() }
         }
     }
 

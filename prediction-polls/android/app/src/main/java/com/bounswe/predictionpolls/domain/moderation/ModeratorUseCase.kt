@@ -12,7 +12,7 @@ class ModeratorUseCase @Inject constructor(
     suspend fun getModeratorStatus(): Boolean {
         return when (val result = getCurrentUserProfileUseCase()) {
             is Result.Success -> {
-                result.data.isMod ?: false
+                result.data.isMod
             }
             else -> {
                 false
@@ -33,7 +33,7 @@ class ModeratorUseCase @Inject constructor(
     }
 
     suspend fun getModeratorTags(): List<ModeratorTag> {
-        return moderationRepository.getMyTags()
+        return moderationRepository.getTags()
     }
 
     suspend fun updateModeratorTag(moderatorTag: ModeratorTag) {

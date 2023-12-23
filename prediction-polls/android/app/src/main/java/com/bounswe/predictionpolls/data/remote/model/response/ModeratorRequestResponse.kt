@@ -23,7 +23,7 @@ data class ModeratorRequestResponse(
         @SerializedName("creatorUsername")
         val creatorUsername: String,
         @SerializedName("creatorImage")
-        val creatorImage: String,
+        val creatorImage: String?,
         @SerializedName("pollType")
         val pollType: String,
         @SerializedName("closingDate")
@@ -32,8 +32,6 @@ data class ModeratorRequestResponse(
         val rejectVotes: String,
         @SerializedName("isOpen")
         val isOpen: Boolean,
-        @SerializedName("cont_poll_type")
-        val contPollType: String,
         @SerializedName("comments")
         val comments: List<Comment>,
         @SerializedName("options")
@@ -85,7 +83,6 @@ data class ModeratorRequestResponse(
                 closingDate = this.closingDate,
                 rejectVotes = this.rejectVotes,
                 isOpen = this.isOpen,
-                contPollType = this.contPollType,
                 comments = this.comments.map { it.toComment() },
                 options = this.options.map { it.toOption() }
             )
@@ -95,7 +92,11 @@ data class ModeratorRequestResponse(
     fun toModeratorPoll(): ModeratorPoll {
         return ModeratorPoll(
             requestId = this.requestId,
-            requestType = this.requestType,
+            requestType = when (this.requestType) {
+                "report" -> ModeratorPoll.RequestType.REPORT
+                "discrete" -> ModeratorPoll.RequestType.DISCRETE
+                else -> ModeratorPoll.RequestType.CONTINUOUS
+            },
             poll = this.poll.toPoll()
         )
     }

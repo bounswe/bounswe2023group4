@@ -19,7 +19,7 @@ interface ModerationService {
     suspend fun requestPromotion()
 
     @GET("/moderators/my-tags")
-    suspend fun getMyTags(): List<ModeratorTagResponse>
+    suspend fun getTags(): List<ModeratorTagResponse>
 
     @POST("/moderators/my-tags")
     suspend fun updateTag(

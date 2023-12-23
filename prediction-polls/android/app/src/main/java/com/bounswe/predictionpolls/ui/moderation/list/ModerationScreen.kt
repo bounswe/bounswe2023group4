@@ -25,6 +25,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.bounswe.predictionpolls.domain.moderation.ModeratorPoll
+import com.bounswe.predictionpolls.domain.moderation.ModeratorTag
 
 @Composable
 fun ModerationScreen(
@@ -39,8 +41,8 @@ fun ModerationScreen(
 
 @Composable
 private fun ModerationScreenUI(
-    tags: List<String> = listOf(),
-    requestedPolls: List<ModerationScreenState.RequestedPoll> = listOf()
+    tags: List<ModeratorTag> = listOf(),
+    requestedPolls: List<ModeratorPoll> = listOf()
 ) {
     LazyColumn(
         modifier = Modifier
@@ -56,7 +58,7 @@ private fun ModerationScreenUI(
 
 @Composable
 private fun RequestedPoll(
-    requestedPoll: ModerationScreenState.RequestedPoll
+    requestedPoll: ModeratorPoll
 ) {
     Column(
         modifier = Modifier
@@ -69,12 +71,12 @@ private fun RequestedPoll(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        when (requestedPoll.type) {
-            ModerationScreenState.RequestedPollType.REPORT -> Text(
+        when (requestedPoll.requestType) {
+            ModeratorPoll.RequestType.REPORT -> Text(
                 text = "Would you like to be on the jury to resolve a report about following poll?",
                 textAlign = TextAlign.Center
             )
-            ModerationScreenState.RequestedPollType.END -> Text(
+            else -> Text(
                 text = "Would you like to be on the jury to end the following poll?",
                 textAlign = TextAlign.Center
             )
@@ -83,7 +85,7 @@ private fun RequestedPoll(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(6.dp)
         ){
-            requestedPoll.tags.forEach { tag ->
+            requestedPoll.poll.tags.forEach { tag ->
                 Box(
                     modifier = Modifier
                         .background(MaterialTheme.colorScheme.secondary, RoundedCornerShape(8.dp))
@@ -94,7 +96,7 @@ private fun RequestedPoll(
             }
             Spacer(modifier = Modifier.weight(1f))
         }
-        Text(text = requestedPoll.question, textAlign = TextAlign.Center)
+        Text(text = requestedPoll.poll.question, textAlign = TextAlign.Center)
         Row(
             modifier = Modifier
                 .fillMaxWidth()

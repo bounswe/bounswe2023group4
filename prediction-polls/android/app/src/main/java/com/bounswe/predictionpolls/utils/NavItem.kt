@@ -6,8 +6,8 @@ import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.ui.create.CREATE_POLL_ROUTE
 import com.bounswe.predictionpolls.ui.feed.FEED_ROUTE
 import com.bounswe.predictionpolls.ui.leaderboard.LEADERBOARD_ROUTE
+import com.bounswe.predictionpolls.ui.moderation.apply.MODERATION_APPLY_ROUTE
 import com.bounswe.predictionpolls.ui.profile.MY_PROFILE_SCREEN_ROUTE
-import com.bounswe.predictionpolls.ui.profile.PROFILE_SCREEN_ROUTE
 
 enum class NavItem(
     val route: String,
@@ -33,7 +33,7 @@ enum class NavItem(
         requiresAuth = true
     ),
     MODERATION(
-        route = "moderation_apply",
+        route = MODERATION_APPLY_ROUTE,
         titleId = R.string.nav_drawer_moderation,
         iconId = R.drawable.ic_moderation,
         requiresAuth = true
