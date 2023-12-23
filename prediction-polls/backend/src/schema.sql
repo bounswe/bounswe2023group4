@@ -169,3 +169,11 @@ CREATE TABLE has_domain_point (
     amount INT NOT NULL DEFAULT 0,
     FOREIGN KEY (userId) REFERENCES users(id)
 );
+
+CREATE TABLE poll_has_semantic_tag(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    poll_id INT NOT NULL,
+    semantic_id VARCHAR(255) NOT NULL,
+    UNIQUE(poll_id,semantic_id),
+    FOREIGN KEY (poll_id) REFERENCES polls(userId)
+);
