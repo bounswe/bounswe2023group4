@@ -38,7 +38,7 @@ function Jury() {
           const requestData = response.find(
             (request) => request.request_id == id
           );
-          console.log("req", requestData);
+  
           setRequest(requestData);
         } else {
           console.log("Failed to fetch requests or no requests available");
@@ -61,8 +61,8 @@ function Jury() {
       ? "Does this poll contain content that should be removed from the platform?"
       : "Did the above event happened?";
 
-  const isReport = request?.request_type == "report";
   const isDiscrete = request?.request_type == "discrete";
+
 
   const handleResultOptionSelect = (index) => {
     setSelectedResultOption(index);
@@ -86,18 +86,24 @@ function Jury() {
           {isDiscrete ? (
             <div className={styles.options}>
               {request?.poll?.options.map((option, index) => (
-                <button className={styles.optionStyle} key={index}>
-                  {option.choice_text}
-                </button>
-              ))}
+                    <button
+                      className={`${styles.optionStyle} ${styles.clickable} ${
+                        selectedResultOption === index ? styles.active : ""
+                      } `}
+                      onClick={() => handleResultOptionSelect(index)}
+                      key={index}
+                    >
+                      {option.choice_text}
+                    </button>
+                  ))}
             </div>
           ) : (
             <div>
-              <input
-                className={`${styles.customInput} ${styles.disabled}`}
-                type={request?.poll?.cont_poll_type}
-                disabled
-              />
+               <input
+                    className={styles.customInput}
+                    type={request?.poll?.cont_poll_type}
+                    onChange={(e) => setCustomAnswer(e.target.value)}
+                  />
             </div>
           )}
 
@@ -120,57 +126,7 @@ function Jury() {
               No
             </button>
           </div>
-          {!isReport && (
-            <>
-              <p className={styles.text}>
-                What is the result of the above survey?(If the event did not
-                occur or the answer to the question is not in the options,
-                please click none. ){" "}
-              </p>
-              {isDiscrete ? (
-                <div className={styles.options}>
-                  {request?.poll?.options.map((option, index) => (
-                    <button
-                      className={`${styles.optionStyle} ${styles.clickable} ${
-                        selectedResultOption === index ? styles.active : ""
-                      } `}
-                      onClick={() => handleResultOptionSelect(index)}
-                      key={index}
-                    >
-                      {option.choice_text}
-                    </button>
-                  ))}
-                  {request?.poll?.options.map((option, index) => (
-                    <button
-                      className={`${styles.optionStyle} ${styles.clickable} ${
-                        selectedResultOption === index ? styles.active : ""
-                      } `}
-                      onClick={() => handleResultOptionSelect(index)}
-                      key={index}
-                    >
-                      {option.choice_text}
-                    </button>
-                  ))}
-                  <button
-                    className={`${styles.optionStyle} ${styles.clickable} ${
-                      selectedResultOption === "none" ? styles.active : ""
-                    }`}
-                    onClick={() => handleResultOptionSelect("none")}
-                  >
-                    NONE
-                  </button>
-                </div>
-              ) : (
-                <div>
-                  <input
-                    className={styles.customInput}
-                    type={request?.poll?.cont_poll_type}
-                    onChange={(e) => setCustomAnswer(e.target.value)}
-                  />
-                </div>
-              )}
-            </>
-          )}
+          
           <div className={styles.checkboxContainer}>
             <Checkbox
               checked={juryCheckboxState}
