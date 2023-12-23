@@ -43,7 +43,6 @@ async function getFamousPolls(){
 
     try {
         const [rows] = await pool.query(sql);
-        console.log(rows)
         return rows;
     } catch (error) {
         throw {error: error};
@@ -81,8 +80,7 @@ async function getVotedPollsOfUser(userId){
             throw user_result.error
         }
         const [rows] = await pool.query(sql,[userId,userId]);
-        
-        console.log(rows)
+    
         return rows;
     } catch (error) {
         throw {error: error};
@@ -486,7 +484,6 @@ async function getLastGatheringTime(poll_id){
 
     try {
         const [result] = await pool.query(time_check_sql,[poll_id]);
-        console.log(result)
         return result;
     } catch (error) {
         console.error('getLastGatheringTime(): Database Error');
@@ -513,7 +510,6 @@ async function getJuryReward(poll_id){
 
     try {
         const [result] = await pool.query(time_check_sql,[poll_id]);
-        console.log(result)
         return result;
     } catch (error) {
         console.error('getJuryReward(): Database Error');
