@@ -359,6 +359,9 @@ async function awardWinnersDiscretePoll(pollObject,choiceId){
 
         await db.distributeRewards(rewardPoints)
 
+        const tag_rows = await db.getTagsOfPoll(pollObject.id);
+        await db.distributeDomainPoint(rewardPoints,tag_rows);
+
         return {status: "success"};
     } catch (error) {
         if (error) {
@@ -419,6 +422,9 @@ async function awardWinnersContinuousPoll(pollObject,correctAnswer,cont_type){
 
             await db.distributeRewards(rewardPoints)
 
+            const tag_rows = await db.getTagsOfPoll(pollObject.id);
+            await db.distributeDomainPoint(rewardPoints,tag_rows);
+
             return {status: "success"};
         }
         if(cont_type == "date"){
@@ -471,9 +477,12 @@ async function awardWinnersContinuousPoll(pollObject,correctAnswer,cont_type){
                 }
             });
 
-            const rewardPointsDate = allRewardPointsDate.filter(rewarding => rewarding != null);
+            const rewardPoints = allRewardPointsDate.filter(rewarding => rewarding != null);
 
-            await db.distributeRewards(rewardPointsDate);
+            await db.distributeRewards(rewardPoints);
+
+            const tag_rows = await db.getTagsOfPoll(pollObject.id);
+            await db.distributeDomainPoint(rewardPoints,tag_rows);
 
             return { status: "success" };
             }
