@@ -23,10 +23,10 @@ class ModerationRepository @Inject constructor(
         }
     }
 
-    override suspend fun updateMyTag(myTag: ModeratorTag) {
+    override suspend fun updateTag(myTag: ModeratorTag) {
         execute {
             val request = ModeratorTagRequest(myTag.topic, myTag.isSelected)
-            moderationService.updateMyTag(request)
+            moderationService.updateTag(request)
         }
     }
 

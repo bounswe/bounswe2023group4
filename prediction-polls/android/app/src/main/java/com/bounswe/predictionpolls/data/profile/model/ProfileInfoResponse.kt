@@ -23,6 +23,7 @@ data class ProfileInfoResponse(
     val biography: String?,
     val isHidden: Int?,
     val points: Int?,
+    val isMod: Boolean?,
     val birthday: String?,
 ) {
 
@@ -36,6 +37,7 @@ data class ProfileInfoResponse(
                 biography,
                 persistentListOf(),
                 birthday,
+                isMod,
                 isHidden == 1
             )
         } else {

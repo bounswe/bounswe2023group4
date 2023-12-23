@@ -22,7 +22,7 @@ interface ModerationService {
     suspend fun getMyTags(): List<ModeratorTagResponse>
 
     @POST("/moderators/my-tags")
-    suspend fun updateMyTag(
+    suspend fun updateTag(
         @Body myTag: ModeratorTagRequest
     )
 
