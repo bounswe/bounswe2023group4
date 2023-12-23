@@ -167,5 +167,5 @@ CREATE TABLE has_domain_point (
     topic VARCHAR(255) NOT NULL,
     userId INT NOT NULL,
     amount INT NOT NULL DEFAULT 0,
-    FOREIGN KEY (userId) REFERENCES users(id) ON DELETE SET NULL
+    FOREIGN KEY (userId) REFERENCES users(id)
 );

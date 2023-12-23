@@ -284,7 +284,7 @@ async function followerProfiles(userId) {
 }
 async function getRankPerTag(topic){
     try {
-        const query = 'SELECT user.id , user.username has_domain_point.amount from user, has_domain_point where user.id = has_domain_point.userID AND has_domain_point.topic = ? Order By has_domain_point.amount Desc LIMIT 100';
+        const query = 'SELECT users.id , users.username has_domain_point.amount from user, has_domain_point where user.id = has_domain_point.userId AND has_domain_point.topic = ? Order By has_domain_point.amount Desc LIMIT 100';
         const [result] = await pool.query(query, [topic]);
         return {result: result};
     } catch (error) {

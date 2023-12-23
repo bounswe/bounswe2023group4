@@ -252,9 +252,6 @@ async function decrementUserParticipate(userId){
         throw error;
     }
 }
-
-
-
 module.exports = {pool, addRefreshToken,checkRefreshToken,deleteRefreshToken,isUsernameOrEmailInUse,checkCredentials,addUser,findUser,
     saveEmailVerificationToken,verifyEmailToken,createTransporter,storePasswordResetToken,getUserByResetToken,updateUserPassword,
     clearResetToken,updateUserLastLogin,incrementUserParticipate,decrementUserParticipate
