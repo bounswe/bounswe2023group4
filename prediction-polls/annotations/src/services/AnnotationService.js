@@ -105,12 +105,12 @@ async function deleteAnnotationWithId(req, res) {
       return res.status(404).json({ error: 'Annotation not found' });
     }
 
-    client.close();
-
     res.json({ message: 'Annotation deleted successfully' });
   } catch (error) {
     console.error('Error deleting annotation:', error);
     res.status(500).json({ error: 'Internal Server Error' });
+  } finally {
+    client.close();
   }
 }
 
