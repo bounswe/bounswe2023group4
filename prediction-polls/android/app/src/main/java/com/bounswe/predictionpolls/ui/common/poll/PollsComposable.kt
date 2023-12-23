@@ -8,10 +8,14 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.domain.poll.Poll
 import com.bounswe.predictionpolls.domain.poll.PollOption
 import com.bounswe.predictionpolls.extensions.fromISO8601
+import com.bounswe.predictionpolls.utils.shareLink
 import kotlinx.collections.immutable.ImmutableList
 
 
@@ -25,11 +29,13 @@ fun Polls(
     modifier: Modifier = Modifier,
     onPollClicked: (id: String) -> Unit = {},
 ) {
+    val context = LocalContext.current
     LazyColumn(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(polls) {
+            val frontEndUrl = stringResource(id = R.string.front_end_url)
             PollComposable(
                 modifier = Modifier.clickable {
                     onPollClicked(it.polId)
@@ -52,7 +58,10 @@ fun Polls(
                 commentCount = it.commentCount,
                 onProfileCardClicked = {
                     onProfileClicked(it.pollCreatorUsername)
-                }
+                },
+                onShareClicked = {
+                    context.shareLink(frontEndUrl+ "/vote/" + it.polId)
+                },
             )
         }
     }
