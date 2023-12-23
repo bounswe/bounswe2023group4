@@ -1,4 +1,5 @@
 const axios = require('axios');
+const db = require('../repositories/SemanticDB.js');
 
 async function searchSemanticTags(keyword) {
   const url = "https://www.wikidata.org/w/api.php";
@@ -30,4 +31,21 @@ async function getTagsForKeyword(req, res) {
   }
 }
 
-module.exports = {getTagsForKeyword}
+async function insertTag(req, res) {
+  const pollId = req.body.pollId;
+  const semanticTag = req.body.semanticTag;
+
+  try {
+    if (!pollId || !semanticTag) {
+      throw {error: "Bad request, need pollId and semanticTag."};
+    }
+    const insertId = await db.addSemanticTagForPoll(semanticTag, pollId);
+
+    res.json({insertId: insertId, success: true});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error);
+  }
+}
+
+module.exports = {getTagsForKeyword, insertTag}
