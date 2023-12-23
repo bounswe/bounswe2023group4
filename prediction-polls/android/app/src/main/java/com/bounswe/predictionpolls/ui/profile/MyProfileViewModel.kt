@@ -22,7 +22,7 @@ import javax.inject.Inject
 private data class MyProfileViewModelState(
     val profileInfo: ProfileInfo? = null,
     val userId: String? = null,
-    val isCurrentUserFollowed: Boolean = false,
+    val isCurrentUserFollowed: Boolean? = null,
     val followerCount: Int = 0,
     val followedCount: Int = 0,
     val feed: ImmutableList<Poll>? = null,
@@ -98,6 +98,8 @@ class MyProfileViewModel @Inject constructor(
             }
         }
     }
+
+
 
     private suspend fun getFollowed() {
         val userId =

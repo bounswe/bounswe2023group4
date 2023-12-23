@@ -35,7 +35,14 @@ fun NavGraphBuilder.profileScreen(navController: NavController) {
 
         ProfileScreen(profileScreenUiState, onProfileClicked = {
             navController.navigateToProfileScreen(it)
-        }, { })
+        }, null, onFollowClicked = {
+            (profileScreenUiState as? ProfileScreenUiState.ProfileAndFeedFetched)?.let { profileScreenUiState ->
+                if (profileScreenUiState.isFollowedByLoggedUser == true) {
+                    profileViewModel.unfollowUser(profileScreenUiState.profileInfo.userId)
+                } else
+                    profileViewModel.followUser(profileScreenUiState.profileInfo.userId)
+            }
+        })
     }
 }
 

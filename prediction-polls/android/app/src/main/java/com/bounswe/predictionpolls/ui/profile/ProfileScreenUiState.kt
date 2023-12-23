@@ -20,7 +20,7 @@ sealed interface ProfileScreenUiState {
         val errorMessage: String,
         val followerCount: Int,
         val followedCount: Int,
-        val isFollowedByLoggedUser: Boolean
+        val isFollowedByLoggedUser: Boolean?
     ) : ProfileScreenUiState
 
 
@@ -29,7 +29,7 @@ sealed interface ProfileScreenUiState {
         val feed: ImmutableList<Poll>,
         val followerCount: Int,
         val followedCount: Int,
-        val isFollowedByLoggedUser: Boolean
+        val isFollowedByLoggedUser: Boolean?
     ) :
         ProfileScreenUiState
 

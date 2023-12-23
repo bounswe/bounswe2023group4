@@ -30,7 +30,8 @@ import com.bounswe.predictionpolls.utils.shareLink
 fun ProfileScreen(
     profileScreenUiState: ProfileScreenUiState,
     onProfileClicked: (String) -> Unit,
-    onEditProfileClicked: () -> Unit,
+    onEditProfileClicked: (() -> Unit)?,
+    onFollowClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     InternalProfileScreen(
@@ -55,8 +56,10 @@ fun ProfileScreen(
                         userDescription = profileInfo.userDescription,
                         badgeUris = profileInfo.badgeUris,
                         onProfileEditPressed = onEditProfileClicked,
-                        followerCount = 0, // TODO: Get follower count from backend
-                        followingCount = 0, // TODO: Get following count from backend
+                        followerCount = profileInfo.followerCount ?: 0,
+                        followingCount = profileInfo.followedCount ?: 0,
+                        isFollowed = profileScreenUiState.isFollowedByLoggedUser,
+                        onFollowClicked = onFollowClicked
                     )
                 }
 
@@ -70,9 +73,11 @@ fun ProfileScreen(
                         userDescription = profileInfo.userDescription,
                         badgeUris = profileInfo.badgeUris,
                         onProfileEditPressed = onEditProfileClicked,
-                        followerCount = 0, // TODO: Get follower count from backend
-                        followingCount = 0
-                    ) // TODO: Get following count from backend
+                        followerCount = profileInfo.followerCount ?: 0,
+                        followingCount = profileInfo.followedCount ?: 0,
+                        isFollowed = profileScreenUiState.isFollowedByLoggedUser,
+                        onFollowClicked = onFollowClicked
+                    )
                 }
             }
         },
@@ -165,7 +170,9 @@ private fun ProfileScreenPreview() {
                     onProfileEditPressed = { },
                     followerCount = 100,
                     followingCount = 200,
-                    modifier = Modifier.padding(16.dp)
+                    modifier = Modifier.padding(16.dp),
+                    onFollowClicked = {},
+                    isFollowed = true
                 )
 
             },

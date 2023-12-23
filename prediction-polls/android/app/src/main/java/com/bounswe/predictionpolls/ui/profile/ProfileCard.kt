@@ -18,6 +18,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -46,8 +47,10 @@ fun ProfileCard(
     coverPhotoUri: String?,
     profilePictureUri: String?,
     userDescription: String?,
+    isFollowed: Boolean?,
     badgeUris: List<String>,
-    onProfileEditPressed: () -> Unit,
+    onProfileEditPressed: (() -> Unit)?,
+    onFollowClicked: () -> Unit,
     followerCount: Int,
     followingCount: Int,
     modifier: Modifier = Modifier
@@ -85,6 +88,12 @@ fun ProfileCard(
                 )
                 UserInfoText(username = username)
                 UserInfoText(username = userFullName)
+                isFollowed?.let {
+                    Button(onClick = onFollowClicked) {
+                        Text(text = if (it) "Unfollow" else "Follow")
+                    }
+                }
+
             }
             ProfileCardButtons(
                 onProfileEditPressed = onProfileEditPressed,
@@ -110,8 +119,8 @@ fun ProfileCard(
 
 @Composable
 private fun ProfileCardButtons(
-    onProfileEditPressed: () -> Unit,
-    followerCount: Int ,
+    onProfileEditPressed: (() -> Unit)?,
+    followerCount: Int,
     followingCount: Int,
     modifier: Modifier = Modifier
 ) {
@@ -120,12 +129,15 @@ private fun ProfileCardButtons(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ) {
-        ProfileEditButton(
-            onProfileEditPressed = onProfileEditPressed,
-            modifier = Modifier
-                .clip(MaterialTheme.shapes.medium)
-                .fillMaxWidth()
-        )
+        onProfileEditPressed?.let {
+            ProfileEditButton(
+                onProfileEditPressed = onProfileEditPressed,
+                modifier = Modifier
+                    .clip(MaterialTheme.shapes.medium)
+                    .fillMaxWidth()
+            )
+        }
+
         Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = "Followers: $followerCount",
@@ -175,16 +187,6 @@ private fun ProfileEditButton(onProfileEditPressed: () -> Unit, modifier: Modifi
     }
 }
 
-@Composable
-private fun CoverPhoto(imageUri: String?, modifier: Modifier) {
-    AsyncImage(
-        model = imageUri,
-        contentDescription = "User Badge",
-        modifier = modifier,
-        contentScale = if (imageUri == null) ContentScale.Fit else ContentScale.Crop,
-        alignment = Alignment.Center,
-    )
-}
 
 @Composable
 private fun RequestsButton(onRequestsClicked: () -> Unit, modifier: Modifier = Modifier) {
@@ -310,6 +312,7 @@ private fun ProfileCardPreview() {
             "https://picsum.photos/400/400",
             "https://picsum.photos/400/400",
             "This is a long description text. Lorem ipsum dolor sit amet, consectet adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+            true,
             listOf(
                 "https://picsum.photos/400/400",
                 "https://picsum.photos/400/400",
@@ -321,7 +324,8 @@ private fun ProfileCardPreview() {
             {},
             modifier = Modifier,
             followerCount = 10,
-            followingCount = 20
+            followingCount = 20,
+            onFollowClicked = {}
         )
     }
 
