@@ -175,5 +175,5 @@ CREATE TABLE poll_has_semantic_tag(
     poll_id INT NOT NULL,
     semantic_id VARCHAR(255) NOT NULL,
     UNIQUE(poll_id,semantic_id),
-    FOREIGN KEY (poll_id) REFERENCES polls(userId)
+    FOREIGN KEY (poll_id) REFERENCES polls(id)
 );
