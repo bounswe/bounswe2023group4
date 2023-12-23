@@ -23,7 +23,8 @@ data class ModeratorPoll(
         val rejectVotes: String,
         val isOpen: Boolean,
         val comments: List<Comment>,
-        val options: List<Option>
+        val options: List<Option>,
+        val contPollType: String?,
     ) {
         data class Comment(
             val id: Int,

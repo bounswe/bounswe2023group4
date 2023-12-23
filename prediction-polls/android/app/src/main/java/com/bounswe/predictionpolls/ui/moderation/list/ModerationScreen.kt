@@ -45,6 +45,7 @@ import androidx.navigation.NavController
 import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.domain.moderation.ModeratorPoll
 import com.bounswe.predictionpolls.domain.moderation.ModeratorTag
+import com.bounswe.predictionpolls.ui.moderation.vote.navigateToModerationApplyScreen
 
 @Composable
 fun ModerationScreen(
@@ -60,6 +61,9 @@ fun ModerationScreen(
         },
         onTagRemoved = {
             viewModel.onEvent(ModerationScreenEvent.OnTagRemoved(it))
+        },
+        onResolveClicked = {
+            navController.navigateToModerationApplyScreen(it)
         }
     )
 }
@@ -71,7 +75,8 @@ private fun ModerationScreenUI(
     selectedTags: List<ModeratorTag> = listOf(),
     requestedPolls: List<ModeratorPoll> = listOf(),
     onTagSelected: (ModeratorTag) -> Unit = {},
-    onTagRemoved: (ModeratorTag) -> Unit = {}
+    onTagRemoved: (ModeratorTag) -> Unit = {},
+    onResolveClicked: (Int) -> Unit = {}
 ) {
     var showDialog by remember { mutableStateOf(false) }
 
@@ -124,7 +129,7 @@ private fun ModerationScreenUI(
         items(
             requestedPolls
         ) { requestedPoll ->
-            RequestedPoll(requestedPoll = requestedPoll)
+            RequestedPoll(requestedPoll = requestedPoll, onResolveClicked)
         }
     }
 
@@ -270,7 +275,8 @@ private fun TagSelectionItem(
 
 @Composable
 private fun RequestedPoll(
-    requestedPoll: ModeratorPoll
+    requestedPoll: ModeratorPoll,
+    onResolveClicked: (Int) -> Unit = {}
 ) {
     var isExpanded by remember { mutableStateOf(false) }
 
@@ -342,6 +348,7 @@ private fun RequestedPoll(
                 Spacer(modifier = Modifier.weight(1f))
                 Button(
                     onClick = {
+                        onResolveClicked(requestedPoll.requestId)
                     }
                 ) {
                     Text(text = "Resolve")
