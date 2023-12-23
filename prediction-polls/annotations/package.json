@@ -18,5 +18,8 @@
     "mongodb": "^6.3.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
