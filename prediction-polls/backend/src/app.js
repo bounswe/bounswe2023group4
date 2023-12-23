@@ -3,6 +3,7 @@ const authRouter = require('./routes/AuthorizationRouter.js');
 const pollRouter = require('./routes/PollRouter.js');
 const profileRouter = require('./routes/ProfileRouter.js');
 const moderatorRouter = require('./routes/ModeratorRouter.js');
+const semanticRouter = require('./routes/SemanticRouter.js');
 const tagRoutine = require('./routines/tagRoutine.js');
 const modAppointRoutine = require('./routines/modAppointRoutine.js');
 
@@ -25,6 +26,7 @@ app.use('/polls',pollRouter);
 app.use('/auth', authRouter);
 app.use('/profiles', profileRouter);
 app.use('/moderators', moderatorRouter);
+app.use('/semantic', semanticRouter);
 
 const swaggerSpec = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
