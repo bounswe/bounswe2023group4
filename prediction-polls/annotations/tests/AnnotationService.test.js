@@ -229,4 +229,36 @@ describe('getAnnotations', () => {
     expect(res.json).toHaveBeenCalledWith({ message: 'Annotation deleted successfully' });
     expect(MongoClient.prototype.close).toHaveBeenCalledTimes(1);
   });
+
+  test('should return 404 for non-existing id', async () => {
+    const req = {
+      params: {
+        id: 'nonExistingId',
+      },
+    };
+    const res = {
+      status: jest.fn().mockReturnValue({json: jest.fn()}),
+      json: jest.fn(),
+    };
+
+    // Mock MongoClient methods to simulate non-existing id
+    MongoClient.prototype.connect.mockResolvedValue();
+    const deleteOneMock = jest.fn().mockResolvedValue({
+      deletedCount: 0,
+    });
+    MongoClient.prototype.db.mockReturnValueOnce({
+      collection: jest.fn(() => ({
+        deleteOne: deleteOneMock,
+      })),
+    });
+
+    await deleteAnnotationWithId(req, res);
+
+    // Assertions
+    expect(MongoClient.prototype.connect).toHaveBeenCalledTimes(1);
+    expect(MongoClient.prototype.db).toHaveBeenCalledWith(process.env.MONGO_DB);
+    expect(deleteOneMock).toHaveBeenCalledWith({ id: new RegExp(`.*nonExistingId$`) });
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(MongoClient.prototype.close).toHaveBeenCalledTimes(1);
+  });
 });
