@@ -238,7 +238,6 @@ async function unfollowProfile(follower_id, followed_id) {
         if (error_follow) {
             throw { error: errorCodes.NO_FOLLOWERSHIP_FOUND };
         }
-        console.log("Hello",error_follower,error_followed,error_follow);
         const values = [false, follower_id, followed_id]
         const [resultSetHeader] = await pool.query(query_follow, values);
         return { status: "success" };
