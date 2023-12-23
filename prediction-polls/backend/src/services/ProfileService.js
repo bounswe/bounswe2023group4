@@ -233,7 +233,7 @@ async function followProfiles(req, res) {
 }
 async function unfollowProfiles(req, res) {
     const { follower_id, followed_id } = req.body;
-
+    
     if (follower_id == undefined || followed_id == undefined) {
         return res.status(400).json({ error: errorCodes.INSUFFICIENT_DATA });
     }

@@ -205,7 +205,7 @@ async function followProfile(follower_id, followed_id) {
             throw { error: errorCodes.FOLLOWERSHIP_ALREADY_EXISTS };
         }
         if (updateDecision == true) {
-            const query_follow = "UPDATE user_follow SET follow_status = ? WHERE follower_id = ? AND followed_id = ?)";
+            const query_follow = "UPDATE user_follow SET follow_status = ? WHERE follower_id = ? AND followed_id = ?";
             const values = [true, follower_id, followed_id];
             const [resultSetHeader] = await pool.query(query_follow, values);
             return { status: "success" };
@@ -228,7 +228,6 @@ async function followProfile(follower_id, followed_id) {
 async function unfollowProfile(follower_id, followed_id) {
     const query_follow = "UPDATE user_follow SET follow_status = ? WHERE follower_id = ? AND followed_id = ?";
     try {
-        
         const { error: error_follower } = await getProfileWithUserId(follower_id);
         const { error: error_followed } = await getProfileWithUserId(followed_id);
         const { error: error_follow } = await verifyUnFollow(follower_id, followed_id);
@@ -241,7 +240,6 @@ async function unfollowProfile(follower_id, followed_id) {
         const values = [false, follower_id, followed_id]
         const [resultSetHeader] = await pool.query(query_follow, values);
         return { status: "success" };
-
     }
     catch (error) {
         return { error: errorCodes.DATABASE_ERROR };
