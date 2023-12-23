@@ -261,4 +261,25 @@ describe('getAnnotations', () => {
     expect(res.status).toHaveBeenCalledWith(404);
     expect(MongoClient.prototype.close).toHaveBeenCalledTimes(1);
   });
+
+  test('should handle errors and return 500 status', async () => {
+    const req = {
+      params: {
+        id: 'validId',
+      },
+    };
+    const res = {
+      status: jest.fn().mockReturnValue({json: jest.fn()}),
+      json: jest.fn(),
+    };
+
+    // Mock MongoClient methods to simulate an error
+    MongoClient.prototype.connect.mockRejectedValue(new Error('Connection error'));
+
+    await deleteAnnotationWithId(req, res);
+
+    // Assertions
+    expect(MongoClient.prototype.connect).toHaveBeenCalledTimes(1);
+    expect(res.status).toHaveBeenCalledWith(500);
+  });
 });
