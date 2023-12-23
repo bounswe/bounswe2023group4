@@ -115,7 +115,7 @@ async function checkRequestOfUser(requestId,userId){
 
 async function createDiscreteRequest(userId,poll_id,reward){
     const request_sql = 'INSERT INTO mod_requests (userId, poll_id, request_type, reward) VALUES (?, ?, "discrete", ?)'
-    const discrete_request_sql = 'INSERT INTO mod_request_discrete (requeat_id) VALUES (?)'
+    const discrete_request_sql = 'INSERT INTO mod_request_discrete (request_id) VALUES (?)'
 
     try {
         const [request_insert_result] = await pool.query(request_sql,[userId,poll_id,reward]);
@@ -128,8 +128,8 @@ async function createDiscreteRequest(userId,poll_id,reward){
 }
 
 async function createContinuousRequest(userId,poll_id,reward){
-    const request_sql = 'INSERT INTO mod_requests (userId, poll_id, request_type, reward) VALUES (?, ?, "continuous", ?)'
-    const continuous_request_sql = 'INSERT INTO mod_request_continuous (requeat_id) VALUES (?)'
+    const request_sql = 'INSERT INTO mod_requests (userId, poll_id, request_type,reward) VALUES (?, ?, "continuous", ?)'
+    const continuous_request_sql = 'INSERT INTO mod_request_continuous (request_id) VALUES (?)'
 
     try {
         const [request_insert_result] = await pool.query(request_sql,[userId,poll_id,reward]);
@@ -142,8 +142,8 @@ async function createContinuousRequest(userId,poll_id,reward){
 }
 
 async function createReportRequest(userId,poll_id,reward){
-    const request_sql = 'INSERT INTO mod_requests (userId, poll_id, request_type, reward) VALUES (?, ?, "report", ?)'
-    const report_request_sql = 'INSERT INTO mod_request_report (requeat_id) VALUES (?)'
+    const request_sql = 'INSERT INTO mod_requests (userId, poll_id, request_type,reward) VALUES (?, ?, "report", ?)'
+    const report_request_sql = 'INSERT INTO mod_request_report (request_id) VALUES (?)'
 
     try {
         const [request_insert_result] = await pool.query(request_sql,[userId,poll_id,reward]);
@@ -227,8 +227,56 @@ async function deleteModRequestsforPollClose(pollId){
     }
 }
 
-async function awardJuryforPollClose(pollId){
+async function deleteModRequest(request_id){
+    const discrete_delete_sql = "DELETE FROM mod_request_discrete WHERE request_id = ?;"
+    const report_delete_sql = "DELETE FROM mod_request_report WHERE request_id = ?"
+    const cont_delete_sql = "DELETE FROM mod_request_continuous WHERE request_id = ?"
+    const main_delete_sql = "DELETE FROM mod_requests WHERE id = ?"
 
+    try {
+        const [discrete_deleted] = await pool.query(discrete_delete_sql,[request_id]);
+        const [cont_deleted] = await pool.query(cont_delete_sql,[request_id]);
+        const [report_deleted] = await pool.query(report_delete_sql,[request_id]);
+        const [main_deleted] = await pool.query(main_delete_sql,[request_id]);
+        return {status:"success"};
+    } catch (error) {
+        console.error('deleteModRequest(): Database Error');
+        throw {error: errorCodes.DATABASE_ERROR};
+    }
+}
+
+async function cleanNonRespondedRequests(userId){
+    try {
+        const user_requests = await getModRequests(userId)
+        const responded_requests = await Promise.all(user_requests.map(async (user_request)=>{
+            const request_id = user_request.id;
+            const has_response = await checkModRequestForResponse(request_id)
+            if(!has_response){
+                await deleteModRequest(request_id);
+            }
+        }))
+        return {status:"success"};
+    } catch (error) {
+        console.error('cleanNonRespondedRequests(): Database Error');
+        throw {error: errorCodes.DATABASE_ERROR};
+    }
+     
+}
+
+async function checkModRequestForResponse(request_id){
+    const response_check_sql = "SELECT CASE "+
+        "WHEN EXISTS (SELECT 1 FROM mod_request_report WHERE request_id = ? AND (ban_poll IS NOT NULL)) "+
+        "OR EXISTS (SELECT 1 FROM mod_request_discrete WHERE request_id = ? AND (choice_id IS NOT NULL)) "+
+        "OR EXISTS (SELECT 1 FROM mod_request_continuous WHERE request_id = ? AND (float_value IS NOT NULL OR date_value IS NOT NULL)) "+
+        "THEN true ELSE false END AS has_response";
+
+    try {
+        const [has_response] = await pool.query(response_check_sql,[request_id,request_id,request_id]);
+        return has_response[0].has_response
+    } catch (error) {
+        console.error('checkModRequestForResponse(): Database Error');
+        throw {error: errorCodes.DATABASE_ERROR};
+    }
 }
 
 async function setDecisionOnReportRequest(requestId,ban_poll){
@@ -286,11 +334,23 @@ async function getAllMods(){
         console.error('getAllMods(): Database Error');
         throw {error: errorCodes.DATABASE_ERROR};
     }
+}
 
+async function getJurySeekingPolls(){
+    const jury_seeking_poll_sql = "SELECT * FROM polls WHERE isOpen = 0 AND finalized = 0"
+
+    try {
+        const [rows] = await pool.query(jury_seeking_poll_sql);
+        return rows
+    } catch (error) {
+        console.error('getAllMods(): Database Error');
+        throw {error: errorCodes.DATABASE_ERROR};
+    }
 }
 
 module.exports = { getPromotionRequests,addPromotionRequest, makeMod, getModTags, deleteModTag, addModTag, getModRequests, 
     checkRequestOfUser, createDiscreteRequest, createDiscreteRequest, createContinuousRequest, createReportRequest,
     getAnsweredDiscreteRequestsOfPoll, getAnsweredContinuousRequestsOfPoll, getAnsweredReportRequestsOfPoll, updateJuryRewardforRequests,
-    deleteModRequestsforPollClose, setDecisionOnReportRequest, setDecisionOnDiscreteRequest, setDecisionOnContinuousRequest, getAllMods
+    deleteModRequestsforPollClose, setDecisionOnReportRequest, setDecisionOnDiscreteRequest, setDecisionOnContinuousRequest, getAllMods, 
+    getJurySeekingPolls, cleanNonRespondedRequests
 }
