@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.bounswe.predictionpolls.core.BaseViewModel
+import com.bounswe.predictionpolls.domain.moderation.ModeratorTag
 import com.bounswe.predictionpolls.domain.moderation.ModeratorUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -24,7 +25,12 @@ class ModerationScreenViewModel @Inject constructor(
         screenState = screenState.reduce(event)
 
         when (event) {
-            else -> {}
+            is ModerationScreenEvent.OnTagSelected -> {
+                updateTag(event.tag, true)
+            }
+            is ModerationScreenEvent.OnTagRemoved -> {
+                updateTag(event.tag, false)
+            }
         }
     }
 
@@ -52,14 +58,15 @@ class ModerationScreenViewModel @Inject constructor(
         }
     }
 
-    private fun updateTag(tagId: Int, isSelected: Boolean) {
+    private fun updateTag(tag: ModeratorTag, isSelected: Boolean) {
         launchCatching(
             onSuccess = {
+                fetchTags()
                 fetchRequests()
             },
         ) {
             moderatorUseCase.updateModeratorTag(
-                screenState.tags[tagId].copy(
+                tag.copy(
                     isSelected = isSelected
                 ),
             )
