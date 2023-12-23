@@ -446,6 +446,32 @@ async function distributeRewards(rewards) {
     }
 }
 
+async function distributeDomainPoint(rewardPoints,tag_rows) {
+    const pointUpdateSql = "INSERT INTO has_domain_point (topic, userId, amount) VALUES (?, ?, ?) "+
+    "ON DUPLICATE KEY UPDATE amount = amount + VALUES(?)"
+
+    const connection = await pool.getConnection();
+
+    try {
+        await connection.beginTransaction();
+
+        rewards.map(reward => {
+            tag_rows.map(tag => {
+                connection.query(pointUpdateSql, [tag,reward.user_id,reward.reward,reward.reward]);
+            })
+        });
+
+        await connection.commit();
+        return true;
+    } catch (error) {
+        console.error('distributeRewards(): Database Error');
+        await connection.rollback();
+        throw {error: errorCodes.DATABASE_ERROR};
+    } finally {
+        connection.release();
+    }
+}
+
 async function closePoll(pollId) {
     const closePollSql = 'UPDATE polls SET isOpen = false WHERE id = ?';
 
@@ -547,5 +573,5 @@ async function finalizePoll(poll_id){
 module.exports = {getPolls,getFamousPolls,getOpenedPollsOfUser,getVotedPollsOfUser, getPollWithId, getDiscretePollWithId, getContinuousPollWithId, 
     getPollTotalSpentPoint, addDiscretePoll,addContinuousPoll, getDiscretePollChoices, getDiscreteVoteCount, voteDiscretePoll, voteContinuousPoll,
     getContinuousPollVotes,getTagsOfPoll, getUntaggedPolls, updateTagsScanned, addTopic, getDiscreteSelectionsWithPollId, getContinuousSelectionsWithPollId,
-    distributeRewards, closePoll, getPollCount, getLastGatheringTime, updateLastJuryGathering, getJuryReward, updateJuryReward, finalizePoll}
+    distributeRewards, distributeDomainPoint, closePoll, getPollCount, getLastGatheringTime, updateLastJuryGathering, getJuryReward, updateJuryReward, finalizePoll}
     
