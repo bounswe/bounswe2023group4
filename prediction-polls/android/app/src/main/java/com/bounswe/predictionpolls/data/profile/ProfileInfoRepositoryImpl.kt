@@ -55,4 +55,22 @@ class ProfileInfoRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override suspend fun followUser(followerId: String, followedId: String): Result<Unit> {
+        return profileInfoRemoteDataSource.followUser(followerId, followedId)
+    }
+
+    override suspend fun unfollowUser(followerId: String, followedId: String): Result<Unit> {
+        return profileInfoRemoteDataSource.unfollowUser(followerId, followedId)
+    }
+
+    override suspend fun fetchFollowers(userId: String): Result<List<String>> {
+        return profileInfoRemoteDataSource.fetchFollowers(userId)
+    }
+
+    override suspend fun fetchFollowed(userId: String): Result<List<String>> {
+        return profileInfoRemoteDataSource.fetchFollowed(userId)
+    }
+
+
 }
