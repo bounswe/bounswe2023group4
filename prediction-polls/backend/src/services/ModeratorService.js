@@ -99,10 +99,35 @@ async function getModRequests(req,res){
     const userId = req.user.id;
 
     try{
+        await db.cleanNonRespondedRequests(userId);
+
+        const mod_tags = await db.getModTags(userId);
+
+        const all_jury_seeking_polls = await getJurySeekingPolls();
+
+        await Promise.all(all_jury_seeking_polls.map(async (pollObject) => {
+            const poll_tags = await pollDb.getTagsOfPoll(pollObject.id);
+            const pollHasTags = poll_tags.length > 0
+
+            const jury_reward = pollObject.juryReward
+            
+            if(!pollHasTags){
+                await sendPollCloseModRequest(pollObject,userId,jury_reward)
+                return
+            }
+
+            const modHasMatchingTag = mod_tags.some(tag => poll_tags.includes(tag.topic))
+
+            if(modHasMatchingTag){
+                await sendPollCloseModRequest(pollObject,userId,jury_reward)
+            }
+        }))
+
         const mod_requests = await db.getModRequests(userId);
         if(mod_requests.error){
             throw mod_requests.error
         }
+
         const filled_mod_requests = await Promise.all(await mod_requests.map(async (mod_request) => {
             const pollObjectList = await pollDb.getPollWithId(mod_request.poll_id)
             const pollJsonList = await pollService.createPollsJson(pollObjectList)
@@ -111,6 +136,7 @@ async function getModRequests(req,res){
             const mod_request_json = {
                 "request_id":mod_request.id,
                 "request_type":mod_request.request_type,
+                "reward":mod_request.reward,
                 "poll":pollJson
             }
             return mod_request_json
@@ -211,5 +237,29 @@ async function awardJuryContinuousPoll(pollObject,correctAnswer,cont_type){
     }
 }
 
+async function sendPollCloseModRequest(pollObject,userId,reward){
+    try{
+        if(pollObject.poll_type === "discrete"){
+            await db.createDiscreteRequest(userId,pollObject.id,reward)
+        }
+        else if(pollObject.poll_type === "continuous"){
+            await db.createContinuousRequest(userId,pollObject.id,reward)
+        }
+    }catch (error) {
+        console.error('Close Poll Routine: Database Error');
+        throw {error: errorCodes.DATABASE_ERROR};
+    }
+}
 
-module.exports = {controlModRole, requestModRole, makeMod, getModTags, updateTags, getModRequests, answerRequest, awardJuryDiscretePoll, awardJuryContinuousPoll}
+async function getJurySeekingPolls(){
+    try{
+        return await db.getJurySeekingPolls();
+    }catch (error) {
+        console.error('Close Poll Routine: Database Error');
+        throw {error: errorCodes.DATABASE_ERROR};
+    }
+}
+
+
+module.exports = {controlModRole, requestModRole, makeMod, getModTags, updateTags, getModRequests, answerRequest, 
+    awardJuryDiscretePoll, awardJuryContinuousPoll}

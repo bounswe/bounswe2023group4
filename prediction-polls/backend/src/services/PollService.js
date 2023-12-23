@@ -357,8 +357,6 @@ async function awardWinnersDiscretePoll(pollObject,choiceId){
             return {user_id: selection.user_id, reward: Math.floor(totalPointsBet * reward_return_rate * (selection.given_points / totalCorrectBet))}
         })
 
-        console.log("R",rewardPoints)
-
         await db.distributeRewards(rewardPoints)
 
         return {status: "success"};
@@ -419,8 +417,6 @@ async function awardWinnersContinuousPoll(pollObject,correctAnswer,cont_type){
 
             const rewardPoints = allRewardPoints.filter(rewarding => rewarding != null)
 
-            console.log("R",rewardPoints)
-
             await db.distributeRewards(rewardPoints)
 
             return {status: "success"};
@@ -476,8 +472,6 @@ async function awardWinnersContinuousPoll(pollObject,correctAnswer,cont_type){
             });
 
             const rewardPointsDate = allRewardPointsDate.filter(rewarding => rewarding != null);
-
-            console.log("R Date", rewardPointsDate);
 
             await db.distributeRewards(rewardPointsDate);
 
