@@ -6,13 +6,14 @@ import pointData from "../../MockData/PointList.json"
 import { Button, Input, Dropdown, Popover } from 'antd';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import getProfileMe from "../../api/requests/profileMe.jsx";
 
 
 
 
 function Vote() {
+  const canvasRef = useRef(null);
   let { id } = useParams();
   let parsedID = parseInt(id);
   const [userData, setUserData] = useState({});
@@ -78,6 +79,7 @@ function Vote() {
   }
 
   const navigate = useNavigate();
+  const [showSelectionBox, setShowSelectionBox] = useState(false);
   const [polldata, setPolldata] = React.useState(null);
   const [polldataOriginal, setPolldataOriginal] = React.useState(null);
   const [sentence, setSentence] = React.useState(null);
@@ -90,11 +92,11 @@ function Vote() {
   const [selectedText, setSelectedText] = React.useState("");
   const [annotationBody, setAnnotationBody] = React.useState("");
   const [showPopOver, setPopOver] = React.useState(false);
+  const [showImagePopover, setShowImagePopover] = React.useState(false);
   const [prefix, setPrefix] = React.useState("");
   const [suffix, setSuffix] = React.useState("");
   const [showAnnotation, setShowAnnotation] = React.useState(false);
   const [selectedAnnotationList, setSelectedAnnotationList] = React.useState([]);
-
   const showViewAnnotateModal = async () => {
     await fetchAnnotations();
     setSelectedAnnotationList(Array(annotationList.length).fill(false));
@@ -227,13 +229,7 @@ function Vote() {
     setPopOver(newOpen);
 
   };
-  const hide = () => {
-    setSelectedText("");
-    setPrefix("");
-    setSuffix("");
-    setAnnotationBody("");
-    setPopOver(false);
-  };
+
 
   const formatDate = (date) => {
     const dateObject = new Date(date);
@@ -293,6 +289,26 @@ function Vote() {
 
   };
 
+  /**
+  const handleSelect = () => {
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+      const rect = range.getBoundingClientRect();
+      const elements = document.elementsFromPoint(rect.x, rect.y);
+      // Iterate through elements and find the target element
+      const targetElement = elements.find((element) => {
+        const rect = element.getBoundingClientRect();
+        return (
+          rect.x >= rect.left &&
+          rect.x <= rect.right &&
+          rect.y >= rect.top &&
+          rect.y <= rect.bottom
+        );
+      });
+    }
+  };
+ */
   const handleClick = () => {
     setSelectedText("");
     setPrefix("");
@@ -334,6 +350,59 @@ function Vote() {
     setPopOver(true);
 
   };
+
+  const [startPos, setStartPos] = useState({ x: 0, y: 0 });
+  const [endPos, setEndPos] = useState({ x: 0, y: 0 });
+  const [isSelecting, setIsSelecting] = useState(false);
+
+
+
+  const handleMouseDown = (e) => {
+    const canvas = canvasRef.current;
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    setStartPos({ x, y });
+    setEndPos({ x, y });
+    setIsSelecting(true);
+    setShowSelectionBox(true);
+  };
+
+  const handleMouseMove = (e) => {
+    if (isSelecting) {
+      const canvas = canvasRef.current;
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      setEndPos({ x, y });
+      drawSelectionBox();
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsSelecting(false);
+  };
+
+  const drawSelectionBox = () => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (showSelectionBox) {
+      console.log(1);
+      ctx.fillStyle = 'rgba(0, 123, 255, 0.3)';
+      ctx.fillRect(startPos.x, startPos.y, endPos.x - startPos.x, endPos.y - startPos.y);
+
+      // Draw the selection boundary
+      ctx.strokeStyle = '#007bff';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(startPos.x, startPos.y, endPos.x - startPos.x, endPos.y - startPos.y);
+    }
+  };
+
 
   const formatCreator = (url) => {
     let userName = "";
@@ -380,10 +449,26 @@ function Vote() {
     console.log(pollContent);
     return pollContent;
   };
+  const handleHideButtonClick = () => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    setShowSelectionBox(false);
+  };
+  const hide = () => {
+    setSelectedText("");
+    setPrefix("");
+    setSuffix("");
+    setAnnotationBody("");
+    setPopOver(false);
+    setShowSelectionBox(false);
+    setShowImagePopover(false);
+  };
   if (isLoaded == true) {
     return (
 
       <div className={styles.page}>
+        <div className={styles.overlayStyle}></div>
         <Menu currentPage="Vote" />
         <div className={styles.page_row}>
           <Dropdown
@@ -440,6 +525,15 @@ function Vote() {
                 className={styles.bottonStyle}
                 onClick={handleVoting}
               >Vote</Button></div>
+              <canvas
+                ref={canvasRef}
+                draggable={false} className={styles.testIm} id="mi"
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}>
+              </canvas>
+              <button onClick={handleHideButtonClick}>Hide Selection Box</button>
+
               <div className={styles.messageStyle}>{message}</div>
             </div></div>
         </div>

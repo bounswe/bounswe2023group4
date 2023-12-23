@@ -196,6 +196,30 @@
     font-weight: 700;
 }
 
+.overlayStyle {
+    position: absolute;
+    left: 400px;
+    top: 100px;
+    width: 400px;
+    height: 500px;
+    border-style: solid;
+    border-color: yellow;
+    border-width: 2px;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+.testIm{
+    width: 300px;
+    height: 300px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/26/Franz_Kafka%2C_1923.jpg');
+}
+
 @media (max-width: 640px) {
     .page {
         flex-direction: column;
