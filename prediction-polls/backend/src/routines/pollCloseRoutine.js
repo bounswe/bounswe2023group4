@@ -252,6 +252,6 @@ function handleNoDueDatePoll(){
      // 
 }
 
-cron.schedule('*/60 * * * * *', closeFinishedPolls);
+cron.schedule('*/45 * * * * *', closeFinishedPolls);
 
 module.exports = closeFinishedPolls;
