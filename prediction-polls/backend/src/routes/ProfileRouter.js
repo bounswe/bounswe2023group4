@@ -479,7 +479,7 @@ router.post('/follower',authenticator.authorizeAccessToken,service.getFollowerPr
 
 /**
  * @swagger
- * /leaderboard/{topic}:
+ * profiles/leaderboard/{topic}:
  *   get:
  *     tags:
  *       - profiles
