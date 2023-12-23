@@ -28,7 +28,6 @@ import com.bounswe.predictionpolls.ui.login.loginScreen
 import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
 import com.bounswe.predictionpolls.ui.main.mainScreen
 import com.bounswe.predictionpolls.ui.main.navigateToMainScreen
-import com.bounswe.predictionpolls.ui.profile.myProfileScreen
 import com.bounswe.predictionpolls.ui.moderation.apply.moderationApplyScreen
 import com.bounswe.predictionpolls.ui.moderation.list.MODERATION_ROUTE
 import com.bounswe.predictionpolls.ui.moderation.list.moderationScreen
