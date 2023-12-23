@@ -47,6 +47,7 @@ import com.bounswe.predictionpolls.extensions.clickableWithoutIndicator
 import com.bounswe.predictionpolls.ui.common.CustomInputField
 import com.bounswe.predictionpolls.ui.common.ErrorDialog
 import com.bounswe.predictionpolls.ui.feed.navigateToFeedScreen
+import com.bounswe.predictionpolls.ui.forgotPassword.navigateToForgotPasswordRoute
 import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 import com.stevdzasan.onetap.OneTapSignInWithGoogle
@@ -85,7 +86,8 @@ fun LoginScreen(
         },
         isLoading = viewModel.isLoading,
         error = viewModel.error,
-        errorDismissed = { viewModel.onEvent(LoginScreenEvent.DismissErrorDialog) }
+        errorDismissed = { viewModel.onEvent(LoginScreenEvent.DismissErrorDialog) },
+        onForgotPasswordClicked = { navController.navigateToForgotPasswordRoute() }
     )
 
     OneTapSignInWithGoogle(
@@ -104,6 +106,7 @@ fun LoginScreen(
         },
         onDialogDismissed = {}
     )
+
 }
 
 @Composable
@@ -122,6 +125,7 @@ fun LoginScreenUI(
     isLoading: Boolean = false,
     error: String? = null,
     errorDismissed: () -> Unit = {},
+    onForgotPasswordClicked: () -> Unit = {},
 ) {
     Column(
         modifier = Modifier
@@ -145,7 +149,8 @@ fun LoginScreenUI(
         LoginScreenActionButtons(
             isLoginEnabled = isLoginEnabled,
             onLoginClicked = onLoginClicked,
-            onGoogleLoginClicked = onLoginWithGoogleClicked
+            onGoogleLoginClicked = onLoginWithGoogleClicked,
+            onForgotPasswordClicked = onForgotPasswordClicked
         )
     }
     LoadingIndicator(
@@ -227,7 +232,7 @@ fun LoginScreenForm(
                 keyboardType = KeyboardType.Email
             ),
             isError = isEmailValid.not(),
-            error = if(isEmailValid) null else stringResource(id = R.string.login_email_error)
+            error = if (isEmailValid) null else stringResource(id = R.string.login_email_error)
         )
         CustomInputField(
             modifier = Modifier
@@ -252,6 +257,7 @@ fun LoginScreenActionButtons(
     isLoginEnabled: Boolean = false,
     onLoginClicked: () -> Unit = {},
     onGoogleLoginClicked: () -> Unit = {},
+    onForgotPasswordClicked: () -> Unit = {},
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(24.dp),
@@ -273,6 +279,14 @@ fun LoginScreenActionButtons(
             contentColor = MaterialTheme.colorScheme.onPrimary,
             onClick = onGoogleLoginClicked
         )
+        Text(
+            text = "Forgot password?",
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .clickable { onForgotPasswordClicked() },
+            fontSize = 16.sp
+        )
+
     }
 }
 
