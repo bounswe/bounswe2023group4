@@ -248,7 +248,7 @@ async function unfollowProfile(follower_id, followed_id) {
     }
 }
 async function followedProfiles(userId) {
-    const { error } = await getProfileWithUserId(follower_id);
+    const { error } = await getProfileWithUserId(userId);
     if (error) {
         throw { error: errorCodes.PROFILE_NOT_FOUND };
     }
@@ -259,6 +259,7 @@ async function followedProfiles(userId) {
         const followed = rows.map(
             (followership) => { return followership.followed_id }
         );
+        
         return { followed_list: followed };
     } catch (error) {
         return { error: errorCodes.DATABASE_ERROR };
@@ -266,7 +267,7 @@ async function followedProfiles(userId) {
 }
 
 async function followerProfiles(userId) {
-    const { error } = await getProfileWithUserId(follower_id);
+    const { error } = await getProfileWithUserId(userId);
     if (error) {
         throw { error: errorCodes.PROFILE_NOT_FOUND };
     }
