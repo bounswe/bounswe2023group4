@@ -282,5 +282,30 @@ async function followerProfiles(userId) {
         return { error: errorCodes.DATABASE_ERROR };
     }
 }
+async function getRankPerTag(topic){
+    try {
+        const query = 'SELECT users.id , users.username, has_domain_point.amount from users, has_domain_point where users.id = has_domain_point.userId AND has_domain_point.topic = ? Order By has_domain_point.amount Desc LIMIT 100';
+        const [result] = await pool.query(query, [topic]);
+        return {result: result};
+    } catch (error) {
+        return { error: errorCodes.DATABASE_ERROR };
+    }
+}
 
-module.exports = { getProfileWithProfileId, getProfileWithUserId, addProfile, updateProfile, getBadges, updateBadge, updatePoints, followProfile, unfollowProfile, followerProfiles, followedProfiles }
+async function updateBadges(userId){
+    try {
+        const query = 'SELECT userId, topic, RANK() OVER (PARTITION BY topic ORDER BY amount DESC) as userRank FROM has_domain_point where userRank > 4';
+        const [result] = await pool.query(query, [userId]);
+        const deleteQuery = 'DELETE FROM badges';
+        const [_] = await pool.query(deleteQuery, []);
+        const insertQuery = 'INSERT INTO badges (userRank, topic, userId) VALUES (?, ?, ?)'
+        result.map(async (row)=>{
+            const [result] = await pool.query(insertQuery, [row.userRank,row.topic,row.userId]);
+        })
+        return {result: "Success"};
+    } catch (error) {
+        return { error: errorCodes.DATABASE_ERROR };
+    }
+}
+
+module.exports = { getProfileWithProfileId, getProfileWithUserId, addProfile, updateProfile, getBadges, updateBadge, updatePoints, followProfile, unfollowProfile, followerProfiles, followedProfiles,getRankPerTag,updateBadges }
