@@ -1,6 +1,7 @@
 const mysql = require('mysql2');
 const { addRefreshToken, deleteRefreshToken, findUser } = require('./AuthorizationDB');
 const { updatePoints } = require('./ProfileDB');
+const moment = require('moment');
 const errorCodes = require("../errorCodes.js");
 
 require('dotenv').config();
@@ -42,7 +43,6 @@ async function getFamousPolls(){
 
     try {
         const [rows] = await pool.query(sql);
-        console.log(rows)
         return rows;
     } catch (error) {
         throw {error: error};
@@ -80,8 +80,7 @@ async function getVotedPollsOfUser(userId){
             throw user_result.error
         }
         const [rows] = await pool.query(sql,[userId,userId]);
-        
-        console.log(rows)
+    
         return rows;
     } catch (error) {
         throw {error: error};
@@ -123,6 +122,32 @@ async function getContinuousPollWithId(pollId){
         console.error('getContinuousPollWithId(): Database Error');
         throw error;
     }
+}
+
+async function getPollTotalSpentPoint(pollId){
+    const total_point_sql = "SELECT polls.id, COALESCE(famous_polls.total_points_spent, 0) AS total_points_spent "+
+    "FROM polls LEFT JOIN ( "+
+        "SELECT poll_id, SUM(given_points) AS total_points_spent "+
+        "FROM discrete_polls_selections "+
+        "WHERE poll_id = ? "+
+        "UNION "+
+        "SELECT poll_id, SUM(given_points) AS total_points_spent "+
+        "FROM continuous_poll_selections "+
+        "WHERE poll_id = ? "+
+    ") AS famous_polls ON polls.id = famous_polls.poll_id "+
+    "WHERE poll_id = ?;" 
+
+    try {
+        const [rows] = await pool.query(total_point_sql, [pollId,pollId,pollId]);
+        if(rows.length == 0){
+            throw errorCodes.NO_SUCH_POLL_ERROR
+        }
+        return rows[0];
+    } catch (error) {
+        console.error('getPollTotalSpentPoint(): Database Error');
+        throw error;
+    }
+
 }
 
 async function addDiscretePoll(question, username, choices, openVisibility, setDueDate, dueDatePoll, numericFieldValue, selectedTimeUnit){
@@ -385,9 +410,21 @@ async function getDiscreteSelectionsWithPollId(pollId) {
     }
 }
 
-async function closePoll(pollId, rewards) {
+async function getContinuousSelectionsWithPollId(pollId) {
+    const sql = "SELECT * FROM continuous_polls_selections WHERE poll_id = ?";
+
+    try {
+        [result] = await pool.query(sql, [pollId]);
+        return result;
+    } catch (error) {
+        console.error('getContinuousSelectionsWithPollId(): Database Error');
+        throw error;
+    }
+
+}
+
+async function distributeRewards(rewards) {
     const pointUpdateSql = 'UPDATE profiles SET points = points + ? WHERE userId = ?';
-    const closePollSql = 'UPDATE polls SET isOpen = false WHERE id = ?';
 
     const connection = await pool.getConnection();
 
@@ -397,6 +434,51 @@ async function closePoll(pollId, rewards) {
         rewards.map(reward => {
             connection.query(pointUpdateSql, [reward.reward, reward.user_id]);
         });
+
+        await connection.commit();
+        return true;
+    } catch (error) {
+        console.error('distributeRewards(): Database Error');
+        await connection.rollback();
+        throw {error: errorCodes.DATABASE_ERROR};
+    } finally {
+        connection.release();
+    }
+}
+
+async function distributeDomainPoint(rewardPoints,tag_rows) {
+    const pointUpdateSql = "INSERT INTO has_domain_point (topic, userId, amount) VALUES (?, ?, ?) "+
+    "ON DUPLICATE KEY UPDATE amount = amount + VALUES(?)"
+
+    const connection = await pool.getConnection();
+
+    try {
+        await connection.beginTransaction();
+
+        rewards.map(reward => {
+            tag_rows.map(tag => {
+                connection.query(pointUpdateSql, [tag,reward.user_id,reward.reward,reward.reward]);
+            })
+        });
+
+        await connection.commit();
+        return true;
+    } catch (error) {
+        console.error('distributeRewards(): Database Error');
+        await connection.rollback();
+        throw {error: errorCodes.DATABASE_ERROR};
+    } finally {
+        connection.release();
+    }
+}
+
+async function closePoll(pollId) {
+    const closePollSql = 'UPDATE polls SET isOpen = false WHERE id = ?';
+
+    const connection = await pool.getConnection();
+
+    try {
+        await connection.beginTransaction();
 
         connection.query(closePollSql, [pollId]);
 
@@ -423,7 +505,73 @@ async function getPollCount(){
     }
 }
 
+async function getLastGatheringTime(poll_id){
+    const time_check_sql = 'SELECT lastJuryGathering FROM polls WHERE id = ?';
+
+    try {
+        const [result] = await pool.query(time_check_sql,[poll_id]);
+        return result;
+    } catch (error) {
+        console.error('getLastGatheringTime(): Database Error');
+        throw error;
+    }
+}
+
+async function updateLastJuryGathering(poll_id){
+    const time_update_sql = 'UPDATE polls SET lastJuryGathering = ? WHERE id = ?';
+
+    try {
+        const current_time = moment().format('YYYY-MM-DD HH:mm:ss');
+        const [result] = await pool.query(time_update_sql,[current_time,poll_id]);
+        return {status:"success"};
+    } catch (error) {
+        console.error(error)
+        console.error('updateLastJuryGathering(): Database Error');
+        throw error;
+    }
+}
+
+async function getJuryReward(poll_id){
+    const time_check_sql = 'SELECT juryReward FROM polls WHERE id = ?';
+
+    try {
+        const [result] = await pool.query(time_check_sql,[poll_id]);
+        return result;
+    } catch (error) {
+        console.error('getJuryReward(): Database Error');
+        throw error;
+    }
+}
+
+async function updateJuryReward(poll_id,jury_reward){
+    const reward_update_sql = 'UPDATE polls SET juryReward = ? WHERE id = ?';
+
+    try {
+        
+        const [result] = await pool.query(reward_update_sql,[jury_reward,poll_id]);
+        return {status:"success"};
+    } catch (error) {
+        console.error(error)
+        console.error('updateJuryReward(): Database Error');
+        throw error;
+    }
+}
+
+async function finalizePoll(poll_id){
+    const finalize_sql = 'UPDATE polls SET finalized = ? WHERE id = ?';
+
+    try {
+        const [result] = await pool.query(finalize_sql,[true,poll_id]);
+        return {status:"success"};
+    } catch (error) {
+        console.error(error)
+        console.error('finalizePoll(): Database Error');
+        throw error;
+    }
+}
+
 module.exports = {getPolls,getFamousPolls,getOpenedPollsOfUser,getVotedPollsOfUser, getPollWithId, getDiscretePollWithId, getContinuousPollWithId, 
-    addDiscretePoll,addContinuousPoll, getDiscretePollChoices, getDiscreteVoteCount, voteDiscretePoll, voteContinuousPoll,
-    getContinuousPollVotes,getTagsOfPoll, getUntaggedPolls, updateTagsScanned, addTopic, getDiscreteSelectionsWithPollId, closePoll, getPollCount}
+    getPollTotalSpentPoint, addDiscretePoll,addContinuousPoll, getDiscretePollChoices, getDiscreteVoteCount, voteDiscretePoll, voteContinuousPoll,
+    getContinuousPollVotes,getTagsOfPoll, getUntaggedPolls, updateTagsScanned, addTopic, getDiscreteSelectionsWithPollId, getContinuousSelectionsWithPollId,
+    distributeRewards, distributeDomainPoint, closePoll, getPollCount, getLastGatheringTime, updateLastJuryGathering, getJuryReward, updateJuryReward, finalizePoll}
     

@@ -89,6 +89,7 @@ async function getProfile(req, res) {
         }
         profile.isMod = result.isMod
         profile.badges = badges;
+        profile.isMod = result.isMod;
 
         return res.status(200).json(profile);
 
@@ -154,6 +155,7 @@ async function getMyProfile(req, res) {
         }
         profile.isMod = result.isMod
         profile.badges = badges;
+        profile.isMod = result.isMod;
 
         return res.status(200).json(profile);
 

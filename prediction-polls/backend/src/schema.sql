@@ -34,8 +34,11 @@ CREATE TABLE polls (
     closingDate DATE,
     numericFieldValue INT,
     selectedTimeUnit ENUM('min', 'h', 'day', 'mth'),
-    tagsScanned INT DEFAULT 0
-    isOpen BOOLEAN DEFAULT true
+    tagsScanned INT DEFAULT 0,
+    isOpen BOOLEAN DEFAULT true,
+    lastJuryGathering DATETIME,
+    juryReward INT DEFAULT 0,
+    finalized BOOLEAN DEFAULT false
 );
 
 CREATE TABLE discrete_polls (
@@ -119,7 +122,9 @@ CREATE TABLE mod_requests (
     id INT AUTO_INCREMENT PRIMARY KEY,
     userId INT NOT NULL,
     poll_id INT NOT NULL,
-    request_type ENUM('report','discrete', 'continuous' ) NOT NULL,
+    reward INT DEFAULT 0,
+    request_type ENUM('report','discrete', 'continuous') NOT NULL,
+    UNIQUE(userId,poll_id,request_type),
     FOREIGN KEY (poll_id) REFERENCES polls(id),
     FOREIGN KEY (userId) REFERENCES users(id)
 );
@@ -127,6 +132,7 @@ CREATE TABLE mod_requests (
 CREATE TABLE mod_promotion_requests (
     id INT AUTO_INCREMENT PRIMARY KEY,
     userId INT NOT NULL,
+    reward INT NOT NULL DEFAULT 0,
     UNIQUE(userId),
     FOREIGN KEY (userId) REFERENCES users(id)
 );
