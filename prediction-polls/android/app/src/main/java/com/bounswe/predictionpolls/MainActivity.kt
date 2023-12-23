@@ -22,6 +22,7 @@ import com.bounswe.predictionpolls.ui.common.NavigationDrawer
 import com.bounswe.predictionpolls.ui.create.createPollScreen
 import com.bounswe.predictionpolls.ui.editProfile.editProfileScreen
 import com.bounswe.predictionpolls.ui.feed.feedScreen
+import com.bounswe.predictionpolls.ui.forgotPassword.forgotPasswordScreen
 import com.bounswe.predictionpolls.ui.leaderboard.leaderboardScreen
 import com.bounswe.predictionpolls.ui.login.loginScreen
 import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
@@ -102,6 +103,7 @@ class MainActivity : ComponentActivity() {
                             pollVoteScreen(navController)
                             myProfileScreen(navController)
                             editProfileScreen(navController)
+                            forgotPasswordScreen(navController)
 
                             // TODO: Remove placeholders
                             composable("settings") { Text(text = "Settings Page WIP") }
