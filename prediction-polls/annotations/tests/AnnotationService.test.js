@@ -1,5 +1,5 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const { getAnnotations, getAnnotationWithId } = require('../src/services/AnnotationService.js'); // Adjust the path accordingly
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const { getAnnotations, getAnnotationWithId, createAnnotation } = require('../src/services/AnnotationService.js'); // Adjust the path accordingly
 
 // Mocking MongoClient and its methods
 jest.mock('mongodb');
@@ -137,5 +137,42 @@ describe('getAnnotations', () => {
     // Assertions
     expect(MongoClient.prototype.connect).toHaveBeenCalledTimes(1);
     expect(res.status).toHaveBeenCalledWith(500);
+  });
+
+  test('should create annotation successfully', async () => {
+    const req = {
+      body: {
+        // Provide the body of the request here
+      },
+    };
+    const res = {
+      status: jest.fn().mockReturnValue({json: jest.fn()}),
+    };
+
+    // Mock MongoClient methods as needed
+    MongoClient.prototype.connect.mockResolvedValue();
+    const insertOneMock = jest.fn().mockResolvedValue({
+      insertedId: new ObjectId(),
+    });
+    const updateOneMock = jest.fn().mockResolvedValue();
+    MongoClient.prototype.db.mockReturnValueOnce({
+      collection: jest.fn(() => ({
+        insertOne: insertOneMock,
+        updateOne: updateOneMock,
+      })),
+    });
+
+    await createAnnotation(req, res);
+
+    // Assertions
+    expect(MongoClient.prototype.connect).toHaveBeenCalledTimes(1);
+    expect(MongoClient.prototype.db).toHaveBeenCalledWith(process.env.MONGO_DB);
+    expect(insertOneMock).toHaveBeenCalledWith(req.body);
+    expect(updateOneMock).toHaveBeenCalledWith(
+      { _id: expect.any(ObjectId) },
+      { $set: { id: expect.any(String) } }
+    );
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(MongoClient.prototype.close).toHaveBeenCalledTimes(1);
   });
 });
