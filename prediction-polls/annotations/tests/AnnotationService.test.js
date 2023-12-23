@@ -175,4 +175,24 @@ describe('getAnnotations', () => {
     expect(res.status).toHaveBeenCalledWith(200);
     expect(MongoClient.prototype.close).toHaveBeenCalledTimes(1);
   });
+
+  test('should handle errors and return 500 status', async () => {
+    const req = {
+      body: {
+        // Provide the body of the request here
+      },
+    };
+    const res = {
+      status: jest.fn().mockReturnValue({json: jest.fn()}),
+    };
+
+    // Mock MongoClient methods to simulate an error
+    MongoClient.prototype.connect.mockRejectedValue(new Error('Connection error'));
+
+    await createAnnotation(req, res);
+
+    // Assertions
+    expect(MongoClient.prototype.connect).toHaveBeenCalledTimes(1);
+    expect(res.status).toHaveBeenCalledWith(500);
+  });
 });
