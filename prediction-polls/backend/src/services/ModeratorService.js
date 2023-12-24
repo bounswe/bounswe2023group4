@@ -271,4 +271,4 @@ async function getJurySeekingPolls(){
 
 
 module.exports = {controlModRole, requestModRole, makeMod, getModTags, updateTags, getModRequests, answerRequest, 
-    awardJuryDiscretePoll, awardJuryContinuousPoll}
+    awardJuryDiscretePoll, awardJuryContinuousPoll, sendPollCloseModRequest}

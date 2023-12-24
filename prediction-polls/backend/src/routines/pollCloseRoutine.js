@@ -102,10 +102,30 @@ function checkDueDate(pollObject){
 
 async function gatherJuryForPoll(pollObject){
     try{
-        const total_points = await getPollTotalSpentPoint(pollObject.id);
+        const total_points = await pollDB.getPollTotalSpentPoint(pollObject.id);
         const jury_reward = Math.round(total_points * jury_reward_percantage);
 
         await pollDB.updateJuryReward(pollObject.id,jury_reward)
+
+        const all_mods = await modDB.getAllMods()
+        const poll_tags = await pollDB.getTagsOfPoll(pollObject.id);
+        const pollHasTags = poll_tags.length > 0
+
+        await Promise.all(all_mods.map(async (mod) => {
+
+            const mod_tags = await modDB.getModTags(mod.id)
+            
+            if(!pollHasTags){
+                await modService.sendPollCloseModRequest(pollObject,mod.id,jury_reward)
+                return
+            }
+
+            const modHasMatchingTag = mod_tags.some(tag => poll_tags.includes(tag.topic))
+
+            if(modHasMatchingTag){
+                await modService.sendPollCloseModRequest(pollObject,mod.id,jury_reward)
+            }
+        }))
 
         await pollDB.updateLastJuryGathering(pollObject.id)
     } catch (error) {
@@ -245,6 +265,8 @@ async function updateJuryRewardForPoll(pollObject){
 
     await pollDB.updateJuryReward(pollObject.id,new_jury_reward)
     await modDB.updateJuryRewardforRequests(pollObject.id,new_jury_reward)
+    
+    await pollDB.updateLastJuryGathering(pollObject.id)
 
 }
 

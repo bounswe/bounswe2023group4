@@ -135,14 +135,14 @@ async function getPollTotalSpentPoint(pollId){
         "FROM continuous_poll_selections "+
         "WHERE poll_id = ? "+
     ") AS famous_polls ON polls.id = famous_polls.poll_id "+
-    "WHERE poll_id = ?;" 
+    "WHERE polls.id = ?" 
 
     try {
         const [rows] = await pool.query(total_point_sql, [pollId,pollId,pollId]);
         if(rows.length == 0){
             throw errorCodes.NO_SUCH_POLL_ERROR
         }
-        return rows[0];
+        return rows[0].total_points_spent;
     } catch (error) {
         console.error('getPollTotalSpentPoint(): Database Error');
         throw error;
