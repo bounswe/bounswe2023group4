@@ -19,6 +19,7 @@ class AnnotationViewModel @Inject constructor(
 ): BaseViewModel() {
     private var annotations by mutableStateOf<List<PollAnnotation>>(emptyList())
     private var username by mutableStateOf<String?>(null)
+    private var page: PollAnnotationPages? = null
 
     init {
         fetchUsername()
@@ -40,6 +41,7 @@ class AnnotationViewModel @Inject constructor(
     fun getAnnotations(
         page: PollAnnotationPages,
     ) {
+        this.page = page
         launchCatching(
             onSuccess = {
                 annotations = it
@@ -50,21 +52,20 @@ class AnnotationViewModel @Inject constructor(
     }
 
     fun createAnnotation(
-        page: PollAnnotationPages,
         prefix: String,
         exact: String,
         suffix: String,
         value: String,
     ) {
-        if (username == null) return
+        if (username == null || page == null) return
 
         launchCatching(
             onSuccess = {
-                getAnnotations(page)
+                getAnnotations(page!!)
             }
         ) {
             annotationUseCase.createAnnotation(
-                page,
+                page!!,
                 prefix,
                 exact,
                 suffix,

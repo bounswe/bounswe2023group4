@@ -33,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -42,6 +43,7 @@ import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.domain.poll.Poll
 import com.bounswe.predictionpolls.extensions.fromISO8601
 import com.bounswe.predictionpolls.ui.common.CustomInputField
+import com.bounswe.predictionpolls.ui.common.annotation.AnnotatableText
 import com.bounswe.predictionpolls.ui.common.poll.ContinuousVoteOption
 import com.bounswe.predictionpolls.ui.common.poll.PollProfilePicture
 import com.bounswe.predictionpolls.ui.theme.MontserratFontFamily
@@ -171,7 +173,9 @@ private fun PollVoteUI(
         ) {
             SectionHeader(text = "Poll Question")
             Divider()
-            Text(text = poll.pollQuestionTitle)
+            AnnotatableText(
+                text = poll.pollQuestionTitle,
+            )
         }
 
         Column(
@@ -347,8 +351,7 @@ fun PollOption(
     isSelected: Boolean = false,
     onClick: () -> Unit = {}
 ) {
-    Text(
-        text = text,
+    Box(
         modifier = Modifier
             .fillMaxWidth()
             .border(
@@ -363,12 +366,19 @@ fun PollOption(
             .clip(RoundedCornerShape(8.dp))
             .clickable(onClick = onClick)
             .padding(vertical = 8.dp, horizontal = 12.dp),
-        fontWeight = FontWeight.Medium,
-        fontSize = 14.sp,
-        lineHeight = 18.sp,
-        textAlign = TextAlign.Start,
-        color = if (isSelected) MaterialTheme.colorScheme.onPrimary else Color.Black
-    )
+    ) {
+        AnnotatableText(
+            text = text,
+            style = TextStyle(
+                fontWeight = FontWeight.Medium,
+                fontSize = 14.sp,
+                lineHeight = 18.sp,
+                textAlign = TextAlign.Start,
+                color = if (isSelected) MaterialTheme.colorScheme.onPrimary else Color.Black
+            ),
+            onClick = onClick
+        )
+    }
 }
 
 @Composable
