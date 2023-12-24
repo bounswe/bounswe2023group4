@@ -505,6 +505,25 @@ async function getPollCount(){
     }
 }
 
+
+async function addReport(userId, pollId) {
+    const sql = 'INSERT INTO reports (user_id, poll_id) VALUES (?, ?)';
+    try {
+        const [result] = await pool.query(sql, [userId, pollId]);
+        return result;
+    } catch (error) {
+        console.error('addReport(): Database Error', error);
+        throw error;
+    }
+}
+async function getReports() {
+    const sql = 'SELECT * FROM reports';
+    try {
+        const [rows] = await pool.query(sql);
+        return rows;
+    } catch (error) {
+        console.error('getReports(): Database Error', error);
+
 async function getLastGatheringTime(poll_id){
     const time_check_sql = 'SELECT lastJuryGathering FROM polls WHERE id = ?';
 
@@ -527,9 +546,18 @@ async function updateLastJuryGathering(poll_id){
     } catch (error) {
         console.error(error)
         console.error('updateLastJuryGathering(): Database Error');
+
         throw error;
     }
 }
+
+
+async function addComment(userId, pollId, commentText) {
+    const sql = 'INSERT INTO comments (user_id, poll_id, comment_text) VALUES (?, ?, ?)';
+    try {
+        await pool.query(sql, [userId, pollId, commentText]);
+    } catch (error) {
+        console.error('addComment(): Database Error', error);
 
 async function getJuryReward(poll_id){
     const time_check_sql = 'SELECT juryReward FROM polls WHERE id = ?';
@@ -539,9 +567,19 @@ async function getJuryReward(poll_id){
         return result;
     } catch (error) {
         console.error('getJuryReward(): Database Error');
+
         throw error;
     }
 }
+
+
+async function getComments(pollId) {
+    const sql = 'SELECT * FROM comments WHERE poll_id = ?';
+    try {
+        const [comments] = await pool.query(sql, [pollId]);
+        return comments;
+    } catch (error) {
+        console.error('getComments(): Database Error', error);
 
 async function updateJuryReward(poll_id,jury_reward){
     const reward_update_sql = 'UPDATE polls SET juryReward = ? WHERE id = ?';
@@ -570,8 +608,8 @@ async function finalizePoll(poll_id){
     }
 }
 
-module.exports = {getPolls,getFamousPolls,getOpenedPollsOfUser,getVotedPollsOfUser, getPollWithId, getDiscretePollWithId, getContinuousPollWithId, 
-    getPollTotalSpentPoint, addDiscretePoll,addContinuousPoll, getDiscretePollChoices, getDiscreteVoteCount, voteDiscretePoll, voteContinuousPoll,
-    getContinuousPollVotes,getTagsOfPoll, getUntaggedPolls, updateTagsScanned, addTopic, getDiscreteSelectionsWithPollId, getContinuousSelectionsWithPollId,
-    distributeRewards, distributeDomainPoint, closePoll, getPollCount, getLastGatheringTime, updateLastJuryGathering, getJuryReward, updateJuryReward, finalizePoll}
-    
+module.exports = {getPolls,getFamousPolls,getOpenedPollsOfUser,getVotedPollsOfUser,getPollWithId,getDiscretePollWithId,getContinuousPollWithId,
+                  getPollTotalSpentPoint,addDiscretePoll,addContinuousPoll,getDiscretePollChoices,getDiscreteVoteCount,voteDiscretePoll,voteContinuousPoll,
+                  getContinuousPollVotes,getTagsOfPoll,getUntaggedPolls,updateTagsScanned,addTopic,getDiscreteSelectionsWithPollId,
+                  getContinuousSelectionsWithPollId,distributeRewards,distributeDomainPoint,closePoll,getPollCount,getLastGatheringTime,
+                  updateLastJuryGathering,getJuryReward,updateJuryReward,finalizePoll,addReport,getReports,addComment,getComments};

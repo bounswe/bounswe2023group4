@@ -408,6 +408,54 @@ async function awardWinnersDiscretePoll(pollObject,choiceId){
     }
 }
 
+
+async function reportPoll(req, res) {
+    try {
+        const userId = req.user.id;
+        const pollId = req.params.pollId;
+        await db.addReport(userId, pollId);
+        res.status(200).json({ message: "Report added successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error reporting the poll" });
+    }
+}
+
+async function getReports(req, res) {
+    try {
+        const reports = await db.getReports();
+        res.json(reports);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error retrieving reports" });
+    }
+}
+
+async function addComment(req, res) {
+    try {
+        const userId = req.user.id;
+        const pollId = req.params.pollId;
+        const commentText = req.body.commentText;
+
+        await db.addComment(userId, pollId, commentText);
+        res.status(200).json({ message: "Comment added successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error adding comment" });
+    }
+}
+
+async function getComments(req, res) {
+    try {
+        const pollId = req.params.pollId;
+        const comments = await db.getComments(pollId);
+        res.json(comments);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error retrieving comments" });
+    }
+}
+
 async function awardWinnersContinuousPoll(pollObject,correctAnswer,cont_type){
     try{
         const total_point_spent = db.getPollTotalSpentPoint(pollObject.id);
@@ -533,7 +581,7 @@ async function awardWinnersContinuousPoll(pollObject,correctAnswer,cont_type){
     }
 }
 
-module.exports = { getFamousPolls, getOpenedPollsOfUser, getVotedPollsOfUser, getVotedPollsOfUser, createPollsJson, getPollWithId,
-    addDiscretePoll, addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll, awardWinnersDiscretePoll, awardWinnersContinuousPoll}
-
+module.exports = { getFamousPolls, getOpenedPollsOfUser, getOpenedPollsOfGivenUser, getVotedPollsOfUser, createPollsJson, getPollWithId, 
+    addDiscretePoll, addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll, reportPoll, getReports, addComment, getComments, 
+    awardWinnersContinuousPoll}
 
