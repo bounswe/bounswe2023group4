@@ -125,6 +125,10 @@ function Moderation() {
           },
         });
 
+        if (!response) {
+          throw new Error("API response is undefined");
+        }
+
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -151,6 +155,10 @@ function Moderation() {
             "Content-Type": "application/json",
           },
         });
+
+        if (!response) {
+          throw new Error("API response is undefined");
+        }
 
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -204,6 +212,10 @@ function Moderation() {
           },
         });
 
+        if (!response) {
+          throw new Error("API response is undefined");
+        }
+        
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
