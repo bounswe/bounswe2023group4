@@ -23,6 +23,11 @@
     margin-bottom: 20px; 
     text-align: center; 
   }
+  .tagtext {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+  }
   
 
   .inputStyle {

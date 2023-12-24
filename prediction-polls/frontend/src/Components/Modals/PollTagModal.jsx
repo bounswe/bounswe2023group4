@@ -4,13 +4,15 @@ import useModal from "../../contexts/ModalContext/useModal";
 import { ModalNames } from "../../contexts/ModalContext/ModalNames";
 import styles from "./PollTagModal.module.css";
 import getTags from "../../api/requests/getTags";
+import addPollTag from "../../api/requests/addPollTag";
+import { useNavigate } from "react-router-dom";
 
-const PollTagModal = () => {
+const PollTagModal = ({pollId}) => {
   const { modals, closeModal } = useModal();
   const [category, setCategory] = React.useState("");
   const [tagResponse, setTagResponse] = React.useState(null);
   const [selectedTags, setSelectedTags] = useState([]);
-
+  const navigate = useNavigate();
   const getTagResponse = async () => {
     try {
       const response = await getTags({ keyword: category });
@@ -26,8 +28,31 @@ const PollTagModal = () => {
     await getTagResponse();
   };
 
-  const handleOk = () => {
-    closeModal(ModalNames.PollTagModal);
+  const handleOk = async () => {
+    let allSuccessful = true; 
+
+    for (const tagId of selectedTags) {
+      const tagData = {
+        pollId: pollId,
+        semanticTag: tagId
+      };
+
+      try {
+        const response = await addPollTag(tagData);
+        if (!response) {
+          allSuccessful = false;
+          break; 
+        }
+      } catch (error) {
+        allSuccessful = false;
+        break; 
+      }
+    }
+
+    if (allSuccessful) {
+      closeModal(ModalNames.PollTagModal);
+      navigate('/feed');
+    }
   };
 
   const handleCancel = () => {
@@ -81,7 +106,9 @@ const PollTagModal = () => {
                   }`}
                   onClick={() => toggleTagSelection(tag.id)}
                 >
-                  <p>{tag.label}</p>
+                  <p className={styles.tagtext}>{tag.label}</p>
+                  <p>{tag.description}</p>
+
                 </div>
               ))}
             </div>

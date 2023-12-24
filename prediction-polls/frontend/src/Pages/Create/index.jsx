@@ -134,12 +134,13 @@ function Create() {
           },
           body: JSON.stringify(multipleChoiceData),
         });
-        if (!response.ok) {
-          console.error("Error:", response.statusText);
-          return;
-        }
+        if (response.ok) {
+          const responseData = await response.json();
 
-        navigate("/feed");
+          handleOpenTagModal(responseData.newPollId);
+        } else {
+          console.error("Error:", response.statusText);
+        }
       } catch (error) {
         console.error("API Request Failed:", error.message);
       }
@@ -163,14 +164,13 @@ function Create() {
           },
           body: JSON.stringify(multipleChoiceData),
         });
-        if (!response.ok) {
-          console.error("Error:", response.statusText);
-          return;
-        }
-        const responseData = await response.json();
-        console.log("API Response:", responseData);
+        if (response.ok) {
+          const responseData = await response.json();
 
-        navigate("/feed");
+          handleOpenTagModal(responseData.newPollId);
+        } else {
+          console.error("Error:", response.statusText);
+        }
       } catch (error) {
         console.error("API Request Failed:", error.message);
       }
@@ -197,11 +197,12 @@ function Create() {
           },
           body: JSON.stringify(customizedData),
         });
-        if (!response.ok) {
+        if (response.ok) {
+          const responseData = await response.json();
+          handleOpenTagModal(responseData.newPollId);
+        } else {
           console.error("Error:", response.statusText);
-          return;
         }
-        navigate("/feed");
       } catch (error) {
         console.error("API Request Failed:", error.message);
       }
@@ -225,11 +226,12 @@ function Create() {
           },
           body: JSON.stringify(customizedData),
         });
-        if (!response.ok) {
+        if (response.ok) {
+          const responseData = await response.json(); 
+          handleOpenTagModal(responseData.newPollId);
+        } else {
           console.error("Error:", response.statusText);
-          return;
         }
-        navigate("/feed");
       } catch (error) {
         console.error("API Request Failed:", error.message);
       }
@@ -256,11 +258,12 @@ function Create() {
           },
           body: JSON.stringify(customizedData),
         });
-        if (!response.ok) {
+        if (response.ok) {
+          const responseData = await response.json();
+          handleOpenTagModal(responseData.newPollId);
+        } else {
           console.error("Error:", response.statusText);
-          return;
         }
-        navigate("/feed");
       } catch (error) {
         console.error("API Request Failed:", error.message);
       }
@@ -284,18 +287,22 @@ function Create() {
           },
           body: JSON.stringify(customizedData),
         });
-        if (!response.ok) {
+        if (response.ok) {
+          const responseData = await response.json();
+
+          handleOpenTagModal(responseData.newPollId
+            );
+        } else {
           console.error("Error:", response.statusText);
-          return;
         }
-        navigate("/feed");
+
       } catch (error) {
         console.error("API Request Failed:", error.message);
       }
     }
   };
-  const handleOpenTagModal = () => {
-    openModal(ModalNames.PollTagModal);
+  const handleOpenTagModal = (pollId) => {
+    openModal(ModalNames.PollTagModal,null,pollId);
   }
 
 
@@ -419,14 +426,6 @@ function Create() {
             </>
           )}
         </div>
-        {pollType === "multipleChoice"  && <div className={styles.openVisibilityContainer}>
-              <Checkbox
-                className={styles.openVisibility}
-                onChange={handleOpenVisibilityChange}
-              >
-                Open Distribution Visibility
-              </Checkbox>
-            </div>}
         <div className={styles.submitContainer}>
           <button
             className={styles.submitButton}
