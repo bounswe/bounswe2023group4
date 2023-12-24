@@ -60,7 +60,7 @@ const Sidebar = ({ currentPage, handlePageChange }) => {
     { key: "Create", Icon: CreateIcon, to: "create" },
     { key: "Moderation", Icon: ModerationIcon, to: "moderation" },
     { key: "Leaderboard", Icon: LeaderboardIcon, to: "leaderboard" },
-    { key: "Notifications", Icon: NotificationsIcon, to: "notifications" },
+   // { key: "Notifications", Icon: NotificationsIcon, to: "notifications" },
     { key: "Settings", Icon: SettingsIcon, to: "settings" },
   ];
 
