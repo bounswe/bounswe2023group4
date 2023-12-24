@@ -7,12 +7,12 @@ import com.bounswe.predictionpolls.domain.poll.Poll
 import com.bounswe.predictionpolls.domain.poll.VotePollRepository
 import com.bounswe.predictionpolls.domain.poll.VotePollUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
 @HiltViewModel
@@ -37,10 +37,6 @@ class PollVoteViewModel @Inject constructor(
 
                     is Poll.ContinuousPoll -> {
                         _state.update { PollVoteScreenUiState.ContinuousPoll(poll, "", 0, null) }
-                    }
-
-                    else -> {
-                        // Handle other poll types if necessary
                     }
                 }
             }

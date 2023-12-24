@@ -77,7 +77,10 @@ fun NavGraphBuilder.pollVoteScreen(navController: NavController) {
             },
             onToastConsumed = {
                 pollVoteViewModel.consumeToastMessage()
-            }
+            },
+            onBackClicked = {
+                navController.popBackStack()
+            },
         )
     }
 }
