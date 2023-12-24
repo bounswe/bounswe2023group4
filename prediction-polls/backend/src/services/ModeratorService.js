@@ -88,6 +88,9 @@ async function updateTags(req,res){
         else{
             const add_result = await db.addModTag(userId,mod_tag_topic);
         }
+
+        await updateModRequestsOfMod(userId);
+
         return res.status(200).json({status:"success"});
     }
     catch(error){
@@ -99,29 +102,6 @@ async function getModRequests(req,res){
     const userId = req.user.id;
 
     try{
-        await db.cleanNonRespondedRequests(userId);
-
-        const mod_tags = await db.getModTags(userId);
-
-        const all_jury_seeking_polls = await getJurySeekingPolls();
-
-        await Promise.all(all_jury_seeking_polls.map(async (pollObject) => {
-            const poll_tags = await pollDb.getTagsOfPoll(pollObject.id);
-            const pollHasTags = poll_tags.length > 0
-
-            const jury_reward = pollObject.juryReward
-            
-            if(!pollHasTags){
-                await sendPollCloseModRequest(pollObject,userId,jury_reward)
-                return
-            }
-
-            const modHasMatchingTag = mod_tags.some(tag => poll_tags.includes(tag.topic))
-
-            if(modHasMatchingTag){
-                await sendPollCloseModRequest(pollObject,userId,jury_reward)
-            }
-        }))
 
         const mod_requests = await db.getModRequests(userId);
         if(mod_requests.error){
@@ -204,7 +184,36 @@ async function answerRequest(req,res){
     catch(error){
         return res.status(400).json({error:error});
     }
+}
 
+async function updateModRequestsOfMod(userId){
+    try{
+        await db.cleanNonRespondedRequests(userId);
+
+        const mod_tags = await db.getModTags(userId);
+
+        const all_jury_seeking_polls = await getJurySeekingPolls();
+
+        await Promise.all(all_jury_seeking_polls.map(async (pollObject) => {
+            const poll_tags = await pollDb.getTagsOfPoll(pollObject.id);
+            const pollHasTags = poll_tags.length > 0
+
+            const jury_reward = pollObject.juryReward
+            
+            if(!pollHasTags){
+                await sendPollCloseModRequest(pollObject,userId,jury_reward)
+                return
+            }
+
+            const modHasMatchingTag = mod_tags.some(tag => poll_tags.includes(tag.topic))
+
+            if(modHasMatchingTag){
+                await sendPollCloseModRequest(pollObject,userId,jury_reward)
+            }
+        }))
+    } catch(error){
+        return res.status(400).json({error:error});
+    }
 }
 
 async function awardJuryDiscretePoll(pollObject,correctChoiceId){
