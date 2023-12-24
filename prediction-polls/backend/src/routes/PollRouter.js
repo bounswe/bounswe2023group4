@@ -808,10 +808,95 @@ router.post('/continuous/:pollId/vote',authenticator.authorizeAccessToken, servi
  */
 router.post('/close/:pollId', authenticator.authorizeAccessToken, service.closePoll);
 
+/**
+ * @swagger
+ * /polls/report/{pollId}:
+ *   post:
+ *     tags:
+ *       - polls
+ *     description: Report a poll based on its ID
+ *     parameters:
+ *       - in: path
+ *         name: pollId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the poll to report
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Access token for authorization
+ *     responses:
+ *       200:
+ *         description: Poll reported successfully
+ *       401:
+ *         description: Unauthorized access
+ *       404:
+ *         description: Poll not found
+ */
 router.post('/report/:pollId', authenticator.authorizeAccessToken, service.reportPoll);
 
+/**
+ * @swagger
+ * /polls/{pollId}/comment:
+ *   post:
+ *     tags:
+ *       - polls
+ *     description: Adds a user's comment to a specific poll
+ *     parameters:
+ *       - in: path
+ *         name: pollId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the poll
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Access token for authorization
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               commentText:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Comment added successfully
+ *       401:
+ *         description: Unauthorized access
+ *       404:
+ *         description: Poll not found
+ */
 router.post('/:pollId/comment', authenticator.authorizeAccessToken, service.addComment);
 
+/**
+ * @swagger
+ * /polls/{pollId}/comments:
+ *   get:
+ *     tags:
+ *       - polls
+ *     description: Retrieves all comments associated with a specific poll
+ *     parameters:
+ *       - in: path
+ *         name: pollId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the poll
+ *     responses:
+ *       200:
+ *         description: Comments retrieved successfully
+ *       404:
+ *         description: Poll not found
+ */
 router.get('/:pollId/comments', service.getComments);
 
 module.exports = router;
