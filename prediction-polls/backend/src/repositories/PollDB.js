@@ -523,6 +523,8 @@ async function getReports() {
         return rows;
     } catch (error) {
         console.error('getReports(): Database Error', error);
+    }
+}
 
 async function getLastGatheringTime(poll_id){
     const time_check_sql = 'SELECT lastJuryGathering FROM polls WHERE id = ?';
@@ -558,6 +560,8 @@ async function addComment(userId, pollId, commentText) {
         await pool.query(sql, [userId, pollId, commentText]);
     } catch (error) {
         console.error('addComment(): Database Error', error);
+    }
+}
 
 async function getJuryReward(poll_id){
     const time_check_sql = 'SELECT juryReward FROM polls WHERE id = ?';
@@ -580,6 +584,8 @@ async function getComments(pollId) {
         return comments;
     } catch (error) {
         console.error('getComments(): Database Error', error);
+    }
+}
 
 async function updateJuryReward(poll_id,jury_reward){
     const reward_update_sql = 'UPDATE polls SET juryReward = ? WHERE id = ?';
@@ -612,4 +618,4 @@ module.exports = {getPolls,getFamousPolls,getOpenedPollsOfUser,getVotedPollsOfUs
                   getPollTotalSpentPoint,addDiscretePoll,addContinuousPoll,getDiscretePollChoices,getDiscreteVoteCount,voteDiscretePoll,voteContinuousPoll,
                   getContinuousPollVotes,getTagsOfPoll,getUntaggedPolls,updateTagsScanned,addTopic,getDiscreteSelectionsWithPollId,
                   getContinuousSelectionsWithPollId,distributeRewards,distributeDomainPoint,closePoll,getPollCount,getLastGatheringTime,
-                  updateLastJuryGathering,getJuryReward,updateJuryReward,finalizePoll,addReport,getReports,addComment,getComments};
+                  updateLastJuryGathering,getJuryReward,updateJuryReward,finalizePoll,addReport,getReports,addComment,getComments}
