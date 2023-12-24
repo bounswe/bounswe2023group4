@@ -1,5 +1,6 @@
 package com.bounswe.predictionpolls.di
 
+import com.bounswe.predictionpolls.data.remote.services.AnnotationService
 import com.bounswe.predictionpolls.data.remote.services.AuthService
 import com.bounswe.predictionpolls.data.remote.services.ModerationService
 import com.bounswe.predictionpolls.data.remote.services.PollService
@@ -35,5 +36,13 @@ object ServiceModule {
         @AuthenticatedRetrofit retrofit: Retrofit
     ): ModerationService {
         return retrofit.create(ModerationService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAnnotationService(
+        @AuthenticatedAnnotationRetrofit retrofit: Retrofit
+    ): AnnotationService {
+        return retrofit.create(AnnotationService::class.java)
     }
 }
