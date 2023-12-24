@@ -302,7 +302,7 @@ router.get('/opened/me',authenticator.authorizeAccessToken,service.getOpenedPoll
  *                     message: Error while accessing the database.
  *                     code: 3004
  */
-router.get('/opened',service.getOpenedPollsOfUser);
+router.get('/opened',service.getOpenedPollsOfGivenUser);
 
 /**
  * @swagger
