@@ -94,4 +94,11 @@
     <string name="logged_out_notification">You have signed out successfully</string>
     <string name="login_required_notification">Please sign in to access this page.</string>
     <string name="front_end_url">http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000</string>
+
+    <string name="moderator_apply_text">Moderation request is now open. Would you like to apply to become a moderator?</string>
+    <string name="moderator_check_status">You have successfully applied to become a moderator. Please wait for the approval. You can always check your status.</string>
+    <string name="moderator_check_status_button">Check Status</string>
+
+    <string name="apply">Apply</string>
+    <string name="back">Back</string>
 </resources>

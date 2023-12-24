@@ -7,6 +7,8 @@ import com.bounswe.predictionpolls.data.feed.model.PollResponseDeserializer
 import com.bounswe.predictionpolls.data.remote.TokenManager
 import com.bounswe.predictionpolls.data.remote.interceptors.AuthInterceptor
 import com.bounswe.predictionpolls.data.remote.interceptors.ResponseInterceptor
+import com.bounswe.predictionpolls.data.remote.model.response.ModeratorRequestPollDeserializer
+import com.bounswe.predictionpolls.data.remote.model.response.ModeratorRequestResponse
 import com.bounswe.predictionpolls.data.remote.repositories.AuthRepository
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.Gson
@@ -29,6 +31,7 @@ object NetworkModule {
     fun provideGson(): Gson {
         return GsonBuilder()
             .registerTypeAdapter(PollResponse::class.java, PollResponseDeserializer())
+            .registerTypeAdapter(ModeratorRequestResponse.Poll::class.java, ModeratorRequestPollDeserializer())
             .serializeNulls()
             .create()
     }

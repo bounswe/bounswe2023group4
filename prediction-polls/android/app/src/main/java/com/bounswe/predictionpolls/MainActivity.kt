@@ -28,6 +28,10 @@ import com.bounswe.predictionpolls.ui.login.loginScreen
 import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
 import com.bounswe.predictionpolls.ui.main.mainScreen
 import com.bounswe.predictionpolls.ui.main.navigateToMainScreen
+import com.bounswe.predictionpolls.ui.moderation.apply.moderationApplyScreen
+import com.bounswe.predictionpolls.ui.moderation.list.MODERATION_ROUTE
+import com.bounswe.predictionpolls.ui.moderation.list.moderationScreen
+import com.bounswe.predictionpolls.ui.moderation.vote.moderationVoteScreen
 import com.bounswe.predictionpolls.ui.profile.myProfileScreen
 import com.bounswe.predictionpolls.ui.profile.profileScreen
 import com.bounswe.predictionpolls.ui.signup.signupScreen
@@ -36,6 +40,10 @@ import com.bounswe.predictionpolls.ui.vote.pollVoteScreen
 import com.bounswe.predictionpolls.utils.NavItem
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+
+val EXTRA_ROUTES_WITH_DRAWER = listOf(
+    MODERATION_ROUTE,
+)
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -47,7 +55,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             PredictionPollsTheme {
                 val navController = rememberNavController()
-                val routesWithDrawer = remember { NavItem.entries.map { it.route }.toSet() }
+                val routesWithDrawer = remember {
+                    NavItem.entries.map { it.route }.toSet().union(
+                        EXTRA_ROUTES_WITH_DRAWER
+                    )
+                }
                 val currentBackStack = navController.currentBackStackEntryAsState()
                 val currentRoute = rememberUpdatedState(currentBackStack.value?.destination?.route)
                 val isUserLoggedIn = tokenManager.isLoggedIn.collectAsState(initial = false)
@@ -104,11 +116,13 @@ class MainActivity : ComponentActivity() {
                             myProfileScreen(navController)
                             editProfileScreen(navController)
                             forgotPasswordScreen(navController)
+                            moderationApplyScreen(navController)
+                            moderationScreen(navController)
+                            moderationVoteScreen(navController)
 
                             // TODO: Remove placeholders
                             composable("settings") { Text(text = "Settings Page WIP") }
                             composable("notifications") { Text(text = "Notifications Page WIP") }
-                            composable("moderation") { Text(text = "Moderation Page WIP") }
                         }
                     }
 
