@@ -87,7 +87,9 @@ async function getProfile(req, res) {
         if (badge_error) {
             throw badge_error;
         }
+        profile.isMod = result.isMod
         profile.badges = badges;
+        profile.isMod = result.isMod;
 
         return res.status(200).json(profile);
 
@@ -151,8 +153,9 @@ async function getMyProfile(req, res) {
         if (badge_error) {
             throw badge_error;
         }
+        profile.isMod = result.isMod
         profile.badges = badges;
-
+        profile.isMod = result.isMod;
 
         return res.status(200).json(profile);
 
@@ -279,5 +282,22 @@ async function getFollowedProfiles(req, res) {
     }
 }
 
+async function getLeaderBoardRanking(req, res) {
+    const topic = req.params.topic;
 
-module.exports = { getProfile, getProfileWithProfileId, getMyProfile, updateProfile, uploadImagetoS3, updateBadge, followProfiles, unfollowProfiles,getFollowerProfiles, getFollowedProfiles }
+    if (topic == undefined) {
+        return res.status(400).json({ error: errorCodes.INSUFFICIENT_DATA });
+    }
+    try {
+        const { result, error } = await db.getRankPerTag(topic);
+        if (error) {
+            throw error;
+        }
+        return res.status(200).json({ userList : result });
+    } catch (error) {
+        return res.status(400).json({ error: error });
+    }
+}
+
+
+module.exports = { getProfile, getProfileWithProfileId, getMyProfile, updateProfile,getImagefromS3, uploadImagetoS3, updateBadge, followProfiles, unfollowProfiles, getFollowerProfiles, getFollowedProfiles, getLeaderBoardRanking }

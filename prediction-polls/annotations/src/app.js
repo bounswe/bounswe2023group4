@@ -11,7 +11,7 @@ const port = 4999;
 
 app.use(cors());
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({ type: 'application/ld+json' }));
 app.use(bodyParser.urlencoded({ extended: true })); 
 
 const swaggerJsDoc = require('swagger-jsdoc');
