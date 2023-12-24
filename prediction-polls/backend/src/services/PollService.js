@@ -1,5 +1,6 @@
 const db = require("../repositories/PollDB.js");
-const {updatePoints} = require("../repositories/ProfileDB.js");
+const profileDb = require("../repositories/ProfileDB.js");
+const { getImagefromS3 } = require("../services/ProfileService.js");
 const { findUser,incrementUserParticipate,decrementUserParticipate } = require('../repositories/AuthorizationDB.js');
 const errorCodes = require("../errorCodes.js")
 
@@ -62,13 +63,30 @@ async function createPollsJson(poll_rows){
     return await Promise.all(poll_rows.map(async (pollObject) => {
         const tag_rows = await db.getTagsOfPoll(pollObject.id);
 
+        const user_result =await findUser({username:pollObject.username})
+
+        const { profile, error } = await profileDb.getProfileWithUserId(user_result.id);
+        if (error) {
+            throw error;
+        }
+
+        let profile_image = null;
+        
+        if (profile.profile_picture) {
+            const signed_image = await getImagefromS3(profile.profile_picture);
+            if (signed_image.error) {
+                throw signed_image.error;
+            }
+            profile_image = signed_image.signedUrl
+        }
+
         const properties = {
             "id": pollObject.id,
             "question": pollObject.question,
             "tags": tag_rows,
             "creatorName": pollObject.username,
             "creatorUsername": pollObject.username,
-            "creatorImage": null,
+            "creatorImage": profile_image,
             "pollType": pollObject.poll_type,
             "closingDate": pollObject.closingDate,
             "rejectVotes": (pollObject.numericFieldValue && pollObject.selectedTimeUnit) ? `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}` : null,
