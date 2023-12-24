@@ -397,7 +397,9 @@ function Vote() {
               <Popover
                 align={{ offset: [0, 10] }}
                 content={
-                  <div className={styles.annotationPopOverStyle}><p>{selectedText}</p>
+                  <div
+                    id="poll"
+                    className={styles.annotationPopOverStyle}><p>{selectedText}</p>
                     <Input
                       className={styles.annotationTextBox}
                       id="AnnotationInput"
@@ -445,7 +447,9 @@ function Vote() {
         </div>
 
         {viewAnnotation == true ?
-          <div className={styles.AnnotationList}>
+          <div
+            id="Annotation_list"
+            className={styles.AnnotationList}>
             {showAnnotation ? <div className={styles.columnStyle}>
               {annotationList.length == 0 ? <p>No Annotations are available</p> : (annotationList.map(
                 (annotation, index) => {

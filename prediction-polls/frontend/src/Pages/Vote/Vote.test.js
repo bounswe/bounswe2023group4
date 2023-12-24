@@ -88,5 +88,25 @@ describe('Vote', () => {
         });
 
     });
+
+    test('Check if you can see the annotation', async () => {
+        const pollID = 43;
+        const route = `/vote/${pollID}`;
+        render(
+            <MemoryRouter initialEntries={[route]}>
+                <Routes>
+                    <Route path="/vote/:id" element={<Vote />} />
+                </Routes>
+            </MemoryRouter>
+        );
+        await waitFor(() => {
+            const poll = document.getElementById('poll');
+            fireEvent.contextMenu(poll);
+            const contextMenuOption = getByText('Display All Annotations');
+            fireEvent.click(contextMenuOption);
+            expect(screen.getElementById('Annotation_list')).toBeInTheDocument();
+        });
+
+    });
 });
 
