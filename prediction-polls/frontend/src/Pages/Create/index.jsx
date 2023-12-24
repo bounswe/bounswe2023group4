@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import pointData from "../../MockData/PointList.json";
 import PointsButton from "../../Components/PointsButton";
 import getProfileMe from "../../api/requests/profileMe";
+import useModal from "../../contexts/ModalContext/useModal";
+import { ModalNames } from "../../contexts/ModalContext/ModalNames";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -34,6 +36,7 @@ function Create() {
       setUserData(result);
     });
   }, []);
+  const{openModal} = useModal();
 
   const choices = additionalChoices.filter((choice) => choice.trim() !== "");
   const isSubmitDisabled =
@@ -291,6 +294,10 @@ function Create() {
       }
     }
   };
+  const handleOpenTagModal = () => {
+    openModal(ModalNames.PollTagModal);
+  }
+
 
   return (
     <div className={styles.page}>
@@ -425,6 +432,7 @@ function Create() {
             className={styles.submitButton}
             onClick={handleSubmit}
             disabled={isSubmitDisabled}
+
           >
             Create Poll
           </button>
