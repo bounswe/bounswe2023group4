@@ -3,13 +3,14 @@ import Menu from "../../Components/Menu";
 import styles from "./Jury.module.css";
 import getModerationRequests from "../../api/requests/getModerationRequests";
 import { useParams } from "react-router-dom";
-import { Button } from "antd";
 import PollTag from "../../Components/PollTag";
 import PointsButton from "../../Components/PointsButton";
 import getProfileMe from "../../api/requests/profileMe";
 import Checkbox from "antd/lib/checkbox/Checkbox";
 import useModal from "../../contexts/ModalContext/useModal";
 import { ModalNames } from "../../contexts/ModalContext/ModalNames";
+import sendJuryAnswer from "../../api/requests/sendJuryAnswer";
+import { useNavigate } from "react-router-dom";
 
 function Jury() {
   const { id } = useParams();
@@ -27,6 +28,7 @@ function Jury() {
   }, []);
 
   const { openModal, juryCheckboxState, setJuryCheckboxState } = useModal();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getRequests = async () => {
@@ -70,6 +72,32 @@ function Jury() {
 
   const handleResponseSelect = (response) => {
     setSelectedResponse(response);
+  };
+
+
+  const handleSend = async () => {
+    let choice;
+
+    if (request?.request_type === 'discrete') {
+      choice = request?.poll?.options[selectedResultOption]?.id; 
+    } else if (request?.request_type === 'continuous') {
+      choice = customAnswer; 
+    } else if (request?.request_type === 'report') {
+      choice = selectedResponse === "yes"; 
+    }
+
+    const JuryAnswer = {
+      request_id: id, 
+      choice: choice
+    };
+
+    const response = await sendJuryAnswer(JuryAnswer);
+    if (response) {
+      console.log("Response sent successfully", response);
+      navigate("/moderation"); 
+    } else {
+      console.error("Failed to send response");
+    }
   };
 
   return (
@@ -143,7 +171,7 @@ function Jury() {
             </p>
           </div>
           <div className={styles.buttonContainer}>
-            <button className={styles.sendButton}>Send</button>
+            <button className={styles.sendButton} onClick={handleSend} >Send</button>
           </div>
         </div>
       </div>
