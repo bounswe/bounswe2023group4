@@ -300,4 +300,4 @@ async function getLeaderBoardRanking(req, res) {
 }
 
 
-module.exports = { getProfile, getProfileWithProfileId, getMyProfile, updateProfile, uploadImagetoS3, updateBadge, followProfiles, unfollowProfiles, getFollowerProfiles, getFollowedProfiles, getLeaderBoardRanking }
+module.exports = { getProfile, getProfileWithProfileId, getMyProfile, updateProfile,getImagefromS3, uploadImagetoS3, updateBadge, followProfiles, unfollowProfiles, getFollowerProfiles, getFollowedProfiles, getLeaderBoardRanking }
