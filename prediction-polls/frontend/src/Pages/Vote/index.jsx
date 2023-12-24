@@ -398,7 +398,7 @@ function Vote() {
                 align={{ offset: [0, 10] }}
                 content={
                   <div
-                    id="poll"
+                    id="poll_div"
                     className={styles.annotationPopOverStyle}><p>{selectedText}</p>
                     <Input
                       className={styles.annotationTextBox}

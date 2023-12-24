@@ -100,7 +100,7 @@ describe('Vote', () => {
             </MemoryRouter>
         );
         await waitFor(() => {
-            const poll = document.getElementById('poll');
+            const poll = document.getElementById('poll_div'); 
             fireEvent.contextMenu(poll);
             const contextMenuOption = getByText('Display All Annotations');
             fireEvent.click(contextMenuOption);
