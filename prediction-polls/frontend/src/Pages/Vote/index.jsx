@@ -177,7 +177,7 @@ function Vote() {
             }
           }
           else {
-            if (/^[0-9]*$/.test(answer) == true) {
+            if (/^[-+]?\d*\.?\d*$/.test(answer) == true) {
               const requestOptions = {
                 method: 'POST',
                 headers: {

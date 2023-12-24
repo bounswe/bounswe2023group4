@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import Menu from "../../Components/Menu";
 import styles from "./Moderation.module.css";
 import { Button } from "antd";
-import SearchBar from "../../Components/SearchBar";
 import { useNavigate } from "react-router-dom";
 import PollTag from "../../Components/PollTag";
 import PointsButton from "../../Components/PointsButton";
@@ -17,9 +16,99 @@ function Moderation() {
   const [moderatorPosts, setModeratorPosts] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const navigate = useNavigate();
+  const [message, setMessage] = useState(null);
+  const [tags, setTags] = useState([]);
+  const [prevTags, setPrevTags] = useState(null);
 
-  const handleTagChange = (tags) => {
-    setSelectedTags(tags);
+
+  const showMessage = (text) => {
+    setMessage(text);
+
+    // Automatically hide the message after a certain duration (e.g., 3000 milliseconds)
+    setTimeout(() => {
+      setMessage(null);
+    }, 9000);
+  };
+
+  useEffect(() => {
+    // Make a GET request to fetch available tags from the backend
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url + "/moderators/my-tags", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        const result = await response.json();
+        setTags(result);
+        setPrevTags(result);
+      } catch (error) {
+        console.error('Error fetching tags:', error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleTagChange = (updatedTags) => {
+    // This function will be called whenever a tag is selected/unselected
+    // You can use the updatedTags array to track the current state of tags
+
+    const selectedCount = updatedTags.reduce((count, tag) => (tag.isSelected ? count + 1 : count), 0);
+
+    if (selectedCount === 0 || selectedCount > 5) {
+      showMessage('Please select at least one tag and at most 5 tags.');
+      return;
+    }
+
+    const updatedTagsWithNumbers = updatedTags.map((tag) => ({
+      topic: tag.topic,
+      isSelected: tag.isSelected ? 1 : 0,
+    }));
+
+    let lastUpdatedTag;
+    if (prevTags) {
+      lastUpdatedTag = updatedTags.find((tag) => {
+        const prevTag = prevTags.find((prev) => prev.topic === tag.topic);
+        return prevTag && prevTag.isSelected !== tag.isSelected;
+      });
+    }
+
+
+    const postUpdatedTags = async () => {
+      try {
+        const response = await fetch(url + '/moderators/my-tags', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          body: JSON.stringify({
+            topic: lastUpdatedTag.topic,
+            isSelected: lastUpdatedTag.isSelected ? 1 : 0,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        // Handle success
+      } catch (error) {
+        console.error('Error updating tags:', error.message);
+      }
+    };
+
+    postUpdatedTags();
+    handlePostUpdate(); 
+
+
+
+    // Update the previous state with the current state
+    setPrevTags(updatedTags);
   };
 
   useEffect(() => {
@@ -38,6 +127,10 @@ function Moderation() {
           },
         });
 
+        if (!response) {
+          throw new Error("API response is undefined");
+        }
+
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -53,10 +146,91 @@ function Moderation() {
     fetchData();
   }, []);
 
-  const isModerator = true;
+  const handlePostUpdate = () => {
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url + "/moderators/my-requests", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response) {
+          throw new Error("API response is undefined");
+        }
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const result = await response.json();
+        setModeratorPosts(result);
+      } catch (error) {
+        console.error("Error fetching data:", error.message);
+      }
+    };
+
+    // Call the function to fetch data
+    fetchData();
+
+  }
+
+  const handleGetTagUpdate = () => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url + "/moderators/my-tags", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        const result = await response.json();
+        setTags(result);
+        setPrevTags(result);
+      } catch (error) {
+        console.error('Error fetching tags:', error.message);
+      }
+    };
+
+    fetchData();
+  }
+
+  const isModerator = userData?.isMod;
 
   const handleBecomeModerator = () => {
     console.log("User wants to become a moderator");
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url + "/moderators/request-promotion", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response) {
+          throw new Error("API response is undefined");
+        }
+        
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        showMessage('Your application to become a moderator has been submitted successfully.');
+
+      } catch (error) {
+        console.error("Error fetching data:", error.message);
+      }
+    };
+
+    // Call the function to fetch data
+    fetchData();
   };
 
   const handleBecomeJury = (requestId) => {
@@ -101,11 +275,16 @@ function Moderation() {
           <div className={styles.tagContainer}>
             <div className={styles.selectedTags}>
               <TagSelection
-                selectedTags={selectedTags}
+                initialTags={tags}
                 onTagChange={handleTagChange}
               />
             </div>
           </div>
+          {message && (
+            <div className={styles.message2}>
+              {message}
+            </div>
+          )}
           <PointsButton point={userData?.points ?? 0} />
         </>
       ) : (
@@ -121,7 +300,13 @@ function Moderation() {
             >
               Apply
             </Button>
+
           </div>
+          {message && (
+            <div className={styles.message}>
+              {message}
+            </div>
+          )}
           <PointsButton point={userData?.points ?? 0} />
         </>
       )}

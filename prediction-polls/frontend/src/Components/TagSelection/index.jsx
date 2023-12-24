@@ -1,30 +1,38 @@
-import React, { useState } from "react";
+// TagSelection.js
+import React, { useState, useEffect } from "react";
 import styles from './TagSelection.module.css';
-import { Checkbox } from "antd";
 
-const mockTags = ["sport", "NBA", "education"];
+const TagSelection = ({ initialTags, onTagChange }) => {
+  const [tags, setTags] = useState([]);
 
-const TagSelection = ({ selectedTags, onTagChange }) => {
+  useEffect(() => {
+    // Ensure initialTags is defined before setting the state
+    if (initialTags) {
+      setTags(initialTags);
+    }
+  }, [initialTags]);
+
   const handleTagChange = (tag) => {
-    const updatedTags = selectedTags.includes(tag)
-      ? selectedTags.filter((selectedTag) => selectedTag !== tag)
-      : [...selectedTags, tag];
+    const updatedTags = tags.map((t) =>
+      t.topic === tag.topic ? { ...t, isSelected: !t.isSelected } : t
+    );
 
+    setTags(updatedTags);
     onTagChange(updatedTags);
   };
 
   return (
     <div className={styles.tagSelection}>
-      <p className={styles.tagTitle}>Select Tags</p>
+      <p className={styles.tagTitle}>Select Tags:</p>
       <div className={styles.tagList}>
-        {mockTags.map((tag) => (
-          <label key={tag} className={styles.tagLabel}>
-            <Checkbox
-              className={styles.tagCheckbox}
-              checked={selectedTags.includes(tag)}
-              onChange={() => handleTagChange(tag)}
+        {tags.map(({ topic, isSelected }) => (
+          <label key={topic} className={styles.tagLabel}>
+            <input
+              type="checkbox"
+              checked={isSelected}
+              onChange={() => handleTagChange({ topic, isSelected })}
             />
-            {tag}
+            {topic}
           </label>
         ))}
       </div>
