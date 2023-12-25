@@ -20,10 +20,10 @@ interface ProfileApi {
     suspend fun unfollowUser(@Body followRequest: FollowRequest)
 
     @POST("profiles/follower")
-    suspend fun fetchFollowers(@Body getFollowersRequest: GetFollowersRequest): List<String>
+    suspend fun fetchFollowers(@Body getFollowersRequest: GetFollowersRequest): FollowerResponse
 
     @POST("profiles/followed")
-    suspend fun fetchFollowed(@Body getFollowersRequest: GetFollowersRequest):  List<String>
+    suspend fun fetchFollowed(@Body getFollowersRequest: GetFollowersRequest):  FollowerResponse
 
     @GET("profiles/myProfile")
     suspend fun fetchCurrentUserProfileInfo(): ProfileInfoResponse

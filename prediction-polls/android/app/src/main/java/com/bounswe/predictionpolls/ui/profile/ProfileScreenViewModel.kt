@@ -76,16 +76,17 @@ class ProfileScreenViewModel @Inject constructor(
             .map { it.toProfileScreenUiState() }
             .stateIn(viewModelScope, SharingStarted.Eagerly, ProfileScreenUiState.Loading)
 
+    private var loggedUserName: String? = null
     private var loggedUserId: String? = null
+
 
     init {
         viewModelScope.launch {
             getCurrentUserProfileUseCase.invoke()
                 .let { result ->
                     if (result is Result.Success) {
+                        loggedUserName = result.data.username
                         loggedUserId = result.data.userId
-                        getFollowers()
-                        getFollowed()
                     }
                 }
         }
@@ -100,7 +101,8 @@ class ProfileScreenViewModel @Inject constructor(
                 _profileScreenUiState.update {
                     it.copy(
                         isCurrentUserFollowed = true,
-                        error = null
+                        error = null,
+                        followerCount = it.followerCount + 1
                     )
                 }
             }
@@ -124,9 +126,11 @@ class ProfileScreenViewModel @Inject constructor(
                 _profileScreenUiState.update {
                     it.copy(
                         isCurrentUserFollowed = false,
-                        error = null
+                        error = null,
+                        followerCount = it.followerCount - 1
                     )
                 }
+
             }
 
             is Result.Error -> {
@@ -141,11 +145,11 @@ class ProfileScreenViewModel @Inject constructor(
 
     suspend fun getFollowers() {
         val userId =
-            loggedUserId
+            _profileScreenUiState.value.profileInfo?.userId
                 ?: return
         when (val result = followUnfollowUseCase.getFollowers(userId)) {
             is Result.Success -> {
-                if (result.data.contains(userId))
+                if (result.data.contains(loggedUserName))
                     _profileScreenUiState.update {
                         it.copy(
                             isCurrentUserFollowed = true,
@@ -179,8 +183,9 @@ class ProfileScreenViewModel @Inject constructor(
 
     suspend fun getFollowed() {
         val userId =
-            loggedUserId
+            _profileScreenUiState.value.profileInfo?.userId
                 ?: return
+
         when (val result = followUnfollowUseCase.getFollowed(userId)) {
             is Result.Success -> {
                 _profileScreenUiState.update {
@@ -213,6 +218,8 @@ class ProfileScreenViewModel @Inject constructor(
                         error = null
                     )
                 }
+                getFollowers()
+                getFollowed()
             }
 
             is Result.Error -> {

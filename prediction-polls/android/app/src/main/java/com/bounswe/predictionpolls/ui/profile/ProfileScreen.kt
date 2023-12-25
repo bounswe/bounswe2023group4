@@ -56,8 +56,8 @@ fun ProfileScreen(
                         userDescription = profileInfo.userDescription,
                         badgeUris = profileInfo.badgeUris,
                         onProfileEditPressed = onEditProfileClicked,
-                        followerCount = profileInfo.followerCount ?: 0,
-                        followingCount = profileInfo.followedCount ?: 0,
+                        followerCount = profileScreenUiState.followerCount,
+                        followingCount = profileScreenUiState.followedCount,
                         isFollowed = profileScreenUiState.isFollowedByLoggedUser,
                         onFollowClicked = onFollowClicked
                     )
@@ -73,8 +73,8 @@ fun ProfileScreen(
                         userDescription = profileInfo.userDescription,
                         badgeUris = profileInfo.badgeUris,
                         onProfileEditPressed = onEditProfileClicked,
-                        followerCount = profileInfo.followerCount ?: 0,
-                        followingCount = profileInfo.followedCount ?: 0,
+                        followerCount = profileScreenUiState.followerCount,
+                        followingCount = profileScreenUiState.followedCount,
                         isFollowed = profileScreenUiState.isFollowedByLoggedUser,
                         onFollowClicked = onFollowClicked
                     )

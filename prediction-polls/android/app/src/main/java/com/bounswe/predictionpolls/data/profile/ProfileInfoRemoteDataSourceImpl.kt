@@ -67,7 +67,7 @@ class ProfileInfoRemoteDataSourceImpl @Inject constructor(
         withContext(Dispatchers.IO) {
             try {
                 val followers =
-                    profileApi.fetchFollowers(GetFollowersRequest(userId.toIntOrNull() ?: -1))
+                    profileApi.fetchFollowers(GetFollowersRequest(userId.toIntOrNull() ?: -1)).followerList ?: emptyList()
                 Result.Success(followers)
             } catch (e: Exception) {
                 Result.Error(e)
@@ -78,7 +78,7 @@ class ProfileInfoRemoteDataSourceImpl @Inject constructor(
         withContext(Dispatchers.IO) {
             try {
                 val followed =
-                    profileApi.fetchFollowed(GetFollowersRequest(userId.toIntOrNull() ?: -1))
+                    profileApi.fetchFollowed(GetFollowersRequest(userId.toIntOrNull() ?: -1)).followerList ?: emptyList()
                 Result.Success(followed)
             } catch (e: Exception) {
                 Result.Error(e)
@@ -87,3 +87,7 @@ class ProfileInfoRemoteDataSourceImpl @Inject constructor(
         }
 
 }
+
+data class FollowerResponse(
+    val followerList: List<String>?
+)
