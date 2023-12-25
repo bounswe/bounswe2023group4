@@ -122,10 +122,9 @@ private fun AppTitle() {
 private fun AppName() {
     Image(
         modifier = Modifier
-            .fillMaxWidth(0.8f)
-            .height(48.dp),
+            .size(100.dp),
         alignment = Alignment.Center,
-        painter = painterResource(id = R.drawable.ic_app_title),
+        painter = painterResource(id = R.drawable.ic_app_logo_2),
         contentDescription = stringResource(R.string.cd_app_title)
     )
 }

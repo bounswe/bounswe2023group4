@@ -10,10 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -22,10 +18,12 @@ import com.bounswe.predictionpolls.ui.common.poll.Polls
 @Composable
 fun FeedScreen(
     feedUiState: FeedUiState,
+    searchedTag: String,
+    onTagSearchTextChanged: (String) -> Unit,
+    onProfileClicked: (userName: String) -> Unit,
     onPollClicked: (pollId: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var text by rememberSaveable { mutableStateOf("") } // this might be stored in VM. I am not sure how we will use this parameter so I will store it here for now..
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -33,8 +31,8 @@ fun FeedScreen(
     ) {
         FeedSearchBar(
             modifier = Modifier.fillMaxWidth(),
-            text = text,
-            onTextChanged = { text = it }
+            text = searchedTag,
+            onTextChanged = onTagSearchTextChanged
         )
         Spacer(modifier = Modifier.height(16.dp))
         when (feedUiState) {
@@ -50,7 +48,7 @@ fun FeedScreen(
             }
 
             is FeedUiState.HasFeed -> {
-                Polls(polls = feedUiState.feed, onPollClicked = onPollClicked)
+                Polls(polls = feedUiState.feed, onPollClicked = onPollClicked, onProfileClicked = onProfileClicked)
             }
 
             is FeedUiState.Error -> {

@@ -33,18 +33,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.PopupProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
 import com.bounswe.predictionpolls.R
-import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
+import com.bounswe.predictionpolls.domain.leaderboard.TopicLeaderboard
 import com.bounswe.predictionpolls.ui.theme.firstPositionBadgeColor
 import com.bounswe.predictionpolls.ui.theme.secondPositionBadgeColor
 import com.bounswe.predictionpolls.ui.theme.thirdPositionBadgeColor
@@ -69,21 +70,27 @@ private fun LeaderboardScreenUI(
     tags: List<String> = emptyList(),
     onTagSelected: (String) -> Unit = {},
     selectedTag: String = "",
-    items: List<LeaderboardScreenState.LeaderboardItem>
+    items: List<TopicLeaderboard.User>
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 24.dp),
-        verticalArrangement = Arrangement.spacedBy(24.dp)
+            .padding(start = 16.dp, end = 16.dp, bottom = 12.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
+        Text(
+            text = "Leaderboard",
+            color = MaterialTheme.colorScheme.primary,
+            style = MaterialTheme.typography.titleLarge,
+            fontSize = 20.sp,
+            lineHeight = 24.sp
+        )
         LeaderboardScreenTagSelection(
             items = tags,
             onItemSelected = onTagSelected,
             selectedItem = selectedTag
         )
         Leaderboard(items)
-        LoadMore()
     }
 }
 
@@ -97,22 +104,23 @@ private fun LeaderboardScreenTagSelection(
     var expanded by remember { mutableStateOf(false) }
     val shape = RoundedCornerShape(8.dp)
 
-    Column{
+    Column {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(MaterialTheme.colorScheme.primaryContainer, shape)
                 .clip(shape = shape)
                 .clickable {
-                    expanded = true
+                    expanded = !expanded
                 }
-                .padding(vertical = 12.dp, horizontal = 16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+                .padding(vertical = 8.dp, horizontal = 16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = selectedItem,
                 style = MaterialTheme.typography.labelMedium,
-                fontSize = 18.sp,
+                fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
                 textAlign = TextAlign.Center,
@@ -145,7 +153,7 @@ private fun LeaderboardScreenTagSelection(
                         Text(
                             text = item,
                             style = MaterialTheme.typography.labelMedium,
-                            fontSize = 18.sp,
+                            fontSize = 14.sp,
                             fontWeight = FontWeight.Medium,
                             color = MaterialTheme.colorScheme.onPrimaryContainer,
                             textAlign = TextAlign.Center,
@@ -159,7 +167,7 @@ private fun LeaderboardScreenTagSelection(
 
 @Composable
 private fun ColumnScope.Leaderboard(
-    items: List<LeaderboardScreenState.LeaderboardItem>
+    items: List<TopicLeaderboard.User>
 ) {
     val shape = RoundedCornerShape(8.dp)
 
@@ -175,10 +183,28 @@ private fun ColumnScope.Leaderboard(
             itemsIndexed(items) { index, item ->
                 LeaderboardRow(
                     position = (index + 1).toString(),
-                    image = item.image,
+                    image = item.profilePicture,
                     username = item.username,
-                    point = item.score.toString()
+                    point = item.amount.toString()
                 )
+            }
+            if (items.isEmpty()) item {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(MaterialTheme.colorScheme.primaryContainer, RoundedCornerShape(bottomEnd = 8.dp, bottomStart = 8.dp))
+                        .padding(16.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "Leaderboard for selected tag is not available yet.",
+                        style = MaterialTheme.typography.labelMedium,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        textAlign = TextAlign.Center,
+                    )
+                }
             }
         }
     }
@@ -187,7 +213,7 @@ private fun ColumnScope.Leaderboard(
 @Composable
 private fun LeaderboardRow(
     position: String,
-    image: String, // TODO: use image
+    image: String?,
     username: String,
     point: String,
 ) {
@@ -208,11 +234,24 @@ private fun LeaderboardRow(
             )
         }
         Spacer(modifier = Modifier.width(24.dp))
-        Box(
-            modifier = Modifier
-                .size(40.dp)
-                .background(Color.Black, CircleShape)
-        )
+        image?.let {
+            AsyncImage(
+                model = image,
+                contentDescription = "User profile picture",
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .size(40.dp)
+                    .background(Color.Black, CircleShape),
+                contentScale = ContentScale.Crop,
+                alignment = Alignment.Center
+            )
+        } ?: run {
+            Box(
+                modifier = Modifier
+                    .size(40.dp)
+                    .background(Color.Black, CircleShape),
+            )
+        }
         Spacer(modifier = Modifier.width(24.dp))
         LeaderboardRowText(
             modifier = Modifier.weight(2f),
@@ -263,8 +302,8 @@ private fun LeaderboardRowText(
         modifier = modifier,
         text = text,
         style = MaterialTheme.typography.titleSmall,
-        fontSize = 16.sp,
-        fontWeight = FontWeight.SemiBold,
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Medium,
         textAlign = align,
         color = color,
     )
@@ -280,7 +319,7 @@ private fun LeaderboardHeader() {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
-            modifier = Modifier.size(40.dp),
+            modifier = Modifier.width(40.dp),
             contentAlignment = Alignment.Center
         ) {
             LeaderboardHeaderText(
@@ -315,48 +354,4 @@ private fun LeaderboardHeaderText(
         textAlign = align,
         color = MaterialTheme.colorScheme.onPrimary,
     )
-}
-
-@Composable
-private fun LoadMore(
-    onClick: () -> Unit = {}
-) {
-    val shape = MaterialTheme.shapes.medium
-
-    Text(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.primary, shape)
-            .clip(shape = shape)
-            .clickable {
-                onClick()
-            }
-            .padding(vertical = 12.dp),
-        text = stringResource(id = R.string.leaderboard_load_more),
-        style = MaterialTheme.typography.labelMedium,
-        fontSize = 18.sp,
-        fontWeight = FontWeight.Medium,
-        color = MaterialTheme.colorScheme.onPrimary,
-        textAlign = TextAlign.Center,
-    )
-}
-
-@Preview
-@Composable
-private fun LeaderboardScreenUIPreview() {
-    PredictionPollsTheme {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.White)
-        ) {
-            val dummyState = LeaderboardScreenState.DUMMY_STATE
-            LeaderboardScreenUI(
-                tags = dummyState.tags,
-                selectedTag = dummyState.selectedTag,
-                items = dummyState.leaderboardList,
-                onTagSelected = {}
-            )
-        }
-    }
 }

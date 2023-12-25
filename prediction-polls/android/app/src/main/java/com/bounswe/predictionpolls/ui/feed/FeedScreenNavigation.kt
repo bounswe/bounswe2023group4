@@ -11,6 +11,7 @@ import androidx.navigation.Navigator
 import androidx.navigation.compose.composable
 import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
 import com.bounswe.predictionpolls.ui.main.navigateToMainScreen
+import com.bounswe.predictionpolls.ui.profile.navigateToProfileScreen
 import com.bounswe.predictionpolls.ui.vote.navigateToPollVoteScreen
 
 const val FEED_ROUTE = "feed"
@@ -24,15 +25,25 @@ fun NavGraphBuilder.feedScreen(navController: NavController, isUserLoggedIn: Boo
                 feedViewModel.fetchFeed(0)
         }
         val feedUiState by feedViewModel.feedUiState.collectAsStateWithLifecycle()
-        FeedScreen(feedUiState, onPollClicked = {
-            if (isUserLoggedIn) {
-                navController.navigateToPollVoteScreen(it)
-            } else {
-                navController.navigateToMainScreen(
-                    navOptions = NavOptions.Builder().setPopUpTo(MAIN_ROUTE, true).build()
-                )
-            }
-        })
+        FeedScreen(
+            feedUiState,
+            onPollClicked = {
+                if (isUserLoggedIn) {
+                    navController.navigateToPollVoteScreen(it)
+                } else {
+                    navController.navigateToMainScreen(
+                        navOptions = NavOptions.Builder().setPopUpTo(MAIN_ROUTE, true).build()
+                    )
+                }
+            },
+            onProfileClicked = {
+                navController.navigateToProfileScreen(username = it)
+            },
+            onTagSearchTextChanged = {
+                feedViewModel.onTagSearchTextChanged(it)
+            },
+            searchedTag = feedViewModel.searchedTag
+        )
     }
 }
 

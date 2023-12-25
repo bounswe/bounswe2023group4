@@ -1,15 +1,16 @@
 package com.bounswe.predictionpolls.ui.profile
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bounswe.predictionpolls.common.Result
-import com.bounswe.predictionpolls.domain.feed.GetFeedUseCase
+import com.bounswe.predictionpolls.core.BaseViewModel
+import com.bounswe.predictionpolls.data.remote.repositories.PollRepositoryInterface
 import com.bounswe.predictionpolls.domain.poll.Poll
+import com.bounswe.predictionpolls.domain.profile.FollowUnfollowUseCase
 import com.bounswe.predictionpolls.domain.profile.GetCurrentUserProfileUseCase
+import com.bounswe.predictionpolls.domain.profile.GetProfileInfoUseCase
 import com.bounswe.predictionpolls.domain.profile.ProfileInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -20,7 +21,11 @@ import kotlinx.coroutines.launch
 
 private data class ProfileScreenViewModelState(
     val profileInfo: ProfileInfo? = null,
-    val feed: ImmutableList<Poll>? = null,
+    val userId: String? = null,
+    val isCurrentUserFollowed: Boolean = false,
+    val followerCount: Int = 0,
+    val followedCount: Int = 0,
+    val feed: List<Poll> = emptyList(),
     val isLoading: Boolean = true,
     val error: String? = null
 ) {
@@ -32,9 +37,21 @@ private data class ProfileScreenViewModelState(
                 ProfileScreenUiState.Error(error ?: "Unknown error")
             } else {
                 if (feed == null) {
-                    ProfileScreenUiState.ProfileInfoFetched(profileInfo, error ?: "Unknown error")
+                    ProfileScreenUiState.ProfileInfoFetched(
+                        profileInfo,
+                        error ?: "Unknown error",
+                        followerCount,
+                        followedCount,
+                        isCurrentUserFollowed
+                    )
                 } else {
-                    ProfileScreenUiState.ProfileAndFeedFetched(profileInfo, feed)
+                    ProfileScreenUiState.ProfileAndFeedFetched(
+                        profileInfo,
+                        feed,
+                        followerCount,
+                        followedCount,
+                        isCurrentUserFollowed
+                    )
                 }
             }
         }
@@ -44,9 +61,11 @@ private data class ProfileScreenViewModelState(
 
 @HiltViewModel
 class ProfileScreenViewModel @Inject constructor(
-    private val getProfileInfoUseCase: GetCurrentUserProfileUseCase,
-    private val getFeedUseCase: GetFeedUseCase
-) : ViewModel() {
+    private val getProfileInfoUseCase: GetProfileInfoUseCase,
+    private val getCurrentUserProfileUseCase: GetCurrentUserProfileUseCase,
+    private val pollRepository: PollRepositoryInterface,
+    private val followUnfollowUseCase: FollowUnfollowUseCase
+) : BaseViewModel() {
 
     private val _profileScreenUiState: MutableStateFlow<ProfileScreenViewModelState> =
         MutableStateFlow(ProfileScreenViewModelState())
@@ -56,10 +75,139 @@ class ProfileScreenViewModel @Inject constructor(
             .map { it.toProfileScreenUiState() }
             .stateIn(viewModelScope, SharingStarted.Eagerly, ProfileScreenUiState.Loading)
 
+    private var loggedUserName: String? = null
+    private var loggedUserId: String? = null
 
-    fun fetchProfileInfo() = viewModelScope.launch {
+    init {
+        viewModelScope.launch {
+            getCurrentUserProfileUseCase.invoke()
+                .let { result ->
+                    if (result is Result.Success) {
+                        loggedUserName = result.data.username
+                        loggedUserId = result.data.userId
+                    }
+                }
+        }
+    }
+
+    fun followUser(followedId: String) = viewModelScope.launch {
+        val followerId =
+            loggedUserId
+                ?: return@launch
+        when (val result = followUnfollowUseCase.followUser(followerId, followedId)) {
+            is Result.Success -> {
+                _profileScreenUiState.update {
+                    it.copy(
+                        isCurrentUserFollowed = true,
+                        error = null,
+                        followerCount = it.followerCount + 1
+                    )
+                }
+            }
+
+            is Result.Error -> {
+                _profileScreenUiState.update {
+                    it.copy(
+                        error = result.exception.message
+                    )
+                }
+            }
+        }
+    }
+
+    fun unfollowUser(followedId: String) = viewModelScope.launch {
+        val followerId =
+            loggedUserId
+                ?: return@launch
+        when (val result = followUnfollowUseCase.unfollowUser(followerId, followedId)) {
+            is Result.Success -> {
+                _profileScreenUiState.update {
+                    it.copy(
+                        isCurrentUserFollowed = false,
+                        error = null,
+                        followerCount = it.followerCount - 1
+                    )
+                }
+
+            }
+
+            is Result.Error -> {
+                _profileScreenUiState.update {
+                    it.copy(
+                        error = result.exception.message
+                    )
+                }
+            }
+        }
+    }
+
+    suspend fun getFollowers() {
+        val userId =
+            _profileScreenUiState.value.profileInfo?.userId
+                ?: return
+        when (val result = followUnfollowUseCase.getFollowers(userId)) {
+            is Result.Success -> {
+                if (result.data.contains(loggedUserName))
+                    _profileScreenUiState.update {
+                        it.copy(
+                            isCurrentUserFollowed = true,
+                            error = null
+                        )
+                    }
+                else
+                    _profileScreenUiState.update {
+                        it.copy(
+                            isCurrentUserFollowed = false,
+                            error = null
+                        )
+                    }
+                _profileScreenUiState.update {
+                    it.copy(
+                        followerCount = result.data.size,
+                        error = null
+                    )
+                }
+            }
+
+            is Result.Error -> {
+                _profileScreenUiState.update {
+                    it.copy(
+                        error = result.exception.message
+                    )
+                }
+            }
+        }
+    }
+
+    suspend fun getFollowed() {
+        val userId =
+            _profileScreenUiState.value.profileInfo?.userId
+                ?: return
+
+        when (val result = followUnfollowUseCase.getFollowed(userId)) {
+            is Result.Success -> {
+                _profileScreenUiState.update {
+                    it.copy(
+                        followedCount = result.data.size,
+                        error = null
+                    )
+                }
+            }
+
+            is Result.Error -> {
+                _profileScreenUiState.update {
+                    it.copy(
+                        error = result.exception.message
+                    )
+                }
+            }
+        }
+    }
+
+
+    fun fetchProfileInfo(userName: String) = viewModelScope.launch {
         _profileScreenUiState.update { it.copy(isLoading = true) }
-        when (val result = getProfileInfoUseCase()) {
+        when (val result = getProfileInfoUseCase(userName)) {
             is Result.Success -> {
                 _profileScreenUiState.update {
                     it.copy(
@@ -68,6 +216,8 @@ class ProfileScreenViewModel @Inject constructor(
                         error = null
                     )
                 }
+                getFollowers()
+                getFollowed()
             }
 
             is Result.Error -> {
@@ -82,28 +232,29 @@ class ProfileScreenViewModel @Inject constructor(
         }
     }
 
-    fun fetchFeed(page: Int) = viewModelScope.launch {
+    fun fetchFeed(userName: String) = viewModelScope.launch {
         _profileScreenUiState.update { it.copy(isLoading = true) }
 
-        when (val result = getFeedUseCase(page)) {
-            is Result.Success -> {
+        launchCatching(
+            onSuccess = { polls ->
                 _profileScreenUiState.update {
                     it.copy(
                         isLoading = false,
-                        feed = result.data,
+                        feed = polls,
+                        error = null
                     )
                 }
-            }
-
-            is Result.Error -> {
+            },
+            onError = {
                 _profileScreenUiState.update {
                     it.copy(
                         isLoading = false,
-                        error = result.exception.message,
-                        feed = null
+                        error = it.error ?: it.error
                     )
                 }
             }
+        ) {
+            pollRepository.getOpenedPolls(userName)
         }
     }
 }

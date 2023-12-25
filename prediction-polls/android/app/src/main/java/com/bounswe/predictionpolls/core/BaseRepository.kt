@@ -1,5 +1,6 @@
 package com.bounswe.predictionpolls.core
 
+import android.util.Log
 import java.io.IOException
 import retrofit2.HttpException
 
@@ -26,6 +27,8 @@ abstract class BaseRepository {
             else -> {
                 IOException("Unexpected error occurred. Please try again.")
             }
+        }.also {
+            Log.d("BaseRepository", "handleException: ${exception.message}")
         }
     }
 }

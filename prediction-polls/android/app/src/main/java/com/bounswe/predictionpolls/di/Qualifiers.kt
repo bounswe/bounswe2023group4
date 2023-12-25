@@ -17,3 +17,11 @@ annotation class AuthenticatedOkHttpClient
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)
 annotation class AuthenticatedRetrofit
+
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class AuthenticatedAnnotationOkHttpClient
+
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class AuthenticatedAnnotationRetrofit

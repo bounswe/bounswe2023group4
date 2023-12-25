@@ -9,6 +9,9 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.bounswe.predictionpolls.domain.annotation.PollAnnotationPages
+import com.bounswe.predictionpolls.ui.common.annotation.AnnotationViewModel
+import com.bounswe.predictionpolls.ui.profile.navigateToProfileScreen
 
 const val POLL_VOTE_ROUTE = "pollVote/{pollId}"
 
@@ -17,8 +20,15 @@ fun NavGraphBuilder.pollVoteScreen(navController: NavController) {
         POLL_VOTE_ROUTE, arguments = listOf(navArgument("pollId") { type = NavType.StringType })
     ) {
         val pollVoteViewModel: PollVoteViewModel = hiltViewModel()
+        val annotationViewModel: AnnotationViewModel = hiltViewModel()
         // Accessing state from ViewModel
         val pollId = it.arguments?.getString("pollId") ?: "" // Default value as fallback
+
+        LaunchedEffect(pollId){
+            annotationViewModel.getAnnotations(
+                PollAnnotationPages.VOTE(pollId.toInt())
+            )
+        }
 
         val state by pollVoteViewModel.state.collectAsStateWithLifecycle()
         LaunchedEffect(key1 = Unit) {
@@ -30,6 +40,9 @@ fun NavGraphBuilder.pollVoteScreen(navController: NavController) {
             state = state,
             onPointsReservedChanged = { points ->
                 pollVoteViewModel.onPointsReservedChanged(points)
+            },
+            onProfileCardClicked = {
+                navController.navigateToProfileScreen(username = it)
             },
             onVotePressed = {
                 // Assuming you have pollId, points, and voteInput available
@@ -64,7 +77,16 @@ fun NavGraphBuilder.pollVoteScreen(navController: NavController) {
             },
             onToastConsumed = {
                 pollVoteViewModel.consumeToastMessage()
-            }
+            },
+            onBackClicked = {
+                navController.popBackStack()
+            },
+            onReportClicked = {
+                pollVoteViewModel.onReportPressed(pollId)
+            },
+            onCommentPosted = { comment ->
+                pollVoteViewModel.postComment(pollId.toInt(), comment)
+            },
         )
     }
 }

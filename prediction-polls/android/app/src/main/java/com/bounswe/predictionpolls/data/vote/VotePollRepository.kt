@@ -4,9 +4,9 @@ import com.bounswe.predictionpolls.common.Result
 import com.bounswe.predictionpolls.data.remote.services.PollService
 import com.bounswe.predictionpolls.domain.poll.Poll
 import com.bounswe.predictionpolls.domain.poll.VotePollRepository
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 class VotePollRepositoryImpl @Inject constructor(
     private val votePollApi: PollService
@@ -36,7 +36,7 @@ class VotePollRepositoryImpl @Inject constructor(
                     pollId,
                     DiscreteVotePollRequest(
                         voteId.toInt(),
-                        points.toString()
+                        points
                     )
                 )
                 if (result.error != null) {
@@ -59,7 +59,7 @@ class VotePollRepositoryImpl @Inject constructor(
                     pollId,
                     ContinuousPollRequest(
                         voteInput,
-                        points.toString(),
+                        points,
                     )
                 )
                 if (result.error != null) {

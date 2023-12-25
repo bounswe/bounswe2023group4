@@ -1,6 +1,7 @@
 package com.bounswe.predictionpolls.ui.profile
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -12,8 +13,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.domain.poll.Poll
 import com.bounswe.predictionpolls.extensions.fromISO8601
 import com.bounswe.predictionpolls.ui.common.poll.DiscreteVoteOption
@@ -23,7 +27,14 @@ import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 
 
 @Composable
-fun ProfileScreen(profileScreenUiState: ProfileScreenUiState, modifier: Modifier = Modifier) {
+fun ProfileScreen(
+    profileScreenUiState: ProfileScreenUiState,
+    onProfileClicked: (String) -> Unit,
+    onEditProfileClicked: (() -> Unit)?,
+    onFollowClicked: () -> Unit,
+    onPollClicked: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     InternalProfileScreen(
         modifier = modifier,
         profileInformation = {
@@ -45,8 +56,12 @@ fun ProfileScreen(profileScreenUiState: ProfileScreenUiState, modifier: Modifier
                         profilePictureUri = profileInfo.profilePictureUri,
                         userDescription = profileInfo.userDescription,
                         badgeUris = profileInfo.badgeUris,
-                        onProfileEditPressed = { /*TODO*/ },
-                        onRequestsClicked = { /*TODO*/ })
+                        onProfileEditPressed = onEditProfileClicked,
+                        followerCount = profileScreenUiState.followerCount,
+                        followingCount = profileScreenUiState.followedCount,
+                        isFollowed = profileScreenUiState.isFollowedByLoggedUser,
+                        onFollowClicked = onFollowClicked
+                    )
                 }
 
                 is ProfileScreenUiState.ProfileAndFeedFetched -> {
@@ -58,8 +73,12 @@ fun ProfileScreen(profileScreenUiState: ProfileScreenUiState, modifier: Modifier
                         profilePictureUri = profileInfo.profilePictureUri,
                         userDescription = profileInfo.userDescription,
                         badgeUris = profileInfo.badgeUris,
-                        onProfileEditPressed = { /*TODO*/ },
-                        onRequestsClicked = { /*TODO*/ })
+                        onProfileEditPressed = onEditProfileClicked,
+                        followerCount = profileScreenUiState.followerCount,
+                        followingCount = profileScreenUiState.followedCount,
+                        isFollowed = profileScreenUiState.isFollowedByLoggedUser,
+                        onFollowClicked = onFollowClicked
+                    )
                 }
             }
         },
@@ -67,6 +86,8 @@ fun ProfileScreen(profileScreenUiState: ProfileScreenUiState, modifier: Modifier
             when (profileScreenUiState) {
                 is ProfileScreenUiState.ProfileAndFeedFetched -> {
                     items(profileScreenUiState.feed) {
+                        val context = LocalContext.current
+                        val frontEndUrl = stringResource(id = R.string.front_end_url)
                         PollComposable(
                             pollCreatorProfilePictureUri = it.creatorProfilePictureUri,
                             pollCreatorName = it.pollCreatorName,
@@ -83,7 +104,12 @@ fun ProfileScreen(profileScreenUiState: ProfileScreenUiState, modifier: Modifier
                             },
                             dueDate = it.dueDate?.fromISO8601() ?: "",
                             rejectionText = it.rejectionText ?: "",
-                            commentCount = it.commentCount
+                            onProfileCardClicked = {
+                                onProfileClicked(it.pollCreatorUsername)
+                            },
+                            modifier = Modifier.clickable {
+                                onPollClicked(it.polId)
+                            },
                         )
                     }
                 }
@@ -142,8 +168,11 @@ private fun ProfileScreenPreview() {
                         "https://picsum.photos/id/233/200/300"
                     ),
                     onProfileEditPressed = { },
-                    onRequestsClicked = { },
-                    modifier = Modifier.padding(16.dp)
+                    followerCount = 100,
+                    followingCount = 200,
+                    modifier = Modifier.padding(16.dp),
+                    onFollowClicked = {},
+                    isFollowed = true
                 )
 
             },
@@ -174,7 +203,7 @@ private fun ProfileScreenPreview() {
                         modifier = Modifier.padding(16.dp),
                         dueDate = "",
                         rejectionText = "Last 5 days",
-                        commentCount = 530
+                        onProfileCardClicked = {},
                     )
                 }
             }

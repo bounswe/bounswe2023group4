@@ -6,7 +6,8 @@ import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.ui.create.CREATE_POLL_ROUTE
 import com.bounswe.predictionpolls.ui.feed.FEED_ROUTE
 import com.bounswe.predictionpolls.ui.leaderboard.LEADERBOARD_ROUTE
-import com.bounswe.predictionpolls.ui.profile.PROFILE_SCREEN_ROUTE
+import com.bounswe.predictionpolls.ui.moderation.apply.MODERATION_APPLY_ROUTE
+import com.bounswe.predictionpolls.ui.profile.MY_PROFILE_SCREEN_ROUTE
 
 enum class NavItem(
     val route: String,
@@ -15,7 +16,7 @@ enum class NavItem(
     val requiresAuth: Boolean = false,
 ) {
     PROFILE(
-        route = PROFILE_SCREEN_ROUTE,
+        route = MY_PROFILE_SCREEN_ROUTE,
         titleId = R.string.nav_drawer_profile,
         iconId = R.drawable.ic_profile,
         requiresAuth = true
@@ -32,7 +33,7 @@ enum class NavItem(
         requiresAuth = true
     ),
     MODERATION(
-        route = "moderation", // TODO: change this route with the actual route
+        route = MODERATION_APPLY_ROUTE,
         titleId = R.string.nav_drawer_moderation,
         iconId = R.drawable.ic_moderation,
         requiresAuth = true
@@ -41,16 +42,5 @@ enum class NavItem(
         route = LEADERBOARD_ROUTE,
         titleId = R.string.nav_drawer_leaderboard,
         iconId = R.drawable.ic_leaderboard
-    ),
-    NOTIFICATIONS(
-        route = "notifications", // TODO: change this route with the actual route
-        titleId = R.string.nav_drawer_notifications,
-        iconId = R.drawable.ic_notifications,
-        requiresAuth = true
-    ),
-    SETTINGS(
-        route = "settings", // TODO: change this route with the actual route
-        titleId = R.string.nav_drawer_settings,
-        iconId = R.drawable.ic_settings,
     ),
 }

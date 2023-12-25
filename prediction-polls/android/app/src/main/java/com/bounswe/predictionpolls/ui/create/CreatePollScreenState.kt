@@ -4,6 +4,7 @@ import androidx.annotation.StringRes
 import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.data.remote.model.request.CreateContinuousPollRequest
 import com.bounswe.predictionpolls.data.remote.model.request.CreateDiscretePollRequest
+import com.bounswe.predictionpolls.domain.semantic.SemanticTag
 import com.bounswe.predictionpolls.extensions.isValidDate
 
 data class CreatePollScreenState(
@@ -18,6 +19,9 @@ data class CreatePollScreenState(
     val isDistributionVisible: Boolean = false,
     @StringRes val inputValidationError: Int? = null,
     val isDatePickerVisible: Boolean = false,
+    val createdPollId: Int = -1,
+    val searchedTag: String = "",
+    val tags: List<SemanticTag> = listOf(),
 ) {
     enum class PollType(val type: String) {
         DISCRETE("Multiple Choice"),
