@@ -1,6 +1,7 @@
 package com.bounswe.predictionpolls.ui.profile
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -31,6 +32,7 @@ fun ProfileScreen(
     onProfileClicked: (String) -> Unit,
     onEditProfileClicked: (() -> Unit)?,
     onFollowClicked: () -> Unit,
+    onPollClicked: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     InternalProfileScreen(
@@ -104,6 +106,9 @@ fun ProfileScreen(
                             rejectionText = it.rejectionText ?: "",
                             onProfileCardClicked = {
                                 onProfileClicked(it.pollCreatorUsername)
+                            },
+                            modifier = Modifier.clickable {
+                                onPollClicked(it.polId)
                             },
                         )
                     }

@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import com.bounswe.predictionpolls.domain.annotation.PollAnnotationPages
 import com.bounswe.predictionpolls.ui.common.annotation.AnnotationViewModel
 import com.bounswe.predictionpolls.ui.editProfile.navigateToEditProfileScreen
+import com.bounswe.predictionpolls.ui.vote.navigateToPollVoteScreen
 
 const val MY_PROFILE_SCREEN_ROUTE = "MY_PROFILE_SCREEN_ROUTE"
 
@@ -50,6 +51,9 @@ fun NavGraphBuilder.myProfileScreen(navController: NavController) {
             },
             onFollowClicked = {
             },
+            onPollClicked = {
+                navController.navigateToPollVoteScreen(it)
+            }
         )
     }
 }
