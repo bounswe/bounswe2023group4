@@ -23,7 +23,6 @@ import com.bounswe.predictionpolls.ui.common.poll.DiscreteVoteOption
 import com.bounswe.predictionpolls.ui.common.poll.PollComposable
 import com.bounswe.predictionpolls.ui.common.poll.ReadOnlyDiscretePollOptions
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
-import com.bounswe.predictionpolls.utils.shareLink
 
 
 @Composable
@@ -103,13 +102,9 @@ fun ProfileScreen(
                             },
                             dueDate = it.dueDate?.fromISO8601() ?: "",
                             rejectionText = it.rejectionText ?: "",
-                            commentCount = it.commentCount,
                             onProfileCardClicked = {
                                 onProfileClicked(it.pollCreatorUsername)
                             },
-                            onShareClicked = {
-                                context.shareLink(frontEndUrl + "/vote/" + it.polId)
-                            }
                         )
                     }
                 }
@@ -203,9 +198,7 @@ private fun ProfileScreenPreview() {
                         modifier = Modifier.padding(16.dp),
                         dueDate = "",
                         rejectionText = "Last 5 days",
-                        commentCount = 530,
                         onProfileCardClicked = {},
-                        onShareClicked = {}
                     )
                 }
             }
