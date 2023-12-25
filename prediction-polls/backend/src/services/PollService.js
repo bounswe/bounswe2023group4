@@ -31,7 +31,6 @@ async function getOpenedPollsOfUser(req,res){
 
 async function getOpenedPollsOfGivenUser(req,res){
     const {userId, username, email} = req.query;
-    console.log(userId, username, email);
     try {
         const result = await findUser({userId,username,email})
         if(result.error){
@@ -72,7 +71,7 @@ async function createPollsJson(poll_rows){
 
         let profile_image = null;
         
-        if (profile.profile_picture) {
+        if (profile && profile.profile_picture) {
             const signed_image = await getImagefromS3(profile.profile_picture);
             if (signed_image.error) {
                 throw signed_image.error;

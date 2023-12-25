@@ -107,21 +107,31 @@ async function getModRequests(req,res){
         if(mod_requests.error){
             throw mod_requests.error
         }
-
         const filled_mod_requests = await Promise.all(await mod_requests.map(async (mod_request) => {
+            const has_response = await db.checkModRequestForResponse(mod_request.id)
+            if(has_response){
+                return null
+            }
+
             const pollObjectList = await pollDb.getPollWithId(mod_request.poll_id)
             const pollJsonList = await pollService.createPollsJson(pollObjectList)
             const pollJson = pollJsonList[0]
+            const hasTags = pollJson.tags.length > 0
 
             const mod_request_json = {
                 "request_id":mod_request.id,
                 "request_type":mod_request.request_type,
                 "reward":mod_request.reward,
-                "poll":pollJson
+                "poll":pollJson,
+                "hasTags":hasTags
             }
             return mod_request_json
         }))
-        return res.status(200).json(filled_mod_requests);
+
+        const filtered_mod_requests = filled_mod_requests.filter(mod_request => mod_request !== null);
+        filtered_mod_requests.sort((a, b) => (a.hasTags === b.hasTags) ? 0 : a.hasTags ? -1 : 1);
+        
+        return res.status(200).json(filtered_mod_requests);
     }
     catch(error){
         return res.status(400).json({error:error});
