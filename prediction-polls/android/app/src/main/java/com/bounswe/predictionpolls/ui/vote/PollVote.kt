@@ -37,10 +37,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bounswe.predictionpolls.R
@@ -106,7 +110,7 @@ private fun PollVoteUI(
     onShareClicked: () -> Unit = {},
     onReportClicked: () -> Unit = {},
     onProfileCardClicked: (userName: String) -> Unit = {},
-    comments : List<Comment> = emptyList(),
+    comments: List<Comment> = emptyList(),
     onCommentPosted: (String) -> Unit = {}
 ) {
     var isAnnotationDialogOpen by remember { mutableStateOf(false) }
@@ -201,7 +205,7 @@ private fun PollVoteUI(
                 SectionHeader(text = "Poll Question")
                 Divider()
                 AnnotatableText(
-                    text = poll.pollQuestionTitle,
+                    text = AnnotatedString(poll.pollQuestionTitle),
                 )
             }
         }
@@ -246,24 +250,34 @@ private fun PollVoteUI(
             ) {
                 SectionHeader(text = "Vote Points")
                 Divider()
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    CustomInputField(
-                        text = votePoints.toString(),
-                        onTextChanged = onVotePointsChanged,
-                        keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Number
-                        ),
-                        modifier = Modifier.weight(1f)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Button(
-                        onClick = onVotePressed,
-                        shape = RoundedCornerShape(12.dp)
+                if (poll.isOpen) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(text = "Vote")
+                        CustomInputField(
+                            text = votePoints.toString(),
+                            onTextChanged = onVotePointsChanged,
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Number
+                            ),
+                            modifier = Modifier.weight(1f)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Button(
+                            onClick = onVotePressed,
+                            shape = RoundedCornerShape(12.dp)
+                        ) {
+                            Text(text = "Vote")
+                        }
                     }
+                } else {
+                    Text(
+                        text = "Voting is closed for this poll.",
+                        fontFamily = MontserratFontFamily,
+                        color = MaterialTheme.colorScheme.error,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 14.sp,
+                    )
                 }
             }
         }
@@ -297,7 +311,7 @@ private fun PollVoteUI(
                 Divider()
             }
         }
-        if (isMessagesExpanded){
+        if (isMessagesExpanded) {
             item {
                 Spacer(modifier = Modifier.height(8.dp))
             }
@@ -324,15 +338,36 @@ private fun PollVoteUI(
                     }
                 }
             }
-            items(comments){
-                Text(
-                    text = it.comment,
-                    fontFamily = MontserratFontFamily,
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 12.sp,
-                    lineHeight = 16.sp,
-                )
-                Spacer(modifier = Modifier.height(4.dp))
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+            items(comments) {
+                Row {
+                    AnnotatableText(
+                        text = buildAnnotatedString {
+                            withStyle(
+                                style = SpanStyle(
+                                    fontFamily = MontserratFontFamily,
+                                    fontWeight = FontWeight.SemiBold,
+                                    fontSize = 14.sp,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                            ) {
+                                append("Username: ")
+                            }
+                            withStyle(
+                                style = SpanStyle(
+                                    fontFamily = MontserratFontFamily,
+                                    fontWeight = FontWeight.Medium,
+                                    fontSize = 12.sp,
+                                )
+                            ){
+                                append(it.comment)
+                            }
+                        },
+                    )
+                }
+                Spacer(modifier = Modifier.height(8.dp))
             }
         }
 
@@ -521,7 +556,7 @@ fun PollOption(
             .padding(vertical = 8.dp, horizontal = 12.dp),
     ) {
         AnnotatableText(
-            text = text,
+            text = AnnotatedString(text),
             style = TextStyle(
                 fontWeight = FontWeight.Medium,
                 fontSize = 14.sp,

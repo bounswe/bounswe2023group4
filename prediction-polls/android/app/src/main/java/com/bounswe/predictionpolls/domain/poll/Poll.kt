@@ -13,6 +13,7 @@ sealed interface Poll {
     val dueDate: String?
     val rejectionText: String?
     val commentCount: Int
+    val isOpen: Boolean
     val tags: List<String>
 
     data class ContinuousPoll(
@@ -24,6 +25,7 @@ sealed interface Poll {
         override val pollQuestionTitle: String,
         override val rejectionText: String?,
         override val commentCount: Int,
+        override val isOpen: Boolean,
         override val tags: List<String>,
         val inputType: ContinuousVoteInputType,
     ) : Poll
@@ -37,6 +39,7 @@ sealed interface Poll {
         override val pollQuestionTitle: String,
         override val rejectionText: String?,
         override val commentCount: Int,
+        override val isOpen: Boolean,
         override val tags: List<String>,
         val options: ImmutableList<PollOption.DiscreteOption>
     ) : Poll
