@@ -22,6 +22,7 @@ fun PollVoteScreen(
     onToastConsumed: () -> Unit,
     onProfileCardClicked: (userName: String) -> Unit,
     onBackClicked: () -> Unit,
+    onReportClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     when (state) {
@@ -83,6 +84,7 @@ fun PollVoteScreen(
                 onBackClicked = onBackClicked,
                 selectedOptionId = selectedOption,
                 optionText = voteInput,
+                onReportClicked = onReportClicked,
             )
         }
     }

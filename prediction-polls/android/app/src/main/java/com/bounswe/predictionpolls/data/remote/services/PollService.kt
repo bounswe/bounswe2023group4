@@ -39,4 +39,9 @@ interface PollService {
     suspend fun getPoll(
         @Path("pollId") pollId: String
     ): PollResponse
+
+    @POST("/polls/report/{pollId}")
+    suspend fun reportPoll(
+        @Path("pollId") pollId: String
+    )
 }

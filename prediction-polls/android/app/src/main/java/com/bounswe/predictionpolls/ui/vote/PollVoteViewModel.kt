@@ -1,8 +1,9 @@
 package com.bounswe.predictionpolls.ui.vote
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bounswe.predictionpolls.common.Result
+import com.bounswe.predictionpolls.core.BaseViewModel
+import com.bounswe.predictionpolls.data.remote.repositories.PollRepositoryInterface
 import com.bounswe.predictionpolls.domain.poll.Poll
 import com.bounswe.predictionpolls.domain.poll.VotePollRepository
 import com.bounswe.predictionpolls.domain.poll.VotePollUseCase
@@ -17,9 +18,10 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class PollVoteViewModel @Inject constructor(
-    private val votePollUseCase: VotePollUseCase, private val votePollRepository: VotePollRepository
-) :
-    ViewModel() {
+    private val votePollUseCase: VotePollUseCase,
+    private val votePollRepository: VotePollRepository,
+    private val pollRepository: PollRepositoryInterface
+) : BaseViewModel() {
 
     private val _state = MutableStateFlow<PollVoteScreenUiState>(PollVoteScreenUiState.Loading)
 
@@ -89,6 +91,22 @@ class PollVoteViewModel @Inject constructor(
             else -> {
                 // Handle other states if necessary
             }
+        }
+    }
+
+    fun onReportPressed(pollId: String) {
+        launchCatching(
+            onSuccess = {
+                _state.update { currentState ->
+                    when (currentState) {
+                        is PollVoteScreenUiState.DiscretePoll -> currentState.copy(toastMessage = "Successfully reported")
+                        is PollVoteScreenUiState.ContinuousPoll -> currentState.copy(toastMessage = "Successfully reported")
+                        else -> currentState
+                    }
+                }
+            }
+        ) {
+            pollRepository.reportPoll(pollId)
         }
     }
 

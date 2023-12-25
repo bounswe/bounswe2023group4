@@ -63,6 +63,7 @@ fun PollVote(
     onShareClicked: () -> Unit,
     onVotePressed: () -> Unit,
     onBackClicked: () -> Unit,
+    onReportClicked: () -> Unit,
     selectedOptionId: String?,
     optionText: String
 ) {
@@ -81,7 +82,8 @@ fun PollVote(
             }
         },
         onShareClicked = onShareClicked,
-        onProfileCardClicked = onProfileCardClicked
+        onProfileCardClicked = onProfileCardClicked,
+        onReportClicked = onReportClicked
     )
 }
 
@@ -97,6 +99,7 @@ private fun PollVoteUI(
     onVotePointsChanged: (String) -> Unit = {},
     onVotePressed: () -> Unit = {},
     onShareClicked: () -> Unit = {},
+    onReportClicked: () -> Unit = {},
     onProfileCardClicked: (userName: String) -> Unit = {}
 ) {
     val scrollState = rememberScrollState()
@@ -239,6 +242,21 @@ private fun PollVoteUI(
             ) {
                 Text(text = "Annotations")
             }
+            Image(
+                painter = painterResource(
+                    id = R.drawable.ic_warning,
+                ),
+                contentDescription = null,
+                modifier = Modifier
+                    .background(
+                        MaterialTheme.colorScheme.error,
+                        RoundedCornerShape(12.dp)
+                    )
+                    .clip(RoundedCornerShape(12.dp))
+                    .clickable(onClick = onReportClicked)
+                    .padding(8.dp)
+                    .size(24.dp)
+            )
             Image(
                 painter = painterResource(
                     id = R.drawable.ic_share,

@@ -26,4 +26,8 @@ interface PollRepositoryInterface {
         numericFieldValue: Int? = null,
         selectedTimeUnit: String
     )
+
+    suspend fun reportPoll(
+        pollId: String
+    )
 }

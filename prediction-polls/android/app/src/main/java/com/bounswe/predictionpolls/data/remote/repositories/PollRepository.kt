@@ -54,4 +54,10 @@ class PollRepository(
             pollService.createDiscretePoll(request)
         }
     }
+
+    override suspend fun reportPoll(pollId: String) {
+        execute {
+            pollService.reportPoll(pollId)
+        }
+    }
 }

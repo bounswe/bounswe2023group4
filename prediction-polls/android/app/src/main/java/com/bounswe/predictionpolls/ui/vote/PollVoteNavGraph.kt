@@ -81,6 +81,9 @@ fun NavGraphBuilder.pollVoteScreen(navController: NavController) {
             onBackClicked = {
                 navController.popBackStack()
             },
+            onReportClicked = {
+                pollVoteViewModel.onReportPressed(pollId)
+            }
         )
     }
 }
