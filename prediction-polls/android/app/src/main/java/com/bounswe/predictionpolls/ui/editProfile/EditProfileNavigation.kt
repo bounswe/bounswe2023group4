@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
@@ -35,6 +36,7 @@ fun NavGraphBuilder.editProfileScreen(navController: NavController) {
                 }
             }
         } else {
+            val context = LocalContext.current
             EditProfileScreen(
                 username = state.userName, // Replace with actual data or ViewModel logic
                 onUsernameChanged = {
@@ -63,7 +65,7 @@ fun NavGraphBuilder.editProfileScreen(navController: NavController) {
                     editProfileViewModel.updateProfilePicture(Uri.parse(it))
                 },
                 onSaveChangesClicked = {
-                    editProfileViewModel.onSaveChangesClicked()
+                    editProfileViewModel.onSaveChangesClicked(context)
                 }
             )
         }
