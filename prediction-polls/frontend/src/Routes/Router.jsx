@@ -46,6 +46,7 @@ function AppRouter() {
             <PrivateRoute>
               <Leaderboard />
             </PrivateRoute>
+            
           }
         />
         <Route
