@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ModalContext } from "./index.jsx";
 
 const useModal = () => {
-  const { modals, setModals, setCurrentPollData, currentPollData,setCurrentPollId } =
+  const { modals, setModals, setCurrentPollData, currentPollData,setCurrentPollId ,juryCheckboxState, setJuryCheckboxState} =
     useContext(ModalContext);
 
   const openModal = (modalName, pollData , pollId) => {
@@ -21,7 +21,7 @@ const useModal = () => {
   };
 
 
-  return { openModal, closeModal, toggleModal, modals, currentPollData };
+  return { openModal, closeModal, toggleModal, modals, currentPollData,juryCheckboxState ,setJuryCheckboxState };
 };
 
 export default useModal;
