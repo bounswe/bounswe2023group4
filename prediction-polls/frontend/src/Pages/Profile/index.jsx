@@ -95,7 +95,7 @@ function Profile() {
     const fetchFollowed = async () => {
       try {
         console.log("userDatainuseeffect", userData);
-        const followedList = await getfollowedList(userData.id);
+        const followedList = await getfollowedList(userData.userId);
         
 
         setFollowedListData(followedList.followedList);
@@ -106,7 +106,7 @@ function Profile() {
     };
     const fetchFollower = async () => {
       try {
-        const followerList = await getfollowerList(userData.id);
+        const followerList = await getfollowerList(userData.userId);
 
         setFollowerListData(followerList.followerList);
         setFollowerList(followerList.followerList);
@@ -122,7 +122,7 @@ function Profile() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const followedMeList = await getfollowedList(userMeData.id);
+        const followedMeList = await getfollowedList(userMeData.userId);
         const followedMeListData = followedMeList.followedList;
         setFollowedMeList(followedMeListData);
       } catch (error) {
@@ -167,7 +167,7 @@ function Profile() {
 
   const handleFollowUser = async () => {
     try {
-      const response = await followUser(userMeData.id, userData.id);
+      const response = await followUser(userMeData.userId, userData.userId);
       if (response) {
         setIsFollowed(true);
         fetchAndUpdateFollowerList();
@@ -180,7 +180,7 @@ function Profile() {
 
   const handleUnfollowUser = async () => {
     try {
-      const response = await unfollowUser(userMeData.id, userData.id);
+      const response = await unfollowUser(userMeData.userId, userData.userId);
       if (response) {
         setIsFollowed(false);
         fetchAndUpdateFollowerList();
@@ -208,7 +208,7 @@ function Profile() {
 
   const fetchAndUpdateFollowerList = async () => {
     try {
-      const followerList = await getfollowerList(userData.id);
+      const followerList = await getfollowerList(userData.userId);
       setFollowerListData(followerList.followerList);
       setFollowerList(followerList.followerList);
     } catch (error) {
@@ -218,7 +218,7 @@ function Profile() {
 
   const fetchAndUpdateFollowingList = async () => {
     try {
-      const followedList = await getfollowedList(userData.id);
+      const followedList = await getfollowedList(userData.userId);
       setFollowedListData(followedList.followedList);
       setFollowingList(followedList.followedList);
     } catch (error) {
