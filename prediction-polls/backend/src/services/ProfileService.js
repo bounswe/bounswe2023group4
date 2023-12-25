@@ -166,7 +166,6 @@ async function getMyProfile(req, res) {
 
 async function updateProfile(req, res) {
     const { userId, username, email, profile_picture, biography, birthday, isHidden } = req.body;
-
     try {
         const result = await authDb.findUser({ userId, username, email })
         if (result.error) {
@@ -292,8 +291,25 @@ async function getLeaderBoardRanking(req, res) {
         const { result, error } = await db.getRankPerTag(topic);
         if (error) {
             throw error;
-        }
-        return res.status(200).json({ userList : result });
+        } 
+        const userProfiles = await Promise.all(result.map(async (user) => {
+            const { profile, profile_error } = await db.getProfileWithUserId(user.id);
+            if (profile_error) {
+                throw profile_error;
+            }
+            user.profile_picture = null
+            if (profile.profile_picture) {
+                const image_result = await getImagefromS3(profile.profile_picture);
+                if (image_result.error) {
+                    throw image_result.error;
+                }
+                user.profile_picture = image_result.signedUrl;
+            }
+            return user
+        
+        }))
+        
+        return res.status(200).json({ userList : userProfiles });
     } catch (error) {
         return res.status(400).json({ error: error });
     }
