@@ -9,7 +9,7 @@ import com.bounswe.predictionpolls.domain.poll.Comment
 
 class PollRepository(
     private val pollService: PollService
-): BaseRepository(), PollRepositoryInterface  {
+) : BaseRepository(), PollRepositoryInterface {
     override suspend fun createContinuousPoll(
         question: String,
         openVisibility: Boolean,
@@ -18,7 +18,7 @@ class PollRepository(
         numericFieldValue: Int?,
         selectedTimeUnit: String,
         pollType: String,
-    ){
+    ): Int {
         val request = CreateContinuousPollRequest(
             question,
             openVisibility,
@@ -28,8 +28,8 @@ class PollRepository(
             selectedTimeUnit,
             pollType
         )
-        execute {
-            pollService.createContinuousPoll(request)
+        return execute {
+            pollService.createContinuousPoll(request).newPollId
         }
     }
 
@@ -41,7 +41,7 @@ class PollRepository(
         dueDatePoll: String?,
         numericFieldValue: Int?,
         selectedTimeUnit: String
-    ){
+    ): Int {
         val request = CreateDiscretePollRequest(
             question,
             choices,
@@ -52,8 +52,8 @@ class PollRepository(
             selectedTimeUnit,
         )
 
-        execute {
-            pollService.createDiscretePoll(request)
+        return execute {
+            pollService.createDiscretePoll(request).newPollId
         }
     }
 
@@ -65,7 +65,7 @@ class PollRepository(
 
     override suspend fun postComment(pollId: Int, comment: String) {
         execute {
-            val request  = PollCommentRequest(comment)
+            val request = PollCommentRequest(comment)
             pollService.commentPoll(pollId, request)
         }
     }

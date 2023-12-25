@@ -4,6 +4,7 @@ import com.bounswe.predictionpolls.data.feed.model.PollResponse
 import com.bounswe.predictionpolls.data.remote.model.request.CreateContinuousPollRequest
 import com.bounswe.predictionpolls.data.remote.model.request.CreateDiscretePollRequest
 import com.bounswe.predictionpolls.data.remote.model.request.PollCommentRequest
+import com.bounswe.predictionpolls.data.remote.model.response.CreatePollResponse
 import com.bounswe.predictionpolls.data.remote.model.response.GetCommentResponse
 import com.bounswe.predictionpolls.data.vote.ContinuousPollRequest
 import com.bounswe.predictionpolls.data.vote.DiscreteVotePollRequest
@@ -17,12 +18,12 @@ interface PollService {
     @POST("/polls/discrete")
     suspend fun createDiscretePoll(
         @Body createDiscretePollRequest: CreateDiscretePollRequest
-    )
+    ): CreatePollResponse
 
     @POST("/polls/continuous")
     suspend fun createContinuousPoll(
         @Body createContinuousPollRequest: CreateContinuousPollRequest
-    )
+    ): CreatePollResponse
 
     @POST("/polls/discrete/{pollId}/vote")
     suspend fun voteForDiscretePoll(

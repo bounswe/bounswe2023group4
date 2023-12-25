@@ -6,13 +6,15 @@ import androidx.compose.runtime.setValue
 import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.core.BaseViewModel
 import com.bounswe.predictionpolls.data.remote.repositories.PollRepositoryInterface
+import com.bounswe.predictionpolls.data.remote.repositories.SemanticSearchRepository
 import com.bounswe.predictionpolls.extensions.toISO8601
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class CreatePollViewModel @Inject constructor(
-    private val pollRepository: PollRepositoryInterface
+    private val pollRepository: PollRepositoryInterface,
+    private val semanticSearchRepository: SemanticSearchRepository
 ) : BaseViewModel() {
     var screenState by mutableStateOf(CreatePollScreenState())
         private set
@@ -49,6 +51,37 @@ class CreatePollViewModel @Inject constructor(
         return true
     }
 
+    fun onTagSearchTextChanged(text: String) {
+        screenState = screenState.copy(
+            searchedTag = text
+        )
+        fetchTags()
+    }
+
+    fun clearCreatedPollId() {
+        screenState = screenState.copy(
+            createdPollId = -1
+        )
+    }
+
+    fun onTagInserted(pollId: Int, tag: String) {
+        launchCatching {
+            semanticSearchRepository.insertTag(pollId, tag)
+        }
+    }
+
+    private fun fetchTags() {
+        launchCatching(
+            onSuccess = {
+                screenState = screenState.copy(
+                    tags = it
+                )
+            }
+        ) {
+            semanticSearchRepository.getTags(screenState.searchedTag)
+        }
+    }
+
     private fun onCreatePoll(onSuccess: () -> Unit) {
         if (isInputValid().not()) return
 
@@ -63,6 +96,10 @@ class CreatePollViewModel @Inject constructor(
             maxRetryCount = 1,
             onSuccess = {
                 onSuccess()
+                screenState = screenState.copy(
+                    createdPollId = it
+                )
+                fetchTags()
             }
         ) {
             when (screenState.pollType) {
