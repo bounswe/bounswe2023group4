@@ -1,22 +1,22 @@
-.page{
+.page {
   display: flex;
   background-color: var(--neutral-white);
   width: 100%;
   box-sizing: border-box;
 }
 @media (max-width: 768px) {
-  .page{
-      flex-direction: column;
+  .page {
+    flex-direction: column;
   }
-  .pointsButton{
-      display:none;
+  .pointsButton {
+    display: none;
   }
-  .pollList{
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      padding: 20px;
-      justify-content: center;
-      align-items: center;
-  }
+}
+.pollList {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
 }

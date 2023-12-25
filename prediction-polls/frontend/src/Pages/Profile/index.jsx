@@ -20,6 +20,8 @@ import unfollowUser from "../../api/requests/unfollowUser.jsx";
 import getfollowerList from "../../api/requests/followerList.jsx";
 import getfollowedList from "../../api/requests/followedList.jsx";
 import getPollsOpened from "../../api/requests/getPollsOpened.jsx";
+import useModal from "../../contexts/ModalContext/useModal.jsx";
+import { ModalNames } from "../../contexts/ModalContext/ModalNames.js";
 
 function Profile() {
   const { username } = useParams();
@@ -29,6 +31,11 @@ function Profile() {
   const [followedListData, setFollowedListData] = React.useState([]);
   const [followedMeList, setFollowedMeList] = React.useState([]);
   const [userMeData, setUserMeData] = React.useState({});
+  const [isFollowed, setIsFollowed] = React.useState(false);
+
+  console.log("followData", followerListData);
+
+  const { openModal, setFollowerList, setFollowingList } = useModal();
 
   const fetchPollsMe = async () => {
     try {
@@ -87,9 +94,12 @@ function Profile() {
   useEffect(() => {
     const fetchFollowed = async () => {
       try {
+        console.log("userDatainuseeffect", userData);
         const followedList = await getfollowedList(userData.id);
+        
 
-        setFollowedListData(followedList);
+        setFollowedListData(followedList.followedList);
+        setFollowingList(followedList.followedList);
       } catch (error) {
         console.error("Error fetching followed:", error);
       }
@@ -98,7 +108,8 @@ function Profile() {
       try {
         const followerList = await getfollowerList(userData.id);
 
-        setFollowerListData(followerList);
+        setFollowerListData(followerList.followerList);
+        setFollowerList(followerList.followerList);
       } catch (error) {
         console.error("Error fetching follower:", error);
       }
@@ -108,12 +119,11 @@ function Profile() {
     fetchFollower();
   }, [userData]);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const followedMeList = await getfollowedList(userMeData.id);
-        const followedMeListData = followedMeList;
+        const followedMeListData = followedMeList.followedList;
         setFollowedMeList(followedMeListData);
       } catch (error) {
         console.error("Error fetching polls:", error);
@@ -122,28 +132,6 @@ function Profile() {
 
     fetchData();
   }, [userMeData]);
-
-  const followUser = async (followerId, followedId) => {
-    try {
-      const response = await followUser(followerId, followedId);
-      if (response) {
-        console.log("Followed");
-      }
-    } catch (error) {
-      console.error("Error following user:", error);
-    }
-  };
-
-  const unfollowUser = async (followerId, followedId) => {
-    try {
-      const response = await unfollowUser(followerId, followedId);
-      if (response) {
-        console.log("Unfollowed");
-      }
-    } catch (error) {
-      console.error("Error unfollowing user:", error);
-    }
-  };
 
   const userMeUsername = localStorage.getItem("username");
 
@@ -172,9 +160,71 @@ function Profile() {
     fetchData();
   }, [username, userMeUsername]);
 
-  console.log("followedData", followedListData);
-  console.log("followerData", followerListData);
-  console.log("followedMeData", followedMeList);
+  useEffect(() => {
+    const isUserFollowed = followedMeList?.includes(userData.username);
+    setIsFollowed(isUserFollowed);
+  }, [followedMeList, userData]);
+
+  const handleFollowUser = async () => {
+    try {
+      const response = await followUser(userMeData.id, userData.id);
+      if (response) {
+        setIsFollowed(true);
+        fetchAndUpdateFollowerList();
+        fetchAndUpdateFollowingList();
+      }
+    } catch (error) {
+      console.error("Error following user:", error);
+    }
+  };
+
+  const handleUnfollowUser = async () => {
+    try {
+      const response = await unfollowUser(userMeData.id, userData.id);
+      if (response) {
+        setIsFollowed(false);
+        fetchAndUpdateFollowerList();
+        fetchAndUpdateFollowingList();
+      }
+    } catch (error) {
+      console.error("Error unfollowing user:", error);
+    }
+  };
+
+  const openFollowersModal = () => {
+    openModal(ModalNames.FollowerModal, null, null, null, followerListData);
+  };
+
+  const openFollowingModal = () => {
+    openModal(
+      ModalNames.FollowingModal,
+      null,
+      null,
+      null,
+      null,
+      followedListData
+    );
+  };
+
+  const fetchAndUpdateFollowerList = async () => {
+    try {
+      const followerList = await getfollowerList(userData.id);
+      setFollowerListData(followerList.followerList);
+      setFollowerList(followerList.followerList);
+    } catch (error) {
+      console.error("Error fetching follower:", error);
+    }
+  };
+
+  const fetchAndUpdateFollowingList = async () => {
+    try {
+      const followedList = await getfollowedList(userData.id);
+      setFollowedListData(followedList.followedList);
+      setFollowingList(followedList.followedList);
+    } catch (error) {
+      console.error("Error fetching followed:", error);
+    }
+  };
 
   const navigate = useNavigate();
   return (
@@ -182,19 +232,35 @@ function Profile() {
       <Menu currentPage="Profile" />
       <div className={styles.profileInfo}>
         <div className={styles.card}>
-          <div className={styles.thumbnailImage}>
-            {userData.profile_picture == null ? (
-              <div className={styles.profileImagePlaceholder}>
-                {" "}
-                <ProfileIcon />
-              </div>
-            ) : (
-              <img
-                src={userData.profile_picture}
-                alt="profileImage"
-                className={styles.profileImage}
-              ></img>
-            )}
+          <div className={styles.thumbnailAndButtons}>
+            <div className={styles.followButtons}>
+              <button
+                className={styles.followButton}
+                onClick={openFollowersModal}
+              >
+                {followerListData.length} Followers
+              </button>
+              <button
+                className={styles.followButton}
+                onClick={openFollowingModal}
+              >
+                {followedListData.length} Following
+              </button>
+            </div>
+            <div className={styles.thumbnailImage}>
+              {userData.profile_picture == null ? (
+                <div className={styles.profileImagePlaceholder}>
+                  {" "}
+                  <ProfileIcon />
+                </div>
+              ) : (
+                <img
+                  src={userData.profile_picture}
+                  alt="profileImage"
+                  className={styles.profileImage}
+                ></img>
+              )}
+            </div>
           </div>
           <div className={styles.info}>
             <div className={styles.nameAndButton}>
@@ -215,34 +281,36 @@ function Profile() {
                       <p className={styles.buttonText}>Edit Profile</p>
                     </button>
                   </>
+                ) : isFollowed == true ? (
+                  <button
+                    className={styles.unFollowButton}
+                    onClick={handleUnfollowUser}
+                  >
+                    <p className={styles.buttonText}>Unfollow</p>
+                  </button>
                 ) : (
-                  <button className={styles.button}>
+                  <button className={styles.button} onClick={handleFollowUser}>
                     <p className={styles.buttonText}>Follow</p>
                   </button>
                 )}
               </div>
             </div>
             <div className={styles.aboutContainer}>
-              {userData.isHidden == 0 ? (
-                userData.birthday ? (
-                  <>
-                    <p className={styles.aboutTitle}>Birthday</p>
-                    <p className={styles.aboutText}>{userData.birthday}</p>
-                  </>
-                ) : null
-              ) : null}
+              {userData.isHidden == 0 && userData.birthday != null && (
+                <>
+                  <p className={styles.aboutTitle}>Birthday</p>
+                  <p>
+                    {moment(userData.birthday, "YYYY-MM-DD").format(
+                      "MMMM Do, YYYY"
+                    )}
+                  </p>
+                </>
+              )}
               {userData.isHidden == 0 && (
                 <>
                   <p className={styles.aboutTitle}>About</p>
                   <p className={styles.aboutText}>{userData.biography}</p>
                 </>
-              )}
-              {userData.isHidden == 0 && userData.birthday != null && (
-                <p>
-                  {moment(userData.birthday, "YYYY-MM-DD").format(
-                    "MMMM Do, YYYY"
-                  )}
-                </p>
               )}
             </div>
             <div className={styles.badgesContainer}>
@@ -263,12 +331,17 @@ function Profile() {
             </div>
           </div>
         </div>
-        {userData.isHidden == 0   &&  pollData.pollList.map((poll, index) => (
-          <PollCard className={styles.pollCard} PollData={poll} key={poll.id} />
-        ))}
+        {userData.isHidden == 0 &&
+          pollData.pollList.map((poll, index) => (
+            <PollCard
+              className={styles.pollCard}
+              PollData={poll}
+              key={poll.id}
+            />
+          ))}
       </div>
       <div className={styles.pointButton}>
-        <PointsButton point={userData?.points ?? 0} />{" "}
+        <PointsButton point={userMeData?.points ?? 0} />{" "}
       </div>
     </div>
   );

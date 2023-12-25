@@ -6,6 +6,7 @@ import getPollsVotedMe from '../../api/requests/getPollsVotedMe';
 import PointsButton from '../../Components/PointsButton';
 import getProfileMe from '../../api/requests/profileMe';
 
+
 function VoteList() {
   const [polls, setPolls] = useState([]);
   const [userData, setUserData] = useState({});
@@ -20,7 +21,16 @@ function VoteList() {
   useEffect(() => {
    const fetchData = async () => {
     const pollData = await getPollsVotedMe();
-    setPolls(pollData);
+    const data = pollData;
+    const modifiedData = data.map((poll) => {
+      if (poll.closingDate != null) {
+        poll.closingDate = poll.closingDate.slice(0, 10);
+      }
+      return poll.pollType === "discrete"
+        ? { ...poll, isCustomPoll: false }
+        : { ...poll, isCustomPoll: true };
+    });
+    setPolls(modifiedData);
   }
   fetchData();
   }, []);
