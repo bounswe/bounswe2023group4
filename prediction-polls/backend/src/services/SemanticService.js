@@ -23,7 +23,8 @@ async function getTagsForKeyword(req, res) {
   const searchArray = semanticTags.data.search;
   if (searchArray) {
     const responseArray = searchArray.map(element => {
-      return { id: element.id, label: element.display.label.value, description: element.display.description.value };
+      return { id: element.id, label: element.display.label ? element.display.label.value : "", 
+        description: element.display.description ? element.display.description.value : "" };
     });
 
     console.log(responseArray)
