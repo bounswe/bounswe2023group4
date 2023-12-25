@@ -61,7 +61,7 @@ const Sidebar = ({ currentPage, handlePageChange }) => {
     { key: "Moderation", Icon: ModerationIcon, to: "moderation" },
     { key: "Leaderboard", Icon: LeaderboardIcon, to: "leaderboard" },
    // { key: "Notifications", Icon: NotificationsIcon, to: "notifications" },
-    { key: "Settings", Icon: SettingsIcon, to: "settings" },
+     //{ key: "Settings", Icon: SettingsIcon, to: "settings" },
   ];
 
   const handleLogout = async () => {

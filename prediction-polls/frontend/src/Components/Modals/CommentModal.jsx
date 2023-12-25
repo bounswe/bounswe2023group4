@@ -59,12 +59,7 @@ const CommentModal = ({ previousComments, userImage, pollId }) => {
       <div className={styles.commentsSection}>
         {previousComments.map((comment, index) => (
           <div key={index} className={styles.comment}>
-            <img
-              src={comment.userImage}
-              alt={comment.userName}
-              className={styles.userImage}
-            />
-            <strong>{comment.userName}</strong>: {comment.comment_text}
+            <strong>{comment.username}</strong>: {comment.comment_text}
           </div>
         ))}
       </div>
