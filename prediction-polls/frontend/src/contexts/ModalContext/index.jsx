@@ -12,10 +12,15 @@ export const ModalContextProvider = ({ children }) => {
   const [modals, setModals] = useState(initialModalStates);
   const [params, setParams] = useState({});
   const [currentPollData, setCurrentPollData] = useState(null);
+  const [currentPollId, setCurrentPollId] = useState(null);
+  const [comments, setComments] = React.useState([]);
+  const [juryCheckboxState, setJuryCheckboxState] = useState(false);
+
 
   const value = useMemo(() => {
-    return { modals, setModals, params, setParams,currentPollData,setCurrentPollData, };
-  }, [modals,params, currentPollData]);
+    return { modals, setModals, params, setParams,currentPollData,setCurrentPollData,currentPollId,setCurrentPollId ,juryCheckboxState, 
+      setJuryCheckboxState ,comments,setComments  };
+  }, [modals,params, currentPollData, currentPollId , juryCheckboxState, comments]);
 
   return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>;
 };

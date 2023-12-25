@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import pointData from "../../MockData/PointList.json";
 import PointsButton from "../../Components/PointsButton";
 import getProfileMe from "../../api/requests/profileMe";
+import useModal from "../../contexts/ModalContext/useModal";
+import { ModalNames } from "../../contexts/ModalContext/ModalNames";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -34,6 +36,7 @@ function Create() {
       setUserData(result);
     });
   }, []);
+  const{openModal} = useModal();
 
   const choices = additionalChoices.filter((choice) => choice.trim() !== "");
   const isSubmitDisabled =
@@ -131,12 +134,13 @@ function Create() {
           },
           body: JSON.stringify(multipleChoiceData),
         });
-        if (!response.ok) {
-          console.error("Error:", response.statusText);
-          return;
-        }
+        if (response.ok) {
+          const responseData = await response.json();
 
-        navigate("/feed");
+          handleOpenTagModal(responseData.newPollId);
+        } else {
+          console.error("Error:", response.statusText);
+        }
       } catch (error) {
         console.error("API Request Failed:", error.message);
       }
@@ -160,14 +164,13 @@ function Create() {
           },
           body: JSON.stringify(multipleChoiceData),
         });
-        if (!response.ok) {
-          console.error("Error:", response.statusText);
-          return;
-        }
-        const responseData = await response.json();
-        console.log("API Response:", responseData);
+        if (response.ok) {
+          const responseData = await response.json();
 
-        navigate("/feed");
+          handleOpenTagModal(responseData.newPollId);
+        } else {
+          console.error("Error:", response.statusText);
+        }
       } catch (error) {
         console.error("API Request Failed:", error.message);
       }
@@ -194,11 +197,12 @@ function Create() {
           },
           body: JSON.stringify(customizedData),
         });
-        if (!response.ok) {
+        if (response.ok) {
+          const responseData = await response.json();
+          handleOpenTagModal(responseData.newPollId);
+        } else {
           console.error("Error:", response.statusText);
-          return;
         }
-        navigate("/feed");
       } catch (error) {
         console.error("API Request Failed:", error.message);
       }
@@ -222,11 +226,12 @@ function Create() {
           },
           body: JSON.stringify(customizedData),
         });
-        if (!response.ok) {
+        if (response.ok) {
+          const responseData = await response.json(); 
+          handleOpenTagModal(responseData.newPollId);
+        } else {
           console.error("Error:", response.statusText);
-          return;
         }
-        navigate("/feed");
       } catch (error) {
         console.error("API Request Failed:", error.message);
       }
@@ -253,11 +258,12 @@ function Create() {
           },
           body: JSON.stringify(customizedData),
         });
-        if (!response.ok) {
+        if (response.ok) {
+          const responseData = await response.json();
+          handleOpenTagModal(responseData.newPollId);
+        } else {
           console.error("Error:", response.statusText);
-          return;
         }
-        navigate("/feed");
       } catch (error) {
         console.error("API Request Failed:", error.message);
       }
@@ -281,16 +287,24 @@ function Create() {
           },
           body: JSON.stringify(customizedData),
         });
-        if (!response.ok) {
+        if (response.ok) {
+          const responseData = await response.json();
+
+          handleOpenTagModal(responseData.newPollId
+            );
+        } else {
           console.error("Error:", response.statusText);
-          return;
         }
-        navigate("/feed");
+
       } catch (error) {
         console.error("API Request Failed:", error.message);
       }
     }
   };
+  const handleOpenTagModal = (pollId) => {
+    openModal(ModalNames.PollTagModal,null,pollId);
+  }
+
 
   return (
     <div className={styles.page}>
@@ -412,19 +426,12 @@ function Create() {
             </>
           )}
         </div>
-        {pollType === "multipleChoice"  && <div className={styles.openVisibilityContainer}>
-              <Checkbox
-                className={styles.openVisibility}
-                onChange={handleOpenVisibilityChange}
-              >
-                Open Distribution Visibility
-              </Checkbox>
-            </div>}
         <div className={styles.submitContainer}>
           <button
             className={styles.submitButton}
             onClick={handleSubmit}
             disabled={isSubmitDisabled}
+
           >
             Create Poll
           </button>

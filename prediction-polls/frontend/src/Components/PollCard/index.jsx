@@ -13,6 +13,7 @@ import getProfile from "../../api/requests/profile.jsx";
 import moment from "moment";
 import useModal from "../../contexts/ModalContext/useModal";
 import { ModalNames } from "../../contexts/ModalContext/ModalNames.js";
+import getPollComments from "../../api/requests/getPollComments.jsx";
 
 function PollCard({ PollData, setAnswer, onClick, clickTextFunction }) {
   const [selectedArray, setSelectedArray] = React.useState(
@@ -21,17 +22,18 @@ function PollCard({ PollData, setAnswer, onClick, clickTextFunction }) {
   const [pollData, setPollData] = React.useState(
     JSON.parse(JSON.stringify(PollData))
   );
-  const { openModal} = useModal();
+  const { openModal, closeModal } = useModal();
   const [userData, setUserData] = React.useState({});
   const [selectedDate, setSelectedDate] = React.useState(null);
   const [selectedTime, setSelectedTime] = React.useState(null);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [comments, setComments] = React.useState([]);
+
   const navigate = useNavigate();
   const location = useLocation();
   const [isVotePath, setIsVotePath] = React.useState(
     /^\/vote\//.test(location.pathname)
   );
-
 
   useEffect(() => {
     const username = localStorage.getItem("username");
@@ -40,6 +42,12 @@ function PollCard({ PollData, setAnswer, onClick, clickTextFunction }) {
     }
   }, []);
 
+  useEffect(() => {
+    const commentsData = getPollComments(PollData.id);
+    commentsData.then((result) => {
+      setComments(result);
+    });
+  }, []);
 
   useEffect(() => {
     const data = getProfile(PollData.creatorUsername);
@@ -58,10 +66,10 @@ function PollCard({ PollData, setAnswer, onClick, clickTextFunction }) {
 
   var totalPoints = !PollData.isCustomPoll
     ? PollData.options.reduce(
-      (acc, curr) =>
-        curr.voter_count == null ? acc : acc + curr.voter_count,
-      0
-    )
+        (acc, curr) =>
+          curr.voter_count == null ? acc : acc + curr.voter_count,
+        0
+      )
     : 0;
 
   const handleSelect = (newList) => {
@@ -101,23 +109,26 @@ function PollCard({ PollData, setAnswer, onClick, clickTextFunction }) {
   };
 
   const handleShare = () => {
-    isLoggedIn ? openModal(ModalNames.ShareModal, PollData) : navigate("/auth/sign-in");
-
+    isLoggedIn
+      ? openModal(ModalNames.ShareModal, PollData)
+      : navigate("/auth/sign-in");
   };
   const handleComment = () => {
-    isLoggedIn ?  openModal(ModalNames.CommentModal) : navigate("/auth/sign-in");
+    closeModal(ModalNames.CommentModal);
+    isLoggedIn
+      ? openModal(ModalNames.CommentModal, null, pollData.id, comments)
+      : navigate("/auth/sign-in");
   };
   const handleReport = () => {
-    isLoggedIn ? openModal(ModalNames.ReportModal) : navigate("/auth/sign-in"); 
-
+    isLoggedIn ? openModal(ModalNames.ReportModal, null, PollData.id) : navigate("/auth/sign-in");
   };
-
 
   const questionHTML = `<p>${PollData.question}</p>`;
   return (
     <div
-      className={`${styles.card} ${pollData.isOpen ? styles.pollCardOpen : styles.pollCardClosed
-        }`}
+      className={`${styles.card} ${
+        pollData.isOpen ? styles.pollCardOpen : styles.pollCardClosed
+      }`}
       onClick={onClick}
     >
       <div className={styles.question}>
@@ -188,11 +199,13 @@ function PollCard({ PollData, setAnswer, onClick, clickTextFunction }) {
         <div className={styles.actionButtons}>
           <div className={styles.buttonWrapper}>
             <button className={styles.commentButton}>
-              <CommentIcon /> <p className={styles.buttonText} onClick={handleComment}>Comments</p>
+              <CommentIcon />{" "}
+              <p className={styles.buttonText} onClick={handleComment}>
+                Comments
+              </p>
             </button>
             <span className={styles.commentCount}>
-              {`${PollData.comments.length} comment${PollData.comments.length > 1 ? "s" : ""
-                }`}
+              {`${comments.length} comment${comments.length > 1 ? "s" : ""}`}
             </span>
           </div>
 
@@ -238,9 +251,12 @@ function PollCard({ PollData, setAnswer, onClick, clickTextFunction }) {
             <div className={styles.textGroup}>
               <p className={styles.textDescription}>Closing In</p>
               <p className={styles.textDetail}>
-                {PollData.closingDate == null ? "Indefinite" : moment(PollData.closingDate).format("DD MMM YYYY")}
-                {" "}
-                {PollData.closingDate == null ? "" : moment(PollData.closingDate).format('HH:mm')}
+                {PollData.closingDate == null
+                  ? "Indefinite"
+                  : moment(PollData.closingDate).format("DD MMM YYYY")}{" "}
+                {PollData.closingDate == null
+                  ? ""
+                  : moment(PollData.closingDate).format("HH:mm")}
               </p>
             </div>
             <div className={styles.textGroup}>
@@ -255,7 +271,7 @@ function PollCard({ PollData, setAnswer, onClick, clickTextFunction }) {
           </>
         )}
       </div>
-    </div >
+    </div>
   );
 }
 

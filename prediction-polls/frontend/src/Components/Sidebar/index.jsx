@@ -7,7 +7,7 @@ import ModerationIcon from "../../Assets/icons/ModerationIcon.jsx";
 import LeaderboardIcon from "../../Assets/icons/LeaderboardIcon.jsx";
 import NotificationsIcon from "../../Assets/icons/NotificationsIcon.jsx";
 import SettingsIcon from "../../Assets/icons/SettingsIcon.jsx";
-import { ReactComponent as Logo } from "../../Assets/Logo.svg";
+import { ReactComponent as Logo } from "../../Assets/RectNewLogo.svg";
 import styles from "./Sidebar.module.css";
 import { useNavigate } from "react-router-dom";
 import logout from "../../api/requests/logout.jsx";
@@ -60,8 +60,8 @@ const Sidebar = ({ currentPage, handlePageChange }) => {
     { key: "Create", Icon: CreateIcon, to: "create" },
     { key: "Moderation", Icon: ModerationIcon, to: "moderation" },
     { key: "Leaderboard", Icon: LeaderboardIcon, to: "leaderboard" },
-    { key: "Notifications", Icon: NotificationsIcon, to: "notifications" },
-    { key: "Settings", Icon: SettingsIcon, to: "settings" },
+   // { key: "Notifications", Icon: NotificationsIcon, to: "notifications" },
+     //{ key: "Settings", Icon: SettingsIcon, to: "settings" },
   ];
 
   const handleLogout = async () => {
