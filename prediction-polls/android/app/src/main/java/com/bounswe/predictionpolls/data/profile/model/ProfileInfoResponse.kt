@@ -30,8 +30,11 @@ data class ProfileInfoResponse(
     fun toProfileInfo(): ProfileInfo? {
         return if (predictionPollsError == null && username != null) {
             ProfileInfo(
+                userId?.toString() ?: "",
                 username,
                 "",
+                0,
+                0,
                 coverPicture,
                 profilePicture,
                 biography,

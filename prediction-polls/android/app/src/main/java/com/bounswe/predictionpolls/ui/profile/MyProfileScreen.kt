@@ -27,12 +27,17 @@ fun NavGraphBuilder.myProfileScreen(navController: NavController) {
 
         val profileScreenUiState by profileViewModel.profileScreenUiState.collectAsStateWithLifecycle()
 
-        ProfileScreen(profileScreenUiState, onProfileClicked = {
-            navController.navigateToProfileScreen(it)
-        },
+        ProfileScreen(
+            profileScreenUiState,
+            onProfileClicked = {
+                navController.navigateToProfileScreen(it)
+            },
             onEditProfileClicked = {
                 navController.navigateToEditProfileScreen()
-            })
+            },
+            onFollowClicked = {
+            },
+        )
     }
 }
 

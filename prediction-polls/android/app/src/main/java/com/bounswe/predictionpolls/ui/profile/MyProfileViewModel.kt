@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.bounswe.predictionpolls.common.Result
 import com.bounswe.predictionpolls.domain.feed.GetFeedUseCase
 import com.bounswe.predictionpolls.domain.poll.Poll
+import com.bounswe.predictionpolls.domain.profile.FollowUnfollowUseCase
 import com.bounswe.predictionpolls.domain.profile.GetCurrentUserProfileUseCase
 import com.bounswe.predictionpolls.domain.profile.ProfileInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,6 +21,10 @@ import javax.inject.Inject
 
 private data class MyProfileViewModelState(
     val profileInfo: ProfileInfo? = null,
+    val userId: String? = null,
+    val isCurrentUserFollowed: Boolean? = null,
+    val followerCount: Int = 0,
+    val followedCount: Int = 0,
     val feed: ImmutableList<Poll>? = null,
     val isLoading: Boolean = true,
     val error: String? = null
@@ -32,9 +37,21 @@ private data class MyProfileViewModelState(
                 ProfileScreenUiState.Error(error ?: "Unknown error")
             } else {
                 if (feed == null) {
-                    ProfileScreenUiState.ProfileInfoFetched(profileInfo, error ?: "Unknown error")
+                    ProfileScreenUiState.ProfileInfoFetched(
+                        profileInfo,
+                        error ?: "Unknown error",
+                        followerCount,
+                        followedCount,
+                        isCurrentUserFollowed
+                    )
                 } else {
-                    ProfileScreenUiState.ProfileAndFeedFetched(profileInfo, feed)
+                    ProfileScreenUiState.ProfileAndFeedFetched(
+                        profileInfo,
+                        feed,
+                        followerCount,
+                        followedCount,
+                        isCurrentUserFollowed
+                    )
                 }
             }
         }
@@ -45,6 +62,7 @@ private data class MyProfileViewModelState(
 @HiltViewModel
 class MyProfileViewModel @Inject constructor(
     private val getProfileInfoUseCase: GetCurrentUserProfileUseCase,
+    private val followUnfollowUseCase: FollowUnfollowUseCase,
     private val getFeedUseCase: GetFeedUseCase
 ) : ViewModel() {
 
@@ -56,6 +74,56 @@ class MyProfileViewModel @Inject constructor(
             .map { it.toProfileScreenUiState() }
             .stateIn(viewModelScope, SharingStarted.Eagerly, ProfileScreenUiState.Loading)
 
+
+    private suspend fun getFollowers() {
+        val userId =
+            _profileScreenUiState.value.profileInfo?.userId
+                ?: return
+        when (val result = followUnfollowUseCase.getFollowers(userId)) {
+            is Result.Success -> {
+                _profileScreenUiState.update {
+                    it.copy(
+                        followerCount = result.data.size,
+                        error = null
+                    )
+                }
+            }
+
+            is Result.Error -> {
+                _profileScreenUiState.update {
+                    it.copy(
+                        error = result.exception.message
+                    )
+                }
+            }
+        }
+    }
+
+
+
+    private suspend fun getFollowed() {
+        val userId =
+            _profileScreenUiState.value.profileInfo?.userId
+                ?: return
+        when (val result = followUnfollowUseCase.getFollowed(userId)) {
+            is Result.Success -> {
+                _profileScreenUiState.update {
+                    it.copy(
+                        followedCount = result.data.size,
+                        error = null
+                    )
+                }
+            }
+
+            is Result.Error -> {
+                _profileScreenUiState.update {
+                    it.copy(
+                        error = result.exception.message
+                    )
+                }
+            }
+        }
+    }
 
     fun fetchProfileInfo() = viewModelScope.launch {
         _profileScreenUiState.update { it.copy(isLoading = true) }
@@ -80,6 +148,9 @@ class MyProfileViewModel @Inject constructor(
                 }
             }
         }
+
+        getFollowers()
+        getFollowed()
     }
 
     fun fetchFeed(page: Int) = viewModelScope.launch {
