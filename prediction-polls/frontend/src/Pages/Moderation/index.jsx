@@ -97,13 +97,14 @@ function Moderation() {
         }
 
         // Handle success
+        handlePostUpdate(); 
+
       } catch (error) {
         console.error('Error updating tags:', error.message);
       }
     };
 
     postUpdatedTags();
-    handlePostUpdate(); 
 
 
 
