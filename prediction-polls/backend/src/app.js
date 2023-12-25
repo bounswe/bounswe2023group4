@@ -6,6 +6,7 @@ const moderatorRouter = require('./routes/ModeratorRouter.js');
 const semanticRouter = require('./routes/SemanticRouter.js');
 const tagRoutine = require('./routines/tagRoutine.js');
 const modAppointRoutine = require('./routines/modAppointRoutine.js');
+const pollCloseRoutine = require('./routines/pollCloseRoutine.js');
 
 const cors = require("cors");
 
