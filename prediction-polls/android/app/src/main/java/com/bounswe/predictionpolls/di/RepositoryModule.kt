@@ -4,12 +4,15 @@ import com.bounswe.predictionpolls.data.remote.TokenManager
 import com.bounswe.predictionpolls.data.remote.repositories.AnnotationRepository
 import com.bounswe.predictionpolls.data.remote.repositories.AnnotationRepositoryInterface
 import com.bounswe.predictionpolls.data.remote.repositories.AuthRepository
+import com.bounswe.predictionpolls.data.remote.repositories.LeaderboardRepository
+import com.bounswe.predictionpolls.data.remote.repositories.LeaderboardRepositoryInterface
 import com.bounswe.predictionpolls.data.remote.repositories.ModerationRepository
 import com.bounswe.predictionpolls.data.remote.repositories.ModerationRepositoryInterface
 import com.bounswe.predictionpolls.data.remote.repositories.PollRepository
 import com.bounswe.predictionpolls.data.remote.repositories.PollRepositoryInterface
 import com.bounswe.predictionpolls.data.remote.services.AnnotationService
 import com.bounswe.predictionpolls.data.remote.services.AuthService
+import com.bounswe.predictionpolls.data.remote.services.LeaderboardService
 import com.bounswe.predictionpolls.data.remote.services.ModerationService
 import com.bounswe.predictionpolls.data.remote.services.PollService
 import dagger.Module
@@ -52,5 +55,13 @@ object RepositoryModule {
         annotationService: AnnotationService
     ): AnnotationRepositoryInterface {
         return AnnotationRepository(annotationService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLeaderboardRepository(
+        leaderboardService: LeaderboardService
+    ): LeaderboardRepositoryInterface {
+        return LeaderboardRepository(leaderboardService)
     }
 }

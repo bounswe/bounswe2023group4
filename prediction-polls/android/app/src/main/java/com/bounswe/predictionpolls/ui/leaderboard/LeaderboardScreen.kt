@@ -37,14 +37,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.PopupProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.bounswe.predictionpolls.R
-import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
+import com.bounswe.predictionpolls.domain.leaderboard.TopicLeaderboard
 import com.bounswe.predictionpolls.ui.theme.firstPositionBadgeColor
 import com.bounswe.predictionpolls.ui.theme.secondPositionBadgeColor
 import com.bounswe.predictionpolls.ui.theme.thirdPositionBadgeColor
@@ -69,7 +68,7 @@ private fun LeaderboardScreenUI(
     tags: List<String> = emptyList(),
     onTagSelected: (String) -> Unit = {},
     selectedTag: String = "",
-    items: List<LeaderboardScreenState.LeaderboardItem>
+    items: List<TopicLeaderboard.User>
 ) {
     Column(
         modifier = Modifier
@@ -159,7 +158,7 @@ private fun LeaderboardScreenTagSelection(
 
 @Composable
 private fun ColumnScope.Leaderboard(
-    items: List<LeaderboardScreenState.LeaderboardItem>
+    items: List<TopicLeaderboard.User>
 ) {
     val shape = RoundedCornerShape(8.dp)
 
@@ -175,9 +174,9 @@ private fun ColumnScope.Leaderboard(
             itemsIndexed(items) { index, item ->
                 LeaderboardRow(
                     position = (index + 1).toString(),
-                    image = item.image,
+                    image = "",
                     username = item.username,
-                    point = item.score.toString()
+                    point = item.amount.toString()
                 )
             }
         }
@@ -339,24 +338,4 @@ private fun LoadMore(
         color = MaterialTheme.colorScheme.onPrimary,
         textAlign = TextAlign.Center,
     )
-}
-
-@Preview
-@Composable
-private fun LeaderboardScreenUIPreview() {
-    PredictionPollsTheme {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.White)
-        ) {
-            val dummyState = LeaderboardScreenState.DUMMY_STATE
-            LeaderboardScreenUI(
-                tags = dummyState.tags,
-                selectedTag = dummyState.selectedTag,
-                items = dummyState.leaderboardList,
-                onTagSelected = {}
-            )
-        }
-    }
 }

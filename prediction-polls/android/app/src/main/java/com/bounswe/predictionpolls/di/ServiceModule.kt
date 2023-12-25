@@ -2,6 +2,7 @@ package com.bounswe.predictionpolls.di
 
 import com.bounswe.predictionpolls.data.remote.services.AnnotationService
 import com.bounswe.predictionpolls.data.remote.services.AuthService
+import com.bounswe.predictionpolls.data.remote.services.LeaderboardService
 import com.bounswe.predictionpolls.data.remote.services.ModerationService
 import com.bounswe.predictionpolls.data.remote.services.PollService
 import dagger.Module
@@ -44,5 +45,13 @@ object ServiceModule {
         @AuthenticatedAnnotationRetrofit retrofit: Retrofit
     ): AnnotationService {
         return retrofit.create(AnnotationService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLeaderboardService(
+        @AuthenticatedRetrofit retrofit: Retrofit
+    ): LeaderboardService {
+        return retrofit.create(LeaderboardService::class.java)
     }
 }
