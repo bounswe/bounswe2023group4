@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Menu from "../../Components/Menu";
 import styles from "./Profile.module.css";
 import Users from "../../MockData/Users.json";
@@ -15,17 +15,25 @@ import getProfile from "../../api/requests/profile.jsx";
 import ProfileIcon from "../../Assets/icons/ProfileIcon.jsx";
 import Badge from "../../Components/Badge/index.jsx";
 import getPollsOpenedMe from "../../api/requests/getPollsOpenedMe.jsx";
+import followUser from "../../api/requests/followUser.jsx";
+import unfollowUser from "../../api/requests/unfollowUser.jsx";
+import getfollowerList from "../../api/requests/followerList.jsx";
+import getfollowedList from "../../api/requests/followedList.jsx";
 
 function Profile() {
   const { username } = useParams();
   const [pollData, setPollData] = React.useState({ pollList: [] });
   const [userData, setUserData] = React.useState({});
+  const [followerListData, setFollowerListData] = React.useState([]);
+  const [followedListData, setFollowedListData] = React.useState([]);
+  const [followedMeList, setFollowedMeList] = React.useState([]);
+  const [userMeData, setUserMeData] = React.useState({});
   React.useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getPollsOpenedMe();
         const data = response;
-  
+
         const modifiedData = data.map((poll) => {
           if (poll.closingDate != null) {
             poll.closingDate = poll.closingDate.slice(0, 10);
@@ -40,9 +48,84 @@ function Profile() {
         console.error("Error fetching polls:", error);
       }
     };
-  
+
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getProfileMe();
+        const data = response;
+        setUserMeData(data);
+      } catch (error) {
+        console.error("Error fetching userMe:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchFollowed = async () => {
+      try {
+        const followedList = await getfollowedList(userData.id);
+
+        setFollowedListData(followedList);
+      } catch (error) {
+        console.error("Error fetching followed:", error);
+      }
+    };
+    const fetchFollower = async () => {
+      try {
+        const followerList = await getfollowerList(userData.id);
+
+        setFollowerListData(followerList);
+      } catch (error) {
+        console.error("Error fetching follower:", error);
+      }
+    };
+
+    fetchFollowed();
+    fetchFollower();
+  }, [userData]);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const followedMeList = await getfollowedList(userMeData.id);
+        const followedMeListData = followedMeList;
+        setFollowedMeList(followedMeListData);
+      } catch (error) {
+        console.error("Error fetching polls:", error);
+      }
+    };
+
+    fetchData();
+  }, [userMeData]);
+
+  const followUser = async (followerId, followedId) => {
+    try {
+      const response = await followUser(followerId, followedId);
+      if (response) {
+        console.log("Followed");
+      }
+    } catch (error) {
+      console.error("Error following user:", error);
+    }
+  };
+
+  const unfollowUser = async (followerId, followedId) => {
+    try {
+      const response = await unfollowUser(followerId, followedId);
+      if (response) {
+        console.log("Unfollowed");
+      }
+    } catch (error) {
+      console.error("Error unfollowing user:", error);
+    }
+  };
 
   const userMeUsername = localStorage.getItem("username");
 
@@ -68,6 +151,10 @@ function Profile() {
     fetchData();
   }, [username, userMeUsername]);
 
+  console.log("followedData", followedListData);
+  console.log("followerData", followerListData);
+  console.log("followedMeData", followedMeList);
+
   const navigate = useNavigate();
   return (
     <div className={styles.page}>
@@ -75,7 +162,7 @@ function Profile() {
       <div className={styles.profileInfo}>
         <div className={styles.card}>
           <div className={styles.thumbnailImage}>
-            {userData.profile_picture == null  ? (
+            {userData.profile_picture == null ? (
               <div className={styles.profileImagePlaceholder}>
                 {" "}
                 <ProfileIcon />
@@ -118,13 +205,12 @@ function Profile() {
               {userData.isHidden == 0 ? (
                 userData.birthday ? (
                   <>
-                    
                     <p className={styles.aboutTitle}>Birthday</p>
                     <p className={styles.aboutText}>{userData.birthday}</p>
                   </>
                 ) : null
               ) : null}
-              {userData.isHidden == 0   && (
+              {userData.isHidden == 0 && (
                 <>
                   <p className={styles.aboutTitle}>About</p>
                   <p className={styles.aboutText}>{userData.biography}</p>
@@ -139,13 +225,20 @@ function Profile() {
               )}
             </div>
             <div className={styles.badgesContainer}>
-              {userData.isHidden == 0   && (<>
-              {userData.badges &&
-                userData.badges
-                  .filter((badge) => badge.isSelected !== 0)
-                  .map((badge, index) => (
-                    <Badge number={badge.rank} text={badge.topic} key={index} />
-                  ))}</> )}
+              {userData.isHidden == 0 && (
+                <>
+                  {userData.badges &&
+                    userData.badges
+                      .filter((badge) => badge.isSelected !== 0)
+                      .map((badge, index) => (
+                        <Badge
+                          number={badge.rank}
+                          text={badge.topic}
+                          key={index}
+                        />
+                      ))}
+                </>
+              )}
             </div>
           </div>
         </div>
