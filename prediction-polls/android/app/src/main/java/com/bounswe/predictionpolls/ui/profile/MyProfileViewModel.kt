@@ -1,15 +1,17 @@
 package com.bounswe.predictionpolls.ui.profile
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bounswe.predictionpolls.common.Result
-import com.bounswe.predictionpolls.domain.feed.GetFeedUseCase
+import com.bounswe.predictionpolls.core.BaseViewModel
+import com.bounswe.predictionpolls.data.remote.repositories.PollRepositoryInterface
 import com.bounswe.predictionpolls.domain.poll.Poll
 import com.bounswe.predictionpolls.domain.profile.FollowUnfollowUseCase
 import com.bounswe.predictionpolls.domain.profile.GetCurrentUserProfileUseCase
 import com.bounswe.predictionpolls.domain.profile.ProfileInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -17,7 +19,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 private data class MyProfileViewModelState(
     val profileInfo: ProfileInfo? = null,
@@ -63,8 +64,8 @@ private data class MyProfileViewModelState(
 class MyProfileViewModel @Inject constructor(
     private val getProfileInfoUseCase: GetCurrentUserProfileUseCase,
     private val followUnfollowUseCase: FollowUnfollowUseCase,
-    private val getFeedUseCase: GetFeedUseCase
-) : ViewModel() {
+    private val pollRepository: PollRepositoryInterface,
+) : BaseViewModel() {
 
     private val _profileScreenUiState: MutableStateFlow<MyProfileViewModelState> =
         MutableStateFlow(MyProfileViewModelState())
@@ -156,25 +157,27 @@ class MyProfileViewModel @Inject constructor(
     fun fetchFeed(page: Int) = viewModelScope.launch {
         _profileScreenUiState.update { it.copy(isLoading = true) }
 
-        when (val result = getFeedUseCase(page)) {
-            is Result.Success -> {
+        launchCatching(
+            onSuccess = { polls ->
                 _profileScreenUiState.update {
                     it.copy(
                         isLoading = false,
-                        feed = result.data,
+                        feed = polls.toImmutableList(),
+                        error = null
                     )
                 }
-            }
-
-            is Result.Error -> {
+            },
+            onError = { exception ->
                 _profileScreenUiState.update {
                     it.copy(
                         isLoading = false,
-                        error = result.exception.message,
+                        error = exception?.message,
                         feed = null
                     )
                 }
             }
+        ) {
+            pollRepository.getOpenedPollsForMe()
         }
     }
 }

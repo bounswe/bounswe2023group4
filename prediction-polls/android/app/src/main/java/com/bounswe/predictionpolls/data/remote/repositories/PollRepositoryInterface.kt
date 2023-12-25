@@ -1,6 +1,7 @@
 package com.bounswe.predictionpolls.data.remote.repositories
 
 import com.bounswe.predictionpolls.domain.poll.Comment
+import com.bounswe.predictionpolls.domain.poll.Poll
 
 interface PollRepositoryInterface {
     /**
@@ -41,4 +42,10 @@ interface PollRepositoryInterface {
     suspend fun getComments(
         pollId: Int
     ): List<Comment>
+
+    suspend fun getOpenedPolls(
+        username: String,
+    ): List<Poll>
+
+    suspend fun getOpenedPollsForMe(): List<Poll>
 }

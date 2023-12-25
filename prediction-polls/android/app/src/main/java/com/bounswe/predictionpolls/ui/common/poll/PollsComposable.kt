@@ -15,7 +15,6 @@ import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.domain.poll.Poll
 import com.bounswe.predictionpolls.domain.poll.PollOption
 import com.bounswe.predictionpolls.extensions.fromISO8601
-import com.bounswe.predictionpolls.utils.shareLink
 import kotlinx.collections.immutable.ImmutableList
 
 
@@ -55,12 +54,8 @@ fun Polls(
                 },
                 dueDate = it.dueDate?.fromISO8601() ?: "",
                 rejectionText = it.rejectionText ?: "",
-                commentCount = it.commentCount,
                 onProfileCardClicked = {
                     onProfileClicked(it.pollCreatorUsername)
-                },
-                onShareClicked = {
-                    context.shareLink(frontEndUrl+ "/vote/" + it.polId)
                 },
             )
         }

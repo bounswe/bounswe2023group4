@@ -13,6 +13,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface PollService {
     @POST("/polls/discrete")
@@ -57,4 +58,12 @@ interface PollService {
     suspend fun getPollComments(
         @Path("pollId") pollId: Int
     ): List<GetCommentResponse>
+
+    @GET("/polls/opened")
+    suspend fun getOpenedPolls(
+        @Query("username") username: String
+    ): List<PollResponse>
+
+    @GET("/polls/opened/me")
+    suspend fun getOpenedPollsForMe(): List<PollResponse>
 }

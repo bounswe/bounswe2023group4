@@ -12,6 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.bounswe.predictionpolls.domain.annotation.PollAnnotationPages
 import com.bounswe.predictionpolls.ui.common.annotation.AnnotationViewModel
+import com.bounswe.predictionpolls.ui.vote.navigateToPollVoteScreen
 
 const val PROFILE_SCREEN_ROUTE = "profile/{username}"
 
@@ -33,22 +34,30 @@ fun NavGraphBuilder.profileScreen(navController: NavController) {
                     PollAnnotationPages.PROFILE(username)
                 )
                 profileViewModel.fetchProfileInfo(username)
-                profileViewModel.fetchFeed(0) // Updated to pass the username
+                profileViewModel.fetchFeed(username) // Updated to pass the username
             }
         }
 
         val profileScreenUiState by profileViewModel.profileScreenUiState.collectAsStateWithLifecycle()
 
-        ProfileScreen(profileScreenUiState, onProfileClicked = {
-            navController.navigateToProfileScreen(it)
-        }, null, onFollowClicked = {
-            (profileScreenUiState as? ProfileScreenUiState.ProfileAndFeedFetched)?.let { profileScreenUiState ->
-                if (profileScreenUiState.isFollowedByLoggedUser == true) {
-                    profileViewModel.unfollowUser(profileScreenUiState.profileInfo.userId)
-                } else
-                    profileViewModel.followUser(profileScreenUiState.profileInfo.userId)
+        ProfileScreen(
+            profileScreenUiState,
+            onProfileClicked = {
+                navController.navigateToProfileScreen(it)
+            },
+            null,
+            onFollowClicked = {
+                (profileScreenUiState as? ProfileScreenUiState.ProfileAndFeedFetched)?.let { profileScreenUiState ->
+                    if (profileScreenUiState.isFollowedByLoggedUser == true) {
+                        profileViewModel.unfollowUser(profileScreenUiState.profileInfo.userId)
+                    } else
+                        profileViewModel.followUser(profileScreenUiState.profileInfo.userId)
+                }
+            },
+            onPollClicked = {
+                navController.navigateToPollVoteScreen(it)
             }
-        })
+        )
     }
 }
 

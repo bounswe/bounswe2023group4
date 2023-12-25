@@ -1,16 +1,16 @@
 package com.bounswe.predictionpolls.ui.profile
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bounswe.predictionpolls.common.Result
-import com.bounswe.predictionpolls.domain.feed.GetFeedUseCase
+import com.bounswe.predictionpolls.core.BaseViewModel
+import com.bounswe.predictionpolls.data.remote.repositories.PollRepositoryInterface
 import com.bounswe.predictionpolls.domain.poll.Poll
 import com.bounswe.predictionpolls.domain.profile.FollowUnfollowUseCase
 import com.bounswe.predictionpolls.domain.profile.GetCurrentUserProfileUseCase
 import com.bounswe.predictionpolls.domain.profile.GetProfileInfoUseCase
 import com.bounswe.predictionpolls.domain.profile.ProfileInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.collections.immutable.ImmutableList
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -18,7 +18,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 private data class ProfileScreenViewModelState(
     val profileInfo: ProfileInfo? = null,
@@ -26,7 +25,7 @@ private data class ProfileScreenViewModelState(
     val isCurrentUserFollowed: Boolean = false,
     val followerCount: Int = 0,
     val followedCount: Int = 0,
-    val feed: ImmutableList<Poll>? = null,
+    val feed: List<Poll> = emptyList(),
     val isLoading: Boolean = true,
     val error: String? = null
 ) {
@@ -64,9 +63,9 @@ private data class ProfileScreenViewModelState(
 class ProfileScreenViewModel @Inject constructor(
     private val getProfileInfoUseCase: GetProfileInfoUseCase,
     private val getCurrentUserProfileUseCase: GetCurrentUserProfileUseCase,
-    private val getFeedUseCase: GetFeedUseCase,
+    private val pollRepository: PollRepositoryInterface,
     private val followUnfollowUseCase: FollowUnfollowUseCase
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _profileScreenUiState: MutableStateFlow<ProfileScreenViewModelState> =
         MutableStateFlow(ProfileScreenViewModelState())
@@ -78,7 +77,6 @@ class ProfileScreenViewModel @Inject constructor(
 
     private var loggedUserName: String? = null
     private var loggedUserId: String? = null
-
 
     init {
         viewModelScope.launch {
@@ -234,28 +232,29 @@ class ProfileScreenViewModel @Inject constructor(
         }
     }
 
-    fun fetchFeed(page: Int) = viewModelScope.launch {
+    fun fetchFeed(userName: String) = viewModelScope.launch {
         _profileScreenUiState.update { it.copy(isLoading = true) }
 
-        when (val result = getFeedUseCase(page)) {
-            is Result.Success -> {
+        launchCatching(
+            onSuccess = { polls ->
                 _profileScreenUiState.update {
                     it.copy(
                         isLoading = false,
-                        feed = result.data,
+                        feed = polls,
+                        error = null
                     )
                 }
-            }
-
-            is Result.Error -> {
+            },
+            onError = {
                 _profileScreenUiState.update {
                     it.copy(
                         isLoading = false,
-                        error = result.exception.message,
-                        feed = null
+                        error = it.error ?: it.error
                     )
                 }
             }
+        ) {
+            pollRepository.getOpenedPolls(userName)
         }
     }
 }

@@ -31,7 +31,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.ui.theme.MontserratFontFamily
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 
@@ -44,9 +43,7 @@ fun PollComposable(
     optionsContent: @Composable () -> Unit,
     dueDate: String,
     rejectionText: String,
-    commentCount: Int,
     onProfileCardClicked: () -> Unit,
-    onShareClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -94,40 +91,6 @@ fun PollComposable(
                         rejectionText = rejectionText
                     )
                 }
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .padding(vertical = 8.dp),
-                horizontalArrangement = Arrangement.SpaceAround
-            ) {
-                Column {
-                    PollIcon(
-                        id = R.drawable.ic_comment,
-                        modifier = Modifier.background(
-                            MaterialTheme.colorScheme.primary,
-                            PollIconShape
-                        )
-                    )
-                    Text(
-                        commentCount.toString(),
-                        modifier = Modifier.align(Alignment.CenterHorizontally),
-                        fontFamily = MontserratFontFamily,
-                        color = MaterialTheme.colorScheme.scrim,
-                        textAlign = TextAlign.Center,
-                        fontSize = 14.sp
-                    )
-                }
-                PollIcon(
-                    id = R.drawable.ic_share,
-                    modifier = Modifier.background(MaterialTheme.colorScheme.primary, PollIconShape).clickable(onClick = onShareClicked)
-                )
-                PollIcon(
-                    id = R.drawable.ic_warning,
-                    modifier = Modifier.background(MaterialTheme.colorScheme.error, PollIconShape)
-                )
-
             }
         }
     }
@@ -256,9 +219,7 @@ private fun PollComposablePreview() {
             },
             dueDate = "21 Nov 2023",
             rejectionText = "Last 5 Days",
-            commentCount = 265,
             onProfileCardClicked = {},
-            onShareClicked = {},
             modifier = Modifier.padding(16.dp)
         )
     }
