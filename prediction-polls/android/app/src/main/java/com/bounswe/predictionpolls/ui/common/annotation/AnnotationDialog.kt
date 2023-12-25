@@ -18,7 +18,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
@@ -65,6 +68,16 @@ fun AnnotationDialog(
                 items(annotations) {
                     AnnotationCard(annotation = it)
                 }
+                if (annotations.isEmpty()) {
+                    item {
+                        Text(
+                            text = "No annotations found.",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 16.sp,
+                            lineHeight = 20.sp
+                        )
+                    }
+                }
                 item {
                     Spacer(modifier = Modifier.height(8.dp))
                 }
@@ -106,15 +119,18 @@ private fun AnnotationCard(
                 )
                 Text(text = annotation.created.fromISO8601())
             }
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                Text(
-                    "Targeted Text: ",
-                    fontWeight = FontWeight.Bold,
-                )
-                Text(text = annotation.target.selector.exact)
-            }
+            Text(
+                text = buildAnnotatedString {
+                    withStyle(
+                        style = SpanStyle(
+                            fontWeight = FontWeight.Bold
+                        )
+                    ){
+                        append("Targeted Text: ")
+                    }
+                    append(annotation.target.selector.exact)
+                }
+            )
             Divider()
             Text(text = annotation.body.value)
         }
