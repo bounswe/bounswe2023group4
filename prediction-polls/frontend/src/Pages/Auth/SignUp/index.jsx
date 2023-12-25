@@ -7,6 +7,7 @@ import {
   Checkbox,
   Typography,
   Divider,
+  Modal,
 } from "antd";
 import styles from "./SignUp.module.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -21,6 +22,9 @@ function SignUp() {
   const [message, setMessage] = useState("");
   const [usernameStatus, setUsernameStatus] = useState("");
   const [usernameHelp, setUsernameHelp] = useState("");
+  const [showModal, setShowModal] = useState(false)
+  const [isCheck, setIsCheck] = useState(false)
+
 
   const handleSubmit = async (values) => {
     try {
@@ -71,9 +75,43 @@ function SignUp() {
       setUsernameHelp("");
     }
   };
-
+  const handleOk = () => {
+    setIsCheck(true);
+    setShowModal(false);
+  };
+  const handleCancel = () => {
+    setShowModal(false);
+  };
+  const displayModal = () => {
+    setShowModal(true);
+  };
+  const handleIsCheck = () => {
+    setIsCheck(!isCheck);
+  }
   return (
     <div className={styles.splitContainerStyle}>
+      <Modal title="Prediction Polls Use Agreement" open={showModal}
+        footer={[
+          <Button key="back" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button key="submit" type="primary" onClick={handleOk}>
+            I agree!
+          </Button>,
+        ]}
+      >
+        <div className={styles.ruleStyle}>
+          <p>Before proceeding to make a decision on the poll in question, please carefully review and agree to the following terms:</p>
+          <p><strong>1. Impartiality:</strong> I affirm that I have no personal or financial interest in the outcomes of this poll and that I have not participated in the poll. I commit to making an unbiased decision based solely on the poll's content and the evidence provided.</p>
+          <p><strong>2. Confidentiality:</strong> I understand that my role as a jury member is a position of trust. I agree not to disclose or discuss any details of the poll or its deliberation process outside the official channels provided by the platform.</p>
+          <p><strong>3. Knowledge and Honesty:</strong> I acknowledge that I am making decisions based on the tags I am interested in and knowledgeable about. I will conduct any necessary research and fact-checking to ensure the accuracy of my decision.</p>
+          <p><strong>4. Respect and Civility:</strong> I commit to engaging respectfully and constructively with the poll and fellow jury members. I understand that my role is to contribute positively to the community and uphold the platform's standards.</p>
+          <p><strong>5. Rule Adherence:</strong> I have read and understood the platform's rules and guidelines for jury members, including the consequences of any misconduct or failure to act responsibly. I agree to adhere to these rules throughout the decision-making process.</p>
+          <p><strong>6. Timely Participation:</strong> I understand the importance of making a timely decision within the 24-hour timeframe and commit to adhering to this schedule to ensure the smooth functioning of the platform.</p>
+          <p><strong>7. Ethical Conduct:</strong> I promise to conduct myself ethically and responsibly, recognizing the impact my decision may have on the poll's creator, participants, and the platform community.</p>
+          <p>By clicking "I Agree," you affirm your understanding and commitment to these terms and the responsibilities of being a jury member. Your thoughtful and fair participation is crucial to maintaining the integrity and quality of our community's decision-making process.</p>
+        </div>
+      </Modal>
       <div className={styles.formContainerStyle}>
         <Link to="/home" className={styles.logoStyle}>
           <Logo />
@@ -89,7 +127,7 @@ function SignUp() {
             <div>
               <Button type="primary" className={styles.formButtonStyle}>
                 <i
-                  className={{ marginRight: "10px" , fontFamily: "fab fa-google fa-1x"}}
+                  className={{ marginRight: "10px", fontFamily: "fab fa-google fa-1x" }}
                 ></i>{" "}
                 Sign Up with Google
               </Button>
@@ -152,7 +190,7 @@ function SignUp() {
                 message: "Password must be at least 8 characters!",
               },
               {
-                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/, 
+                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/,
                 message:
                   "Password must include uppercase, lowercase, and a number!",
               },
@@ -185,12 +223,17 @@ function SignUp() {
               },
             ]}
           >
-            <Checkbox required>
+            <Checkbox
+              checked={isCheck}
+              onClick={handleIsCheck}
+              required>
+            </Checkbox>
+            <span className={styles.agreementStyle} >
               I agree to the{" "}
-              <Typography.Link href="HERE GOES THE LINK">
+              <Typography.Link onClick={displayModal}>
                 platform terms.
               </Typography.Link>
-            </Checkbox>
+            </span>
           </Form.Item>
           <Form.Item>
             <div>
@@ -206,7 +249,7 @@ function SignUp() {
           </Form.Item>
           <Form.Item>
             <div className={styles.displayCenterStyle}>
-              I Have an Account 
+              I Have an Account
               <Link to="/auth/sign-in" style={{ paddingLeft: "10px" }}>
                 Login
               </Link>

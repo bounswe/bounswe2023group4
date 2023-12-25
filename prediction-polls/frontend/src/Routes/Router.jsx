@@ -43,9 +43,7 @@ function AppRouter() {
         <Route
           path="/leaderboard"
           element={
-            <PrivateRoute>
               <Leaderboard />
-            </PrivateRoute>
           }
         />
         <Route

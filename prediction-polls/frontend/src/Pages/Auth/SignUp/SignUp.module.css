@@ -1,8 +1,8 @@
  .splitContainerStyle {
-    display: flex;
-    width: 100%;
-    margin: 0 auto;
-    height: 100vh;
+     display: flex;
+     width: 100%;
+     margin: 0 auto;
+     height: 100vh;
  }
 
  .animationStyle {
@@ -10,6 +10,18 @@
      max-height: 100%;
  }
 
+ .agreementStyle {
+     margin-left: 10px;
+ }
+
+ .ruleStyle {
+     font-size: 14px;
+     color: #333;
+     line-height: 1.5;
+     overflow-y: auto;
+     max-height: 60vh;
+     padding: 20px;
+ }
 
  .displayCenterStyle {
      display: flex;
@@ -29,7 +41,7 @@
      padding: 22px 0px;
      width: 100%;
      opacity: 0.85;
-        background: var(--primary-500);
+     background: var(--primary-500);
  }
 
  .dividerStyle {
@@ -71,8 +83,8 @@
  }
 
  @media (max-width: 768px) {
-    .imageContainerStyle{
-      display: none;
-    }
-    
-  }
+     .imageContainerStyle {
+         display: none;
+     }
+
+ }
