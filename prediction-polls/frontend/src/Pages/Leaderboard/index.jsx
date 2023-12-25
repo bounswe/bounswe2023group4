@@ -112,7 +112,7 @@ function Leaderboard() {
                   {item.username[0].toLocaleUpperCase()}
                 </Avatar>
                 <span className={styles.username}>{item.username}</span>
-                <span className={styles.points}>{item.point}</span>
+                <span className={styles.points}>{item.amount}</span>
               </List.Item>
             )}
             className={styles.leaderboardList}
