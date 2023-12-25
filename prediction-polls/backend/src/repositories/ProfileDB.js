@@ -294,7 +294,7 @@ async function getRankPerTag(topic){
 
 async function updateBadges(userId){
     try {
-        const query = 'SELECT userId, topic, RANK() OVER (PARTITION BY topic ORDER BY amount DESC) as userRank FROM has_domain_point where userRank > 4';
+        const query = 'Select * from (SELECT userId, topic, RANK() OVER (PARTITION BY topic ORDER BY amount DESC) as userRank FROM has_domain_point) as temp where temp.userRank > 4';
         const [result] = await pool.query(query, [userId]);
         const deleteQuery = 'DELETE FROM badges';
         const [_] = await pool.query(deleteQuery, []);
