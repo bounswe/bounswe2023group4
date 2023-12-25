@@ -115,19 +115,19 @@ async function updateProfile({
 
             const [resultSetHeader] = await pool.query(sql, values);
         }
-        if (biography) {
+        if (biography != undefined || biography != null) {
             const sql = 'UPDATE profiles SET biography = ? WHERE userId = ?';
             values = [biography, userId];
 
             const [resultSetHeader] = await pool.query(sql, values);
         }
-        if (birthday) {
+        if (birthday != undefined || birthday != null) {
             const sql = 'UPDATE profiles SET birthday = ? WHERE userId = ?';
             values = [birthday, userId];
 
             const [resultSetHeader] = await pool.query(sql, values);
         }
-        if (isHidden) {
+        if (isHidden != undefined || isHidden != null) {
             const sql = 'UPDATE profiles SET isHidden = ? WHERE userId = ?';
             values = [isHidden, userId];
 
