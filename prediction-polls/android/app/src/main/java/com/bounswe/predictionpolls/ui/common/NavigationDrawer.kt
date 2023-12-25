@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -116,11 +115,9 @@ fun NavigationDrawer(
 private fun AppTitle() {
     Image(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 24.dp)
-            .height(30.dp),
+            .fillMaxWidth(),
         alignment = Alignment.Center,
-        painter = painterResource(id = R.drawable.ic_app_title),
+        painter = painterResource(id = R.drawable.ic_app_logo),
         contentDescription = stringResource(R.string.cd_app_title)
     )
 }

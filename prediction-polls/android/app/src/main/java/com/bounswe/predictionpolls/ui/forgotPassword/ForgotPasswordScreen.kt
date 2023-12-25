@@ -4,12 +4,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
@@ -41,19 +38,18 @@ fun ForgotPasswordScreen(
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.White),
+            .background(Color.White)
+            .padding(top = 12.dp),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         item {
 
                 Image(
-                    painter = painterResource(id = R.drawable.ic_app_title),
+                    painter = painterResource(id = R.drawable.ic_app_logo_2),
                     contentDescription = "App Title",
                     modifier = Modifier
-                        .padding(32.dp)
-                        .wrapContentHeight()
-                        .fillMaxWidth(),
+                        .size(100.dp),
                     contentScale = ContentScale.FillWidth
                 )
 
