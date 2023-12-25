@@ -115,6 +115,9 @@ async function createDiscreteRequest(userId,poll_id,reward){
         const [discrete_insert_result] = await pool.query(discrete_request_sql,[request_insert_result.insertId]);
         return {status:"success"}
     } catch (error) {
+        if(error.code === "ER_DUP_ENTRY"){
+            return {status:"Already exists"}
+        }
         console.error('createDiscreteRequest(): Database Error');
         throw {error: errorCodes.DATABASE_ERROR};
     }
@@ -129,6 +132,9 @@ async function createContinuousRequest(userId,poll_id,reward){
         const [continuous_insert_result] = await pool.query(continuous_request_sql,[request_insert_result.insertId]);
         return {status:"success"}
     } catch (error) {
+        if(error.code === "ER_DUP_ENTRY"){
+            return {status:"Already exists"}
+        }
         console.error('createContinuousRequest(): Database Error');
         throw {error: errorCodes.DATABASE_ERROR};
     }
@@ -143,6 +149,9 @@ async function createReportRequest(userId,poll_id,reward){
         const [report_insert_result] = await pool.query(report_request_sql,[request_insert_result.insertId]);
         return {status:"success"}
     } catch (error) {
+        if(error.code === "ER_DUP_ENTRY"){
+            return {status:"Already exists"}
+        }
         console.error('createReportRequest(): Database Error');
         throw {error: errorCodes.DATABASE_ERROR};
     }
