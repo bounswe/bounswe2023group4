@@ -2,7 +2,6 @@ package com.bounswe.predictionpolls.ui.profile
 
 import com.bounswe.predictionpolls.domain.poll.Poll
 import com.bounswe.predictionpolls.domain.profile.ProfileInfo
-import kotlinx.collections.immutable.ImmutableList
 
 sealed interface ProfileScreenUiState {
     data object Loading : ProfileScreenUiState
@@ -26,7 +25,7 @@ sealed interface ProfileScreenUiState {
 
     data class ProfileAndFeedFetched(
         val profileInfo: ProfileInfo,
-        val feed: ImmutableList<Poll>,
+        val feed: List<Poll>,
         val followerCount: Int,
         val followedCount: Int,
         val isFollowedByLoggedUser: Boolean?

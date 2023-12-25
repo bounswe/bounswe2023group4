@@ -33,7 +33,7 @@ fun NavGraphBuilder.profileScreen(navController: NavController) {
                     PollAnnotationPages.PROFILE(username)
                 )
                 profileViewModel.fetchProfileInfo(username)
-                profileViewModel.fetchFeed(0) // Updated to pass the username
+                profileViewModel.fetchFeed(username) // Updated to pass the username
             }
         }
 

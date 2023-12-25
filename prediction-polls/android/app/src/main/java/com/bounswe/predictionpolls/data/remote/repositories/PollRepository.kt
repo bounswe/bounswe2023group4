@@ -6,6 +6,7 @@ import com.bounswe.predictionpolls.data.remote.model.request.CreateDiscretePollR
 import com.bounswe.predictionpolls.data.remote.model.request.PollCommentRequest
 import com.bounswe.predictionpolls.data.remote.services.PollService
 import com.bounswe.predictionpolls.domain.poll.Comment
+import com.bounswe.predictionpolls.domain.poll.Poll
 
 class PollRepository(
     private val pollService: PollService
@@ -73,6 +74,18 @@ class PollRepository(
     override suspend fun getComments(pollId: Int): List<Comment> {
         return execute {
             pollService.getPollComments(pollId).map { it.toComment() }
+        }
+    }
+
+    override suspend fun getOpenedPolls(username: String): List<Poll> {
+        return execute {
+            pollService.getOpenedPolls(username).map { it.toPollDomainModel() }
+        }
+    }
+
+    override suspend fun getOpenedPollsForMe(): List<Poll> {
+        return execute {
+            pollService.getOpenedPollsForMe().map { it.toPollDomainModel() }
         }
     }
 }
