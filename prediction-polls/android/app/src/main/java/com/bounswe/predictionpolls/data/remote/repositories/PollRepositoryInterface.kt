@@ -14,7 +14,7 @@ interface PollRepositoryInterface {
         numericFieldValue: Int? = null,
         selectedTimeUnit: String,
         pollType: String,
-    )
+    ): Int
 
     /**
      * Creates a discrete poll and returns the result.
@@ -27,7 +27,7 @@ interface PollRepositoryInterface {
         dueDatePoll: String? = null,
         numericFieldValue: Int? = null,
         selectedTimeUnit: String
-    )
+    ): Int
 
     suspend fun reportPoll(
         pollId: String

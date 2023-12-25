@@ -24,7 +24,7 @@ import kotlinx.collections.immutable.ImmutableList
  */
 @Composable
 fun Polls(
-    polls: ImmutableList<Poll>,
+    polls: List<Poll>,
     onProfileClicked: (userName: String) -> Unit,
     modifier: Modifier = Modifier,
     onPollClicked: (id: String) -> Unit = {},
