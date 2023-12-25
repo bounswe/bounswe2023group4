@@ -1,15 +1,8 @@
-const mysql = require('mysql2');
 const { addRefreshToken, deleteRefreshToken } = require('./AuthorizationDB');
 const errorCodes = require("../errorCodes.js");
+const {pool} = require("./DatabaseInit.js")
 
 require('dotenv').config();
-
-const pool = mysql.createPool({
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE
-}).promise()
 
 async function getPromotionRequests(){
     const sql = 'SELECT * FROM mod_promotion_requests ';
