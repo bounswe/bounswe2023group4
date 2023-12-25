@@ -6,9 +6,12 @@ import styles from "./SearchBar.module.css";
 function SearchBar({ onSearch }) {
   const [searchText, setSearchText] = useState('');
 
-  const handleSearch = value => {
-    setSearchText(value);
-    onSearch(value);
+  const handleInputChange = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  const handleSearchTrigger = () => {
+    onSearch(searchText);
   };
 
   return (
@@ -17,8 +20,13 @@ function SearchBar({ onSearch }) {
         style={{ padding: '10px' }}
         placeholder="Search with question, tag, and creator name"
         value={searchText}
-        onChange={e => handleSearch(e.target.value)}
-        prefix={<SearchOutlined />}
+        onChange={handleInputChange}
+        onPressEnter={handleSearchTrigger}
+        suffix={
+          <span onClick={handleSearchTrigger} style={{ cursor: 'pointer' }}>
+            <SearchOutlined />
+          </span>
+        }
         allowClear
       />
     </div>
