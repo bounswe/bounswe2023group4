@@ -10,6 +10,8 @@ import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.bounswe.predictionpolls.domain.annotation.PollAnnotationPages
+import com.bounswe.predictionpolls.ui.common.annotation.AnnotationViewModel
 
 const val PROFILE_SCREEN_ROUTE = "profile/{username}"
 
@@ -19,6 +21,7 @@ fun NavGraphBuilder.profileScreen(navController: NavController) {
         arguments = listOf(navArgument("username") { nullable = false })
     ) { backStackEntry ->
         val profileViewModel: ProfileScreenViewModel = hiltViewModel()
+        val annotationViewModel: AnnotationViewModel = hiltViewModel()
         val username = backStackEntry.arguments?.getString("username") ?: return@composable
 
         LaunchedEffect(key1 = username) {
@@ -26,6 +29,9 @@ fun NavGraphBuilder.profileScreen(navController: NavController) {
                 profileViewModel.profileScreenUiState.value is ProfileScreenUiState.Loading ||
                 profileViewModel.profileScreenUiState.value is ProfileScreenUiState.Error
             ) {
+                annotationViewModel.getAnnotations(
+                    PollAnnotationPages.PROFILE(username)
+                )
                 profileViewModel.fetchProfileInfo(username)
                 profileViewModel.fetchFeed(0) // Updated to pass the username
             }

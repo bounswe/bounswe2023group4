@@ -1,5 +1,6 @@
 package com.bounswe.predictionpolls.ui.vote
 
+import com.bounswe.predictionpolls.domain.poll.Comment
 import com.bounswe.predictionpolls.domain.poll.Poll
 
 sealed interface PollVoteScreenUiState {
@@ -9,13 +10,15 @@ sealed interface PollVoteScreenUiState {
         val poll: Poll.DiscretePoll,
         val currentVoteId: String?,
         val currentPointsReserved: Int,
-        val toastMessage: String?
+        val toastMessage: String?,
+        val comments: List<Comment> = emptyList()
     ) : PollVoteScreenUiState
 
     data class ContinuousPoll(
         val poll: Poll.ContinuousPoll,
         val currentVoteInput: String?,
         val currentPointsReserved: Int,
-        val toastMessage: String?
+        val toastMessage: String?,
+        val comments: List<Comment> = emptyList()
     ) : PollVoteScreenUiState
 }

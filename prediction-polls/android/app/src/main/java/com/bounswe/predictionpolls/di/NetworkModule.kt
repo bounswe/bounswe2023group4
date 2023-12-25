@@ -2,10 +2,12 @@ package com.bounswe.predictionpolls.di
 
 import android.content.Context
 import com.bounswe.predictionpolls.BuildConfig
+import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.data.feed.model.PollResponse
 import com.bounswe.predictionpolls.data.feed.model.PollResponseDeserializer
 import com.bounswe.predictionpolls.data.remote.TokenManager
 import com.bounswe.predictionpolls.data.remote.interceptors.AuthInterceptor
+import com.bounswe.predictionpolls.data.remote.interceptors.JsonLdInterceptor
 import com.bounswe.predictionpolls.data.remote.interceptors.ResponseInterceptor
 import com.bounswe.predictionpolls.data.remote.model.response.ModeratorRequestPollDeserializer
 import com.bounswe.predictionpolls.data.remote.model.response.ModeratorRequestResponse
@@ -117,6 +119,38 @@ object NetworkModule {
         return Retrofit
             .Builder()
             .baseUrl(BuildConfig.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .client(okHttpClient)
+            .build()
+    }
+
+    @AuthenticatedAnnotationOkHttpClient
+    @Provides
+    @Singleton
+    fun provideAuthenticatedAnnotationOkHttpClient(
+        authInterceptor: AuthInterceptor,
+        chucker: ChuckerInterceptor
+    ): OkHttpClient {
+        return OkHttpClient
+            .Builder()
+            .addInterceptor(JsonLdInterceptor())
+            .addInterceptor(authInterceptor)
+            .addInterceptor(chucker)
+            .addInterceptor(ResponseInterceptor())
+            .build()
+    }
+
+    @AuthenticatedAnnotationRetrofit
+    @Provides
+    @Singleton
+    fun provideAuthenticatedAnnotationRetrofit(
+        @AuthenticatedAnnotationOkHttpClient okHttpClient: OkHttpClient,
+        @ApplicationContext context: Context,
+        gson: Gson
+    ): Retrofit {
+        return Retrofit
+            .Builder()
+            .baseUrl(context.getString(R.string.annotation_service_url))
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(okHttpClient)
             .build()

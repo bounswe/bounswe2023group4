@@ -55,7 +55,7 @@ fun PollCreatorProfilePreview() {
 }
 
 @Composable
-private fun PollProfilePicture(imageUri: String?, modifier: Modifier = Modifier) {
+fun PollProfilePicture(imageUri: String?, modifier: Modifier = Modifier) {
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
             .data(imageUri)

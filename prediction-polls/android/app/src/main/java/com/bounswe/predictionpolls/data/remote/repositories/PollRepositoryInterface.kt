@@ -1,5 +1,7 @@
 package com.bounswe.predictionpolls.data.remote.repositories
 
+import com.bounswe.predictionpolls.domain.poll.Comment
+
 interface PollRepositoryInterface {
     /**
      * Creates a continuous poll and returns the result.
@@ -26,4 +28,17 @@ interface PollRepositoryInterface {
         numericFieldValue: Int? = null,
         selectedTimeUnit: String
     )
+
+    suspend fun reportPoll(
+        pollId: String
+    )
+
+    suspend fun postComment(
+        pollId: Int,
+        comment: String
+    )
+
+    suspend fun getComments(
+        pollId: Int
+    ): List<Comment>
 }

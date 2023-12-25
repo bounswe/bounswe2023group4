@@ -54,6 +54,7 @@ fun CustomInputField(
         keyboardType = KeyboardType.Text
     ),
     visualTransformation: VisualTransformation = VisualTransformation.None,
+    isEnabled: Boolean = true,
 ) {
     Column(
         modifier = modifier,
@@ -65,6 +66,7 @@ fun CustomInputField(
                 .border(1.dp, borderColor.copy(alpha = 0.2f), shape),
             value = text,
             onValueChange = onTextChanged,
+            enabled = isEnabled,
             label = if (labelId != null) {
                 {
                     CustomInputFieldText(

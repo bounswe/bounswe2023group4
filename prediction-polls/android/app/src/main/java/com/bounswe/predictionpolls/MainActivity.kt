@@ -5,7 +5,6 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.Text
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
@@ -13,7 +12,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.bounswe.predictionpolls.data.remote.TokenManager
@@ -101,7 +99,6 @@ class MainActivity : ComponentActivity() {
                         CommonAppbar(
                             isVisible = currentRoute.value in routesWithDrawer,
                             onMenuClick = { toggleDrawerState() },
-                            onNotificationClick = { /*TODO implement notification */ }
                         )
 
                         NavHost(navController = navController, startDestination = MAIN_ROUTE) {
@@ -119,13 +116,8 @@ class MainActivity : ComponentActivity() {
                             moderationApplyScreen(navController)
                             moderationScreen(navController)
                             moderationVoteScreen(navController)
-
-                            // TODO: Remove placeholders
-                            composable("settings") { Text(text = "Settings Page WIP") }
-                            composable("notifications") { Text(text = "Notifications Page WIP") }
                         }
                     }
-
                 }
             }
         }
