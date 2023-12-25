@@ -12,6 +12,8 @@ CREATE TABLE users (
     isMod BOOLEAN NOT NULL DEFAULT 0,
     last_login DATETIME,
     participated_polls INT DEFAULT 0,
+    reset_token VARCHAR(255),
+    reset_token_expires DATETIME,
     UNIQUE (username),
     UNIQUE (email)
 );
@@ -99,7 +101,7 @@ CREATE TABLE badges (
     id INT AUTO_INCREMENT PRIMARY KEY,
     userRank INT NOT NULL,
     topic VARCHAR(255) NOT NULL,
-    userId INT NOT NULL,
+    userId INT,
     isSelected BOOLEAN DEFAULT False,
     FOREIGN KEY (userId) REFERENCES users(id) ON DELETE SET NULL
 );
@@ -164,10 +166,9 @@ CREATE TABLE user_follow (
     follower_id INT NOT NULL,
     followed_id INT NOT NULL,
     follow_status BOOLEAN,
-    FOREIGN KEY (follower_id) REFERENCES profiles(userId) ON DELETE CASCADE
+    FOREIGN KEY (follower_id) REFERENCES profiles(userId) ON DELETE CASCADE,
     FOREIGN KEY (followed_id) REFERENCES profiles(userId) ON DELETE CASCADE
 );
-
 
 CREATE TABLE reports (
     report_id SERIAL PRIMARY KEY,
