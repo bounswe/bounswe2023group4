@@ -12,10 +12,11 @@ export const ModalContextProvider = ({ children }) => {
   const [modals, setModals] = useState(initialModalStates);
   const [params, setParams] = useState({});
   const [currentPollData, setCurrentPollData] = useState(null);
+  const [currentPollId, setCurrentPollId] = useState(null);
 
   const value = useMemo(() => {
-    return { modals, setModals, params, setParams,currentPollData,setCurrentPollData, };
-  }, [modals,params, currentPollData]);
+    return { modals, setModals, params, setParams,currentPollData,setCurrentPollData,currentPollId,setCurrentPollId };
+  }, [modals,params, currentPollData, currentPollId]);
 
   return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>;
 };
