@@ -5,4 +5,6 @@ export const ModalNames = {
     PlatformTermsModal: 'PlatformTermsModal',  
     JuryTermsModal: 'JuryTermsModal',
     PollTagModal: 'PollTagModal',
+    FollowerModal: 'FollowerModal',
+    FollowingModal: 'FollowingModal',
   };
