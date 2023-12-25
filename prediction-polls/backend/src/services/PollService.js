@@ -126,6 +126,24 @@ async function getPollWithId(req, res) {
     
         const tag_rows = await db.getTagsOfPoll(pollId);
         const pollObject = rows[0];
+
+        const user_result =await findUser({username:pollObject.username})
+
+        const { profile, error } = await profileDb.getProfileWithUserId(user_result.id);
+        if (error) {
+            throw error;
+        }
+
+        let profile_image = null;
+        
+        if (profile.profile_picture) {
+            const signed_image = await getImagefromS3(profile.profile_picture);
+            if (signed_image.error) {
+                throw signed_image.error;
+            }
+            profile_image = signed_image.signedUrl
+        }
+
         const pollType = pollObject.poll_type;
         const properties = {
             "id": pollObject.id,
@@ -133,7 +151,7 @@ async function getPollWithId(req, res) {
             "tags": tag_rows,
             "creatorName": pollObject.username,
             "creatorUsername": pollObject.username,
-            "creatorImage": null,
+            "creatorImage": profile_image,
             "pollType": pollObject.poll_type,
             "closingDate": pollObject.closingDate,
             "rejectVotes": (pollObject.numericFieldValue && pollObject.selectedTimeUnit) ? `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}` : null,
