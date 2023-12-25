@@ -183,23 +183,18 @@ router.post("/signup", service.signup)
  *         description: Server was not able to log in user with the given data.
  */
 router.post("/google", googleService.googleLogIn)
-router.get('/verify-email', async (req, res) => {
-    const token = req.query.token;
-
+router.get('/verify-email', service.verifyEmail)
+router.post('/request-password-reset', service.requestResetPassword)
+// Route to complete the password reset process
+router.post('/reset-password', async (req, res) => {
     try {
-        // Verify the token and update the user's email_verified status in the database
-        const verificationSuccessful = await verifyEmailToken(token);
-
-        if (verificationSuccessful) {
-            res.send('Email successfully verified');
-        } else {
-            res.status(400).send('Invalid or expired verification token');
-        }
+        const { token, newPassword } = req.body;
+        await service.resetPassword(token, newPassword);
+        res.send('Your password has been successfully reset.');
     } catch (error) {
-        console.error("Error during email verification:", error);
-        res.status(500).send('Internal server error');
+        console.error('Password reset error:', error);
+        res.status(500).send('Error resetting password.');
     }
 });
-
 
 module.exports = router;

@@ -84,7 +84,7 @@ const router = express.Router();
  *   get:
  *     tags:
  *       - polls
- *     description: Get all polls
+ *     description: Get all polls sorted by their total points spent
  *     responses:
  *       200:
  *         description: Successful response
@@ -145,7 +145,233 @@ const router = express.Router();
  *                     message: Error while accessing the database.
  *                     code: 3004
  */
-router.get('/', service.getPolls);
+router.get('/', service.getFamousPolls);
+
+/**
+ * @swagger
+ * /polls/opened/me:
+ *   get:
+ *     tags:
+ *       - polls
+ *     description: Get all polls opened by user. Has to be authorized.
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/objects/pollObject'
+ *             examples:
+ *               genericExample:
+ *                 value:
+ *                   - id: 1
+ *                     question: "Who will become POTUS?"
+ *                     tags: ["tag1", "tag2"]
+ *                     creatorName: "user123"
+ *                     creatorUsername: "GhostDragon"
+ *                     creatorImage: null
+ *                     pollType: "discrete"
+ *                     rejectVotes: "5 min"
+ *                     closingDate: "2023-11-20T21:00:00.000Z"
+ *                     isOpen: 1 
+ *                     comments: []
+ *                     options:
+ *                       - id: 1
+ *                         choice_text: "Trumpo"
+ *                         poll_id: 1
+ *                         voter_count: 0
+ *                       - id: 2
+ *                         choice_text: "Biden"
+ *                         poll_id: 1
+ *                         voter_count: 1
+ *                   - id: 2
+ *                     question: "Test question?"
+ *                     tags: ["tag1", "tag2"]
+ *                     creatorName: "GhostDragon"
+ *                     creatorUsername: "GhostDragon"
+ *                     creatorImage: null
+ *                     pollType: "continuous"
+ *                     rejectVotes: "2 hr"
+ *                     closingDate: null
+ *                     isOpen: 1 
+ *                     cont_poll_type: "numeric"
+ *                     comments: []
+ *                     options:
+ *                       - 7
+ *                       - 8
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/error'
+ *             examples:
+ *               databaseError:
+ *                 value:
+ *                   error:
+ *                     message: Error while accessing the database.
+ *                     code: 3004
+ */
+router.get('/opened/me',authenticator.authorizeAccessToken,service.getOpenedPollsOfUser);
+
+/**
+ * @swagger
+ * /polls/opened:
+ *   get:
+ *     tags:
+ *       - polls
+ *     description: Get all polls opened by the specified user. 
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: false
+ *         schema:
+ *           type: integer
+ *         description: The ID of the requested polls' user.
+ *       - in: path
+ *         name: username
+ *         required: false
+ *         schema:
+ *           type: string
+ *         description: The username of the requested polls' user.
+ *       - in: path
+ *         name: email
+ *         required: false
+ *         schema:
+ *           type: string
+ *         description: The email of the requested polls' user.
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/objects/pollObject'
+ *             examples:
+ *               genericExample:
+ *                 value:
+ *                   - id: 1
+ *                     question: "Who will become POTUS?"
+ *                     tags: ["tag1", "tag2"]
+ *                     creatorName: "user123"
+ *                     creatorUsername: "GhostDragon"
+ *                     creatorImage: null
+ *                     pollType: "discrete"
+ *                     rejectVotes: "5 min"
+ *                     closingDate: "2023-11-20T21:00:00.000Z"
+ *                     isOpen: 1 
+ *                     comments: []
+ *                     options:
+ *                       - id: 1
+ *                         choice_text: "Trumpo"
+ *                         poll_id: 1
+ *                         voter_count: 0
+ *                       - id: 2
+ *                         choice_text: "Biden"
+ *                         poll_id: 1
+ *                         voter_count: 1
+ *                   - id: 2
+ *                     question: "Test question?"
+ *                     tags: ["tag1", "tag2"]
+ *                     creatorName: "GhostDragon"
+ *                     creatorUsername: "GhostDragon"
+ *                     creatorImage: null
+ *                     pollType: "continuous"
+ *                     rejectVotes: "2 hr"
+ *                     closingDate: null
+ *                     isOpen: 1 
+ *                     cont_poll_type: "numeric"
+ *                     comments: []
+ *                     options:
+ *                       - 7
+ *                       - 8
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/error'
+ *             examples:
+ *               databaseError:
+ *                 value:
+ *                   error:
+ *                     message: Error while accessing the database.
+ *                     code: 3004
+ */
+router.get('/opened',service.getOpenedPollsOfGivenUser);
+
+/**
+ * @swagger
+ * /polls/voted/me:
+ *   get:
+ *     tags:
+ *       - polls
+ *     description: Get all polls voted by user. Has to be authorized.
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/objects/pollObject'
+ *             examples:
+ *               genericExample:
+ *                 value:
+ *                   - id: 1
+ *                     question: "Who will become POTUS?"
+ *                     tags: ["tag1", "tag2"]
+ *                     creatorName: "user123"
+ *                     creatorUsername: "GhostDragon"
+ *                     creatorImage: null
+ *                     pollType: "discrete"
+ *                     rejectVotes: "5 min"
+ *                     closingDate: "2023-11-20T21:00:00.000Z"
+ *                     isOpen: 1 
+ *                     comments: []
+ *                     options:
+ *                       - id: 1
+ *                         choice_text: "Trumpo"
+ *                         poll_id: 1
+ *                         voter_count: 0
+ *                       - id: 2
+ *                         choice_text: "Biden"
+ *                         poll_id: 1
+ *                         voter_count: 1
+ *                   - id: 2
+ *                     question: "Test question?"
+ *                     tags: ["tag1", "tag2"]
+ *                     creatorName: "GhostDragon"
+ *                     creatorUsername: "GhostDragon"
+ *                     creatorImage: null
+ *                     pollType: "continuous"
+ *                     rejectVotes: "2 hr"
+ *                     closingDate: null
+ *                     isOpen: 1 
+ *                     cont_poll_type: "numeric"
+ *                     comments: []
+ *                     options:
+ *                       - 7
+ *                       - 8
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/error'
+ *             examples:
+ *               databaseError:
+ *                 value:
+ *                   error:
+ *                     message: Error while accessing the database.
+ *                     code: 3004
+ */
+router.get('/voted/me',authenticator.authorizeAccessToken,service.getVotedPollsOfUser);
 
 /**
  * @swagger
@@ -581,6 +807,97 @@ router.post('/continuous/:pollId/vote',authenticator.authorizeAccessToken, servi
  *         description: Internal Server Error
  */
 router.post('/close/:pollId', authenticator.authorizeAccessToken, service.closePoll);
+
+/**
+ * @swagger
+ * /polls/report/{pollId}:
+ *   post:
+ *     tags:
+ *       - polls
+ *     description: Report a poll based on its ID
+ *     parameters:
+ *       - in: path
+ *         name: pollId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the poll to report
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Access token for authorization
+ *     responses:
+ *       200:
+ *         description: Poll reported successfully
+ *       401:
+ *         description: Unauthorized access
+ *       404:
+ *         description: Poll not found
+ */
+router.post('/report/:pollId', authenticator.authorizeAccessToken, service.reportPoll);
+
+/**
+ * @swagger
+ * /polls/{pollId}/comment:
+ *   post:
+ *     tags:
+ *       - polls
+ *     description: Adds a user's comment to a specific poll
+ *     parameters:
+ *       - in: path
+ *         name: pollId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the poll
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Access token for authorization
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               commentText:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Comment added successfully
+ *       401:
+ *         description: Unauthorized access
+ *       404:
+ *         description: Poll not found
+ */
+router.post('/:pollId/comment', authenticator.authorizeAccessToken, service.addComment);
+
+/**
+ * @swagger
+ * /polls/{pollId}/comments:
+ *   get:
+ *     tags:
+ *       - polls
+ *     description: Retrieves all comments associated with a specific poll
+ *     parameters:
+ *       - in: path
+ *         name: pollId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the poll
+ *     responses:
+ *       200:
+ *         description: Comments retrieved successfully
+ *       404:
+ *         description: Poll not found
+ */
+router.get('/:pollId/comments', service.getComments);
 
 module.exports = router;
 

@@ -22,7 +22,7 @@ const errorCodes = {
 
   ACCESS_TOKEN_NEEDED_ERROR: {
     code: 1004,
-    message: 'A access token is needed',
+    message: 'An access token is needed',
   },
 
   REFRESH_TOKEN_NEEDED_ERROR: {
@@ -33,6 +33,11 @@ const errorCodes = {
   REGISTRATION_FAILED: {
     code: 1006,
     message: 'Registration failed'
+  },
+
+  INSUFFICIENT_DATA: {
+    code: 1007,
+    message: 'Given data is not sufficient. Please follow guidelines.'
   },
 
   USER_NOT_FOUND: {
@@ -150,6 +155,11 @@ const errorCodes = {
     message: 'User has to put points to be able to vote polls'
   },
 
+  USER_DOES_NOT_HAVE_GIVEN_BADGE: {
+    code: 3008,
+    message: 'User does not have a badge with the given badge Id'
+  },
+
   BAD_DISCRETE_POLL_REQUEST_ERROR: {
     code: 4000,
     message: 'Bad request body for creating a discrete poll.'
@@ -165,6 +175,21 @@ const errorCodes = {
     message: 'Minimum value allowed was higher than maximum value allowed in the poll.'
   },
 
+  NO_FOLLOWERSHIP_FOUND:{
+    code: 4003,
+    message: 'Those two users do not follow each other!'
+  },
+
+  FOLLOWERSHIP_NOT_ADDED:{
+    code: 4004,
+    message: 'Those two users could not follow each other!'
+  },
+  
+  FOLLOWERSHIP_ALREADY_EXISTS:{
+    code: 4005,
+    message: 'Those two users already follow each other'
+  },
+
   CHOICE_DOES_NOT_EXIST_ERROR: {
     code: 5000,
     message: 'Choice for the poll does not exist.'
@@ -173,7 +198,37 @@ const errorCodes = {
   CHOICE_OUT_OF_BOUNDS_ERROR: {
     code: 5001,
     message: 'Choice for the poll is out of given bounds.'
-  }
+  },
+
+  USER_IS_NOT_MODERATOR: {
+    code: 8000,
+    message: 'User is not authorized to execute this moderator activity'
+  },
+
+  REPORT_REQUEST_INVALID_BODY: {
+    code: 8001,
+    message: 'Report type moderator request should contain requestId and banPoll in body'
+  },
+
+  DISCRETE_POLL_REQUEST_INVALID_BODY:{
+    code: 8002,
+    message: 'Discrete poll type moderator request should contain requestId and choice in body'
+  },
+
+  CONTINUOUS_POLL_REQUEST_INVALID_BODY:{
+    code: 8003,
+    message: 'Continuous poll type moderator request should contain requestId and choice in body'
+  },
+
+  MOD_REQUEST_SHOWS_INVALID_POLL:{
+    code: 8004,
+    message: 'Given moderator request does not show a valid poll'
+  },
+
+  REQUEST_HAS_INVALID_TYPE:{
+    code: 8005,
+    message: 'Given request is corrupted and server could not handle it'
+  },
 
   // Add more error codes as needed
 };
