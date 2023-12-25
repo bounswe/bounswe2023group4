@@ -30,7 +30,8 @@ import com.bounswe.predictionpolls.utils.shareLink
 fun ProfileScreen(
     profileScreenUiState: ProfileScreenUiState,
     onProfileClicked: (String) -> Unit,
-    onEditProfileClicked: () -> Unit,
+    onEditProfileClicked: (() -> Unit)?,
+    onFollowClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     InternalProfileScreen(
@@ -55,7 +56,11 @@ fun ProfileScreen(
                         userDescription = profileInfo.userDescription,
                         badgeUris = profileInfo.badgeUris,
                         onProfileEditPressed = onEditProfileClicked,
-                        onRequestsClicked = { /*TODO*/ })
+                        followerCount = profileInfo.followerCount ?: 0,
+                        followingCount = profileInfo.followedCount ?: 0,
+                        isFollowed = profileScreenUiState.isFollowedByLoggedUser,
+                        onFollowClicked = onFollowClicked
+                    )
                 }
 
                 is ProfileScreenUiState.ProfileAndFeedFetched -> {
@@ -68,7 +73,11 @@ fun ProfileScreen(
                         userDescription = profileInfo.userDescription,
                         badgeUris = profileInfo.badgeUris,
                         onProfileEditPressed = onEditProfileClicked,
-                        onRequestsClicked = { /*TODO*/ })
+                        followerCount = profileInfo.followerCount ?: 0,
+                        followingCount = profileInfo.followedCount ?: 0,
+                        isFollowed = profileScreenUiState.isFollowedByLoggedUser,
+                        onFollowClicked = onFollowClicked
+                    )
                 }
             }
         },
@@ -99,7 +108,7 @@ fun ProfileScreen(
                                 onProfileClicked(it.pollCreatorUsername)
                             },
                             onShareClicked = {
-                                context.shareLink(frontEndUrl+ "/vote/" + it.polId)
+                                context.shareLink(frontEndUrl + "/vote/" + it.polId)
                             }
                         )
                     }
@@ -159,8 +168,11 @@ private fun ProfileScreenPreview() {
                         "https://picsum.photos/id/233/200/300"
                     ),
                     onProfileEditPressed = { },
-                    onRequestsClicked = { },
-                    modifier = Modifier.padding(16.dp)
+                    followerCount = 100,
+                    followingCount = 200,
+                    modifier = Modifier.padding(16.dp),
+                    onFollowClicked = {},
+                    isFollowed = true
                 )
 
             },
