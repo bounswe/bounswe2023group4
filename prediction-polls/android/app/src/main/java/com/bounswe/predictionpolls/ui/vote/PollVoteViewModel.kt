@@ -41,6 +41,7 @@ class PollVoteViewModel @Inject constructor(
                         _state.update { PollVoteScreenUiState.ContinuousPoll(poll, "", 0, null) }
                     }
                 }
+                fetchPollComments(pollId)
             }
 
             is Result.Error -> {
@@ -50,6 +51,28 @@ class PollVoteViewModel @Inject constructor(
                     )
                 }
             }
+        }
+    }
+
+    private fun fetchPollComments(pollId: String) = viewModelScope.launch {
+        launchCatching(
+            onSuccess = {
+                _state.update { currentState ->
+                    when (currentState) {
+                        is PollVoteScreenUiState.DiscretePoll -> currentState.copy(comments = it)
+                        is PollVoteScreenUiState.ContinuousPoll -> currentState.copy(comments = it)
+                        else -> currentState
+                    }
+                }
+            }
+        ) {
+            pollRepository.getComments(pollId)
+        }
+    }
+
+    fun postComment(pollId: Int, comment: String){
+        launchCatching {
+            pollRepository.postComment(pollId, comment)
         }
     }
 

@@ -3,6 +3,8 @@ package com.bounswe.predictionpolls.data.remote.services
 import com.bounswe.predictionpolls.data.feed.model.PollResponse
 import com.bounswe.predictionpolls.data.remote.model.request.CreateContinuousPollRequest
 import com.bounswe.predictionpolls.data.remote.model.request.CreateDiscretePollRequest
+import com.bounswe.predictionpolls.data.remote.model.request.PollCommentRequest
+import com.bounswe.predictionpolls.data.remote.model.response.GetCommentResponse
 import com.bounswe.predictionpolls.data.vote.ContinuousPollRequest
 import com.bounswe.predictionpolls.data.vote.DiscreteVotePollRequest
 import com.bounswe.predictionpolls.data.vote.VotePollResponse
@@ -34,7 +36,6 @@ interface PollService {
         @Body continuousPollRequest: ContinuousPollRequest
     ): VotePollResponse
 
-
     @GET("/polls/{pollId}")
     suspend fun getPoll(
         @Path("pollId") pollId: String
@@ -44,4 +45,15 @@ interface PollService {
     suspend fun reportPoll(
         @Path("pollId") pollId: String
     )
+
+    @POST("/polls/{pollId}/comment")
+    suspend fun commentPoll(
+        @Path("pollId") pollId: Int,
+        @Body request: PollCommentRequest
+    )
+
+    @GET("/polls/{pollId}/comments")
+    suspend fun getPollComments(
+        @Path("pollId") pollId: String
+    ): List<GetCommentResponse>
 }

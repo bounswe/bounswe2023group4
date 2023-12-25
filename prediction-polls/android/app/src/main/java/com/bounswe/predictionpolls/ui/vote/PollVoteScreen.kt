@@ -23,6 +23,7 @@ fun PollVoteScreen(
     onProfileCardClicked: (userName: String) -> Unit,
     onBackClicked: () -> Unit,
     onReportClicked: () -> Unit,
+    onCommentPosted: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     when (state) {
@@ -73,6 +74,12 @@ fun PollVoteScreen(
                 else -> null
             }.orEmpty()
 
+            val comments = when (state) {
+                is PollVoteScreenUiState.ContinuousPoll -> state.comments
+                is PollVoteScreenUiState.DiscretePoll -> state.comments
+                else -> null
+            } ?: emptyList()
+
             PollVote(
                 poll = poll,
                 currentPointsReserved = points,
@@ -85,6 +92,8 @@ fun PollVoteScreen(
                 selectedOptionId = selectedOption,
                 optionText = voteInput,
                 onReportClicked = onReportClicked,
+                comments = comments,
+                onCommentPosted = onCommentPosted,
             )
         }
     }

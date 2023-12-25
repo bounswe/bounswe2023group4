@@ -83,7 +83,10 @@ fun NavGraphBuilder.pollVoteScreen(navController: NavController) {
             },
             onReportClicked = {
                 pollVoteViewModel.onReportPressed(pollId)
-            }
+            },
+            onCommentPosted = { comment ->
+                pollVoteViewModel.postComment(pollId.toInt(), comment)
+            },
         )
     }
 }

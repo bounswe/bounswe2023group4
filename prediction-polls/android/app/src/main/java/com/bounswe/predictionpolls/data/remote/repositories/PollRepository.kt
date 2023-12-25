@@ -3,7 +3,9 @@ package com.bounswe.predictionpolls.data.remote.repositories
 import com.bounswe.predictionpolls.core.BaseRepository
 import com.bounswe.predictionpolls.data.remote.model.request.CreateContinuousPollRequest
 import com.bounswe.predictionpolls.data.remote.model.request.CreateDiscretePollRequest
+import com.bounswe.predictionpolls.data.remote.model.request.PollCommentRequest
 import com.bounswe.predictionpolls.data.remote.services.PollService
+import com.bounswe.predictionpolls.domain.poll.Comment
 
 class PollRepository(
     private val pollService: PollService
@@ -58,6 +60,19 @@ class PollRepository(
     override suspend fun reportPoll(pollId: String) {
         execute {
             pollService.reportPoll(pollId)
+        }
+    }
+
+    override suspend fun postComment(pollId: Int, comment: String) {
+        execute {
+            val request  = PollCommentRequest(comment)
+            pollService.commentPoll(pollId, request)
+        }
+    }
+
+    override suspend fun getComments(pollId: String): List<Comment> {
+        return execute {
+            pollService.getPollComments(pollId).map { it.toComment() }
         }
     }
 }
