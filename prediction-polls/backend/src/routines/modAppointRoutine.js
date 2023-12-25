@@ -105,6 +105,6 @@ function validateLastLogin(last_login){
     return timeDifference <= timeQuota;
 }
 
-cron.schedule('*/30 * * * * *', appointMod);
+cron.schedule('*/1 * * * *', appointMod);
 
 module.exports = appointMod;

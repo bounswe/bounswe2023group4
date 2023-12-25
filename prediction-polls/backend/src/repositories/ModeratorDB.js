@@ -344,6 +344,6 @@ async function getJurySeekingPolls(){
 module.exports = { getPromotionRequests,addPromotionRequest, makeMod, getModTags, deleteModTag, addModTag, getModRequests, 
     checkRequestOfUser, createDiscreteRequest, createDiscreteRequest, createContinuousRequest, createReportRequest,
     getAnsweredDiscreteRequestsOfPoll, getAnsweredContinuousRequestsOfPoll, getAnsweredReportRequestsOfPoll, updateJuryRewardforRequests,
-    deleteModRequestsforPollClose, setDecisionOnReportRequest, setDecisionOnDiscreteRequest, setDecisionOnContinuousRequest, getAllMods, 
-    getJurySeekingPolls, cleanNonRespondedRequests
+    deleteModRequestsforPollClose, checkModRequestForResponse, setDecisionOnReportRequest, setDecisionOnDiscreteRequest, 
+    setDecisionOnContinuousRequest, getAllMods, getJurySeekingPolls, cleanNonRespondedRequests
 }
