@@ -152,7 +152,7 @@ function SignUp() {
                 message: "Password must be at least 8 characters!",
               },
               {
-                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/, 
+                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
                 message:
                   "Password must include uppercase, lowercase, and a number!",
               },
