@@ -194,16 +194,17 @@ async function updatePoints(userId, additional_points) {
 }
 
 async function followProfile(follower_id, followed_id) {
+
+    const { error: error_follower } = await getProfileWithUserId(follower_id);
+    const { error: error_followed } = await getProfileWithUserId(followed_id);
+    const { updateDecision, error: validityError } = await verifyFollow(follower_id, followed_id);
+    if (error_follower || error_followed) {
+        throw { error: errorCodes.PROFILE_NOT_FOUND };
+    }
+    if (validityError) {
+        throw { error: errorCodes.FOLLOWERSHIP_ALREADY_EXISTS };
+    }
     try {
-        const { error: error_follower } = await getProfileWithUserId(follower_id);
-        const { error: error_followed } = await getProfileWithUserId(followed_id);
-        const { updateDecision, error: validityError } = await verifyFollow(follower_id, followed_id);
-        if (error_follower || error_followed) {
-            throw { error: errorCodes.PROFILE_NOT_FOUND };
-        }
-        if (validityError) {
-            throw { error: errorCodes.FOLLOWERSHIP_ALREADY_EXISTS };
-        }
         if (updateDecision == true) {
             const query_follow = "UPDATE user_follow SET follow_status = ? WHERE follower_id = ? AND followed_id = ?";
             const values = [true, follower_id, followed_id];
@@ -227,16 +228,16 @@ async function followProfile(follower_id, followed_id) {
 }
 async function unfollowProfile(follower_id, followed_id) {
     const query_follow = "UPDATE user_follow SET follow_status = ? WHERE follower_id = ? AND followed_id = ?";
+    const { error: error_follower } = await getProfileWithUserId(follower_id);
+    const { error: error_followed } = await getProfileWithUserId(followed_id);
+    const { error: error_follow } = await verifyUnFollow(follower_id, followed_id);
+    if (error_follower || error_followed) {
+        throw { error: errorCodes.PROFILE_NOT_FOUND };
+    }
+    if (error_follow) {
+        throw { error: errorCodes.NO_FOLLOWERSHIP_FOUND };
+    }
     try {
-        const { error: error_follower } = await getProfileWithUserId(follower_id);
-        const { error: error_followed } = await getProfileWithUserId(followed_id);
-        const { error: error_follow } = await verifyUnFollow(follower_id, followed_id);
-        if (error_follower || error_followed) {
-            throw { error: errorCodes.PROFILE_NOT_FOUND };
-        }
-        if (error_follow) {
-            throw { error: errorCodes.NO_FOLLOWERSHIP_FOUND };
-        }
         const values = [false, follower_id, followed_id]
         const [resultSetHeader] = await pool.query(query_follow, values);
         return { status: "success" };
@@ -251,13 +252,13 @@ async function followedProfiles(userId) {
         throw { error: errorCodes.PROFILE_NOT_FOUND };
     }
     try {
-        const follow_query = "SELECT followed_id FROM user_follow WHERE follower_id = ? AND follow_status = ? "
+        const follow_query = "SELECT users.username FROM user_follow , users WHERE user_follow.followed_id = users.id AND user_follow.follower_id = ? AND user_follow.follow_status = ? "
         const values = [userId, true];
         const [rows] = await pool.query(follow_query, values);
         const followed = rows.map(
-            (followership) => { return followership.followed_id }
+            (followership) => { return followership.username }
         );
-        
+
         return { followed_list: followed };
     } catch (error) {
         return { error: errorCodes.DATABASE_ERROR };
@@ -270,11 +271,11 @@ async function followerProfiles(userId) {
         throw { error: errorCodes.PROFILE_NOT_FOUND };
     }
     try {
-        const follow_query = "SELECT follower_id FROM user_follow WHERE followed_id = ? AND follow_status = ? "
+        const follow_query = "SELECT users.username FROM user_follow, users WHERE user_follow.follower_id = users.id AND user_follow.followed_id = ? AND follow_status = ? "
         const values = [userId, true];
         const [rows] = await pool.query(follow_query, values);
         const follower = rows.map(
-            (followership) => { return followership.follower_id }
+            (followership) => { return followership.username }
         );
         return { follower_list: follower };
     }
@@ -282,30 +283,30 @@ async function followerProfiles(userId) {
         return { error: errorCodes.DATABASE_ERROR };
     }
 }
-async function getRankPerTag(topic){
+async function getRankPerTag(topic) {
     try {
         const query = 'SELECT users.id , users.username, has_domain_point.amount from users, has_domain_point where users.id = has_domain_point.userId AND has_domain_point.topic = ? Order By has_domain_point.amount Desc LIMIT 100';
         const [result] = await pool.query(query, [topic]);
-        return {result: result};
+        return { result: result };
     } catch (error) {
         return { error: errorCodes.DATABASE_ERROR };
     }
 }
 
-async function updateBadges(userId){
+async function updateBadges(userId) {
     try {
         const query = 'SELECT userId, topic, RANK() OVER (PARTITION BY topic ORDER BY amount DESC) as userRank FROM has_domain_point where userRank > 4';
         const [result] = await pool.query(query, [userId]);
         const deleteQuery = 'DELETE FROM badges';
         const [_] = await pool.query(deleteQuery, []);
         const insertQuery = 'INSERT INTO badges (userRank, topic, userId) VALUES (?, ?, ?)'
-        result.map(async (row)=>{
-            const [result] = await pool.query(insertQuery, [row.userRank,row.topic,row.userId]);
+        result.map(async (row) => {
+            const [result] = await pool.query(insertQuery, [row.userRank, row.topic, row.userId]);
         })
-        return {result: "Success"};
+        return { result: "Success" };
     } catch (error) {
         return { error: errorCodes.DATABASE_ERROR };
     }
 }
 
-module.exports = { getProfileWithProfileId, getProfileWithUserId, addProfile, updateProfile, getBadges, updateBadge, updatePoints, followProfile, unfollowProfile, followerProfiles, followedProfiles,getRankPerTag,updateBadges }
+module.exports = { getProfileWithProfileId, getProfileWithUserId, addProfile, updateProfile, getBadges, updateBadge, updatePoints, followProfile, unfollowProfile, followerProfiles, followedProfiles, getRankPerTag, updateBadges }
