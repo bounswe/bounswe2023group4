@@ -43,15 +43,4 @@ enum class NavItem(
         titleId = R.string.nav_drawer_leaderboard,
         iconId = R.drawable.ic_leaderboard
     ),
-    NOTIFICATIONS(
-        route = "notifications", // TODO: change this route with the actual route
-        titleId = R.string.nav_drawer_notifications,
-        iconId = R.drawable.ic_notifications,
-        requiresAuth = true
-    ),
-    SETTINGS(
-        route = "settings", // TODO: change this route with the actual route
-        titleId = R.string.nav_drawer_settings,
-        iconId = R.drawable.ic_settings,
-    ),
 }

@@ -2,6 +2,7 @@ package com.bounswe.predictionpolls.ui.common
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,7 +21,6 @@ import com.bounswe.predictionpolls.R
 fun CommonAppbar(
     isVisible: Boolean = true,
     onMenuClick: () -> Unit = {},
-    onNotificationClick: () -> Unit = {},
 ) {
     if (!isVisible) return
 
@@ -42,17 +42,7 @@ fun CommonAppbar(
                 modifier = Modifier.size(32.dp)
             )
         }
-        IconButton(
-            onClick = {
-                onNotificationClick()
-            },
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_notification),
-                contentDescription = stringResource(id = R.string.cd_notification),
-                modifier = Modifier.size(32.dp)
-            )
-        }
+        Spacer(modifier = Modifier.weight(1f))
     }
 }
 
