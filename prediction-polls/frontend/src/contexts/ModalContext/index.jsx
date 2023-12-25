@@ -13,10 +13,13 @@ export const ModalContextProvider = ({ children }) => {
   const [params, setParams] = useState({});
   const [currentPollData, setCurrentPollData] = useState(null);
   const [currentPollId, setCurrentPollId] = useState(null);
+  const [comments, setComments] = React.useState([]);
 
   const value = useMemo(() => {
-    return { modals, setModals, params, setParams,currentPollData,setCurrentPollData,currentPollId,setCurrentPollId };
-  }, [modals,params, currentPollData, currentPollId]);
+    return { modals, setModals, params, setParams,currentPollData,setCurrentPollData,currentPollId,setCurrentPollId,comments,setComments };
+  }, [modals,params, currentPollData, currentPollId, comments]);
+ 
+
 
   return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>;
 };
