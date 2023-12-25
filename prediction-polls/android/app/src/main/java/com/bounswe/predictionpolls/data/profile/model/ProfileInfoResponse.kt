@@ -41,7 +41,8 @@ data class ProfileInfoResponse(
                 persistentListOf(),
                 birthday,
                 isMod == 1,
-                isHidden == 1
+                isHidden == 1,
+                points = this.points
             )
         } else {
             null

@@ -5,11 +5,15 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -37,6 +41,7 @@ import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 import com.bounswe.predictionpolls.ui.vote.pollVoteScreen
 import com.bounswe.predictionpolls.utils.NavItem
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
 val EXTRA_ROUTES_WITH_DRAWER = listOf(
@@ -52,6 +57,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PredictionPollsTheme {
+                val mainActivityViewModel: MainActivityViewModel = hiltViewModel()
                 val navController = rememberNavController()
                 val routesWithDrawer = remember {
                     NavItem.entries.map { it.route }.toSet().union(
@@ -96,10 +102,18 @@ class MainActivity : ComponentActivity() {
                     }
                 ) { toggleDrawerState ->
                     Column {
+                        val mainState by mainActivityViewModel.state.collectAsStateWithLifecycle()
                         CommonAppbar(
                             isVisible = currentRoute.value in routesWithDrawer,
                             onMenuClick = { toggleDrawerState() },
+                            points = mainState.points
                         )
+
+                        LaunchedEffect(Unit) {
+                            navController.currentBackStackEntryFlow.collectLatest {
+                                mainActivityViewModel.fetchCurrentUserProfile()
+                            }
+                        }
 
                         NavHost(navController = navController, startDestination = MAIN_ROUTE) {
                             mainScreen(navController)

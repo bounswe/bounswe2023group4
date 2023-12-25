@@ -14,5 +14,6 @@ data class ProfileInfo(
     val badgeUris: ImmutableList<String>,
     val birthday: String?,
     val isMod: Boolean,
-    val isHidden: Boolean?
+    val isHidden: Boolean?,
+    val points: Int?,
 )
