@@ -395,7 +395,7 @@ router.post('/unfollow',authenticator.authorizeAccessToken,service.unfollowProfi
  *   post:
  *     tags:
  *       - profiles
- *     description: Allows users to view followed profiles' list. Authorization is required.
+ *     description: Allows users to view followed profiles' list. 
  *     requestBody:
  *       required: true
  *       content:
@@ -431,7 +431,7 @@ router.post('/unfollow',authenticator.authorizeAccessToken,service.unfollowProfi
  *                     code: 1007,
  *                     message: Given data is not sufficient. Please follow guidelines.
  */
-router.post('/followed',authenticator.authorizeAccessToken,service.getFollowedProfiles)
+router.post('/followed',service.getFollowedProfiles)
 
 /**
  * @swagger
@@ -439,7 +439,7 @@ router.post('/followed',authenticator.authorizeAccessToken,service.getFollowedPr
  *   post:
  *     tags:
  *       - profiles
- *     description: Allows users to view follower profiles' list. Authorization is required.
+ *     description: Allows users to view follower profiles' list. 
  *     requestBody:
  *       required: true
  *       content:
@@ -475,7 +475,7 @@ router.post('/followed',authenticator.authorizeAccessToken,service.getFollowedPr
  *                     code: 1007,
  *                     message: Given data is not sufficient. Please follow guidelines.
  */
-router.post('/follower',authenticator.authorizeAccessToken,service.getFollowerProfiles)
+router.post('/follower',service.getFollowerProfiles)
 
 /**
  * @swagger
