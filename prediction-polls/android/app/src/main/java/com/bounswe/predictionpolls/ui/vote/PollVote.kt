@@ -28,6 +28,10 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -44,6 +48,7 @@ import com.bounswe.predictionpolls.domain.poll.Poll
 import com.bounswe.predictionpolls.extensions.fromISO8601
 import com.bounswe.predictionpolls.ui.common.CustomInputField
 import com.bounswe.predictionpolls.ui.common.annotation.AnnotatableText
+import com.bounswe.predictionpolls.ui.common.annotation.AnnotationDialog
 import com.bounswe.predictionpolls.ui.common.poll.ContinuousVoteOption
 import com.bounswe.predictionpolls.ui.common.poll.PollProfilePicture
 import com.bounswe.predictionpolls.ui.theme.MontserratFontFamily
@@ -95,6 +100,7 @@ private fun PollVoteUI(
     onProfileCardClicked: (userName: String) -> Unit = {}
 ) {
     val scrollState = rememberScrollState()
+    var isAnnotationDialogOpen by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -221,9 +227,18 @@ private fun PollVoteUI(
 
         Spacer(modifier = Modifier.weight(1f))
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(2.dp)
         ) {
             Spacer(modifier = Modifier.weight(1f))
+            Button(
+                onClick = {
+                    isAnnotationDialogOpen = true
+                }
+            ) {
+                Text(text = "Annotations")
+            }
             Image(
                 painter = painterResource(
                     id = R.drawable.ic_share,
@@ -240,6 +255,12 @@ private fun PollVoteUI(
                     .size(24.dp)
             )
         }
+    }
+
+    if (isAnnotationDialogOpen) {
+        AnnotationDialog(
+            onDismissRequest = { isAnnotationDialogOpen = false },
+        )
     }
 }
 

@@ -19,7 +19,8 @@ data class GetAnnotationsResponse(
                 id = id,
                 creator = creator,
                 target = target.toTarget(),
-                body = body.toBody()
+                body = body.toBody(),
+                created = created
             )
         }
     }

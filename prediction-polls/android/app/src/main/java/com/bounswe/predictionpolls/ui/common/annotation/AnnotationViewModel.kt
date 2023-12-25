@@ -17,7 +17,7 @@ class AnnotationViewModel @Inject constructor(
     private val getCurrentUserProfileUseCase: GetCurrentUserProfileUseCase,
     private val annotationUseCase: AnnotationUseCase
 ): BaseViewModel() {
-    private var annotations by mutableStateOf<List<PollAnnotation>>(emptyList())
+    var annotations by mutableStateOf<List<PollAnnotation>>(emptyList())
     private var username by mutableStateOf<String?>(null)
     private var page: PollAnnotationPages? = null
 

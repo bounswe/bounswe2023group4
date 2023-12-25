@@ -5,6 +5,7 @@ data class PollAnnotation(
     val target: Target,
     val body: Body,
     val creator: String,
+    val created: String,
 ) {
     data class Target(
         val selector: Selector,
