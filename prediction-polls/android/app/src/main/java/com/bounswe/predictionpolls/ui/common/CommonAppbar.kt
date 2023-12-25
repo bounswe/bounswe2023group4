@@ -65,13 +65,13 @@ fun PointsDisplay(points: Int) {
     Text(
         text = "$points GP",
         modifier = Modifier
-            .clip(RoundedCornerShape(16.dp))
+            .clip(RoundedCornerShape(8.dp))
             .background(MaterialTheme.colorScheme.primary)
-            .padding(8.dp),
+            .padding(vertical = 6.dp, horizontal = 12.dp),
         fontFamily = MontserratFontFamily,
-        fontSize = 20.sp,
+        fontSize = 16.sp,
         color = Color.White,
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.SemiBold
     )
 }
 
