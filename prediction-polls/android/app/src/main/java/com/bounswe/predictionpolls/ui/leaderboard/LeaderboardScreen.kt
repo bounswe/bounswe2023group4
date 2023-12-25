@@ -73,8 +73,8 @@ private fun LeaderboardScreenUI(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 24.dp),
-        verticalArrangement = Arrangement.spacedBy(24.dp)
+            .padding(start = 16.dp, end = 16.dp, bottom = 12.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         LeaderboardScreenTagSelection(
             items = tags,
@@ -82,7 +82,6 @@ private fun LeaderboardScreenUI(
             selectedItem = selectedTag
         )
         Leaderboard(items)
-        LoadMore()
     }
 }
 
@@ -103,15 +102,16 @@ private fun LeaderboardScreenTagSelection(
                 .background(MaterialTheme.colorScheme.primaryContainer, shape)
                 .clip(shape = shape)
                 .clickable {
-                    expanded = true
+                    expanded = !expanded
                 }
-                .padding(vertical = 12.dp, horizontal = 16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+                .padding(vertical = 8.dp, horizontal = 16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = selectedItem,
                 style = MaterialTheme.typography.labelMedium,
-                fontSize = 18.sp,
+                fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
                 textAlign = TextAlign.Center,
@@ -144,7 +144,7 @@ private fun LeaderboardScreenTagSelection(
                         Text(
                             text = item,
                             style = MaterialTheme.typography.labelMedium,
-                            fontSize = 18.sp,
+                            fontSize = 14.sp,
                             fontWeight = FontWeight.Medium,
                             color = MaterialTheme.colorScheme.onPrimaryContainer,
                             textAlign = TextAlign.Center,
@@ -313,29 +313,5 @@ private fun LeaderboardHeaderText(
         fontWeight = FontWeight.SemiBold,
         textAlign = align,
         color = MaterialTheme.colorScheme.onPrimary,
-    )
-}
-
-@Composable
-private fun LoadMore(
-    onClick: () -> Unit = {}
-) {
-    val shape = MaterialTheme.shapes.medium
-
-    Text(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.primary, shape)
-            .clip(shape = shape)
-            .clickable {
-                onClick()
-            }
-            .padding(vertical = 12.dp),
-        text = stringResource(id = R.string.leaderboard_load_more),
-        style = MaterialTheme.typography.labelMedium,
-        fontSize = 18.sp,
-        fontWeight = FontWeight.Medium,
-        color = MaterialTheme.colorScheme.onPrimary,
-        textAlign = TextAlign.Center,
     )
 }
