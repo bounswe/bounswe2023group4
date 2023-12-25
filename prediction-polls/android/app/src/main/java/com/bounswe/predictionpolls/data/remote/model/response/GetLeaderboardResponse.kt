@@ -1,6 +1,7 @@
 package com.bounswe.predictionpolls.data.remote.model.response
 
 import com.bounswe.predictionpolls.domain.leaderboard.TopicLeaderboard
+import com.google.gson.annotations.SerializedName
 
 data class GetLeaderboardResponse(
     val userList: List<User>
@@ -8,7 +9,9 @@ data class GetLeaderboardResponse(
     data class User(
         val id: Int,
         val username: String,
-        val amount: Int
+        val amount: Int,
+        @SerializedName("profile_picture")
+        val profilePicture: String?
     )
 
     fun toTopicLeaderboard(): TopicLeaderboard {
@@ -17,7 +20,8 @@ data class GetLeaderboardResponse(
                 TopicLeaderboard.User(
                     id = user.id,
                     username = user.username,
-                    amount = user.amount
+                    amount = user.amount,
+                    profilePicture = user.profilePicture
                 )
             }
         )

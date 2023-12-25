@@ -33,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -42,6 +43,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.PopupProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
 import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.domain.leaderboard.TopicLeaderboard
 import com.bounswe.predictionpolls.ui.theme.firstPositionBadgeColor
@@ -76,6 +78,13 @@ private fun LeaderboardScreenUI(
             .padding(start = 16.dp, end = 16.dp, bottom = 12.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
+        Text(
+            text = "Leaderboard",
+            color = MaterialTheme.colorScheme.primary,
+            style = MaterialTheme.typography.titleLarge,
+            fontSize = 20.sp,
+            lineHeight = 24.sp
+        )
         LeaderboardScreenTagSelection(
             items = tags,
             onItemSelected = onTagSelected,
@@ -95,7 +104,7 @@ private fun LeaderboardScreenTagSelection(
     var expanded by remember { mutableStateOf(false) }
     val shape = RoundedCornerShape(8.dp)
 
-    Column{
+    Column {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -174,10 +183,28 @@ private fun ColumnScope.Leaderboard(
             itemsIndexed(items) { index, item ->
                 LeaderboardRow(
                     position = (index + 1).toString(),
-                    image = "",
+                    image = item.profilePicture,
                     username = item.username,
                     point = item.amount.toString()
                 )
+            }
+            if (items.isEmpty()) item {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(MaterialTheme.colorScheme.primaryContainer, RoundedCornerShape(bottomEnd = 8.dp, bottomStart = 8.dp))
+                        .padding(16.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "Leaderboard for selected tag is not available yet.",
+                        style = MaterialTheme.typography.labelMedium,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        textAlign = TextAlign.Center,
+                    )
+                }
             }
         }
     }
@@ -186,7 +213,7 @@ private fun ColumnScope.Leaderboard(
 @Composable
 private fun LeaderboardRow(
     position: String,
-    image: String, // TODO: use image
+    image: String?,
     username: String,
     point: String,
 ) {
@@ -207,11 +234,24 @@ private fun LeaderboardRow(
             )
         }
         Spacer(modifier = Modifier.width(24.dp))
-        Box(
-            modifier = Modifier
-                .size(40.dp)
-                .background(Color.Black, CircleShape)
-        )
+        image?.let {
+            AsyncImage(
+                model = image,
+                contentDescription = "User profile picture",
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .size(40.dp)
+                    .background(Color.Black, CircleShape),
+                contentScale = ContentScale.Crop,
+                alignment = Alignment.Center
+            )
+        } ?: run {
+            Box(
+                modifier = Modifier
+                    .size(40.dp)
+                    .background(Color.Black, CircleShape),
+            )
+        }
         Spacer(modifier = Modifier.width(24.dp))
         LeaderboardRowText(
             modifier = Modifier.weight(2f),
@@ -262,8 +302,8 @@ private fun LeaderboardRowText(
         modifier = modifier,
         text = text,
         style = MaterialTheme.typography.titleSmall,
-        fontSize = 16.sp,
-        fontWeight = FontWeight.SemiBold,
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Medium,
         textAlign = align,
         color = color,
     )
@@ -279,7 +319,7 @@ private fun LeaderboardHeader() {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
-            modifier = Modifier.size(40.dp),
+            modifier = Modifier.width(40.dp),
             contentAlignment = Alignment.Center
         ) {
             LeaderboardHeaderText(

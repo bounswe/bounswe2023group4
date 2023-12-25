@@ -6,6 +6,7 @@ data class TopicLeaderboard(
     data class User(
         val id: Int,
         val username: String,
-        val amount: Int
+        val amount: Int,
+        val profilePicture: String?
     )
 }
