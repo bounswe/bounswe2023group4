@@ -70,7 +70,7 @@ class PollRepository(
         }
     }
 
-    override suspend fun getComments(pollId: String): List<Comment> {
+    override suspend fun getComments(pollId: Int): List<Comment> {
         return execute {
             pollService.getPollComments(pollId).map { it.toComment() }
         }

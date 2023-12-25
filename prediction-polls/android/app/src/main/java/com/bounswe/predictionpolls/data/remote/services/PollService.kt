@@ -54,6 +54,6 @@ interface PollService {
 
     @GET("/polls/{pollId}/comments")
     suspend fun getPollComments(
-        @Path("pollId") pollId: String
+        @Path("pollId") pollId: Int
     ): List<GetCommentResponse>
 }

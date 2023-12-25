@@ -39,6 +39,6 @@ interface PollRepositoryInterface {
     )
 
     suspend fun getComments(
-        pollId: String
+        pollId: Int
     ): List<Comment>
 }

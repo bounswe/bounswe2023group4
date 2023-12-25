@@ -41,7 +41,7 @@ class PollVoteViewModel @Inject constructor(
                         _state.update { PollVoteScreenUiState.ContinuousPoll(poll, "", 0, null) }
                     }
                 }
-                fetchPollComments(pollId)
+                fetchPollComments(pollId.toInt())
             }
 
             is Result.Error -> {
@@ -54,7 +54,7 @@ class PollVoteViewModel @Inject constructor(
         }
     }
 
-    private fun fetchPollComments(pollId: String) = viewModelScope.launch {
+    private fun fetchPollComments(pollId: Int) = viewModelScope.launch {
         launchCatching(
             onSuccess = {
                 _state.update { currentState ->
@@ -71,7 +71,11 @@ class PollVoteViewModel @Inject constructor(
     }
 
     fun postComment(pollId: Int, comment: String){
-        launchCatching {
+        launchCatching(
+            onSuccess = {
+                fetchPollComments(pollId)
+            }
+        ) {
             pollRepository.postComment(pollId, comment)
         }
     }
