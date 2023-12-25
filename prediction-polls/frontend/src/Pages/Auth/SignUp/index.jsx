@@ -191,9 +191,9 @@ function SignUp() {
                 message: "Password must be at least 8 characters!",
               },
               {
-                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[a-zA-Z\d!@#$%^&*()_+]{8,}$/,
                 message:
-                  "Password must include uppercase, lowercase, and a number!",
+                  "Password must include uppercase, lowercase, special character, and a number!",
               },
             ]}
           >
@@ -217,14 +217,13 @@ function SignUp() {
             valuePropName="checked"
             rules={[
               {
-                validator: (_, value) =>
-                  value
-                    ? Promise.resolve()
-                    : Promise.reject(new Error("Should accept agreement")),
+                checked: true,
+                message: "Please check the terms of use",
               },
             ]}
           >
             <Checkbox
+              name="agreement"
               checked={isCheck}
               onClick={handleIsCheck}
               required>
