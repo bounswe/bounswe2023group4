@@ -4,12 +4,8 @@ import com.bounswe.predictionpolls.domain.poll.Comment
 import com.google.gson.annotations.SerializedName
 
 data class GetCommentResponse(
-    @SerializedName("comment_id")
-    val commentId: Int,
-    @SerializedName("user_id")
-    val userId: Int,
-    @SerializedName("poll_id")
-    val pollId: Int,
+    @SerializedName("username")
+    val username: String,
     @SerializedName("comment_text")
     val commentText: String,
     @SerializedName("commented_at")
@@ -17,9 +13,7 @@ data class GetCommentResponse(
 ){
     fun toComment(): Comment{
         return Comment(
-            commentId,
-            userId,
-            pollId,
+            username,
             commentText,
             commentedAt
         )

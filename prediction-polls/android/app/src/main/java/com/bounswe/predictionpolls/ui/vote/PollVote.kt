@@ -353,7 +353,7 @@ private fun PollVoteUI(
                                     color = MaterialTheme.colorScheme.primary
                                 )
                             ) {
-                                append("Username: ")
+                                append("${it.username}: ")
                             }
                             withStyle(
                                 style = SpanStyle(
