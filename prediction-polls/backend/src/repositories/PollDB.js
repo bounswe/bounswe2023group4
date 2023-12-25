@@ -570,7 +570,11 @@ async function getJuryReward(poll_id){
 
 
 async function getComments(pollId) {
-    const sql = 'SELECT * FROM comments WHERE poll_id = ?';
+    const sql = `
+        SELECT c.comment_text, c.commented_at, u.username 
+        FROM comments c
+        JOIN users u ON c.user_id = u.id
+        WHERE c.poll_id = ?`;
     try {
         const [comments] = await pool.query(sql, [pollId]);
         return comments;
