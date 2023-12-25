@@ -18,7 +18,7 @@ class FakeFeedRepository : FeedRepository {
             commentCount = 5,
             tags = listOf("test", "sample"),
             options = persistentListOf(), // Add your options here,
-            pollCreatorUsername = "testuser"
+            pollCreatorUsername = "testuser",
             isOpen = true,
         ),
         // Add more Poll objects as needed for testing
