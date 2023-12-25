@@ -7,8 +7,7 @@ function App() {
   return (
     <ThemeProvider>
       <ModalContextProvider>
-        <AppRouter />
-        <Modals/>     
+        <AppRouter />    
       </ModalContextProvider>
     </ThemeProvider>
     

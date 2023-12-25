@@ -19,6 +19,7 @@ import VerifyEmailPage from "../Pages/Auth/VerifyEmail";
 import ResetPassword from "../Pages/Auth/ResetPassword";
 import VoteList from "../Pages/Vote/voteList";
 import Jury from "../Pages/Jury";
+import Modals from "../contexts/ModalContext/Modals";
 
 function AppRouter() {
   return (
@@ -107,7 +108,9 @@ function AppRouter() {
           }
         />
       </Routes>
+      <Modals/> 
     </BrowserRouter>
+    
   );
 }
 

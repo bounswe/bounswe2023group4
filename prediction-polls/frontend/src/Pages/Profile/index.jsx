@@ -15,34 +15,52 @@ import getProfile from "../../api/requests/profile.jsx";
 import ProfileIcon from "../../Assets/icons/ProfileIcon.jsx";
 import Badge from "../../Components/Badge/index.jsx";
 import getPollsOpenedMe from "../../api/requests/getPollsOpenedMe.jsx";
+import getPollsOpened from "../../api/requests/getPollsOpened.jsx";
 
 function Profile() {
   const { username } = useParams();
   const [pollData, setPollData] = React.useState({ pollList: [] });
   const [userData, setUserData] = React.useState({});
-  React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getPollsOpenedMe();
-        const data = response;
-  
-        const modifiedData = data.map((poll) => {
-          if (poll.closingDate != null) {
-            poll.closingDate = poll.closingDate.slice(0, 10);
-          }
-          return poll.pollType === "discrete"
-            ? { ...poll, isCustomPoll: false }
-            : { ...poll, isCustomPoll: true };
-        });
-        const reversedData = [...modifiedData].reverse();
-        setPollData({ pollList: reversedData });
-      } catch (error) {
-        console.error("Error fetching polls:", error);
-      }
-    };
-  
-    fetchData();
-  }, []);
+
+  const fetchPollsMe = async () => {
+    try {
+      const response = await getPollsOpenedMe();
+      const data = response;
+
+      const modifiedData = data.map((poll) => {
+        if (poll.closingDate != null) {
+          poll.closingDate = poll.closingDate.slice(0, 10);
+        }
+        return poll.pollType === "discrete"
+          ? { ...poll, isCustomPoll: false }
+          : { ...poll, isCustomPoll: true };
+      });
+      const reversedData = [...modifiedData].reverse();
+      setPollData({ pollList: reversedData });
+    } catch (error) {
+      console.error("Error fetching polls:", error);
+    }
+  };
+
+  const fetchPollsUser = async (username) => {
+    try {
+      const response = await getPollsOpened(username);
+      const data = response;
+
+      const modifiedData = data.map((poll) => {
+        if (poll.closingDate != null) {
+          poll.closingDate = poll.closingDate.slice(0, 10);
+        }
+        return poll.pollType === "discrete"
+          ? { ...poll, isCustomPoll: false }
+          : { ...poll, isCustomPoll: true };
+      });
+      const reversedData = [...modifiedData].reverse();
+      setPollData({ pollList: reversedData });
+    } catch (error) {
+      console.error("Error fetching polls:", error);
+    }
+  };
 
   const userMeUsername = localStorage.getItem("username");
 
@@ -54,11 +72,14 @@ function Profile() {
           if (response) {
             setUserData(response);
           }
+          fetchPollsMe();
         } else {
           const response = await getProfile(username);
           if (response) {
             setUserData(response);
           }
+          console.log("username", username);
+          fetchPollsUser(username);
         }
       } catch (error) {
         console.error("Error fetching profile data:", error);
