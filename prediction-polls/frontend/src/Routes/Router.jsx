@@ -47,7 +47,7 @@ function AppRouter() {
           element={
             <PrivateRoute>
               <Leaderboard />
-            </PrivateRoute>
+            </PrivateRoute>           
           }
         />
         <Route
