@@ -3,8 +3,6 @@ package com.bounswe.predictionpolls.ui.moderation.vote
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,7 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -120,190 +118,202 @@ private fun ModerationVoteScreenUI(
     optionText: String = "",
     onOptionTextChanged: (String) -> Unit = {}
 ) {
-    val scrollState = rememberScrollState()
-
-    Column(
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .scrollable(scrollState, Orientation.Vertical)
             .padding(vertical = 16.dp, horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            IconButton(
-                onClick = { onBackClicked() }
+        item {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_back),
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary
+                IconButton(
+                    onClick = { onBackClicked() }
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_back),
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                }
+                Text(
+                    text = "Moderation Resolve Request",
+                    color = MaterialTheme.colorScheme.primary,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontSize = 20.sp,
+                    lineHeight = 24.sp,
+                    fontWeight = FontWeight.SemiBold,
                 )
             }
-            Text(
-                text = "Moderation Resolve Request",
-                color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.titleLarge,
-                fontSize = 20.sp,
-                lineHeight = 24.sp,
-                fontWeight = FontWeight.SemiBold,
-            )
         }
 
+        item {
+            when (request.requestType) {
+                ModeratorPoll.RequestType.REPORT -> {
+                    Text(
+                        text = "This poll is reported by a user. Please check the validity of the report and resolve the request.",
+                        color = Color.Black,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontSize = 12.sp,
+                        lineHeight = 16.sp,
+                        fontWeight = FontWeight.Medium,
+                        textAlign = TextAlign.Justify
+                    )
+                }
 
-        when (request.requestType) {
-            ModeratorPoll.RequestType.REPORT -> {
-                Text(
-                    text = "This poll is reported by a user. Please check the validity of the report and resolve the request.",
-                    color = Color.Black,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontSize = 12.sp,
-                    lineHeight = 16.sp,
-                    fontWeight = FontWeight.Medium,
-                    textAlign = TextAlign.Justify
-                )
-            }
-
-            else -> {
-                Text(
-                    text = "Please check the status of the poll and choose the result of the poll if it the event is over.",
-                    color = Color.Black,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontSize = 12.sp,
-                    lineHeight = 16.sp,
-                    fontWeight = FontWeight.Medium,
-                    textAlign = TextAlign.Justify
-                )
+                else -> {
+                    Text(
+                        text = "Please check the status of the poll and choose the result of the poll if it the event is over.",
+                        color = Color.Black,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontSize = 12.sp,
+                        lineHeight = 16.sp,
+                        fontWeight = FontWeight.Medium,
+                        textAlign = TextAlign.Justify
+                    )
+                }
             }
         }
 
         if (request.poll.tags.isNotEmpty()) {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                SectionHeader(text = "Poll Tags")
-                Divider()
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+            item {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    request.poll.tags.forEach { tag ->
-                        Box(
-                            modifier = Modifier
-                                .background(
-                                    MaterialTheme.colorScheme.primary,
-                                    RoundedCornerShape(8.dp)
-                                )
-                                .padding(vertical = 8.dp, horizontal = 12.dp)
-                        ) {
-                            Text(text = tag, color = Color.White)
+                    SectionHeader(text = "Poll Tags")
+                    Divider()
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
+                        request.poll.tags.forEach { tag ->
+                            Box(
+                                modifier = Modifier
+                                    .background(
+                                        MaterialTheme.colorScheme.primary,
+                                        RoundedCornerShape(8.dp)
+                                    )
+                                    .padding(vertical = 8.dp, horizontal = 12.dp)
+                            ) {
+                                Text(text = tag, color = Color.White)
+                            }
                         }
                     }
                 }
             }
         }
 
-        Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            SectionHeader(text = "Poll Question")
-            Divider()
-            Text(text = request.poll.question)
+        item {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                SectionHeader(text = "Poll Question")
+                Divider()
+                Text(text = request.poll.question)
+            }
         }
 
-        if (request.requestType == ModeratorPoll.RequestType.REPORT) {
-            // TODO: Report reason should be fetched from backend
-            Column(
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                SectionHeader(text = "Report Reason")
-                Divider()
-                Text(text = "Report Reason")
+        item {
+            if (request.requestType == ModeratorPoll.RequestType.REPORT) {
+                // TODO: Report reason should be fetched from backend
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    SectionHeader(text = "Report Reason")
+                    Divider()
+                    Text(text = "Report Reason")
+                }
+            } else {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    SectionHeader(text = "Poll Conclusion")
+                    Divider()
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Checkbox(
+                            checked = isEventHappened,
+                            onCheckedChange = onEventHappenedClicked
+                        )
+                        Spacer(modifier = Modifier.padding(horizontal = 4.dp))
+                        Text(
+                            text = "Did the event happen?",
+                            color = Color.Black,
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Medium,
+                        )
+                    }
+                }
             }
-        } else {
+        }
+
+        item {
             Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                SectionHeader(text = "Poll Conclusion")
+                val extraInfo =
+                    if (request.requestType == ModeratorPoll.RequestType.DISCRETE) " - (Choose Correct Option)" else " - (Type Correct Option)"
+                SectionHeader(text = "Poll Options$extraInfo")
+                Divider()
+                PollOptions(
+                    request = request,
+                    selectedOptionId = selectedOptionId,
+                    onOptionSelected = onOptionSelected,
+                    onOptionTextChanged = onOptionTextChanged,
+                    optionText = optionText,
+                )
+            }
+        }
+
+        item {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                SectionHeader(text = "Terms")
                 Divider()
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Checkbox(
-                        checked = isEventHappened,
-                        onCheckedChange = onEventHappenedClicked
+                        checked = isAgreedTerms,
+                        onCheckedChange = onAgreeTermsClicked
                     )
                     Spacer(modifier = Modifier.padding(horizontal = 4.dp))
                     Text(
-                        text = "Did the event happen?",
+                        text = "I agree to the",
                         color = Color.Black,
                         style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Medium,
+                        fontSize = 12.sp,
+                        lineHeight = 16.sp,
+                        fontWeight = FontWeight.SemiBold,
+                    )
+                    Spacer(modifier = Modifier.padding(horizontal = 3.dp))
+                    Text(
+                        text = "Jury Rules",
+                        color = MaterialTheme.colorScheme.primary,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontSize = 12.sp,
+                        lineHeight = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.clickable {
+                            //TODO: Navigate to Jury Rules
+                        }
                     )
                 }
             }
         }
 
-        Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            val extraInfo =
-                if (request.requestType == ModeratorPoll.RequestType.DISCRETE) " - (Choose Correct Option)" else " - (Type Correct Option)"
-            SectionHeader(text = "Poll Options$extraInfo")
-            Divider()
-            PollOptions(
-                request = request,
-                selectedOptionId = selectedOptionId,
-                onOptionSelected = onOptionSelected,
-                onOptionTextChanged = onOptionTextChanged,
-                optionText = optionText,
-            )
-        }
-
-        Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            SectionHeader(text = "Terms")
-            Divider()
-            Row(
-                verticalAlignment = Alignment.CenterVertically
+        item {
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
             ) {
-                Checkbox(
-                    checked = isAgreedTerms,
-                    onCheckedChange = onAgreeTermsClicked
-                )
-                Spacer(modifier = Modifier.padding(horizontal = 4.dp))
-                Text(
-                    text = "I agree to the",
-                    color = Color.Black,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontSize = 12.sp,
-                    lineHeight = 16.sp,
-                    fontWeight = FontWeight.SemiBold,
-                )
-                Spacer(modifier = Modifier.padding(horizontal = 3.dp))
-                Text(
-                    text = "Jury Rules",
-                    color = MaterialTheme.colorScheme.primary,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontSize = 12.sp,
-                    lineHeight = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.clickable {
-                        //TODO: Navigate to Jury Rules
-                    }
-                )
-            }
-        }
-
-        Box(
-            modifier = Modifier.fillMaxWidth(),
-            contentAlignment = Alignment.Center
-        ) {
-            Button(onClick = {
-                onResolveClicked()
-            }) {
-                Text(text = "Resolve Request")
+                Button(onClick = {
+                    onResolveClicked()
+                }) {
+                    Text(text = "Resolve Request")
+                }
             }
         }
     }
