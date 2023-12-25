@@ -1,0 +1,16 @@
+.juryRules {
+    font-size: 14px; 
+    color: #333; 
+    line-height: 1.5; 
+    overflow-y: auto; 
+    max-height: 60vh; 
+    padding: 20px; 
+  }
+  
+  .juryRules p {
+    margin-bottom: 10px; 
+  }
+  
+  .juryRules strong {
+    font-weight: bold; 
+  }

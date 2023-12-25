@@ -1,8 +1,8 @@
  .splitContainerStyle {
-    display: flex;
-    width: 100%;
-    margin: 0 auto;
-    height: 100vh;
+     display: flex;
+     width: 100%;
+     margin: 0 auto;
+     height: 100vh;
  }
 
  .animationStyle {
@@ -10,6 +10,18 @@
      max-height: 100%;
  }
 
+ .agreementStyle {
+     margin-left: 10px;
+ }
+
+ .ruleStyle {
+     font-size: 14px;
+     color: #333;
+     line-height: 1.5;
+     overflow-y: auto;
+     max-height: 60vh;
+     padding: 20px;
+ }
 
  .displayCenterStyle {
      display: flex;
@@ -29,13 +41,12 @@
      padding: 22px 0px;
      width: 100%;
      opacity: 0.85;
-        background: var(--primary-500);
+     background: var(--primary-500);
  }
-
  .dividerStyle {
      color: var(--primary-900);
      border-color: var(--primary-900);
-     margin: 8px 0px 8px 0px;
+     margin: 4px 0px 4px 0px;
  }
 
  .formDatePickerStyle {
@@ -66,13 +77,14 @@
      align-items: center;
      justify-content: center;
      margin-bottom: 20px;
+     margin-top: 100px;
      max-width: 80%;
      max-height: 80%;
  }
 
  @media (max-width: 768px) {
-    .imageContainerStyle{
-      display: none;
-    }
-    
-  }
+     .imageContainerStyle {
+         display: none;
+     }
+
+ }

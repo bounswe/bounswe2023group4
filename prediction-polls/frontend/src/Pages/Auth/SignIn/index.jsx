@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./SignIn.module.css";
 import { Button, Input, Form, Divider, Typography } from "antd";
-import { ReactComponent as Logo } from "../../../Assets/Logo.svg";
+import { ReactComponent as Logo } from "../../../Assets/NewLogo.svg";
 import { ReactComponent as SignPageAnimation } from "../../../Assets/SignPageAnimation.svg";
 import { ReactComponent as GoogleLogo } from "../../../Assets/icons/GoogleIcon.svg";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import getGoogleOAuthURL from "../../../Config/googleOAuth"
+import getGoogleOAuthURL from "../../../Config/googleOAuth";
 const { Text } = Typography;
 
 function SignIn() {
@@ -23,26 +23,27 @@ function SignIn() {
     e.preventDefault();
     try {
       const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           username: username,
-          password: password
-        })
+          password: password,
+        }),
       };
-      const response = await fetch(process.env.REACT_APP_BACKEND_LINK+'/auth/login', requestOptions);
+      const response = await fetch(
+        process.env.REACT_APP_BACKEND_LINK + "/auth/login",
+        requestOptions
+      );
       const data = await response.json();
-    
-    if (response.status === 201 && data.accessToken && data.refreshToken) {
-      localStorage.setItem('accessToken', data.accessToken); 
-      localStorage.setItem('refreshToken', data.refreshToken);
-      localStorage.setItem('username', username);
-      navigate("/feed");
-    } 
 
-    }
-    catch (error) {
-      setMessage("An unexpected error has occurred. Please try again!")
+      if (response.status === 201 && data.accessToken && data.refreshToken) {
+        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
+        localStorage.setItem("username", username);
+        navigate("/feed");
+      }
+    } catch (error) {
+      setMessage("An unexpected error has occurred. Please try again!");
     }
   };
 
@@ -50,15 +51,21 @@ function SignIn() {
     <div className={styles.splitContainerStyle}>
       <div className={styles.formContainerStyle}>
         <Link to="/home" className={styles.logoStyle}>
-          <Logo />
+          <Logo width={150} height={150} />
         </Link>
-        <Form className = {{...styles.formItemLayout,labelCol: { span: 24 }, wrapperCol: { span: 24 }}}>
+        <Form
+          className={{
+            ...styles.formItemLayout,
+            labelCol: { span: 24 },
+            wrapperCol: { span: 24 },
+          }}
+        >
           <Form.Item>
             <div>
-              <Button className={styles.formButtonStyle} onClick={handleLogin}>
+              <button className={styles.formButtonStyle} onClick={handleLogin}>
                 <GoogleLogo className={styles.googleLogoStyle} />
                 <span>Sign In with Google</span>
-              </Button>
+              </button>
             </div>
           </Form.Item>
           <Form.Item>
@@ -86,30 +93,40 @@ function SignIn() {
                 }}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Button type="link" className={styles.forgotPasswordStyle}>
+              <Link
+                to="/auth/forgot-password"
+                className={styles.forgotPasswordStyle}
+              >
                 Forgot Password?
-              </Button>
+              </Link>
             </div>
           </Form.Item>
           <Form.Item>
-            <Button className={styles.formButtonStyle} onClick={handleSignIn}>LOG IN</Button>
+            <button className={styles.formButtonStyle} onClick={handleSignIn}>
+              LOG IN
+            </button>
           </Form.Item>
           <Form.Item>
             <div className={styles.displayCenterStyle}>
               <span>Don't have an account?</span>
-              <Button type="link" className={styles.signUpStyle} onClick={() => navigate("/auth/sign-up")}>
+              <Button
+                type="link"
+                className={styles.signUpStyle}
+                onClick={() => navigate("/auth/sign-up")}
+              >
                 Sign Up
               </Button>
             </div>
           </Form.Item>
+          <div className={styles.messageStyle}>
+            {message ? <p>{message}</p> : null}
+          </div>
         </Form>
-        <div className={styles.messageStyle}>{message ? <p>{message}</p> : null}</div>
       </div>
       <div className={styles.imageStyle}>
         <SignPageAnimation className={styles.animationStyle} />
       </div>
-    </div >
-
+    </div>
   );
 }
 
