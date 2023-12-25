@@ -3,6 +3,7 @@ import { List, Avatar } from 'antd';
 import Menu from '../../Components/Menu';
 import styles from './Leaderboard.module.css';
 import getProfile from "../../api/requests/profile.jsx";
+import ProfileIcon from "../../Assets/icons/ProfileIcon.jsx";
 import { Select } from 'antd';
 
 function Leaderboard() {
@@ -108,9 +109,17 @@ function Leaderboard() {
                 <Avatar className={
                   index == 0 ? styles.rankGold : (index == 1 ? styles.rankSilver : (index == 2 ? styles.rankBronze : styles.rank))
                 }>{index + 1}</Avatar>
-                <Avatar className={styles.avatar}>
-                  {item.username[0].toLocaleUpperCase()}
-                </Avatar>
+                {item?.profile_picture == null ? (
+                  <div className={styles.creatorImagePlaceholder}>
+                    <ProfileIcon width={20} height={20} />
+                  </div>
+                ) : (
+                  <img
+                    src={item.profile_picture}
+                    alt="user"
+                    className={styles.creatorImage}
+                  />
+                )}
                 <span className={styles.username}>{item.username}</span>
                 <span className={styles.points}>{item.amount}</span>
               </List.Item>
