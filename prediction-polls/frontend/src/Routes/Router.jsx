@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "../Pages/Home";
 import SignIn from "../Pages/Auth/SignIn";
 import SignUp from "../Pages/Auth/SignUp";
@@ -18,13 +18,14 @@ import ForgotPassword from "../Pages/Auth/ForgotPassword";
 import VerifyEmailPage from "../Pages/Auth/VerifyEmail";
 import ResetPassword from "../Pages/Auth/ResetPassword";
 import VoteList from "../Pages/Vote/voteList";
+import Jury from "../Pages/Jury";
 import Modals from "../contexts/ModalContext/Modals";
 
 function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={<Navigate replace to="/feed" />} />
+        <Route path="/" element={<Navigate replace to="/feed" />} />
         <Route path="/home" element={<Home />} />
         <Route path="/auth/sign-up" element={<SignUp />} />
         <Route path="/auth/sign-in" element={<SignIn />} />
@@ -95,6 +96,14 @@ function AppRouter() {
           element={
             <PrivateRoute>
               <EditProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/moderation/jury/:id"
+          element={
+            <PrivateRoute>
+              <Jury />
             </PrivateRoute>
           }
         />

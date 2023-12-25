@@ -5,6 +5,7 @@ import ShareModal from '../../Components/Modals/ShareModal';
 import CommentModal from '../../Components/Modals/CommentModal';
 import ReportModal from '../../Components/Modals/ReportModal';
 import  getProfileMe  from '../../api/requests/profileMe';
+import JuryModal from '../../Components/Modals/JuryModal';
 import PollTagModal from '../../Components/Modals/PollTagModal';
 
 const Modals = () => {
@@ -38,6 +39,7 @@ const Modals = () => {
       {modals[ModalNames.ShareModal] && <ShareModal pollData={currentPollData}/>}
       {modals[ModalNames.CommentModal] && <CommentModal previousComments={comments} userImage={userData.profile_picture} pollId={currentPollId}/> }
       {modals[ModalNames.ReportModal] && <ReportModal pollId={currentPollId} />} 
+      {modals[ModalNames.JuryTermsModal] && <JuryModal />}
     </>
   );
 };
