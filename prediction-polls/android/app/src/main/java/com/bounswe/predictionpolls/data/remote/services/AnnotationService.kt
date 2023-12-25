@@ -5,6 +5,7 @@ import com.bounswe.predictionpolls.data.remote.model.response.GetAnnotationsResp
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -20,6 +21,9 @@ interface AnnotationService {
         @Path("id") id: String
     ): GetAnnotationsResponse
 
+    @Headers(
+        "Content-Type:application/ld+json"
+    )
     @POST("/annotations")
     suspend fun createAnnotation(
         @Body createAnnotationRequest: CreateAnnotationRequest
