@@ -4,6 +4,7 @@ import com.bounswe.predictionpolls.common.Result
 import com.bounswe.predictionpolls.data.profile.model.FollowRequest
 import com.bounswe.predictionpolls.data.profile.model.GetFollowersRequest
 import com.bounswe.predictionpolls.data.profile.model.ProfileInfoResponse
+import com.google.gson.annotations.SerializedName
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -67,7 +68,11 @@ class ProfileInfoRemoteDataSourceImpl @Inject constructor(
         withContext(Dispatchers.IO) {
             try {
                 val followers =
-                    profileApi.fetchFollowers(GetFollowersRequest(userId.toIntOrNull() ?: -1))
+                    profileApi.fetchFollowers(
+                        GetFollowersRequest(
+                            userId.toIntOrNull() ?: -1
+                        )
+                    ).followerList ?: emptyList()
                 Result.Success(followers)
             } catch (e: Exception) {
                 Result.Error(e)
@@ -78,7 +83,11 @@ class ProfileInfoRemoteDataSourceImpl @Inject constructor(
         withContext(Dispatchers.IO) {
             try {
                 val followed =
-                    profileApi.fetchFollowed(GetFollowersRequest(userId.toIntOrNull() ?: -1))
+                    profileApi.fetchFollowed(
+                        GetFollowersRequest(
+                            userId.toIntOrNull() ?: -1
+                        )
+                    ).followerList ?: emptyList()
                 Result.Success(followed)
             } catch (e: Exception) {
                 Result.Error(e)
@@ -87,3 +96,9 @@ class ProfileInfoRemoteDataSourceImpl @Inject constructor(
         }
 
 }
+
+data class FollowerResponse(
+    @SerializedName("followerList", alternate = ["followedList"])
+    val followerList: List<String>?
+)
+
