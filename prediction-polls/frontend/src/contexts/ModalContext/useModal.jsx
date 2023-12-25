@@ -2,13 +2,14 @@ import { useContext } from "react";
 import { ModalContext } from "./index.jsx";
 
 const useModal = () => {
-  const { modals, setModals, setCurrentPollData, currentPollData,setCurrentPollId ,juryCheckboxState, setJuryCheckboxState} =
+  const { modals, setModals, setCurrentPollData, currentPollData,setCurrentPollId ,juryCheckboxState, setJuryCheckboxState,setComments} =
     useContext(ModalContext);
 
-  const openModal = (modalName, pollData , pollId) => {
+  const openModal = (modalName, pollData , pollId, comments) => {
 
     setCurrentPollData(pollData);  
     setCurrentPollId(pollId);
+    setComments(comments);
     setModals({ ...modals, [modalName]: true });
   };
 
@@ -21,7 +22,7 @@ const useModal = () => {
   };
 
 
-  return { openModal, closeModal, toggleModal, modals, currentPollData,juryCheckboxState ,setJuryCheckboxState };
+  return { openModal, closeModal, toggleModal, modals, currentPollData,juryCheckboxState ,setJuryCheckboxState , setComments };
 };
 
 export default useModal;

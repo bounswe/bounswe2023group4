@@ -170,7 +170,7 @@ function Profile() {
             </div>
           </div>
         </div>
-        {pollData.pollList.map((poll, index) => (
+        {userData.isHidden == 0   &&  pollData.pollList.map((poll, index) => (
           <PollCard className={styles.pollCard} PollData={poll} key={poll.id} />
         ))}
       </div>
