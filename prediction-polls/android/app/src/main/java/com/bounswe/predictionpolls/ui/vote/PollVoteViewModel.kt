@@ -1,25 +1,27 @@
 package com.bounswe.predictionpolls.ui.vote
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bounswe.predictionpolls.common.Result
+import com.bounswe.predictionpolls.core.BaseViewModel
+import com.bounswe.predictionpolls.data.remote.repositories.PollRepositoryInterface
 import com.bounswe.predictionpolls.domain.poll.Poll
 import com.bounswe.predictionpolls.domain.poll.VotePollRepository
 import com.bounswe.predictionpolls.domain.poll.VotePollUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
 @HiltViewModel
 class PollVoteViewModel @Inject constructor(
-    private val votePollUseCase: VotePollUseCase, private val votePollRepository: VotePollRepository
-) :
-    ViewModel() {
+    private val votePollUseCase: VotePollUseCase,
+    private val votePollRepository: VotePollRepository,
+    private val pollRepository: PollRepositoryInterface
+) : BaseViewModel() {
 
     private val _state = MutableStateFlow<PollVoteScreenUiState>(PollVoteScreenUiState.Loading)
 
@@ -38,11 +40,8 @@ class PollVoteViewModel @Inject constructor(
                     is Poll.ContinuousPoll -> {
                         _state.update { PollVoteScreenUiState.ContinuousPoll(poll, "", 0, null) }
                     }
-
-                    else -> {
-                        // Handle other poll types if necessary
-                    }
                 }
+                fetchPollComments(pollId.toInt())
             }
 
             is Result.Error -> {
@@ -52,6 +51,32 @@ class PollVoteViewModel @Inject constructor(
                     )
                 }
             }
+        }
+    }
+
+    private fun fetchPollComments(pollId: Int) = viewModelScope.launch {
+        launchCatching(
+            onSuccess = {
+                _state.update { currentState ->
+                    when (currentState) {
+                        is PollVoteScreenUiState.DiscretePoll -> currentState.copy(comments = it)
+                        is PollVoteScreenUiState.ContinuousPoll -> currentState.copy(comments = it)
+                        else -> currentState
+                    }
+                }
+            }
+        ) {
+            pollRepository.getComments(pollId)
+        }
+    }
+
+    fun postComment(pollId: Int, comment: String){
+        launchCatching(
+            onSuccess = {
+                fetchPollComments(pollId)
+            }
+        ) {
+            pollRepository.postComment(pollId, comment)
         }
     }
 
@@ -93,6 +118,22 @@ class PollVoteViewModel @Inject constructor(
             else -> {
                 // Handle other states if necessary
             }
+        }
+    }
+
+    fun onReportPressed(pollId: String) {
+        launchCatching(
+            onSuccess = {
+                _state.update { currentState ->
+                    when (currentState) {
+                        is PollVoteScreenUiState.DiscretePoll -> currentState.copy(toastMessage = "Successfully reported")
+                        is PollVoteScreenUiState.ContinuousPoll -> currentState.copy(toastMessage = "Successfully reported")
+                        else -> currentState
+                    }
+                }
+            }
+        ) {
+            pollRepository.reportPoll(pollId)
         }
     }
 

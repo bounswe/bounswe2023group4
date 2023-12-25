@@ -23,11 +23,36 @@ class FakeProfileInfoRepository : ProfileInfoRepository {
                     coverPhotoUri = "http://example.com/cover.jpg",
                     profilePictureUri = "http://example.com/profile.jpg",
                     userDescription = "This is a test user.",
-                    badgeUris = persistentListOf("http://example.com/badge1.jpg")
+                    badgeUris = persistentListOf("http://example.com/badge1.jpg"),
+                    birthday = null,
+                    isHidden = false,
+                    userId = "132",
+                    followedCount = 0,
+                    followerCount = 0,
                 )
             )
         } else {
             Result.Error(Exception("Fake error"))
         }
+    }
+
+    override suspend fun getCurrentUserProfileInfo(): Result<ProfileInfo> {
+        throw Exception()
+    }
+
+    override suspend fun followUser(followerId: String, followedId: String): Result<Unit> {
+        throw Exception()
+    }
+
+    override suspend fun unfollowUser(followerId: String, followedId: String): Result<Unit> {
+        throw Exception()
+    }
+
+    override suspend fun fetchFollowers(userId: String): Result<List<String>> {
+        throw Exception()
+    }
+
+    override suspend fun fetchFollowed(userId: String): Result<List<String>> {
+        throw Exception()
     }
 }

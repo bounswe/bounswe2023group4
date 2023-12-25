@@ -8,8 +8,8 @@ import com.bounswe.predictionpolls.domain.poll.PollOption
 import com.google.gson.*
 import com.google.gson.annotations.SerializedName
 import com.google.gson.reflect.TypeToken
-import kotlinx.collections.immutable.toImmutableList
 import java.lang.reflect.Type
+import kotlinx.collections.immutable.toImmutableList
 
 data class PollResponse(
     @SerializedName("error")
@@ -54,11 +54,13 @@ data class PollResponse(
                     rejectionText = rejectVotes,
                     commentCount = 0,
                     tags = tags,
+                    pollCreatorUsername = creatorUsername,
                     inputType = when (contPollType) {
                         "numeric" -> ContinuousVoteInputType.Decimal
                         "date" -> ContinuousVoteInputType.Date
                         else -> ContinuousVoteInputType.Text
-                    }
+                    },
+                    isOpen = isOpen
                 )
             }
 
@@ -78,9 +80,11 @@ data class PollResponse(
                     pollCreatorName = creatorName,
                     pollQuestionTitle = question,
                     rejectionText = rejectVotes,
+                    pollCreatorUsername = creatorUsername,
                     commentCount = 0,
                     tags = tags,
-                    options = options.toImmutableList()
+                    options = options.toImmutableList(),
+                    isOpen = isOpen
                 )
             }
 

@@ -5,7 +5,6 @@
   flex-direction: column;
   box-sizing: border-box;
   align-items: center;
-  padding-top: 20px;
   padding-bottom: 20px;
   background-color: var(--primary-50);
   justify-content: space-between;
@@ -38,8 +37,8 @@
 }
 
 .logo {
-  height: 8%;
-  width: 250px;
+  height: 9.6%;
+  width: 270px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,6 +53,19 @@
   border-radius: 10px;
   cursor: pointer;
   background-color: #dc3838;
+  color: #ffffff;
+  border: none;
+}
+
+.loginButton {
+  width: 250px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #2d87da;
   color: #ffffff;
   border: none;
 }

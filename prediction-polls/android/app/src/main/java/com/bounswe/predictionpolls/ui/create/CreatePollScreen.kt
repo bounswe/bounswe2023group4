@@ -10,16 +10,24 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.Divider
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -37,6 +45,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -46,6 +55,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.PopupProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.bounswe.predictionpolls.R
+import com.bounswe.predictionpolls.domain.semantic.SemanticTag
 import com.bounswe.predictionpolls.ui.common.CustomDatePicker
 import com.bounswe.predictionpolls.ui.common.CustomInputField
 import com.bounswe.predictionpolls.ui.common.ErrorDialog
@@ -116,6 +126,12 @@ fun CreatePollScreen(
         onDismissErrorDialog = { viewModel.onEvent(CreatePollScreenEvent.OnErrorDismissed) },
         isDatePickerVisible = viewModel.screenState.isDatePickerVisible,
         onDatePickerVisibilityChanged = { viewModel.onEvent(CreatePollScreenEvent.ToggleDatePicker) },
+        createdPollId = viewModel.screenState.createdPollId,
+        searchedTag = viewModel.screenState.searchedTag,
+        onSearchedTagChanged = { viewModel.onTagSearchTextChanged(it) },
+        tags = viewModel.screenState.tags,
+        insertTag = { id, tag -> viewModel.onTagInserted(id, tag)},
+        onTagDismissRequest = { viewModel.clearCreatedPollId() },
     )
 }
 
@@ -147,6 +163,12 @@ private fun CreatePollScreenUI(
     onDismissErrorDialog: () -> Unit = {},
     isDatePickerVisible: Boolean = false,
     onDatePickerVisibilityChanged: () -> Unit = {},
+    createdPollId: Int = -1,
+    searchedTag: String = "",
+    onSearchedTagChanged: (String) -> Unit = {},
+    tags: List<SemanticTag> = listOf(),
+    insertTag: (Int, String) -> Unit = { _, _ -> },
+    onTagDismissRequest: () -> Unit = {},
 ) {
     val scrollState = rememberScrollState()
 
@@ -230,6 +252,102 @@ private fun CreatePollScreenUI(
         isDatePickerVisible = isDatePickerVisible,
         onDismissRequest = onDatePickerVisibilityChanged,
         onDateChanged = { onDueDateChanged(it) }
+    )
+    SemanticTagDialog(
+        pollID = createdPollId,
+        searchedTag = searchedTag,
+        onSearchedTagChanged = onSearchedTagChanged,
+        tags = tags,
+        insertTag = insertTag,
+        onDismissRequest = onTagDismissRequest,
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun SemanticTagDialog(
+    pollID: Int = -1,
+    searchedTag: String = "",
+    onSearchedTagChanged: (String) -> Unit = {},
+    tags: List<SemanticTag> = listOf(),
+    insertTag: (Int, String) -> Unit = { _, _ -> },
+    onDismissRequest: () -> Unit = {},
+) {
+    if (pollID == -1)
+        return
+
+    AlertDialog(
+        onDismissRequest = { onDismissRequest() },
+        title = {
+            Text(
+                text = "Choose tags for your poll",
+                fontWeight = FontWeight.Bold
+            )
+        },
+        text = {
+            Column {
+                Text(
+                    text = "Please type your tag below to search for it.",
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 14.sp,
+                    lineHeight = 18.sp
+                )
+                Divider()
+                Spacer(modifier = Modifier.height(8.dp))
+                CustomInputField(
+                    text = searchedTag,
+                    onTextChanged = onSearchedTagChanged,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = "Tags that match your search:",
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 14.sp,
+                    lineHeight = 18.sp
+                )
+                Divider()
+                Spacer(modifier = Modifier.height(8.dp))
+                LazyColumn(
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    items(tags) {
+                        Card(
+                            onClick = {
+                                insertTag(pollID, it.id)
+                            },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Column(
+                                modifier = Modifier.padding(8.dp)
+                            ) {
+                                Text(
+                                    text = it.label,
+                                    fontWeight = FontWeight.SemiBold,
+                                    fontSize = 14.sp,
+                                    lineHeight = 18.sp,
+                                )
+                                Text(
+                                    text = it.description,
+                                    fontWeight = FontWeight.Medium,
+                                    fontSize = 12.sp,
+                                    lineHeight = 16.sp,
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = {
+                    onDismissRequest()
+                }
+            ) {
+                Text(text = "Confirm")
+            }
+        },
     )
 }
 

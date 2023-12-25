@@ -5,34 +5,48 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.Text
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.bounswe.predictionpolls.data.remote.TokenManager
 import com.bounswe.predictionpolls.ui.common.CommonAppbar
 import com.bounswe.predictionpolls.ui.common.NavigationDrawer
 import com.bounswe.predictionpolls.ui.create.createPollScreen
+import com.bounswe.predictionpolls.ui.editProfile.editProfileScreen
 import com.bounswe.predictionpolls.ui.feed.feedScreen
+import com.bounswe.predictionpolls.ui.forgotPassword.forgotPasswordScreen
 import com.bounswe.predictionpolls.ui.leaderboard.leaderboardScreen
 import com.bounswe.predictionpolls.ui.login.loginScreen
 import com.bounswe.predictionpolls.ui.main.MAIN_ROUTE
 import com.bounswe.predictionpolls.ui.main.mainScreen
 import com.bounswe.predictionpolls.ui.main.navigateToMainScreen
+import com.bounswe.predictionpolls.ui.moderation.apply.moderationApplyScreen
+import com.bounswe.predictionpolls.ui.moderation.list.MODERATION_ROUTE
+import com.bounswe.predictionpolls.ui.moderation.list.moderationScreen
+import com.bounswe.predictionpolls.ui.moderation.vote.moderationVoteScreen
+import com.bounswe.predictionpolls.ui.profile.myProfileScreen
 import com.bounswe.predictionpolls.ui.profile.profileScreen
 import com.bounswe.predictionpolls.ui.signup.signupScreen
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 import com.bounswe.predictionpolls.ui.vote.pollVoteScreen
 import com.bounswe.predictionpolls.utils.NavItem
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
+
+val EXTRA_ROUTES_WITH_DRAWER = listOf(
+    MODERATION_ROUTE,
+)
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -43,8 +57,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PredictionPollsTheme {
+                val mainActivityViewModel: MainActivityViewModel = hiltViewModel()
                 val navController = rememberNavController()
-                val routesWithDrawer = remember { NavItem.entries.map { it.route }.toSet() }
+                val routesWithDrawer = remember {
+                    NavItem.entries.map { it.route }.toSet().union(
+                        EXTRA_ROUTES_WITH_DRAWER
+                    )
+                }
                 val currentBackStack = navController.currentBackStackEntryAsState()
                 val currentRoute = rememberUpdatedState(currentBackStack.value?.destination?.route)
                 val isUserLoggedIn = tokenManager.isLoggedIn.collectAsState(initial = false)
@@ -83,11 +102,19 @@ class MainActivity : ComponentActivity() {
                     }
                 ) { toggleDrawerState ->
                     Column {
+                        val mainState by mainActivityViewModel.state.collectAsStateWithLifecycle()
                         CommonAppbar(
                             isVisible = currentRoute.value in routesWithDrawer,
                             onMenuClick = { toggleDrawerState() },
-                            onNotificationClick = { /*TODO implement notification */ }
+                            points = mainState.points
                         )
+
+                        LaunchedEffect(Unit) {
+                            navController.currentBackStackEntryFlow.collectLatest {
+                                mainActivityViewModel.fetchCurrentUserProfile()
+                            }
+                        }
+
                         NavHost(navController = navController, startDestination = MAIN_ROUTE) {
                             mainScreen(navController)
                             loginScreen(navController)
@@ -97,14 +124,14 @@ class MainActivity : ComponentActivity() {
                             createPollScreen()
                             profileScreen(navController)
                             pollVoteScreen(navController)
-
-                            // TODO: Remove placeholders
-                            composable("settings") { Text(text = "Settings Page WIP") }
-                            composable("notifications") { Text(text = "Notifications Page WIP") }
-                            composable("moderation") { Text(text = "Moderation Page WIP") }
+                            myProfileScreen(navController)
+                            editProfileScreen(navController)
+                            forgotPasswordScreen(navController)
+                            moderationApplyScreen(navController)
+                            moderationScreen(navController)
+                            moderationVoteScreen(navController)
                         }
                     }
-
                 }
             }
         }

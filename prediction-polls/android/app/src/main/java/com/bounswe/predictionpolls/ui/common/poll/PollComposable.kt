@@ -3,6 +3,7 @@ package com.bounswe.predictionpolls.ui.common.poll
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,7 +31,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bounswe.predictionpolls.R
 import com.bounswe.predictionpolls.ui.theme.MontserratFontFamily
 import com.bounswe.predictionpolls.ui.theme.PredictionPollsTheme
 
@@ -43,7 +43,7 @@ fun PollComposable(
     optionsContent: @Composable () -> Unit,
     dueDate: String,
     rejectionText: String,
-    commentCount: Int,
+    onProfileCardClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -67,7 +67,9 @@ fun PollComposable(
             PollCreatorProfile(
                 imageUri = pollCreatorProfilePictureUri,
                 userName = pollCreatorName,
-                modifier = Modifier.align(Alignment.End)
+                modifier = Modifier
+                    .clickable(onClick = onProfileCardClicked)
+                    .align(Alignment.End)
             )
             if (tags.isNotEmpty()) PollTagsContent(tags)
             PollQuestionTitle(pollQuestionTitle = pollQuestionTitle)
@@ -79,50 +81,16 @@ fun PollComposable(
                     .padding(vertical = 8.dp),
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
-                if (dueDate.isNotEmpty()){
+                if (dueDate.isNotEmpty()) {
                     DueDateComposable(
                         dueDate = dueDate
                     )
                 }
-                if (rejectionText.isNotEmpty()){
+                if (rejectionText.isNotEmpty()) {
                     RejectionDateComposable(
                         rejectionText = rejectionText
                     )
                 }
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .padding(vertical = 8.dp),
-                horizontalArrangement = Arrangement.SpaceAround
-            ) {
-                Column {
-                    PollIcon(
-                        id = R.drawable.ic_comment,
-                        modifier = Modifier.background(
-                            MaterialTheme.colorScheme.primary,
-                            PollIconShape
-                        )
-                    )
-                    Text(
-                        commentCount.toString(),
-                        modifier = Modifier.align(Alignment.CenterHorizontally),
-                        fontFamily = MontserratFontFamily,
-                        color = MaterialTheme.colorScheme.scrim,
-                        textAlign = TextAlign.Center,
-                        fontSize = 14.sp
-                    )
-                }
-                PollIcon(
-                    id = R.drawable.ic_share,
-                    modifier = Modifier.background(MaterialTheme.colorScheme.primary, PollIconShape)
-                )
-                PollIcon(
-                    id = R.drawable.ic_warning,
-                    modifier = Modifier.background(MaterialTheme.colorScheme.error, PollIconShape)
-                )
-
             }
         }
     }
@@ -251,7 +219,7 @@ private fun PollComposablePreview() {
             },
             dueDate = "21 Nov 2023",
             rejectionText = "Last 5 Days",
-            commentCount = 265,
+            onProfileCardClicked = {},
             modifier = Modifier.padding(16.dp)
         )
     }

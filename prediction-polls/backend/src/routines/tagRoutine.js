@@ -9,10 +9,9 @@ const scoreThreshold = 0.85;
 async function tagRoutine() {
   const doTag = process.env.DO_TAG === 'true';
 
-  console.log('tagRoutine Running');
 
   if (!doTag) {
-    console.log('DO_TAG is set to false. tagRoutine will do nothing.');
+    console.log('Tag Routine : DO_TAG is set to false. Tag Routine will do nothing.');
     return;
   }
 
@@ -20,7 +19,7 @@ async function tagRoutine() {
   const apiToken = process.env.TAG_API_TOKEN;
 
   if (!apiUrl) {
-    console.error('TAG_API_URL is not defined in the environment variables.');
+    console.error('Tag Routine : TAG_API_URL is not defined in the environment variables.');
     return;
   }
 
@@ -28,7 +27,7 @@ async function tagRoutine() {
 
   const filteredPolls = untaggedPolls.filter(poll => poll.tagsScanned >= 0 && poll.tagsScanned < topics.topics.length);
   if (filteredPolls.length === 0) {
-    console.log("No polls to tag.");
+    console.log("Tag Routine : No polls to tag.");
     return;
   }
   const randomPoll = filteredPolls[Math.floor(Math.random() * filteredPolls.length)];
@@ -65,7 +64,7 @@ async function tagRoutine() {
   })
   .catch(error => {
 
-    console.error('Error:', error.message);
+    console.error('Tag Routine : Error:', error.message);
   });
 }
 

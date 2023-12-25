@@ -217,3 +217,45 @@
     display: block;
   }
 }
+
+.unFollowButton{
+  background-color: var(--warning-500);
+  color: var(--neutral-white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  gap: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+
+}
+
+.thumbnailAndButtons {
+  position: relative;
+}
+
+.followButtons {
+  position: absolute;
+  top: 120px; 
+  left: 65%;
+  transform: translateX(-50%); 
+  display: flex;
+  gap: 100px; 
+  z-index: 1;
+}
+
+.followButton {
+  background-color: rgba(0, 0, 0, 0.2); 
+  color: var(--neutral-white); 
+  padding: 5px 15px; 
+  border-radius: 12px; 
+  cursor: pointer;
+  font-weight: bold;
+  border:none;
+  text-transform: uppercase; 
+  z-index: 1;
+}

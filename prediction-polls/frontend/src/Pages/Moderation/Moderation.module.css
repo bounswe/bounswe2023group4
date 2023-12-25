@@ -2,9 +2,134 @@
     display: flex;
     background-color: var(--neutral-white);
     width: 100%;
+
+    
 }
-@media (max-width: 640px) {
+@media (max-width: 768px) {
     .page{
         flex-direction: column;
     }
+    .pointsButton{
+        display:none;
+    }
+    .pollList{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.btn { 
+    display: block; 
+    margin: auto; 
+  } 
+  .questionCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 95%;
+    box-shadow: 2px 4px 8px var(--neutral-shadow);
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    gap: 20px;
+    background-color: var(--neutral-pollCard);
+    margin-bottom: 20px; 
+    margin-top: 50px;  
+    margin-left:  50px;  
+    max-width: 900px; 
+    max-height: 400px;
+    text-align: center;
+  }
+  
+  .message {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    text-align: center;
+    z-index: 1000;
+  }
+
+  .message2 {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    background-color: var(--warning-400);
+    color: #fff;
+    text-align: center;
+    z-index: 1000;
+  }
+  
+.text {
+    font-size: 20px;
+    font-weight: 700;
+    width: 75%;
+    color: var(--neutral-black);
+    text-align: center; 
+    margin:auto; 
+}
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+
+    .pollList{
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+        width: 60%;
+        padding-top: 20px;
+    }
+
+    .buttonContainer {
+        display: flex;
+        gap: 10px; /* Adjust the gap as needed */
+      }
+
+      .questionCard2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 95%;
+        box-shadow: 2px 4px 8px var(--neutral-shadow);
+        padding: 30px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        gap: 20px;
+        background-color: var(--neutral-pollCard);
+        margin-bottom: 20px; 
+        margin-top: 50px;  
+        margin-left:  50px;  
+        max-width: 800px; 
+        max-height: 200px;
+        text-align: center;
+      }
+
+.selectedTags{
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  margin-top: 100px;
+  padding: 20px 40px;
+  border-radius: 12px;
+  box-shadow: 2px 4px 8px var(--neutral-shadow);
+  height: min-content;
+color:var(--neutral-black);
+  background-color: var(--primary-100);
+
+}
+.tagContainer{
+  display: flex;
+width: 25%;
+justify-content: center;
 }

@@ -1,6 +1,7 @@
 const qs = require("querystring");
 const axios = require("axios");
 const db = require("../repositories/AuthorizationDB.js");
+const profileDb = require("../repositories/ProfileDB.js");
 const crypto = require('crypto');
 const errorCodes = require("../errorCodes.js");
 
@@ -38,19 +39,34 @@ async function googleLogInWithCode(code,res){
         return res.status(403).json({error:errorCodes.GOOGLE_LOGIN_NONVERIFIED_GOOGLE_ACCOUNT});
       }
 
-      const generatedPassword = generateRandomPassword(12);
-      const { error, userId} = await db.addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+      const email_exists = await db.findUser({email:googleUser.email})
 
-      const result = await profileDb.addProfile(userId,googleUser.given_name,googleUser.email);
-      if(!result.profileId){
-        return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
+      let user = {};
+
+      if (email_exists.error){
+        //This means that the given email is not in use so we will create a new user
+        const generatedPassword = generateRandomPassword(12);
+        const {error, userId} = await db.addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+        if(error){
+          return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
+        }
+
+        const result = await profileDb.addProfile(userId,googleUser.given_name,googleUser.email);
+        if(!result.profileId){
+          return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
+        }
+
+        user = {name : googleUser.given_name, id: userId};
+      }
+      else{
+        // The given email was found so we will use that user
+        user = {name : email_exists.username, id: email_exists.id};
       }
 
-      const user = {name : googleUser.given_name, id: userId};
       const accesToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
       db.addRefreshToken(refreshToken);
-      res.json({accessToken: accesToken, refreshToken: refreshToken})
+      res.json({accessToken: accesToken, refreshToken: refreshToken, username:user.name})
   
     } catch (error) {
       return res.status(500).json({error:errorCodes.GOOGLE_LOGIN_FAILED});
@@ -66,20 +82,36 @@ async function googleLogInWithCode(code,res){
         return res.status(403).json({error:errorCodes.GOOGLE_LOGIN_NONVERIFIED_GOOGLE_ACCOUNT});
       }
 
-      const generatedPassword = generateRandomPassword(12);
-      const {error, userId} = await db.addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
 
-      const result = await profileDb.addProfile(userId,googleUser.given_name,googleUser.email);
-      if(!result.profileId){
-        return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
+      const email_exists = await db.findUser({email:googleUser.email})
+
+      let user = {};
+
+      if (email_exists.error){
+        //This means that the given email is not in use so we will create a new user
+        const generatedPassword = generateRandomPassword(12);
+        const {error, userId} = await db.addUser(googleUser.given_name,generatedPassword,googleUser.email,null);
+        if(error){
+          return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
+        }
+        // Implement rollback when fail
+        const result = await profileDb.addProfile(userId,googleUser.given_name,googleUser.email);
+        if(!result.profileId){
+          return res.status(400).send({error:errorCodes.REGISTRATION_FAILED});
+        }
+
+        user = {name : googleUser.given_name, id: userId};
+      }
+      else{
+        // The given email was found so we will use that user
+        user = {name : email_exists.username, id: email_exists.id};
       }
 
-      const user = {name : googleUser.given_name, id: userId};
       const accesToken = generateAccessToken(user);
       const refreshToken = generateRefreshToken(user);
 
       db.addRefreshToken(refreshToken);
-      res.json({accessToken: accesToken, refreshToken: refreshToken})
+      res.json({accessToken: accesToken, refreshToken: refreshToken, username:user.name})
 
     } catch (error) {
       return res.status(500).json({error:errorCodes.GOOGLE_LOGIN_FAILED});

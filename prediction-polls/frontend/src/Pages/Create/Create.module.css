@@ -2,6 +2,7 @@
     display: flex;
     background-color: var(--neutral-white);
     width: 75%;
+    height: 100vh;
   }
   
   @media (max-width: 640px) {
@@ -11,12 +12,17 @@
   }
   
   .createContainer {
+    display: flex;
+  flex-direction: column;
     margin: 20px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
+    box-shadow: 2px 4px 8px var(--neutral-shadow);
     background-color: var(--neutral-white);
-    width: 60%;
+    width: 90%;
+    max-height: 100vh; 
+    overflow-y: auto;
   }
   
   .questionContainer {
@@ -29,35 +35,39 @@
   }
 
   .optButton {
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 45px;
+    padding-right: 45px;
+    font-size: large;
+    text-align: center;
     border:none;
     color: var(--neutral-white);
+    border-radius: 10px;
+    background-color: var(--primary-500);
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .optButton:hover {
     border: none;
     color:#fff !important ;
   }
-  
-  .submitContainer {
-    position: absolute;
-    bottom: 40px; 
-    width: 40%;
-
-  }
 
   .submitButton {
-    background-color: var(--secondary-500);
+    background-color: var(--primary-500);
     color: #fff;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 45px;
+    padding-right: 45px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border:none;
+    border-radius: 10px;
   }
 
   .submitButton:hover {
-    background-color: var(--secondary-300);
+    background-color: var(--primary-300);
     color:#fff !important ;
+    
+
   }
 
   .multipleChoiceInputs {
@@ -85,6 +95,9 @@
     margin-top: 8px;
   }
 
+  .timePickerStyle{
+    margin-left: 10px;
+  }
   .dateOptionsContainer {
     margin-top: 8px;
   }
@@ -94,7 +107,33 @@
     margin-right: 8px;
   }
 
-  .openVisibilityContainer {
-    position: absolute;
-    bottom: 100px;
+  .openVisibilityContainer, .submitContainer {
+    margin-top: 20px; 
+  }
+
+  .createContainer::-webkit-scrollbar {
+    width: 5px; 
+    
+  }
+  
+  .createContainer::-webkit-scrollbar-track {
+    background: var(--neutral-100); 
+    border-radius: 5px; 
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+  
+  .createContainer::-webkit-scrollbar-thumb {
+    background: var(--neutral-400); 
+    border-radius: 5px; 
+  }
+  
+  .createContainer::-webkit-scrollbar-thumb:hover {
+    background: var(--neutral-500); 
+  }
+  
+ 
+  .createContainer {
+    scrollbar-width: thin; 
+    scrollbar-color: var(--neutral-400) var(--neutral-100); 
   }
