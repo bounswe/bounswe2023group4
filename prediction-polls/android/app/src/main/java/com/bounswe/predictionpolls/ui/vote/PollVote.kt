@@ -150,9 +150,9 @@ private fun PollVoteUI(
                 ) {
                     PollProfilePicture(
                         imageUri = poll.creatorProfilePictureUri,
-                        modifier = Modifier.size(32.dp)
+                        modifier = Modifier.size(48.dp)
                     )
-                    Spacer(modifier = Modifier.width(16.dp))
+                    Spacer(modifier = Modifier.width(8.dp))
                     Text(
                         text = poll.pollCreatorName,
                         fontFamily = MontserratFontFamily,
