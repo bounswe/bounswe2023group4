@@ -1,7 +1,8 @@
 package com.bounswe.predictionpolls.ui.editProfile
 
+import android.content.Context
+import android.content.Intent
 import android.net.Uri
-import androidx.core.net.toFile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bounswe.predictionpolls.common.Result
@@ -15,6 +16,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.io.File
+import java.io.FileOutputStream
 import javax.inject.Inject
 
 data class EditProfileScreenState(
@@ -114,19 +117,48 @@ class EditProfileViewModel @Inject constructor(
         }
     }
 
-    fun onSaveChangesClicked() {
+    fun onSaveChangesClicked(context: Context) {
         updateProfileInfo()
         if (_uiState.value.imageUri.isNotEmpty()) {
-            updateProfilePhotoBackend(Uri.parse(_uiState.value.imageUri))
+            updateProfilePhotoBackend(Uri.parse(_uiState.value.imageUri), context)
         }
 
         updateProfileInfo()
     }
 
-    private fun updateProfilePhotoBackend(imageUri: Uri) {
+    fun getFileFromContentUri(context: Context, contentUri: Uri): File? {
+        // Create a temporary file
+        val tempFile = File.createTempFile("prefix", "suffix", context.cacheDir)
+        tempFile.deleteOnExit()
+        try {
+            val inputStream = context.contentResolver.openInputStream(contentUri)
+            val outputStream = FileOutputStream(tempFile)
+            inputStream?.copyTo(outputStream)
+            inputStream?.close()
+            outputStream.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return null
+        }
+        return tempFile
+    }
+
+    private fun updateProfilePhotoBackend(imageUri: Uri, context: Context) {
+        context.contentResolver.takePersistableUriPermission(
+            imageUri,
+            Intent.FLAG_GRANT_READ_URI_PERMISSION
+        )
+
         viewModelScope.launch(Dispatchers.IO) {
-            imageUri.toFile().let {
-                repository.updateProfilePhoto(it)
+            try {
+                val file = getFileFromContentUri(context, imageUri)
+                file?.let {
+                    repository.uploadProfilePhoto(it, "profile_photo")
+                }
+            } catch (e: Exception) {
+                _uiState.update {
+                    it.copy(error = e.message)
+                }
             }
         }
     }
