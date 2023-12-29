@@ -154,16 +154,21 @@ Over the last 4 months, I have revised both the design requirements and the UML 
 ### Overall description:
 #### Code-related significant issues:
 |Task|Issue|
-|-|-|
-|-|-|
-|-|-|
-|-|-|
+|Sign-in page UI Implementation|[#205](https://github.com/bounswe/bounswe2023group4/issues/205)|
+|Sign-in page Backend Integration|[#257](https://github.com/bounswe/bounswe2023group4/issues/257)|
+|The Implementation of the Voting Page UI|[#304](https://github.com/bounswe/bounswe2023group4/issues/304)|
+|Integrating the Vote Page UI with the back-end server|[#347](https://github.com/bounswe/bounswe2023group4/issues/347)|
+|Writing Tests for the Voting Page |[#458](https://github.com/bounswe/bounswe2023group4/issues/458)|
+|Annotation: UI Research and implementation |[#493](https://github.com/bounswe/bounswe2023group4/issues/493)|
+|Connecting the backend-server to the annotation UI |[#532](https://github.com/bounswe/bounswe2023group4/issues/532)|
+|Implementing the "follow User" functionality in the Backend |[#541](https://github.com/bounswe/bounswe2023group4/issues/541)|
+|Implementing the Point system in the backend|[#590](https://github.com/bounswe/bounswe2023group4/issues/590)|
+|Leaderboard : UI Interface & Backend connection|[#630](https://github.com/bounswe/bounswe2023group4/issues/630)|
 #### Management-related significant issues:
 |Task|Issue|
-|-|-|
-|-|-|
-|-|-|
-|-|-|
+|Revising and updating the Poll System Sequence Diagrams|[#147](https://github.com/bounswe/bounswe2023group4/issues/147)|
+|Merging all subteams' plans|[#324](https://github.com/bounswe/bounswe2023group4/issues/324)|
+|Preparing the General Test Plan|[#485](https://github.com/bounswe/bounswe2023group4/issues/485)|
 #### Pull requests:
 |Task|PR|
 |-|-|
