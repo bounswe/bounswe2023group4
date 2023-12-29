@@ -603,3 +603,59 @@ I have written tests for sign up page, create poll page, moderation-not-moderato
 ### Additional information:
 I have tried to organize team progress by arranging extra meetings for tasks when necessary. I also reminded the deadlines for significant tasks so that team progress did not fail. I took part in the milestone 1 presentation by taking notes for PO feedbacks. I took part in both milestone 2 and final milestone by setting up technical devices accordingly with our scenario and I have managed devices during the presentation as our presenter proceeded with the scenario. I answered to questions about the project coming from PO and audience when necessary. I communicated with the PO and got feedbacks for milestone 1. Then I moderated a meeting to share tasks for milestone 2 report together with addressing feedbacks I got. I always tried to check if any of my teammates needs my help and give them a hand when necessary. 
 
+## Member: Ahmet Emre Şafak Group 4 - Mobile
+### Responsibilities: 
+My primary responsibility was the development of the mobile application. This role involved handling a wide range of tasks, from implementing features to addressing bugs and enhancing the application's functionality.
+
+### Main Contributions:
+My contributions were extensive and varied across the development of the mobile application. Key contributions can be inferred from the issues I worked on, reflecting my involvement in both front-end and back-end aspects of the mobile app.
+
+### Code-related Significant Issues:
+| Task Description | Issue Link |
+| ---------------- | ---------- |
+| Implement Follow-Unfollow Feature for Mobile | [#617](https://github.com/bounswe/bounswe2023group4/issues/617) |
+| Add Share Functionality to Mobile App | [#589](https://github.com/bounswe/bounswe2023group4/issues/589) |
+| Add Forgot Password feature to auth flow in mobile | [#549](https://github.com/bounswe/bounswe2023group4/issues/549) |
+| Implement navigation to other users' profiles | [#514](https://github.com/bounswe/bounswe2023group4/issues/514) |
+| Fix profile image related issues in polls | [#513](https://github.com/bounswe/bounswe2023group4/issues/513) |
+| Add edit logic to the profile page | [#512](https://github.com/bounswe/bounswe2023group4/issues/512) |
+| Implement Poll Detail Screen Backend Requests | [#417](https://github.com/bounswe/bounswe2023group4/issues/417) |
+| Implement Profile Screen Backend Requests | [#416](https://github.com/bounswe/bounswe2023group4/issues/416) |
+| Implement feed screen backend requests | [#362](https://github.com/bounswe/bounswe2023group4/issues/362) |
+| Implement Poll Detail Screen UI | [#312](https://github.com/bounswe/bounswe2023group4/issues/312) |
+| Implement profile screen UI | [#311](https://github.com/bounswe/bounswe2023group4/issues/311) |
+| Implement feed screen UI | [#266](https://github.com/bounswe/bounswe2023group4/issues/266) |
+
+### Management-related Significant Issues:
+This semester, my focus was primarily on the development aspect of the project, and I was not involved in many managerial issues.
+
+
+### Pull Requests:
+| Description | Pull Request |
+| ----------- | ------------ |
+| Points Improvement | [#647](https://github.com/bounswe/bounswe2023group4/pull/647) |
+| Bug Fix for Follow Functionality | [#646](https://github.com/bounswe/bounswe2023group4/pull/646) |
+| Bug Fix for Photo Upload Issues | [#634](https://github.com/bounswe/bounswe2023group4/pull/634) |
+| Improvement on Follow Functionality | [#632](https://github.com/bounswe/bounswe2023group4/pull/632) |
+| Added Feature for Forgot Password in Auth Flow | [#612](https://github.com/bounswe/bounswe2023group4/pull/612) |
+| Implemented Share Functionality | [#609](https://github.com/bounswe/bounswe2023group4/pull/609) |
+| Edit Profile Functionality for Mobile App | [#578](https://github.com/bounswe/bounswe2023group4/pull/578) |
+| Profile Improvements for Other Users | [#536](https://github.com/bounswe/bounswe2023group4/pull/536) |
+| Voting Functionality for Polls | [#462](https://github.com/bounswe/bounswe2023group4/pull/462) |
+| Finalizing Profile and Feed Screens | [#438](https://github.com/bounswe/bounswe2023group4/pull/438) |
+| Profile Screen Implementation | [#373](https://github.com/bounswe/bounswe2023group4/pull/373) |
+| Poll Voting Mechanism Implementation | [#339](https://github.com/bounswe/bounswe2023group4/pull/339) |
+| Created Poll Vote Composable Element | [#337](https://github.com/bounswe/bounswe2023group4/pull/337) |
+| UI Implementation for Feed Screen | [#300](https://github.com/bounswe/bounswe2023group4/pull/300) |
+| Navigation Features in Mobile App | [#245](https://github.com/bounswe/bounswe2023group4/pull/245) |
+| Updated Gradle Dependencies | [#226](https://github.com/bounswe/bounswe2023group4/pull/226) |
+| Initialization of Android Project | [#186](https://github.com/bounswe/bounswe2023group4/pull/186) |
+
+### Unit Tests
+I have implemented Unit Tests for the DATA layer I have created.
+[Link to tests](https://github.com/bounswe/bounswe2023group4/tree/mobile/development/prediction-polls/android/app/src/test/java/com/bounswe/predictionpolls)
+
+
+### Additional Information:
+Throughout the semester, I engaged in extensive research and learned a great deal about Android development and Jetpack Compose. This experience not only enhanced my technical skills but also contributed significantly to the overall development of the mobile application.
+
