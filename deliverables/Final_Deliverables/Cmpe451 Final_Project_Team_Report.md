@@ -697,6 +697,33 @@ Description: Tests the submission of the sign-up form.
 Positive Scenario: User can successfully submit the sign-up form, and the component responds accordingly.
 Negative Scenario: Form submission fails, and the component does not respond as expected.
 
+##### SignIn Component Unit Test Report
+
+![image](https://github.com/bounswe/bounswe2023group4/assets/52269552/f3376a2a-3a56-4cf6-9a9a-d068e56fb092)
+
+- Overview:
+Those tests were designed to confirm the functionality of the Sign-In unit. 
+- Dependencies:
+React Testing Library 
+Ant Design components 
+Mock data for testing 
+- Running Tests: 
+npm test SignIn.test.js
+- Test Descriptions:
+- Basic Rendering:
+Description: Tests if the SignUp component renders without crashing and if essential UI elements are present.
+Positive Scenario: The component renders successfully without any errors, and essential UI elements are present.
+Negative Scenario: The component fails to render, or essential UI elements are missing.
+- Form Input Handling:
+Description: Tests user input handling for email, username, password, and birthday fields.
+Positive Scenario: User input changes are correctly reflected in the component state.
+Negative Scenario: Input changes do not reflect in the component state.
+- Form Submission:
+Description: Tests the submission of the sign-up form.
+Positive Scenario: User can successfully submit the sign-up form, and the component responds accordingly.
+Negative Scenario: Form submission fails, and the component does not respond as expected.
+
+
 ##### Moderation-Not-Moderator Component Unit Test Report
 
 ![image](https://github.com/bounswe/bounswe2023group4/assets/110101098/a3de3323-37e3-48c1-9870-4b6608f0111a)
