@@ -180,9 +180,15 @@ Over the last 4 months, I have revised both the design requirements and the UML 
 |Implemeting the Vote Page UI|[#329](https://github.com/bounswe/bounswe2023group4/pull/329)|
 |Writing tests for the poll page |[#470](https://github.com/bounswe/bounswe2023group4/pull/470)|
 |Annotation UI |[#572](https://github.com/bounswe/bounswe2023group4/pull/572)|
-|Implementation of the following mechanim |[#575](https://github.com/bounswe/bounswe2023group4/pull/575)|
+|Implementation of the following mechanism |[#575](https://github.com/bounswe/bounswe2023group4/pull/575)|
 |Implementation of leaderboard back-end endpoints |[#603](https://github.com/bounswe/bounswe2023group4/pull/603)|
 |Leaderboard Implementation |[#633](https://github.com/bounswe/bounswe2023group4/pull/633)|
 #### Unit Tests:
+* Sign-in Unit Test:
+![image](https://github.com/bounswe/bounswe2023group4/assets/52269552/f3376a2a-3a56-4cf6-9a9a-d068e56fb092)
+* Vote Page Unit Test:
+ ![image](https://github.com/bounswe/bounswe2023group4/assets/52269552/665dc495-8b15-43e1-bc46-5965811a8ece)
+
 
 #### Additional Information:
+I was planning to write tests for the annotation's UI. Nevertheless, due to the urgency for implementing other features, the task had to be canceled. In addition, I would like to note that Image Annotation will be implemented by the 2nd of January per an agreement with the **PO**.
