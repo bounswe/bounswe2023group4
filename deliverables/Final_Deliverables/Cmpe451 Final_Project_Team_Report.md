@@ -605,6 +605,13 @@ In order to implement those features, an immense and meticulous effort has been 
 
 ### Unit Test Reports
 
+#### Mobile
+* There are many tests in the mobile and since we already mention them in the personal contribution we provided the directory for the tests only.
+* Only important thing to mention that after the changes in the last milestone we couldn't find enough time to fix some of the tests.
+* We used fake objects to mock injected objects in the classes.
+* UI Tests: One can check [this directory](https://github.com/bounswe/bounswe2023group4/tree/main/prediction-polls/android/app/src/androidTest/java/com/bounswe/predictionpolls/ui) to check UI tests written in the app.
+* Unit Tests: One can check [this directory](https://github.com/bounswe/bounswe2023group4/tree/main/prediction-polls/android/app/src/test/java/com/bounswe/predictionpolls) to check unit tests written in the app.
+
 #### Frontend
 
 ##### Create Component Unit Test Report
