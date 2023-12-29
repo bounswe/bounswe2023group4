@@ -811,6 +811,14 @@ Follow the mobile app initialization in the System Manual section until the poin
 * Create a suitable device from device manager. (Make sure its SDK > 24)
 * Run the app from to run bottom in the toolbar. (It should first build the app then open the emulator then It should automatically install the app to the emulator.)
 
+### Software requirements specification
+Latest SRS can be found in [this link](https://github.com/bounswe/bounswe2023group4/wiki/Software-Requirements-Specifications)
+
+### Software design documents
+* [Class diagrams](https://github.com/bounswe/bounswe2023group4/wiki/UML---Class-Diagram)
+* [Sequence diagrams](https://github.com/bounswe/bounswe2023group4/wiki/UML-Sequence-Diagrams)
+* [Use case diagram](https://github.com/bounswe/bounswe2023group4/wiki/UML-Use-Cases-Diagram)
+
 ### User scenarios and mock ups
 * [Mock Up](https://github.com/bounswe/bounswe2023group4/wiki/Mock-up)
 * [Use Case: User registration and login](https://github.com/bounswe/bounswe2023group4/wiki/Use-case:-User-registration-and-login)
