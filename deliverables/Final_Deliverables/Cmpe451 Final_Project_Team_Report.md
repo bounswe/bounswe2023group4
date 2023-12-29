@@ -26,11 +26,11 @@ List **all** deliverables as links. Specify the version numbers whenever applica
 
 (Status: One of: Not done , Completed , % completed )
 
-### API
+# API
 * Link to the application API with three example calls related to the core functionality
 of your application.
 
-### User Interface / User Experience
+# User Interface / User Experience
 
 * User Interface designs and the links to the source code in the project repository
   * feature:
@@ -41,7 +41,7 @@ of your application.
     * Mobile
   * …
 
-### Annotations
+# Annotations
 * Status: Mostly done. See [api-docs](http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:4999/api-docs/).
 * Compliance with W3C WADM:
 
@@ -125,7 +125,7 @@ of your application.
     ```
     
 
-### Scenario:
+# Scenario:
 A seasoned insight-arena user and an inveterate gambler, Batuhan logs into the system using his credentials.
 1. He is interested in the upcoming Presidential Elections. In order to find the relevant polls in his extensive feed, he types relevant keywords such as **POTUS**.
 2. He finds a discrete poll that might interest him. Among the choices, he finds **Biden** and **Trump**. Since the term **Biden** might be confusing for many voters, as many members of the Biden Family are prominent members of the Democratic Party, he voluntarily decides to annotate **Biden** as **Joe Biden the incumbent U.S. president**.
@@ -145,4 +145,31 @@ In order to implement those features, an immense and meticulous effort has been 
 * Reflections related to your Final Milestone Demo
 * Lessons Learned
 
-## Individual Report
+# Individual Report
+## Member: Ali Nasra
+### Responsibilities: 
+
+### Main contributions:
+
+### Overall description:
+#### Code related significant issues:
+|Task|Issue|
+|-|-|
+|-|-|
+|-|-|
+|-|-|
+#### Management related significant issues:
+|Task|Issue|
+|-|-|
+|-|-|
+|-|-|
+|-|-|
+#### Pull requests:
+|Task|PR|
+|-|-|
+|-|-|
+|-|-|
+|-|-|
+#### Unit Tests:
+
+#### Additional Information:
