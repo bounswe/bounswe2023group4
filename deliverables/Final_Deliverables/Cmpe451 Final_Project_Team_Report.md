@@ -811,6 +811,17 @@ Follow the mobile app initialization in the System Manual section until the poin
 * Create a suitable device from device manager. (Make sure its SDK > 24)
 * Run the app from to run bottom in the toolbar. (It should first build the app then open the emulator then It should automatically install the app to the emulator.)
 
+### User scenarios and mock ups
+* [Mock Up](https://github.com/bounswe/bounswe2023group4/wiki/Mock-up)
+* [Use Case: User registration and login](https://github.com/bounswe/bounswe2023group4/wiki/Use-case:-User-registration-and-login)
+* [Use Case: Profile](https://github.com/bounswe/bounswe2023group4/wiki/Use-Case:-Profile)
+* [Use Case: Poll Interaction](https://github.com/bounswe/bounswe2023group4/wiki/Use-Case:-Poll-Interaction)
+* [Use case: Poll creation](https://github.com/bounswe/bounswe2023group4/wiki/Use-case:-Poll-creation)
+* [Use Case: Search Polls](https://github.com/bounswe/bounswe2023group4/wiki/Use-Case:-Search-Polls)
+* [Use Case: Vote](https://github.com/bounswe/bounswe2023group4/wiki/Use-Case:-Vote)
+* [Use Case: Moderation](https://github.com/bounswe/bounswe2023group4/wiki/Use-Case:-Moderation)
+* [Use Case: View and Share Leaderboard](https://github.com/bounswe/bounswe2023group4/wiki/Use-Case:-View-and-Share-Leaderboard)
+
 ### Research
 #### Mobile
 |Research|Link|
@@ -826,6 +837,9 @@ Follow the mobile app initialization in the System Manual section until the poin
 |Learn testing in android|[Issue](https://github.com/bounswe/bounswe2023group4/issues/220)|
 |Learn build variant system|[Issue](https://github.com/bounswe/bounswe2023group4/issues/221)|
 |Research how to implement annotations for mobile|[Issue](https://github.com/bounswe/bounswe2023group4/issues/547)|
+
+### Project Plan
+Latest project plan can be found in [this link](https://github.com/bounswe/bounswe2023group4/wiki/General-Plan).
 
 ### Unit Test Reports
 
