@@ -431,10 +431,12 @@ Over the last 4 months, I have revised both the design requirements and the UML 
 I was planning to write tests for the annotation's UI. Nevertheless, due to the urgency for implementing other features, the task had to be canceled. In addition, I would like to note that Image Annotation will be implemented by the 2nd of January per an agreement with the **PO**.
 
 ## Member: Yiğit Şekerci, Subgroup: Android
+
 ### Responsibilites
-In management part, I was responsible for ensuring the progress in android app. I have divided and assigned the tasks most of the time. In code part, since we were only 2 people in the android subteam our work load was very high. Thus, one of our job was to decide trade-offs since we were not going to able to implement all the parts in the app. Other than that, I was responsible to implement half of the features in android.
+In the management sector, my role was pivotal in overseeing the development of the Android application. I took charge of task distribution and assignment, ensuring a streamlined workflow within our team. As part of the Android subteam, which comprised only two members, we faced a significant workload. One of our critical responsibilities involved making strategic decisions about trade-offs, as it was clear that implementing every aspect of the app within our timeframe was unfeasible. Alongside these managerial duties, I personally handled the implementation of half of the Android app's features.
+
 ### Main contributions
-Since I was in Android group, I have contributed to the Android project only in code. You can see my most of the contributions from [my issues](https://github.com/bounswe/bounswe2023group4/issues?page=1&q=is%3Aissue+assignee%3AYigitSekerci) and [my PRs](https://github.com/bounswe/bounswe2023group4/pulls?q=is%3Apr+assignee%3AYigitSekerci). Apart from these, I have arranged mobile demo video, executive summary and part of the maintenance section for this report.
+Since I was in Android group, I have contributed to code of the Android project only. You can see my most of the contributions from [my issues](https://github.com/bounswe/bounswe2023group4/issues?page=1&q=is%3Aissue+assignee%3AYigitSekerci) and [my PRs](https://github.com/bounswe/bounswe2023group4/pulls?q=is%3Apr+assignee%3AYigitSekerci). Apart from these, I have arranged mobile demo video, executive summary and part of the maintenance section for this report.
 
 #### Code-Related significant issues:
 |Task|Issue link|
@@ -474,7 +476,7 @@ For the fast development process, I have also included bug fixes in the branches
 |Auth|[PR #273](https://github.com/bounswe/bounswe2023group4/pull/273)|
 |Auth fixes and improvements|[PR #285](https://github.com/bounswe/bounswe2023group4/pull/285)|
 |Add extra tests|[PR #293](https://github.com/bounswe/bounswe2023group4/pull/293)|
-|Auth + Google sign in|[PR #331](https://github.com/bounswe/bounswe2023group4/pull/331)|
+|Auth validation + Google sign in|[PR #331](https://github.com/bounswe/bounswe2023group4/pull/331)|
 |Leaderboard UI|[PR #340](https://github.com/bounswe/bounswe2023group4/pull/340)|
 |Create poll screen|[PR #435](https://github.com/bounswe/bounswe2023group4/pull/435)|
 |Bug fixes + Flow improvements|[PR #461](https://github.com/bounswe/bounswe2023group4/pull/461), [PR #467](https://github.com/bounswe/bounswe2023group4/pull/467)|
@@ -487,6 +489,7 @@ For the fast development process, I have also included bug fixes in the branches
 #### Unit Tests
 
 #### Additional Information
+Unfortunately, I couldn't cover most of my written code between Milestone 2 and Final Milestone in tests because of time issues. I have focused on delivering features that's why I have skipped some tests and some design patterns to be able to complete the features.
 
 ## Member: Enes Furkan Arslan - Group 4 - Frontend
 ### Responsibilities: 
