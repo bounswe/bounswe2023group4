@@ -752,6 +752,45 @@ In order to implement those features, an immense and meticulous effort has been 
 
 # Use and Maintenance
 
+## User Manual: Insight Arena
+
+### 1. Introduction
+Welcome to Insight Arena, the premier platform for creating, sharing, and engaging in polls for prediction. Dive into community insights, observe trending opinions, and be an active participant in the conversation!
+
+### 2. Getting Started
+- **Sign Up/Login:** Engage fully by registering or logging in.
+- **Guest Access:** Guests can browse polls and view comments without registering.
+- **Sidebar Navigation:** Access voted polls, create polls, view leaderboards, manage your profile, and discover moderation features from the sidebar.
+
+### 3. Guest User Mechanics
+- **Browsing:** Guests can explore the feed and view various polls.
+- **Limited Interaction:** Guests are able to see poll comments and share poll links but cannot vote, contribute new comments, or report polls.
+- **Profile Access:** Guests have the ability to view user profiles by selecting the creator tab on any poll card.
+
+### 4. Creating and Participating in Polls
+- **Creating a Poll:** Registered users can craft polls by specifying questions, poll types, answers, setting distribution visibility, due dates, and selecting whether to allow last-minute votes.
+- **Voting:** Registered users are allowed to vote on polls, observe results, engage in discussions, and add annotations.
+- **Annotations:** When on the vote page, users can select text and click 'Add Annotation' to provide additional insights. Users can right-click the poll card to view a comprehensive list of annotations or only those they've contributed.
+
+### 5. Leaderboard and Engagement
+- **Leaderboard Access:** View top users based on polls category.
+- **Profile Management:** Customize your profile, monitor your polls, review your voting history, and oversee your followings.
+- **Follow Users:** Stay updated with the polls and activities of other users by following them.
+
+### 6. Guest versus Registered User
+- **Registered Advantages:** Full interaction, including the ability to vote and create polls, is exclusively available to registered users.
+
+### 7. Moderation
+- **Moderator Roles:** Moderators are vital in ensuring that polls and discussions uphold quality standards and adhere to community guidelines.
+- **Becoming a Moderator:** If you aspire to be a moderator and aren't one already, you can apply through the moderation page.
+- **Moderator Actions:** Moderators have the responsibility of resolving polls, processing requests, and conveying decisions to the system for a fair and transparent community.
+
+### 8. User Privacy and Customization
+- **Hide Profile Information:** Users can opt to conceal certain personal details in their profile settings for enhanced privacy.
+
+### 9. Conclusion
+Insight Arena is your stage for expressing views, observing trends, and connecting with the community. Whether you're a guest browsing or a fully engaged member, your contributions vitalize the arena. Embrace the new features like user following and privacy options to tailor your experience. Welcome to the community, and relish the dynamic world of Insight Arena!
+
 ## Project Artifacts
 
 ### System Manual
