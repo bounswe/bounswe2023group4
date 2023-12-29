@@ -265,12 +265,224 @@ Please keep in mind that for POST endpoint we implemented authorization, so thes
 ---
 
 
+## Web
+
+**Feature: Sign Up Page**
+
+***Sign Up Page***
+
+<img width="1512" alt="SignUp" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/e30b9e7f-1197-41c0-b26c-9c411f9454c6">
+
+***Platform Terms Pop Up***
 
 
-  * feature:
-    * Web
-    * Mobile
-  * …
+<img width="1512" alt="SignUpPopUp" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/0914b6cf-8aa4-4643-a1dd-cdc7799192e5">
+
+
+
+**Source Code:** [Sign Up Page Source Code]
+(https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Pages/Auth/SignUp/index.jsx)
+
+---
+
+**Feature: Sign In Page**
+
+<img width="1512" alt="SignIn" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/b874b705-4b37-418f-929a-c343fac315ca">
+
+
+**Source Code:** [Sign In Page Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Pages/Auth/SignIn/index.jsx)
+
+---
+
+**Feature: Forgot Password Page**
+<img width="1512" alt="Reset P" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/03d226bc-5c49-4014-ac5c-4a42e664f890">
+
+
+
+**Source Code:** [Forgot Password Page Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Pages/Auth/ForgotPassword/index.jsx)
+
+---
+
+**Feature:Feed Page**
+
+***Guest User***
+
+![Feed Guest](https://github.com/bounswe/bounswe2023group4/assets/56879777/bf01abc1-2308-4cda-bd49-8744d9ee468b)
+
+***Member***
+
+<img width="1512" alt="FeedUser" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/31b6f523-f437-4e6a-89bb-7389203d560e">
+
+
+**Source Code:** [Feed Page Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Pages/Feed/index.jsx)
+
+---
+
+**Feature: Profile Page**
+
+***Guest User Looks A Members Profile***
+<img width="1512" alt="OtherUserProfile" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/e40c6fd9-d2c6-4f13-91fc-e32a6bb81340">
+
+
+***Member Looks His/Her Own Profile***
+
+<img width="1512" alt="Profile Me" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/0c1ff3c0-6a37-4b4f-beb3-2d3ef242f210">
+
+
+**Source Code:** [Profile Page Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Pages/Profile/index.jsx)
+
+---
+
+**Feature: Edit Profile Page**
+
+<img width="1512" alt="Edit Profile" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/6588d2f9-0b2b-462e-8216-8f73efd232db">
+
+
+**Source Code:** [Edit Profile Page Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Pages/EditProfile/index.jsx)
+
+---
+
+**Feature: Vote Page**
+
+***Vote Poll***
+
+<img width="1512" alt="Vote" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/cfb4cbfa-014f-41ae-81d1-edf74713f382">
+
+***Add Annotation***
+
+<img width="1512" alt="Annotation Add" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/b6257a37-9aad-4ad9-ba27-60df501be6fe">
+
+***All Annotations***
+
+<img width="1512" alt="Annotation List" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/35aaefbe-97b6-4c29-b410-90db0c7cc438">
+
+
+  **Source Code:** [Vote Page Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Pages/Vote/index.jsx)
+
+---
+
+**Feature: Voted Polls Page**
+
+<img width="1512" alt="Voted Polls" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/a0d9a14a-4fa0-4989-b903-a2a2befa908a">
+
+
+
+  **Source Code:** [Voted Polls Page Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Pages/Vote/voteList.jsx)
+
+---
+
+**Feature: Create Page**
+
+<img width="1512" alt="Create" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/e3d4b0f0-2288-4207-92a3-fc65a898f313">
+
+
+
+  **Source Code:** [Create Page Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Pages/Create/index.jsx)
+
+---
+
+**Feature: Moderation Page**
+
+***Moderation Apply***
+
+<img width="1512" alt="ApplyModeration " src="https://github.com/bounswe/bounswe2023group4/assets/56879777/068f2abe-f6bb-455d-af0d-f485e181ad9d">
+
+
+***Moderation request list***
+
+
+<img width="1512" alt="ModeratorPage" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/23aad339-900e-4fcd-96bc-d08acd56aec8">
+
+
+  **Source Code:** [Moderation Page Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Pages/Moderation/index.jsx)
+
+---
+
+**Feature: Jury Page**
+
+<img width="1512" alt="Jury Req" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/bf86f427-8037-483f-b11a-57201cb95a7b">
+
+
+  **Source Code:** [Jury Page Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Pages/Jury/index.jsx)
+
+---
+
+**Feature: Leaderboard Page**
+
+<img width="1512" alt="Leaderboard" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/19105aef-f8f4-41ee-9a85-e1a1e7b61131">
+
+
+  **Source Code:** [Leaderboard Page Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Pages/Leaderboard/index.jsx)
+
+---
+
+**Feature: Comment Pop Up**
+
+<img width="1512" alt="Comment" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/db4a41c4-299c-4242-bdf4-07ae47189cee">
+
+
+  **Source Code:** [Comment Pop Up Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Components/Modals/CommentModal.jsx)
+
+---
+
+**Feature: Share Pop Up**
+
+<img width="1512" alt="Share" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/d79165be-ea45-42d3-ad31-f4304ebe1ac5">
+
+
+  **Source Code:** [Share Pop Up Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Components/Modals/ShareModal.jsx)
+
+---
+
+**Feature: Report Pop Up**
+
+<img width="1512" alt="Report" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/a5528b5d-5d3b-4530-9278-334d3800f670">
+
+
+  **Source Code:** [Report Pop Up Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Components/Modals/ReportModal.jsx)
+
+---
+
+**Feature: Jury Rules Pop Up**
+
+<img width="1512" alt="Jury Pop up" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/2bdf95d3-5037-4a09-9c7f-92882603b2cb">
+
+
+
+  **Source Code:** [Jury Rules Pop Up Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Components/Modals/JuryModal.jsx)
+
+---
+
+**Feature: Follower Pop Up**
+
+
+<img width="1512" alt="Follower" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/baee991d-9ea6-4fa0-8f47-4bfcb03bba7e">
+
+
+  **Source Code:** [Follower Pop Up Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Components/Modals/FollowerModal.jsx)
+
+---
+
+**Feature: Following Pop Up**
+
+
+<img width="1512" alt="Following" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/3c71fc4a-7426-4c22-9e3c-c703c9b30328">
+
+
+
+  **Source Code:** [Following Pop Up Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Components/Modals/FollowingModal.jsx)
+
+---
+
+**Feature: Poll Category Pop Up**
+
+<img width="1512" alt="PollCategory" src="https://github.com/bounswe/bounswe2023group4/assets/56879777/4ff858de-e7ca-48d5-8c50-2119bd3f800d">
+
+
+  **Source Code:** [Poll Category Pop Up Source Code](https://github.com/bounswe/bounswe2023group4/blob/main/prediction-polls/frontend/src/Components/Modals/PollTagModal.jsx)
+
+---
+
 
 # Annotations
 * Status: Mostly done. See [api-docs](http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:4999/api-docs/).
