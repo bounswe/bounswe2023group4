@@ -850,6 +850,7 @@ Over the last 4 months, I have revised both the design requirements and the UML 
 #### Code-related significant issues:
 |Task|Issue link(s)|
 |---|----|
+|Researching the fundamental Front-end technologies|[#187](https://github.com/bounswe/bounswe2023group4/issues/187),[#188](https://github.com/bounswe/bounswe2023group4/issues/188),[#189](https://github.com/bounswe/bounswe2023group4/issues/189),[#190](https://github.com/bounswe/bounswe2023group4/issues/190),[#191](https://github.com/bounswe/bounswe2023group4/issues/191),[#192](https://github.com/bounswe/bounswe2023group4/issues/192)|
 |Sign-in page UI Implementation|[#205](https://github.com/bounswe/bounswe2023group4/issues/205)|
 |Sign-in page Backend Integration|[#257](https://github.com/bounswe/bounswe2023group4/issues/257)|
 |The Implementation of the Voting Page UI|[#304](https://github.com/bounswe/bounswe2023group4/issues/304)|
@@ -857,7 +858,7 @@ Over the last 4 months, I have revised both the design requirements and the UML 
 |Writing Tests for the Voting Page |[#458](https://github.com/bounswe/bounswe2023group4/issues/458)|
 |Annotation: UI Research and implementation |[#493](https://github.com/bounswe/bounswe2023group4/issues/493)|
 |Annotation UI: Deciding on the JSON structures for data communication |[#520](https://github.com/bounswe/bounswe2023group4/issues/520)|
-|Researching various UI components |[#518](https://github.com/bounswe/bounswe2023group4/issues/518),[#519](https://github.com/bounswe/bounswe2023group4/issues/519),[#573](https://github.com/bounswe/bounswe2023group4/issues/573)|
+|Researching various UI components for Annotation UI implementation|[#518](https://github.com/bounswe/bounswe2023group4/issues/518),[#519](https://github.com/bounswe/bounswe2023group4/issues/519),[#573](https://github.com/bounswe/bounswe2023group4/issues/573)|
 |Documenting my research results |[#542](https://github.com/bounswe/bounswe2023group4/issues/542)|
 |Connecting the backend-server to the annotation UI |[#532](https://github.com/bounswe/bounswe2023group4/issues/532)|
 |Implementing the "follow User" functionality in the Backend |[#541](https://github.com/bounswe/bounswe2023group4/issues/541)|
