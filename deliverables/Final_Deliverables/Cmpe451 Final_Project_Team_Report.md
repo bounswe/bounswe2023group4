@@ -949,6 +949,13 @@ Latest project plan can be found in [this link](https://github.com/bounswe/bouns
 
 ### Unit Test Reports
 
+#### Backend 
+* Authorization unit tests
+* Poll unit tests
+* Profile unit tests
+* Moderation unit tests
+* Annotation unit tests
+
 #### Mobile
 * There are many tests in the mobile and since we already mention them in the personal contribution we provided the directory for the tests only.
 * Only important thing to mention that after the changes in the last milestone we couldn't find enough time to fix some of the tests.
