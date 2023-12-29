@@ -86,8 +86,43 @@ Insight Arena stands as a pioneering application in the realm of social polling 
 (Status: One of: Not done , Completed , % completed )
 
 # API
-* Link to the application API with three example calls related to the core functionality
-of your application.
+* [API Link](http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:8000/api-docs/)
+* [Example Poll GET](http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:8000/api-docs/#/polls/get_polls__pollId_)
+  ```
+  curl -X 'GET' \
+  'http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:8000/polls/5' \
+  -H 'accept: application/json'
+  ```
+* [Example Multiple Choice Poll Post](http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:8000/api-docs/#/polls/post_polls_discrete)
+  ```
+  curl -X 'POST' \
+      'http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:8000/polls/discrete/' \
+  '{
+    "question":"Which nominee will win the Best Motion Picture in Drama in the upcoming Golden Globe Awards?",
+    "openVisibility":false,
+    "choices":
+    [
+  	  "Anatomy of a Fall",
+      "Killers of the Flower Moon",
+      "Maestro",
+      "Oppenheimer",
+      "Past Lives",
+      "The Zone of Interest"
+     ],
+     "setDueDate":true,
+     "dueDatePoll":"2024-01-07T00:00:00.000Z",
+     "numericFieldValue":"1",
+     "selectedTimeUnit":"day"
+  }'
+  ```
+* [Example Discrete Poll Vote](http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:8000/api-docs/#/polls/post_polls_discrete__pollId__vote)
+   ```
+  curl -X 'POST' \
+      'http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:8000/polls/discrete/4/vote' \
+  '{"choiceId":10,"points":500}'
+  ```
+### Notes
+Please keep in mind that for POST endpoint we implemented authorization, so these calls may not be replicaple if you are not logged in to your account.
 
 # User Interface / User Experience
 
