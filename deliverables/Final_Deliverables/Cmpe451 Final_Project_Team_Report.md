@@ -754,6 +754,24 @@ In order to implement those features, an immense and meticulous effort has been 
 
 ## Project Artifacts
 
+### System Manual
+#### Mobile
+One have 2 choice to install the app.
+* Easy way: One can use the prebuilt APK in an android phone with minimum SDK version 24 to download the app.
+* Hard way:
+    1. Install android studio.
+    2. Clone the project.
+    3. Go to android directory
+    4. Copy the given env variables to the local.properties file. (It should have base_url and google_client_id) (Don't delete your sdk.dir variable).
+    5. Sync the project. (Run gradle sync) (Be sure that you use debug variant).
+    6. Now you can build the project. Click Build -> Build Bundle(s) APK(s) -> Build APK
+    7. Now you can send the app to the phone that you want to install.
+
+### Emulator Integration
+Follow the mobile app initialization in the System Manual section until the point 6. After point 5:
+* Create a suitable device from device manager. (Make sure its SDK > 24)
+* Run the app from to run bottom in the toolbar. (It should first build the app then open the emulator then It should automatically install the app to the emulator.)
+
 ### Research
 #### Mobile
 |Research|Link|
