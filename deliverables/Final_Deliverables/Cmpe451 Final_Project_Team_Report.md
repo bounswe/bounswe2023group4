@@ -72,6 +72,10 @@ Insight Arena stands as a pioneering application in the realm of social polling 
 ### Progress based on teamwork
 
 #### Summary of work performed by each member
+| Member | Group | Subgroup | Summary of Work |
+| :---: | :-------------: |:-------------:| :-----:|
+| Enes Furkan Arslan | 4 | Frontend | Involved in a lot of processes in this project from management to implementation aspects. Some of the management related contributions are preparing **new RAM and communication plan**, taking part in division of team into subteams, deciding on the technologies to be used on frontend with front team, **updating mock-up designs**, **updating requirements based on feedbacks from PO**, organizing extra meetings for ongoing tasks and keep checking the progress of other tasks and reviewing them. About implementation part, implemented the **sign up page**, **create poll page**, **moderation-not-moderator page** and **moderation-not-jury page** UIs together with their backend connections to make them functional. Also **tested** and corrected all of these pages' functionalities manually with possible scenarios after implementation. Also implemented **unit tests** for these pages. Other than these, took urgent tasks like bug and error fixing in the project and get them completed. |
+| | | |
 
 #### Requirements Coverage
 | ID | Name        | Status           | Notes  |
