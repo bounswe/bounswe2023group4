@@ -195,7 +195,7 @@ of your application.
 
 **Feature: Annotations**
 
-<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/865e8426-22f3-4056-8a3e-f8cf4311df43" width="50%" />
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/b59a19d1-f922-4b7a-be5a-c025f1aaf1b4" width="50%" />
 
 **Source Code:** [Annotations Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/ui/common/annotation/AnnotatableText.kt)
 
