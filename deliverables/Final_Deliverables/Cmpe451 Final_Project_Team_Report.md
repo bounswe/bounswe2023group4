@@ -1122,10 +1122,10 @@ Throughout the semester, I engaged in extensive research and learned a great dea
 
 ## Member: Selin Işık - Group 4 - Frontend
 ### Responsibilities: 
-
+My primary responsibilities include developing the user interface and spearheading the implementation of the frontend aspects of our project. I was tasked with organizing and planning the workload for the frontend team, ensuring an efficient division of tasks. Additionally, I conducted code reviews for my team members, offering guidance and support to facilitate successful task completion.
 
 ### Main contributions: 
-
+At the semester's start, I focused on updating the mock-ups and selecting the color theme for our application. I also developed a learning path tailored for the frontend team to streamline our development process. Subsequently, I formulated a project plan centered around the chosen technologies and our milestone objectives. My contributions to the web application development were significant, particularly in designing the Poll Card Structure, Feed Page, and Profile Pages. Furthermore, I took the lead in implementing most of the Pop-Up Components in our project.
 
 ### Code-related significant issues:
 |Task|Relevant significant issues|
@@ -1188,4 +1188,5 @@ Throughout the semester, I engaged in extensive research and learned a great dea
 ### Unit Tests
 I have written tests for sign in page, profile page and edit profile page, Poll Card Component, Sidebar Component, Poll Option Component and Poll Tag component. They can be found [here](https://github.com/bounswe/bounswe2023group4/tree/main/prediction-polls/frontend/src/Pages) under folders: Auth>Sign In , Profile and Edit Profile and [here](https://github.com/bounswe/bounswe2023group4/tree/main/prediction-polls/frontend/src/Components)  under folders:  Poll Card, Sidebar, PollOption, PollTag. 
 
-### Additional information:
+#### Additional Information
+Unfortunately in the last milestone, I have focused on covering as many requirements as possible as you can see in my PR history, that's why I have skipped some tests and some design patterns to be able to complete the features.
