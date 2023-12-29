@@ -1117,7 +1117,7 @@ Profile endpoints are tested with mock data. Since the logic is in ProfileServic
 
 
 # Individual Reports
-## Member: Ali Nasra
+## Member: Ali Nasra, Subgroup: Support
 ### Responsibilities: 
 Throughout the project, my responsibilities encompassed multiple facets of the projects. Managerially, I was responsible for tracking the group's plan and confirming compliance with it. Technically, I served as a member of the support subteam which allowed me to contribute to both the backend and frontend subteams.
 ### Main contributions:
