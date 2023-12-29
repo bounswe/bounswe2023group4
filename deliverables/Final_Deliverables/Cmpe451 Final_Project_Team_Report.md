@@ -41,9 +41,9 @@ Insight Arena stands as a pioneering application in the realm of social polling 
 | ------------- |:-------------:| -----:|
 | [Group Milestone Report](#Cmpe451-Final-Project-Team-Report) | Completed |
 | [Progress Based On Teamwork](#Progress-based-on-teamwork)    | Completed |
-| [API Endpoints](#API) | Completed |
+| [API Endpoints](#API) | Completed | We have a [swagger documentation](http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:8000/api-docs/) |
 | [User Interface / User Experience](#User-Interface--User-Experience) | Completed |
-| [Annotations](#Annotations) | Completed |
+| [Annotations](#Annotations) | 90% Completed | Only the basics of W3C WADM is implemented |
 | [Scenario](#Scenario) | Completed |
 | [Use and Maintenance](#Use-and-Maintenance)| Completed |
 | [Individual Milestone Reports](#Individual-Reports) | Completed |
