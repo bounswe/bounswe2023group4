@@ -794,9 +794,12 @@ Over the last 4 months, I have revised both the design requirements and the UML 
 |Integrating the Vote Page UI with the back-end server|[#347](https://github.com/bounswe/bounswe2023group4/issues/347)|
 |Writing Tests for the Voting Page |[#458](https://github.com/bounswe/bounswe2023group4/issues/458)|
 |Annotation: UI Research and implementation |[#493](https://github.com/bounswe/bounswe2023group4/issues/493)|
+|Researching various UI components |[#518](https://github.com/bounswe/bounswe2023group4/issues/518),[#519](https://github.com/bounswe/bounswe2023group4/issues/519),[#573](https://github.com/bounswe/bounswe2023group4/issues/573)|
+|Documenting my research results |[#542](https://github.com/bounswe/bounswe2023group4/issues/542)|
 |Connecting the backend-server to the annotation UI |[#532](https://github.com/bounswe/bounswe2023group4/issues/532)|
 |Implementing the "follow User" functionality in the Backend |[#541](https://github.com/bounswe/bounswe2023group4/issues/541)|
 |Implementing the Point system in the backend|[#590](https://github.com/bounswe/bounswe2023group4/issues/590)|
+|Implementing the Annotation UI for images|[#592](https://github.com/bounswe/bounswe2023group4/issues/592)|
 |Leaderboard : UI Interface & Backend connection|[#630](https://github.com/bounswe/bounswe2023group4/issues/630)|
 #### Management-related significant issues:
 |Task|Issue link(s)|
