@@ -154,6 +154,7 @@ Over the last 4 months, I have revised both the design requirements and the UML 
 ### Overall description:
 #### Code-related significant issues:
 |Task|Issue|
+|---|----|
 |Sign-in page UI Implementation|[#205](https://github.com/bounswe/bounswe2023group4/issues/205)|
 |Sign-in page Backend Integration|[#257](https://github.com/bounswe/bounswe2023group4/issues/257)|
 |The Implementation of the Voting Page UI|[#304](https://github.com/bounswe/bounswe2023group4/issues/304)|
@@ -166,11 +167,13 @@ Over the last 4 months, I have revised both the design requirements and the UML 
 |Leaderboard : UI Interface & Backend connection|[#630](https://github.com/bounswe/bounswe2023group4/issues/630)|
 #### Management-related significant issues:
 |Task|Issue|
+|---|----|
 |Revising and updating the Poll System Sequence Diagrams|[#147](https://github.com/bounswe/bounswe2023group4/issues/147)|
 |Merging all subteams' plans|[#324](https://github.com/bounswe/bounswe2023group4/issues/324)|
 |Preparing the General Test Plan|[#485](https://github.com/bounswe/bounswe2023group4/issues/485)|
 #### Pull requests:
 |Task|PR|
+|---|----|
 |-|-|
 |-|-|
 |-|-|
