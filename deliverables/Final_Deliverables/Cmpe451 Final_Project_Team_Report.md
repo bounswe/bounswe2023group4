@@ -837,9 +837,31 @@ npm test EditProfile.test.js
     - Mock functions, local storage, and global functions like window.matchMedia are reset after each test to ensure test isolation.
     - The test suite utilizes waitFor, fireEvent, and act from React Testing Library for handling asynchronous operations, user interactions, and DOM updates.
 
+## Backend
+### Authentication unit tests
+Authentication endpoints are tested with mock data. Since the logic is in AuthenticationService class the tests are written for it. Every endpoint is tested for success and failure cases.
+### Poll unit tests
+The PollService functions are tested for their success and failure cases. Only the pollClose function is not tested fully since it was implemented recently.
+### Profile unit tests
+Profile endpoints are tested with mock data. Since the logic is in ProfileService class the tests are written for it. Every endpoint is tested for success and failure cases.
+## Mobile
 
+### UI Tests
+* Custom input field tests are written to ensure the input fields working properly across the whole app.
+* Error dialog test is written to ensure dialog's behavior when the error occurs.
+* Drawer tests are written to ensure robust navigation in app.
+* Login page, signup page and main screen designs are tested to have desired ui.
 
-## Software
+### Unit Test
+Unit test prep:
+* All required data objects in viewmodels are initialized with mock data to intervene the dependency injection process.
+* Non testable classes are abstracted with interfaces to make them testable.
+
+Unit tests:
+* We have written tests for our extension functions. (for example String.isValidDate())
+* We have written tests for our date formatter that we are using across the app.
+* We have written the tests for feed, profile usecases to ensure them they fetch the data as expected.
+* We have written the tests for create poll, login and signup pages' viewmodels to ensure their events trigger correct state changes in the model.
 
 # Individual Reports
 ## Member: Ali Nasra
