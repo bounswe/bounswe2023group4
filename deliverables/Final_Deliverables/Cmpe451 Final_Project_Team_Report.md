@@ -487,3 +487,82 @@ For the fast development process, I have also included bug fixes in the branches
 #### Unit Tests
 
 #### Additional Information
+
+## Member: Enes Furkan Arslan - Group 4 - Frontend
+### Responsibilities: 
+My main responsibilites are implementing necessary components on frontend and make them functional by linking them with backend. Other than that I am responsible for updating the design of the project as necessarily. I am also responsible for preparing necessary deliverables for milestones and take part in the presentations according to the team's needs. I am also responsible for keeping track of the RAM and make sure it is updated when necessary. Finally I am responsible for taking my part on the management of the project and reviewing the works done by other members of the team. 
+
+### Main contributions: 
+I have involved in a lot of processes in this project from management to implementation aspects. Some of my management related contributions are preparing **new RAM and communication plan**, taking part in division of team into subteams, deciding on the technologies to be used on frontend with front team, **updating mock-up designs**, **updating requirements based on feedbacks from PO**, organizing extra meetings for ongoing tasks and keep checking the progress of other tasks and reviewing them. About implementation part I have implemented the **sign up page**, **create poll page**, **moderation-not-moderator page** and **moderation-not-jury page** UIs together with their backend connections to make them functional. I also **tested** and corrected all of these pages' functionalities manually with possible scenarios after implementation. I have also implemented **unit tests** for these pages. Other than these, I also took urgent tasks like bug and error fixing in the project and get them completed. Details are in the next sections. 
+
+### Code-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+|I have researched and studied frontend technologies that we used in the project|[#187](https://github.com/bounswe/bounswe2023group4/issues/187),[#188](https://github.com/bounswe/bounswe2023group4/issues/188),[#189](https://github.com/bounswe/bounswe2023group4/issues/189),[#190](https://github.com/bounswe/bounswe2023group4/issues/190),[#191](https://github.com/bounswe/bounswe2023group4/issues/191),[#192](https://github.com/bounswe/bounswe2023group4/issues/192)|
+|I have implemented sign up form, sign up button, sign up with google button and link to home, structured the sign up page as in the mock up design and added sign up photo|[#212](https://github.com/bounswe/bounswe2023group4/issues/212)|
+|I have make the integration of sign up page with the backend|[#257](https://github.com/bounswe/bounswe2023group4/issues/257)|
+|I have added some features to sign up page like redirecting user to sign in page if sign up is succesfull and informing user in case username already exists.|[#276](https://github.com/bounswe/bounswe2023group4/issues/276)|
+|I have implemented necessary tests for sign up page|[#286](https://github.com/bounswe/bounswe2023group4/issues/286)| 
+|Implemented create poll page's main UI components according to the mock-up|[#320](https://github.com/bounswe/bounswe2023group4/issues/320)|
+|UI/UX of create poll page is improved and page made more user friendly|[#348](https://github.com/bounswe/bounswe2023group4/issues/348)|
+|API request for create poll page is implemented in accordance with backend and database|[#349](https://github.com/bounswe/bounswe2023group4/issues/349)|
+|Realized an error and fixed it immediately for back and front teams' progress|[#377](https://github.com/bounswe/bounswe2023group4/issues/377)|
+|Finalized authentication pages' backend connections|[#401](https://github.com/bounswe/bounswe2023group4/issues/401)|
+|Added point indicator component to create poll page|[#404](https://github.com/bounswe/bounswe2023group4/issues/404)|
+|Implemented a detailed input validation on create poll page and tested manually|[#406](https://github.com/bounswe/bounswe2023group4/issues/406)| 
+|Finalized create poll page's backend connection as changes occurred in swagger documentation|[#407](https://github.com/bounswe/bounswe2023group4/issues/407)|
+|Re-implemented a feature of creating poll after realizing an inconsistency between mock up and requirements|[#441](https://github.com/bounswe/bounswe2023group4/issues/441)| 
+|Implemented unit tests for create poll page to test its functionality|[#453](https://github.com/bounswe/bounswe2023group4/issues/453)| 
+| Implement the UI of moderation-not moderator page from mock up | [#498](https://github.com/bounswe/bounswe2023group4/issues/498) |
+| Start implementation of general UI of moderation-not jury from mock up | [#499](https://github.com/bounswe/bounswe2023group4/issues/499) |
+| Complete the implementation of moderator not jury UI | [#559](https://github.com/bounswe/bounswe2023group4/issues/559) |
+| Implement not jury page backend connection for becoming jury posts | [#562](https://github.com/bounswe/bounswe2023group4/issues/562) |
+| Implement moderator page tag selection UI | [#581](https://github.com/bounswe/bounswe2023group4/issues/581) |
+| Implement connection of tag selection on moderator-not-jury page | [#582](https://github.com/bounswe/bounswe2023group4/issues/582) |
+| Implement connection of backend to show the moderator page to member/moderator | [#583](https://github.com/bounswe/bounswe2023group4/issues/583) |
+| Implement the become moderator request | [#595](https://github.com/bounswe/bounswe2023group4/issues/595) |
+| Write the unit tests for moderation-not-moderator page | [#584](https://github.com/bounswe/bounswe2023group4/issues/584) |
+| Write unit tests for moderation-not-jury page | [#585](https://github.com/bounswe/bounswe2023group4/issues/585)
+
+### Management-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+| I took part in division of our team to subteams|[#141](https://github.com/bounswe/bounswe2023group4/issues/141)|
+| I took part in the frontend technology selection|[#153](https://github.com/bounswe/bounswe2023group4/issues/153)|
+|I have created a responsibility assignment matrix for the team|[#152](https://github.com/bounswe/bounswe2023group4/issues/152), [#172](https://github.com/bounswe/bounswe2023group4/issues/172), [#214](https://github.com/bounswe/bounswe2023group4/issues/214)|
+|I have taken part on updating our mock up designs|[#174](https://github.com/bounswe/bounswe2023group4/issues/174),[#201](https://github.com/bounswe/bounswe2023group4/issues/201)|
+|I have created the new communication plan of the team|[#299](https://github.com/bounswe/bounswe2023group4/issues/299)| 
+| RAM is updated after a team member has leaved|[#350](https://github.com/bounswe/bounswe2023group4/issues/350)|
+| Updated the requirements according to feedbacks|[#486](https://github.com/bounswe/bounswe2023group4/issues/486)|
+| Overview section added to requirements and glossary updated|[#488](https://github.com/bounswe/bounswe2023group4/issues/488)|
+| Prepared progress based on each requirement for milestone 2 report|[#489](https://github.com/bounswe/bounswe2023group4/issues/489)|
+
+### Pull requests:
+|Task|Relevant Pull Requests|
+| --- | --- |
+|I have implemented sign up form, sign up button, sign up with google button and link to home, structured the sign up page as in the mock up design and added sign up photo|[#227](https://github.com/bounswe/bounswe2023group4/pull/227)|
+|I have make the integration of sign up page with the backend|[#269](https://github.com/bounswe/bounswe2023group4/pull/269)|
+|I have added some features to sign up page like redirecting user to sign in page if sign up is succesfull and informing user in case username already exists.|[#277](https://github.com/bounswe/bounswe2023group4/pull/277)|
+|I have implemented necessary tests for sign up page|[#284](https://github.com/bounswe/bounswe2023group4/pull/284)|
+|To milestone report 1, I have added communication plan and RAM, list and status of deliverables part, evaluation of deliverables part, milestone review for frontend part, evaluation of tools part for general and frontend. I have also reviewed the other parts.|[#298](https://github.com/bounswe/bounswe2023group4/pull/298)|
+|Implemented create poll page's main UI components according to the mock-up|[#332](https://github.com/bounswe/bounswe2023group4/pull/332)|
+|UI/UX of create poll page is improved and page made more user friendly, API request for create poll page is implemented in accordance with backend and database|[#374](https://github.com/bounswe/bounswe2023group4/pull/374)|
+|Realized an error and fixed it immediately for back and front teams' progress|[#378](https://github.com/bounswe/bounswe2023group4/pull/378)|
+|Added point indicator component to create poll page, Implemented a detailed input validation on create poll page and tested manually, Finalized create poll page's backend connection as changes occurred in swagger documentation, Re-implemented a feature of creating poll after realizing an inconsistency between mock up and requirements|[#445](https://github.com/bounswe/bounswe2023group4/pull/445)|
+|Finalized authentication pages' backend connections|[#446](https://github.com/bounswe/bounswe2023group4/pull/446)|
+|Implemented unit tests for create poll page to test its functionality|[#457](https://github.com/bounswe/bounswe2023group4/pull/457)|
+|Added unit test reports for sign-up and create poll pages, Added progress based on requirements, Added self contribution|[#484](https://github.com/bounswe/bounswe2023group4/pull/484)| 
+| UI of moderation-not-moderator page is implemented for users that are not currently moderators. Main UI of the moderator-not-jury page is completed with mock data. | [#551](https://github.com/bounswe/bounswe2023group4/pull/551) |
+| Backend connection for polls that needs jury intervention is done and tested manually with the updated end point. UI update is also added | [#577](https://github.com/bounswe/bounswe2023group4/pull/577) |
+| UI of tag selection in the moderation-not-jury page is implemented with mock data. | [#588](https://github.com/bounswe/bounswe2023group4/pull/588) |
+| Backend connections of not moderator and not jury pages | [#599](https://github.com/bounswe/bounswe2023group4/pull/599) |
+| Unit tests for moderation-not-moderator page | [#626](https://github.com/bounswe/bounswe2023group4/pull/626) |
+| Unit tests for moderation-not-jury page | [#635](https://github.com/bounswe/bounswe2023group4/pull/635) |
+| Error fix in sign up and moderation-not-jury pages | [#654](https://github.com/bounswe/bounswe2023group4/pull/654)
+
+### Unit Tests
+I have written tests for sign up page, create poll page, moderation-not-moderator page and moderation-not-jury page. They can be found [here](https://github.com/bounswe/bounswe2023group4/tree/main/prediction-polls/frontend/src/Pages) under folders: Auth>Sign Up , Create and Moderation. 
+
+### Additional information:
+I have tried to organize team progress by arranging extra meetings for tasks when necessary. I also reminded the deadlines for significant tasks so that team progress did not fail. I took part in the milestone 1 presentation by taking notes for PO feedbacks. I took part in both milestone 2 and final milestone by setting up technical devices accordingly with our scenario and I have managed devices during the presentation as our presenter proceeded with the scenario. I answered to questions about the project coming from PO and audience when necessary. I communicated with the PO and got feedbacks for milestone 1. Then I moderated a meeting to share tasks for milestone 2 report together with addressing feedbacks I got. I always tried to check if any of my teammates needs my help and give them a hand when necessary. 
+
