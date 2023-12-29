@@ -152,13 +152,13 @@ In order to implement those features, an immense and meticulous effort has been 
 ### Main contributions:
 
 ### Overall description:
-#### Code related significant issues:
+#### Code-related significant issues:
 |Task|Issue|
 |-|-|
 |-|-|
 |-|-|
 |-|-|
-#### Management related significant issues:
+#### Management-related significant issues:
 |Task|Issue|
 |-|-|
 |-|-|
