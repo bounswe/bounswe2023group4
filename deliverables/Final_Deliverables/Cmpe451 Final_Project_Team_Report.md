@@ -1237,6 +1237,7 @@ Over the last 4 months, I have revised both the design requirements and the UML 
 |Integrating Sign in UI with the backend|[#268](https://github.com/bounswe/bounswe2023group4/pull/268)|
 |Tests for sign-in page|[#288](https://github.com/bounswe/bounswe2023group4/pull/288)|
 |Implemeting the Vote Page UI|[#329](https://github.com/bounswe/bounswe2023group4/pull/329)|
+|Migrating CSS Files|[#330](https://github.com/bounswe/bounswe2023group4/pull/330)|
 |Writing tests for the poll page |[#470](https://github.com/bounswe/bounswe2023group4/pull/470)|
 |Adapting the isOpen Parameter to the voting mechanism |[#470](https://github.com/bounswe/bounswe2023group4/pull/470)|
 |Annotation UI |[#572](https://github.com/bounswe/bounswe2023group4/pull/572)|
