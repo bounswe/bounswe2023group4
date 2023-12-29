@@ -591,6 +591,118 @@ In order to implement those features, an immense and meticulous effort has been 
 
 #### Frontend
 
+##### Create Component Unit Test Report
+
+![image](https://github.com/bounswe/bounswe2023group4/assets/110101098/6873f2e6-a033-426d-a2d2-f217818a0af7)
+
+- Overview:
+The Create component is a React component responsible for facilitating the creation of polls. This documentation outlines the unit tests written to ensure the robustness and correctness of the Create component.
+- Dependencies:
+React Testing Library
+Mock data for testing
+- Running Tests:
+npm test Create.test.js 
+- Test Descriptions:
+- Basic Rendering:
+Description: Tests if the Create component renders without crashing.
+Positive Scenario: The component renders successfully without any errors.
+Negative Scenario: The component fails to render, resulting in errors.
+- Input Handling:
+Description: Tests user input handling, specifically the ability to fill the question input.
+Positive Scenario: User successfully inputs a question, and the component updates accordingly.
+Negative Scenario: Input change does not reflect in the component state.
+- Poll Type Selection:
+Description: Tests the ability to select between multiple choice and customized poll types.
+Positive Scenario: User can successfully switch between multiple choice and customized poll types.
+Negative Scenario: Poll type selection does not update the component state as expected.
+- Customized Type Selection:
+Description: Tests the ability to select date or numeric when customized is chosen as the poll type.
+Positive Scenario: User can select date or numeric when customized poll type is chosen.
+Negative Scenario: Customized type selection does not update the component state correctly.
+- Due Date Handling:
+Description: Tests the functionality of setting a due date.
+Positive Scenario: User can successfully set a due date, and the component state is updated accordingly.
+Negative Scenario: Due date setting does not update the component state as expected.
+- Choice Management:
+Description: Tests the addition and deletion of choices when multiple choice is selected.
+Positive Scenario: User can add choices, and the component state reflects the changes.
+Negative Scenario: Adding choices does not update the component state correctly.
+- Visibility Options:
+Description: Tests the ability to open distribution visibility.
+Positive Scenario: User can successfully open distribution visibility, and the component state is updated.
+Negative Scenario: Visibility option does not update the component state correctly.
+- Submission:
+Description: Tests the submission of a poll.
+Positive Scenario: User can successfully submit a poll, and the component navigates to the feed page.
+Negative Scenario: Poll submission fails, and the component does not navigate as expected.
+
+##### SignUp Component Unit Test Report
+
+![image](https://github.com/bounswe/bounswe2023group4/assets/110101098/be7d57aa-7aa4-4f0d-afce-ca15224307e3)
+
+- Overview:
+The SignUp component is a React component responsible for facilitating the user sign-up process. This documentation outlines the unit tests written to ensure the robustness and correctness of the SignUp component. 
+- Dependencies:
+React Testing Library 
+Ant Design components 
+Mock data for testing 
+- Running Tests: 
+npm test SignUp.test.js
+- Test Descriptions:
+- Basic Rendering:
+Description: Tests if the SignUp component renders without crashing and if essential UI elements are present.
+Positive Scenario: The component renders successfully without any errors, and essential UI elements are present.
+Negative Scenario: The component fails to render, or essential UI elements are missing.
+- Form Input Handling:
+Description: Tests user input handling for email, username, password, and birthday fields.
+Positive Scenario: User input changes are correctly reflected in the component state.
+Negative Scenario: Input changes do not reflect in the component state.
+- Form Submission:
+Description: Tests the submission of the sign-up form.
+Positive Scenario: User can successfully submit the sign-up form, and the component responds accordingly.
+Negative Scenario: Form submission fails, and the component does not respond as expected.
+
+##### Moderation-Not-Moderator Component Unit Test Report
+
+![image](https://github.com/bounswe/bounswe2023group4/assets/110101098/a3de3323-37e3-48c1-9870-4b6608f0111a)
+
+- **Overview**:
+  - This unit test focuses on verifying the behavior of the Moderation component in the non-moderator view. Two specific scenarios are tested: rendering the non-moderator view correctly and handling the "apply to become a moderator" button click.
+
+- **Test Environment**:
+  - React 
+  - Testing Library
+  - Jest 
+- **Test Cases**:
+- **renders the non-moderator view correctly**
+  - Description: This test ensures that the Moderation component renders the non-moderator view correctly. The component should display a message inviting users to apply to become a moderator and a corresponding "Apply" button.
+  - Positive scenario: The component renders successfully without any errors, and essential UI elements are present.
+  - Negative scenario: The component fails to render, or essential UI elements are missing.
+- **handles the "apply to become a moderator" button click**
+  - This test checks whether the Moderation component correctly handles the click event on the "Apply" button. It simulates a button click, spies on a mock API call, and ensures that the API call is made.
+  - Positive scenario: User can successfully apply to become a moderator with button click, and the component responds accordingly.
+  - Negative scenario: Button click fails, and the component does not respond as expected.
+
+##### Moderation-Not-Jury Component Unit Test Report
+
+![image](https://github.com/bounswe/bounswe2023group4/assets/110101098/146b3f2a-29c5-4df2-8170-17ac15b04969)
+
+- **Overview**:
+  - The purpose of this unit test is to verify the correct rendering of the Moderation component in a moderator view. The component receives props such as tags and moderatorPosts, and the test ensures that the component renders as expected.
+
+- **Test Environment**:
+  - React 
+  - Testing Library
+  - Jest 
+- **Test Cases**:
+- **renders the moderator view correctly**
+  - Description: This test aims to verify that the Moderation component renders the moderator view correctly when provided with tags and moderator posts.
+  - Positive scenario: The Moderation component should render without errors, displaying the moderator view with the provided tags and moderator posts.
+  - Negative scenario: The component fails to render, or essential UI elements are missing.
+
+- **Important Notes**:
+    - Expanding this test suite to cover additional scenarios, such as user interactions or edge cases would be beneficial but they had to be tested manually because of time constraints of the project.
+
 
 ## Software
 
