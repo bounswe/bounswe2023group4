@@ -11,12 +11,11 @@ Describe the product that you have delivered in terms of
 ### Summary of the project status in terms of requirements.
 
 ### Status of Deliverables
-List **all** deliverables as links. Specify the version numbers whenever applicable.
 
 | Name        | Status           | Notes  |
 | ------------- |:-------------:| -----:|
 | Group Milestone Report | Not done/Completed/ X% completed |
-| [Progress Based On Teamwork](###Progress-based-on-teamwork)    | ...      |
+| [Progress Based On Teamwork](#Progress-based-on-teamwork)    | ...      |
 | API Endpoints | |
 | User Interface / User Experience | |
 | Annotations | |
