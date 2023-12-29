@@ -42,7 +42,7 @@ of your application.
   * …
 
 ### Annotations
-* Status: Mostly done.
+* Status: Mostly done. See [api-docs](http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:4999/api-docs/).
 * Compliance with W3C WADM:
 
   We support the basic parts of [W3C WADM](https://www.w3.org/TR/annotation-model/) like embedded bodies and basic selectors.
