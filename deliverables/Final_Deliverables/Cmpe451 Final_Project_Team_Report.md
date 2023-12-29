@@ -3,10 +3,35 @@
 **Video:** Link to video demo
 
 ### Executive Summary
+Product Overview:
+Insight Arena, a cutting-edge mobile and web application, transforms user engagement with prediction polls through its innovative blend of interactivity, social networking, and gamification. It empowers users to participate in a variety of polls, express their views, engage in competitive ladder rankings, and foster community connections.
 
-Describe the product that you have delivered in terms of
-* functionality
-* technical description
+Functionality:
+* Versatile Poll Options: Insight Arena accommodates both discrete and continuous poll types, offering users the flexibility of fixed choices or the freedom of open-ended responses.
+* Dynamic User Engagement: The application encourages active participation by allowing users to invest points in polls, creating a vibrant and competitive atmosphere.
+* Enhanced Interactivity: Features like commenting, annotations, and personal poll creation enrich the user experience, making interactions more meaningful.
+* Customizable User Profiles: Users can personalize their profiles with privacy options. These profiles highlight their poll activities and facilitate community building through a follow feature.
+* Visual Personalization: The option to upload profile photos adds a personal touch, allowing users to visually express their identity within the app.
+* Competitive Leaderboards: The leaderboard segment showcases user standings across various domains, spurring healthy competition and engagement.
+* Semantic Tagging: Advanced, unseen semantic tags enable efficient and relevant poll searches, enhancing user experience in finding topics of interest.
+* Engaging Moderator Role: A unique moderator system not only ensures poll accuracy but also rewards moderators with points for their contributions.
+  
+Technical Description:
+* Modern Architecture: Utilizes state-of-the-art technologies like Jetpack Compose, balancing scalability and performance across both mobile and web platforms. The backend adopts a monolithic architecture, with the exception of the Annotation service.
+* Principled Code Design: Adheres to SOLID principles, emphasizing separation of concerns for a more organized and maintainable codebase.
+* User-Centric Interface: The design follows Material Design guidelines, ensuring a familiar and intuitive user experience.
+* Advanced Poll Mechanics: The system incorporates poll types, deadlines, and rejection timelines, facilitating a versatile backend and enhanced user interaction.
+* Social Connectivity: Features integrated social networking for user interactions, sharing, and community engagement.
+* Cutting-Edge Semantic Search: Employs advanced search technology for swift and relevant poll discovery.
+* Robust Moderation System: Implements a sophisticated moderation system incentivizing accurate and active participation.
+* Broad Device Support: Accessibility across a wide range of devices maximizes user reach and inclusivity.
+* Continuous Performance Benchmarking: Regular performance analysis using tools like Layout Inspector, App Inspection and Build Analyzer ensures optimal app functionality.
+* Standardized Git Practices: Adopts industry-standard Git workflows for effective project management and scalability.
+* Focused on Security: Initiates code obfuscation and minification strategies to enhance mobile app security even though we couldn't conclude this feature.
+* Annotations: Followed industrial standards in our annotation service and made it as a new service.
+
+Conclusion:
+Insight Arena stands as a pioneering application in the realm of social polling and predictive analytics. It offers a unique, engaging platform for users to voice their opinions, connect with others, and participate in a wide range of predictive challenges.
 
 ### Summary of the project status in terms of requirements.
 
