@@ -1131,8 +1131,11 @@ Over the last 4 months, I have revised both the design requirements and the UML 
 |Sign-in page Backend Integration|[#257](https://github.com/bounswe/bounswe2023group4/issues/257)|
 |The Implementation of the Voting Page UI|[#304](https://github.com/bounswe/bounswe2023group4/issues/304)|
 |Integrating the Vote Page UI with the back-end server|[#347](https://github.com/bounswe/bounswe2023group4/issues/347)|
+|Solving the choice padding problem|[#452](https://github.com/bounswe/bounswe2023group4/issues/452)|
+|Solving the Unspecified closingDate Poll Render Problem|[#454](https://github.com/bounswe/bounswe2023group4/issues/454)|
 |Writing Tests for the Voting Page |[#458](https://github.com/bounswe/bounswe2023group4/issues/458)|
 |Annotation: UI Research and implementation |[#493](https://github.com/bounswe/bounswe2023group4/issues/493)|
+|Annotation UI: Investigating the potential of highlighting annotated strings |[#517](https://github.com/bounswe/bounswe2023group4/issues/517)|
 |Annotation UI: Deciding on the JSON structures for data communication |[#520](https://github.com/bounswe/bounswe2023group4/issues/520)|
 |Researching various UI components for Annotation UI implementation|[#518](https://github.com/bounswe/bounswe2023group4/issues/518),[#519](https://github.com/bounswe/bounswe2023group4/issues/519),[#573](https://github.com/bounswe/bounswe2023group4/issues/573)|
 |Documenting my research results |[#542](https://github.com/bounswe/bounswe2023group4/issues/542)|
@@ -1145,7 +1148,9 @@ Over the last 4 months, I have revised both the design requirements and the UML 
 |Task|Issue link(s)|
 |---|----|
 |Revising and updating the Poll System Sequence Diagrams|[#147](https://github.com/bounswe/bounswe2023group4/issues/147)|
+|Updating the Mobile Subteam\s plan|[#315](https://github.com/bounswe/bounswe2023group4/issues/315)|
 |Merging all subteams' plans|[#324](https://github.com/bounswe/bounswe2023group4/issues/324)|
+|Writing the Test Plan|[#424](https://github.com/bounswe/bounswe2023group4/issues/424)|
 |Preparing the General Test Plan|[#485](https://github.com/bounswe/bounswe2023group4/issues/485)|
 #### Pull requests:
 |Task|PR link(s)|
