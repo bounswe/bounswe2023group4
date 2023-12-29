@@ -486,7 +486,34 @@ For the fast development process, I have also included bug fixes in the branches
 |Semantic Search|[PR #648](https://github.com/bounswe/bounswe2023group4/pull/648)|
 |Last UI fixes for the final release|[PR #651](https://github.com/bounswe/bounswe2023group4/pull/651)|
 
-#### Unit Tests
+#### Tests
+We have many tests and it is not possible to show them all. I will only show one test for test class that are long.
+
+UI Tests:
+
+Custom input field tests (Look to the class for all test cases)
+<img width="686" alt="image" src="https://github.com/bounswe/bounswe2023group4/assets/56599776/f2f1c1c1-3714-4b72-9d75-2b8217cca331">
+Error Dialog tests (Look to the class for all test cases)
+<img width="696" alt="image" src="https://github.com/bounswe/bounswe2023group4/assets/56599776/19a7ef35-dfa1-433d-855c-239086132b9f">
+Nav drawer tests (Look to the class for all test cases)
+<img width="744" alt="image" src="https://github.com/bounswe/bounswe2023group4/assets/56599776/24b4855b-eea6-4d23-9bfd-7db7cfcf9098">
+Login screen tests (Look to the class for all test cases)
+<img width="472" alt="image" src="https://github.com/bounswe/bounswe2023group4/assets/56599776/8604c45f-5ff2-4523-b8c7-11308d4f0268">
+Main screen tests (Look to the class for all test cases)
+<img width="598" alt="image" src="https://github.com/bounswe/bounswe2023group4/assets/56599776/8101fde8-089e-46e9-b51e-860444e99bf4">
+Sign up screen tests (Look to the class for all test cases)
+<img width="486" alt="image" src="https://github.com/bounswe/bounswe2023group4/assets/56599776/e705d5a0-0bf5-4226-9e91-2ad7c063ef8d">
+
+Unit tests:
+Long extension tests
+<img width="819" alt="image" src="https://github.com/bounswe/bounswe2023group4/assets/56599776/5e02dd19-ce8c-43b7-be78-6e4fbc5895e2">
+
+
+
+
+
+
+
 
 #### Additional Information
 Unfortunately, I couldn't cover most of my written code between Milestone 2 and Final Milestone in tests because of time issues. I have focused on delivering features that's why I have skipped some tests and some design patterns to be able to complete the features.
