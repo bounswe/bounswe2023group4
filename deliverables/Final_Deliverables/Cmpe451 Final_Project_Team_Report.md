@@ -926,6 +926,21 @@ Latest SRS can be found in [this link](https://github.com/bounswe/bounswe2023gro
 |Learn build variant system|[Issue](https://github.com/bounswe/bounswe2023group4/issues/221)|
 |Research how to implement annotations for mobile|[Issue](https://github.com/bounswe/bounswe2023group4/issues/547)|
 
+#### Frontend
+|Research|Link|
+|---|---|
+|Annotation UI: Research Popover Component|[Issue](https://github.com/bounswe/bounswe2023group4/issues/573)|
+|Annotation UI: Research Image Annotation|[Issue](https://github.com/bounswe/bounswe2023group4/issues/601)|
+|Annotation UI: Researching pop-ups|[Issue](https://github.com/bounswe/bounswe2023group4/issues/519)|
+|Annotation UI: Researching context menus|[Issue](https://github.com/bounswe/bounswe2023group4/issues/518)|
+|Annotation UI: Investigating the potential of highlighting annotated strings|[Issue](https://github.com/bounswe/bounswe2023group4/issues/517)|
+|Learn React Testing |[Issue](https://github.com/bounswe/bounswe2023group4/issues/192)|
+|Learn CSS Basics|[Issue](https://github.com/bounswe/bounswe2023group4/issues/191)|
+|Learn React Basics |[Issue](https://github.com/bounswe/bounswe2023group4/issues/190)|
+|Learn Javascript Arrays|[Issue](https://github.com/bounswe/bounswe2023group4/issues/189)|
+|Learn Javascript ES6 |[Issue](https://github.com/bounswe/bounswe2023group4/issues/188)|
+|Learn Javascript Basics|[Issue](https://github.com/bounswe/bounswe2023group4/issues/187)|
+
 ### Project Plan
 Latest project plan can be found in [this link](https://github.com/bounswe/bounswe2023group4/wiki/General-Plan).
 
