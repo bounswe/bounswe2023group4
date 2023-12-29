@@ -1705,3 +1705,95 @@ The frontend development and user experience of the project were greatly impacte
 |Forgot Password - Reset Password |[#544](https://github.com/bounswe/bounswe2023group4/pull/544)|
 |Email verification |[#546](https://github.com/bounswe/bounswe2023group4/pull/546)|
 |Semantic search backend integration |[#653](https://github.com/bounswe/bounswe2023group4/pull/653)|
+
+## Member: Emre Batuhan Göç, Subgroup: Backend
+### Responsibilities: 
+Throughout the project, my responsibilities were to manage work load between the backend and frontend team. I also implemented a significant portion of the backend code and ensured that those endpoints worked correctly.
+### Main contributions:
+
+In management aspect:
+I have checked the backend team progress regularly.
+I have presented the application in the customer milestone presentation.
+I have discussed the backend's lacking parts with the frontend and mobile and kept it up to date.
+In code aspect:
+I have implemented two different google authentication methods for frontend and mobile.
+I have implemented authentication endpoints.
+I have implemented general point system in polls with Şefik and domain point system with Ali.
+I have implemented profile endpoints and profile logic.
+I have implemented mock badges for profiles.
+I have implemented image storage and usage by setting up S3 connection from backend and handling incoming image files in backend. I have also helped frontend to implement input file retrieval.
+I have written unit tests for my backend endpoints.
+I have written swagger for my backend endpoints.
+
+### Overall description:
+#### Code-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- | 
+| I have written unit tests for sign up, log in, logout, access token request endpoints|[#210](https://github.com/bounswe/bounswe2023group4/issues/210)|
+| I have opened the routes for the aforementioned endpoints with logic-populated service class|[#211](https://github.com/bounswe/bounswe2023group4/issues/211)|
+| I have created swagger documentation for these endpoints|[#232](https://github.com/bounswe/bounswe2023group4/issues/232)|
+| Added some parameters to sign up endpoints|[#247](https://github.com/bounswe/bounswe2023group4/issues/247)|
+|Implement Google code sign in method for frontend| [#321](https://github.com/bounswe/bounswe2023group4/issues/321)| 
+|Implement Google Id sign in method for mobile| [#322](https://github.com/bounswe/bounswe2023group4/issues/322)| 
+|Implement Profile Endpoints| [#351](https://github.com/bounswe/bounswe2023group4/issues/351),[#352](https://github.com/bounswe/bounswe2023group4/issues/352)| 
+|Point System| [#405](https://github.com/bounswe/bounswe2023group4/issues/405)| 
+|Implement get my profile endpoint| [#410](https://github.com/bounswe/bounswe2023group4/issues/410)| 
+|Generate profile automatically on sign up| [#411](https://github.com/bounswe/bounswe2023group4/issues/411)| 
+|Profile classses new error response format| [#353](https://github.com/bounswe/bounswe2023group4/issues/353)| 
+|Authentication classes new error response format| [#413](https://github.com/bounswe/bounswe2023group4/issues/413)| 
+|Image storage and usage backend implementation| [#415](https://github.com/bounswe/bounswe2023group4/issues/415)| 
+|Create Mock Badges| [#412](https://github.com/bounswe/bounswe2023group4/issues/412)| 
+|Profile swagger and unit tests| [#414](https://github.com/bounswe/bounswe2023group4/issues/414),[#355](https://github.com/bounswe/bounswe2023group4/issues/355),[#354](https://github.com/bounswe/bounswe2023group4/issues/354)|
+
+|Implementing the Point system in the backend | [#590](https://github.com/bounswe/bounswe2023group4/issues/590)| 
+| Moderator selection mechanism in system | [#557](https://github.com/bounswe/bounswe2023group4/issues/557)| 
+| Poll Grading and Closing System | [#553](https://github.com/bounswe/bounswe2023group4/issues/553)| 
+| Implement moderator endpoints | [#506](https://github.com/bounswe/bounswe2023group4/issues/506)| 
+| Implement get poll endpoints for specific polls | [#504](https://github.com/bounswe/bounswe2023group4/issues/504)| 
+| Implement selected badges in profile endpoints | [#503](https://github.com/bounswe/bounswe2023group4/issues/503)| 
+
+
+#### Management-related significant issues:
+|Task|Issue link(s)|
+|---|----|
+| I took part in the backend tech selection|[#154](https://github.com/bounswe/bounswe2023group4/issues/154)|
+
+#### Pull requests:
+|Task|PR link(s)|
+|---|----|
+| I have written unit tests for sign up, log in, logout, access token request endpoints|[#282](https://github.com/bounswe/bounswe2023group4/pull/282)|
+| I have created a google log in system however it currently only sends the data to backend|[#275](https://github.com/bounswe/bounswe2023group4/pull/275)|
+| Added some changes so that frontend can connect|[#270](https://github.com/bounswe/bounswe2023group4/pull/270)|
+| Added some parameters to sign up endpoint|[#267](https://github.com/bounswe/bounswe2023group4/pull/267)|
+| I have opened the routes for the aforementioned endpoints with logic-populated service class|[#243](https://github.com/bounswe/bounswe2023group4/pull/243)|
+| I have created swagger documentation for these endpoints|[#240](https://github.com/bounswe/bounswe2023group4/pull/240)|
+| I have initialized backend|[#194](https://github.com/bounswe/bounswe2023group4/pull/194)|
+| Implement Google code sign in method for frontend | [PR#275](https://github.com/bounswe/bounswe2023group4/pull/275) |
+|Implement Google Id sign in method for mobile| [PR#328](https://github.com/bounswe/bounswe2023group4/pull/328) |
+| Implement Profile Endpoints | [PR#382](https://github.com/bounswe/bounswe2023group4/pull/382) |
+| Point System | [PR#439](https://github.com/bounswe/bounswe2023group4/pull/439) |
+| Implement get my profile endpoint | [PR#433](https://github.com/bounswe/bounswe2023group4/pull/433) |
+| Generate profile automatically on sign up | [PR#432](https://github.com/bounswe/bounswe2023group4/pull/432) |
+| Profile classses new error response format | [PR#387](https://github.com/bounswe/bounswe2023group4/pull/387) |
+| Authentication classes new error response format | [PR#430](https://github.com/bounswe/bounswe2023group4/pull/430) |
+| Image storage and usage backend implementation | [PR#437](https://github.com/bounswe/bounswe2023group4/pull/437) |
+| Create Mock Badges | [PR#434](https://github.com/bounswe/bounswe2023group4/pull/434) |
+| Profile swagger and unit tests | [PR#477](https://github.com/bounswe/bounswe2023group4/pull/477) |
+| Authentication unit tests update | [PR#479](https://github.com/bounswe/bounswe2023group4/pull/479) |
+
+| Backend/feature/poll closing & grading | [PR#614](https://github.com/bounswe/bounswe2023group4/pull/614) |
+| Jury system | [PR#611](https://github.com/bounswe/bounswe2023group4/pull/611), [PR#604](https://github.com/bounswe/bounswe2023group4/pull/604) |
+| Mod selection routine | [PR#574](https://github.com/bounswe/bounswe2023group4/pull/574) |
+| Backend/feature/moderators&jury | [PR#530](https://github.com/bounswe/bounswe2023group4/pull/530) |
+| Backend/feature/new get poll methods | [PR#526](https://github.com/bounswe/bounswe2023group4/pull/526) |
+| Backend/feature/badge select | [PR#523](https://github.com/bounswe/bounswe2023group4/pull/523) |
+
+#### Unit Tests:
+* Authentication Unit Tests
+* Profile Unit Tests
+* Moderation Unit Tests
+
+
+#### Additional Information:
+I would like to note that Image Annotation will be implemented by the 2nd of January per an agreement with the **PO**.
+
