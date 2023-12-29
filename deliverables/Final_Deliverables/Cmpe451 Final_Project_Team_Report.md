@@ -603,6 +603,22 @@ In order to implement those features, an immense and meticulous effort has been 
 
 ## Project Artifacts
 
+### Research
+#### Mobile
+|Research|Link|
+|---|---|
+|Learn Kotlin basics|[Issue](https://github.com/bounswe/bounswe2023group4/issues/179)|
+|Learn Android basics|[Issue](https://github.com/bounswe/bounswe2023group4/issues/180)|
+|Learn Jetpack compose|[Issue](https://github.com/bounswe/bounswe2023group4/issues/181)|
+|Learn theming|[Issue](https://github.com/bounswe/bounswe2023group4/issues/182)|
+|Learn MVVM in Android|[Issue](https://github.com/bounswe/bounswe2023group4/issues/183)|
+|Learn gradle basics|[Issue](https://github.com/bounswe/bounswe2023group4/issues/217)|
+|Learn retrofit|[Issue](https://github.com/bounswe/bounswe2023group4/issues/218)|
+|Learn dependency injection|[Issue](https://github.com/bounswe/bounswe2023group4/issues/219)|
+|Learn testing in android|[Issue](https://github.com/bounswe/bounswe2023group4/issues/220)|
+|Learn build variant system|[Issue](https://github.com/bounswe/bounswe2023group4/issues/221)|
+|Research how to implement annotations for mobile|[Issue](https://github.com/bounswe/bounswe2023group4/issues/547)|
+
 ### Unit Test Reports
 
 #### Mobile
