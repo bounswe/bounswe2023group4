@@ -1119,6 +1119,7 @@ I have implemented Unit Tests for the DATA layer I have created.
 ### Additional Information:
 Throughout the semester, I engaged in extensive research and learned a great deal about Android development and Jetpack Compose. This experience not only enhanced my technical skills but also contributed significantly to the overall development of the mobile application.
 
+
 ## Member: Selin Işık - Group 4 - Frontend
 ### Responsibilities: 
 
@@ -1129,13 +1130,34 @@ Throughout the semester, I engaged in extensive research and learned a great dea
 ### Code-related significant issues:
 |Task|Relevant significant issues|
 | --- | --- |
+| Implement Semantic Search for Web App| [#597](https://github.com/bounswe/bounswe2023group4/issues/597) |
+| General Pop Up Structure in Web App(Comment, Share, Report, Jury Rules, Create Tag Select , Follower, Following )| [#596](https://github.com/bounswe/bounswe2023group4/issues/596), [#564](https://github.com/bounswe/bounswe2023group4/issues/564) |
+| Guest User Mechanics | [#566](https://github.com/bounswe/bounswe2023group4/issues/566) |
+| Final Moderation Page | [#563](https://github.com/bounswe/bounswe2023group4/issues/563) |
+| Project Name and Logo | [#511](https://github.com/bounswe/bounswe2023group4/issues/511) |
+| Time Input addition | [#510](https://github.com/bounswe/bounswe2023group4/issues/510) |
+| Poll Card UI update and Color Update | [#508](https://github.com/bounswe/bounswe2023group4/issues/508), [#509](https://github.com/bounswe/bounswe2023group4/issues/509) |
+| Badge Select | [#505](https://github.com/bounswe/bounswe2023group4/issues/505) |
+| Edit Profile Page | [#420](https://github.com/bounswe/bounswe2023group4/issues/420), [#415](https://github.com/bounswe/bounswe2023group4/issues/415), [#364](https://github.com/bounswe/bounswe2023group4/issues/364) |
+| Profile Page| [#419](https://github.com/bounswe/bounswe2023group4/issues/419), [#306](https://github.com/bounswe/bounswe2023group4/issues/306) |
+| Page Responsiveness(Profile, Feed, Auth Pages) | [#365](https://github.com/bounswe/bounswe2023group4/issues/365),[#307](https://github.com/bounswe/bounswe2023group4/issues/307),[#309](https://github.com/bounswe/bounswe2023group4/issues/309),[#310](https://github.com/bounswe/bounswe2023group4/issues/310) |
+| Css Update(Sign-In, Sign-Up) | [#305](https://github.com/bounswe/bounswe2023group4/issues/305) |
+| Feed Page UI | [#259](https://github.com/bounswe/bounswe2023group4/issues/259) |
+| Sidebar Component | [#258](https://github.com/bounswe/bounswe2023group4/issues/258) |
+| Poll Card | [#265](https://github.com/bounswe/bounswe2023group4/issues/265) |
+| Sign In Page | [#205](https://github.com/bounswe/bounswe2023group4/issues/205) |
+| Create Theme structure in Project | [#203](https://github.com/bounswe/bounswe2023group4/issues/203) |
+
 
 
 
 ### Management-related significant issues:
 |Task|Relevant significant issues|
 | --- | --- |
-
+| Milestone2 Customer Feedbacks | [#490](https://github.com/bounswe/bounswe2023group4/issues/490) |
+| Frontend Project Plan | [#202](https://github.com/bounswe/bounswe2023group4/issues/202), [#140](https://github.com/bounswe/bounswe2023group4/issues/140) |
+| MockUp Updates | [#201](https://github.com/bounswe/bounswe2023group4/issues/201) ,[#174](https://github.com/bounswe/bounswe2023group4/issues/174)|
+| Add Annotation Requirements | [#175](https://github.com/bounswe/bounswe2023group4/issues/175), [#165](https://github.com/bounswe/bounswe2023group4/issues/165) |
 
 ### Pull requests:
 |Task|Relevant Pull Requests|
@@ -1167,4 +1189,3 @@ Throughout the semester, I engaged in extensive research and learned a great dea
 I have written tests for sign in page, profile page and edit profile page, Poll Card Component, Sidebar Component, Poll Option Component and Poll Tag component. They can be found [here](https://github.com/bounswe/bounswe2023group4/tree/main/prediction-polls/frontend/src/Pages) under folders: Auth>Sign In , Profile and Edit Profile and [here](https://github.com/bounswe/bounswe2023group4/tree/main/prediction-polls/frontend/src/Components)  under folders:  Poll Card, Sidebar, PollOption, PollTag. 
 
 ### Additional information:
-
