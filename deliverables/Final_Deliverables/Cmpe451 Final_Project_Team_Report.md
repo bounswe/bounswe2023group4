@@ -209,6 +209,22 @@ of your application.
 
 ---
 
+**Feature: Moderation Screen**
+
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/b8f7c7ab-3473-4e83-a212-1d84b7ed32ff" width="50%" />
+
+**Source Code:** [Moderation Screen Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/ui/moderation/list/ModerationScreen.kt)
+
+---
+
+**Feature: Moderation Resolve Screen**
+
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/ee0c7eb6-9301-4157-b1e2-a4a8db70204d" width="50%" />
+
+**Source Code:** [Moderation Screen Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/ui/moderation/list/ModerationScreen.kt)
+
+---
+
 
 
 
