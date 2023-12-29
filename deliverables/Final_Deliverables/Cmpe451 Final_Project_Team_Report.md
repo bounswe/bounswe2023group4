@@ -15,8 +15,15 @@ List **all** deliverables as links. Specify the version numbers whenever applica
 
 | Name        | Status           | Notes  |
 | ------------- |:-------------:| -----:|
-| Name of deliverable      | Not done/Completed/ X% completed | Optional notes |
-| ...     | ...      |   ... |
+| Group Milestone Report     | Not done/Completed/ X% completed | Optional notes |
+| Progress Based On Teamwork    | ...      |   ... |
+| API Endpoints | | |
+| User Interface / User Experience | | |
+| Annotations | | |
+| Scenarios | | |
+| Use and Maintenance - Project Artifacts| | |
+| Use and Maintenance - Software | | |
+| Individual Milestone Reports | | | 
 
 ### Requirements Coverage
 | ID | Name        | Status           | Notes  |
