@@ -1118,3 +1118,52 @@ I have implemented Unit Tests for the DATA layer I have created.
 ### Additional Information:
 Throughout the semester, I engaged in extensive research and learned a great deal about Android development and Jetpack Compose. This experience not only enhanced my technical skills but also contributed significantly to the overall development of the mobile application.
 
+## Member: Selin Işık - Group 4 - Frontend
+### Responsibilities: 
+
+
+### Main contributions: 
+
+
+### Code-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+
+
+
+### Management-related significant issues:
+|Task|Relevant significant issues|
+| --- | --- |
+
+
+### Pull requests:
+|Task|Relevant Pull Requests|
+| --- | --- |
+| Follower and Following Pop-Up and User Follow and Unfollow features |  [#650](https://github.com/bounswe/bounswe2023group4/pull/650) |
+| Comment and Report Backend Integration | [#643](https://github.com/bounswe/bounswe2023group4/pull/643) |
+| Moderation final page UI, Backend Integration and Jury Rules Pop Up | [#629](https://github.com/bounswe/bounswe2023group4/pull/629) |
+| Poll Tag PopUp and Backend Integration | [#628](https://github.com/bounswe/bounswe2023group4/pull/628) |
+| Guest User Mechanics Implementation | [#587](https://github.com/bounswe/bounswe2023group4/pull/587) |
+| Pop Up UI and Modal Context Structure | [#586](https://github.com/bounswe/bounswe2023group4/pull/586) |
+| Added time input box next to the date inputs | [#561](https://github.com/bounswe/bounswe2023group4/pull/561) |
+| Badge Select Backend Integration and isHidden backend integration | [#560](https://github.com/bounswe/bounswe2023group4/pull/560) |
+| Color Update and Poll UI updates | [#558](https://github.com/bounswe/bounswe2023group4/pull/558) |
+| Edit Profile Bugfix | [#533](https://github.com/bounswe/bounswe2023group4/pull/533) | 
+| Profile and Edit Profile Page backend integration, Profile and Edit profile page tests and some bugfix | [#476](https://github.com/bounswe/bounswe2023group4/pull/476) | 
+| Edit Profile Page UI | [#398](https://github.com/bounswe/bounswe2023group4/pull/398) | 
+| Auth and Feed page Mobile View | [#369](https://github.com/bounswe/bounswe2023group4/pull/369) | 
+| Profile Component and Profile page routing structure| [#368](https://github.com/bounswe/bounswe2023group4/pull/368) | 
+| Logout Functionality and button | [#287](https://github.com/bounswe/bounswe2023group4/pull/287) | 
+| Feed Page and Poll Component Tests| [#283](https://github.com/bounswe/bounswe2023group4/pull/283) | 
+| Feed Page UI and Point Button Component| [#280](https://github.com/bounswe/bounswe2023group4/pull/280) | 
+| Poll Card, Poll Tag and Poll Option Components | [#279](https://github.com/bounswe/bounswe2023group4/pull/279) | 
+| Sidebar Component | [#274](https://github.com/bounswe/bounswe2023group4/pull/274) | 
+| Sign In Page UI update | [#242](https://github.com/bounswe/bounswe2023group4/pull/242) | 
+| Added Colors and Theme Context | [#238](https://github.com/bounswe/bounswe2023group4/pull/238) | 
+
+
+### Unit Tests
+I have written tests for sign in page, profile page and edit profile page, Poll Card Component, Sidebar Component, Poll Option Component and Poll Tag component. They can be found [here](https://github.com/bounswe/bounswe2023group4/tree/main/prediction-polls/frontend/src/Pages) under folders: Auth>Sign In , Profile and Edit Profile and [here](https://github.com/bounswe/bounswe2023group4/tree/main/prediction-polls/frontend/src/Components)  under folders:  Poll Card, Sidebar, PollOption, PollTag. 
+
+### Additional information:
+
