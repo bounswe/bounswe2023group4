@@ -15,15 +15,14 @@ List **all** deliverables as links. Specify the version numbers whenever applica
 
 | Name        | Status           | Notes  |
 | ------------- |:-------------:| -----:|
-| Group Milestone Report     | Not done/Completed/ X% completed | Optional notes |
-| Progress Based On Teamwork    | ...      |   ... |
-| API Endpoints | | |
-| User Interface / User Experience | | |
-| Annotations | | |
-| Scenarios | | |
-| Use and Maintenance - Project Artifacts| | |
-| Use and Maintenance - Software | | |
-| Individual Milestone Reports | | | 
+| [Group Milestone Report](https://github.com/bounswe/bounswe2023group4/edit/FinalReport/deliverables/Final_Deliverables/Cmpe451%20Final_Project_Team_Report.md)     | Not done/Completed/ X% completed |
+| [Progress Based On Teamwork](### Progress based on teamwork)    | ...      |
+| API Endpoints | |
+| User Interface / User Experience | |
+| Annotations | |
+| Scenario | |
+| Use and Maintenance| |
+| Individual Milestone Reports | |
 
 ### Final release notes
 
