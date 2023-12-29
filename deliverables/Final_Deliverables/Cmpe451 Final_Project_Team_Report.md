@@ -507,9 +507,16 @@ Sign up screen tests (Look to the class for all test cases)
 Unit tests:
 Long extension tests
 <img width="819" alt="image" src="https://github.com/bounswe/bounswe2023group4/assets/56599776/5e02dd19-ce8c-43b7-be78-6e4fbc5895e2">
-
-
-
+String extension tests
+<img width="584" alt="image" src="https://github.com/bounswe/bounswe2023group4/assets/56599776/bd373ecb-47b1-4e14-87f6-690463daec5c">
+Create poll viewmodel tests
+<img width="635" alt="image" src="https://github.com/bounswe/bounswe2023group4/assets/56599776/9da3f02a-8e74-4698-8a71-ffcb3c7908fe">
+Login screen viewmodel tests
+<img width="584" alt="image" src="https://github.com/bounswe/bounswe2023group4/assets/56599776/fa929e2c-3a67-46a6-bcf2-4302119179fc">
+Sign up screen viewmodel tests
+<img width="560" alt="image" src="https://github.com/bounswe/bounswe2023group4/assets/56599776/7b85cddc-b29c-4b17-904b-66ed803c31db">
+Date transformation tests
+<img width="583" alt="image" src="https://github.com/bounswe/bounswe2023group4/assets/56599776/1be29a15-fbcf-4367-a8a1-2c2ca89c1a7c">
 
 
 
