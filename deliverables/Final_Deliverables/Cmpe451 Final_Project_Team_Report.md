@@ -42,12 +42,88 @@ of your application.
   * …
 
 ### Annotations
-* Status:
+* Status: Mostly done.
 * Compliance with W3C WADM:
+
+  We support the basic parts of [W3C WADM](https://www.w3.org/TR/annotation-model/) like embedded bodies and basic selectors.
+  
+  We support [embedded Textual Body](https://www.w3.org/TR/annotation-model/#embedded-textual-body) for the body of the Annotation. For target, we support:
+  * [CSSSelector](https://www.w3.org/TR/annotation-model/#css-selector)
+  * [XPathSelector](https://www.w3.org/TR/annotation-model/#xpath-selector)
+  * [TextQuoteSelector](https://www.w3.org/TR/annotation-model/#text-quote-selector)
+  * [TextPositionSelector](https://www.w3.org/TR/annotation-model/#text-position-selector)
+  * [Fragment Selector for images](https://www.w3.org/TR/annotation-model/#fragment-selector:~:text=best%2Dpractices%5D.-,Example,-EXAMPLE%204%3A%20IRIs)
+
+  With selectors, we mostly use the TextQuoteSelector when annotating textual content in our use case.
+
+  When it comes to images, we use xywh values appended to the resource as explained above.
 * Implementation description
+
+  We have an node.js express app which has 4 endpoints.
+  * A general GET endpoint for retrieving multiple Annotations. This can be queried with target and creator to get Annotations related with that target and/or creator.
+  * A POST endpoint for posting Annotations. This has validation that checks if the sent body conforms to Annotation json-ld format.
+  * A GET endpoint with the specific ID of the Annotation. The ID is given randomly by the server
+  * A DELETE endpoint with the specific ID of the Annotation. This is not used much, created for mostly administrative purposes.
+
+  We use mongoDB for our database since it allows easily storing and retrieving JSON-like data.
 * API calls examples to annotation server:
   * textual annotation creation & retrieval
+    * [retrieval](http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:4999/api-docs/#/default/get_annotations__id_)
+    ```
+    curl -X 'GET' \
+    'http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:4999/annotations/6585ea616b03ab2c6b8c535f' \
+    -H 'accept: application/ld+json'
+    ```
+
+    * [creation](http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:4999/api-docs/#/default/post_annotations)
+
+    ```
+    curl -X 'POST' \
+      'http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:4999/annotations' \
+      -H 'accept: */*' \
+      -H 'Content-Type: application/ld+json' \
+      -d '{
+      "@context": "http://www.w3.org/ns/anno.jsonld",
+      "type": "Annotation",
+      "target": {
+        "source": "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/vote/43",
+        "selector": {
+          "type": "TextQuoteSelector",
+          "exact": "anotation",
+          "prefix": "this is an ",
+          "suffix": " that has some"
+        }
+     },
+      "body": {
+        "type": "TextualBody",
+        "value": "This seems to be a typo.",
+        "format": "text/plain"
+     },
+     "creator": "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon"
+    }'
+    ```
   * image annotation creation & retrieval
+    * [retrieval](http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:4999/api-docs/#/default/get_annotations__id_) is the sane
+    ```
+    curl -X 'GET' \
+    'http://ec2-3-121-205-89.eu-central-1.compute.amazonaws.com:4999/annotations/6585ea616b03ab2c6b8c535f' \
+    -H 'accept: application/ld+json'
+    ```
+    * creation
+    ```
+    {
+      "@context": "http://www.w3.org/ns/anno.jsonld",
+      "type": "Annotation",
+      "target": "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profileImage1#xywh=100,100,300,300",
+      "body": {
+        "type": "TextualBody",
+        "value": "I like this content!",
+        "format": "text/plain"
+      },
+      "creator": "http://ec2-3-78-169-139.eu-central-1.compute.amazonaws.com:3000/profile/ghostDragon"
+    }
+    ```
+    
 
 ### Scenario:
 A seasoned insight-arena user and an inveterate gambler, Batuhan logs into the system using his credentials.
