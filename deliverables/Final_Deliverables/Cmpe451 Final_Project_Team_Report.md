@@ -390,3 +390,61 @@ Over the last 4 months, I have revised both the design requirements and the UML 
 
 #### Additional Information:
 I was planning to write tests for the annotation's UI. Nevertheless, due to the urgency for implementing other features, the task had to be canceled. In addition, I would like to note that Image Annotation will be implemented by the 2nd of January per an agreement with the **PO**.
+
+## Member: Yiğit Şekerci, Subgroup: Android
+### Responsibilites
+In management part, I was responsible for ensuring the progress in android app. I have divided and assigned the tasks most of the time. In code part, since we were only 2 people in the android subteam our work load was very high. Thus, one of our job was to decide trade-offs since we were not going to able to implement all the parts in the app. Other than that, I was responsible to implement half of the features in android.
+### Main contributions
+Since I was in Android group, I have contributed to the Android project only in code. You can see my most of the contributions from [my issues](https://github.com/bounswe/bounswe2023group4/issues?page=1&q=is%3Aissue+assignee%3AYigitSekerci) and [my PRs](https://github.com/bounswe/bounswe2023group4/pulls?q=is%3Apr+assignee%3AYigitSekerci). Apart from these, I have arranged mobile demo video, executive summary and part of the maintenance section for this report.
+
+#### Code-Related significant issues:
+|Task|Issue link|
+|---|---|
+|Mobile app init|[Issue #169](https://github.com/bounswe/bounswe2023group4/issues/169)|
+|Build variant system|[Issue #222](https://github.com/bounswe/bounswe2023group4/issues/222)|
+|Network Module|[Issue #223](https://github.com/bounswe/bounswe2023group4/issues/223)|
+|Sign up screen|[Issue #260](https://github.com/bounswe/bounswe2023group4/issues/260), [Issue #261](https://github.com/bounswe/bounswe2023group4/issues/261)|
+|Sign in screen|[Issue #263](https://github.com/bounswe/bounswe2023group4/issues/263), [Issue #264](https://github.com/bounswe/bounswe2023group4/issues/264)|
+|Google sign in|[Issue #265](https://github.com/bounswe/bounswe2023group4/issues/265)|
+|Leaderboard screen|[Issue #313](https://github.com/bounswe/bounswe2023group4/issues/313), [Issue #637](https://github.com/bounswe/bounswe2023group4/issues/637)|
+|Create poll screen|[Issue #314](https://github.com/bounswe/bounswe2023group4/issues/314), [Issue #361](https://github.com/bounswe/bounswe2023group4/issues/361)|
+|Moderation screen|[Issue #418](https://github.com/bounswe/bounswe2023group4/issues/418)|
+|Annotations|[Issue #548](https://github.com/bounswe/bounswe2023group4/issues/548)|
+|Comments|[Issue #638](https://github.com/bounswe/bounswe2023group4/issues/638)|
+|Semantic Search|[Issue #649](https://github.com/bounswe/bounswe2023group4/issues/649)|
+
+#### Management-Related significant issues:
+|Task|Issue link|
+|---|---|
+|Project plan|[Issue #140](https://github.com/bounswe/bounswe2023group4/issues/140)|
+|Project plan update|[Issue #216](https://github.com/bounswe/bounswe2023group4/issues/216)|
+|Project plan update 2|[Issue #315](https://github.com/bounswe/bounswe2023group4/issues/315)|
+|Semantic tagging reqs update|[Issue #173](https://github.com/bounswe/bounswe2023group4/issues/173)|
+
+#### Pull requests:
+For the fast development process, I have also included bug fixes in the branches. That's why task name may not summarize what I have done in the PR. For better summary please look to the PR.
+
+|Task|PR link|
+|---|---|
+|Mobile Project init|[PR #186](https://github.com/bounswe/bounswe2023group4/pull/186)|
+|Build variants|[PR #228](https://github.com/bounswe/bounswe2023group4/pull/228)|
+|Network module|[PR #229](https://github.com/bounswe/bounswe2023group4/pull/229)|
+|Font arrange|[PR #233](https://github.com/bounswe/bounswe2023group4/pull/233)|
+|Theme arrange|[PR #235](https://github.com/bounswe/bounswe2023group4/pull/235)|
+|Navigation drawer|[PR #244](https://github.com/bounswe/bounswe2023group4/pull/244)|
+|Auth|[PR #273](https://github.com/bounswe/bounswe2023group4/pull/273)|
+|Auth fixes and improvements|[PR #285](https://github.com/bounswe/bounswe2023group4/pull/285)|
+|Add extra tests|[PR #293](https://github.com/bounswe/bounswe2023group4/pull/293)|
+|Auth + Google sign in|[PR #331](https://github.com/bounswe/bounswe2023group4/pull/331)|
+|Leaderboard UI|[PR #340](https://github.com/bounswe/bounswe2023group4/pull/340)|
+|Create poll screen|[PR #435](https://github.com/bounswe/bounswe2023group4/pull/435)|
+|Bug fixes + Flow improvements|[PR #461](https://github.com/bounswe/bounswe2023group4/pull/461), [PR #467](https://github.com/bounswe/bounswe2023group4/pull/467)|
+|Extra tests for create poll screen|[PR #468](https://github.com/bounswe/bounswe2023group4/pull/468)|
+|All moderation screens|[PR #621](https://github.com/bounswe/bounswe2023group4/pull/621)|
+|Annotation + Poll detail Redesign + Comment + Report + Leaderboard backend integration|[PR #644](https://github.com/bounswe/bounswe2023group4/pull/644)|
+|Semantic Search|[PR #648](https://github.com/bounswe/bounswe2023group4/pull/648)|
+|Last UI fixes for the final release|[PR #651](https://github.com/bounswe/bounswe2023group4/pull/651)|
+
+#### Unit Tests
+
+#### Additional Information
