@@ -1,6 +1,6 @@
 # Cmpe451 Final Project Team Report
 #### Prepared by:
-**Video:** Link to video demo
+**Video:** [Link to video demo](https://drive.google.com/file/d/1fy2uaq-HsBsuccB4LoQ2iyP89jqu962n/view?usp=sharing)
 
 ### Executive Summary
 Product Overview:
