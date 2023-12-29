@@ -856,6 +856,9 @@ Authentication endpoints are tested with mock data. Since the logic is in Authen
 The PollService functions are tested for their success and failure cases. Only the pollClose function is not tested fully since it was implemented recently.
 ### Profile unit tests
 Profile endpoints are tested with mock data. Since the logic is in ProfileService class the tests are written for it. Every endpoint is tested for success and failure cases.
+### Annotation server tests
+<img width="701" alt="Screenshot 2023-12-29 at 20 25 23" src="https://github.com/bounswe/bounswe2023group4/assets/44020012/169151eb-25f2-40ba-9830-5fbeb1a98966">
+
 
 # Individual Reports
 ## Member: Ali Nasra
