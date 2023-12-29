@@ -8,7 +8,7 @@ Describe the product that you have delivered in terms of
 * functionality
 * technical description
 
-#### Final release notes
+### Summary of the project status in terms of requirements.
 
 ### Status of Deliverables
 List **all** deliverables as links. Specify the version numbers whenever applicable.
@@ -25,7 +25,32 @@ List **all** deliverables as links. Specify the version numbers whenever applica
 | Use and Maintenance - Software | | |
 | Individual Milestone Reports | | | 
 
-### Requirements Coverage
+### Final release notes
+
+### Management
+
+#### Implemented Changes and their impact
+
+* After Milestone 1 and Milestone 2 our team decided to prioritize the functionality of the platform and the features that are most important (annotations, semantic search etc.) according to the project owner. By doing this, the progress of the team in terms of requirements and features gained important speed and most of the requirements and requested features are implemented before the final milestone.
+
+#### Reflactions related to the Final Milestone Demo
+
+* In final milestone demo we believe we did a great job in terms of presentation and demonstrating the new features added after milestone 2. We also answered the questions about the platform necessarily.
+
+#### Lessons Learned in the Final Milestone Demo
+
+* In the final milestone we learned that even if we are not able to prevent users from certain actions which are not suitable with the platform goals (like using annotations as a comment section), it is not a good idea to show it in the demo. Also, during the presentation answering to the PO's questions should not be in the form of arguing. A weak side of the platform, if any, is not supposed be defended against the audience.
+
+#### What could have been done differently
+
+* From the beginning of the project, we could have focused on the functionality and requirements more, because we kind of ran out of time by implementing nearly perfect features which is not required after all. For instance; If a good UI takes 4 hours, trying to make it perfect takes another 4 hours.
+* After milestone 1 and milestone 2 we could have an extra meeting to talk about feedbacks and organize new tasks. Our work between milestones and the next tuesday meetings was not well organized and we believe those times were crucial for the progress of the project.
+
+### Progress based on teamwork
+
+#### Summary of work performed by each member
+
+#### Requirements Coverage
 | ID | Name        | Status           | Notes  |
 | --- | ------------- |:-------------:| -----:|
 | RID      | Specification | Status | Optional notes |
@@ -147,12 +172,13 @@ In order to implement those features, an immense and meticulous effort has been 
 4. In order to implement a fair system which safeguards the API's credibility, it was decided that a jury of veteran users will be convened in order to decide on the conclusion of the poll and vindicate the correctness of an outcome. Every user can apply to the jury, and his/her request shall be processed accordingly.
 5. As a quasi-social network platform, the API allows users to socialize with each other. During our discussion with the PO, it envisaged that the users should be able to seek out each other on the basis of common interests. The leaderboard serves this purpose by allowing users to fetch the most invested users per each polling genre which is determined by its ubiquitous permeance across the internet. 
 
-### Management
-* Implemented Changes and their impact
-* Reflections related to your Final Milestone Demo
-* Lessons Learned
+# Use and Maintenance
 
-# Individual Report
+## Project Artifacts
+
+## Software
+
+# Individual Reports
 ## Member: Ali Nasra
 ### Responsibilities: 
 Throughout the project, my responsibilities encompassed multiple facets of the projects. Managerially, I was responsible for tracking the group's plan and confirming compliance with it. Technically, I served as a member of the support subteam which allowed me to contribute to both the backend and frontend subteams.
