@@ -174,10 +174,15 @@ Over the last 4 months, I have revised both the design requirements and the UML 
 #### Pull requests:
 |Task|PR|
 |---|----|
-|-|-|
-|-|-|
-|-|-|
-|-|-|
+|Sign In Page's UI implementation|[#236](https://github.com/bounswe/bounswe2023group4/pull/236)|
+|Integrating Sign in UI with the backend|[#268](https://github.com/bounswe/bounswe2023group4/pull/268)|
+|Tests for sign-in page|[#288](https://github.com/bounswe/bounswe2023group4/pull/288)|
+|Implemeting the Vote Page UI|[#329](https://github.com/bounswe/bounswe2023group4/pull/329)|
+|Writing tests for the poll page |[#470](https://github.com/bounswe/bounswe2023group4/pull/470)|
+|Annotation UI |[#572](https://github.com/bounswe/bounswe2023group4/pull/572)|
+|Implementation of the following mechanim |[#575](https://github.com/bounswe/bounswe2023group4/pull/575)|
+|Implementation of leaderboard back-end endpoints |[#603](https://github.com/bounswe/bounswe2023group4/pull/603)|
+|Leaderboard Implementation |[#633](https://github.com/bounswe/bounswe2023group4/pull/633)|
 #### Unit Tests:
 
 #### Additional Information:
