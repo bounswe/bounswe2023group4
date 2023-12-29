@@ -711,17 +711,17 @@ Mock data for testing
 npm test Signin.test.js
 - Test Descriptions:
 - Sign-in page Rendering:
-Description: Tests if the form which includes the input fields for both the username and password is rendered.
-Positive Scenario: The form is rendered successfully.
-Negative Scenario: The form misses key components.
+    - Description: Tests if the form which includes the input fields for both the username and password is rendered.
+    - Positive Scenario: The form is rendered successfully.
+    - Negative Scenario: The form misses key components.
 - Form Input Handling:
-Description: Tests if the form's input fields' values are editable.
-Positive Scenario: Their values change upon user input.
-Negative Scenario: Their values don't change upon user input.
+   - Description: Tests if the form's input fields' values are editable.
+   - Positive Scenario: Their values change upon user input.
+   - Negative Scenario: Their values don't change upon user input.
 - Form Submission Handling:
-Description: Tests if the form can be submitted successfully.
-Positive Scenario: A click event is fired. Upon the correctness of the input, the user logs in or stays on the page.
-Negative Scenario: The button doesn't respond, and now discernible change in UI is perceived.
+   - Description: Tests if the form can be submitted successfully.
+   - Positive Scenario: A click event is fired. Upon the correctness of the input, the user logs in or stays on the page.
+   - Negative Scenario: The button doesn't respond, and now discernible change in UI is perceived.
 
 
 ##### Moderation-Not-Moderator Component Unit Test Report
