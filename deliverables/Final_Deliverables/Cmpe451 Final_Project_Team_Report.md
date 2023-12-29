@@ -786,7 +786,7 @@ Throughout the project, my responsibilities encompassed multiple facets of the p
 Over the last 4 months, I have revised both the design requirements and the UML diagrams, compiled each subteam's plan, and amalgamated them into a single general plan In addition, I partook in the preparation of each milestone report. For instance, in this report, I was responsible for shooting the demo video and writing the scenario. My contributions to the code base vacillate between my front-end and back-end duties. As an associate of the frontend subteam, I was responsible for implementing multiple pages such as the **sign-in** page, the **vote** page, and the **leaderboard** page with their concomitant backend integration. In addition, I was responsible for implementing the annotations' UI and integrating it with the Annotation server in a **W3C-compliant** manner. As an associate of the backend subteam, I was responsible for implementing the member follow/unfollow mechanisms. In addition, I implemented the leaderboard back-end endpoints. Finally, I implemented the functionality that helps update the badges of each user given their up-to-date standing in each topic.
 ### Overall description:
 #### Code-related significant issues:
-|Task|Issue|
+|Task|Issue link(s)|
 |---|----|
 |Sign-in page UI Implementation|[#205](https://github.com/bounswe/bounswe2023group4/issues/205)|
 |Sign-in page Backend Integration|[#257](https://github.com/bounswe/bounswe2023group4/issues/257)|
@@ -799,23 +799,26 @@ Over the last 4 months, I have revised both the design requirements and the UML 
 |Implementing the Point system in the backend|[#590](https://github.com/bounswe/bounswe2023group4/issues/590)|
 |Leaderboard : UI Interface & Backend connection|[#630](https://github.com/bounswe/bounswe2023group4/issues/630)|
 #### Management-related significant issues:
-|Task|Issue|
+|Task|Issue link(s)|
 |---|----|
 |Revising and updating the Poll System Sequence Diagrams|[#147](https://github.com/bounswe/bounswe2023group4/issues/147)|
 |Merging all subteams' plans|[#324](https://github.com/bounswe/bounswe2023group4/issues/324)|
 |Preparing the General Test Plan|[#485](https://github.com/bounswe/bounswe2023group4/issues/485)|
 #### Pull requests:
-|Task|PR|
+|Task|PR link(s)|
 |---|----|
 |Sign In Page's UI implementation|[#236](https://github.com/bounswe/bounswe2023group4/pull/236)|
 |Integrating Sign in UI with the backend|[#268](https://github.com/bounswe/bounswe2023group4/pull/268)|
 |Tests for sign-in page|[#288](https://github.com/bounswe/bounswe2023group4/pull/288)|
 |Implemeting the Vote Page UI|[#329](https://github.com/bounswe/bounswe2023group4/pull/329)|
 |Writing tests for the poll page |[#470](https://github.com/bounswe/bounswe2023group4/pull/470)|
+|Adapting the isOpen Parameter to the voting mechanism |[#470](https://github.com/bounswe/bounswe2023group4/pull/470)|
 |Annotation UI |[#572](https://github.com/bounswe/bounswe2023group4/pull/572)|
 |Implementation of the following mechanism |[#575](https://github.com/bounswe/bounswe2023group4/pull/575)|
 |Implementation of leaderboard back-end endpoints |[#603](https://github.com/bounswe/bounswe2023group4/pull/603)|
 |Leaderboard Implementation |[#633](https://github.com/bounswe/bounswe2023group4/pull/633)|
+|Fix for the updateBadges function |[#636](https://github.com/bounswe/bounswe2023group4/pull/636)|
+|Improved Response and error handling fix for followed and follower endpoints |[#640](https://github.com/bounswe/bounswe2023group4/pull/640)|
 #### Unit Tests:
 * Sign-in Unit Test:
 ![image](https://github.com/bounswe/bounswe2023group4/assets/52269552/f3376a2a-3a56-4cf6-9a9a-d068e56fb092)
