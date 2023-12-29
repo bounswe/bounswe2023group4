@@ -1,14 +1,14 @@
 # Cmpe451 Final Project Team Report
 #### Prepared by:
--Ali Nasra
--Selin Işık
--Enes Furkan Arslan
--Ahmet Emre Şafak
--Emre Batuhan Göç
--Yiğit Şekerci
--Şefik Palazoğlu
--Serhat Hebun Şimşek
--Kutay Saran
+- Ali Nasra
+- Selin Işık
+- Enes Furkan Arslan
+- Ahmet Emre Şafak
+- Emre Batuhan Göç
+- Yiğit Şekerci
+- Şefik Palazoğlu
+- Serhat Hebun Şimşek
+- Kutay Saran
 
 **Video:** [Link to video demo](https://drive.google.com/file/d/1fy2uaq-HsBsuccB4LoQ2iyP89jqu962n/view?usp=sharing)
 
