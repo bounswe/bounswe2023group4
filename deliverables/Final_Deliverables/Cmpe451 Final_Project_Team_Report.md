@@ -14,14 +14,14 @@ Describe the product that you have delivered in terms of
 
 | Name        | Status           | Notes  |
 | ------------- |:-------------:| -----:|
-| Group Milestone Report | Not done/Completed/ X% completed |
+| [Group Milestone Report](#Cmpe451-Final-Project-Team-Report) | Not done/Completed/ X% completed |
 | [Progress Based On Teamwork](#Progress-based-on-teamwork)    | ...      |
-| API Endpoints | |
-| User Interface / User Experience | |
-| Annotations | |
-| Scenario | |
-| Use and Maintenance| |
-| Individual Milestone Reports | |
+| [API Endpoints](#API) | |
+| [User Interface / User Experience](#User-Interface-/-User-Experince) | |
+| [Annotations](#Annotations) | |
+| [Scenario](#Scenario) | |
+| [Use and Maintenance](#Use-and-Maintenance)| |
+| [Individual Milestone Reports](#Individual-Reports) | |
 
 ### Final release notes
 
