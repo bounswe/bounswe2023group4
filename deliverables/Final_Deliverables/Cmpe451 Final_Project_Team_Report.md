@@ -1190,14 +1190,25 @@ At the semester's start, I focused on updating the mock-ups and selecting the co
 I have written tests for sign in page, profile page and edit profile page, Poll Card Component, Sidebar Component, Poll Option Component and Poll Tag component. They can be found [here](https://github.com/bounswe/bounswe2023group4/tree/main/prediction-polls/frontend/src/Pages) under folders: Auth>Sign In , Profile and Edit Profile and [here](https://github.com/bounswe/bounswe2023group4/tree/main/prediction-polls/frontend/src/Components)  under folders:  Poll Card, Sidebar, PollOption, PollTag. 
 
 #### Additional Information
-Unfortunately in the last milestone, I have focused on covering as many requirements as possible as you can see in my PR history, that's why I have skipped some tests and some design patterns to be able to complete the features.
+Unfortunately in the last milestone, I have focused on covering as many requirements as possible as you can see in my PR history, that's why I have skipped some tests and some design patterns to be able to complete the features. 
 
 ## Member: Şefik Palazoğlu
 ### Responsibilities: 
-Setting up backend logic and database logic. Ensuring frontend structures are stored properly at the backend and are reachable.
+Setting up backend logic and database logic. Ensuring frontend structures are stored properly at the backend and are reachable. Setting up backend system logic. Ensuring endpoints are working correctly. Implementing polls endpoints. Implementing internal poll subject tagging.
 
 ### Main contributions: 
 I have created a mySql database to store users and connected this database to our node.js application. When we started implementing JWT tokens I took part in how to store these tokens in the backend. I took part in storing username/email and password tuples and oversee the hashing protocol of passwords. I prepared and uploaded weekly reports.
+* In management aspect:
+  -  I have checked the compatibility of work between front teams and backend team regularly.
+* In project aspect:
+  -  I have tried to point out work we needed to do for requirements.
+* In code aspect:
+  -  I have implemented all poll endpoints
+  -  I have adapted polls endpoints to new error response format. 
+  -  I have implemented general point system in polls with Batuhan.
+  -  I have implemented get polls, get polls with id, post polls, and poll close endpoints.
+  -  I have implemented automatic poll tag generation.
+  -  I have written unit tests for poll endpoints.
 
 ### Code-related significant issues:
 |Task|Relevant significant issues|
@@ -1210,6 +1221,17 @@ I have created a mySql database to store users and connected this database to ou
 | I have helped database deployment and configuration |[#209](https://github.com/bounswe/bounswe2023group4/issues/209), [#250](https://github.com/bounswe/bounswe2023group4/issues/250)|
 | Uploaded and written weekly reports |[#249](https://github.com/bounswe/bounswe2023group4/issues/249), [#160](https://github.com/bounswe/bounswe2023group4/issues/160)|
 | I helped coordination of work between backend and frontend teams’ work | [#257](https://github.com/bounswe/bounswe2023group4/issues/257)
+|Username Attached to poll| [#463](https://github.com/bounswe/bounswe2023group4/issues/463)| Resolver |
+|Manual Poll Closing issue For Discrete Polls| [#456](https://github.com/bounswe/bounswe2023group4/issues/456)| Resolver |
+|Reject Votes null value| [#450](https://github.com/bounswe/bounswe2023group4/issues/450)| Resolver |
+|Authentication Requirement at Poll GET endpoint| [#447](https://github.com/bounswe/bounswe2023group4/issues/447)| Resolver |
+|Improving the JSON response of the /polls/{pollId} endpoint| [#428](https://github.com/bounswe/bounswe2023group4/issues/428)| Resolver |
+|Point System| [#405](https://github.com/bounswe/bounswe2023group4/issues/405)| Resolver |
+|Poll GET Poll Creator Name| [#403](https://github.com/bounswe/bounswe2023group4/issues/403)| Resolver |
+|Poll GET return format| [#402](https://github.com/bounswe/bounswe2023group4/issues/402)| Resolver |
+|Poll Voting| [#400](https://github.com/bounswe/bounswe2023group4/issues/400)| Resolver |
+|Unit Tests for Poll Endpoints| [#344](https://github.com/bounswe/bounswe2023group4/issues/344)| Resolver |
+|Poll Response Restructuring| [#343](https://github.com/bounswe/bounswe2023group4/issues/343)| Resolver |
 
 ### Management-related significant issues:
 |Task|Relevant significant issues|
@@ -1225,7 +1247,17 @@ I have created a mySql database to store users and connected this database to ou
 | --- | --- |
 | I prepared database for authentication | [#239](https://github.com/bounswe/bounswe2023group4/pull/239) |
 | I helped create initial testing environment | [#225](https://github.com/bounswe/bounswe2023group4/pull/225) |
-| I uploaded sequence diagrams | [#195](https://github.com/bounswe/bounswe2023group4/pull/195)
+| I uploaded sequence diagrams | [#195](https://github.com/bounswe/bounswe2023group4/pull/195) |
+| Add Automatic Tag Functionality | [PR#475](https://github.com/bounswe/bounswe2023group4/pull/475) |
+|Implement poll service unit tests| [PR#469](https://github.com/bounswe/bounswe2023group4/pull/469) |
+| Implement /polls/close endpoint | [PR#459](https://github.com/bounswe/bounswe2023group4/pull/459) |
+| Fix Username Email bug | [PR#465](https://github.com/bounswe/bounswe2023group4/pull/465) |
+| Remove Auth Requirement from /polls/{pollId} GET | [PR#448](https://github.com/bounswe/bounswe2023group4/pull/448) |
+| Create Poll Endpoint Corrections | [PR#444](https://github.com/bounswe/bounswe2023group4/pull/444) |
+| Making Poll Functions async | [PR#442](https://github.com/bounswe/bounswe2023group4/pull/442) |
+| Backend/feature/poll vote date | [PR#440](https://github.com/bounswe/bounswe2023group4/pull/440) |
+| Adding creator name to poll objects | [PR#426](https://github.com/bounswe/bounswe2023group4/pull/426) |
+| /polls/{pollId} GET return object improvement | [PR#429](https://github.com/bounswe/bounswe2023group4/pull/429) |
 
 ### Additional information:
 I have communicated actively with my team on our discord channel. Unfortunately, I was ill in the 5th week so I have low contributions at that time.
