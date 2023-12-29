@@ -17,7 +17,7 @@ Describe the product that you have delivered in terms of
 | [Group Milestone Report](#Cmpe451-Final-Project-Team-Report) | Not done/Completed/ X% completed |
 | [Progress Based On Teamwork](#Progress-based-on-teamwork)    | ...      |
 | [API Endpoints](#API) | |
-| [User Interface / User Experience](#user-interface--user-experience) | |
+| [User Interface / User Experience](#User-Interface--User-Experience) | |
 | [Annotations](#Annotations) | |
 | [Scenario](#Scenario) | |
 | [Use and Maintenance](#Use-and-Maintenance)| |
