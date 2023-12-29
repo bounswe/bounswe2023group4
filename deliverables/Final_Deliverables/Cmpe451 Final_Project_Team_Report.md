@@ -1303,3 +1303,43 @@ See [PR#469](https://github.com/bounswe/bounswe2023group4/pull/469) and [PR#610]
 
 ### Additional information:
 I was also tasked with maintaining docker image, deploying server and maintaining the main database. Also, additionally, I was tasked with maintaining the mongoDB database for Annotation server
+
+## Member: Kutay Saran - Frontend
+### Responsibilities: 
+My duties in the project were mostly related to frontend development. I actively participated in the frontend coding and design, collaborating closely with the team to produce a fluid and intuitive user experience.
+
+### Main contributions:
+The frontend development and user experience of the project were greatly impacted by the primary contributions. Among the major accomplishments are the fast and safe optimization of the user authentication process through the integration and improvement of Google Authentication. The creation of the Leaderboard user interface and the addition of a useful search bar component were two more significant contributions that significantly improved user interaction and platform engagement. The position also required integrating the Poll Feed Page with the backend for authentication pages, exhibiting a thorough understanding of full-stack development concepts. To further strengthen the platform's security and user-centric features, the integration of email verification and password functionality, as well as the implementation of token management middleware, were crucial.
+
+### Overall description:
+#### Code-related significant issues:
+|Task|Issue link(s)|
+|---|----|
+|Researching the fundamental Front-end technologies|[#187](https://github.com/bounswe/bounswe2023group4/issues/187),[#188](https://github.com/bounswe/bounswe2023group4/issues/188),[#189](https://github.com/bounswe/bounswe2023group4/issues/189),[#190](https://github.com/bounswe/bounswe2023group4/issues/190),[#191](https://github.com/bounswe/bounswe2023group4/issues/191),[#192](https://github.com/bounswe/bounswe2023group4/issues/192)|
+|Project initialization for frontend|[#167](https://github.com/bounswe/bounswe2023group4/issues/167)|
+|Arrange fonts in frontend project|[#215](https://github.com/bounswe/bounswe2023group4/issues/215)|
+|Google Authentication Frontend|[#253](https://github.com/bounswe/bounswe2023group4/issues/253)|
+|Implementation of Leaderboard page UI|[#316](https://github.com/bounswe/bounswe2023group4/issues/316)|
+|Implement sign in with Google |[#319](https://github.com/bounswe/bounswe2023group4/issues/319)|
+|Implement search bar component |[#346](https://github.com/bounswe/bounswe2023group4/issues/346)|
+|Finalize Authentication pages' backend connections |[#401](https://github.com/bounswe/bounswe2023group4/issues/401)|
+|Implement Poll Feed Page's Backend Connection|[#408](https://github.com/bounswe/bounswe2023group4/issues/408)|
+|Implement Authentication Token Management Middleware |[#409](https://github.com/bounswe/bounswe2023group4/issues/409)|
+|Integration of email verification |[#495](https://github.com/bounswe/bounswe2023group4/issues/495)|
+|Integration of forgot password functionality|[#496](https://github.com/bounswe/bounswe2023group4/issues/496)|
+|Implement Forgot Password Page UI|[#497](https://github.com/bounswe/bounswe2023group4/issues/497)|
+|Google Auth Fix|[#501](https://github.com/bounswe/bounswe2023group4/issues/501)|
+
+#### Pull requests:
+|Task|PR link(s)|
+|---|----|
+|Google Sign In|[#281](https://github.com/bounswe/bounswe2023group4/pull/281)|
+|Leaderboard UI implementation|[#367](https://github.com/bounswe/bounswe2023group4/pull/367)|
+|Search bar implementation|[#383](https://github.com/bounswe/bounswe2023group4/pull/383)|
+|Poll backend connection|[#472](https://github.com/bounswe/bounswe2023group4/pull/472)|
+|Google auth fix |[#522](https://github.com/bounswe/bounswe2023group4/pull/522)|
+|Token Management |[#524](https://github.com/bounswe/bounswe2023group4/pull/524)|
+|Forgot Password Page UI |[#525](https://github.com/bounswe/bounswe2023group4/pull/525)|
+|Forgot Password - Reset Password |[#544](https://github.com/bounswe/bounswe2023group4/pull/544)|
+|Email verification |[#546](https://github.com/bounswe/bounswe2023group4/pull/546)|
+|Semantic search backend integration |[#653](https://github.com/bounswe/bounswe2023group4/pull/653)|
