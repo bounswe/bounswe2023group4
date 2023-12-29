@@ -708,20 +708,20 @@ React Testing Library
 Ant Design components 
 Mock data for testing 
 - Running Tests: 
-npm test SignIn.test.js
+npm test Signin.test.js
 - Test Descriptions:
-- Basic Rendering:
-Description: Tests if the SignUp component renders without crashing and if essential UI elements are present.
-Positive Scenario: The component renders successfully without any errors, and essential UI elements are present.
-Negative Scenario: The component fails to render, or essential UI elements are missing.
+- Sign-in page Rendering:
+Description: Tests if the form which includes the input fields for both the username and password is rendered.
+Positive Scenario: The form is rendered successfully.
+Negative Scenario: The form misses key components.
 - Form Input Handling:
-Description: Tests user input handling for email, username, password, and birthday fields.
-Positive Scenario: User input changes are correctly reflected in the component state.
-Negative Scenario: Input changes do not reflect in the component state.
-- Form Submission:
-Description: Tests the submission of the sign-up form.
-Positive Scenario: User can successfully submit the sign-up form, and the component responds accordingly.
-Negative Scenario: Form submission fails, and the component does not respond as expected.
+Description: Tests if the form's input fields' values are editable.
+Positive Scenario: Their values change upon user input.
+Negative Scenario: Their values don't change upon user input.
+- Form Submission Handling:
+Description: Tests if the form can be submitted successfully.
+Positive Scenario: A click event is fired. Upon the correctness of the input, the user logs in or stays on the page.
+Negative Scenario: The button doesn't respond, and now discernible change in UI is perceived.
 
 
 ##### Moderation-Not-Moderator Component Unit Test Report
