@@ -1,4 +1,55 @@
-## Scenario:
+# Cmpe451 Final Project Team Report
+#### Prepared by:
+**Video:** Link to video demo
+
+### Executive Summary
+
+Describe the product that you have delivered in terms of
+* functionality
+* technical description
+
+#### Final release notes
+
+### Status of Deliverables
+List **all** deliverables as links. Specify the version numbers whenever applicable.
+
+| Name        | Status           | Notes  |
+| ------------- |:-------------:| -----:|
+| Name of deliverable      | Not done/Completed/ X% completed | Optional notes |
+| ...     | ...      |   ... |
+
+### Requirements Coverage
+| ID | Name        | Status           | Notes  |
+| --- | ------------- |:-------------:| -----:|
+| RID      | Specification | Status | Optional notes |
+| ...     | ...      |   ... | ... |
+
+(Status: One of: Not done , Completed , % completed )
+
+### API
+* Link to the application API with three example calls related to the core functionality
+of your application.
+
+### User Interface / User Experience
+
+* User Interface designs and the links to the source code in the project repository
+  * feature:
+    * Web
+    * Mobile
+  * feature:
+    * Web
+    * Mobile
+  * …
+
+### Annotations
+* Status:
+* Compliance with W3C WADM:
+* Implementation description
+* API calls examples to annotation server:
+  * textual annotation creation & retrieval
+  * image annotation creation & retrieval
+
+### Scenario:
 A seasoned insight-arena user and an inveterate gambler, Batuhan logs into the system using his credentials.
 1. He is interested in the upcoming Presidential Elections. In order to find the relevant polls in his extensive feed, he types relevant keywords such as **POTUS**.
 2. He finds a discrete poll that might interest him. Among the choices, he finds **Biden** and **Trump**. Since the term **Biden** might be confusing for many voters, as many members of the Biden Family are prominent members of the Democratic Party, he voluntarily decides to annotate **Biden** as **Joe Biden the incumbent U.S. president**.
@@ -13,3 +64,9 @@ In order to implement those features, an immense and meticulous effort has been 
 4. In order to implement a fair system which safeguards the API's credibility, it was decided that a jury of veteran users will be convened in order to decide on the conclusion of the poll and vindicate the correctness of an outcome. Every user can apply to the jury, and his/her request shall be processed accordingly.
 5. As a quasi-social-network platform, the API allows users to socialize with each other. During our discussion with the PO, it envisaged that the users should be able to seek out each other on the basis of common interests. The leaderboard serves this purpose by allowing users to fetch the most invested users per each polling genre which is determined by its ubiquitous permeance across the internet. 
 
+### Management
+* Implemented Changes and their impact
+* Reflections related to your Final Milestone Demo
+* Lessons Learned
+
+## Individual Report
