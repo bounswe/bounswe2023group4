@@ -50,6 +50,8 @@ Insight Arena stands as a pioneering application in the realm of social polling 
 
 ### Final release notes
 
+Check release 0.9.0 from [here](https://github.com/bounswe/bounswe2023group4/releases).
+
 ### Management
 
 #### Implemented Changes and their impact
