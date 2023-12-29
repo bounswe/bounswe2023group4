@@ -87,10 +87,131 @@ of your application.
 
 # User Interface / User Experience
 
-* User Interface designs and the links to the source code in the project repository
-  * feature:
-    * Web
-    * Mobile
+## Mobile
+
+**Feature: Sign Up Page**
+
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/39b6f272-d7d3-4a5b-b7a4-1f17515a00a6" width="50%" />
+
+**Source Code:** [Sign Up Page Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/ui/signup/SignupScreen.kt)
+
+---
+
+**Feature: Share URL**
+
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/fbe814a6-26ae-44ec-885f-3096d2ec8ccb" width="50%" />
+
+**Source Code:** [Share URL Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/utils/ContextUtils.kt)
+
+---
+
+**Feature: Poll Details**
+
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/1bd786e7-8d6a-4954-a274-18091ca2aea3" width="50%" />
+
+**Source Code:** [Poll Details Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/ui/vote/PollVoteScreen.kt)
+
+---
+
+**Feature: Others' Poll**
+
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/1fa928f3-a952-4827-8df4-d20a516675d1" width="50%" />
+
+**Source Code:** [Others' Poll Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/ui/profile/MyProfileScreen.kt)
+
+---
+
+**Feature: My Profile**
+
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/88c2c7c7-691e-422b-acd3-f49007efc463" width="50%" />
+
+**Source Code:** [My Profile Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/ui/profile/ProfileScreen.kt)
+
+---
+
+**Feature: Moderation**
+
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/7c86fbaa-e9fd-4d2a-9eff-1d0d5635f61d" width="50%" />
+
+**Source Code:** [Moderation Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/ui/moderation/apply/ModerationApplyScreen.kt)
+
+---
+
+**Feature: Login Page**
+
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/44607420-cb76-4696-a35f-ab5c5ff2292e" width="50%" />
+
+**Source Code:** [Login Page Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/ui/login/LoginScreen.kt)
+
+---
+
+**Feature: Login Field Page**
+
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/ad1294ad-9b38-439e-922f-810142430819" width="50%" />
+
+**Source Code:** [Login Field Page Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/ui/login/LoginScreen.kt)
+
+---
+
+**Feature: Leaderboard**
+
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/a3bd30d6-004a-472a-a8e7-c632fc0228bd" width="50%" />
+
+**Source Code:** [Leaderboard Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/ui/leaderboard/LeaderboardScreen.kt)
+
+---
+
+**Feature: Feed Screen**
+
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/623446df-78f0-4be8-b4fc-39844e4312a9" width="50%" />
+
+**Source Code:** [Feed Screen Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/ui/feed/FeedScreen.kt)
+
+---
+
+**Feature: Edit Profile**
+
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/fefd4341-0738-45d8-aa96-79cfe7f77eb4" width="50%" />
+
+**Source Code:** [Edit Profile Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/ui/editProfile/EditProfileScreen.kt)
+
+---
+
+**Feature: Drawer**
+
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/08484f6d-078c-426d-8bf4-2fe2673867e9" width="50%" />
+
+**Source Code:** [Drawer Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/ui/common/NavigationDrawer.kt)
+
+---
+
+**Feature: Create Poll**
+
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/7695bd73-3ed0-4275-9560-97869c03e368" width="50%" />
+
+**Source Code:** [Create Poll Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/ui/create/CreatePollScreen.kt)
+
+---
+
+**Feature: Annotations**
+
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/865e8426-22f3-4056-8a3e-f8cf4311df43" width="50%" />
+
+**Source Code:** [Annotations Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/ui/common/annotation/AnnotatableText.kt)
+
+---
+
+**Feature: Annotate**
+
+<img src="https://github.com/bounswe/bounswe2023group4/assets/59789023/f261508c-84ea-47e6-9fb6-847033245c83" width="50%" />
+
+**Source Code:** [Annotate Source Code](https://github.com/bounswe/bounswe2023group4/blob/mobile/development/prediction-polls/android/app/src/main/java/com/bounswe/predictionpolls/ui/common/annotation/AnnotatableText.kt)
+
+---
+
+
+
+
   * feature:
     * Web
     * Mobile
