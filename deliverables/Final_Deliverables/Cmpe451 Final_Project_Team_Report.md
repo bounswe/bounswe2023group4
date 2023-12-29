@@ -1208,12 +1208,13 @@ I have written tests for sign in page, profile page and edit profile page, Poll 
 #### Additional Information
 Unfortunately in the last milestone, I have focused on covering as many requirements as possible as you can see in my PR history, that's why I have skipped some tests and some design patterns to be able to complete the features. 
 
-## Member: Şefik Palazoğlu
+## Member: Şefik Palazoğlu - Backend
+
 ### Responsibilities: 
-Setting up backend logic and database logic. Ensuring frontend structures are stored properly at the backend and are reachable. Setting up backend system logic. Ensuring endpoints are working correctly. Implementing polls endpoints. Implementing internal poll subject tagging.
+Setting up backend logic and database logic. Ensuring frontend structures are stored properly at the backend and are reachable. Setting up backend system logic. Ensuring endpoints are working correctly. Implementing polls endpoints. Implementing internal poll subject tagging. Implementing Annotation server and semantic search API endpoints.
 
 ### Main contributions: 
-I have created a mySql database to store users and connected this database to our node.js application. When we started implementing JWT tokens I took part in how to store these tokens in the backend. I took part in storing username/email and password tuples and oversee the hashing protocol of passwords. I prepared and uploaded weekly reports.
+I have created a mySql database to store users and connected this database to our node.js application. When we started implementing JWT tokens I took part in how to store these tokens in the backend. I prepared and uploaded weekly reports. I implemented annotation server and semantic search backend API endpoints. I wrote several tests.
 * In management aspect:
   -  I have checked the compatibility of work between front teams and backend team regularly.
 * In project aspect:
@@ -1248,6 +1249,18 @@ I have created a mySql database to store users and connected this database to ou
 |Poll Voting| [#400](https://github.com/bounswe/bounswe2023group4/issues/400)| Resolver |
 |Unit Tests for Poll Endpoints| [#344](https://github.com/bounswe/bounswe2023group4/issues/344)| Resolver |
 |Poll Response Restructuring| [#343](https://github.com/bounswe/bounswe2023group4/issues/343)| Resolver |
+| Writing Annotation Status and Future Annotation Plans | [#483](https://github.com/bounswe/bounswe2023group4/issues/483) | Resolver |
+| Write and Upload Week 10 Report | [#491](https://github.com/bounswe/bounswe2023group4/issues/491) | Resolver |
+| Annotation Backend Requirement | [#494](https://github.com/bounswe/bounswe2023group4/issues/494) | Resolver |
+| Annotation UI: Deciding on the JSON structures for data communication | [#520](https://github.com/bounswe/bounswe2023group4/issues/520) | Resolver |
+| Upload Week 11 Report | [#535](https://github.com/bounswe/bounswe2023group4/issues/535) | Resolver |
+| Semantic Search Research | [#539](https://github.com/bounswe/bounswe2023group4/issues/539) | Resolver |
+| Annotation Server Conformance | [#545](https://github.com/bounswe/bounswe2023group4/issues/545) | Resolver |
+| Upload 11th Week's report | [#579](https://github.com/bounswe/bounswe2023group4/issues/579) | Resolver |
+| Annotation Swagger Improvement | [#605](https://github.com/bounswe/bounswe2023group4/issues/605) | Resolver |
+| Annotation Tests | [#608](https://github.com/bounswe/bounswe2023group4/issues/608) | Resolver |
+| Semantic Tag Request | [#615](https://github.com/bounswe/bounswe2023group4/issues/615) | Resolver |
+
 
 ### Management-related significant issues:
 |Task|Relevant significant issues|
@@ -1274,7 +1287,19 @@ I have created a mySql database to store users and connected this database to ou
 | Backend/feature/poll vote date | [PR#440](https://github.com/bounswe/bounswe2023group4/pull/440) |
 | Adding creator name to poll objects | [PR#426](https://github.com/bounswe/bounswe2023group4/pull/426) |
 | /polls/{pollId} GET return object improvement | [PR#429](https://github.com/bounswe/bounswe2023group4/pull/429) |
+| /polls/{pollId} GET return object improvement | [PR#429](https://github.com/bounswe/bounswe2023group4/pull/429) |
+| Add Automatic Tag Functionality | [PR#475](https://github.com/bounswe/bounswe2023group4/pull/475) |
+| Upload Lab report | [PR#492](https://github.com/bounswe/bounswe2023group4/pull/492) |
+| Implementing Annotation Server | [PR#534](https://github.com/bounswe/bounswe2023group4/pull/534) |
+| Annotation Improvement | [PR#602](https://github.com/bounswe/bounswe2023group4/pull/602) |
+| Annotation Swagger improvement | [PR#607](https://github.com/bounswe/bounswe2023group4/pull/607) |
+| Annotation server test functions | [PR#610](https://github.com/bounswe/bounswe2023group4/pull/610) |
+| Backend/feature/semantic request | [PR#618](https://github.com/bounswe/bounswe2023group4/pull/618) |
+| Semantic insert | [PR#619](https://github.com/bounswe/bounswe2023group4/pull/619) |
+| add semantic search endpoint | [PR#620](https://github.com/bounswe/bounswe2023group4/pull/620) |
+
+### Unit tests
+See [PR#469](https://github.com/bounswe/bounswe2023group4/pull/469) and [PR#610](https://github.com/bounswe/bounswe2023group4/pull/610) for the tests that I implemented. I have implemented unit tests for poll endpoints and Annotation server endpoints.
 
 ### Additional information:
-I have communicated actively with my team on our discord channel. Unfortunately, I was ill in the 5th week so I have low contributions at that time.
-
+I was also tasked with maintaining docker image, deploying server and maintaining the main database. Also, additionally, I was tasked with maintaining the mongoDB database for Annotation server
