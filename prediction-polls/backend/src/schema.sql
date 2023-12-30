@@ -38,7 +38,8 @@ CREATE TABLE polls (
     isOpen BOOLEAN DEFAULT true,
     lastJuryGathering DATETIME,
     juryReward INT DEFAULT 0,
-    finalized BOOLEAN DEFAULT false
+    finalized BOOLEAN DEFAULT false,
+    pollImage VARCHAR(255)
 );
 
 CREATE TABLE discrete_polls (
