@@ -610,8 +610,21 @@ async function finalizePoll(poll_id){
     }
 }
 
+async function updatePollPhoto(pollId, imageName){
+    const sql = 'UPDATE polls SET pollImage = ? WHERE id = ?';
+    try {
+        const [result] = await pool.query(sql,[imageName,pollId]);
+        return {status:"success"};
+    } catch (error) {
+        console.error(error)
+        console.error('updatePollPhoto(): Database Error');
+        throw error;
+    }
+
+}
+
 module.exports = {getPolls,getFamousPolls,getOpenedPollsOfUser,getVotedPollsOfUser,getPollWithId,getDiscretePollWithId,getContinuousPollWithId,
                   getPollTotalSpentPoint,addDiscretePoll,addContinuousPoll,getDiscretePollChoices,getDiscreteVoteCount,voteDiscretePoll,voteContinuousPoll,
                   getContinuousPollVotes,getTagsOfPoll,getUntaggedPolls,updateTagsScanned,addTopic,getDiscreteSelectionsWithPollId,
                   getContinuousSelectionsWithPollId,distributeRewards,distributeDomainPoint,closePoll,getPollCount,getLastGatheringTime,
-                  updateLastJuryGathering,getJuryReward,updateJuryReward,finalizePoll,addReport,getReports,addComment,getComments}
+                  updateLastJuryGathering,getJuryReward,updateJuryReward,finalizePoll,addReport,getReports,addComment,getComments,updatePollPhoto}

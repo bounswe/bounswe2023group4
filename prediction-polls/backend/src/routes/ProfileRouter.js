@@ -209,7 +209,7 @@ router.get('/:profileId', service.getProfileWithProfileId);
  *       400:
  *         description: Bad Request
  */
-router.post("/profilePhoto",authenticator.authorizeAccessToken,upload.single('image'),service.uploadImagetoS3);
+router.post("/profilePhoto",authenticator.authorizeAccessToken,upload.single('image'),service.uploadProfileImagetoS3);
 
 /**
  * @swagger
