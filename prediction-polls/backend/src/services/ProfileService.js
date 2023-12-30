@@ -37,7 +37,7 @@ async function getImagefromS3(imageName) {
     }
 }
 
-async function uploadImagetoS3(req, res) {
+async function uploadProfileImagetoS3(req, res) {
     const userId = req.user.id;
     const file = req.file
     const imageName = generateFileName()
@@ -316,4 +316,4 @@ async function getLeaderBoardRanking(req, res) {
 }
 
 
-module.exports = { getProfile, getProfileWithProfileId, getMyProfile, updateProfile,getImagefromS3, uploadImagetoS3, updateBadge, followProfiles, unfollowProfiles, getFollowerProfiles, getFollowedProfiles, getLeaderBoardRanking }
+module.exports = { getProfile, getProfileWithProfileId, getMyProfile, updateProfile,getImagefromS3,generateFileName, uploadProfileImagetoS3, updateBadge, followProfiles, unfollowProfiles, getFollowerProfiles, getFollowedProfiles, getLeaderBoardRanking }
