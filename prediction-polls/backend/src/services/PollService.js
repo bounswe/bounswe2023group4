@@ -1,10 +1,24 @@
 const db = require("../repositories/PollDB.js");
 const profileDb = require("../repositories/ProfileDB.js");
-const { getImagefromS3 } = require("../services/ProfileService.js");
+const aws = require('aws-sdk');
+const { getImagefromS3,generateFileName } = require("../services/ProfileService.js");
 const { findUser,incrementUserParticipate,decrementUserParticipate } = require('../repositories/AuthorizationDB.js');
 const errorCodes = require("../errorCodes.js")
 
 const reward_return_rate = 0.9 //Users will only get 90% of total point back when poll rewards are distributed
+
+const bucketName = process.env.AWS_BUCKET_NAME
+const region = process.env.AWS_BUCKET_REGION
+const accessKeyId = process.env.AWS_ACCESS_KEY
+const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
+
+aws.config.update({
+    accessKeyId: accessKeyId,
+    secretAccessKey: secretAccessKey,
+    region: region,
+});
+
+const s3Client = new aws.S3();
 
 async function getFamousPolls(req,res){
     try {
@@ -79,6 +93,15 @@ async function createPollsJson(poll_rows){
             profile_image = signed_image.signedUrl
         }
 
+        let poll_image = null
+        if(pollObject.pollImage){
+            const retrieved_poll_image = await getImagefromS3(pollObject.pollImage);
+            if (retrieved_poll_image.error) {
+                throw retrieved_poll_image.error;
+            }
+            poll_image = retrieved_poll_image.signedUrl
+        }
+
         const properties = {
             "id": pollObject.id,
             "question": pollObject.question,
@@ -86,6 +109,7 @@ async function createPollsJson(poll_rows){
             "creatorName": pollObject.username,
             "creatorUsername": pollObject.username,
             "creatorImage": profile_image,
+            "pollImage": poll_image,
             "pollType": pollObject.poll_type,
             "closingDate": pollObject.closingDate,
             "rejectVotes": (pollObject.numericFieldValue && pollObject.selectedTimeUnit) ? `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}` : null,
@@ -143,6 +167,15 @@ async function getPollWithId(req, res) {
             profile_image = signed_image.signedUrl
         }
 
+        let poll_image = null
+        if(pollObject.pollImage){
+            const retrieved_poll_image = await getImagefromS3(pollObject.pollImage);
+            if (retrieved_poll_image.error) {
+                throw retrieved_poll_image.error;
+            }
+            poll_image = retrieved_poll_image.signedUrl
+        }
+
         const pollType = pollObject.poll_type;
         const properties = {
             "id": pollObject.id,
@@ -151,6 +184,7 @@ async function getPollWithId(req, res) {
             "creatorName": pollObject.username,
             "creatorUsername": pollObject.username,
             "creatorImage": profile_image,
+            "pollImage": poll_image,
             "pollType": pollObject.poll_type,
             "closingDate": pollObject.closingDate,
             "rejectVotes": (pollObject.numericFieldValue && pollObject.selectedTimeUnit) ? `${pollObject.numericFieldValue} ${pollObject.selectedTimeUnit}` : null,
@@ -598,7 +632,34 @@ async function awardWinnersContinuousPoll(pollObject,correctAnswer,cont_type){
     }
 }
 
+async function uploadPollImagetoS3(req, res) {
+    const pollId = req.params.pollId
+    const file = req.file
+    const imageName = generateFileName()
+
+    const fileBuffer = file.buffer
+
+    const uploadParams = {
+        Bucket: bucketName,
+        Body: fileBuffer,
+        Key: imageName,
+        ContentType: req.file.mimetype
+    }
+
+    try {
+        const poll_result = await db.getPollWithId(pollId)
+        if(poll_result.length == 0){
+            throw errorCodes.NO_SUCH_POLL_ERROR
+        }
+        await s3Client.putObject(uploadParams).promise();
+        await db.updatePollPhoto( pollId, imageName );
+        res.status(200).send({ status: "Image uploaded successfully!" });
+    } catch (error) {
+        res.status(500).send({ error: error });
+    }
+}
+
 module.exports = { getFamousPolls, getOpenedPollsOfUser, getOpenedPollsOfGivenUser, getVotedPollsOfUser, createPollsJson, getPollWithId, 
     addDiscretePoll, addContinuousPoll, voteDiscretePoll, voteContinuousPoll, closePoll, reportPoll, getReports, addComment, getComments, 
-    awardWinnersContinuousPoll}
+    awardWinnersContinuousPoll,uploadPollImagetoS3}
 

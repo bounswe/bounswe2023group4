@@ -1,7 +1,11 @@
 const authenticator = require("../services/AuthorizationService.js");
 const service = require("../services/PollService.js");
+const multer = require('multer');
 const express = require('express');
 const router = express.Router();
+
+const storage = multer.memoryStorage()
+const upload = multer({ storage: storage })
 
 /**
  * @swagger
@@ -898,6 +902,49 @@ router.post('/:pollId/comment', authenticator.authorizeAccessToken, service.addC
  *         description: Poll not found
  */
 router.get('/:pollId/comments', service.getComments);
+
+/**
+ * @swagger
+ * /polls/{pollId}/pollImage:
+ *   post:
+ *     tags:
+ *       - polls
+ *     description: Upload poll image.
+ *     parameters:
+ *       - in: path
+ *         name: pollId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the poll
+ *     requestBody:
+ *       description: Image content
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               image:
+ *                 type: binary
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *             examples:
+ *               value:
+ *                 status:
+ *                   Image uploaded successfully!
+ *       400:
+ *         description: Bad Request
+ */
+router.post("/:pollId/pollImage",authenticator.authorizeAccessToken,upload.single('image'),service.uploadPollImagetoS3);
 
 module.exports = router;
 
