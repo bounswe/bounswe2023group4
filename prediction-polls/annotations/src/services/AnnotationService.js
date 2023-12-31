@@ -19,7 +19,10 @@ async function getAnnotations(req, res) {
   }
 
   if (source) {
-    filter['target.source'] = source;
+    filter['$or'] = [
+      { 'target.source': source },
+      { 'target.id': { $regex: `${source}.*` }  }
+    ]
   }
 
   try {
