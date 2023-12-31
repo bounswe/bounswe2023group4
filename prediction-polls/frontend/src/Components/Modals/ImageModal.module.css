@@ -1,18 +1,36 @@
-.image{
+.image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 12px;
 }
 
-.imagecontainer{
+.imagecontainer {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
-.container{
+.container {
     display: flex;
     justify-content: center;
-    
+
+}
+
+.annotationPopOverStyle {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-900);
+}
+
+.annotationTextBox {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.annotationButton {
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: 700;
 }

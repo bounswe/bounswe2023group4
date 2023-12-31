@@ -12,6 +12,7 @@ import getProfileMe from "../../api/requests/profileMe.jsx";
 
 
 
+
 function Vote() {
   let { id } = useParams();
   let parsedID = parseInt(id);
@@ -224,8 +225,9 @@ function Vote() {
   });
   //let annotationList = [{ annotation_typer: "Berk", annotation_target: "finals", annotation_body: "Final Match", prefix: "in the ", suffix: " in the next", annotation_date: "12/10/2021" }, { annotation_typer: "Berke", annotation_target: "Maverics", annotation_body: "A basketball team", prefix: "", suffix: "", annotation_date: "14/10/2021" }];
   const handleOpenChange = (newOpen) => {
-    setPopOver(newOpen);
-
+    if (selectedText.length > 0) {
+      setPopOver(newOpen);
+    }
   };
   const hide = () => {
     setSelectedText("");
