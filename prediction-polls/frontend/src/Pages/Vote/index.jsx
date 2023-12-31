@@ -6,7 +6,7 @@ import pointData from "../../MockData/PointList.json"
 import { Button, Input, Dropdown, Popover, Modal } from 'antd';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import getProfileMe from "../../api/requests/profileMe.jsx";
 
 
@@ -17,6 +17,7 @@ function Vote() {
   let { id } = useParams();
   let parsedID = parseInt(id);
   const [userData, setUserData] = useState({});
+  const canvasRef = useRef(null);
 
 
   React.useEffect(() => {
@@ -127,6 +128,43 @@ function Vote() {
   }, []);
 
 
+  const drawSelection = () => {
+    if (showImageAnnotationModal) {
+      const canvas = canvasRef.current;
+      const context = canvas.getContext('2d');
+
+      // Clear previous selection
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Redraw the background image
+      const image = new Image();
+      image.src = polldata.pollImage;
+
+      image.onload = () => {
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+        // Draw the highlighted rectangle
+        const { startX, startY, endX, endY } = selectionBody;
+        //const startX = 200;
+        //const startY = 200;
+        //const endX   = 300;
+        //const endY   = 300;
+        const width = endX - startX;
+        const height = endY - startY;
+
+        // Draw the border of the rectangle
+        context.strokeStyle = 'yellow';
+        context.lineWidth = 5;
+        context.strokeRect(startX, startY, width, height);
+
+      };
+    }
+  };
+
+  useEffect(() => {
+    drawSelection();
+
+  }, [showImageAnnotationModal]);
   const handleVoting = async () => {
     try {
       console.log("isOpen");
@@ -389,7 +427,8 @@ function Vote() {
     }
 
   };
-  const handleOk = () => {
+
+  const handleClose = () => {
     setShowImageAnnotationModal(false);
   };
   if (isLoaded == true) {
@@ -397,12 +436,13 @@ function Vote() {
       <div className={styles.page}>
         <Modal
           open={showImageAnnotationModal}
-          onOk={handleOk}
+          footer={null}
+          onCancel={handleClose}
         >
-          <img
-            width={400}
-            height={300}
-            src={polldata.pollImage} alt="Poll" />
+          <canvas
+            width={400} // Set your desired canvas width
+            height={300} // Set your desired canvas height
+            ref={canvasRef} />
         </Modal>
         <Menu currentPage="Vote" />
         <div className={styles.page_row}>
@@ -471,8 +511,14 @@ function Vote() {
 
                 <div className={styles.annotationBoxStyle}
                   onClick={() => {
+                    //const startX = 200;
+                    //const startY = 200;
+                    //const endX   = 300;
+                    //const endY   = 300;
+                    const dataDimensions = { startX: 200, startY: 200, endX: 300, endY: 300 }
+                    setSelectionBody(dataDimensions);
                     setShowImageAnnotationModal(true);
-                    setSelectionBody({ startX: 150, starty: 200, endX: 300, endY: 500 });
+                    drawSelection();
                   }}>
                   <span className={styles.annotationTarget}>
                     {`Image Annotation`}
@@ -481,7 +527,7 @@ function Vote() {
                     {`Sport Type`}
                   </span>
                 </div>
-                
+
                 {annotationList.length == 0 ? <p>No Annotations are available</p> : (annotationList.map(
                   (annotation, index) => {
                     return <div onClick={() => {
@@ -519,7 +565,7 @@ function Vote() {
               </div></div> : <div></div>}
           </div> : <div></div>
         }
-      </div>
+      </div >
 
 
     )
