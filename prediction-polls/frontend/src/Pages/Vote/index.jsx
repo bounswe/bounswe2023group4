@@ -3,7 +3,7 @@ import PollCard from "../../Components/PollCard";
 import styles from "./Vote.module.css";
 import PointsButton from "../../Components/PointsButton";
 import pointData from "../../MockData/PointList.json"
-import { Button, Input, Dropdown, Popover } from 'antd';
+import { Button, Input, Dropdown, Popover, Modal } from 'antd';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
@@ -94,8 +94,9 @@ function Vote() {
   const [prefix, setPrefix] = React.useState("");
   const [suffix, setSuffix] = React.useState("");
   const [showAnnotation, setShowAnnotation] = React.useState(false);
+  const [showImageAnnotationModal, setShowImageAnnotationModal] = React.useState(false);
   const [selectedAnnotationList, setSelectedAnnotationList] = React.useState([]);
-
+  const [selectionBody, setSelectionBody] = React.useState({ startX: 0, endX: 0, startY: 0, endY: 0 });
   const showViewAnnotateModal = async () => {
     await fetchAnnotations();
     setSelectedAnnotationList(Array(annotationList.length).fill(false));
@@ -351,41 +352,58 @@ function Vote() {
 
   }
   const handleAnnotationClick = (annotation) => {
-    const searchWords = `${annotation.target.selector.prefix}${annotation.target.selector.exact}${annotation.target.selector.suffix}`;
-    let pollContent = JSON.parse(JSON.stringify(polldataOriginal));
-    if (pollContent.question.includes(searchWords)) {
-      const index = pollContent.question.indexOf(annotation.target.selector.exact);
-      const start = 0
-      const end = pollContent.question.length;
-      const body = `<mark>${annotation.target.selector.exact}</mark>`;
-      const prefix = pollContent.question.substring(start, index);
-      const suffix = pollContent.question.substring(index + annotation.target.selector.exact.length, end);
-      const newString = `${prefix}${body}${suffix}`;
-      pollContent.question = newString;
+    if (annotation.target.selector.type == "TextQuoteSelector") {
+      const searchWords = `${annotation.target.selector.prefix}${annotation.target.selector.exact}${annotation.target.selector.suffix}`;
+      let pollContent = JSON.parse(JSON.stringify(polldataOriginal));
+      if (pollContent.question.includes(searchWords)) {
+        const index = pollContent.question.indexOf(annotation.target.selector.exact);
+        const start = 0
+        const end = pollContent.question.length;
+        const body = `<mark>${annotation.target.selector.exact}</mark>`;
+        const prefix = pollContent.question.substring(start, index);
+        const suffix = pollContent.question.substring(index + annotation.target.selector.exact.length, end);
+        const newString = `${prefix}${body}${suffix}`;
+        pollContent.question = newString;
+      }
+      else {
+        if (pollContent.pollType == "discrete") {
+          pollContent.options.map((option) => {
+            if (option.choice_text.includes(searchWords)) {
+              const index = option.choice_text.indexOf(annotation.target.selector.exact);
+              const start = 0;
+              const end = option.choice_text.length;
+              const body = `<mark>${annotation.target.selector.exact}</mark>`;
+              const prefix = option.choice_text.substring(start, index);
+              const suffix = option.choice_text.substring(index + annotation.target.selector.exact.length, end);
+              const newString = `${prefix}${body}${suffix}`;
+              pollContent.options[pollContent.options.indexOf(option)].choice_text = newString;
+            }
+          });
+        }
+      }
+      console.log(pollContent);
+      return pollContent;
     }
     else {
-      if (pollContent.pollType == "discrete") {
-        pollContent.options.map((option) => {
-          if (option.choice_text.includes(searchWords)) {
-            const index = option.choice_text.indexOf(annotation.target.selector.exact);
-            const start = 0;
-            const end = option.choice_text.length;
-            const body = `<mark>${annotation.target.selector.exact}</mark>`;
-            const prefix = option.choice_text.substring(start, index);
-            const suffix = option.choice_text.substring(index + annotation.target.selector.exact.length, end);
-            const newString = `${prefix}${body}${suffix}`;
-            pollContent.options[pollContent.options.indexOf(option)].choice_text = newString;
-          }
-        });
-      }
+
     }
-    console.log(pollContent);
-    return pollContent;
+
+  };
+  const handleOk = () => {
+    setShowImageAnnotationModal(false);
   };
   if (isLoaded == true) {
     return (
-
       <div className={styles.page}>
+        <Modal
+          open={showImageAnnotationModal}
+          onOk={handleOk}
+        >
+          <img
+            width={400}
+            height={300}
+            src={polldata.pollImage} alt="Poll" />
+        </Modal>
         <Menu currentPage="Vote" />
         <div className={styles.page_row}>
           <Dropdown
@@ -448,42 +466,57 @@ function Vote() {
 
         {viewAnnotation == true ?
           <div className={styles.AnnotationList}>
-            {showAnnotation ? <div className={styles.columnStyle}>
-              {annotationList.length == 0 ? <p>No Annotations are available</p> : (annotationList.map(
-                (annotation, index) => {
-                  return <div onClick={() => {
-                    const output = handleAnnotationClick(annotation);
-                    setPolldata(output);
-                    setSelectedAnnotationList(Array(annotationList.length).fill(false));
-                    var index = annotationList.indexOf(annotation);
-                    var newList = [];
-                    for (let i = 0; i < annotationList.length; i++) {
-                      if (i == index) {
-                        newList = [...newList, true];
+            {showAnnotation ? <div>
+              <div className={styles.columnStyle}>
+
+                <div className={styles.annotationBoxStyle}
+                  onClick={() => {
+                    setShowImageAnnotationModal(true);
+                    setSelectionBody({ startX: 150, starty: 200, endX: 300, endY: 500 });
+                  }}>
+                  <span className={styles.annotationTarget}>
+                    {`Image Annotation`}
+                  </span>
+                  <span className={styles.annotationBody}>
+                    {`Sport Type`}
+                  </span>
+                </div>
+                
+                {annotationList.length == 0 ? <p>No Annotations are available</p> : (annotationList.map(
+                  (annotation, index) => {
+                    return <div onClick={() => {
+                      const output = handleAnnotationClick(annotation);
+                      setPolldata(output);
+                      setSelectedAnnotationList(Array(annotationList.length).fill(false));
+                      var index = annotationList.indexOf(annotation);
+                      var newList = [];
+                      for (let i = 0; i < annotationList.length; i++) {
+                        if (i == index) {
+                          newList = [...newList, true];
+                        }
+                        else {
+                          newList = [...newList, false];
+                        }
                       }
-                      else {
-                        newList = [...newList, false];
-                      }
+                      setSelectedAnnotationList(newList);
                     }
-                    setSelectedAnnotationList(newList);
+                    }
+                      className={selectedAnnotationList[index] ? styles.selectedAnnotationBoxStyle : styles.annotationBoxStyle}
+                    >
+                      <div className={styles.annotationRow}>
+                        <span>{formatCreator(annotation.creator)}</span>
+                        <span>{formatDate(annotation.created)}</span>
+                      </div>
+                      <span className={styles.annotationTarget}>
+                        {annotation.target.selector.exact}
+                      </span>
+                      <span className={styles.annotationBody}>
+                        {`${annotation.body.value}`}
+                      </span>
+                    </div>;
                   }
-                  }
-                    className={selectedAnnotationList[index] ? styles.selectedAnnotationBoxStyle : styles.annotationBoxStyle}
-                  >
-                    <div className={styles.annotationRow}>
-                      <span>{formatCreator(annotation.creator)}</span>
-                      <span>{formatDate(annotation.created)}</span>
-                    </div>
-                    <span className={styles.annotationTarget}>
-                      {annotation.target.selector.exact}
-                    </span>
-                    <span className={styles.annotationBody}>
-                      {`${annotation.body.value}`}
-                    </span>
-                  </div>;
-                }
-              ))}
-            </div> : <div></div>}
+                ))}
+              </div></div> : <div></div>}
           </div> : <div></div>
         }
       </div>
