@@ -14,6 +14,7 @@ import moment from "moment";
 import useModal from "../../contexts/ModalContext/useModal";
 import { ModalNames } from "../../contexts/ModalContext/ModalNames.js";
 import getPollComments from "../../api/requests/getPollComments.jsx";
+import { Tooltip } from "antd";
 
 function PollCard({ PollData, setAnswer, onClick, clickTextFunction }) {
   const [selectedArray, setSelectedArray] = React.useState(
@@ -120,10 +121,16 @@ function PollCard({ PollData, setAnswer, onClick, clickTextFunction }) {
       : navigate("/auth/sign-in");
   };
   const handleReport = () => {
-    isLoggedIn ? openModal(ModalNames.ReportModal, null, PollData.id) : navigate("/auth/sign-in");
+    isLoggedIn
+      ? openModal(ModalNames.ReportModal, null, PollData.id)
+      : navigate("/auth/sign-in");
   };
 
   const questionHTML = `<p>${PollData.question}</p>`;
+
+  const showLargeImage = () => {
+    openModal(ModalNames.ImageModal, PollData);
+  };
   return (
     <div
       className={`${styles.card} ${
@@ -137,6 +144,13 @@ function PollCard({ PollData, setAnswer, onClick, clickTextFunction }) {
             <PollTag TagName={tag} key={index} />
           ))}
         </div>
+        {PollData.pollImage && (
+          <Tooltip title="Click to enlarge picture">
+            <div className={styles.pollImage} onClick={showLargeImage}>
+              <img src={PollData.pollImage} alt="Poll" />
+            </div>
+          </Tooltip>
+        )}
         <div className={styles.questionPoints}>
           <div className={styles.question}>
             <div

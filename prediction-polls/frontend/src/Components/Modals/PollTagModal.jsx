@@ -74,6 +74,7 @@ const PollTagModal = ({pollId}) => {
         open={modals[ModalNames.PollTagModal]}
         onOk={handleOk}
         onCancel={handleCancel}
+        maskClosable={false} 
         footer={[
           <Button key="submit" type="primary" onClick={handleOk}>
             Add

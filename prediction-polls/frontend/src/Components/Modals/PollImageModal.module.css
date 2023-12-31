@@ -1,0 +1,25 @@
+.profileImage {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    justify-self: center;
+    box-shadow: 2px 4px 8px var(--neutral-shadow);
+    cursor:pointer;
+  }
+  .profileImagePlaceholder {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    background-color: var(--neutral-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor:pointer;
+  }
+
+.profileImageWrapperStyle {
+    display: flex;
+    justify-content: center;
+    }
