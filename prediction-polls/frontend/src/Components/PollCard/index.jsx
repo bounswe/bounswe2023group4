@@ -146,7 +146,8 @@ function PollCard({ PollData, setAnswer, onClick, clickTextFunction }) {
         </div>
         {PollData.pollImage && (
           <Tooltip title="Click to enlarge picture">
-            <div className={styles.pollImage} onClick={showLargeImage}>
+            <div 
+            className={styles.pollImage} onClick={showLargeImage}>
               <img src={PollData.pollImage} alt="Poll" />
             </div>
           </Tooltip>

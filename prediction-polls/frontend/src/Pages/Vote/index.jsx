@@ -3,11 +3,12 @@ import PollCard from "../../Components/PollCard";
 import styles from "./Vote.module.css";
 import PointsButton from "../../Components/PointsButton";
 import pointData from "../../MockData/PointList.json"
-import { Button, Input, Dropdown, Popover } from 'antd';
+import { Button, Input, Dropdown, Popover, Modal } from 'antd';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import getProfileMe from "../../api/requests/profileMe.jsx";
+
 
 
 
@@ -16,6 +17,7 @@ function Vote() {
   let { id } = useParams();
   let parsedID = parseInt(id);
   const [userData, setUserData] = useState({});
+  const canvasRef = useRef(null);
 
 
   React.useEffect(() => {
@@ -73,7 +75,16 @@ function Vote() {
     const response = await fetch(url);
 
     const result = await response.json();
-    setAnnotationList(result.annotations);
+
+    const index  =  polldata.pollImage.indexOf('?');
+    const subImageURL =  polldata.pollImage.substring(0,index);
+    const url_image = `${process.env.REACT_APP_Annotation_LINK}/annotations?source=${subImageURL}`;
+    const response_image = await fetch(url_image);
+
+    const result_image = await response_image.json();
+    const combinedList = [...result.annotations, ...result_image.annotations];
+
+    setAnnotationList(combinedList);
 
   }
 
@@ -93,8 +104,9 @@ function Vote() {
   const [prefix, setPrefix] = React.useState("");
   const [suffix, setSuffix] = React.useState("");
   const [showAnnotation, setShowAnnotation] = React.useState(false);
+  const [showImageAnnotationModal, setShowImageAnnotationModal] = React.useState(false);
   const [selectedAnnotationList, setSelectedAnnotationList] = React.useState([]);
-
+  const [selectionBody, setSelectionBody] = React.useState({ x: 0, y: 0, w: 0, h: 0 });
   const showViewAnnotateModal = async () => {
     await fetchAnnotations();
     setSelectedAnnotationList(Array(annotationList.length).fill(false));
@@ -125,6 +137,37 @@ function Vote() {
   }, []);
 
 
+  const drawSelection = () => {
+    if (showImageAnnotationModal) {
+      const canvas = canvasRef.current;
+      const context = canvas.getContext('2d');
+
+      // Clear previous selection
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Redraw the background image
+      const image = new Image();
+      image.src = polldata.pollImage;
+
+      image.onload = () => {
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+        // Draw the highlighted rectangle
+        const { x, y, w, h } = selectionBody;
+
+        // Draw the border of the rectangle
+        context.strokeStyle = 'yellow';
+        context.lineWidth = 3;
+        context.strokeRect(x, y, w, h);
+
+      };
+    }
+  };
+
+  useEffect(() => {
+    drawSelection();
+
+  }, [showImageAnnotationModal]);
   const handleVoting = async () => {
     try {
       console.log("isOpen");
@@ -224,8 +267,9 @@ function Vote() {
   });
   //let annotationList = [{ annotation_typer: "Berk", annotation_target: "finals", annotation_body: "Final Match", prefix: "in the ", suffix: " in the next", annotation_date: "12/10/2021" }, { annotation_typer: "Berke", annotation_target: "Maverics", annotation_body: "A basketball team", prefix: "", suffix: "", annotation_date: "14/10/2021" }];
   const handleOpenChange = (newOpen) => {
-    setPopOver(newOpen);
-
+    if (selectedText.length > 0) {
+      setPopOver(newOpen);
+    }
   };
   const hide = () => {
     setSelectedText("");
@@ -349,41 +393,62 @@ function Vote() {
 
   }
   const handleAnnotationClick = (annotation) => {
-    const searchWords = `${annotation.target.selector.prefix}${annotation.target.selector.exact}${annotation.target.selector.suffix}`;
-    let pollContent = JSON.parse(JSON.stringify(polldataOriginal));
-    if (pollContent.question.includes(searchWords)) {
-      const index = pollContent.question.indexOf(annotation.target.selector.exact);
-      const start = 0
-      const end = pollContent.question.length;
-      const body = `<mark>${annotation.target.selector.exact}</mark>`;
-      const prefix = pollContent.question.substring(start, index);
-      const suffix = pollContent.question.substring(index + annotation.target.selector.exact.length, end);
-      const newString = `${prefix}${body}${suffix}`;
-      pollContent.question = newString;
+    if (annotation.target.selector.type == "TextQuoteSelector") {
+      const searchWords = `${annotation.target.selector.prefix}${annotation.target.selector.exact}${annotation.target.selector.suffix}`;
+      let pollContent = JSON.parse(JSON.stringify(polldataOriginal));
+      if (pollContent.question.includes(searchWords)) {
+        const index = pollContent.question.indexOf(annotation.target.selector.exact);
+        const start = 0
+        const end = pollContent.question.length;
+        const body = `<mark>${annotation.target.selector.exact}</mark>`;
+        const prefix = pollContent.question.substring(start, index);
+        const suffix = pollContent.question.substring(index + annotation.target.selector.exact.length, end);
+        const newString = `${prefix}${body}${suffix}`;
+        pollContent.question = newString;
+      }
+      else {
+        if (pollContent.pollType == "discrete") {
+          pollContent.options.map((option) => {
+            if (option.choice_text.includes(searchWords)) {
+              const index = option.choice_text.indexOf(annotation.target.selector.exact);
+              const start = 0;
+              const end = option.choice_text.length;
+              const body = `<mark>${annotation.target.selector.exact}</mark>`;
+              const prefix = option.choice_text.substring(start, index);
+              const suffix = option.choice_text.substring(index + annotation.target.selector.exact.length, end);
+              const newString = `${prefix}${body}${suffix}`;
+              pollContent.options[pollContent.options.indexOf(option)].choice_text = newString;
+            }
+          });
+        }
+      }
+      console.log(pollContent);
+      return pollContent;
     }
     else {
-      if (pollContent.pollType == "discrete") {
-        pollContent.options.map((option) => {
-          if (option.choice_text.includes(searchWords)) {
-            const index = option.choice_text.indexOf(annotation.target.selector.exact);
-            const start = 0;
-            const end = option.choice_text.length;
-            const body = `<mark>${annotation.target.selector.exact}</mark>`;
-            const prefix = option.choice_text.substring(start, index);
-            const suffix = option.choice_text.substring(index + annotation.target.selector.exact.length, end);
-            const newString = `${prefix}${body}${suffix}`;
-            pollContent.options[pollContent.options.indexOf(option)].choice_text = newString;
-          }
-        });
-      }
+
     }
-    console.log(pollContent);
-    return pollContent;
+
+  };
+
+  const handleClose = () => {
+    setShowImageAnnotationModal(false);
+    setSelectedAnnotationList(Array(annotationList.length).fill(false));
+
   };
   if (isLoaded == true) {
     return (
-
       <div className={styles.page}>
+        <Modal
+          open={showImageAnnotationModal}
+          footer={null}
+          onCancel={handleClose}
+        >
+          <canvas
+            width={400} // Set your desired canvas width
+            height={300} // Set your desired canvas height
+            ref={canvasRef} />
+        </Modal>
         <Menu currentPage="Vote" />
         <div className={styles.page_row}>
           <Dropdown
@@ -446,45 +511,93 @@ function Vote() {
 
         {viewAnnotation == true ?
           <div className={styles.AnnotationList}>
-            {showAnnotation ? <div className={styles.columnStyle}>
-              {annotationList.length == 0 ? <p>No Annotations are available</p> : (annotationList.map(
-                (annotation, index) => {
-                  return <div onClick={() => {
-                    const output = handleAnnotationClick(annotation);
-                    setPolldata(output);
-                    setSelectedAnnotationList(Array(annotationList.length).fill(false));
-                    var index = annotationList.indexOf(annotation);
-                    var newList = [];
-                    for (let i = 0; i < annotationList.length; i++) {
-                      if (i == index) {
-                        newList = [...newList, true];
+            {showAnnotation ? <div>
+              <div className={styles.columnStyle}>
+                {annotationList.length == 0 ? <p>No Annotations are available</p> : (annotationList.map(
+                  (annotation, index) => {
+                    if (annotation.target.type == "Image") {
+                      return <div onClick={() => {
+                        for (let index = annotation.target.id.length; index > 0; index = index - 1) {
+                          if (annotation.target.id[index] == '=') {
+                            const substring = annotation.target.id.substring(index + 1, annotation.target.id.length);
+                            const stringArray = substring.split(',');
+                            let x = Number(stringArray[0]);
+                            let y = Number(stringArray[1]);
+                            let w = Number(stringArray[2]);
+                            let h = Number(stringArray[3]);
+                            setSelectionBody({ x: x, y: y, w: w, h: h });
+                            break;
+                          }
+                        }
+                        setPolldata(polldataOriginal);
+                        setShowImageAnnotationModal(true);
+                        drawSelection();
+                        setSelectedAnnotationList(Array(annotationList.length).fill(false));
+                        var index = annotationList.indexOf(annotation);
+                        var newList = [];
+                        for (let i = 0; i < annotationList.length; i++) {
+                          if (i == index) {
+                            newList = [...newList, true];
+                          }
+                          else {
+                            newList = [...newList, false];
+                          }
+                        }
+                        setSelectedAnnotationList(newList);
                       }
-                      else {
-                        newList = [...newList, false];
                       }
+                        className={selectedAnnotationList[index] ? styles.selectedAnnotationBoxStyle : styles.annotationBoxStyle}
+                      >
+                        <div className={styles.annotationRow}>
+                          <span>{formatCreator(annotation.creator)}</span>
+                          <span>{formatDate(annotation.created)}</span>
+                        </div>
+                        <span className={styles.annotationTarget}>
+                          {`Image Annotation`}
+                        </span>
+                        <span className={styles.annotationBody}>
+                          {`${annotation.body.value}`}
+                        </span>
+                      </div>;
                     }
-                    setSelectedAnnotationList(newList);
+                    else {
+                      return <div onClick={() => {
+                        const output = handleAnnotationClick(annotation);
+                        setPolldata(output);
+                        setSelectedAnnotationList(Array(annotationList.length).fill(false));
+                        var index = annotationList.indexOf(annotation);
+                        var newList = [];
+                        for (let i = 0; i < annotationList.length; i++) {
+                          if (i == index) {
+                            newList = [...newList, true];
+                          }
+                          else {
+                            newList = [...newList, false];
+                          }
+                        }
+                        setSelectedAnnotationList(newList);
+                      }
+                      }
+                        className={selectedAnnotationList[index] ? styles.selectedAnnotationBoxStyle : styles.annotationBoxStyle}
+                      >
+                        <div className={styles.annotationRow}>
+                          <span>{formatCreator(annotation.creator)}</span>
+                          <span>{formatDate(annotation.created)}</span>
+                        </div>
+                        <span className={styles.annotationTarget}>
+                          {annotation.target.selector.exact}
+                        </span>
+                        <span className={styles.annotationBody}>
+                          {`${annotation.body.value}`}
+                        </span>
+                      </div>;
+                    }
                   }
-                  }
-                    className={selectedAnnotationList[index] ? styles.selectedAnnotationBoxStyle : styles.annotationBoxStyle}
-                  >
-                    <div className={styles.annotationRow}>
-                      <span>{formatCreator(annotation.creator)}</span>
-                      <span>{formatDate(annotation.created)}</span>
-                    </div>
-                    <span className={styles.annotationTarget}>
-                      {annotation.target.selector.exact}
-                    </span>
-                    <span className={styles.annotationBody}>
-                      {`${annotation.body.value}`}
-                    </span>
-                  </div>;
-                }
-              ))}
-            </div> : <div></div>}
+                ))}
+              </div></div> : <div></div>}
           </div> : <div></div>
         }
-      </div>
+      </div >
 
 
     )
