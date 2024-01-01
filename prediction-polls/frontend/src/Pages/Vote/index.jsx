@@ -157,7 +157,7 @@ function Vote() {
 
         // Draw the border of the rectangle
         context.strokeStyle = 'yellow';
-        context.lineWidth = 5;
+        context.lineWidth = 3;
         context.strokeRect(x, y, w, h);
 
       };
