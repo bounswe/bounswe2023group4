@@ -75,7 +75,14 @@ function Vote() {
     const response = await fetch(url);
 
     const result = await response.json();
-    setAnnotationList(result.annotations);
+
+    const url_image = `${process.env.REACT_APP_Annotation_LINK}/annotations?source=${polldata.pollImage}`;
+    const response_image = await fetch(url_image);
+
+    const result_image = await response_image.json();
+    const combinedList = [...result.annotations, ...result_image.annotations];
+
+    setAnnotationList(combinedList);
 
   }
 
@@ -97,7 +104,7 @@ function Vote() {
   const [showAnnotation, setShowAnnotation] = React.useState(false);
   const [showImageAnnotationModal, setShowImageAnnotationModal] = React.useState(false);
   const [selectedAnnotationList, setSelectedAnnotationList] = React.useState([]);
-  const [selectionBody, setSelectionBody] = React.useState({ startX: 0, endX: 0, startY: 0, endY: 0 });
+  const [selectionBody, setSelectionBody] = React.useState({ x: 0, y: 0, w: 0, h: 0 });
   const showViewAnnotateModal = async () => {
     await fetchAnnotations();
     setSelectedAnnotationList(Array(annotationList.length).fill(false));
@@ -144,18 +151,12 @@ function Vote() {
         context.drawImage(image, 0, 0, canvas.width, canvas.height);
 
         // Draw the highlighted rectangle
-        const { startX, startY, endX, endY } = selectionBody;
-        //const startX = 200;
-        //const startY = 200;
-        //const endX   = 300;
-        //const endY   = 300;
-        const width = endX - startX;
-        const height = endY - startY;
+        const { x, y, w, h } = selectionBody;
 
         // Draw the border of the rectangle
         context.strokeStyle = 'yellow';
         context.lineWidth = 5;
-        context.strokeRect(startX, startY, width, height);
+        context.strokeRect(x, y, w, h);
 
       };
     }
@@ -508,58 +509,84 @@ function Vote() {
           <div className={styles.AnnotationList}>
             {showAnnotation ? <div>
               <div className={styles.columnStyle}>
-
-                <div className={styles.annotationBoxStyle}
-                  onClick={() => {
-                    //const startX = 200;
-                    //const startY = 200;
-                    //const endX   = 300;
-                    //const endY   = 300;
-                    const dataDimensions = { startX: 200, startY: 200, endX: 300, endY: 300 }
-                    setSelectionBody(dataDimensions);
-                    setShowImageAnnotationModal(true);
-                    drawSelection();
-                  }}>
-                  <span className={styles.annotationTarget}>
-                    {`Image Annotation`}
-                  </span>
-                  <span className={styles.annotationBody}>
-                    {`Sport Type`}
-                  </span>
-                </div>
-
                 {annotationList.length == 0 ? <p>No Annotations are available</p> : (annotationList.map(
                   (annotation, index) => {
-                    return <div onClick={() => {
-                      const output = handleAnnotationClick(annotation);
-                      setPolldata(output);
-                      setSelectedAnnotationList(Array(annotationList.length).fill(false));
-                      var index = annotationList.indexOf(annotation);
-                      var newList = [];
-                      for (let i = 0; i < annotationList.length; i++) {
-                        if (i == index) {
-                          newList = [...newList, true];
+                    if (annotation.target.type == "Image") {
+                      return <div onClick={() => {
+                        for (let index = annotation.target.id.length; index > 0; index = index - 1) {
+                          if (annotation.target.id[index] == '=') {
+                            const substring = annotation.target.id.substring(index + 1, annotation.target.id.length);
+                            const stringArray = substring.split(',');
+                            let x = Number(stringArray[0]);
+                            let y = Number(stringArray[1]);
+                            let w = Number(stringArray[2]);
+                            let h = Number(stringArray[3]);
+                            setSelectionBody({ x: x, y: y, w: w, h: h });
+                            break;
+                          }
                         }
-                        else {
-                          newList = [...newList, false];
+                        setShowImageAnnotationModal(true);
+                        drawSelection();
+                        setSelectedAnnotationList(Array(annotationList.length).fill(false));
+                        var index = annotationList.indexOf(annotation);
+                        var newList = [];
+                        for (let i = 0; i < annotationList.length; i++) {
+                          if (i == index) {
+                            newList = [...newList, true];
+                          }
+                          else {
+                            newList = [...newList, false];
+                          }
                         }
+                        setSelectedAnnotationList(newList);
                       }
-                      setSelectedAnnotationList(newList);
+                      }
+                        className={selectedAnnotationList[index] ? styles.selectedAnnotationBoxStyle : styles.annotationBoxStyle}
+                      >
+                        <div className={styles.annotationRow}>
+                          <span>{formatCreator(annotation.creator)}</span>
+                          <span>{formatDate(annotation.created)}</span>
+                        </div>
+                        <span className={styles.annotationTarget}>
+                          {`Image Annotation`}
+                        </span>
+                        <span className={styles.annotationBody}>
+                          {`${annotation.body.value}`}
+                        </span>
+                      </div>;
                     }
+                    else {
+                      return <div onClick={() => {
+                        const output = handleAnnotationClick(annotation);
+                        setPolldata(output);
+                        setSelectedAnnotationList(Array(annotationList.length).fill(false));
+                        var index = annotationList.indexOf(annotation);
+                        var newList = [];
+                        for (let i = 0; i < annotationList.length; i++) {
+                          if (i == index) {
+                            newList = [...newList, true];
+                          }
+                          else {
+                            newList = [...newList, false];
+                          }
+                        }
+                        setSelectedAnnotationList(newList);
+                      }
+                      }
+                        className={selectedAnnotationList[index] ? styles.selectedAnnotationBoxStyle : styles.annotationBoxStyle}
+                      >
+                        <div className={styles.annotationRow}>
+                          <span>{formatCreator(annotation.creator)}</span>
+                          <span>{formatDate(annotation.created)}</span>
+                        </div>
+                        <span className={styles.annotationTarget}>
+                          {annotation.target.selector.exact}
+                        </span>
+                        <span className={styles.annotationBody}>
+                          {`${annotation.body.value}`}
+                        </span>
+                      </div>;
                     }
-                      className={selectedAnnotationList[index] ? styles.selectedAnnotationBoxStyle : styles.annotationBoxStyle}
-                    >
-                      <div className={styles.annotationRow}>
-                        <span>{formatCreator(annotation.creator)}</span>
-                        <span>{formatDate(annotation.created)}</span>
-                      </div>
-                      <span className={styles.annotationTarget}>
-                        {annotation.target.selector.exact}
-                      </span>
-                      <span className={styles.annotationBody}>
-                        {`${annotation.body.value}`}
-                      </span>
-                    </div>;
                   }
                 ))}
               </div></div> : <div></div>}

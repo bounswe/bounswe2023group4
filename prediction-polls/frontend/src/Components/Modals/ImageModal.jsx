@@ -19,43 +19,42 @@ const ImageModal = ({ pollData }) => {
 
   const handleHideButtonClick = () => {
     clearCanvas();
+    setSelection({ startX: 0, startY: 0, endX: 0, endY: 0 });
+    setAnnotationBody("");
   };
 
   const handleAnnotation = async () => {
+    console.log( `Link:\n${pollData.pollImage}#xywh=${selection.startX},${selection.startY},${selection.endX - selection.startX},${selection.endY-selection.startY}`);
+    if (annotationBody.length > 0) {
+      const url = `${process.env.REACT_APP_Annotation_LINK}/annotations`;
+      const requestBody = {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "type": "Annotation",
+        "target": {
+          "id": `${pollData.pollImage}#xywh=${selection.startX},${selection.startY},${selection.endX - selection.startX},${selection.endY-selection.startY}`,
+          "type": "Image",
+        },
+        "body": {
+          "type": "TextualBody",
+          "value": `${annotationBody}`,
+          "format": "text/plain"
+        },
+        "creator": `${process.env.REACT_APP_FRONTEND_LINK}/profile/${localStorage.getItem("username")}`
+      };
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/ld+json',
+          'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+        },
+        body: JSON.stringify({ ...requestBody })
+      };
 
-    const url = `${process.env.REACT_APP_Annotation_LINK}/annotations`;
-    const requestBody = {
-      "@context": "http://www.w3.org/ns/anno.jsonld",
-      "type": "Annotation",
-      "target": {
-        "source": `${window.location.href}`,
-        "selector": {
-          "type": "TextQuoteSelector",
-        }
-      },
-      "body": {
-        "type": "TextualBody",
-        "value": `${annotationBody}`,
-        "format": "text/plain"
-      },
-      "creator": `${process.env.REACT_APP_FRONTEND_LINK}/profile/${localStorage.getItem("username")}`
-    };
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/ld+json',
-        'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
-      },
-      body: JSON.stringify({ ...requestBody })
-    };
-
-    const response = await fetch(url, requestOptions);
-
-
-    handleHideButtonClick();
-    setPopOver(false);
+      const response = await fetch(url, requestOptions);
+      handleHideButtonClick();
+      setPopOver(false);
+    }
   }
-
 
   const handleClose = () => {
     closeModal(ModalNames.ImageModal);
