@@ -76,7 +76,9 @@ function Vote() {
 
     const result = await response.json();
 
-    const url_image = `${process.env.REACT_APP_Annotation_LINK}/annotations?source=${polldata.pollImage}`;
+    const index  =  polldata.pollImage.indexOf('?');
+    const subImageURL =  polldata.pollImage.substring(0,index);
+    const url_image = `${process.env.REACT_APP_Annotation_LINK}/annotations?source=${subImageURL}`;
     const response_image = await fetch(url_image);
 
     const result_image = await response_image.json();
@@ -431,6 +433,8 @@ function Vote() {
 
   const handleClose = () => {
     setShowImageAnnotationModal(false);
+    setSelectedAnnotationList(Array(annotationList.length).fill(false));
+
   };
   if (isLoaded == true) {
     return (

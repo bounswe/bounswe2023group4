@@ -26,12 +26,14 @@ const ImageModal = ({ pollData }) => {
   const handleAnnotation = async () => {
     console.log( `Link:\n${pollData.pollImage}#xywh=${selection.startX},${selection.startY},${selection.endX - selection.startX},${selection.endY-selection.startY}`);
     if (annotationBody.length > 0) {
+      const index  =  pollData.pollImage.indexOf('?');
+      const subImageURL =  pollData.pollImage.substring(0,index);
       const url = `${process.env.REACT_APP_Annotation_LINK}/annotations`;
       const requestBody = {
         "@context": "http://www.w3.org/ns/anno.jsonld",
         "type": "Annotation",
         "target": {
-          "id": `${pollData.pollImage}#xywh=${selection.startX},${selection.startY},${selection.endX - selection.startX},${selection.endY-selection.startY}`,
+          "id": `${subImageURL}#xywh=${selection.startX},${selection.startY},${selection.endX - selection.startX},${selection.endY-selection.startY}`,
           "type": "Image",
         },
         "body": {
