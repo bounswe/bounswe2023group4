@@ -529,6 +529,7 @@ function Vote() {
                             break;
                           }
                         }
+                        setPolldata(polldataOriginal);
                         setShowImageAnnotationModal(true);
                         drawSelection();
                         setSelectedAnnotationList(Array(annotationList.length).fill(false));
