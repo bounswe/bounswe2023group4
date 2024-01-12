@@ -17,7 +17,6 @@
 }
 .pollCardClosed {
   background-color: var(--neutral-closedPoll);
-  
 }
 .question {
   display: flex;
@@ -85,7 +84,6 @@
   width: 22%;
   text-align: center;
   color: var(--neutral-black);
-  
 }
 .textDescription {
   font-size: 14px;
@@ -131,7 +129,7 @@
 }
 
 .commentButton {
-  background-color: var(--primary-400); 
+  background-color: var(--primary-400);
 }
 .buttonWrapper {
   display: flex;
@@ -161,17 +159,17 @@
   opacity: 0.7;
 }
 
-.customOptionWrapper{
+.customOptionWrapper {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap:10px;
+  gap: 10px;
 }
-.customOptionText{
+.customOptionText {
   font-size: 16px;
   font-weight: 500;
 }
-.customOption{
+.customOption {
   width: 50%;
   padding: 10px;
   box-sizing: border-box;
@@ -180,39 +178,59 @@
   font-size: 20px;
   background-color: var(--neutral-pollCard);
   color: var(--neutral-black);
-  cursor: pointer!important;
-
-
+  cursor: pointer !important;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-.buttonText{
+.buttonText {
   margin: 0px;
 }
 
-@media (max-width:769px){
-  .buttonText{
+@media (max-width: 769px) {
+  .buttonText {
     display: none;
   }
   .commentButton,
-.shareButton,
-.reportButton {
-  padding: 12px;
-}
-}
-@media (max-width:1025px){
-  .card{
-    padding: 25px 15px ;
-    
+  .shareButton,
+  .reportButton {
+    padding: 12px;
   }
-
 }
-.pollClosed{
+@media (max-width: 1025px) {
+  .card {
+    padding: 25px 15px;
+  }
+}
+.pollClosed {
   font-size: large;
   font-weight: 700;
   color: var(--warning-500);
   text-align: right;
 }
+
+.pollImage {
+  display: flex;
+  width: 100%;
+  height: 200px; 
+  overflow: hidden; 
+  cursor: pointer; 
+  padding-top: 10px;
+  padding-bottom: 5px;
+  justify-content: center;
+  align-items: center;
+  
+
+}
+
+.pollImage img {
+  width: max-content;
+  height: 100%;
+  object-fit: contain; 
+  box-shadow: 2px 2px 4px var(--neutral-shadow);
+  border-radius: 8px; 
+
+}
+

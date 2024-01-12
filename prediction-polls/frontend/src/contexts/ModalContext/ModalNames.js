@@ -7,4 +7,6 @@ export const ModalNames = {
     PollTagModal: 'PollTagModal',
     FollowerModal: 'FollowerModal',
     FollowingModal: 'FollowingModal',
+    PollImageModal: 'PollImageModal',
+    ImageModal: 'ImageModal',
   };

@@ -37,7 +37,12 @@ const targetObjectSchema = Joi.object({
   selector: selectorSchema.required(),
 });
 
-const targetSchema = Joi.alternatives().try(targetUriSchema, targetObjectSchema);
+const targetImageSchema = Joi.object({
+  id: Joi.string().uri().required(),
+  type: Joi.string().valid('Image')
+});
+
+const targetSchema = Joi.alternatives().try(targetUriSchema, targetObjectSchema, targetImageSchema);
 
 const bodyUriSchema = Joi.string().uri().required();
 

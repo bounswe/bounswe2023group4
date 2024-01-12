@@ -137,7 +137,7 @@ function Create() {
         if (response.ok) {
           const responseData = await response.json();
 
-          handleOpenTagModal(responseData.newPollId);
+          handleOpenImageModal(responseData.newPollId);
         } else {
           console.error("Error:", response.statusText);
         }
@@ -167,7 +167,7 @@ function Create() {
         if (response.ok) {
           const responseData = await response.json();
 
-          handleOpenTagModal(responseData.newPollId);
+          handleOpenImageModal(responseData.newPollId);
         } else {
           console.error("Error:", response.statusText);
         }
@@ -199,7 +199,7 @@ function Create() {
         });
         if (response.ok) {
           const responseData = await response.json();
-          handleOpenTagModal(responseData.newPollId);
+          handleOpenImageModal(responseData.newPollId);
         } else {
           console.error("Error:", response.statusText);
         }
@@ -228,7 +228,7 @@ function Create() {
         });
         if (response.ok) {
           const responseData = await response.json(); 
-          handleOpenTagModal(responseData.newPollId);
+          handleOpenImageModal(responseData.newPollId);
         } else {
           console.error("Error:", response.statusText);
         }
@@ -260,7 +260,7 @@ function Create() {
         });
         if (response.ok) {
           const responseData = await response.json();
-          handleOpenTagModal(responseData.newPollId);
+          handleOpenImageModal(responseData.newPollId);
         } else {
           console.error("Error:", response.statusText);
         }
@@ -290,7 +290,7 @@ function Create() {
         if (response.ok) {
           const responseData = await response.json();
 
-          handleOpenTagModal(responseData.newPollId
+          handleOpenImageModal(responseData.newPollId
             );
         } else {
           console.error("Error:", response.statusText);
@@ -301,8 +301,8 @@ function Create() {
       }
     }
   };
-  const handleOpenTagModal = (pollId) => {
-    openModal(ModalNames.PollTagModal,null,pollId);
+  const handleOpenImageModal = (pollId) => {
+    openModal(ModalNames.PollImageModal,null,pollId);
   }
 
 
