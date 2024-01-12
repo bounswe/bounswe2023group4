@@ -12,11 +12,11 @@ const useModal = () => {
     setComments(comments);
     setFollowerList(followerList);
     setFollowingList(followingList);
-    setModals({ ...modals, [modalName]: true });
+    setModals((prevModals) => ({ ...Object.keys(prevModals).reduce((acc, name) => ({...acc, [name]: false}), {}), [modalName]: true }));
   };
 
   const closeModal = (modalName) => {
-    setModals({ ...modals, [modalName]: false });
+    setModals((prevModals) => ({ ...prevModals, [modalName]: false }));
   };
 
   const toggleModal = (modalName) => {
